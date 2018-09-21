@@ -5,11 +5,27 @@
   height: 150px;
 }
 
-.nav-bar {
-  position: absolute;
-  display: block;
+
+/* 시각장애인용 text */
+.guide-text {
+  display: none;
 }
 
+.nav-bar {
+  position: relative;
+  font-family: Arial, sans-serif;
+  top: 0;
+  left: 0;
+  z-index: 198;
+  font-size: 12px;
+  line-height: 1em;
+  margin: 0 8px;
+  display: block;
+  zoom: 1;
+  min-width: 1000px;
+}
+
+/* 최상단 이미지 */
 .nav-link-signin {
   background-color: #F6F6F6;
   text-align: left;
@@ -20,7 +36,8 @@
   min-width: 1000px;
 }
 
-.nav-head {
+/* nav 상단 영역 */
+.nav-top {
   position: relative;
   display: block;
   width: 100%;
@@ -30,47 +47,74 @@
 
 .nav-logo {
   width: 192px;
-}
-
-.nav-logo .nav-logo-link {
   position: relative;
-  display: inline-block;
+  display: block;
   float: left;
   height: 100%;
   padding: 13px 18px 0px 27px;
   font-size: 120%;
+  text-align: center;
 }
 
-.nav-head .nav-search {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  width: auto;
-  border-radius: 4px 4px;
-  margin: 10px 0 0;
-}
-
-.nav-head .nav-search .nav-search-select {
-  float: left;
-}
-
-.nav-search-select_label {
-  display: none;
-}
-
-.nav-search-select_label .nav-search-select_dropdown {
+.nav-search {
   position: absolute;
   display: block;
-  left: 0;
-  height: 35px;
-  width: auto;
-
+  width: 680px;
+  height: 40px;
+  left: 190px;
+  margin-top: 0;
+  padding-top: 11px;
+  padding-right: 25px;
 }
 
+.nav-search-bar {
+  position: relative;
+  display: block;
+  margin-bottom: 0;
+}
+
+.nav-select-dropdown-button {
+  position: relative;
+  display: block;
+  top: 1px;
+  width: 39px;
+  height: 35px;
+  border: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.nav-search-field {
+  display: block;
+  left: 6%;
+  border: 0;
+  height: 35px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.nav-search-submit .nav-input {
+  background-color: #fcc754;
+  background-image: none;
+  position: absolute;
+  border: none;
+  width: 45px;
+  display: block;
+  height: 60%;
+  right: 40.5%;
+  border: none;
+  cursor: pointer;
+  top: 11px;
+  border-radius: 4px 4px 4px 4px;
+  z-index: 0;
+}
+
+/* nav 하단 영역 */
+/* 
 .nav-main {
   position: relative;
   display: block;
   width: 100%;
   height: 60px;
   padding: 5px 0px 0px 0px
-}
+} 
+*/
