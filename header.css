@@ -1,3 +1,12 @@
+header {
+  position: relative;
+  top: 0;
+  left: 0;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1em;
+}
+
 .nav-main {
   background-color: #232f3e;
   position: absolute;
@@ -5,7 +14,6 @@
   width: 100%;
   height: 100px;
   top: 54px;
-  color: #dfe0e3;
 }
 
 .guide-text {
@@ -78,17 +86,18 @@
 }
 
 .input-search-field {
+  display: inline-block;
+  position: absolute;
   min-width: 360px;
-  width: 1390px;
-  top: 0;
-  left: 0;
+  width: 90%;
+  top: 11px;
+  left: 39px;
   border: 0;
   height: 35px;
-  float: left;
 }
 
 .nav-submit-button {
-  position: relative;
+  position: absolute;
   display: inline-block;
   background-color: #febd69;
   background-image: none;
@@ -102,6 +111,7 @@
   margin: 0;
   line-height: 44px;
   height: 35px;
+  right: 50px;
 }
 
 .nav-search-submit {
@@ -125,24 +135,35 @@
 
 .nav-link-shop {
   min-width: 350px;
+  width: 100%;
+  height: 39px;
+  overflow: hidden;
+}
+
+.link-shop-img {
   position: absolute;
-  width: 15%;
-  right: 30px;
-  top: 5%;
+  right: 0;
+  top: 8px;
+}
+
+
+.link-shop {
+  display: block;
+  height: 100%;
 }
 
 .nav-bottom {
-  display: inline-block;
   width: 100%;
-  height: 60%;
-  text-decoration: none;
-  overflow: hidden;
+  height: 60px;
+  padding-top: 5px;
+  position: relative;
 }
 
 .nav-left {
   position: relative;
   float: left;
   height: 55px;
+  width: 192px;
 }
 
 .nav-location-title {
@@ -178,36 +199,76 @@
   padding-right: 11px;
 }
 
-.nav-shop-container * {
+.nav-shop-container {
+  display: inline-block;
   height: 55px;
   color: #ffffff;
-  float: left;
   text-decoration: none;
-  padding: 6px 15px 0 0;
+  font-family: Arial, sans-serif;
+  line-height: 1em;
 }
 
-.nav-departments {
+.nav-shop {
   display: inline-block;
-  line-height: 44px;
-}
-
-.nav-right {
-  min-width: 0;
-}
-
-.nav-right>* {
-  display: inline-block;
-  color: #ffffff;
-  text-decoration: none;
-  padding: 6px 7px 0 32px;
   margin-top: 2px;
-  font-family: arial, sans-serif;
-  padding-right: 0;
-  overflow: hidden;
-  top: 1px;
-  margin: 0 1px;
+  margin: 25px 5px 0 0;
+  width: auto;
+  padding: 6px 0 0 0;
+  float: left;
+}
+
+.departments-list {
+  padding: 0 15px 0 15px;
+  height: 26px;
+  margin-top: 16px;
+  clear: both;
+}
+
+.departments-title {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 15px;
+  font-weight: 700;
+  padding-bottom: 5px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.fa-caret-down {
+  color: #a7acb2;
+}
+
+.nav-container {
   display: inline-block;
-  line-height: 44px;
-  height: 44px;
-  float: right;
+  width: auto;
+  padding: 2px 0 0 0;
+  margin: 32px 0 0;
+  height: 37px;
+}
+
+.nav-container>a {
+  color: #ccc;
+  text-decoration: none;
+  padding: 0 9px;
+  margin-bottom: 25px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+
+.nav-bottom-right {
+  display: inline-block;
+  height: 55px;
+  margin-top: 2px;
+}
+
+.bottom-right-a {
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  padding: 6px 7px 0 32px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1em;
 }
