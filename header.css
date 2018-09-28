@@ -32,10 +32,12 @@ header {
   min-width: 1000px;
 }
 
+/* header 상단 */
 .nav-top {
   height: 39px;
 }
 
+/* header icon */
 .nav-amazon-icon {
   display: inline-block;
   width: 10%;
@@ -59,6 +61,7 @@ header {
   color: #48a3c6;
 }
 
+/* 상단 검색창 */
 .nav-search {
   min-width: 70%;
   position: absolute;
@@ -74,6 +77,7 @@ header {
   white-space: nowrap;
 }
 
+/* 상단 검색창 dropdown menu */
 .select-dropdown-menu {
   height: 100%;
   border-radius: 5px 0 0 5px;
@@ -85,6 +89,7 @@ header {
   float: left;
 }
 
+/* 상단 검색창 입력 영역 */
 .input-search-field {
   display: inline-block;
   position: absolute;
@@ -133,6 +138,7 @@ header {
   left: 0;
 }
 
+/* 상단 우측 이미지 */
 .nav-link-shop {
   min-width: 350px;
   width: 100%;
@@ -146,7 +152,6 @@ header {
   top: 8px;
 }
 
-
 .link-shop {
   display: block;
   height: 100%;
@@ -159,6 +164,7 @@ header {
   position: relative;
 }
 
+/* 하단 좌측 */
 .nav-left {
   position: relative;
   float: left;
@@ -167,18 +173,28 @@ header {
 }
 
 .nav-location-title {
+  display: inline-block;
   color: #fff;
   margin-top: 9px;
   margin-left: 35px;
 }
 
+.fa-map-marker-alt {
+  position: absolute;
+  display: inline-block;
+  font-size: 20px;
+  clear: both;
+  left: 13px;
+  top: 23px;
+}
+
 .nav-location-title-line_1 {
+  display: inline-block;
   font-size: 12px;
   line-height: 14px;
   height: 14px;
   font-weight: 400;
   margin-top: 9px;
-  float: left;
   clear: both;
   color: inherit;
   padding-right: 11px;
@@ -194,13 +210,14 @@ header {
   padding-bottom: 4px;
   white-space: nowrap;
   clear: both;
-  float: left;
   font-family: Arial, sans-serif;
   padding-right: 11px;
 }
 
+/* 하단 중앙 */
 .nav-shop-container {
   display: inline-block;
+  width: auto;
   height: 55px;
   color: #ffffff;
   text-decoration: none;
@@ -209,7 +226,6 @@ header {
 }
 
 .nav-shop {
-  display: inline-block;
   margin-top: 2px;
   margin: 25px 5px 0 0;
   width: auto;
@@ -218,6 +234,7 @@ header {
 }
 
 .departments-list {
+  text-decoration: none;
   padding: 0 15px 0 15px;
   height: 26px;
   margin-top: 16px;
@@ -239,11 +256,11 @@ header {
 }
 
 .nav-container {
-  display: inline-block;
-  width: auto;
+  width: 1050px;
   padding: 2px 0 0 0;
   margin: 32px 0 0;
   height: 37px;
+  float: left;
 }
 
 .nav-container>a {
@@ -256,19 +273,58 @@ header {
   cursor: pointer;
 }
 
-
+/* 하단 우측 */
 .nav-bottom-right {
   display: inline-block;
+  width: 500px;
   height: 55px;
-  margin-top: 2px;
 }
 
 .bottom-right-a {
-  overflow: hidden;
   font-family: Arial, sans-serif;
-  padding: 6px 7px 0 32px;
+  padding: 20px 0 0 32px;
   color: #fff;
   text-decoration: none;
   font-size: 12px;
   line-height: 1em;
+  float: right;
+}
+
+.bottom-right-font-lg {
+  display: inline-block;
+  color: #fff;
+  font-size: 15px;
+  line-height: 15px;
+  font-weight: 700;
+  padding-bottom: 4px;
+  white-space: nowrap;
+  font-family: Arial, sans-serif;
+}
+
+.bottom-right-font-sm {
+  display: inline-block;
+  color: #ccc;
+  font-size: 12px;
+  line-height: 1em;
+  white-space: nowrap;
+  font-family: Arial, sans-serif;
+}
+
+.nav-link-language {
+  margin-bottom: 4px;
+}
+
+.nav-link-border {
+  position: relative;
+  border-right: 1px solid #555;
+  margin-bottom: 5px;
+  width: 1px;
+  height: 30px;
+  left: 37px;
+  top: -27px;
+}
+
+.nav-single-row-link {
+  height: 26px;
+  margin-top: 12px;
 }
