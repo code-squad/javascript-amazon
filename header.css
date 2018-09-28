@@ -1,4 +1,5 @@
 header {
+  display: block;
   position: relative;
   top: 0;
   left: 0;
@@ -136,6 +137,13 @@ header {
   line-height: 1px;
   top: 0;
   left: 0;
+}
+
+.fa-search {
+  position: relative;
+  font-size: 25px;
+  right: 20px;
+  bottom: 5px;
 }
 
 /* 상단 우측 이미지 */
