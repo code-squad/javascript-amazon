@@ -2,6 +2,7 @@
   padding-top: 99px;
 }
 
+/* main text 및 img */
 .guide-text {
   display: none;
 }
@@ -52,9 +53,43 @@
   margin-bottom: 10px;
 }
 
-.prime-a-button {
-  background-color: #f0c14b;
-  cursor: pointer;
+.prime-a-button-outer {
   display: inline-block;
+  min-width: 360px;
+  min-height: 54px;
+  border-radius: 3px;
+  border: 1px solid #ff6138;
+  background-color: #ffa724;
+  cursor: pointer;
   padding: 0;
+
 }
+
+.a-button-input {
+  border: 1px 6px 1px 6px;
+  background-color: transparent;
+  color: #285343;
+  border: 0;
+  cursor: pointer;
+  height: 54px;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 550;
+}
+
+.prime-plan-button {
+  margin-bottom: 32px;
+}
+
+.prime-plan-text {
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.prime-logo-img {
+  width: 80px;
+  margin-bottom: 32px;
+}
+
+/* Card 카테고리 */
