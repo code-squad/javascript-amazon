@@ -103,19 +103,35 @@
 }
 
 .prime-benefit-cards {
+  display: block;
   margin: 0 auto;
   width: 774px;
   height: 262px;
   font: inherit;
 }
 
-.card-catagory-list {
+.card-catagory-click {
+  position: absolute;
   width: 202px;
   height: 262px;
   margin: 0 -20px 0 -26px;
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 99;
+}
+
+.card-catagory-noneclick {
+  width: 150px;
+  height: 210px;
+  margin: 26px 6px 26px 0;
+  background-size: 100%;
+  background-position: center;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  top: 0;
+  left: 150px;
 }
 
 .card-clickable {
@@ -125,19 +141,13 @@
   cursor: pointer;
 }
 
-.ship-card-img {
-  height: 190px;
-  background-size: 190px;
-  background-repeat: no-repeat;
-  background-image: url(./image/prime-card-ship.png);
-  background-position: center;
-  /* background-position-y: -10px; */
+.card-none-clickable {
+  width: 150px;
+  height: 210px;
+  cursor: pointer;
 }
 
-.ship-card {
-  background-image: linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
-}
-
+/* card-common-css: title, button, card-content */
 .card-title {
   width: 100%;
   color: #FFF;
@@ -145,6 +155,7 @@
   font-size: 20px;
   font-weight: 200;
   font-family: inherit;
+  bottom: 24px;
 }
 
 .card-content {
@@ -175,4 +186,171 @@
 
 .click-button {
   color: #fff;
+}
+
+
+/* ship card */
+.ship-card {
+  background-image: linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
+}
+
+.ship-card-img {
+  height: 190px;
+  background-size: 190px;
+  background-repeat: no-repeat;
+  background-image: url(./image/prime-card-ship.png);
+  background-position: center;
+}
+
+/* stream card */
+.stream-card {
+  background-image: linear-gradient(30deg, #CC0C39 40%, #FF6138 85%, #FF6138 74px);
+}
+
+.stream-card-img {
+  height: 165px;
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-image: url(./image/prime-card-stream.png);
+  background-position: center;
+}
+
+/* shop-card */
+.shop-card {
+  background-image: linear-gradient(30deg, #A90067 40%, #E31F64 90%, #E31F64 48px);
+}
+
+.shop-card-img {
+  height: 165px;
+  background-size: 190px;
+  background-repeat: no-repeat;
+  background-image: url(./image/prime-card-shop.png);
+  background-position: center;
+}
+
+/* read-card */
+.read-card {
+  background-image: linear-gradient(30deg, #008577 40%, #36C2B4 90%, #36C2B4 48px);
+}
+
+.read-card-img {
+  height: 165px;
+  background-size: 190px;
+  background-repeat: no-repeat;
+  background-image: url(./image/prime-card-read.png);
+  background-position: center;
+}
+
+/* more card */
+.more-card {
+  background-image: linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px);
+}
+
+.more-card-img {
+  height: 165px;
+  background-size: 190px;
+  background-repeat: no-repeat;
+  background-image: url(./image/prime-card-more.png);
+  background-position: center;
+}
+
+/* prime-carosel-benefit */
+.prime-carosel-benefit {
+  display: inline-block;
+  font: inherit;
+  width: 90%;
+  height: 400px;
+  overflow: visible;
+  margin: 0 90px;
+}
+
+.a-carosel-card {
+  display: inline-block;
+  height: 100%;
+}
+
+.a-carosel-viewpoint {
+  height: 400px;
+  margin: 0 72px;
+  overflow: visible;
+  float: left;
+}
+
+.a-carosel-button {
+  width: 70px;
+  height: 100%;
+}
+
+.carosel-button-left {
+  padding-left: 3px;
+  float: left;
+}
+
+.button-icon {
+  padding-top: 150px;
+  font-size: 50px;
+  color: gray;
+}
+
+.carosel-button-right {
+  padding-right: 3px;
+  float: right;
+}
+
+.slide-prime-onedaytwoday {
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A01._CB514650866_.jpg);
+  background-size: auto 400px;
+  background-repeat: no-repeat;
+  background-position-x: -180px;
+  height: 400px;
+  padding-top: 30px;
+  visibility: visible;
+}
+
+.card-copy {
+  position: relative;
+  width: 480px;
+  left: 100%;
+}
+
+.card-header {
+  background-color: #00A8E1;
+  margin: 0px 0 20px;
+  width: 170px;
+}
+
+.carosel-card-category-text {
+  color: #fff;
+  text-align: left;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  font-size: 15px;
+  line-height: 30px;
+  font-family: inherit;
+}
+
+.card-headline {
+  font-family: inherit;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  color: #6b6b6b;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: lighter;
+  margin-bottom: 20px;
+  font-family: Arial, Tahoma, sans-serif;
+}
+
+.card-cta>* {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #002F36;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
 }
