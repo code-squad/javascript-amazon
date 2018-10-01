@@ -66,7 +66,7 @@
 }
 
 .a-button-input {
-  border: 1px 6px 1px 6px;
+  border: 1px 6px;
   background-color: transparent;
   color: #285343;
   border: 0;
@@ -94,6 +94,7 @@
 
 /* Card 카테고리 */
 .prime-carosel-container {
+  min-width: 1400px;
   position: relative;
   display: block;
   width: 100%;
