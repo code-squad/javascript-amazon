@@ -1,18 +1,391 @@
-.hidden-plans {
-  display: block;
+#hidden-plans {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 0;
+  top: 0;
+  background-color: #232f3e;
+  border-bottom: 2px solid #00a8e1;
+  z-index: 9;
+  transition: all 1s;
+}
+
+.plans-nav-header {
+  width: 100%;
+  color: #fafafa;
+  align-items: center;
+  padding: 0 10px;
+  height: 100%;
+  top: 0;
+  position: absolute;
+}
+
+.sticky-nav-prime {
+  position: absolute;
+  width: 320px;
+  height: 70px;
+}
+
+.sticky-nav-prime-logo {
+  background-size: 90px;
+  vertical-align: middle;
+  padding: 10px;
+  padding-right: 40px;
+  max-width: 280px;
+  display: inline-block;
+  position: absolute;
+  width: 320px;
+  height: 100%;
+}
+
+.expand-membership-card {
+  position: absolute;
+  width: 320px;
+  height: 37px;
+  top: 30px;
+  left: 41%;
+  display: inline-block;
+  vertical-align: bottom;
+  font-size: 14pt;
+  font-weight: lighter;
+  text-align: center;
+  cursor: pointer;
+}
+
+.expand-text {
+  position: relative;
+  top: 4px;
+}
+
+.expand-plan-icon {
+  position: relative;
+  top: 10px;
+  width: 30px;
+}
+
+
+.membership-plan-button {
+  position: absolute;
+  width: 320px;
+  height: 50px;
+  top: 11px;
+  right: 40px;
+  float: right;
+}
+
+.plan-button {
+  position: absolute;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #ff6138;
+  background: #ffa724;
+  height: 100%;
+  width: 135px;
+  text-align: center;
+  left: 120px;
+}
+
+.tryPrime-button {
+  position: absolute;
+  background-color: transparent;
+  color: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  z-index: 20;
+}
+
+.tryprime-button-text {
+  line-height: 50px;
+  cursor: pointer;
+  border-radius: 2px;
+  white-space: normal;
+  font-weight: bold;
+  color: #284d40;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+/* comparison-card */
+.hidden-inner-contents {
+  position: relative;
+  z-index: 0;
   top: 0;
   width: 100%;
-  height: 101px;
-  background-color: #232f3e;
+  min-width: 1900px;
+  height: 0;
+  opacity: 0;
+  background-color: #eeeeee;
+  transition: all 1s;
   border-bottom: 2px solid #00a8e1;
 }
 
-.header-prime-icon {
-  height: 70px;
-  vertical-align: middle;
+.plan-comparison-card {
+  padding: 0 250px;
+  width: 100%;
   height: 100%;
-  padding: 10px;
-  padding-right: 80px;
-  max-width: 280px;
+  background: white;
+}
+
+.comparison-card-header {
+  margin: 0 220px;
+  height: 160px;
+}
+
+.comparison-card-header-title {
   position: absolute;
+  top: 75px;
+  left: 700px;
+  align-self: center;
+  font-weight: 100;
+  font-size: 20pt;
+  max-width: 440px;
+  display: inline-block;
+}
+
+.comparison-card-container {
+  margin: 0 220px;
+  height: 470px;
+}
+
+.prime-logo {
+  position: absolute;
+  top: 50px;
+}
+
+.plan-img {
+  position: absolute;
+  top: 0;
+  right: 470px;
+}
+
+.close-button {
+  position: relative;
+  text-align: center;
+  width: 82px;
+  height: 46px;
+  top: 15px;
+  float: right;
+  line-height: 24px;
+  text-transform: uppercase;
+  font-size: 16px;
+  cursor: pointer;
+  color: #002F36;
+  text-decoration: none;
+}
+
+.radio-container {
+  position: absolute;
+  top: 165px;
+  width: 282px;
+  height: 360px;
+}
+
+.best-container-contents {
+  height: 360px;
+}
+
+/* plan-card */
+.plan-card {
+  display: inline-block;
+  border: none;
+  width: 282px;
+  height: 360px;
+  background: #fff;
+  border: 1px solid #000;
+}
+
+.plan-card-header {
+  font-weight: 300;
+  font-size: 20pt;
+  line-height: 10px;
+}
+
+.plan-card-bg {
+  padding: 30px 30px 0 30px;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1;
+  position: relative;
+  pointer-events: none;
+}
+
+.radio-button {
+  position: relative;
+  top: 30px;
+  right: 20px;
+  float: right;
+  z-index: 12;
+  display: none;
+}
+
+.plan-card-price {
+  font-weight: 300;
+  font-size: 20pt;
+  margin-top: 12px;
+  height: 20px;
+}
+
+.radio-video {
+  position: absolute;
+  left: 468px;
+}
+
+.radio-monthly {
+  position: absolute;
+  left: 810px;
+}
+
+.radio-best {
+  position: absolute;
+  right: 480px;
+}
+
+.plan-card-price-amount {
+  font-weight: 800;
+}
+
+sup {
+  vertical-align: super;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.benefit-list {
+  margin-top: 55px;
+  margin-left: 22px;
+  font-weight: 200;
+  font-size: 12pt;
+  padding-left: 30px;
+}
+
+.benefit {
+  padding-bottom: 10px;
+  line-height: 18px;
+  height: 35px;
+  text-indent: -25px;
+}
+
+.plan-card-savings-ribbon {
+  position: relative;
+  float: left;
+  margin-left: -40px;
+  margin-top: -8px;
+  height: 36px;
+  width: 184px;
+}
+
+#plan-card-savings-text {
+  width: 177px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 19px;
+  position: absolute;
+  margin-top: -22px;
+  margin-left: 7px;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* comparison-card-cta */
+.comparison-card-cta {
+  position: relative;
+  width: 360px;
+  height: 100px;
+  right: 30px;
+  top: 15px;
+}
+
+.comparison-cta-form {
+  width: 100%;
+}
+
+.hidden-button-inner {
+  position: relative;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #ff6138;
+  background: #ffa724;
+  height: 46px;
+  width: 320px;
+  min-width: 320px;
+  text-align: center;
+  top: 10px;
+  margin: 0 10px;
+}
+
+.hidden-button-input {
+  position: absolute;
+  background-color: transparent;
+  color: transparent;
+  border: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  outline: 0;
+  overflow: visible;
+  z-index: 20;
+}
+
+.hidden-button-text {
+  white-space: normal;
+  line-height: 44px;
+  font-weight: 700;
+  color: #284d40;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 0 25px 0 25px;
+}
+
+.after-button-redirects {
+  position: relative;
+  top: 30px;
+}
+
+.after-button-text {
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 19px;
+  color: #0066c0;
+}
+
+
+/* hiddin comparison-close-button */
+.comparison-close-button {
+  position: relative;
+  display: block;
+  height: 10px;
+  font-size: 20px;
+  top: 470px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+/* radio button */
+.plan-card-radio-button {
+  display: block;
+  position: relative;
+  pointer-events: none;
+  background-color: white;
+  border: 2px solid #AAAAAA;
+  border-radius: 100%;
+  height: 25px;
+  width: 23px;
+  top: -335px;
+  left: 241px;
+  z-index: 5;
+  transition: background-color .25s linear;
+}
+
+input[type=radio]:checked~label .plan-card {
+  background: radial-gradient(at 155px 98px, #00A8E1, #0094c6);
 }

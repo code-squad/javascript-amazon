@@ -14,7 +14,7 @@ header {
   display: block;
   width: 100%;
   height: 100px;
-  top: 54px;
+  top: 55px;
 }
 
 .guide-text {
@@ -28,9 +28,12 @@ header {
   outline: 0;
   background-position: top left;
   height: 55px;
-  background-size: 1920px;
   background-repeat: no-repeat;
   min-width: 1000px;
+}
+
+.top-head-img {
+  width: 1905px;
 }
 
 /* header 상단 */
