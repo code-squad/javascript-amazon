@@ -1,5 +1,5 @@
-import hiddenContents from "./event.js";
+import hiddenTopMenu from "./hiddenTopMenuHandler.js";
 
-const hiddenHandler = new hiddenContents();
-hiddenHandler.clickEventHandler();
-hiddenHandler.scrollEventHandler();
+const topMenu = new hiddenTopMenu();
+topMenu.clickMenuHandler();
+topMenu.scrollMenuHandler(300, 400);
