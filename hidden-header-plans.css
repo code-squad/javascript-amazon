@@ -427,8 +427,13 @@ sup {
 }
 
 .trans-show-hidden {
-  height: "70px";
-  opacity: "1";
+  height: 70px;
+  overflow: visible;
+}
+
+.trans-hidden {
+  height: 0px;
+  overflow: hidden;
 }
 
 /* translation */

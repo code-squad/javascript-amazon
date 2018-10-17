@@ -8,18 +8,11 @@ export default class HiddenContentsHandler {
 
       (yPos > displayStandard) ? hiddenLayer.style.display = "block": hiddenLayer.style.display = "none";
       if (yPos > openStandard) {
-        // hiddenLayer.classList.add("trans-display");
-        // hiddenLayer.setAttribute("class", "trans-display");
-        // => setAttribute 시 css Selector가 다른 이름이어서 잘 안먹히는 것 같음
-
-        hiddenLayer.style.height = "70px";
-        hiddenLayer.style.overflow = "visible";
+        hiddenLayer.classList.add("trans-show-hidden");
+        hiddenLayer.classList.remove("trans-hidden");
       } else {
-        // hiddenLayer.classList.remove("trans-display");
-        // hiddenLayer.setAttribute("class", "hidden-plans");
-
-        hiddenLayer.style.height = "0px";
-        hiddenLayer.style.overflow = "hidden";
+        hiddenLayer.classList.remove("trans-show-hidden");
+        hiddenLayer.classList.add("trans-hidden");
       }
     });
   }
