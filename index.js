@@ -1,5 +1,5 @@
-import Scroll from "./scroll.js";
+import hiddenContents from "./event.js";
 
-const scroll = new Scroll();
-scroll.clickEvent();
-scroll.scrollEvent();
+const hiddenHandler = new hiddenContents();
+hiddenHandler.clickEventHandler();
+hiddenHandler.scrollEventHandler();

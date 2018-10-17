@@ -10,6 +10,7 @@
   z-index: 9;
   min-width: 1920px;
   transition: all 500ms ease-out 0s;
+  overflow: hidden;
 }
 
 .o {
@@ -417,12 +418,12 @@ sup {
 
 /* translation */
 /* hidden-contents-plan display*/
-.trans-display {
+.trans-display-on {
   display: block;
 }
 
-.trans-none-display {
-  display: none;
+.trans-display-off {
+  display: block;
 }
 
 .trans-show-hidden {
