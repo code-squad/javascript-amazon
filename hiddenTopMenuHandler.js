@@ -4,19 +4,12 @@ export default class HiddenTopMenu {
 
     document.addEventListener("scroll", () => {
       const yPos = window.pageYOffset;
-
-      // hidden-plans class가 사라지는 버그 발견 이유는 여기 라고 추측을 하는데 원인은 모르겠음
-      // MDN : https://developer.mozilla.org/en-US/docs/Web/API/Element/classList#Browser_compatibility
-      // toggle() 에서 기능이 false인 경우 제거후 false를 먹여서 사용 할 수 없을 것 같음.
-
-      // const b_Display = hiddenLayer.classList.toggle("hidden-plans", yPos > displayWorkVal);
-      // const b_HiddenMenu = hiddenLayer.classList.toggle("hidden-plans", yPos > hiddenTopMenuWorkVal);
       const b_Display = yPos > displayWorkVal;
       const b_HiddenMenu = yPos > hiddenTopMenuWorkVal;
 
-      (yPos > displayWorkVal) ? this.displayBlock(): this.displayNone();
+      (b_Display) ? this.displayBlock(): this.displayNone();
 
-      if (yPos > hiddenTopMenuWorkVal) {
+      if (b_HiddenMenu) {
         hiddenLayer.classList.add("trans-show-hidden");
         hiddenLayer.classList.remove("trans-hidden");
       } else {
