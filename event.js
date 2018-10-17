@@ -7,6 +7,7 @@ export default class HiddenContentsHandler {
       const openStandard = 400;
 
       (yPos > displayStandard) ? hiddenLayer.style.display = "block": hiddenLayer.style.display = "none";
+
       if (yPos > openStandard) {
         hiddenLayer.classList.add("trans-show-hidden");
         hiddenLayer.classList.remove("trans-hidden");
@@ -21,7 +22,6 @@ export default class HiddenContentsHandler {
     let expandLayer = document.querySelector(".expand-membership-card");
     let hiddenContents = document.querySelector(".hidden-inner-contents");
 
-    // 2개의 element를 전체적으로 탐색? / querySelectorAll로 탐색? => 생성자 함수로 refactoring 시도.
     let closeButton = document.querySelector(".close-button");
     let otherCloseButton = document.querySelector(".comparison-close-button");
 
