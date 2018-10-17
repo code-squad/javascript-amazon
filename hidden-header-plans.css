@@ -13,21 +13,6 @@
   overflow: hidden;
 }
 
-.o {
-  position: fixed;
-  display: block;
-  height: 70px;
-  opacity: 1;
-  overflow: hidden;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: #232f3e;
-  z-index: 9;
-  min-width: 1920px;
-  transition: all 500ms ease-out 0s;
-}
-
 /* hidden-outer-contents */
 /* Background Hidden-outer-contents Layer area */
 .plans-nav-header {
