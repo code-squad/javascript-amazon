@@ -1,4 +1,8 @@
 export default class HiddenTopMenu {
+  constructor(ele) {
+    this.ele = ele;
+  }
+
   scrollMenuHandler(displayWorkVal, showTopMenuActVal, HiddenTopMenuActVal) {
     const hiddenEle = document.querySelector(".hidden-plans");
 
@@ -22,17 +26,14 @@ export default class HiddenTopMenu {
     let otherCloseButton = document.querySelector(".comparison-close-button");
 
     expandEle.addEventListener("click", () => {
-      if (hiddenContentsEle) {
-        hiddenContentsEle.classList.add("trans-show-click");
-      }
+      hiddenContentsEle.classList.toggle("trans-show-click");
     });
-
     otherCloseButton.addEventListener("click", this.closerButtonHandler);
     closeButton.addEventListener("click", this.closerButtonHandler);
   }
 
   closerButtonHandler() {
     const hiddenContentsEle = document.querySelector(".hidden-inner-contents");
-    hiddenContentsEle.classList.remove("trans-show-click");
+    hiddenContentsEle.classList.toggle("trans-show-click");
   }
 }

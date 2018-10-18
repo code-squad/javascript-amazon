@@ -1,5 +1,5 @@
-import hiddenTopMenu from "./hidden_topmenu_handler.js";
+import HiddenTopMenu from "./hiddenTopMenu.js";
 
-const topMenu = new hiddenTopMenu();
+const topMenu = new HiddenTopMenu();
 topMenu.clickMenuHandler();
 topMenu.scrollMenuHandler(300, 400, 400);
