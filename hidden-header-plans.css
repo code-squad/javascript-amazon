@@ -396,7 +396,6 @@ sup {
   top: -335px;
   left: 241px;
   z-index: 5;
-  transition: background-color .25s linear;
 }
 
 /* translation */

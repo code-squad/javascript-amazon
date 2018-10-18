@@ -1,36 +1,17 @@
 export default class HiddenTopMenu {
-  scrollMenuHandler(displayWorkVal, showTopMenuWorkVal) {
+  scrollMenuHandler(displayWorkVal, showTopMenuActVal, HiddenTopMenuActVal) {
     const hiddenEle = document.querySelector(".hidden-plans");
 
     document.addEventListener("scroll", () => {
       const yPos = window.pageYOffset;
       const b_Display = yPos > displayWorkVal;
-      const b_ShowMenu = yPos > showTopMenuWorkVal;
+      const b_ShowMenu = yPos > showTopMenuActVal;
+      const b_HiddenMenu = yPos < HiddenTopMenuActVal;
 
-      this.setDisplayVal(hiddenEle, b_Display);
-
-      if (b_ShowMenu) {
-        hiddenEle.classList.add("trans-show-hidden");
-        hiddenEle.classList.remove("trans-hidden");
-      } else {
-        hiddenEle.classList.remove("trans-show-hidden");
-        hiddenEle.classList.add("trans-hidden");
-      }
+      hiddenEle.classList.toggle("trans-display-block", b_Display);
+      hiddenEle.classList.toggle("trans-show-hidden", b_ShowMenu);
+      hiddenEle.classList.toggle("trans-hidden", b_HiddenMenu);
     });
-  }
-
-  setDisplayVal(hiddenEle, b_Display) {
-    hiddenEle.classList.toggle("trans-display-block", b_Display);
-  }
-
-  displayBlock(hiddenEle) {
-    hiddenEle.classList.add("trans-display-block");
-    hiddenEle.classList.remove("trans-display-none");
-  }
-
-  displayNone(hiddenEle) {
-    hiddenEle.classList.remove("trans-display-block");
-    hiddenEle.classList.add("trans-display-none");
   }
 
   clickMenuHandler() {
