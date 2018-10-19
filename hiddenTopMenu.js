@@ -3,8 +3,14 @@ export default class HiddenTopMenu {
     this.ele = ele;
   }
 
+  init() {
+    this.scrollMenuHandler(300, 400, 400);
+    this.clickMenuHandler();
+    this.closerButtonHandler();
+  };
+
   scrollMenuHandler(displayWorkVal, showTopMenuActVal, HiddenTopMenuActVal) {
-    const hiddenEle = document.querySelector(".hidden-plans");
+    const hiddenAllContentsEle = document.querySelector(".hidden-plans");
 
     document.addEventListener("scroll", () => {
       const yPos = window.pageYOffset;
@@ -12,21 +18,21 @@ export default class HiddenTopMenu {
       const b_ShowMenu = yPos > showTopMenuActVal;
       const b_HiddenMenu = yPos < HiddenTopMenuActVal;
 
-      hiddenEle.classList.toggle("trans-display-block", b_Display);
-      hiddenEle.classList.toggle("trans-show-hidden", b_ShowMenu);
-      hiddenEle.classList.toggle("trans-hidden", b_HiddenMenu);
+      hiddenAllContentsEle.classList.toggle("trans-display-block", b_Display);
+      hiddenAllContentsEle.classList.toggle("trans-show-hidden", b_ShowMenu);
+      hiddenAllContentsEle.classList.toggle("trans-hidden", b_HiddenMenu);
     });
   }
 
   clickMenuHandler() {
     let expandEle = document.querySelector(".expand-membership-card");
-    let hiddenContentsEle = document.querySelector(".hidden-inner-contents");
+    let hiddenInnerContentsEle = document.querySelector(".hidden-inner-contents");
 
     let closeButton = document.querySelector(".close-button");
     let otherCloseButton = document.querySelector(".comparison-close-button");
 
     expandEle.addEventListener("click", () => {
-      hiddenContentsEle.classList.toggle("trans-show-click");
+      hiddenInnerContentsEle.classList.toggle("trans-show-click");
     });
     otherCloseButton.addEventListener("click", this.closerButtonHandler);
     closeButton.addEventListener("click", this.closerButtonHandler);
