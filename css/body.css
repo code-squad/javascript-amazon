@@ -200,7 +200,7 @@
   height: 190px;
   background-size: 190px;
   background-repeat: no-repeat;
-  background-image: url(./image/prime-card-ship.png);
+  background-image: url(../image/prime-card-ship.png);
   background-position: center;
 }
 
@@ -213,7 +213,7 @@
   height: 165px;
   background-size: 150px;
   background-repeat: no-repeat;
-  background-image: url(./image/prime-card-stream.png);
+  background-image: url(../image/prime-card-stream.png);
   background-position: center;
 }
 
@@ -226,7 +226,7 @@
   height: 165px;
   background-size: 190px;
   background-repeat: no-repeat;
-  background-image: url(./image/prime-card-shop.png);
+  background-image: url(../image/prime-card-shop.png);
   background-position: center;
 }
 
@@ -239,7 +239,7 @@
   height: 165px;
   background-size: 190px;
   background-repeat: no-repeat;
-  background-image: url(./image/prime-card-read.png);
+  background-image: url(../image/prime-card-read.png);
   background-position: center;
 }
 
@@ -252,7 +252,7 @@
   height: 165px;
   background-size: 190px;
   background-repeat: no-repeat;
-  background-image: url(./image/prime-card-more.png);
+  background-image: url(../image/prime-card-more.png);
   background-position: center;
 }
 
