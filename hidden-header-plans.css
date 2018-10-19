@@ -400,27 +400,25 @@ sup {
 /* hidden-contents-plan display*/
 .trans-display-block {
   display: block;
-  height: 70px;
-  overflow: visible;
 }
 
 .trans-display-none {
   display: none;
 }
 
-.trans-show-hidden {
+.trans-show-outerContents {
   height: 70px;
   overflow: visible;
 }
 
-.trans-hidden {
+.trans-hidden-outerContents {
   height: 0px;
   overflow: hidden;
 }
 
 /* translation */
 /* hidden-contents-plan click*/
-.trans-show-click {
+.trans-show-inner-content {
   height: 650px;
   z-index: 11;
 }

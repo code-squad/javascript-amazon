@@ -4,42 +4,34 @@ export default class HiddenTopMenu {
   }
 
   init() {
-    this.scrollMenuHandler(300, 400, 400);
-    this.clickMenuHandler();
-    this.closerButtonHandler();
+    const yAxisOperatePoint = { displayVal: 300, showTopMenuVal: 400, hiddenTopMenuVal: 400 };
+    this.scrollMenuHandler(yAxisOperatePoint.displayVal, yAxisOperatePoint.showTopMenuVal, yAxisOperatePoint.hiddenTopMenuVal);
+    this.clickOpenMenuHandler();
+    this.clickCloseMenuHandler();
   };
 
-  scrollMenuHandler(displayWorkVal, showTopMenuActVal, HiddenTopMenuActVal) {
-    const hiddenAllContentsEle = document.querySelector(".hidden-plans");
-
+  scrollMenuHandler(displayVal, showVal, hiddenVal) {
     document.addEventListener("scroll", () => {
       const yPos = window.pageYOffset;
-      const b_Display = yPos > displayWorkVal;
-      const b_ShowMenu = yPos > showTopMenuActVal;
-      const b_HiddenMenu = yPos < HiddenTopMenuActVal;
+      const b_Display = yPos > displayVal;
+      const b_ShowMenu = yPos > showVal;
+      const b_HiddenMenu = yPos < hiddenVal;
 
-      hiddenAllContentsEle.classList.toggle("trans-display-block", b_Display);
-      hiddenAllContentsEle.classList.toggle("trans-show-hidden", b_ShowMenu);
-      hiddenAllContentsEle.classList.toggle("trans-hidden", b_HiddenMenu);
+      this.ele.hiddenAllContentsEle.classList.toggle("trans-display-block", b_Display);
+      this.ele.hiddenAllContentsEle.classList.toggle("trans-hidden-outerContents", b_HiddenMenu);
+      this.ele.hiddenAllContentsEle.classList.toggle("trans-show-outerContents", b_ShowMenu);
     });
   }
 
-  clickMenuHandler() {
-    let expandEle = document.querySelector(".expand-membership-card");
-    let hiddenInnerContentsEle = document.querySelector(".hidden-inner-contents");
-
-    let closeButton = document.querySelector(".close-button");
-    let otherCloseButton = document.querySelector(".comparison-close-button");
-
-    expandEle.addEventListener("click", () => {
-      hiddenInnerContentsEle.classList.toggle("trans-show-click");
+  clickOpenMenuHandler() {
+    this.ele.expandEle.addEventListener("click", () => {
+      this.ele.hiddenInnerContentsEle.classList.add("trans-show-inner-content");
     });
-    otherCloseButton.addEventListener("click", this.closerButtonHandler);
-    closeButton.addEventListener("click", this.closerButtonHandler);
+    this.ele.otherCloseButtonEle.addEventListener("click", this.clickCloseMenuHandler.bind(this));
+    this.ele.closeButtonEle.addEventListener("click", this.clickCloseMenuHandler.bind(this));
   }
 
-  closerButtonHandler() {
-    const hiddenContentsEle = document.querySelector(".hidden-inner-contents");
-    hiddenContentsEle.classList.toggle("trans-show-click");
+  clickCloseMenuHandler() {
+    this.ele.hiddenInnerContentsEle.classList.remove("trans-show-inner-content");
   }
 }
