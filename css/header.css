@@ -14,7 +14,7 @@ header {
   display: block;
   width: 100%;
   height: 100px;
-  top: 54px;
+  top: 55px;
 }
 
 .guide-text {
@@ -28,9 +28,12 @@ header {
   outline: 0;
   background-position: top left;
   height: 55px;
-  background-size: 1920px;
   background-repeat: no-repeat;
   min-width: 1000px;
+}
+
+.top-head-img {
+  width: 1905px;
 }
 
 /* header 상단 */
@@ -56,9 +59,9 @@ header {
 
 .nav-prime-link {
   position: absolute;
-  font-size: 5%;
+  font-size: 12px;
   top: 34px;
-  left: 95px;
+  left: 93px;
   color: #48a3c6;
 }
 
@@ -111,7 +114,6 @@ header {
   width: 45px;
   text-decoration: none;
   border-radius: 0 4px 4px 0;
-  padding: 6px 7px 0 32px;
   font-family: arial, sans-serif;
   overflow: hidden;
   margin: 0;
@@ -140,10 +142,10 @@ header {
 }
 
 .fa-search {
-  position: relative;
+  position: absolute;
   font-size: 25px;
-  right: 20px;
-  bottom: 5px;
+  top: 5px;
+  left: 10px;
 }
 
 /* 상단 우측 이미지 */
@@ -166,6 +168,7 @@ header {
 }
 
 .nav-bottom {
+  min-width: 1400px;
   width: 100%;
   height: 60px;
   padding-top: 5px;
@@ -286,6 +289,8 @@ header {
   display: inline-block;
   width: 500px;
   height: 55px;
+  padding: 0 20px 5px 0;
+  float: right;
 }
 
 .bottom-right-a {
