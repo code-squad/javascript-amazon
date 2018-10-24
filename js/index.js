@@ -1,8 +1,7 @@
 import HiddenTopMenu from "./hiddenTopMenu.js";
+import LayerManager from "./layerManager.js";
 
-let searchDocEle = (classEle) => {
-  return document.querySelector(classEle);
-}
+const searchDocEle = (classEle) => { return document.querySelector(classEle); }
 
 const topMenu = new HiddenTopMenu({
   closeButtonEle: searchDocEle(".close-button"),
