@@ -71,7 +71,7 @@
 
 .expand-plan-icon {
   position: relative;
-  top: 10px;
+  top: 6px;
   width: 30px;
 }
 
@@ -247,7 +247,7 @@
   font-weight: 800;
 }
 
-sup {
+.sup-text {
   vertical-align: super;
   font-size: 15px;
   font-weight: 800;
@@ -312,7 +312,7 @@ sup {
 /* comparison-card-cta: button*/
 .comparison-card-cta {
   position: relative;
-  width: 360px;
+  width: 365px;
   height: 100px;
   right: 30px;
   top: 15px;
@@ -360,7 +360,8 @@ sup {
 /* comparison-card-cta: bottom text */
 .after-button-redirects {
   position: relative;
-  top: 25px;
+  top: 23px;
+  left: -10px;
 }
 
 .after-button-text {

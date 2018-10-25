@@ -3,6 +3,12 @@ import LayerManager from "./layerManager.js";
 
 const searchDocEle = (classEle) => { return document.querySelector(classEle); }
 
+const layerManager = new LayerManager({
+  dimmedEle: searchDocEle("#nav-dimmed-cover"),
+  departmentLayerEle: searchDocEle(".nav-department"),
+  listLayerEle: searchDocEle(".departments-layer-list"),
+});
+
 const topMenu = new HiddenTopMenu({
   closeButtonEle: searchDocEle(".close-button"),
   otherCloseButtonEle: searchDocEle(".comparison-close-button"),
@@ -14,4 +20,5 @@ const topMenu = new HiddenTopMenu({
   transHiddenOuterEle: searchDocEle(".trans-hidden-outerContents"),
 });
 
+layerManager.init();
 topMenu.init();
