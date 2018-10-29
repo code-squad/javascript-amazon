@@ -242,7 +242,7 @@ header {
 }
 
 .nav-department{
-  height: 18px;
+  height: 24px;
 }
 
 .departments-layer{
@@ -270,7 +270,7 @@ header {
 
 .nav-container {
   width: 1050px;
-  margin: 30px 0 0;
+  margin: 28px 0 0;
   height: 28px;
   float: left;
 }
