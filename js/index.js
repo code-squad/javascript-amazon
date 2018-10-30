@@ -7,7 +7,7 @@ const layerManager = new LayerManager({
   dimmedEle: searchDocEle("#nav-dimmed-cover"),
   departmentLayerEle: searchDocEle(".nav-department"),
   listLayerEle: searchDocEle(".departments-layer-list"),
-  displayOuterEle: searchDocEle(".nav-link"),
+  displayOuterEle: searchDocEle(".list-layer"),
   innerLayerEle: searchDocEle(".inner-layer"),
 });
 

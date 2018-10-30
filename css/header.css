@@ -4,8 +4,6 @@ header {
   top: 0;
   left: 0;
   font-family: Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1em;
 }
 
 .nav-main {
@@ -59,7 +57,7 @@ header {
 
 .nav-prime-link {
   position: absolute;
-  font-size: 12px;
+  font-size: 1rem;
   top: 34px;
   left: 93px;
   color: #48a3c6;
@@ -127,7 +125,6 @@ header {
   display: block;
   height: 100%;
   width: 100%;
-  font-size: 14px;
   padding: 0;
   margin: 0;
   cursor: pointer;
@@ -143,7 +140,7 @@ header {
 
 .fa-search {
   position: absolute;
-  font-size: 25px;
+  font-size: 1.7rem;
   top: 5px;
   left: 10px;
 }
@@ -191,7 +188,7 @@ header {
 .fa-map-marker-alt {
   position: absolute;
   display: inline-block;
-  font-size: 20px;
+  font-size: 1.3rem;
   clear: both;
   left: 13px;
   top: 23px;
@@ -199,7 +196,7 @@ header {
 
 .nav-location-title-line_1 {
   display: inline-block;
-  font-size: 12px;
+  font-size: 0.8rem;
   line-height: 14px;
   height: 14px;
   font-weight: 400;
@@ -213,7 +210,7 @@ header {
 
 .nav-location-title-line_2 {
   display: inline-block;
-  font-size: 14px;
+  font-size: 0.9rem;
   line-height: 15px;
   font-weight: 700;
   padding-bottom: 4px;
@@ -236,16 +233,13 @@ header {
 
 .nav-shop {
   margin-top: 2px;
-  margin: 29px 5px 6px 0;
+  margin: 28px 5px 0px 0;
   width: auto;
+  height: 25px;
   float: left;
 }
 
-.nav-department{
-  height: 24px;
-}
-
-.departments-layer{
+.departments-layer {
   text-decoration: none;
   padding: 0 15px 0 15px;
   height: 26px;
@@ -256,7 +250,7 @@ header {
 .departments-title {
   font-family: Arial, sans-serif;
   padding-bottom: 5px;
-  font-size: 14px;
+  font-size: 0.9rem;
   line-height: 15px;
   font-weight: 700;
   text-decoration: none;
@@ -265,7 +259,7 @@ header {
 
 .fa-caret-down {
   color: #a7acb2;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .nav-container {
@@ -281,7 +275,7 @@ header {
   padding: 0 9px;
   margin-bottom: 25px;
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 0.8125rem;
   cursor: pointer;
 }
 
@@ -299,7 +293,7 @@ header {
   padding: 20px 0 0 32px;
   color: #fff;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1em;
   float: right;
 }
@@ -307,7 +301,7 @@ header {
 .bottom-right-font-lg {
   display: inline-block;
   color: #fff;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 15px;
   font-weight: 700;
   padding-bottom: 4px;
@@ -318,7 +312,7 @@ header {
 .bottom-right-font-sm {
   display: inline-block;
   color: #ccc;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1em;
   white-space: nowrap;
   font-family: Arial, sans-serif;
@@ -343,6 +337,6 @@ header {
   margin-top: 12px;
 }
 
-.nav-link-icon{
+.nav-link-icon {
   padding-right: 2px;
 }

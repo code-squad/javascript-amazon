@@ -13,7 +13,6 @@ export default class LayerManager {
     const listLayerEle = this.ele.listLayerEle;
     const displayOuterEle = this.ele.displayOuterEle;
     const innerLayerEle = this.ele.innerLayerEle;
-    console.log(innerLayerEle);
 
     departmentsEle.addEventListener("mouseover", () => {
       dimmedEle.setAttribute("style", "display: block;");
@@ -25,12 +24,12 @@ export default class LayerManager {
       listLayerEle.setAttribute("style", "display: none;");
     });
 
-    displayOuterEle.addEventListener("mouseover", () => {
-      innerLayerEle.setAttribute("style", "display: block;");
+    displayOuterEle.addEventListener("mouseenter", () => {
+      innerLayerEle.classList.add("inner-display-layer");
     });
 
-    displayOuterEle.addEventListener("mouseout", () => {
-      innerLayerEle.setAttribute("style", "display: none;");
+    displayOuterEle.addEventListener("mouseleave", () => {
+      innerLayerEle.classList.remove("inner-display-layer");
     });
   }
 }
