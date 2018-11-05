@@ -2,24 +2,41 @@
 <html lang='en'>
 <head>
     <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='./css/main.css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <title>Replica Amazon.com - EDUCATIONAL PURPOSE ONLY</title>
 </head>
 <body>
-    <header>
-        <img id='header_brand_logo' src='./images/navbar/brand_logo.png' alt='Brand logo' />
-        <form id='search' action='submit' method='get'>
-            <select id='search_department_dropdown'>
-                <option value=''>All</option>
-            </select>
-            <input id='search_input' type='text'>
-            <input id='search_submit' type='submit' value='Search'>
-        </form>
-        <img id='new_customer_learn_more' src='./images/navbar/new_customer_learn_more.png' alt='New to Amazon? Click here to learn more' />
-        <nav>
-            <span id='delivery_coverage'>Deliver to Korea, Republic of</span>
-            <div id='list_of_departments'>
-                <a href='#'>Departments</a>
+    <header id='header'>
+        <div id='header__top-row'>
+            <div id='header__top-row__brand-logo-slot' >
+                <img src='./images/navbar/brand_logo.png' alt='Brand logo' />
+            </div>
+            <div id='header__top-row__search'>
+                <form  action='submit' method='get'>
+                    <select id='header__top-row__search__category-selector'>
+                        <option value=''>All</option>
+                    </select>
+                    <input id='header__top-row__search__input-bar' type='text'>
+                    <input id='header__top-row__search__submit-btn' type='submit' value='Search'>
+                </form>
+            </div>
+            <img id='header__top-row__learn-more-img' src='./images/navbar/new_customer_learn_more.png' alt='New to Amazon? Click here to learn more' />
+        </div>
+        <nav id='header__quick-links'>
+            <div id='header__quick-links__delivery-location'>
+                <div>
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                </div>
+                <div>
+                    Deliver to 
+                    <div class='deco-Header-Text-Bold'>Korea, Republic of</div>
+                </div>
+            </div>
+            <div>
+                <a class='deco-Header-Text-Bold' href='#'>Departments</a>
             </div>
             <a href='#'>Your Amazon.com</a>
             <a href='#'>Today's Deals</a>
@@ -28,20 +45,27 @@
             <a href='#'>Registry</a>
             <a href='#'>Help</a>
         </nav>
-        <nav>
-            <div id='header_language_selection'>
-                <a href='#'>EN 🌎</a>
-            </div>
-            <div id='accounts_and_lists'>
+        <nav id='header__user-section'>
+            <div>
                 <a href='#'>
-                    <span>Hello. Sign in</span>
-                    <span>Account & Lists</span>
+                    EN<br>
+                    <i class="fas fa-globe"></i>
                 </a>
             </div>
-            <a href='#'>Orders</a>
-            <a href='#'>
-                <img src='./images/navbar/cart.png' alt='Number of cart items'/>        
-                <span>Cart</span>
+            <div>
+                | <!-- Vertical Divisor -->
+            </div>
+            <div>
+                <a href='#'>
+                    <span>Hello. Sign in<br></span>
+                    <span class='deco-Header-Text-Bold'>Account & Lists</span>
+                </a>
+            </div>
+            <a class='deco-Header-Text-Bold' href='#'>Orders</a>
+            <a href='#' id='header__user-section__cart'>
+                <span id='header__user-section__cart--num-of-item'>0</span>
+                <img id='header__user-section__cart--img' src='./images/navbar/cart.png' alt='Number of cart items'/>        
+                <span class='deco-Header-Text-Bold'>Cart</span>
             </a>
         </nav>
     </header>
@@ -307,7 +331,7 @@
         <div>
             <img id='footer_brand_logo' src='./images/navbar/brand_logo.png' alt='Brand logo' />
             <div id='footer_language_selection'>
-                <a href='#'>🌎 English</a>
+                <a href='#'><i class="fas fa-globe"></i> English</a>
                 <button>🇺🇸 United States</button>
             </div>
         </div>
