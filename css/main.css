@@ -43,7 +43,9 @@ a {
   color: inherit;
   text-decoration-line: none;
 }
-/* Header rules */
+/*=============
+  Header rules  
+===============*/
 .deco-Header-Text-Bold {
   font-weight: 800;
   font-size: 1.1em;
@@ -53,20 +55,20 @@ a {
   font-size: 1.1em;
   color: #f08804;
 }
-#header {
+.header {
   background-color: #23303e;
   color: white;
   overflow: auto;
   font-size: 0.9em;
 }
-#header > * {
+.header > * {
   margin-bottom: 0.5em;
 }
-#header > * > * {
+.header > * > * {
   display: inline-block;
   box-sizing: border-box;
 }
-#header__top-row__brand-logo-slot {
+.header__brand-and-search .brand-logo-slot {
   position: relative;
   padding-top: 0.7em;
   padding-bottom: 0;
@@ -74,69 +76,69 @@ a {
   padding-right: 1.5em;
   width: 13%;
 }
-#header__top-row__search {
+.header__brand-and-search .search {
   padding: 0 0.5em;
   width: 53%;
   height: 2em;
   vertical-align: middle;
   overflow: auto;
 }
-#header__top-row__search #header__top-row__search__category-selector {
+.header__brand-and-search .search .search__category-selector {
   width: 10%;
   float: left;
 }
-#header__top-row__search #header__top-row__search__input-bar {
+.header__brand-and-search .search .search__input-bar {
   width: 79%;
 }
-#header__top-row__search #header__top-row__search__submit-btn {
+.header__brand-and-search .search .search__submit-btn {
   width: 10%;
   float: right;
 }
-#header__top-row__learn-more-img {
+.header__brand-and-search .learn-more-img {
   padding-top: 0.7em;
   float: right;
   width: 33%;
 }
-#header__quick-links {
+.header__quick-links {
   float: left;
   box-sizing: border-box;
   width: 70%;
   padding-left: 1em;
 }
-#header__quick-links > * {
-  margin: 0 0.5em;
-  vertical-align: bottom;
-}
-#header__quick-links > :nth-child(1),
-#header__quick-links > :nth-child(2) {
-  margin-right: 2em;
-}
-#header__quick-links__delivery-location > * {
+.header__quick-links .delivery-location > * {
   display: inline-block;
   height: 90%;
   vertical-align: middle;
   margin-right: 0.2em;
 }
-#header__user-section {
+.header__quick-links > :nth-child(1),
+.header__quick-links > :nth-child(2) {
+  margin-right: 2em;
+}
+.header__quick-links > * {
+  margin: 0 0.5em;
+  vertical-align: bottom;
+}
+.header__user-section {
   float: right;
   box-sizing: border-box;
   width: 29%;
   padding-right: 2em;
 }
-#header__user-section > * {
+.header__user-section > * {
   margin: 0 0.5em;
 }
-#header__user-section__cart {
+.cart {
   position: relative;
   margin-left: 3em;
   width: 5em;
   padding-left: 0.2em;
 }
-.sub-header__user-section__cart--img-align {
+.cart .rule-cart-display {
   position: absolute;
   margin-right: 0.2em;
 }
-#header__user-section__cart--num-of-item {
+.cart .cart__num-of-item {
   position: absolute;
   margin-right: 0.2em;
   font-weight: 800;
@@ -145,9 +147,42 @@ a {
   bottom: 1.1em;
   left: -1.1em;
 }
-#header__user-section__cart--img {
+.cart .cart__img {
   position: absolute;
   margin-right: 0.2em;
   right: 4em;
   bottom: -0.2em;
+}
+/*=============
+  Masthead_banner  
+===============*/
+.masthead_banner {
+  position: relative;
+  border: 5px solid;
+}
+.masthead_banner .campaign-msg {
+  color: white;
+  position: absolute;
+  margin: 2em 0 5em 5em;
+}
+.masthead_banner .campaign-msg h1 {
+  font-size: 2.7em;
+}
+.masthead_banner .campaign-msg span {
+  font-size: 1.5em;
+}
+.masthead_banner .campaign-msg > * {
+  margin: 0.5em auto;
+}
+.masthead_banner .campaign-msg__CTA > * {
+  display: block;
+  font-size: 1em;
+}
+.masthead_banner .bg-img {
+  z-index: -999;
+}
+.masthead_banner .prime-logo {
+  position: absolute;
+  left: 5em;
+  bottom: 4em;
 }

@@ -9,24 +9,24 @@
     <title>Replica Amazon.com - EDUCATIONAL PURPOSE ONLY</title>
 </head>
 <body>
-    <header id='header'>
-        <div id='header__top-row'>
-            <div id='header__top-row__brand-logo-slot' >
+    <header class='header'>
+        <div class='header__brand-and-search'>
+            <div class='brand-logo-slot' >
                 <img src='./images/navbar/brand_logo.png' alt='Brand logo' />
             </div>
-            <div id='header__top-row__search'>
+            <div class='search'>
                 <form  action='submit' method='get'>
-                    <select id='header__top-row__search__category-selector'>
+                    <select class='search__category-selector'>
                         <option value=''>All</option>
                     </select>
-                    <input id='header__top-row__search__input-bar' type='text'>
-                    <input id='header__top-row__search__submit-btn' type='submit' value='Search'>
+                    <input class='search__input-bar' type='text'>
+                    <input class='search__submit-btn' type='submit' value='Search'>
                 </form>
             </div>
-            <img id='header__top-row__learn-more-img' src='./images/navbar/new_customer_learn_more.png' alt='New to Amazon? Click here to learn more' />
+            <img class='learn-more-img' src='./images/navbar/new_customer_learn_more.png' alt='New to Amazon? Click here to learn more' />
         </div>
-        <nav id='header__quick-links'>
-            <div id='header__quick-links__delivery-location'>
+        <nav class='header__quick-links'>
+            <div class='delivery-location'>
                 <div>
                     <i class="fas fa-map-marker-alt fa-lg"></i>
                 </div>
@@ -45,7 +45,7 @@
             <a href='#'>Registry</a>
             <a href='#'>Help</a>
         </nav>
-        <nav id='header__user-section'>
+        <nav class='header__user-section'>
             <div>
                 <a href='#'>
                     EN<br>
@@ -62,26 +62,30 @@
                 </a>
             </div>
             <a class='deco-Header-Text-Bold' href='#'>Orders</a>
-            <a href='#' id='header__user-section__cart'>
-                <span id='header__user-section__cart--num-of-item'>0</span>
-                <img id='header__user-section__cart--img' src='./images/navbar/cart.png' alt='Number of cart items'/>        
+            <a href='#' class='cart'>
+                <span class='cart__num-of-item'>0</span>
+                <img class='cart__img' src='./images/navbar/cart.png' alt='Number of cart items'/>        
                 <span class='deco-Header-Text-Bold'>Cart</span>
             </a>
         </nav>
     </header>
-    <div id='masthead_banner'>
-        <p>
-            <h1>There's something for everyone with Prime!</h1>
-            <span>Check out what's included with your Prime membership.</span>
-            <button>TRY PRIME</button>
-            <span>$12<sup>99</sup>/month. Cancel anytime.</span>
-            <a href='#'>See more plans ►</a>
-            <img src='./images/masthead/prime_logo.png' alt='Amazon prime logo'/>
-        </p>
-        <img src='./images/masthead/masthead_background.png' alt='masthead banner background'/>
+    <div class='masthead_banner'>
+        <div class='campaign-msg'>
+            <h1>There's something for<br> everyone with Prime!</h1>
+            <span>Check out what's included with your <br>Prime membership.</span>
+            <div class='campaign-msg__CTA'>
+                <button>TRY PRIME</button>
+                <span>$12<sup>99</sup>/month. Cancel anytime.</span>
+                <a href='#'>See more plans ►</a>
+            </div>
+        </div>
+        <img class='prime-logo' src='./images/masthead/prime_logo.png' alt='Amazon prime logo'/>
+        <div class='bg-img'>
+            <img src='./images/masthead/masthead_background.png' alt='masthead banner background'/>
+        </div>
     </div>
-    <div id='prime_benefits_carousel'>
-        <ul id='carousel_btns'>
+    <div class='prime_benefits_carousel'>
+        <ul class='carousel_btns'>
             <li><button>
                 <img src='./images/prime_benefits/top_lable_A_Ship.png' alt='Carousel category ship'/>
                 <span>Ship</span>
@@ -103,7 +107,7 @@
                     <span>More</span>
             </button></li>
         </ul>
-        <section id='carousel_cards'>
+        <section class='carousel_cards'>
             <ul>
                 <li>
                     <h2>TWO-DAY SHIPPING</h2>
@@ -227,7 +231,7 @@
             </ul>
         </section>
     </div>
-    <section id='full_horizontal_banners'>
+    <section class='full_horizontal_banners'>
         <h2>Here's a little more about Prime that we think you'll love:</h2>
         <div id ='full_horizontal_banners_primeDelivery'>
             <h3>Fast, free delivery on over 100 million items</h3>
@@ -235,8 +239,8 @@
             <a href='#'>Explore Prime Delivery ►</a>
             <img src='./images/StaticBlade/FullHorizontal_PrimeDelivery.png' alt='Prime Delivery info background'/>
         </div>
-        <div id='full_horizontal_banners_primeOriginal'>
-            <div id='full_horizontal_banners_primeOriginal_miniCarousel'>
+        <div class='full_horizontal_banners_primeOriginal'>
+            <div class='full_horizontal_banners_primeOriginal_miniCarousel'>
                 <button>❮</button>
                 <ul>
                     <li><img src='./images/StaticBlade/movie1.jpg' alt='Prime Original movie The Romanoffs'/></li>
@@ -257,7 +261,7 @@
             <img src='./images/StaticBlade/FullHorizontal_PrimeReading.png' alt='Prime Reading banner background'/>
         </div>
         <div id ='full_horizontal_banners_primeMusic'>
-                <div id='full_horizontal_banners_primeMusic_miniCarousel'>
+                <div class='full_horizontal_banners_primeMusic_miniCarousel'>
                         <button>❮</button>
                         <ul>
                             <li><img src='./images/StaticBlade/music1.jpg' alt='Prime music banner Breet Young'/></li>
@@ -290,7 +294,7 @@
     </section>
     <button>Back to top</button>
     <footer>
-        <nav id='footer_section_links'>
+        <nav class='footer_section_links'>
             <ul id='footer_section_links_GetToKnowUs'>
                 <li>Get to Know Us</li>
                 <li>Careers</li>
