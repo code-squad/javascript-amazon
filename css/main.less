@@ -1,9 +1,10 @@
 @main-color: rgb(35,48,62);
 @main-bright-text-color: white;
+@brand-point-color: #f08804;
 @header__top-row__brand-logo-slot--width: 13%;
 @header__top-row__search--width: 99% - @header__top-row__brand-logo-slot--width - @header__top-row__learn-more-img--width;
 @header__top-row__learn-more-img--width: 33%;
-@header__quick-links--width: 70%;
+@header__quick-links--width: 65%;
 @header__user-section--width: 99% - @header__quick-links--width;
 @z-index-for-bg-imgs: -999;
 @padding-left-for-banner-contents: 5em;
@@ -20,21 +21,30 @@ body {
     font-size: 14px;
 }
 
+sup {
+    font-size: 0.6em;
+}
+
 ul,ol {list-style:none}
 em,address {font-style:normal}
 a {color:inherit; text-decoration-line: none}
 
 
 /*=============
-  Header rules  
+  Global rules  
 ===============*/ 
-.deco-Header-Text-Bold {
+.global-deco-Text-Bold {
     font-weight: 800;
     font-size: 1.1em;
 }
+
+
+/*=============
+  Header rules  
+===============*/ 
 .deco-Header-Text-Orange{
-    .deco-Header-Text-Bold;
-    color: #f08804;
+    .global-deco-Text-Bold;
+    color: @brand-point-color;
 }
 
 .header {
@@ -42,11 +52,12 @@ a {color:inherit; text-decoration-line: none}
     color: @main-bright-text-color;
     overflow: auto;
     font-size: 0.9em;
-}
-.header > * {margin-bottom: 0.5em}
-.header > * > * {
-    display: inline-block;
-    box-sizing: border-box
+    & > * {margin-bottom: 0.5em}
+    & > * > * {
+        display: inline-block;
+        box-sizing: border-box
+    }
+    .header__department-list{.global-deco-Text-Bold;}
 }
 
 .header__brand-and-search {
@@ -94,11 +105,13 @@ a {color:inherit; text-decoration-line: none}
         vertical-align: middle;
         margin-right: 0.2em;
     }
-    > :nth-child(1), > :nth-child(2) {margin-right: 2em;}
-}
-.header__quick-links > * {
-    margin: 0 0.5em;
-    vertical-align: bottom;
+    .delivery-location__country{.global-deco-Text-Bold;}
+    .department-list{.global-deco-Text-Bold;}
+    & > :nth-child(1), & > :nth-child(2) {margin-right: 2em;}
+    & > * {
+        margin: 0 0.5em;
+        vertical-align: bottom;
+    }
 }
 
 .header__user-section {
@@ -106,8 +119,13 @@ a {color:inherit; text-decoration-line: none}
     box-sizing: border-box;
     width: @header__user-section--width;
     padding-right: 2em;
+    & > * {margin: 0 0.5em;}
+    .account-menu,
+    .orders-menu-link,
+    .cart-text-link,{
+        .global-deco-Text-Bold;
+    }
 }
-.header__user-section > * {margin: 0 0.5em;}
 
 .cart{
     position: relative;
@@ -137,22 +155,37 @@ a {color:inherit; text-decoration-line: none}
 
 .masthead_banner{
     position: relative;
-    border: 5px solid;
+    width: 1280px;
+    margin: 0 auto;
     .campaign-msg{
         color: white;
         position: absolute;
-        margin: 2em 0 5em @padding-left-for-banner-contents;
+        margin: 0 0 5em @padding-left-for-banner-contents;
         h1 {font-size: 2.7em;}
-        span{font-size: 1.5em;}
+        & > span{font-size: 1.5em;}
+        & > * {
+            display: block;
+            margin-top: 1em;
+        }
     }
-    .campaign-msg > * {
-        margin: 0.5em auto;
+    .campaign-msg__CTA{
+        & > *, & > * > * {
+            display: block;
+        }
+        & > * {
+            font-size: 1em;
+            margin-top: 0.5em;
+        }
+        .try-prime-btn{
+            background-color: @brand-point-color;
+            min-width: 25em;
+            min-height: 4em;
+        }
     }
-    .campaign-msg__CTA > * {
-        display: block;
-        font-size: 1em;
-    }
-    .bg-img{
+    .bg-img > *{
+        width: 100%;
+        min-width: 1280px;
+        min-height: 450px;
         z-index: @z-index-for-bg-imgs;
     }
     .prime-logo{

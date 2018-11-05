@@ -31,6 +31,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
 }
+sup {
+  font-size: 0.6em;
+}
 ul,
 ol {
   list-style: none;
@@ -44,12 +47,15 @@ a {
   text-decoration-line: none;
 }
 /*=============
-  Header rules  
+  Global rules  
 ===============*/
-.deco-Header-Text-Bold {
+.global-deco-Text-Bold {
   font-weight: 800;
   font-size: 1.1em;
 }
+/*=============
+  Header rules  
+===============*/
 .deco-Header-Text-Orange {
   font-weight: 800;
   font-size: 1.1em;
@@ -67,6 +73,10 @@ a {
 .header > * > * {
   display: inline-block;
   box-sizing: border-box;
+}
+.header .header__department-list {
+  font-weight: 800;
+  font-size: 1.1em;
 }
 .header__brand-and-search .brand-logo-slot {
   position: relative;
@@ -102,7 +112,7 @@ a {
 .header__quick-links {
   float: left;
   box-sizing: border-box;
-  width: 70%;
+  width: 65%;
   padding-left: 1em;
 }
 .header__quick-links .delivery-location > * {
@@ -110,6 +120,14 @@ a {
   height: 90%;
   vertical-align: middle;
   margin-right: 0.2em;
+}
+.header__quick-links .delivery-location__country {
+  font-weight: 800;
+  font-size: 1.1em;
+}
+.header__quick-links .department-list {
+  font-weight: 800;
+  font-size: 1.1em;
 }
 .header__quick-links > :nth-child(1),
 .header__quick-links > :nth-child(2) {
@@ -122,11 +140,17 @@ a {
 .header__user-section {
   float: right;
   box-sizing: border-box;
-  width: 29%;
+  width: 34%;
   padding-right: 2em;
 }
 .header__user-section > * {
   margin: 0 0.5em;
+}
+.header__user-section .account-menu,
+.header__user-section .orders-menu-link,
+.header__user-section .cart-text-link {
+  font-weight: 800;
+  font-size: 1.1em;
 }
 .cart {
   position: relative;
@@ -158,27 +182,41 @@ a {
 ===============*/
 .masthead_banner {
   position: relative;
-  border: 5px solid;
+  width: 1280px;
+  margin: 0 auto;
 }
 .masthead_banner .campaign-msg {
   color: white;
   position: absolute;
-  margin: 2em 0 5em 5em;
+  margin: 0 0 5em 5em;
 }
 .masthead_banner .campaign-msg h1 {
   font-size: 2.7em;
 }
-.masthead_banner .campaign-msg span {
+.masthead_banner .campaign-msg > span {
   font-size: 1.5em;
 }
 .masthead_banner .campaign-msg > * {
-  margin: 0.5em auto;
+  display: block;
+  margin-top: 1em;
+}
+.masthead_banner .campaign-msg__CTA > *,
+.masthead_banner .campaign-msg__CTA > * > * {
+  display: block;
 }
 .masthead_banner .campaign-msg__CTA > * {
-  display: block;
   font-size: 1em;
+  margin-top: 0.5em;
 }
-.masthead_banner .bg-img {
+.masthead_banner .campaign-msg__CTA .try-prime-btn {
+  background-color: #f08804;
+  min-width: 25em;
+  min-height: 4em;
+}
+.masthead_banner .bg-img > * {
+  width: 100%;
+  min-width: 1280px;
+  min-height: 450px;
   z-index: -999;
 }
 .masthead_banner .prime-logo {
