@@ -8,12 +8,15 @@
 @header__user-section--width: 99% - @header__quick-links--width;
 @z-index-for-bg-imgs: -999;
 @padding-left-for-banner-contents: 5em;
+@prime-benefits-carousel__category-button--width: 12vw;
+@prime-benefits-carousel__category-button--height: 15em;
 
 /*Base initializers*/
 body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,div,
 textarea,button,select{
     margin:0;
     padding:0;
+    box-sizing: border-box;
 }
 
 body {
@@ -36,6 +39,11 @@ a {color:inherit; text-decoration-line: none}
 .global-deco-Text-Bold {
     font-weight: 800;
     font-size: 1.1em;
+}
+.global-section-formatting{
+    position: relative;
+    width: 1280px;
+    margin: 0 auto;
 }
 
 
@@ -125,38 +133,36 @@ a {color:inherit; text-decoration-line: none}
     .cart-text-link,{
         .global-deco-Text-Bold;
     }
+    .cart{
+        position: relative;
+        margin-left: 3em;
+        width: 5em;
+        padding-left: 0.2em;
+        .rule-cart-display{
+            position: absolute;
+            margin-right: 0.2em;
+        }
+        .cart__num-of-item {
+            .rule-cart-display;
+            .deco-Header-Text-Orange;
+            bottom: 1.1em;
+            left: -1.1em;
+        }
+        .cart__img{
+            .rule-cart-display;
+            right: 4em;
+            bottom: -0.2em;
+        }
+    }
 }
 
-.cart{
-    position: relative;
-    margin-left: 3em;
-    width: 5em;
-    padding-left: 0.2em;
-    .rule-cart-display{
-        position: absolute;
-        margin-right: 0.2em;
-    }
-    .cart__num-of-item {
-        .rule-cart-display;
-        .deco-Header-Text-Orange;
-        bottom: 1.1em;
-        left: -1.1em;
-    }
-    .cart__img{
-        .rule-cart-display;
-        right: 4em;
-        bottom: -0.2em;
-    }
-}
 
 /*=============
   Masthead_banner  
 ===============*/
 
 .masthead_banner{
-    position: relative;
-    width: 1280px;
-    margin: 0 auto;
+    .global-section-formatting;
     .campaign-msg{
         color: white;
         position: absolute;
@@ -177,6 +183,7 @@ a {color:inherit; text-decoration-line: none}
             margin-top: 0.5em;
         }
         .try-prime-btn{
+            border: 1px solid orangered;
             background-color: @brand-point-color;
             min-width: 25em;
             min-height: 4em;
@@ -194,3 +201,86 @@ a {color:inherit; text-decoration-line: none}
         bottom: 4em;
     }
 }
+
+/*=============
+  Benefits Carousel  
+===============*/
+
+.prime-benefits-carousel{
+    .global-section-formatting;
+    top: -5em;
+    .category-list{
+        width: 70vw;
+        margin: 0 auto;
+        margin-bottom: 2em;
+        & > :nth-child(1) > button{background: linear-gradient(35deg, rgb(10, 130, 210), rgb(30, 170, 180));}
+        & > :nth-child(2) > button{background: linear-gradient(35deg, rgb(230, 50, 30), rgb(230, 120, 50));}
+        & > :nth-child(3) > button{background: linear-gradient(35deg, rgb(104, 14, 56), rgb(226, 57, 122));}
+        & > :nth-child(4) > button{background: linear-gradient(35deg, rgb(16, 92, 69), rgb(70, 200, 140));}
+        & > :nth-child(5) > button{background: linear-gradient(35deg, rgb(204, 46, 7), rgb(243, 199, 53));}
+        & > *{
+            display: inline-block;
+            vertical-align: top;
+            width: @prime-benefits-carousel__category-button--width;
+            margin: 0 0.1em;
+            img, span{
+                display: block;
+                width: 85%;
+                margin: 0 auto;
+                font-size: 1.5em;
+                color: white;
+            } img {height: 80%;}
+            button{
+                border: none;
+                height: @prime-benefits-carousel__category-button--height;
+            }
+        }
+    }
+    .carousel-cards{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .carousel-cards__card-list{
+        position: relative;
+        & > * { // all list items
+            width: 100%;
+            overflow: hidden;
+            position: absolute;
+            display: inline-block;
+            visibility: hidden;
+            & > div { // slot for message & link in list items
+                position: absolute;
+                left: 40em;
+                padding-right: 3em;
+                @category-color__ship: rgb(10, 130, 210);
+                font-size: 1.2em;
+                a{font-weight: 700;}
+                & > * {
+                    display:block;
+                    margin: 1em auto;
+                }
+                .card-keyword-div{
+                    margin-bottom: 2em;
+                    span {
+                        color: white;
+                        font-size: 0.85em;
+                        font-weight: 700;
+                        box-shadow: 0 0 0 5px @category-color__ship;
+                        background-color: @category-color__ship;
+                    }
+                }
+                em{
+                    font-size: 1.7em;
+                }
+            }
+            & img {
+                z-index: @z-index-for-bg-imgs;
+            }
+        }
+        & > :nth-child(1) {
+            position: relative;
+            visibility: visible;
+        }
+    }
+}
+

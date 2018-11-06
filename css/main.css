@@ -26,6 +26,7 @@ button,
 select {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   font-family: 'Open Sans', sans-serif;
@@ -52,6 +53,11 @@ a {
 .global-deco-Text-Bold {
   font-weight: 800;
   font-size: 1.1em;
+}
+.global-section-formatting {
+  position: relative;
+  width: 1280px;
+  margin: 0 auto;
 }
 /*=============
   Header rules  
@@ -152,17 +158,17 @@ a {
   font-weight: 800;
   font-size: 1.1em;
 }
-.cart {
+.header__user-section .cart {
   position: relative;
   margin-left: 3em;
   width: 5em;
   padding-left: 0.2em;
 }
-.cart .rule-cart-display {
+.header__user-section .cart .rule-cart-display {
   position: absolute;
   margin-right: 0.2em;
 }
-.cart .cart__num-of-item {
+.header__user-section .cart .cart__num-of-item {
   position: absolute;
   margin-right: 0.2em;
   font-weight: 800;
@@ -171,7 +177,7 @@ a {
   bottom: 1.1em;
   left: -1.1em;
 }
-.cart .cart__img {
+.header__user-section .cart .cart__img {
   position: absolute;
   margin-right: 0.2em;
   right: 4em;
@@ -209,6 +215,7 @@ a {
   margin-top: 0.5em;
 }
 .masthead_banner .campaign-msg__CTA .try-prime-btn {
+  border: 1px solid orangered;
   background-color: #f08804;
   min-width: 25em;
   min-height: 4em;
@@ -223,4 +230,101 @@ a {
   position: absolute;
   left: 5em;
   bottom: 4em;
+}
+/*=============
+  Benefits Carousel  
+===============*/
+.prime-benefits-carousel {
+  position: relative;
+  width: 1280px;
+  margin: 0 auto;
+  top: -5em;
+}
+.prime-benefits-carousel .category-list {
+  width: 70vw;
+  margin: 0 auto;
+  margin-bottom: 2em;
+}
+.prime-benefits-carousel .category-list > :nth-child(1) > button {
+  background: linear-gradient(35deg, #0a82d2, #1eaab4);
+}
+.prime-benefits-carousel .category-list > :nth-child(2) > button {
+  background: linear-gradient(35deg, #e6321e, #e67832);
+}
+.prime-benefits-carousel .category-list > :nth-child(3) > button {
+  background: linear-gradient(35deg, #680e38, #e2397a);
+}
+.prime-benefits-carousel .category-list > :nth-child(4) > button {
+  background: linear-gradient(35deg, #105c45, #46c88c);
+}
+.prime-benefits-carousel .category-list > :nth-child(5) > button {
+  background: linear-gradient(35deg, #cc2e07, #f3c735);
+}
+.prime-benefits-carousel .category-list > * {
+  display: inline-block;
+  vertical-align: top;
+  width: 12vw;
+  margin: 0 0.1em;
+}
+.prime-benefits-carousel .category-list > * img,
+.prime-benefits-carousel .category-list > * span {
+  display: block;
+  width: 85%;
+  margin: 0 auto;
+  font-size: 1.5em;
+  color: white;
+}
+.prime-benefits-carousel .category-list > * img {
+  height: 80%;
+}
+.prime-benefits-carousel .category-list > * button {
+  border: none;
+  height: 15em;
+}
+.prime-benefits-carousel .carousel-cards {
+  width: 80%;
+  margin: 0 auto;
+}
+.prime-benefits-carousel .carousel-cards__card-list {
+  position: relative;
+}
+.prime-benefits-carousel .carousel-cards__card-list > * {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  display: inline-block;
+  visibility: hidden;
+}
+.prime-benefits-carousel .carousel-cards__card-list > * > div {
+  position: absolute;
+  left: 40em;
+  padding-right: 3em;
+  font-size: 1.2em;
+}
+.prime-benefits-carousel .carousel-cards__card-list > * > div a {
+  font-weight: 700;
+}
+.prime-benefits-carousel .carousel-cards__card-list > * > div > * {
+  display: block;
+  margin: 1em auto;
+}
+.prime-benefits-carousel .carousel-cards__card-list > * > div .card-keyword-div {
+  margin-bottom: 2em;
+}
+.prime-benefits-carousel .carousel-cards__card-list > * > div .card-keyword-div span {
+  color: white;
+  font-size: 0.85em;
+  font-weight: 700;
+  box-shadow: 0 0 0 5px #0a82d2;
+  background-color: #0a82d2;
+}
+.prime-benefits-carousel .carousel-cards__card-list > * > div em {
+  font-size: 1.7em;
+}
+.prime-benefits-carousel .carousel-cards__card-list > * img {
+  z-index: -999;
+}
+.prime-benefits-carousel .carousel-cards__card-list > :nth-child(1) {
+  position: relative;
+  visibility: visible;
 }
