@@ -328,11 +328,11 @@
             </div>
         </div>
     </section>
-    <button>Back to top</button>
     <footer>
-        <nav class='footer_section_links'>
+        <button class='footer__to-top-btn'>Back to top</button>
+        <nav class='footer__section-links'>
             <ul id='footer_section_links_GetToKnowUs'>
-                <li>Get to Know Us</li>
+                <li><em>Get to Know Us</em></li>
                 <li>Careers</li>
                 <li>Blog</li>
                 <li>About Amazon</li>
@@ -340,7 +340,7 @@
                 <li>Amazon Devices</li>
             </ul>
             <ul id='footer_section_links_MakeMoneyWithUs'>
-                <li>Make Money with Us</li>
+                <li><em>Make Money with Us</em></li>
                 <li>Sell on Amazon</li>
                 <li>Sell Your Services on Amazon</li>
                 <li>Sell on Amazon Business</li>
@@ -351,14 +351,14 @@
                 <li>›See all</li>
             </ul>
             <ul id='footer_section_links_AmazonPaymentProducts'>
-                <li>Amazon Payment Products</li>
+                <li><em>Amazon Payment Products</em></li>
                 <li>Amazon Business Card</li>
                 <li>Shop with Points</li>
                 <li>Reload Your Balance</li>
                 <li>Amazon Currency Converter</li>
             </ul>
             <ul id='footer_section_links_LetUsHelpYou'>
-                <li>Let Us Help You</li>
+                <li><em>Let Us Help You</em></li>
                 <li>Your Account</li>
                 <li>Your Orders</li>
                 <li>Shipping Rates & Policies</li>
@@ -368,14 +368,16 @@
                 <li>Help</li>
             </ul>
         </nav>
-        <div>
-            <img id='footer_brand_logo' src='./images/navbar/brand_logo.png' alt='Brand logo' />
-            <div id='footer_language_selection'>
-                <a href='#'><i class="fas fa-globe"></i> English</a>
+        <div class='footer__country-info'>
+            <img src='./images/navbar/brand_logo.png' alt='Brand logo' />
+            <div class='country-selector'>
+                <a href='#'>
+                    <span><i class="fas fa-globe"></i> English</span>
+                </a>
                 <button>🇺🇸 United States</button>
             </div>
         </div>
-        <nav id='affiliates_sitemap'>
+        <nav class='footer__affiliates-sitemap'>
             <a href='#'>
                 <em>Amazon Music</em>
                 Stream millions of songs
@@ -513,7 +515,7 @@
                 Pharmacy Simplified		 
             </a>
         </nav>
-        <div id='disclaimer'>
+        <div class='footer__disclaimer'>
             <a href='#'>Conditions of Use</a>
             <a href='#'>Privacy Notice</a>
             <a href='#'>Interest-Based Ads</a>

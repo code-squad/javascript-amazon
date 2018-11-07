@@ -1,16 +1,3 @@
-@main-color: rgb(35,48,62);
-@main-bright-text-color: white;
-@brand-point-color: #f08804;
-@header__top-row__brand-logo-slot--width: 13%;
-@header__top-row__search--width: 99% - @header__top-row__brand-logo-slot--width - @header__top-row__learn-more-img--width;
-@header__top-row__learn-more-img--width: 33%;
-@header__quick-links--width: 65%;
-@header__user-section--width: 99% - @header__quick-links--width;
-@z-index-for-bg-imgs: -999;
-@padding-left-for-banner-contents: 5em;
-@prime-benefits-carousel__category-button--width: 12vw;
-@prime-benefits-carousel__category-button--height: 15em;
-
 /*Base initializers*/
 body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,div,
 textarea,button,select{
@@ -36,6 +23,12 @@ a {color:inherit; text-decoration-line: none}
 /*=============
   Global rules  
 ===============*/ 
+@main-background-color: rgb(35,48,62);
+@main-bright-text-color: white;
+@brand-point-color: #f08804;
+@z-index-for-bg-imgs: -999;
+@padding-left-for-banner-contents: 5em;
+
 .global-deco-Text-Bold {
     font-weight: 800;
     font-size: 1.1em;
@@ -49,14 +42,20 @@ a {color:inherit; text-decoration-line: none}
 
 /*=============
   Header rules  
-===============*/ 
+===============*/
+@header__top-row__brand-logo-slot--width: 13%;
+@header__top-row__search--width: 99% - @header__top-row__brand-logo-slot--width - @header__top-row__learn-more-img--width;
+@header__top-row__learn-more-img--width: 33%;
+@header__quick-links--width: 65%;
+@header__user-section--width: 99% - @header__quick-links--width;
+
 .deco-Header-Text-Orange{
     .global-deco-Text-Bold;
     color: @brand-point-color;
 }
 
 .header {
-    background-color: @main-color;
+    background-color: @main-background-color;
     color: @main-bright-text-color;
     overflow: auto;
     font-size: 0.9em;
@@ -205,13 +204,14 @@ a {color:inherit; text-decoration-line: none}
 /*=============
   Benefits Carousel  
 ===============*/
+@prime-benefits-carousel__category-button--width: 13%;
+@prime-benefits-carousel__category-button--height: 15em;
 
 .prime-benefits-carousel{
     .global-section-formatting;
     top: -5em;
     .category-list{
-        width: 70vw;
-        margin: 0 auto;
+        text-align: center; // put internal inline-block objects in horizontal center
         margin-bottom: 2em;
         & > :nth-child(1) > button{background: linear-gradient(35deg, rgb(10, 130, 210), rgb(30, 170, 180));}
         & > :nth-child(2) > button{background: linear-gradient(35deg, rgb(230, 50, 30), rgb(230, 120, 50));}
@@ -237,8 +237,7 @@ a {color:inherit; text-decoration-line: none}
         }
     }
     .carousel-cards{
-        width: 80%;
-        margin: 0 auto;
+        width: 90%;
     }
     .carousel-cards__card-list{
         position: relative;
@@ -284,3 +283,85 @@ a {color:inherit; text-decoration-line: none}
     }
 }
 
+/*=============
+  Footer  
+===============*/
+.footer__to-top-btn{
+    display: block;
+    width: 100%;
+    height: 4em;
+    background-color: @main-background-color * 2;
+    color: white;
+    border: none;
+}
+
+.footer__section-links{
+    padding: 4em 10em;
+    background-color: @main-background-color;
+    color: white;
+    line-height: 2em;
+    border-bottom: 1px solid darkslategray;
+    :nth-child(1){margin-left: unset;}
+    & > * {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 7vw;
+        em {.global-deco-Text-Bold;}
+    }
+}
+
+.footer__country-info{
+    height: 7vh;
+    background-color: @main-background-color;
+    text-align: center;
+    & > * {
+        padding: 2em 0;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .country-selector{
+        margin-left: 2em;
+        & > * {
+            height: 25px;
+            box-sizing: content-box;
+            vertical-align: middle;
+            display: inline-block;
+            background: none;
+            border: 1px solid gray;
+            border-radius: 5%;
+            padding: 7px 25px;
+            padding-right: 2em;
+            color: white;
+            span {vertical-align: middle;}
+        }
+    }
+}
+
+.footer__affiliates-sitemap{
+    padding: 2em 10em;
+    background-color: @main-background-color * 0.6;
+    color: white;
+    & > * { //each links
+        display: inline-block;
+        margin: 0.5em 1em;
+        font-size: 0.7em;
+        width: 14%;
+        vertical-align: top;
+        & em {
+            display: block;
+            .global-deco-Text-Bold;
+        }
+    }
+}
+
+.footer__disclaimer{
+    padding: 2em 10em;
+    background-color: @main-background-color * 0.6;
+    color: white; 
+    font-size: 0.8em;
+    text-align: center;
+    a {.global-deco-Text-Bold;}
+    & > * { //each links
+        margin: 0 1em;
+    }
+}

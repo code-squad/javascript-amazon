@@ -241,8 +241,7 @@ a {
   top: -5em;
 }
 .prime-benefits-carousel .category-list {
-  width: 70vw;
-  margin: 0 auto;
+  text-align: center;
   margin-bottom: 2em;
 }
 .prime-benefits-carousel .category-list > :nth-child(1) > button {
@@ -263,7 +262,7 @@ a {
 .prime-benefits-carousel .category-list > * {
   display: inline-block;
   vertical-align: top;
-  width: 12vw;
+  width: 13%;
   margin: 0 0.1em;
 }
 .prime-benefits-carousel .category-list > * img,
@@ -282,8 +281,7 @@ a {
   height: 15em;
 }
 .prime-benefits-carousel .carousel-cards {
-  width: 80%;
-  margin: 0 auto;
+  width: 90%;
 }
 .prime-benefits-carousel .carousel-cards__card-list {
   position: relative;
@@ -327,4 +325,93 @@ a {
 .prime-benefits-carousel .carousel-cards__card-list > :nth-child(1) {
   position: relative;
   visibility: visible;
+}
+/*=============
+  Footer  
+===============*/
+.footer__to-top-btn {
+  display: block;
+  width: 100%;
+  height: 4em;
+  background-color: #46607c;
+  color: white;
+  border: none;
+}
+.footer__section-links {
+  padding: 4em 10em;
+  background-color: #23303e;
+  color: white;
+  line-height: 2em;
+  border-bottom: 1px solid darkslategray;
+}
+.footer__section-links :nth-child(1) {
+  margin-left: unset;
+}
+.footer__section-links > * {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 7vw;
+}
+.footer__section-links > * em {
+  font-weight: 800;
+  font-size: 1.1em;
+}
+.footer__country-info {
+  height: 7vh;
+  background-color: #23303e;
+  text-align: center;
+}
+.footer__country-info > * {
+  padding: 2em 0;
+  vertical-align: middle;
+  display: inline-block;
+}
+.footer__country-info .country-selector {
+  margin-left: 2em;
+}
+.footer__country-info .country-selector > * {
+  height: 25px;
+  box-sizing: content-box;
+  vertical-align: middle;
+  display: inline-block;
+  background: none;
+  border: 1px solid gray;
+  border-radius: 5%;
+  padding: 7px 25px;
+  padding-right: 2em;
+  color: white;
+}
+.footer__country-info .country-selector > * span {
+  vertical-align: middle;
+}
+.footer__affiliates-sitemap {
+  padding: 2em 10em;
+  background-color: #151d25;
+  color: white;
+}
+.footer__affiliates-sitemap > * {
+  display: inline-block;
+  margin: 0.5em 1em;
+  font-size: 0.7em;
+  width: 14%;
+  vertical-align: top;
+}
+.footer__affiliates-sitemap > * em {
+  display: block;
+  font-weight: 800;
+  font-size: 1.1em;
+}
+.footer__disclaimer {
+  padding: 2em 10em;
+  background-color: #151d25;
+  color: white;
+  font-size: 0.8em;
+  text-align: center;
+}
+.footer__disclaimer a {
+  font-weight: 800;
+  font-size: 1.1em;
+}
+.footer__disclaimer > * {
+  margin: 0 1em;
 }
