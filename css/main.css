@@ -46,6 +46,7 @@ address {
 a {
   color: inherit;
   text-decoration-line: none;
+  -webkit-text-decoration-line: none;
 }
 /*=============
   Global rules  
@@ -278,7 +279,7 @@ a {
 }
 .prime-benefits-carousel .category-list > * button {
   border: none;
-  height: 15em;
+  height: 20em;
 }
 .prime-benefits-carousel .carousel-cards {
   width: 90%;
