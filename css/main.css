@@ -85,7 +85,7 @@ a {
   font-weight: 800;
   font-size: 1.1em;
 }
-.header__brand-and-search .brand-logo-slot {
+.header .header__brand-and-search .brand-logo-slot {
   position: relative;
   padding-top: 0.7em;
   padding-bottom: 0;
@@ -93,83 +93,83 @@ a {
   padding-right: 1.5em;
   width: 13%;
 }
-.header__brand-and-search .search {
+.header .header__brand-and-search .search {
   padding: 0 0.5em;
   width: 53%;
   height: 2em;
   vertical-align: middle;
   overflow: auto;
 }
-.header__brand-and-search .search .search__category-selector {
+.header .header__brand-and-search .search .search__category-selector {
   width: 10%;
   float: left;
 }
-.header__brand-and-search .search .search__input-bar {
+.header .header__brand-and-search .search .search__input-bar {
   width: 79%;
 }
-.header__brand-and-search .search .search__submit-btn {
+.header .header__brand-and-search .search .search__submit-btn {
   width: 10%;
   float: right;
 }
-.header__brand-and-search .learn-more-img {
+.header .header__brand-and-search .learn-more-img {
   padding-top: 0.7em;
   float: right;
   width: 33%;
 }
-.header__quick-links {
+.header .header__quick-links {
   float: left;
   box-sizing: border-box;
   width: 65%;
   padding-left: 1em;
 }
-.header__quick-links .delivery-location > * {
+.header .header__quick-links .delivery-location > * {
   display: inline-block;
   height: 90%;
   vertical-align: middle;
   margin-right: 0.2em;
 }
-.header__quick-links .delivery-location__country {
+.header .header__quick-links .delivery-location__country {
   font-weight: 800;
   font-size: 1.1em;
 }
-.header__quick-links .department-list {
+.header .header__quick-links .department-list {
   font-weight: 800;
   font-size: 1.1em;
 }
-.header__quick-links > :nth-child(1),
-.header__quick-links > :nth-child(2) {
+.header .header__quick-links > :nth-child(1),
+.header .header__quick-links > :nth-child(2) {
   margin-right: 2em;
 }
-.header__quick-links > * {
+.header .header__quick-links > * {
   margin: 0 0.5em;
   vertical-align: bottom;
 }
-.header__user-section {
+.header .header__user-section {
   float: right;
   box-sizing: border-box;
   width: 34%;
   padding-right: 2em;
 }
-.header__user-section > * {
+.header .header__user-section > * {
   margin: 0 0.5em;
 }
-.header__user-section .account-menu,
-.header__user-section .orders-menu-link,
-.header__user-section .cart-text-link {
+.header .header__user-section .account-menu,
+.header .header__user-section .orders-menu-link,
+.header .header__user-section .cart-text-link {
   font-weight: 800;
   font-size: 1.1em;
 }
-.header__user-section .cart {
+.header .header__user-section .cart {
   position: relative;
   margin-left: 3em;
   width: 5em;
   padding-left: 0.2em;
 }
-.header__user-section .cart .rule-cart-display {
+.header .header__user-section .cart .rule-cart-display {
   position: absolute;
   margin-right: 0.2em;
 }
-.header__user-section .cart .cart__num-of-item {
+.header .header__user-section .cart .cart__num-of-item {
   position: absolute;
   margin-right: 0.2em;
   font-weight: 800;
@@ -178,7 +178,7 @@ a {
   bottom: 1.1em;
   left: -1.1em;
 }
-.header__user-section .cart .cart__img {
+.header .header__user-section .cart .cart__img {
   position: absolute;
   margin-right: 0.2em;
   right: 4em;
@@ -195,7 +195,7 @@ a {
 .masthead_banner .campaign-msg {
   color: white;
   position: absolute;
-  margin: 0 0 5em 5em;
+  margin: 0 0 5em 5vw;
 }
 .masthead_banner .campaign-msg h1 {
   font-size: 2.7em;
@@ -229,7 +229,7 @@ a {
 }
 .masthead_banner .prime-logo {
   position: absolute;
-  left: 5em;
+  left: 5vw;
   bottom: 4em;
 }
 /*=============
@@ -328,9 +328,103 @@ a {
   visibility: visible;
 }
 /*=============
+  Horizontal Banners  
+===============*/
+.local-CTA-link-rule {
+  font-weight: 800;
+  font-size: 1.2em;
+}
+.full-horizontal-banners {
+  position: relative;
+  width: 1280px;
+  margin: 0 auto;
+}
+.full-horizontal-banners .section-header {
+  font-size: 2em;
+  font-weight: normal;
+  margin-left: 5vw;
+}
+.full-horizontal-banners .prime-delivery-banner > div:nth-of-type(1) {
+  padding-top: 4em;
+}
+.full-horizontal-banners .prime-delivery-banner .campaign-msg {
+  color: white;
+  position: absolute;
+  padding: 1em 0;
+  margin-left: 5vw;
+}
+.full-horizontal-banners .prime-delivery-banner .campaign-msg h3 {
+  font-weight: normal;
+  font-size: 3em;
+  line-height: 110%;
+}
+.full-horizontal-banners .prime-delivery-banner .campaign-msg a {
+  font-weight: 800;
+  font-size: 1.2em;
+}
+.full-horizontal-banners .prime-delivery-banner .campaign-msg > span {
+  font-size: 1.3em;
+}
+.full-horizontal-banners .prime-delivery-banner .campaign-msg > * {
+  display: block;
+  margin-bottom: 0.5em;
+}
+.full-horizontal-banners .prime-delivery-banner .bg-img > * {
+  width: 100%;
+  min-width: 1280px;
+  min-height: 320px;
+  z-index: -999;
+}
+.full-horizontal-banners .prime-reading-banner > * > *,
+.full-horizontal-banners .prime-video-banner > * > * {
+  color: black;
+}
+.full-horizontal-banners .prime-reading-banner > div:nth-of-type(1),
+.full-horizontal-banners .prime-video-banner > div:nth-of-type(1) {
+  padding-top: 4em;
+}
+.full-horizontal-banners .prime-reading-banner .campaign-msg,
+.full-horizontal-banners .prime-video-banner .campaign-msg {
+  color: white;
+  position: absolute;
+  padding: 1em 0;
+  margin-left: 5vw;
+}
+.full-horizontal-banners .prime-reading-banner .campaign-msg h3,
+.full-horizontal-banners .prime-video-banner .campaign-msg h3 {
+  font-weight: normal;
+  font-size: 3em;
+  line-height: 110%;
+}
+.full-horizontal-banners .prime-reading-banner .campaign-msg a,
+.full-horizontal-banners .prime-video-banner .campaign-msg a {
+  font-weight: 800;
+  font-size: 1.2em;
+}
+.full-horizontal-banners .prime-reading-banner .campaign-msg > span,
+.full-horizontal-banners .prime-video-banner .campaign-msg > span {
+  font-size: 1.3em;
+}
+.full-horizontal-banners .prime-reading-banner .campaign-msg > *,
+.full-horizontal-banners .prime-video-banner .campaign-msg > * {
+  display: block;
+  margin-bottom: 0.5em;
+}
+.full-horizontal-banners .prime-reading-banner .bg-img > *,
+.full-horizontal-banners .prime-video-banner .bg-img > * {
+  width: 100%;
+  min-width: 1280px;
+  min-height: 320px;
+  z-index: -999;
+}
+.full-horizontal-banners .prime-reading-banner > div:nth-of-type(1),
+.full-horizontal-banners .prime-video-banner > div:nth-of-type(1) {
+  padding-top: 2em;
+}
+/*=============
   Footer  
 ===============*/
-.footer__to-top-btn {
+.page-footer .footer__to-top-btn {
   display: block;
   width: 100%;
   height: 4em;
@@ -338,39 +432,39 @@ a {
   color: white;
   border: none;
 }
-.footer__section-links {
+.page-footer .footer__section-links {
   padding: 4em 10em;
   background-color: #23303e;
   color: white;
   line-height: 2em;
   border-bottom: 1px solid darkslategray;
 }
-.footer__section-links :nth-child(1) {
+.page-footer .footer__section-links :nth-child(1) {
   margin-left: unset;
 }
-.footer__section-links > * {
+.page-footer .footer__section-links > * {
   display: inline-block;
   vertical-align: top;
   margin-left: 7vw;
 }
-.footer__section-links > * em {
+.page-footer .footer__section-links > * em {
   font-weight: 800;
   font-size: 1.1em;
 }
-.footer__country-info {
+.page-footer .footer__country-info {
   height: 7vh;
   background-color: #23303e;
   text-align: center;
 }
-.footer__country-info > * {
+.page-footer .footer__country-info > * {
   padding: 2em 0;
   vertical-align: middle;
   display: inline-block;
 }
-.footer__country-info .country-selector {
+.page-footer .footer__country-info .country-selector {
   margin-left: 2em;
 }
-.footer__country-info .country-selector > * {
+.page-footer .footer__country-info .country-selector > * {
   height: 25px;
   box-sizing: content-box;
   vertical-align: middle;
@@ -382,37 +476,37 @@ a {
   padding-right: 2em;
   color: white;
 }
-.footer__country-info .country-selector > * span {
+.page-footer .footer__country-info .country-selector > * span {
   vertical-align: middle;
 }
-.footer__affiliates-sitemap {
+.page-footer .footer__affiliates-sitemap {
   padding: 2em 10em;
   background-color: #151d25;
   color: white;
 }
-.footer__affiliates-sitemap > * {
+.page-footer .footer__affiliates-sitemap > * {
   display: inline-block;
   margin: 0.5em 1em;
   font-size: 0.7em;
   width: 14%;
   vertical-align: top;
 }
-.footer__affiliates-sitemap > * em {
+.page-footer .footer__affiliates-sitemap > * em {
   display: block;
   font-weight: 800;
   font-size: 1.1em;
 }
-.footer__disclaimer {
+.page-footer .footer__disclaimer {
   padding: 2em 10em;
   background-color: #151d25;
   color: white;
   font-size: 0.8em;
   text-align: center;
 }
-.footer__disclaimer a {
+.page-footer .footer__disclaimer a {
   font-weight: 800;
   font-size: 1.1em;
 }
-.footer__disclaimer > * {
+.page-footer .footer__disclaimer > * {
   margin: 0 1em;
 }
