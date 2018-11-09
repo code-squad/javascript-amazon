@@ -1,3 +1,24 @@
+/*=============
+  Global rules  
+===============*/
+.global-deco-Text-Bold {
+  font-weight: 800;
+  font-size: 1.1em;
+}
+.global-section-formatting {
+  position: relative;
+  width: 1280px;
+  margin: 0 auto;
+}
+.global-deco-major-btn {
+  border: 1px solid orangered;
+  background-color: #f08804;
+  min-width: 20rem;
+  min-height: 3rem;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #0a3c46;
+}
 /*Base initializers*/
 body,
 p,
@@ -32,9 +53,6 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
 }
-sup {
-  font-size: 0.6em;
-}
 ul,
 ol {
   list-style: none;
@@ -43,40 +61,23 @@ em,
 address {
   font-style: normal;
 }
+sup {
+  font-size: 0.7em;
+}
+input,
+textarea,
+select,
+button {
+  font-size: unset;
+}
 a {
   color: inherit;
   text-decoration-line: none;
   -webkit-text-decoration-line: none;
 }
 /*=============
-  Global rules  
-===============*/
-.global-deco-Text-Bold {
-  font-weight: 800;
-  font-size: 1.1em;
-}
-.global-section-formatting {
-  position: relative;
-  width: 1280px;
-  margin: 0 auto;
-}
-.global-deco-major-btn {
-  border: 1px solid orangered;
-  background-color: #f08804;
-  min-width: 20rem;
-  min-height: 3rem;
-  font-size: 1.3em;
-  font-weight: 700;
-  color: #0a3c46;
-}
-/*=============
   Header rules  
 ===============*/
-.deco-Header-Text-Orange {
-  font-weight: 800;
-  font-size: 1.1em;
-  color: #f08804;
-}
 .header {
   background-color: #23303e;
   color: white;
@@ -91,12 +92,7 @@ a {
   display: inline-block;
   box-sizing: border-box;
 }
-.header .header__department-list {
-  font-weight: 800;
-  font-size: 1.1em;
-}
 .header .header__brand-and-search .brand-logo-slot {
-  position: relative;
   padding: 0 1.5em;
   width: 13%;
 }
@@ -108,7 +104,6 @@ a {
 }
 .header .header__brand-and-search .search form {
   height: 100%;
-  width: 100%;
 }
 .header .header__brand-and-search .search form > * {
   margin: 0 -4px;
@@ -118,21 +113,21 @@ a {
   display: inline-block;
 }
 .header .header__brand-and-search .search form .search__category-selector {
-  width: 6%;
-  font-size: 1.1em;
+  width: 19%;
+  font-size: 1em;
   position: relative;
   z-index: 1;
   background-color: #dcdcdc;
 }
 .header .header__brand-and-search .search form .search__input-bar {
-  width: 85%;
+  width: 73%;
+  padding-left: 20px;
+  font-size: 1.2em;
 }
 .header .header__brand-and-search .search form .search__submit-btn {
   border-radius: 0 5px 5px 0;
   background-color: #f08804;
   width: 6%;
-}
-.header .header__brand-and-search .search form .search__submit-btn .fa-search {
   font-size: 2em;
 }
 .header .header__brand-and-search .learn-more-img {
@@ -141,26 +136,18 @@ a {
 }
 .header .header__quick-links {
   float: left;
-  box-sizing: border-box;
   width: 65%;
   padding-left: 1em;
 }
 .header .header__quick-links .delivery-location > * {
   display: inline-block;
-  height: 90%;
   vertical-align: middle;
   margin-right: 0.2em;
 }
-.header .header__quick-links .delivery-location__country {
-  font-weight: 800;
-  font-size: 1.1em;
-}
+.header .header__quick-links .delivery-location__country,
 .header .header__quick-links .department-list {
   font-weight: 800;
   font-size: 1.1em;
-}
-.header .header__quick-links > :nth-child(1),
-.header .header__quick-links > :nth-child(2) {
   margin-right: 2em;
 }
 .header .header__quick-links > * {
@@ -169,7 +156,6 @@ a {
 }
 .header .header__user-section {
   float: right;
-  box-sizing: border-box;
 }
 .header .header__user-section > * {
   margin: 0 0.5em;
@@ -186,16 +172,11 @@ a {
   width: 5em;
   padding-left: 0.2em;
 }
-.header .header__user-section .cart .rule-cart-display {
-  position: absolute;
-  margin-right: 0.2em;
-}
 .header .header__user-section .cart .cart__num-of-item {
-  position: absolute;
-  margin-right: 0.2em;
   font-weight: 800;
   font-size: 1.1em;
   color: #f08804;
+  position: absolute;
   bottom: 1.1em;
   left: -1.1em;
 }
@@ -228,8 +209,9 @@ a {
   display: block;
   margin-top: 1em;
 }
-.masthead_banner .campaign-msg__CTA > *,
-.masthead_banner .campaign-msg__CTA > * > * {
+.masthead_banner .campaign-msg__CTA input,
+.masthead_banner .campaign-msg__CTA div,
+.masthead_banner .campaign-msg__CTA div > span {
   display: block;
 }
 .masthead_banner .campaign-msg__CTA > * {
@@ -245,16 +227,16 @@ a {
   font-weight: 700;
   color: #0a3c46;
 }
-.masthead_banner .bg-img > * {
-  width: 100%;
-  min-width: 1280px;
-  min-height: 450px;
-  z-index: -999;
-}
 .masthead_banner .prime-logo {
   position: absolute;
   left: 5vw;
   bottom: 4em;
+}
+.masthead_banner .bg-img > img {
+  width: 100%;
+  min-width: 1280px;
+  min-height: 450px;
+  z-index: -999;
 }
 /*=============
   Benefits Carousel  
@@ -303,52 +285,50 @@ a {
 }
 .prime-benefits-carousel .category-list > * button {
   border: none;
-  height: 20em;
+  height: 15em;
 }
 .prime-benefits-carousel .carousel-cards {
   width: 90%;
-}
-.prime-benefits-carousel .carousel-cards__card-list {
   position: relative;
 }
-.prime-benefits-carousel .carousel-cards__card-list > :nth-child(1) {
+.prime-benefits-carousel .carousel-cards > :nth-child(1) {
   position: relative;
   visibility: visible;
 }
-.prime-benefits-carousel .carousel-cards__card-list > * {
+.prime-benefits-carousel .carousel-cards > * {
   width: 100%;
   overflow: hidden;
   position: absolute;
   display: inline-block;
   visibility: hidden;
 }
-.prime-benefits-carousel .carousel-cards__card-list > * > div {
+.prime-benefits-carousel .carousel-cards > * > div {
   position: absolute;
   left: 40em;
   padding-right: 3em;
   font-size: 1.2em;
 }
-.prime-benefits-carousel .carousel-cards__card-list > * > div a {
+.prime-benefits-carousel .carousel-cards > * > div a {
   font-weight: 700;
 }
-.prime-benefits-carousel .carousel-cards__card-list > * > div > * {
+.prime-benefits-carousel .carousel-cards > * > div > * {
   display: block;
   margin: 1em auto;
 }
-.prime-benefits-carousel .carousel-cards__card-list > * > div .card-keyword-div {
+.prime-benefits-carousel .carousel-cards > * > div .card-keyword-div {
   margin-bottom: 2em;
 }
-.prime-benefits-carousel .carousel-cards__card-list > * > div .card-keyword-div span {
+.prime-benefits-carousel .carousel-cards > * > div .card-keyword-div span {
   color: white;
   font-size: 0.85em;
   font-weight: 700;
   box-shadow: 0 0 0 5px #0a82d2;
   background-color: #0a82d2;
 }
-.prime-benefits-carousel .carousel-cards__card-list > * > div em {
+.prime-benefits-carousel .carousel-cards > * > div em {
   font-size: 1.7em;
 }
-.prime-benefits-carousel .carousel-cards__card-list > * img {
+.prime-benefits-carousel .carousel-cards > * img {
   z-index: -999;
 }
 /*=============
@@ -358,8 +338,10 @@ a {
   font-weight: 800;
   font-size: 1.2em;
 }
-.local-banner-with-bg-img .campaign-msg {
+.local-banner-with-bg-img {
   color: white;
+}
+.local-banner-with-bg-img .campaign-msg {
   position: absolute;
   padding: 2em 0;
   margin-left: 5vw;
@@ -387,8 +369,8 @@ a {
   z-index: -999;
 }
 .local-banner-without-bg-img {
-  padding: 0 10rem;
   height: 360px;
+  padding: 0 10rem;
 }
 .local-banner-without-bg-img > * {
   display: inline-block;
@@ -467,8 +449,10 @@ a {
   font-weight: normal;
   margin-left: 5vw;
 }
-.full-horizontal-banners .prime-delivery-banner .campaign-msg {
+.full-horizontal-banners .prime-delivery-banner {
   color: white;
+}
+.full-horizontal-banners .prime-delivery-banner .campaign-msg {
   position: absolute;
   padding: 2em 0;
   margin-left: 5vw;
@@ -495,12 +479,16 @@ a {
   min-height: 320px;
   z-index: -999;
 }
-.full-horizontal-banners .prime-delivery-banner > div:nth-of-type(1) {
+.full-horizontal-banners .prime-delivery-banner > div:first-of-type {
   padding-top: 4em;
+}
+.full-horizontal-banners .prime-reading-banner,
+.full-horizontal-banners .prime-video-banner {
+  color: white;
+  color: black;
 }
 .full-horizontal-banners .prime-reading-banner .campaign-msg,
 .full-horizontal-banners .prime-video-banner .campaign-msg {
-  color: white;
   position: absolute;
   padding: 2em 0;
   margin-left: 5vw;
@@ -532,14 +520,10 @@ a {
   min-height: 320px;
   z-index: -999;
 }
-.full-horizontal-banners .prime-reading-banner > * > *,
-.full-horizontal-banners .prime-video-banner > * > * {
-  color: black;
-}
 .full-horizontal-banners .prime-original-banner,
 .full-horizontal-banners .prime-music-banner {
-  padding: 0 10rem;
   height: 360px;
+  padding: 0 10rem;
 }
 .full-horizontal-banners .prime-original-banner > *,
 .full-horizontal-banners .prime-music-banner > * {
