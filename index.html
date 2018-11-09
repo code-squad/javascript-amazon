@@ -280,20 +280,26 @@
                 <img src='./images/StaticBlade/FullHorizontal_PrimeDelivery.png' alt='Prime Delivery info background'/>
             </div>
         </div>
-        <div class='full-horizontal-banners-primeOriginal'>
-            <div class='full-horizontal-banners-primeOriginal-miniCarousel'>
-                <button>❮</button>
-                <ul>
-                    <li><img src='./images/StaticBlade/movie1.jpg' alt='Prime Original movie The Romanoffs'/></li>
-                    <li><img src='./images/StaticBlade/movie2.jpg' alt='Prime Original movie jack Ryan'/></li>
-                    <li><img src='./images/StaticBlade/movie3.jpg' alt='Prime Original movie The Marvelous Mrs. Maisel'/></li>
-                    <li><img src='./images/StaticBlade/movie4.jpg' alt='Prime Original movie The man in the high castle'/></li>
-                </ul>
-                <button>❯</button>
+        <div class='prime-original-banner'>
+            <div class='mini-carousel'>
+                <div class='carousel__btn-slot'>
+                    <button>❮</button>
+                </div>
+                <div class='carousel__card-slot'><ul>
+                    <li><a href='#'><img src='./images/StaticBlade/movie1.jpg' alt='Prime Original movie The Romanoffs'/></a></li>
+                    <li><a href='#'><img src='./images/StaticBlade/movie2.jpg' alt='Prime Original movie jack Ryan'/></a></li>
+                    <li><a href='#'><img src='./images/StaticBlade/movie3.jpg' alt='Prime Original movie The Marvelous Mrs. Maisel'/></a></li>
+                    <li><a href='#'><img src='./images/StaticBlade/movie4.jpg' alt='Prime Original movie The man in the high castle'/></a></li>
+                </ul></div>
+                <div class='carousel__btn-slot'>
+                    <button>❯</button>
+                </div>
             </div>
-            <h3>Prime Originals, exclusively on Prime Video</h3>
-            <p>Prime Video is the only place where you can watch Prime Original series like 'Jack Ryan', 'Man in the High Castle', 'Marvelous Mrs. Maisel', and 'The Romanoffs'.</p>
-            <a href='#'>Explore Prime Video ►</a>
+            <div class='campaign-msg'>
+                <h3>Prime Originals, exclusively <br>on Prime Video</h3>
+                <span>Prime Video is the only place where you can watch Prime <br>Original series like 'Jack Ryan', 'Man in the High Castle', <br>'Marvelous Mrs. Maisel', and 'The Romanoffs'.</span>
+                <a href='#'>Explore Prime Video ►</a>
+            </div>
         </div>
         <div class='prime-reading-banner'>
             <div class='campaign-msg'>
@@ -305,20 +311,26 @@
                 <img src='./images/StaticBlade/FullHorizontal_PrimeReading.png' alt='Prime Reading banner background'/>
             </div>
         </div>
-        <div id ='full-horizontal-banners-primeMusic'>
-                <div class='full-horizontal-banners-primeMusic-miniCarousel'>
-                        <button>❮</button>
-                        <ul>
-                            <li><img src='./images/StaticBlade/music1.jpg' alt='Prime music banner Breet Young'/></li>
-                            <li><img src='./images/StaticBlade/music2.jpg' alt='Prime music banner Taylor Swift'/></li>
-                            <li><img src='./images/StaticBlade/music3.jpg' alt='Prime music banner Old Dominion'/></li>
-                            <li><img src='./images/StaticBlade/music4.jpg' alt='Prime music banner Shakira'/></li>
-                        </ul>
-                        <button>❯</button>
-                    </div>
-            <h3>Stay on top of the hottest music</h3>
-            <p>These songs and artists are the cream of this month's crop of new music. Check out the latest from Taylor Swift, Old Dominion, Kesha, and Brett Young.</p>
-            <a href='#'>Explore Prime Music ►</a>
+        <div class='prime-music-banner'>
+            <div class='mini-carousel'>
+                <div class='carousel__btn-slot'>
+                    <button>❮</button>
+                </div>
+                <div class='carousel__card-slot'><ul>
+                    <li><a href='#'><img src='./images/StaticBlade/music1.jpg' alt='Prime music banner Breet Young'/></a></li>
+                    <li><a href='#'><img src='./images/StaticBlade/music2.jpg' alt='Prime music banner Taylor Swift'/></a></li>
+                    <li><a href='#'><img src='./images/StaticBlade/music3.jpg' alt='Prime music banner Old Dominion'/></a></li>
+                    <li><a href='#'><img src='./images/StaticBlade/music4.jpg' alt='Prime music banner Shakira'/></a></li>
+                </ul></div>
+                <div class='carousel__btn-slot'>
+                    <button>❯</button>
+                </div>
+            </div>
+            <div class='campaign-msg'>
+                <h3>Stay on top of the <br>hottest music</h3>
+                <span>These songs and artists are the cream of this month's crop of <br>new music. Check out the latest from Taylor Swift, Old <br>Dominion, Kesha, and Brett Young.</span>
+                <a href='#'>Explore Prime Music ►</a>
+            </div>
         </div>
         <div class='prime-video-banner'>
             <div class='campaign-msg'>
@@ -330,15 +342,17 @@
                 <img src='./images/StaticBlade/FullHorizontal_PrimeVideo.png' alt='Prime Video banner background'/>
             </div>
         </div>
-        <div id ='full-horizontal-banners-primeCTA'>
-            <img src='./images/StaticBlade/FinalCTA.jpg' alt='Try Prime! click following button'/>
-            <p>There's something for everyone</p>
-            <button>TRY PRIME</button>
-            <div>
+        <div class='try-prime-CTA'>
+            <div class='try-prime-CTA__message'>
+                <h2>There's something for <br>everyone</h2>
+                <button>TRY PRIME</button>
+                <div class='minor-CTA-links'>
                     <a href='#'>Give the gift of Prime</a>
                     <span>|</span>
                     <a href='#'>Enter a promo code</a>
-            </div>
+                </div>
+            </div> 
+            <img class='bg-img' src='./images/StaticBlade/FinalCTA.jpg' alt='Try Prime! click button below'/>
         </div>
     </section>
     <footer class='page-footer'>
@@ -382,7 +396,7 @@
             </ul>
         </nav>
         <div class='footer__country-info'>
-            <img src='./images/navbar/brand_logo.png' alt='Brand logo' />
+            <img class='brand-logo' src='./images/navbar/brand_logo.png' alt='Brand logo' />
             <div class='country-selector'>
                 <a href='#'>
                     <span><i class="fas fa-globe"></i> English</span>

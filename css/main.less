@@ -38,6 +38,15 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     width: 1280px;
     margin: 0 auto;
 }
+.global-deco-major-btn{
+    border: 1px solid orangered;
+    background-color: @brand-point-color;
+    min-width: 20rem;
+    min-height: 3rem;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: rgb(10, 60, 70);
+}
 
 
 /*=============
@@ -181,10 +190,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
             margin-top: 0.5em;
         }
         .try-prime-btn{
-            border: 1px solid orangered;
-            background-color: @brand-point-color;
-            min-width: 25em;
-            min-height: 4em;
+            .global-deco-major-btn;
         }
     }
     .bg-img > *{
@@ -240,6 +246,10 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     }
     .carousel-cards__card-list{
         position: relative;
+        & > :nth-child(1) { // only show first card on start-up
+            position: relative;
+            visibility: visible;
+        }
         & > * { // all list items
             width: 100%;
             overflow: hidden;
@@ -275,10 +285,6 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
                 z-index: @z-index-for-bg-imgs;
             }
         }
-        & > :nth-child(1) {
-            position: relative;
-            visibility: visible;
-        }
     }
 }
 
@@ -289,6 +295,94 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     font-weight: 800;
     font-size: 1.2em;
 }
+.local-banner-with-bg-img{
+    .campaign-msg{
+        color: white;
+        position: absolute;
+        padding: 2em 0;
+        margin-left: @padding-left-for-banner-contents;
+        h3 {
+            font-weight: normal;
+            font-size: 3em;
+            line-height: 110%;
+        }
+        a{.local-CTA-link-rule}
+        & > span{font-size: 1.3em;}
+        & > * {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+    }
+    .bg-img > *{
+        width: 100%;
+        min-width: 1280px;
+        min-height: 320px;
+        z-index: @z-index-for-bg-imgs;
+    }
+}
+.local-banner-without-bg-img{
+    @local-height: 360px;
+    padding: 0 10rem;
+    height: @local-height;
+    & > * {
+        display:inline-block;
+        height: 100%;
+        padding: (@local-height * 0.2) 0; // vertically align center
+    }
+    .mini-carousel{
+        width: 33%;
+        text-align: center;
+        vertical-align: top;
+        position: relative;
+        & > * {height: 100%;}
+        .carousel__btn-slot{
+            display:inline-block;
+            position: relative;
+            width: 10%;
+            vertical-align: top;
+            button{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .carousel__card-slot{
+            width: 75%;
+            display:inline-block;
+        }
+        ul{
+            position: relative;
+            height: 100%;
+            & > *{
+                visibility: hidden;
+                position: absolute;
+                top:50%;
+                transform: translateY(-50%);
+            }
+            & > :first-child {
+                visibility: visible;
+                position: relative;
+            }
+            img{width: 99%;}
+        } 
+    }
+    .campaign-msg{
+        color: black;
+        margin-left: @padding-left-for-banner-contents;
+        h3 {
+            font-weight: normal;
+            font-size: 3em;
+            line-height: 110%;
+        }
+        a{.local-CTA-link-rule}
+        & > span{font-size: 1.3em;}
+        & > * {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+    }
+}
 .full-horizontal-banners{
     .global-section-formatting;
     .section-header {
@@ -297,39 +391,42 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
         margin-left: @padding-left-for-banner-contents;
     }
     .prime-delivery-banner{
+        .local-banner-with-bg-img;
         & > div:nth-of-type(1){
             padding-top: 4em; //Compensate whitespace on background img 
-        }
-        .campaign-msg{
-            color: white;
-            position: absolute;
-            padding: 1em 0;
-            margin-left: @padding-left-for-banner-contents;
-            h3 {
-                font-weight: normal;
-                font-size: 3em;
-                line-height: 110%;
-            }
-            a{.local-CTA-link-rule}
-            & > span{font-size: 1.3em;}
-            & > * {
-                display: block;
-                margin-bottom: 0.5em;
-            }
-        }
-        .bg-img > *{
-            width: 100%;
-            min-width: 1280px;
-            min-height: 320px;
-            z-index: @z-index-for-bg-imgs;
         }
     }
     .prime-reading-banner,
     .prime-video-banner{
+        .local-banner-with-bg-img;
         & > * > * {color: black;}
-        .prime-delivery-banner;
-        & > div:nth-of-type(1){
-            padding-top: 2em; //Reduce unnecessary padding from template above
+    }
+    .prime-original-banner,
+    .prime-music-banner{
+        .local-banner-without-bg-img;
+    }
+    .try-prime-CTA{
+        position: relative;
+        .try-prime-CTA__message{
+            text-align: center;
+            position: absolute;
+            right: 33%;
+            left: 33%;
+            top: 10%;
+            & > * {
+                margin-bottom: 2rem;
+            }
+            h2 {
+                font-size: 2em;
+                font-weight: normal;
+            }
+            button{
+                .global-deco-major-btn;
+            }
+            .minor-CTA-links > a{
+                color: rgb(10, 120, 200);
+                font-size: 0.8em;
+            }
         }
     }
 }
@@ -358,7 +455,8 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
             display: inline-block;
             vertical-align: top;
             margin-left: 7vw;
-            em {.global-deco-Text-Bold;}
+            font-size: 0.9em;
+            em {font-size: 1.2em; font-weight: 800;}
         }
     }
     
@@ -371,6 +469,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
             vertical-align: middle;
             display: inline-block;
         }
+        .brand-logo{height:30%};
         .country-selector{
             margin-left: 2em;
             & > * {

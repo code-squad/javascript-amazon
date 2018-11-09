@@ -60,6 +60,15 @@ a {
   width: 1280px;
   margin: 0 auto;
 }
+.global-deco-major-btn {
+  border: 1px solid orangered;
+  background-color: #f08804;
+  min-width: 20rem;
+  min-height: 3rem;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #0a3c46;
+}
 /*=============
   Header rules  
 ===============*/
@@ -218,8 +227,11 @@ a {
 .masthead_banner .campaign-msg__CTA .try-prime-btn {
   border: 1px solid orangered;
   background-color: #f08804;
-  min-width: 25em;
-  min-height: 4em;
+  min-width: 20rem;
+  min-height: 3rem;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #0a3c46;
 }
 .masthead_banner .bg-img > * {
   width: 100%;
@@ -287,6 +299,10 @@ a {
 .prime-benefits-carousel .carousel-cards__card-list {
   position: relative;
 }
+.prime-benefits-carousel .carousel-cards__card-list > :nth-child(1) {
+  position: relative;
+  visibility: visible;
+}
 .prime-benefits-carousel .carousel-cards__card-list > * {
   width: 100%;
   overflow: hidden;
@@ -323,16 +339,111 @@ a {
 .prime-benefits-carousel .carousel-cards__card-list > * img {
   z-index: -999;
 }
-.prime-benefits-carousel .carousel-cards__card-list > :nth-child(1) {
-  position: relative;
-  visibility: visible;
-}
 /*=============
   Horizontal Banners  
 ===============*/
 .local-CTA-link-rule {
   font-weight: 800;
   font-size: 1.2em;
+}
+.local-banner-with-bg-img .campaign-msg {
+  color: white;
+  position: absolute;
+  padding: 2em 0;
+  margin-left: 5vw;
+}
+.local-banner-with-bg-img .campaign-msg h3 {
+  font-weight: normal;
+  font-size: 3em;
+  line-height: 110%;
+}
+.local-banner-with-bg-img .campaign-msg a {
+  font-weight: 800;
+  font-size: 1.2em;
+}
+.local-banner-with-bg-img .campaign-msg > span {
+  font-size: 1.3em;
+}
+.local-banner-with-bg-img .campaign-msg > * {
+  display: block;
+  margin-bottom: 0.5em;
+}
+.local-banner-with-bg-img .bg-img > * {
+  width: 100%;
+  min-width: 1280px;
+  min-height: 320px;
+  z-index: -999;
+}
+.local-banner-without-bg-img {
+  padding: 0 10rem;
+  height: 360px;
+}
+.local-banner-without-bg-img > * {
+  display: inline-block;
+  height: 100%;
+  padding: 72px 0;
+}
+.local-banner-without-bg-img .mini-carousel {
+  width: 33%;
+  text-align: center;
+  vertical-align: top;
+  position: relative;
+}
+.local-banner-without-bg-img .mini-carousel > * {
+  height: 100%;
+}
+.local-banner-without-bg-img .mini-carousel .carousel__btn-slot {
+  display: inline-block;
+  position: relative;
+  width: 10%;
+  vertical-align: top;
+}
+.local-banner-without-bg-img .mini-carousel .carousel__btn-slot button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.local-banner-without-bg-img .mini-carousel .carousel__card-slot {
+  width: 75%;
+  display: inline-block;
+}
+.local-banner-without-bg-img .mini-carousel ul {
+  position: relative;
+  height: 100%;
+}
+.local-banner-without-bg-img .mini-carousel ul > * {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.local-banner-without-bg-img .mini-carousel ul > :first-child {
+  visibility: visible;
+  position: relative;
+}
+.local-banner-without-bg-img .mini-carousel ul img {
+  width: 99%;
+}
+.local-banner-without-bg-img .campaign-msg {
+  color: black;
+  margin-left: 5vw;
+}
+.local-banner-without-bg-img .campaign-msg h3 {
+  font-weight: normal;
+  font-size: 3em;
+  line-height: 110%;
+}
+.local-banner-without-bg-img .campaign-msg a {
+  font-weight: 800;
+  font-size: 1.2em;
+}
+.local-banner-without-bg-img .campaign-msg > span {
+  font-size: 1.3em;
+}
+.local-banner-without-bg-img .campaign-msg > * {
+  display: block;
+  margin-bottom: 0.5em;
 }
 .full-horizontal-banners {
   position: relative;
@@ -344,13 +455,10 @@ a {
   font-weight: normal;
   margin-left: 5vw;
 }
-.full-horizontal-banners .prime-delivery-banner > div:nth-of-type(1) {
-  padding-top: 4em;
-}
 .full-horizontal-banners .prime-delivery-banner .campaign-msg {
   color: white;
   position: absolute;
-  padding: 1em 0;
+  padding: 2em 0;
   margin-left: 5vw;
 }
 .full-horizontal-banners .prime-delivery-banner .campaign-msg h3 {
@@ -375,19 +483,14 @@ a {
   min-height: 320px;
   z-index: -999;
 }
-.full-horizontal-banners .prime-reading-banner > * > *,
-.full-horizontal-banners .prime-video-banner > * > * {
-  color: black;
-}
-.full-horizontal-banners .prime-reading-banner > div:nth-of-type(1),
-.full-horizontal-banners .prime-video-banner > div:nth-of-type(1) {
+.full-horizontal-banners .prime-delivery-banner > div:nth-of-type(1) {
   padding-top: 4em;
 }
 .full-horizontal-banners .prime-reading-banner .campaign-msg,
 .full-horizontal-banners .prime-video-banner .campaign-msg {
   color: white;
   position: absolute;
-  padding: 1em 0;
+  padding: 2em 0;
   margin-left: 5vw;
 }
 .full-horizontal-banners .prime-reading-banner .campaign-msg h3,
@@ -417,9 +520,126 @@ a {
   min-height: 320px;
   z-index: -999;
 }
-.full-horizontal-banners .prime-reading-banner > div:nth-of-type(1),
-.full-horizontal-banners .prime-video-banner > div:nth-of-type(1) {
-  padding-top: 2em;
+.full-horizontal-banners .prime-reading-banner > * > *,
+.full-horizontal-banners .prime-video-banner > * > * {
+  color: black;
+}
+.full-horizontal-banners .prime-original-banner,
+.full-horizontal-banners .prime-music-banner {
+  padding: 0 10rem;
+  height: 360px;
+}
+.full-horizontal-banners .prime-original-banner > *,
+.full-horizontal-banners .prime-music-banner > * {
+  display: inline-block;
+  height: 100%;
+  padding: 72px 0;
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel,
+.full-horizontal-banners .prime-music-banner .mini-carousel {
+  width: 33%;
+  text-align: center;
+  vertical-align: top;
+  position: relative;
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel > *,
+.full-horizontal-banners .prime-music-banner .mini-carousel > * {
+  height: 100%;
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel .carousel__btn-slot,
+.full-horizontal-banners .prime-music-banner .mini-carousel .carousel__btn-slot {
+  display: inline-block;
+  position: relative;
+  width: 10%;
+  vertical-align: top;
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel .carousel__btn-slot button,
+.full-horizontal-banners .prime-music-banner .mini-carousel .carousel__btn-slot button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel .carousel__card-slot,
+.full-horizontal-banners .prime-music-banner .mini-carousel .carousel__card-slot {
+  width: 75%;
+  display: inline-block;
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel ul,
+.full-horizontal-banners .prime-music-banner .mini-carousel ul {
+  position: relative;
+  height: 100%;
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel ul > *,
+.full-horizontal-banners .prime-music-banner .mini-carousel ul > * {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel ul > :first-child,
+.full-horizontal-banners .prime-music-banner .mini-carousel ul > :first-child {
+  visibility: visible;
+  position: relative;
+}
+.full-horizontal-banners .prime-original-banner .mini-carousel ul img,
+.full-horizontal-banners .prime-music-banner .mini-carousel ul img {
+  width: 99%;
+}
+.full-horizontal-banners .prime-original-banner .campaign-msg,
+.full-horizontal-banners .prime-music-banner .campaign-msg {
+  color: black;
+  margin-left: 5vw;
+}
+.full-horizontal-banners .prime-original-banner .campaign-msg h3,
+.full-horizontal-banners .prime-music-banner .campaign-msg h3 {
+  font-weight: normal;
+  font-size: 3em;
+  line-height: 110%;
+}
+.full-horizontal-banners .prime-original-banner .campaign-msg a,
+.full-horizontal-banners .prime-music-banner .campaign-msg a {
+  font-weight: 800;
+  font-size: 1.2em;
+}
+.full-horizontal-banners .prime-original-banner .campaign-msg > span,
+.full-horizontal-banners .prime-music-banner .campaign-msg > span {
+  font-size: 1.3em;
+}
+.full-horizontal-banners .prime-original-banner .campaign-msg > *,
+.full-horizontal-banners .prime-music-banner .campaign-msg > * {
+  display: block;
+  margin-bottom: 0.5em;
+}
+.full-horizontal-banners .try-prime-CTA {
+  position: relative;
+}
+.full-horizontal-banners .try-prime-CTA .try-prime-CTA__message {
+  text-align: center;
+  position: absolute;
+  right: 33%;
+  left: 33%;
+  top: 10%;
+}
+.full-horizontal-banners .try-prime-CTA .try-prime-CTA__message > * {
+  margin-bottom: 2rem;
+}
+.full-horizontal-banners .try-prime-CTA .try-prime-CTA__message h2 {
+  font-size: 2em;
+  font-weight: normal;
+}
+.full-horizontal-banners .try-prime-CTA .try-prime-CTA__message button {
+  border: 1px solid orangered;
+  background-color: #f08804;
+  min-width: 20rem;
+  min-height: 3rem;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #0a3c46;
+}
+.full-horizontal-banners .try-prime-CTA .try-prime-CTA__message .minor-CTA-links > a {
+  color: #0a78c8;
+  font-size: 0.8em;
 }
 /*=============
   Footer  
@@ -446,10 +666,11 @@ a {
   display: inline-block;
   vertical-align: top;
   margin-left: 7vw;
+  font-size: 0.9em;
 }
 .page-footer .footer__section-links > * em {
+  font-size: 1.2em;
   font-weight: 800;
-  font-size: 1.1em;
 }
 .page-footer .footer__country-info {
   height: 7vh;
@@ -460,6 +681,9 @@ a {
   padding: 2em 0;
   vertical-align: middle;
   display: inline-block;
+}
+.page-footer .footer__country-info .brand-logo {
+  height: 30%;
 }
 .page-footer .footer__country-info .country-selector {
   margin-left: 2em;
