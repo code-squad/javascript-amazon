@@ -8,7 +8,7 @@ textarea,button,select{
 
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: @global-base-font-size;
 }
 
 sup {
@@ -28,6 +28,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
 @brand-point-color: #f08804;
 @z-index-for-bg-imgs: -999;
 @padding-left-for-banner-contents: 5vw;
+@global-base-font-size: 14px;
 
 .global-deco-Text-Bold {
     font-weight: 800;
@@ -56,7 +57,6 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
 @header__top-row__search--width: 99% - @header__top-row__brand-logo-slot--width - @header__top-row__learn-more-img--width;
 @header__top-row__learn-more-img--width: 33%;
 @header__quick-links--width: 65%;
-@header__user-section--width: 99% - @header__quick-links--width;
 
 .deco-Header-Text-Orange{
     .global-deco-Text-Bold;
@@ -68,6 +68,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     color: @main-bright-text-color;
     overflow: auto;
     font-size: 0.9em;
+    padding-top: 1em;
     & > * {margin-bottom: 0.5em}
     & > * > * {
         display: inline-block;
@@ -77,32 +78,43 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     .header__brand-and-search {
         .brand-logo-slot {
             position: relative;
-            padding-top: 0.7em;
-            padding-bottom: 0;
-            padding-left: 1.5em;
-            padding-right: 1.5em;
+            padding: 0 1.5em;
             width: @header__top-row__brand-logo-slot--width;
         }
         .search {
             padding: 0 0.5em;
+            height: 3em;
+            vertical-align: top;
             width: @header__top-row__search--width;
-            height: 2em;
-            vertical-align: middle;
-            overflow: auto;
-            .search__category-selector {
-                width: 10%;
-                float: left;
-            }
-            .search__input-bar {
-                width: 79%;
-            }
-            .search__submit-btn {
-                width: 10%;
-                float: right;
+            form{
+                height: 100%;
+                width: 100%;
+                & > * {
+                    margin: 0 -4px;
+                    border: none;
+                    height: 100%;
+                    vertical-align: top;
+                    display:inline-block;
+                }
+                .search__category-selector{
+                    width: 6%;
+                    font-size: 1.1em;
+                    position: relative;
+                    z-index: 1;
+                    background-color: #dcdcdc;
+                }
+                .search__input-bar {
+                    width: 85%;
+                }
+                .search__submit-btn {
+                    border-radius: 0 5px 5px 0;
+                    background-color: @brand-point-color;
+                    width: 6%;
+                    .fa-search {font-size: 2em;}
+                }
             }
         }
         .learn-more-img {
-            padding-top: 0.7em;
             float: right;
             width: @header__top-row__learn-more-img--width;
         }
@@ -131,8 +143,6 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     .header__user-section {
         float: right;
         box-sizing: border-box;
-        width: @header__user-section--width;
-        padding-right: 2em;
         & > * {margin: 0 0.5em;}
         .account-menu,
         .orders-menu-link,
@@ -448,10 +458,12 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
         padding: 4em 10em;
         background-color: @main-background-color;
         color: white;
+        text-align: center;
         line-height: 2em;
         border-bottom: 1px solid darkslategray;
         :nth-child(1){margin-left: unset;}
         & > * {
+            text-align: start;
             display: inline-block;
             vertical-align: top;
             margin-left: 7vw;
@@ -491,8 +503,10 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     .footer__affiliates-sitemap{
         padding: 2em 10em;
         background-color: @main-background-color * 0.6;
+        text-align: center;
         color: white;
         & > * { //each links
+            text-align: start;
             display: inline-block;
             margin: 0.5em 1em;
             font-size: 0.7em;

@@ -82,6 +82,7 @@ a {
   color: white;
   overflow: auto;
   font-size: 0.9em;
+  padding-top: 1em;
 }
 .header > * {
   margin-bottom: 0.5em;
@@ -96,32 +97,45 @@ a {
 }
 .header .header__brand-and-search .brand-logo-slot {
   position: relative;
-  padding-top: 0.7em;
-  padding-bottom: 0;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0 1.5em;
   width: 13%;
 }
 .header .header__brand-and-search .search {
   padding: 0 0.5em;
+  height: 3em;
+  vertical-align: top;
   width: 53%;
-  height: 2em;
-  vertical-align: middle;
-  overflow: auto;
 }
-.header .header__brand-and-search .search .search__category-selector {
-  width: 10%;
-  float: left;
+.header .header__brand-and-search .search form {
+  height: 100%;
+  width: 100%;
 }
-.header .header__brand-and-search .search .search__input-bar {
-  width: 79%;
+.header .header__brand-and-search .search form > * {
+  margin: 0 -4px;
+  border: none;
+  height: 100%;
+  vertical-align: top;
+  display: inline-block;
 }
-.header .header__brand-and-search .search .search__submit-btn {
-  width: 10%;
-  float: right;
+.header .header__brand-and-search .search form .search__category-selector {
+  width: 6%;
+  font-size: 1.1em;
+  position: relative;
+  z-index: 1;
+  background-color: #dcdcdc;
+}
+.header .header__brand-and-search .search form .search__input-bar {
+  width: 85%;
+}
+.header .header__brand-and-search .search form .search__submit-btn {
+  border-radius: 0 5px 5px 0;
+  background-color: #f08804;
+  width: 6%;
+}
+.header .header__brand-and-search .search form .search__submit-btn .fa-search {
+  font-size: 2em;
 }
 .header .header__brand-and-search .learn-more-img {
-  padding-top: 0.7em;
   float: right;
   width: 33%;
 }
@@ -156,8 +170,6 @@ a {
 .header .header__user-section {
   float: right;
   box-sizing: border-box;
-  width: 34%;
-  padding-right: 2em;
 }
 .header .header__user-section > * {
   margin: 0 0.5em;
@@ -656,6 +668,7 @@ a {
   padding: 4em 10em;
   background-color: #23303e;
   color: white;
+  text-align: center;
   line-height: 2em;
   border-bottom: 1px solid darkslategray;
 }
@@ -663,6 +676,7 @@ a {
   margin-left: unset;
 }
 .page-footer .footer__section-links > * {
+  text-align: start;
   display: inline-block;
   vertical-align: top;
   margin-left: 7vw;
@@ -706,9 +720,11 @@ a {
 .page-footer .footer__affiliates-sitemap {
   padding: 2em 10em;
   background-color: #151d25;
+  text-align: center;
   color: white;
 }
 .page-footer .footer__affiliates-sitemap > * {
+  text-align: start;
   display: inline-block;
   margin: 0.5em 1em;
   font-size: 0.7em;
