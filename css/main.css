@@ -676,7 +676,7 @@ a {
   text-align: center;
 }
 .page-footer .footer__country-info > * {
-  padding: 2em 0;
+  padding: 2vh 0;
   vertical-align: middle;
   display: inline-block;
 }
@@ -687,7 +687,8 @@ a {
   margin-left: 2em;
 }
 .page-footer .footer__country-info .country-selector > * {
-  height: 25px;
+  height: 2vh;
+  min-height: 15px;
   box-sizing: content-box;
   vertical-align: middle;
   display: inline-block;
