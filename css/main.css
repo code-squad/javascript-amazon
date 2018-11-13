@@ -1,58 +1,38 @@
 /*=============
   Global rules  
 ===============*/
-.global-deco-Text-Bold {
-  font-weight: 800;
-  font-size: 1.1em;
-}
-.global-section-formatting {
-  position: relative;
-  width: 1280px;
-  margin: 0 auto;
+:root {
+  /* fonts */
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  --boldest: 800;
+  /* colors */
+  --color-bright-orange: #f08804;
+  --color-gray-blue: #23303e;
+  --color-gray-blue--lighten: #0a3c46;
+  --color-gray-blue--darken: #001446;
+  /* etc */
+  --bg-img-z-index: -999;
 }
 .global-deco-major-btn {
   border: 1px solid orangered;
-  background-color: #f08804;
+  background-color: var(--color-bright-orange);
   min-width: 20rem;
   min-height: 3rem;
-  font-size: 1.3em;
-  font-weight: 700;
-  color: #0a3c46;
+  font-size: 1.1rem;
+  font-weight: var(--boldest);
+  color: var(--color-gray-blue--lighten);
 }
 /*Base initializers*/
-body,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-ol,
-li,
-dl,
-dt,
-dd,
-table,
-th,
-td,
-form,
-fieldset,
-legend,
-input,
-div,
-textarea,
-button,
-select {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
+/* 14px */
 ul,
 ol {
   list-style: none;
@@ -62,45 +42,42 @@ address {
   font-style: normal;
 }
 sup {
-  font-size: 0.7em;
+  font-size: 0.5rem;
 }
-input,
-textarea,
-select,
-button {
-  font-size: unset;
-}
+/* 8px */
 a {
   color: inherit;
   text-decoration-line: none;
-  -webkit-text-decoration-line: none;
 }
 /*=============
   Header rules  
 ===============*/
 .header {
-  background-color: #23303e;
+  background-color: var(--color-gray-blue);
   color: white;
   overflow: auto;
-  font-size: 0.9em;
-  padding-top: 1em;
+  font-size: 0.9rem;
+  padding-top: 1rem;
+  /*  space between horizontal lines */
+  /*  give 'inline-block' display style to items in each line  */
 }
 .header > * {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .header > * > * {
   display: inline-block;
   box-sizing: border-box;
 }
 .header .header__brand-and-search .brand-logo-slot {
-  padding: 0 1.5em;
-  width: 13%;
+  padding: 0 1.5rem;
+  width: 8.5rem;
 }
 .header .header__brand-and-search .search {
-  padding: 0 0.5em;
-  height: 3em;
+  padding: 0 0.5rem;
+  height: 3rem;
   vertical-align: top;
-  width: 53%;
+  width: calc(61.5%);
+  /* Take all width except for logo & banner*/
 }
 .header .header__brand-and-search .search form {
   height: 100%;
@@ -114,100 +91,99 @@ a {
 }
 .header .header__brand-and-search .search form .search__category-selector {
   width: 19%;
-  font-size: 1em;
+  font-size: 1rem;
   position: relative;
   z-index: 1;
+  /*  place category selector over input bar */
   background-color: #dcdcdc;
 }
 .header .header__brand-and-search .search form .search__input-bar {
   width: 73%;
   padding-left: 20px;
-  font-size: 1.2em;
+  /*  Move text display location to right for compensating stacked margins */
+  font-size: 1.2rem;
 }
 .header .header__brand-and-search .search form .search__submit-btn {
   border-radius: 0 5px 5px 0;
-  background-color: #f08804;
+  background-color: var(--color-bright-orange);
   width: 6%;
-  font-size: 2em;
+  font-size: 2rem;
 }
 .header .header__brand-and-search .learn-more-img {
   float: right;
-  width: 33%;
+  width: 29rem;
 }
 .header .header__quick-links {
   float: left;
-  width: 65%;
-  padding-left: 1em;
+  width: 25rem;
+  padding-left: 1rem;
 }
 .header .header__quick-links .delivery-location > * {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 0.2em;
+  margin-right: 0.2rem;
 }
 .header .header__quick-links .delivery-location__country,
 .header .header__quick-links .department-list {
-  font-weight: 800;
-  font-size: 1.1em;
-  margin-right: 2em;
+  font-weight: var(--boldest);
+  margin-right: 2rem;
 }
 .header .header__quick-links > * {
-  margin: 0 0.5em;
+  margin: 0 0.5rem;
   vertical-align: bottom;
 }
 .header .header__user-section {
   float: right;
 }
 .header .header__user-section > * {
-  margin: 0 0.5em;
+  margin: 0 0.5rem;
 }
 .header .header__user-section .account-menu,
 .header .header__user-section .orders-menu-link,
 .header .header__user-section .cart-text-link {
-  font-weight: 800;
-  font-size: 1.1em;
+  font-weight: var(--boldest);
 }
 .header .header__user-section .cart {
   position: relative;
-  margin-left: 3em;
-  width: 5em;
-  padding-left: 0.2em;
+  margin-left: 3rem;
+  width: 5rem;
+  padding-left: 0.2rem;
 }
 .header .header__user-section .cart .cart__num-of-item {
-  font-weight: 800;
-  font-size: 1.1em;
-  color: #f08804;
+  font-weight: var(--boldest);
+  color: var(--color-bright-orange);
   position: absolute;
-  bottom: 1.1em;
-  left: -1.1em;
+  bottom: 1.1rem;
+  left: -1.1rem;
 }
 .header .header__user-section .cart .cart__img {
   position: absolute;
-  margin-right: 0.2em;
-  right: 4em;
-  bottom: -0.2em;
+  margin-right: 0.2rem;
+  right: 4rem;
+  bottom: -0.2rem;
 }
 /*=============
   Masthead_banner  
 ===============*/
 .masthead_banner {
   position: relative;
-  width: 1280px;
+  width: 80rem;
   margin: 0 auto;
 }
 .masthead_banner .campaign-msg {
   color: white;
   position: absolute;
-  margin: 0 0 5em 5vw;
+  margin: 0 0 5rem 5rem;
 }
 .masthead_banner .campaign-msg h1 {
-  font-size: 2.7em;
+  font-size: 2.7rem;
 }
 .masthead_banner .campaign-msg > span {
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
 .masthead_banner .campaign-msg > * {
   display: block;
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 .masthead_banner .campaign-msg__CTA input,
 .masthead_banner .campaign-msg__CTA div,
@@ -215,41 +191,42 @@ a {
   display: block;
 }
 .masthead_banner .campaign-msg__CTA > * {
-  font-size: 1em;
-  margin-top: 0.5em;
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
 .masthead_banner .campaign-msg__CTA .try-prime-btn {
   border: 1px solid orangered;
-  background-color: #f08804;
+  background-color: var(--color-bright-orange);
   min-width: 20rem;
   min-height: 3rem;
-  font-size: 1.3em;
-  font-weight: 700;
-  color: #0a3c46;
+  font-size: 1.1rem;
+  font-weight: var(--boldest);
+  color: var(--color-gray-blue--lighten);
 }
 .masthead_banner .prime-logo {
   position: absolute;
-  left: 5vw;
-  bottom: 4em;
+  left: 5rem;
+  bottom: 4rem;
 }
 .masthead_banner .bg-img > img {
   width: 100%;
   min-width: 1280px;
   min-height: 450px;
-  z-index: -999;
+  z-index: var(--bg-img-z-index);
 }
 /*=============
   Benefits Carousel  
 ===============*/
 .prime-benefits-carousel {
   position: relative;
-  width: 1280px;
+  width: 80rem;
   margin: 0 auto;
-  top: -5em;
+  top: -5rem;
 }
 .prime-benefits-carousel .category-list {
   text-align: center;
-  margin-bottom: 2em;
+  /*  put internal inline-block objects in horizontal center */
+  margin-bottom: 2rem;
 }
 .prime-benefits-carousel .category-list > :nth-child(1) > button {
   background: linear-gradient(35deg, #0a82d2, #1eaab4);
@@ -270,14 +247,14 @@ a {
   display: inline-block;
   vertical-align: top;
   width: 13%;
-  margin: 0 0.1em;
+  margin: 0 0.1rem;
 }
 .prime-benefits-carousel .category-list > * img,
 .prime-benefits-carousel .category-list > * span {
   display: block;
   width: 85%;
   margin: 0 auto;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: white;
 }
 .prime-benefits-carousel .category-list > * img {
@@ -285,17 +262,19 @@ a {
 }
 .prime-benefits-carousel .category-list > * button {
   border: none;
-  height: 15em;
+  height: 15rem;
 }
 .prime-benefits-carousel .carousel-cards {
   width: 90%;
   position: relative;
 }
 .prime-benefits-carousel .carousel-cards > :nth-child(1) {
+  /*  only show first card on start-up */
   position: relative;
   visibility: visible;
 }
 .prime-benefits-carousel .carousel-cards > * {
+  /*  all list items */
   width: 100%;
   overflow: hidden;
   position: absolute;
@@ -303,70 +282,71 @@ a {
   visibility: hidden;
 }
 .prime-benefits-carousel .carousel-cards > * > div {
+  /*  slot for message & link in list items */
   position: absolute;
-  left: 40em;
-  padding-right: 3em;
-  font-size: 1.2em;
+  left: 40rem;
+  padding-right: 3rem;
+  font-size: 1.2rem;
 }
 .prime-benefits-carousel .carousel-cards > * > div a {
-  font-weight: 700;
+  font-weight: var(--boldest);
 }
 .prime-benefits-carousel .carousel-cards > * > div > * {
   display: block;
-  margin: 1em auto;
+  margin: 1rem auto;
 }
 .prime-benefits-carousel .carousel-cards > * > div .card-keyword-div {
-  margin-bottom: 2em;
+  margin-bottom: 2rem;
 }
 .prime-benefits-carousel .carousel-cards > * > div .card-keyword-div span {
   color: white;
-  font-size: 0.85em;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: var(--boldest);
   box-shadow: 0 0 0 5px #0a82d2;
   background-color: #0a82d2;
 }
 .prime-benefits-carousel .carousel-cards > * > div em {
-  font-size: 1.7em;
+  font-size: 1.7rem;
 }
 .prime-benefits-carousel .carousel-cards > * img {
-  z-index: -999;
+  z-index: var(--bg-img-z-index);
 }
 /*=============
   Horizontal Banners  
 ===============*/
 .local-CTA-link-rule {
-  font-weight: 800;
-  font-size: 1.2em;
+  font-weight: var(--boldest);
+  font-size: 1.2rem;
 }
 .local-banner-with-bg-img {
   color: white;
 }
 .local-banner-with-bg-img .campaign-msg {
   position: absolute;
-  padding: 2em 0;
-  margin-left: 5vw;
+  padding: 2rem 0;
+  margin-left: 5rem;
 }
 .local-banner-with-bg-img .campaign-msg h3 {
   font-weight: normal;
-  font-size: 3em;
+  font-size: 3rem;
   line-height: 110%;
 }
 .local-banner-with-bg-img .campaign-msg a {
-  font-weight: 800;
-  font-size: 1.2em;
+  font-weight: var(--boldest);
+  font-size: 1.2rem;
 }
 .local-banner-with-bg-img .campaign-msg > span {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 .local-banner-with-bg-img .campaign-msg > * {
   display: block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .local-banner-with-bg-img .bg-img > * {
   width: 100%;
   min-width: 1280px;
   min-height: 320px;
-  z-index: -999;
+  z-index: var(--bg-img-z-index);
 }
 .local-banner-without-bg-img {
   height: 360px;
@@ -376,6 +356,7 @@ a {
   display: inline-block;
   height: 100%;
   padding: 72px 0;
+  /*  vertically align center */
 }
 .local-banner-without-bg-img .mini-carousel {
   width: 33%;
@@ -421,66 +402,67 @@ a {
 }
 .local-banner-without-bg-img .campaign-msg {
   color: black;
-  margin-left: 5vw;
+  margin-left: 5rem;
 }
 .local-banner-without-bg-img .campaign-msg h3 {
   font-weight: normal;
-  font-size: 3em;
+  font-size: 3rem;
   line-height: 110%;
 }
 .local-banner-without-bg-img .campaign-msg a {
-  font-weight: 800;
-  font-size: 1.2em;
+  font-weight: var(--boldest);
+  font-size: 1.2rem;
 }
 .local-banner-without-bg-img .campaign-msg > span {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 .local-banner-without-bg-img .campaign-msg > * {
   display: block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .full-horizontal-banners {
   position: relative;
-  width: 1280px;
+  width: 80rem;
   margin: 0 auto;
 }
 .full-horizontal-banners .section-header {
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: normal;
-  margin-left: 5vw;
+  margin-left: 5rem;
 }
 .full-horizontal-banners .prime-delivery-banner {
   color: white;
 }
 .full-horizontal-banners .prime-delivery-banner .campaign-msg {
   position: absolute;
-  padding: 2em 0;
-  margin-left: 5vw;
+  padding: 2rem 0;
+  margin-left: 5rem;
 }
 .full-horizontal-banners .prime-delivery-banner .campaign-msg h3 {
   font-weight: normal;
-  font-size: 3em;
+  font-size: 3rem;
   line-height: 110%;
 }
 .full-horizontal-banners .prime-delivery-banner .campaign-msg a {
-  font-weight: 800;
-  font-size: 1.2em;
+  font-weight: var(--boldest);
+  font-size: 1.2rem;
 }
 .full-horizontal-banners .prime-delivery-banner .campaign-msg > span {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 .full-horizontal-banners .prime-delivery-banner .campaign-msg > * {
   display: block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .full-horizontal-banners .prime-delivery-banner .bg-img > * {
   width: 100%;
   min-width: 1280px;
   min-height: 320px;
-  z-index: -999;
+  z-index: var(--bg-img-z-index);
 }
 .full-horizontal-banners .prime-delivery-banner > div:first-of-type {
-  padding-top: 4em;
+  /* Compensate whitespace on background img  */
+  padding-top: 4rem;
 }
 .full-horizontal-banners .prime-reading-banner,
 .full-horizontal-banners .prime-video-banner {
@@ -490,35 +472,35 @@ a {
 .full-horizontal-banners .prime-reading-banner .campaign-msg,
 .full-horizontal-banners .prime-video-banner .campaign-msg {
   position: absolute;
-  padding: 2em 0;
-  margin-left: 5vw;
+  padding: 2rem 0;
+  margin-left: 5rem;
 }
 .full-horizontal-banners .prime-reading-banner .campaign-msg h3,
 .full-horizontal-banners .prime-video-banner .campaign-msg h3 {
   font-weight: normal;
-  font-size: 3em;
+  font-size: 3rem;
   line-height: 110%;
 }
 .full-horizontal-banners .prime-reading-banner .campaign-msg a,
 .full-horizontal-banners .prime-video-banner .campaign-msg a {
-  font-weight: 800;
-  font-size: 1.2em;
+  font-weight: var(--boldest);
+  font-size: 1.2rem;
 }
 .full-horizontal-banners .prime-reading-banner .campaign-msg > span,
 .full-horizontal-banners .prime-video-banner .campaign-msg > span {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 .full-horizontal-banners .prime-reading-banner .campaign-msg > *,
 .full-horizontal-banners .prime-video-banner .campaign-msg > * {
   display: block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .full-horizontal-banners .prime-reading-banner .bg-img > *,
 .full-horizontal-banners .prime-video-banner .bg-img > * {
   width: 100%;
   min-width: 1280px;
   min-height: 320px;
-  z-index: -999;
+  z-index: var(--bg-img-z-index);
 }
 .full-horizontal-banners .prime-original-banner,
 .full-horizontal-banners .prime-music-banner {
@@ -530,6 +512,7 @@ a {
   display: inline-block;
   height: 100%;
   padding: 72px 0;
+  /*  vertically align center */
 }
 .full-horizontal-banners .prime-original-banner .mini-carousel,
 .full-horizontal-banners .prime-music-banner .mini-carousel {
@@ -585,27 +568,27 @@ a {
 .full-horizontal-banners .prime-original-banner .campaign-msg,
 .full-horizontal-banners .prime-music-banner .campaign-msg {
   color: black;
-  margin-left: 5vw;
+  margin-left: 5rem;
 }
 .full-horizontal-banners .prime-original-banner .campaign-msg h3,
 .full-horizontal-banners .prime-music-banner .campaign-msg h3 {
   font-weight: normal;
-  font-size: 3em;
+  font-size: 3rem;
   line-height: 110%;
 }
 .full-horizontal-banners .prime-original-banner .campaign-msg a,
 .full-horizontal-banners .prime-music-banner .campaign-msg a {
-  font-weight: 800;
-  font-size: 1.2em;
+  font-weight: var(--boldest);
+  font-size: 1.2rem;
 }
 .full-horizontal-banners .prime-original-banner .campaign-msg > span,
 .full-horizontal-banners .prime-music-banner .campaign-msg > span {
-  font-size: 1.3em;
+  font-size: 1.3rem;
 }
 .full-horizontal-banners .prime-original-banner .campaign-msg > *,
 .full-horizontal-banners .prime-music-banner .campaign-msg > * {
   display: block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .full-horizontal-banners .try-prime-CTA {
   position: relative;
@@ -621,21 +604,21 @@ a {
   margin-bottom: 2rem;
 }
 .full-horizontal-banners .try-prime-CTA .try-prime-CTA__message h2 {
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: normal;
 }
 .full-horizontal-banners .try-prime-CTA .try-prime-CTA__message button {
   border: 1px solid orangered;
-  background-color: #f08804;
+  background-color: var(--color-bright-orange);
   min-width: 20rem;
   min-height: 3rem;
-  font-size: 1.3em;
-  font-weight: 700;
-  color: #0a3c46;
+  font-size: 1.1rem;
+  font-weight: var(--boldest);
+  color: var(--color-gray-blue--lighten);
 }
 .full-horizontal-banners .try-prime-CTA .try-prime-CTA__message .minor-CTA-links > a {
   color: #0a78c8;
-  font-size: 0.8em;
+  font-size: 0.8rem;
 }
 /*=============
   Footer  
@@ -643,17 +626,17 @@ a {
 .page-footer .footer__to-top-btn {
   display: block;
   width: 100%;
-  height: 4em;
-  background-color: #46607c;
+  height: 4rem;
+  background-color: var(--color-gray-blue);
   color: white;
   border: none;
 }
 .page-footer .footer__section-links {
-  padding: 4em 10em;
-  background-color: #23303e;
+  padding: 4rem 10rem;
+  background-color: var(--color-gray-blue);
   color: white;
   text-align: center;
-  line-height: 2em;
+  line-height: 2rem;
   border-bottom: 1px solid darkslategray;
 }
 .page-footer .footer__section-links :nth-child(1) {
@@ -664,15 +647,15 @@ a {
   display: inline-block;
   vertical-align: top;
   margin-left: 7vw;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 .page-footer .footer__section-links > * em {
-  font-size: 1.2em;
-  font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: var(--boldest);
 }
 .page-footer .footer__country-info {
   height: 7vh;
-  background-color: #23303e;
+  background-color: var(--color-gray-blue);
   text-align: center;
 }
 .page-footer .footer__country-info > * {
@@ -684,7 +667,7 @@ a {
   height: 30%;
 }
 .page-footer .footer__country-info .country-selector {
-  margin-left: 2em;
+  margin-left: 2rem;
 }
 .page-footer .footer__country-info .country-selector > * {
   height: 2vh;
@@ -696,42 +679,42 @@ a {
   border: 1px solid gray;
   border-radius: 5%;
   padding: 7px 25px;
-  padding-right: 2em;
+  padding-right: 2rem;
   color: white;
 }
 .page-footer .footer__country-info .country-selector > * span {
   vertical-align: middle;
 }
 .page-footer .footer__affiliates-sitemap {
-  padding: 2em 10em;
-  background-color: #151d25;
+  padding: 2rem 10rem;
+  background-color: var(--color-gray-blue);
   text-align: center;
   color: white;
 }
 .page-footer .footer__affiliates-sitemap > * {
+  /* each links */
   text-align: start;
   display: inline-block;
-  margin: 0.5em 1em;
-  font-size: 0.7em;
+  margin: 0.5rem 1rem;
+  font-size: 0.7rem;
   width: 14%;
   vertical-align: top;
 }
 .page-footer .footer__affiliates-sitemap > * em {
   display: block;
-  font-weight: 800;
-  font-size: 1.1em;
+  font-weight: var(--boldest);
 }
 .page-footer .footer__disclaimer {
-  padding: 2em 10em;
-  background-color: #151d25;
+  padding: 2rem 10rem;
+  background-color: var(--color-gray-blue);
   color: white;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   text-align: center;
 }
 .page-footer .footer__disclaimer a {
-  font-weight: 800;
-  font-size: 1.1em;
+  font-weight: var(--boldest);
 }
 .page-footer .footer__disclaimer > * {
-  margin: 0 1em;
+  /* each links */
+  margin: 0 1rem;
 }

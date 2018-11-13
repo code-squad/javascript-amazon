@@ -1,48 +1,44 @@
 /*=============
   Global rules  
 ===============*/ 
-@global-main-background-color: rgb(35,48,62);
-@main-bright-text-color: white;
-@brand-point-color: #f08804;
-@z-index-for-bg-imgs: -999;
-@padding-left-for-banner-contents: 5vw;
-@global-base-font-size: 14px;
+:root {
+    /* fonts */
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    --boldest: 800;
+    /* colors */
+    --color-bright-orange: #f08804;
+    --color-gray-blue: rgb(35,48,62);
+    --color-gray-blue--lighten: rgb(10, 60, 70);
+    --color-gray-blue--darken: rgb(0, 20, 70);
+    /* etc */
+    --bg-img-z-index: -999;
+    /* section-specific : Header */
+    --header__logo--width: 8.5rem;
+    --header__topBanner--width: 29rem;
+}
 
-.global-deco-Text-Bold {
-    font-weight: 800;
-    font-size: 1.1em;
-}
-.global-section-formatting{
-    position: relative;
-    width: 1280px;
-    margin: 0 auto;
-}
 .global-deco-major-btn{
     border: 1px solid orangered;
-    background-color: @brand-point-color;
+    background-color: var(--color-bright-orange);
     min-width: 20rem;
     min-height: 3rem;
-    font-size: 1.3em;
-    font-weight: 700;
-    color: rgb(10, 60, 70);
+    font-size: 1.1rem;
+    font-weight: var(--boldest);
+    color: var(--color-gray-blue--lighten);
 }
 
 /*Base initializers*/
-body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,div,
-textarea,button,select{
+* {
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
-body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: @global-base-font-size;
-}
+body {font-size: 0.875rem;} /* 14px */
 ul,ol {list-style:none}
 em,address {font-style:normal}
-sup {font-size: 0.7em;}
-input, textarea, select, button{font-size:unset;}
-a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none}
+sup {font-size: 0.5rem;} /* 8px */
+a {color:inherit; text-decoration-line: none;}
 
 
 
@@ -50,34 +46,30 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
 /*=============
   Header rules  
 ===============*/
-@header__top-row__brand-logo-slot--width: 13%;
-@header__top-row__search--width: 99% - @header__top-row__brand-logo-slot--width - @header__top-row__learn-more-img--width;
-@header__top-row__learn-more-img--width: 33%;
-@header__quick-links--width: 65%;
 
 .header {
-    background-color: @global-main-background-color;
-    color: @main-bright-text-color;
+    background-color: var(--color-gray-blue);
+    color: white;
     overflow: auto;
-    font-size: 0.9em;
-    padding-top: 1em;
-    // space between horizontal lines
-    & > * {margin-bottom: 0.5em} 
-    // give 'inline-block' display style to items in each line 
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    /*  space between horizontal lines */
+    & > * {margin-bottom: 0.5rem} 
+    /*  give 'inline-block' display style to items in each line  */
     & > * > * { 
         display: inline-block;
         box-sizing: border-box
     }
     .header__brand-and-search { 
         .brand-logo-slot {
-            padding: 0 1.5em;
-            width: @header__top-row__brand-logo-slot--width;
+            padding: 0 1.5rem;
+            width: var(--header__logo--width);
         }
         .search {
-            padding: 0 0.5em;
-            height: 3em;
+            padding: 0 0.5rem;
+            height: 3rem;
             vertical-align: top;
-            width: @header__top-row__search--width;
+            width: calc(99% - var(--header__logo--width) - var(--header__topBanner--width)); /* Take all width except for logo & banner*/
             form{
                 height: 100%;
                 & > * {
@@ -89,75 +81,75 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
                 }
                 .search__category-selector{
                     width: 19%;
-                    font-size: 1em;
+                    font-size: 1rem;
                     position: relative; 
-                    z-index: 1; // place category selector over input bar
+                    z-index: 1; /*  place category selector over input bar */
                     background-color: #dcdcdc;
                 }
                 .search__input-bar {
                     width: 73%;
-                    padding-left: 20px; // Move text display location to right for compensating stacked margins
-                    font-size: 1.2em;
+                    padding-left: 20px; /*  Move text display location to right for compensating stacked margins */
+                    font-size: 1.2rem;
                 }
                 .search__submit-btn {
                     border-radius: 0 5px 5px 0;
-                    background-color: @brand-point-color;
+                    background-color: var(--color-bright-orange);
                     width: 6%;
-                    font-size: 2em;
+                    font-size: 2rem;
                 }
             }
         }
         .learn-more-img {
             float: right;
-            width: @header__top-row__learn-more-img--width;
+            width: var(--header__topBanner--width);
         }
     }
     
     .header__quick-links {
         float: left;
-        width: @header__quick-links--width;
-        padding-left: 1em;
+        width: 25rem;
+        padding-left: 1rem;
         .delivery-location > * {
             display: inline-block;
             vertical-align: middle;
-            margin-right: 0.2em;
+            margin-right: 0.2rem;
         }
         .delivery-location__country,
         .department-list{
-            .global-deco-Text-Bold;
-            margin-right: 2em;
+            font-weight: var(--boldest);
+            margin-right: 2rem;
         }
         & > * {
-            margin: 0 0.5em;
+            margin: 0 0.5rem;
             vertical-align: bottom;
         }
     }
     
     .header__user-section {
         float: right;
-        & > * {margin: 0 0.5em;}
+        & > * {margin: 0 0.5rem;}
         .account-menu,
         .orders-menu-link,
         .cart-text-link,{
-            .global-deco-Text-Bold;
+            font-weight: var(--boldest);
         }
         .cart{
             position: relative;
-            margin-left: 3em;
-            width: 5em;
-            padding-left: 0.2em;
+            margin-left: 3rem;
+            width: 5rem;
+            padding-left: 0.2rem;
             .cart__num-of-item {
-                .global-deco-Text-Bold;
-                color: @brand-point-color;
+                font-weight: var(--boldest);
+                color: var(--color-bright-orange);
                 position: absolute;
-                bottom: 1.1em;
-                left: -1.1em;
+                bottom: 1.1rem;
+                left: -1.1rem;
             }
             .cart__img{
                 position: absolute;
-                margin-right: 0.2em;
-                right: 4em;
-                bottom: -0.2em;
+                margin-right: 0.2rem;
+                right: 4rem;
+                bottom: -0.2rem;
             }
         }
     }
@@ -169,16 +161,16 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
 ===============*/
 
 .masthead_banner{
-    .global-section-formatting;
+    position: relative;     width: 80rem;     margin: 0 auto;
     .campaign-msg{
         color: white;
         position: absolute;
-        margin: 0 0 5em @padding-left-for-banner-contents;
-        h1 {font-size: 2.7em;}
-        & > span{font-size: 1.5em;}
+        margin: 0 0 5rem 5rem;
+        h1 {font-size: 2.7rem;}
+        & > span{font-size: 1.5rem;}
         & > * {
             display: block;
-            margin-top: 1em;
+            margin-top: 1rem;
         }
     }
     .campaign-msg__CTA{
@@ -186,8 +178,8 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
             display: block;
         }
         & > * {
-            font-size: 1em;
-            margin-top: 0.5em;
+            font-size: 1rem;
+            margin-top: 0.5rem;
         }
         .try-prime-btn{
             .global-deco-major-btn;
@@ -195,14 +187,14 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     }
     .prime-logo{
         position: absolute;
-        left: @padding-left-for-banner-contents;
-        bottom: 4em;
+        left: 5rem;
+        bottom: 4rem;
     }
     .bg-img > img{
         width: 100%;
         min-width: 1280px;
         min-height: 450px;
-        z-index: @z-index-for-bg-imgs;
+        z-index: var(--bg-img-z-index);
     }
 }
 
@@ -210,14 +202,14 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
   Benefits Carousel  
 ===============*/
 @prime-benefits-carousel__category-button--width: 13%;
-@prime-benefits-carousel__category-button--height: 15em;
+@prime-benefits-carousel__category-button--height: 15rem;
 
 .prime-benefits-carousel{
-    .global-section-formatting;
-    top: -5em;
+    position: relative;     width: 80rem;     margin: 0 auto;
+    top: -5rem;
     .category-list{
-        text-align: center; // put internal inline-block objects in horizontal center
-        margin-bottom: 2em;
+        text-align: center; /*  put internal inline-block objects in horizontal center */
+        margin-bottom: 2rem;
         & > :nth-child(1) > button{background: linear-gradient(35deg, rgb(10, 130, 210), rgb(30, 170, 180));}
         & > :nth-child(2) > button{background: linear-gradient(35deg, rgb(230, 50, 30), rgb(230, 120, 50));}
         & > :nth-child(3) > button{background: linear-gradient(35deg, rgb(104, 14, 56), rgb(226, 57, 122));}
@@ -227,12 +219,12 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
             display: inline-block;
             vertical-align: top;
             width: @prime-benefits-carousel__category-button--width;
-            margin: 0 0.1em;
+            margin: 0 0.1rem;
             img, span{
                 display: block;
                 width: 85%;
                 margin: 0 auto;
-                font-size: 1.5em;
+                font-size: 1.5rem;
                 color: white;
             } img {height: 80%;}
             button{
@@ -244,43 +236,43 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     .carousel-cards{
         width: 90%;
         position: relative;
-        & > :nth-child(1) { // only show first card on start-up
+        & > :nth-child(1) { /*  only show first card on start-up */
             position: relative;
             visibility: visible;
         }
-        & > * { // all list items
+        & > * { /*  all list items */
             width: 100%;
             overflow: hidden;
             position: absolute;
             display: inline-block;
             visibility: hidden;
-            & > div { // slot for message & link in list items
+            & > div { /*  slot for message & link in list items */
                 position: absolute;
-                left: 40em;
-                padding-right: 3em;
+                left: 40rem;
+                padding-right: 3rem;
                 @category-color__ship: rgb(10, 130, 210);
-                font-size: 1.2em;
-                a{font-weight: 700;}
+                font-size: 1.2rem;
+                a{font-weight: var(--boldest);}
                 & > * {
                     display:block;
-                    margin: 1em auto;
+                    margin: 1rem auto;
                 }
                 .card-keyword-div{
-                    margin-bottom: 2em;
+                    margin-bottom: 2rem;
                     span {
                         color: white;
-                        font-size: 0.85em;
-                        font-weight: 700;
+                        font-size: 0.85rem;
+                        font-weight: var(--boldest);
                         box-shadow: 0 0 0 5px @category-color__ship;
                         background-color: @category-color__ship;
                     }
                 }
                 em{
-                    font-size: 1.7em;
+                    font-size: 1.7rem;
                 }
             }
             img {
-                z-index: @z-index-for-bg-imgs;
+                z-index: var(--bg-img-z-index);
             }
         }
     }
@@ -290,32 +282,32 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
   Horizontal Banners  
 ===============*/
 .local-CTA-link-rule{
-    font-weight: 800;
-    font-size: 1.2em;
+    font-weight: var(--boldest);
+    font-size: 1.2rem;
 }
 .local-banner-with-bg-img{
     color: white;
     .campaign-msg{
         position: absolute;
-        padding: 2em 0;
-        margin-left: @padding-left-for-banner-contents;
+        padding: 2rem 0;
+        margin-left: 5rem;
         h3 {
             font-weight: normal;
-            font-size: 3em;
+            font-size: 3rem;
             line-height: 110%;
         }
         a{.local-CTA-link-rule}
-        & > span{font-size: 1.3em;}
+        & > span{font-size: 1.3rem;}
         & > * {
             display: block;
-            margin-bottom: 0.5em;
+            margin-bottom: 0.5rem;
         }
     }
     .bg-img > *{
         width: 100%;
         min-width: 1280px;
         min-height: 320px;
-        z-index: @z-index-for-bg-imgs;
+        z-index: var(--bg-img-z-index);
     }
 }
 .local-banner-without-bg-img{
@@ -325,7 +317,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     & > * {
         display:inline-block;
         height: 100%;
-        padding: (@local-height * 0.2) 0; // vertically align center
+        padding: (@local-height * 0.2) 0; /*  vertically align center */
     }
     .mini-carousel{
         width: 33%;
@@ -367,31 +359,31 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     }
     .campaign-msg{
         color: black;
-        margin-left: @padding-left-for-banner-contents;
+        margin-left: 5rem;
         h3 {
             font-weight: normal;
-            font-size: 3em;
+            font-size: 3rem;
             line-height: 110%;
         }
         a{.local-CTA-link-rule}
-        & > span{font-size: 1.3em;}
+        & > span{font-size: 1.3rem;}
         & > * {
             display: block;
-            margin-bottom: 0.5em;
+            margin-bottom: 0.5rem;
         }
     }
 }
 .full-horizontal-banners{
-    .global-section-formatting;
+    position: relative;     width: 80rem;     margin: 0 auto;
     .section-header {
-        font-size: 2em;
+        font-size: 2rem;
         font-weight: normal;
-        margin-left: @padding-left-for-banner-contents;
+        margin-left: 5rem;
     }
     .prime-delivery-banner{
         .local-banner-with-bg-img;
-        & > div:first-of-type{ //Compensate whitespace on background img 
-            padding-top: 4em; 
+        & > div:first-of-type{ /* Compensate whitespace on background img  */
+            padding-top: 4rem; 
         }
     }
     .prime-reading-banner,
@@ -415,7 +407,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
                 margin-bottom: 2rem;
             }
             h2 {
-                font-size: 2em;
+                font-size: 2rem;
                 font-weight: normal;
             }
             button{
@@ -423,7 +415,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
             }
             .minor-CTA-links > a{
                 color: rgb(10, 120, 200);
-                font-size: 0.8em;
+                font-size: 0.8rem;
             }
         }
     }
@@ -436,18 +428,18 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     .footer__to-top-btn{
         display: block;
         width: 100%;
-        height: 4em;
-        background-color: @global-main-background-color * 2;
+        height: 4rem;
+        background-color: var(--color-gray-blue);
         color: white;
         border: none;
     }
     
     .footer__section-links{
-        padding: 4em 10em;
-        background-color: @global-main-background-color;
+        padding: 4rem 10rem;
+        background-color: var(--color-gray-blue);
         color: white;
         text-align: center;
-        line-height: 2em;
+        line-height: 2rem;
         border-bottom: 1px solid darkslategray;
         :nth-child(1){margin-left: unset;}
         & > * {
@@ -455,14 +447,14 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
             display: inline-block;
             vertical-align: top;
             margin-left: 7vw;
-            font-size: 0.9em;
-            em {font-size: 1.2em; font-weight: 800;}
+            font-size: 0.9rem;
+            em {font-size: 1.2rem; font-weight: var(--boldest);}
         }
     }
     
     .footer__country-info{
         height: 7vh;
-        background-color: @global-main-background-color;
+        background-color: var(--color-gray-blue);
         text-align: center;
         & > * {
             padding: 2vh 0;
@@ -471,7 +463,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
         }
         .brand-logo{height:30%};
         .country-selector{
-            margin-left: 2em;
+            margin-left: 2rem;
             & > * {
                 height: 2vh;
                 min-height: 15px;
@@ -482,7 +474,7 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
                 border: 1px solid gray;
                 border-radius: 5%;
                 padding: 7px 25px;
-                padding-right: 2em;
+                padding-right: 2rem;
                 color: white;
                 span {vertical-align: middle;}
             }
@@ -490,33 +482,33 @@ a {color:inherit; text-decoration-line: none; -webkit-text-decoration-line: none
     }
     
     .footer__affiliates-sitemap{
-        padding: 2em 10em;
-        background-color: @global-main-background-color * 0.6;
+        padding: 2rem 10rem;
+        background-color: var(--color-gray-blue);
         text-align: center;
         color: white;
-        & > * { //each links
+        & > * { /* each links */
             text-align: start;
             display: inline-block;
-            margin: 0.5em 1em;
-            font-size: 0.7em;
+            margin: 0.5rem 1rem;
+            font-size: 0.7rem;
             width: 14%;
             vertical-align: top;
             & em {
                 display: block;
-                .global-deco-Text-Bold;
+                font-weight: var(--boldest);
             }
         }
     }
     
     .footer__disclaimer{
-        padding: 2em 10em;
-        background-color: @global-main-background-color * 0.6;
+        padding: 2rem 10rem;
+        background-color: var(--color-gray-blue);
         color: white; 
-        font-size: 0.8em;
+        font-size: 0.8rem;
         text-align: center;
-        a {.global-deco-Text-Bold;}
-        & > * { //each links
-            margin: 0 1em;
+        a {font-weight: var(--boldest);}
+        & > * { /* each links */
+            margin: 0 1rem;
         }
     }
 }
