@@ -232,24 +232,21 @@ header {
 }
 
 .nav-shop {
-  margin-top: 2px;
-  margin: 28px 5px 0px 0;
-  width: auto;
-  height: 25px;
+  margin-top: 20px;
+  width: 135px;
+  height: 35px;
   float: left;
 }
 
 .departments-layer {
   text-decoration: none;
-  padding: 0 15px 0 15px;
+  padding: 8px 0 0 20px;
   height: 26px;
-  margin-top: 16px;
   clear: both;
 }
 
 .departments-title {
   font-family: Arial, sans-serif;
-  padding-bottom: 5px;
   font-size: 0.9rem;
   line-height: 15px;
   font-weight: 700;
