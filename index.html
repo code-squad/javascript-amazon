@@ -11,61 +11,59 @@
 </head>
 <body>
     <header class='header'>
-        <div class='header__brand-and-search'>
-            <div class='brand-logo-slot' >
-                <img src='./images/navbar/brand_logo.png' alt='Brand logo' />
-            </div>
-            <div class='search'>
-                <form  action='submit' method='get'>
-                    <select class='search__category-selector'>
-                        <option selected="selected" value="search-alias=aps">All Departments</option>
-                        <option value="search-alias=arts-crafts-intl-ship">Arts &amp; Crafts</option>
-                        <option value="search-alias=automotive-intl-ship">Automotive</option>
-                        <option value="search-alias=baby-products-intl-ship">Baby</option>
-                        <option value="search-alias=beauty-intl-ship">Beauty &amp; Personal Care</option>
-                        <option value="search-alias=stripbooks-intl-ship">Books</option>
-                        <option value="search-alias=computers-intl-ship">Computers</option>
-                        <option value="search-alias=digital-music">Digital Music</option>
-                        <option value="search-alias=electronics-intl-ship">Electronics</option>
-                        <option value="search-alias=digital-text">Kindle Store</option>
-                        <option value="search-alias=instant-video">Prime Video</option>
-                        <option value="search-alias=fashion-womens-intl-ship">Women's Fashion</option>
-                        <option value="search-alias=fashion-mens-intl-ship">Men's Fashion</option>
-                        <option value="search-alias=fashion-girls-intl-ship">Girls' Fashion</option>
-                        <option value="search-alias=fashion-boys-intl-ship">Boys' Fashion</option>
-                        <option value="search-alias=deals-intl-ship">Deals</option>
-                        <option value="search-alias=hpc-intl-ship">Health &amp; Household</option>
-                        <option value="search-alias=kitchen-intl-ship">Home &amp; Kitchen</option>
-                        <option value="search-alias=industrial-intl-ship">Industrial &amp; Scientific</option>
-                        <option value="search-alias=luggage-intl-ship">Luggage</option>
-                        <option value="search-alias=movies-tv-intl-ship">Movies &amp; TV</option>
-                        <option value="search-alias=music-intl-ship">Music, CDs &amp; Vinyl</option>
-                        <option value="search-alias=pets-intl-ship">Pet Supplies</option>
-                        <option value="search-alias=software-intl-ship">Software</option>
-                        <option value="search-alias=sporting-intl-ship">Sports &amp; Outdoors</option>
-                        <option value="search-alias=tools-intl-ship">Tools &amp; Home Improvement</option>
-                        <option value="search-alias=videogames-intl-ship">Video Games</option><option value="search-alias=toys-and-games-intl-ship">Toys &amp; Games</option>
-                    </select>
-                    <input class='search__input-bar' type='text'>
-                    <button class='search__submit-btn' type='submit'>
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
+        <div class='header__brand-logo' >
+            <img src='./images/navbar/brand_logo.png' alt='Brand logo' />
+        </div>
+        <form class='header__search' action='submit' method='get'>
+            <select class='search__category-selector'>
+                <option selected="selected" value="search-alias=aps">All Departments</option>
+                <option value="search-alias=arts-crafts-intl-ship">Arts &amp; Crafts</option>
+                <option value="search-alias=automotive-intl-ship">Automotive</option>
+                <option value="search-alias=baby-products-intl-ship">Baby</option>
+                <option value="search-alias=beauty-intl-ship">Beauty &amp; Personal Care</option>
+                <option value="search-alias=stripbooks-intl-ship">Books</option>
+                <option value="search-alias=computers-intl-ship">Computers</option>
+                <option value="search-alias=digital-music">Digital Music</option>
+                <option value="search-alias=electronics-intl-ship">Electronics</option>
+                <option value="search-alias=digital-text">Kindle Store</option>
+                <option value="search-alias=instant-video">Prime Video</option>
+                <option value="search-alias=fashion-womens-intl-ship">Women's Fashion</option>
+                <option value="search-alias=fashion-mens-intl-ship">Men's Fashion</option>
+                <option value="search-alias=fashion-girls-intl-ship">Girls' Fashion</option>
+                <option value="search-alias=fashion-boys-intl-ship">Boys' Fashion</option>
+                <option value="search-alias=deals-intl-ship">Deals</option>
+                <option value="search-alias=hpc-intl-ship">Health &amp; Household</option>
+                <option value="search-alias=kitchen-intl-ship">Home &amp; Kitchen</option>
+                <option value="search-alias=industrial-intl-ship">Industrial &amp; Scientific</option>
+                <option value="search-alias=luggage-intl-ship">Luggage</option>
+                <option value="search-alias=movies-tv-intl-ship">Movies &amp; TV</option>
+                <option value="search-alias=music-intl-ship">Music, CDs &amp; Vinyl</option>
+                <option value="search-alias=pets-intl-ship">Pet Supplies</option>
+                <option value="search-alias=software-intl-ship">Software</option>
+                <option value="search-alias=sporting-intl-ship">Sports &amp; Outdoors</option>
+                <option value="search-alias=tools-intl-ship">Tools &amp; Home Improvement</option>
+                <option value="search-alias=videogames-intl-ship">Video Games</option><option value="search-alias=toys-and-games-intl-ship">Toys &amp; Games</option>
+            </select>
+            <input class='search__input' type='text'>
+            <button class='search__submit-btn' type='submit'>
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <div class='header__top-banner'>
             <img class='learn-more-img' src='./images/navbar/new_customer_learn_more.png' alt='New to Amazon? Click here to learn more' />
         </div>
         <nav class='header__quick-links'>
-            <div class='delivery-location'>
+            <div class='header__delivery-location'>
                 <div>
                     <i class="fas fa-map-marker-alt fa-lg"></i>
                 </div>
                 <div>
                     Deliver to 
-                    <div class='delivery-location__country'>Korea, Republic of</div>
+                    <div class='global-deco-bold-text'>Korea, Republic of</div>
                 </div>
             </div>
             <div>
-                <a class='department-list' href='#'>Departments</a>
+                <a class='global-deco-bold-text' href='#'>Departments</a>
             </div>
             <a href='#'>Your Amazon.com</a>
             <a href='#'>Today's Deals</a>
@@ -98,207 +96,209 @@
             </a>
         </nav>
     </header>
-    <div class='masthead_banner'>
-        <div class='campaign-msg'>
+    <div class='masthead'>
+        <div class='masthead__campaign-msg'>
             <h1>There's something for<br> everyone with Prime!</h1>
-            <span>Check out what's included with your <br>Prime membership.</span>
+            <div>
+                Check out what's included with your <br>Prime membership.
+            </div>
             <div class='campaign-msg__CTA'>
-                <input class='try-prime-btn' type='button' value='TRY PRIME'>
                 <div>
-                    <span><sup>$</sup>12<sup>99</sup>/month. Cancel anytime.</span>
-                    <span><a href='#'>See more plans ►</a></span>
+                    <button class='global-deco-major-btn'>TRY PRIME</button>
+                </div>
+                <div>
+                    <sup>$</sup>12<sup>99</sup>/month. Cancel anytime.
+                </div>
+                <div>
+                    <a href='#'>See more plans ►</a>
                 </div>
             </div>
         </div>
-        <img class='prime-logo' src='./images/masthead/prime_logo.png' alt='Amazon prime logo'/>
-        <div class='bg-img'>
-            <img src='./images/masthead/masthead_background.png' alt='masthead banner background'/>
-        </div>
+        <img class='masthead__prime-logo' src='./images/masthead/prime_logo.png' alt='Amazon prime logo'/>
+        <img class='masthead__bg-img' src='./images/masthead/masthead_background.png' alt='masthead banner background'/>
     </div>
-    <div class='prime-benefits-carousel'>
-        <ul class='category-list'>
-            <li><button>
-                <img src='./images/prime_benefits/top_lable_A_Ship.png' alt='Carousel category ship'/>
-                <span>Ship</span>
+    <div class='benefits-carousel'>
+        <ul class='benefits-carousel__categories'>
+            <li><button class='bg-color-1'>
+                <div><img src='./images/prime_benefits/top_lable_A_Ship.png' alt='Carousel category ship'/></div>
+                <div>Ship</div>
             </button></li>
-            <li><button>
-                <img src='./images/prime_benefits/top_lable_B_Stream.png' alt='Carousel category stream'/>
-                <span>Stream</span>
+            <li><button class='bg-color-2'>
+                <div><img src='./images/prime_benefits/top_lable_B_Stream.png' alt='Carousel category stream'/></div>
+                <div>Stream</div>
             </button></li>
-            <li><button>
-                    <img src='./images/prime_benefits/top_lable_C_Shop.png' alt='Carousel category shop'/>
-                    <span>Shop</span>
+            <li><button class='bg-color-3'>
+                    <div><img src='./images/prime_benefits/top_lable_C_Shop.png' alt='Carousel category shop'/></div>
+                    <div>Shop</div>
             </button></li>
-            <li><button>
-                    <img src='./images/prime_benefits/top_lable_D_Read.png' alt='Carousel category read'/>
-                    <span>Read</span>
+            <li><button class='bg-color-4'>
+                    <div><img src='./images/prime_benefits/top_lable_D_Read.png' alt='Carousel category read'/></div>
+                    <div>Read</div>
             </button></li>
-            <li><button>
-                    <img src='./images/prime_benefits/top_lable_E_More.png' alt='Carousel category more benefits'/>
-                    <span>More</span>
+            <li><button class='bg-color-5'>
+                    <div><img src='./images/prime_benefits/top_lable_E_More.png' alt='Carousel category more benefits'/></div>
+                    <div>More</div>
             </button></li>
         </ul>
-        <div>
-            <ul class='carousel-cards'>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>TWO-DAY SHIPPING</span></div>
-                        <em>Fast, free delivery on over 100 million items</em>
-                        <p>Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
-                        <a href='#'>Explore Prime Delivery ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_A01.jpg' alt='Carousel ship info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>SAME-DAY DELIVERY</span></div>
-                        <em>Free Same-Day Delivery and One-Day Shipping</em>
-                        <p>Prime members in over 8,000 cities and towns can get either Free Same-Day Delivery or Free One-Day Shipping on over a million items with qualifying orders over $35.</p>
-                        <a href='#'>Explore Same-Day Delivery ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_A02.jpg' alt='Carousel ship info background2'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>RELEASE DAY DELIVERY</span></div>
-                        <em>Skip the lines and get it on release day</em>
-                        <p>No more waiting in line! Choose Free Release-Date Delivery at checkout on qualified items, and your package will be delivered on the release day by 7pm.</p>
-                        <a href='#'>Explore Release-Date Delivery ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_A03.jpg' alt='Carousel ship info background3'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>PRIME NOW</span></div>
-                        <em>Ultrafast delivery on thousands of items</em>
-                        <p>Prime Now offers household items and essentials you need everyday plus the best of Amazon, delivered to your doorstep. Choose 2-hour delivery or 1-hour delivery in select cities.</p>
-                        <a href='#'>Explore Prime Now ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_A04.jpg' alt='Carousel ship info background4'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>PRIME VIDEO</span></div>
-                        <em>Watch movies, TV, live events, and more</em>
-                        <p>As a Prime member, you can watch exclusive Prime Originals and thousands of popular movies and TV shows—all at no extra cost. Watch at home or on the go with practically any device.</p>
-                        <a href='#'>Explore Prime Video ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_B01.jpg' alt='Carousel prime video info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>TWITCH PRIME</span></div>
-                        <em>Twitch Prime</em>
-                        <p>Monthly games and in-game loot, plus exclusives, surprises, a Twitch Channel subscription every 30 days, and exclusive promotions on select pre-order video games.</p>
-                        <a href='#'>Explore Twitch Prime ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_B02.jpg' alt='Carousel twitch prime info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>PRIME MUSIC</span></div>
-                        <em>Millions of songs for every moment</em>
-                        <p>As a Prime member, you can stream over 2 million songs ad free, listen on any Echo device, and take your music anywhere with offline listening.</p>
-                        <a href='#'>Explore Prime Music ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_B03.jpg' alt='Carousel prime music info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>PRIME ORIGINALS</span></div>
-                        <em>Enjoy Prime Original series and more</em>
-                        <p>Watch award-winning Prime Originals like The Marvelous Mrs. Maisel, as well as exclusive series available only with Prime, including Goliath, Sneaky Pete, and The Grand Tour.</p>
-                        <a href='#'>Explore Prime Originals ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_B04.jpg' alt='Carousel prime originals info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>AUDIBLE CHANNELS</span></div>
-                        <em>Original audio programs for life on the go</em>
-                        <p>Audible Channels are free with your Prime membership. Enjoy original audio series and playlists handcrafted for every interest. Just download the Audible app and start listening.</p>
-                        <a href='#'>Explore Audible Channels ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_B05.jpg' alt='Carousel Audible info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>PRIME AT WHOLE FOODS MARKET</span></div>
-                        <em>Our healthiest benefit yet</em>
-                        <p>Exclusive savings for Prime members in all US stores, 5% Back for eligible Prime members with the Amazon Prime Rewards Visa Card, and 2-hour delivery with Prime Now in select cities (more soon)</p>
-                        <a href='#'>Explore Prime at Whole Foods ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_C01.jpg' alt='Carousel prime at whole foods info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>ALEXA VOICE SHOPPING</span></div>
-                        <em>The simplest way to shop. Just ask Alexa.</em>
-                        <p>With Alexa, shopping for essentials and reordering your favorite items from Amazon has never been easier.</p>
-                        <a href='#'>Learn more about Alexa and Prime ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_C02.jpg' alt='Carousel Alexa Voice Shopping info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>JUST WITH PRIME</span></div>
-                        <em>Exclusive brands and deals available only to Prime members</em>
-                        <p>As a Prime member enjoy early access to deals, Prime exclusive brands, and savings.</p>
-                        <a href='#'>Shop Prime Member Exclusives ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_C03.jpg' alt='Carousel Prime Exclusive access info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>AMAZON FAMILY</span></div>
-                        <em>Save on supplies for the family</em>
-                        <p>Prime members save 20% off both diapers and baby food when they have 5 or more subscriptions arriving</p>
-                        <a href='#'>Explore Family Supplies ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_C04.jpg' alt='Carousel Amazon Family info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>PRIME READING</span></div>
-                        <em>Prime members read free</em>
-                        <p>As a Prime member, you can now read as much as you like from over a thousand top Kindle books, magazines, short works, books with Audible narration, comics, children's books and more—all at no additional cost.</p>
-                        <a href='#'>Explore Prime Reading ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_D01.jpg' alt='Carousel Prime Reading info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>AMAZON FIRST READS</span></div>
-                        <em>Read next month's new releases today</em>
-                        <p>Each month, Prime members can download one of six editors' picks for free--before the official publication date. Downloaded titles are yours to keep.</p>
-                        <a href='#'>Learn more about Amazon First Reads ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_D02.jpg' alt='Carousel Amazone First Reads info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>5% BACK</span></div>
-                        <em>Earn more with Prime Rewards</em>
-                        <p>Eligible Prime members can earn 5% back at Amazon.com using the Amazon Prime Rewards Visa Card or the Amazon Prime Store card. All Prime members earn 2% rewards with Amazon Prime Reload.</p>
-                        <a href='#'>Learn more about Prime Rewards ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_E01.jpg' alt='Carousel Prime Rewards info background1'/>
-                </li>
-                <li>
-                    <div>
-                        <div class='card-keyword-div'><span>AMAZON PHOTOS</span></div>
-                        <em>Unlimited, free photo storage</em>
-                        <p>Back up and share your photos with unlimited photo storage. Add your photos to the free app to see them on all your devices.</p>
-                        <a href='#'>Explore Amazon Photos ►</a>
-                    </div>
-                    <img src='./images/prime_benefits/Card_E02.jpg' alt='Carousel Amazon Photos info background1'/>
-                </li>
-            </ul>
-        </div>
+        <ul class='benefits-carousel__cards'>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>TWO-DAY SHIPPING</div>
+                    <em>Fast, free delivery on over 100 million items</em>
+                    <p>Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
+                    <a href='#'>Explore Prime Delivery ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_A01.jpg' alt='Carousel ship info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>SAME-DAY DELIVERY</div>
+                    <em>Free Same-Day Delivery and One-Day Shipping</em>
+                    <p>Prime members in over 8,000 cities and towns can get either Free Same-Day Delivery or Free One-Day Shipping on over a million items with qualifying orders over $35.</p>
+                    <a href='#'>Explore Same-Day Delivery ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_A02.jpg' alt='Carousel ship info background2'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>RELEASE DAY DELIVERY</div>
+                    <em>Skip the lines and get it on release day</em>
+                    <p>No more waiting in line! Choose Free Release-Date Delivery at checkout on qualified items, and your package will be delivered on the release day by 7pm.</p>
+                    <a href='#'>Explore Release-Date Delivery ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_A03.jpg' alt='Carousel ship info background3'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>PRIME NOW</div>
+                    <em>Ultrafast delivery on thousands of items</em>
+                    <p>Prime Now offers household items and essentials you need everyday plus the best of Amazon, delivered to your doorstep. Choose 2-hour delivery or 1-hour delivery in select cities.</p>
+                    <a href='#'>Explore Prime Now ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_A04.jpg' alt='Carousel ship info background4'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>PRIME VIDEO</div>
+                    <em>Watch movies, TV, live events, and more</em>
+                    <p>As a Prime member, you can watch exclusive Prime Originals and thousands of popular movies and TV shows—all at no extra cost. Watch at home or on the go with practically any device.</p>
+                    <a href='#'>Explore Prime Video ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_B01.jpg' alt='Carousel prime video info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>TWITCH PRIME</div>
+                    <em>Twitch Prime</em>
+                    <p>Monthly games and in-game loot, plus exclusives, surprises, a Twitch Channel subscription every 30 days, and exclusive promotions on select pre-order video games.</p>
+                    <a href='#'>Explore Twitch Prime ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_B02.jpg' alt='Carousel twitch prime info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>PRIME MUSIC</div>
+                    <em>Millions of songs for every moment</em>
+                    <p>As a Prime member, you can stream over 2 million songs ad free, listen on any Echo device, and take your music anywhere with offline listening.</p>
+                    <a href='#'>Explore Prime Music ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_B03.jpg' alt='Carousel prime music info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>PRIME ORIGINALS</div>
+                    <em>Enjoy Prime Original series and more</em>
+                    <p>Watch award-winning Prime Originals like The Marvelous Mrs. Maisel, as well as exclusive series available only with Prime, including Goliath, Sneaky Pete, and The Grand Tour.</p>
+                    <a href='#'>Explore Prime Originals ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_B04.jpg' alt='Carousel prime originals info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>AUDIBLE CHANNELS</div>
+                    <em>Original audio programs for life on the go</em>
+                    <p>Audible Channels are free with your Prime membership. Enjoy original audio series and playlists handcrafted for every interest. Just download the Audible app and start listening.</p>
+                    <a href='#'>Explore Audible Channels ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_B05.jpg' alt='Carousel Audible info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>PRIME AT WHOLE FOODS MARKET</div>
+                    <em>Our healthiest benefit yet</em>
+                    <p>Exclusive savings for Prime members in all US stores, 5% Back for eligible Prime members with the Amazon Prime Rewards Visa Card, and 2-hour delivery with Prime Now in select cities (more soon)</p>
+                    <a href='#'>Explore Prime at Whole Foods ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_C01.jpg' alt='Carousel prime at whole foods info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>ALEXA VOICE SHOPPING</div>
+                    <em>The simplest way to shop. Just ask Alexa.</em>
+                    <p>With Alexa, shopping for essentials and reordering your favorite items from Amazon has never been easier.</p>
+                    <a href='#'>Learn more about Alexa and Prime ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_C02.jpg' alt='Carousel Alexa Voice Shopping info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>JUST WITH PRIME</div>
+                    <em>Exclusive brands and deals available only to Prime members</em>
+                    <p>As a Prime member enjoy early access to deals, Prime exclusive brands, and savings.</p>
+                    <a href='#'>Shop Prime Member Exclusives ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_C03.jpg' alt='Carousel Prime Exclusive access info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>AMAZON FAMILY</div>
+                    <em>Save on supplies for the family</em>
+                    <p>Prime members save 20% off both diapers and baby food when they have 5 or more subscriptions arriving</p>
+                    <a href='#'>Explore Family Supplies ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_C04.jpg' alt='Carousel Amazon Family info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>PRIME READING</div>
+                    <em>Prime members read free</em>
+                    <p>As a Prime member, you can now read as much as you like from over a thousand top Kindle books, magazines, short works, books with Audible narration, comics, children's books and more—all at no additional cost.</p>
+                    <a href='#'>Explore Prime Reading ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_D01.jpg' alt='Carousel Prime Reading info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>AMAZON FIRST READS</div>
+                    <em>Read next month's new releases today</em>
+                    <p>Each month, Prime members can download one of six editors' picks for free--before the official publication date. Downloaded titles are yours to keep.</p>
+                    <a href='#'>Learn more about Amazon First Reads ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_D02.jpg' alt='Carousel Amazone First Reads info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>5% BACK</div>
+                    <em>Earn more with Prime Rewards</em>
+                    <p>Eligible Prime members can earn 5% back at Amazon.com using the Amazon Prime Rewards Visa Card or the Amazon Prime Store card. All Prime members earn 2% rewards with Amazon Prime Reload.</p>
+                    <a href='#'>Learn more about Prime Rewards ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_E01.jpg' alt='Carousel Prime Rewards info background1'/>
+            </li>
+            <li>
+                <div>
+                    <div class='card-keyword-div'>AMAZON PHOTOS</div>
+                    <em>Unlimited, free photo storage</em>
+                    <p>Back up and share your photos with unlimited photo storage. Add your photos to the free app to see them on all your devices.</p>
+                    <a href='#'>Explore Amazon Photos ►</a>
+                </div>
+                <img class='bg-img' src='./images/prime_benefits/Card_E02.jpg' alt='Carousel Amazon Photos info background1'/>
+            </li>
+        </ul>
     </div>
-    <section class='full-horizontal-banners'>
-        <h2 class='section-header'>Here's a little more about Prime that we think you'll love:</h2>
-        <div class='prime-delivery-banner'>
+    <section class='horizontal-banners'>
+        <h2 class='horizontal-banners__section-header'>Here's a little more about Prime that we think you'll love:</h2>
+        <div class='horizontal-banners__delivery local-banner-with-bg-img'>
             <div class='campaign-msg'>
                 <h3>Fast, free delivery on<br> over 100 million items</h3>
                 <span>Super-fast shipping, tens of millions of items, and<br> flexible delivery options to fit your life.</span>
@@ -308,17 +308,17 @@
                 <img src='./images/StaticBlade/FullHorizontal_PrimeDelivery.png' alt='Prime Delivery info background'/>
             </div>
         </div>
-        <div class='prime-original-banner'>
+        <div class='horizontal-banners__prime-original local-banner-without-bg-img'>
             <div class='mini-carousel'>
                 <div class='carousel__btn-slot'>
                     <button>❮</button>
                 </div>
-                <div class='carousel__card-slot'><ul>
+                <ul class='carousel__card-slot'>
                     <li><a href='#'><img src='./images/StaticBlade/movie1.jpg' alt='Prime Original movie The Romanoffs'/></a></li>
                     <li><a href='#'><img src='./images/StaticBlade/movie2.jpg' alt='Prime Original movie jack Ryan'/></a></li>
                     <li><a href='#'><img src='./images/StaticBlade/movie3.jpg' alt='Prime Original movie The Marvelous Mrs. Maisel'/></a></li>
                     <li><a href='#'><img src='./images/StaticBlade/movie4.jpg' alt='Prime Original movie The man in the high castle'/></a></li>
-                </ul></div>
+                </ul>
                 <div class='carousel__btn-slot'>
                     <button>❯</button>
                 </div>
@@ -329,7 +329,7 @@
                 <a href='#'>Explore Prime Video ►</a>
             </div>
         </div>
-        <div class='prime-reading-banner'>
+        <div class='horizontal-banners__prime-reading local-banner-with-bg-img'>
             <div class='campaign-msg'>
                 <h3>Prime members <br>read free</h3>
                 <span>Each month, Prime members can download one of <br>six editors' picks for free—before the official <br>publication date. Downloaded titles are yours to <br>keep.</span>
@@ -339,7 +339,7 @@
                 <img src='./images/StaticBlade/FullHorizontal_PrimeReading.png' alt='Prime Reading banner background'/>
             </div>
         </div>
-        <div class='prime-music-banner'>
+        <div class='horizontal-banners__prime-music local-banner-without-bg-img'>
             <div class='mini-carousel'>
                 <div class='carousel__btn-slot'>
                     <button>❮</button>
@@ -360,7 +360,7 @@
                 <a href='#'>Explore Prime Music ►</a>
             </div>
         </div>
-        <div class='prime-video-banner'>
+        <div class='horizontal-banners__prime-video local-banner-with-bg-img'>
             <div class='campaign-msg'>
                 <h3>Watch movies, TV, live <br>events, and more</h3>
                 <span>Prime members enjoy exclusive access to a growing <br>lineup of award-winning Prime Originals, plus <br>thousands of popular movies and TV shows—all at <br>no extra cost and available to watch on practically any device.</span>
@@ -370,10 +370,10 @@
                 <img src='./images/StaticBlade/FullHorizontal_PrimeVideo.png' alt='Prime Video banner background'/>
             </div>
         </div>
-        <div class='try-prime-CTA'>
-            <div class='try-prime-CTA__message'>
+        <div class='horizontal-banners__try-prime'>
+            <div class='try-prime-message'>
                 <h2>There's something for <br>everyone</h2>
-                <button>TRY PRIME</button>
+                <button class='global-deco-major-btn'>TRY PRIME</button>
                 <div class='minor-CTA-links'>
                     <a href='#'>Give the gift of Prime</a>
                     <span>|</span>
@@ -383,10 +383,10 @@
             <img class='bg-img' src='./images/StaticBlade/FinalCTA.jpg' alt='Try Prime! click button below'/>
         </div>
     </section>
-    <footer class='page-footer'>
+    <footer class='footer'>
         <button class='footer__to-top-btn'>Back to top</button>
         <nav class='footer__section-links'>
-            <ul id='footer_section_links_GetToKnowUs'>
+            <ul>
                 <li><em>Get to Know Us</em></li>
                 <li>Careers</li>
                 <li>Blog</li>
@@ -394,7 +394,7 @@
                 <li>Investor Relations</li>
                 <li>Amazon Devices</li>
             </ul>
-            <ul id='footer_section_links_MakeMoneyWithUs'>
+            <ul>
                 <li><em>Make Money with Us</em></li>
                 <li>Sell on Amazon</li>
                 <li>Sell Your Services on Amazon</li>
@@ -405,14 +405,14 @@
                 <li>Self-Publish with Us</li>
                 <li>›See all</li>
             </ul>
-            <ul id='footer_section_links_AmazonPaymentProducts'>
+            <ul>
                 <li><em>Amazon Payment Products</em></li>
                 <li>Amazon Business Card</li>
                 <li>Shop with Points</li>
                 <li>Reload Your Balance</li>
                 <li>Amazon Currency Converter</li>
             </ul>
-            <ul id='footer_section_links_LetUsHelpYou'>
+            <ul>
                 <li><em>Let Us Help You</em></li>
                 <li>Your Account</li>
                 <li>Your Orders</li>
