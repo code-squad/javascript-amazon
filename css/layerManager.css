@@ -1,17 +1,12 @@
 /* -------------------------------- 
 Primary style
 -------------------------------- */
-.content-layer>.content-layer {
+.content-layer>ul {
   display: none;
-  visibility: hidden;
-  width: 0;
-  transition: all 0.2s;
 }
 
-.content-layer:hover>.content-layer {
+.content-layer:hover>ul {
   display: block;
-  visibility: visible;
-  width: 400px;
 }
 
 /* --------------------------------

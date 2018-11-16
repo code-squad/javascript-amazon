@@ -28,7 +28,6 @@ export default class LayerManager {
       }, 350);
     });
 
-
     titleEle.addEventListener("mouseleave", () => {
       clearTimeout(timer);
       listLayerEle.setAttribute("style", "opacity: 0;");
@@ -37,21 +36,25 @@ export default class LayerManager {
   }
 
   checkPointInTriangle() {
+    const contentLayerEle = document.querySelectorAll(".content-layer");
     const outerLayerEle = document.querySelector(".outer-layer");
-    const pointXYInnerLayer = {
+
+    const posXYpoint = {
       aX: 0, aY: 0,
       bX: 400, bY: 0,
       cX: 0, cY: 408,
-      dX: 400, dY: 408
+      dX: 400, dY: 408,
+      mousePointX: 0, mousePointY: 0,
     };
 
-    outerLayerEle.addEventListener("mousemove", (e) => {
-      let timer = setTimeout(() => {
-        console.log(e.layerX, e.layerY, "content_layer");
-      }, 300);
-    });
+    contentLayerEle.forEach((e) => e.addEventListener("mouseenter", (e) => {
+      posXYpoint.mousePointX = e.layerX;
+      posXYpoint.mousePointY = e.layerY;
+      console.log(e.layerX, e.layerY, "mouseEnter content_layer");
+      console.log(posXYpoint.mousePointX, posXYpoint.mousePointY);
+    }));
 
-    window.addEventListener("mousemove", (p) => {
+    outerLayerEle.addEventListener("mousemove", (p) => {
       let point = {
         x: p.layerX,
         y: p.layerY
