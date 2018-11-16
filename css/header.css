@@ -6,6 +6,10 @@ header {
   font-family: Arial, sans-serif;
 }
 
+.fa-caret-down {
+  cursor: pointer;
+}
+
 .nav-main {
   background-color: #232f3e;
   position: absolute;
@@ -238,21 +242,6 @@ header {
   float: left;
 }
 
-.departments-layer {
-  text-decoration: none;
-  padding: 8px 0 0 20px;
-  height: 26px;
-  clear: both;
-}
-
-.departments-title {
-  font-family: Arial, sans-serif;
-  font-size: 0.9rem;
-  line-height: 15px;
-  font-weight: 700;
-  text-decoration: none;
-  color: #fff;
-}
 
 .fa-caret-down {
   color: #a7acb2;
@@ -276,9 +265,46 @@ header {
   cursor: pointer;
 }
 
+/* -------------------------------- 
+departments Layer 
+-------------------------------- */
+.departments-title-layer {
+  text-decoration: none;
+  padding: 8px 0 0 20px;
+  width: 100%;
+  height: 100%;
+  clear: both;
+  cursor: pointer;
+}
+
+.departments-title {
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* --------------------------------
+background dimmed
+-------------------------------- */
+
+#nav-dimmed-cover {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  z-index: 3;
+  background-color: #000;
+  background-size: cover;
+  width: 100%;
+  height: 0;
+  transition: all 0.3s;
+}
+
+
 /* 하단 우측 */
 .nav-bottom-right {
-  display: inline-block;
   width: 500px;
   height: 53px;
   padding: 0 20px 3px 0;

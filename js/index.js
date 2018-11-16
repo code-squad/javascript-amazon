@@ -5,9 +5,8 @@ const searchDocEle = (classEle) => { return document.querySelector(classEle); };
 
 const layerManager = new LayerManager({
   dimmedEle: searchDocEle("#nav-dimmed-cover"),
-  departmentLayerEle: searchDocEle(".nav-department"),
+  titleLayerEle: searchDocEle(".departments-title-layer"),
   listLayerEle: searchDocEle(".departments-layer-list"),
-  innerLayerEle: document.querySelector(".inner-layer"),
 });
 
 const topMenu = new HiddenTopMenu({

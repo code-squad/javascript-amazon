@@ -4,7 +4,11 @@ export default class HiddenTopMenu {
   }
 
   init() {
-    const yAxisOperatePoint = { displayVal: 300, showTopMenuVal: 400, hiddenTopMenuVal: 400 };
+    const yAxisOperatePoint = {
+      displayVal: 300,
+      showTopMenuVal: 400,
+      hiddenTopMenuVal: 400
+    };
     this.scrollMenuHandler(yAxisOperatePoint.displayVal, yAxisOperatePoint.showTopMenuVal, yAxisOperatePoint.hiddenTopMenuVal);
     this.clickOpenMenuHandler();
     this.clickCloseMenuHandler();
