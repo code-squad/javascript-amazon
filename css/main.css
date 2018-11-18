@@ -14,7 +14,7 @@
     --color-gray-blue--darken: rgb(20, 28, 37);
     
     /* global */
-    --global-mininum-banner-width: 128rem;
+    --global-mininum-banner-width: 1280px;
     --global-contents-left-padding: 5rem;
 
     /* etc */
@@ -28,18 +28,16 @@
     --header__search--height: 3rem;
     --header__searchCategorySelector--width: 12rem;
     --header__searchSubmitBtn-width: 4rem;
-    --header__secondRow--fontSize: 1.4rem;
     
     /* section-specific : Masthead */
     --masthead__headingTxt--fontSize: 3.5rem;
     --masthead__campaignBodyTxt--fontSize: 2rem;
 
     /* section-specific : Benefits Carousel */
-    --benefitsCarousel__categories--button-width: 15rem;
+    --benefitsCarousel__categories--button-width: 150px;
     --benefitsCarousel__categories--button-height: 20rem;
-    --benefitCarousel__categories--fontSize: 1.5rem;
     --benefitCarousel__categoryHeading--fontSize: 2rem;
-    --benefitCarousel__benefitHeading--fontSize: 2.7rem;
+    --benefitCarousel__benefitHeading--fontSize: 2.5rem;
     --category-color-ship: rgb(10, 130, 210);
 
     /* section-specific : Horizontal Banners */
@@ -49,7 +47,7 @@
 .global-deco-major-btn {
     border: 1px solid orangered;
     background-color: var(--color-bright-orange);
-    min-width: 20rem;
+    min-width: 200px;
     min-height: 3rem;
     width: 35rem;
     height: 5rem;
@@ -95,7 +93,7 @@ body {overflow-x: hidden;}
 .header {
     background-color: var(--color-gray-blue);
     color: white;
-    font-size: 0.9rem;
+    font-size: 1.4rem;
     padding-top: 2rem;
     height: var(--header--height);
 }
@@ -140,7 +138,7 @@ body {overflow-x: hidden;}
 }
 .header__search > .search__categorySelector:focus {outline: none;}
 .header__search > .search__input {
-    width: calc(99% - var(--header__searchCategorySelector--width) - var(--header__searchSubmitBtn-width));
+    width: calc(100% - var(--header__searchCategorySelector--width) - var(--header__searchSubmitBtn-width));
     padding: 0 2rem; /*  Set text display location to right to compensate stacked margins */
     font-size: 1.2rem;
 }
@@ -149,7 +147,7 @@ body {overflow-x: hidden;}
     position: relative;
     border-radius: 0 5px 5px 0;
     background-color: var(--color-bright-orange);
-    width:  var(--header__searchSubmitBtn-width); 
+    width:  var(--header__searchSubmitBtn-width);
     font-size: 2rem;
     z-index: 100;
 }
@@ -174,7 +172,6 @@ body {overflow-x: hidden;}
     position: absolute;
     left: 0;
     padding-left: 1rem;
-    font-size: var(--header__secondRow--fontSize);
 }
 .header__quickLinks > div,
 .header__quickLinks > a {
@@ -196,7 +193,6 @@ body {overflow-x: hidden;}
     position: absolute;
     right: 0;
     padding-right: 1rem;
-    font-size: var(--header__secondRow--fontSize);
 }
 .header__userSection > div,
 .header__userSection > a {
@@ -279,7 +275,6 @@ body {overflow-x: hidden;}
     text-align: center; /*  put internal inline-block objects in horizontal center */
     margin-bottom: 2rem;
     color: white;
-    font-size: var(--benefitCarousel__categories--fontSize);
 }
 .benefitsCarousel__categories > li {
     display: inline-block;
@@ -394,8 +389,8 @@ body {overflow-x: hidden;}
 .horizontalBanners__tryPrime > .tryPrime-message > h2,
 .horizontalBanners__tryPrime > .tryPrime-message > button,
 .horizontalBanners__tryPrime > .tryPrime-message > div {margin-bottom: 2rem;}
-.horizontalBanners__tryPrime > .tryPrime-message h2 {font-size: 3rem;font-weight: normal;}
-.horizontalBanners__tryPrime .minor-CTA-links > a {color: rgb(10, 120, 200); font-size: 1.3rem;}
+.horizontalBanners__tryPrime > .tryPrime-message h2 {font-size: 3.5rem;font-weight: normal;}
+.horizontalBanners__tryPrime .minor-CTA-links > a {color: rgb(10, 120, 200);font-size: 1.2rem;}
 
 .local-banner-with-bg-img {
     position: relative;
@@ -406,7 +401,6 @@ body {overflow-x: hidden;}
 .local-banner-with-bg-img .campaignMsg {
     padding-top: 4rem;
     padding-left: var(--global-contents-left-padding);
-    font-size: 1.6rem;
 }
 .local-banner-with-bg-img .campaignMsg > h3,
 .local-banner-with-bg-img .campaignMsg > span,
@@ -417,7 +411,7 @@ body {overflow-x: hidden;}
 }
 .local-banner-with-bg-img .campaignMsg h3 {
     font-weight: normal;
-    font-size: 4rem;
+    font-size: 3.5rem;
     line-height: 110%;
     width: 85%;
 }
@@ -459,7 +453,7 @@ body {overflow-x: hidden;}
 .local-banner-without-bg-img .mini-carousel > div,
 .local-banner-without-bg-img .mini-carousel > ul {height: 100%;}
 .local-banner-without-bg-img .carousel__btnSlot {
-    display:inline-block;
+    display: inline-block;
     position: relative;
     width: 3rem;
     vertical-align: top;
@@ -473,7 +467,7 @@ body {overflow-x: hidden;}
 .local-banner-without-bg-img .carousel__cardSlot {
     display:inline-block;
     position: relative;
-    min-width: 10rem;
+    min-width: 100px;
 } 
 .local-banner-without-bg-img .carousel__cardSlot > li {
     visibility: hidden;
@@ -488,7 +482,6 @@ body {overflow-x: hidden;}
 .local-banner-without-bg-img .carousel__cardSlot img {height: calc(var(--horizontal-banner-height) * 0.7);}
 
 .local-banner-without-bg-img .campaignMsg {
-    font-size: 1.6rem;
     position: absolute;
     left: 0;
     top: 50%;
@@ -503,7 +496,7 @@ body {overflow-x: hidden;}
 }
 .local-banner-without-bg-img .campaignMsg h3 {
     font-weight: normal;
-    font-size: 4rem;
+    font-size: 3.5rem;
     line-height: 110%;
 }
 .local-banner-without-bg-img .campaignMsg a {font-weight: var(--boldest);}
@@ -531,7 +524,7 @@ body {overflow-x: hidden;}
     border-bottom: 1px solid darkslategray;
 }
 .footer .contents-wrapper {
-    width: 100rem;
+    width: 1000px;
     margin: 0 auto;
     text-align: start;
 }
@@ -594,7 +587,7 @@ body {overflow-x: hidden;}
     margin-bottom: 1rem;
     margin-right: 1.5rem;
     line-height: 1rem;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
 }
 .footer__affiliatesSitemap .contents-wrapper li span {
     display: block;
@@ -611,7 +604,7 @@ body {overflow-x: hidden;}
     padding: 2rem 10rem;
     background-color: var(--color-gray-blue--darken);
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     text-align: center;
 }
 .footer__disclaimer a {font-weight: var(--boldest);}
