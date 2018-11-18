@@ -39,35 +39,73 @@ export default class LayerManager {
     const contentLayerEle = document.querySelectorAll(".content-layer");
     const outerLayerEle = document.querySelector(".outer-layer");
 
-    const posXYpoint = {
-      aX: 0, aY: 0,
-      bX: 400, bY: 0,
-      cX: 0, cY: 408,
-      dX: 400, dY: 408,
-      mousePointX: 0, mousePointY: 0,
+    let mousePoint = {
+      x: 0,
+      y: 0
+    };
+    let startPoint = {
+      x: 0,
+      y: 0
+    };
+    const p0 = {
+      x: 392,
+      y: 152
+    };
+    const p1 = {
+      x: 392,
+      y: 559
+    };
+    const p2 = {
+      x: 791,
+      y: 152
+    };
+    const p3 = {
+      x: 791,
+      y: 559
     };
 
+    // getContentPosition Point(aX, aY) XY  
     contentLayerEle.forEach((e) => e.addEventListener("mouseenter", (e) => {
-      posXYpoint.mousePointX = e.layerX;
-      posXYpoint.mousePointY = e.layerY;
-      console.log(e.layerX, e.layerY, "mouseEnter content_layer");
-      console.log(posXYpoint.mousePointX, posXYpoint.mousePointY);
+      startPoint.x = e.clientX;
+      startPoint.y = e.clientY;
+      console.log(`x: ${startPoint.x}, y: ${startPoint.y} - startPoint `);
     }));
 
-    outerLayerEle.addEventListener("mousemove", (p) => {
-      let point = {
-        x: p.layerX,
-        y: p.layerY
-      };
-      console.log(`x:${point.x} | y:${point.y}`, "mousepoint")
+    // getMousePosition Point XY
+    outerLayerEle.addEventListener("mousemove", (eMousePoint) => {
+      mousePoint.x = eMousePoint.clientX;
+      mousePoint.y = eMousePoint.clientY;
+      console.log(`x: ${mousePoint.x}, y: ${mousePoint.y} - mousePoint `);
+      let yVal = eMousePoint.layerY;
+
+      // const test = (yVal < 216) ? pointInTriangle(mousePoint, startPoint, p1, p2) : (yVal < 492) ? pointInTriangle(mousePoint, startPoint, p0, p1) : (yVal < 544) ? pointInTriangle(mousePoint, startPoint, p0, p3) : false;
+
+      // if (checkClockwise(startPoint, p1, p2)) {
+      // const test = pointInTriangle(mousePoint, startPoint, p1, p2);
+      const test = pointInTriangle(mousePoint, startPoint, p1, p0);
+      console.log(test);
+      // }
     });
 
-    // let aPoint = (a.y * c.x - a.x * c.y + (c.y - a.y) * p.x + (a.x - c.x) * p.y);
-    // let bPoint = (a.x * b.y - a.y * b.x + (a.y - b.y) * p.x + (b.x - a.x) * p.y);
+    // triangle Algorithm 
+    function checkClockwise(p0, p1, p2) {
+      let A = (-p1.y * p2.x + p0.y * (-p1.x + p2.x) + p0.x * (p1.y - p2.y) + p1.x * p2.y);
+      return A > 0;
+    }
 
-    // if (aPoint <= 0 || bPoint <= 0) return false;
+    function pointInTriangle(p, p0, p1, p2) {
+      let result = (((p1.y - p0.y) * (p.x - p0.x) - (p1.x - p0.x) * (p.y - p0.y)) || ((p2.y - p1.y) * (p.x - p1.x) - (p2.x - p1.x) * (p.y - p1.y)) || ((p0.y - p2.y) * (p.x - p2.x) - (p0.x - p2.x) * (p.y - p2.y))) >= 0;
+      return result;
+    }
 
-    // let mousePoint = (-b.y * c.x + a.y * (-b.x + c.x) + a.x * (b.y - c.y) + b.x * c.y);
-    // return (aPoint + bPoint) < mousePoint;
+    function ptInTriangle(p, p0, p1, p2) {
+      let s = (p0.y * p2.x - p0.x * p2.y + (p2.y - p0.y) * p.x + (p0.x - p2.x) * p.y);
+      let t = (p0.x * p1.y - p0.y * p1.x + (p0.y - p1.y) * p.x + (p1.x - p0.x) * p.y);
+
+      if (s <= 0 || t <= 0) return false;
+
+      let A = (-p1.y * p2.x + p0.y * (-p1.x + p2.x) + p0.x * (p1.y - p2.y) + p1.x * p2.y);
+      return (s + t) < A;
+    }
   }
 }
