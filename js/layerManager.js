@@ -38,6 +38,7 @@ export default class LayerManager {
   checkPointInTriangle() {
     const contentLayerEle = document.querySelectorAll(".content-layer");
     const outerLayerEle = document.querySelector(".outer-layer");
+    const innerLayerEle = document.querySelector(".inner-layer");
 
     let mousePoint = {
       x: 0,
@@ -52,12 +53,12 @@ export default class LayerManager {
       y: 152
     };
     const p1 = {
-      x: 392,
-      y: 559
-    };
-    const p2 = {
       x: 791,
       y: 152
+    };
+    const p2 = {
+      x: 392,
+      y: 559
     };
     const p3 = {
       x: 791,
@@ -75,16 +76,18 @@ export default class LayerManager {
     outerLayerEle.addEventListener("mousemove", (eMousePoint) => {
       mousePoint.x = eMousePoint.clientX;
       mousePoint.y = eMousePoint.clientY;
+      const outerRect = outerLayerEle.getBoundingClientRect();
+      const innerRect = innerLayerEle.getBoundingClientRect();
+      const testRect = eMousePoint.toElement.getBoundingClientRect();
       console.log(`x: ${mousePoint.x}, y: ${mousePoint.y} - mousePoint `);
-      let yVal = eMousePoint.layerY;
+      console.log(`X: ${testRect.x} Y: ${testRect.y}`, eMousePoint.target)
 
-      // const test = (yVal < 216) ? pointInTriangle(mousePoint, startPoint, p1, p2) : (yVal < 492) ? pointInTriangle(mousePoint, startPoint, p0, p1) : (yVal < 544) ? pointInTriangle(mousePoint, startPoint, p0, p3) : false;
-
-      // if (checkClockwise(startPoint, p1, p2)) {
-      // const test = pointInTriangle(mousePoint, startPoint, p1, p2);
-      const test = pointInTriangle(mousePoint, startPoint, p1, p0);
-      console.log(test);
-      // }
+      const test = pointInTriangle(mousePoint, startPoint, p2, p0);
+      if (test) {
+        time = window.setTimeout(() => {
+          // innerLayerEle.style.display = "block";
+        })
+      }
     });
 
     // triangle Algorithm 
