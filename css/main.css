@@ -14,7 +14,7 @@
     --color-gray-blue--darken: rgb(20, 28, 37);
     
     /* global */
-    --global-mininum-banner-width: 1280px;
+    --global-max-banner-width: 128rem;
     --global-contents-left-padding: 5rem;
 
     /* etc */
@@ -34,7 +34,7 @@
     --masthead__campaignBodyTxt--fontSize: 2rem;
 
     /* section-specific : Benefits Carousel */
-    --benefitsCarousel__categories--button-width: 150px;
+    --benefitsCarousel__categories--button-width: 15rem;
     --benefitsCarousel__categories--button-height: 20rem;
     --benefitCarousel__categoryHeading--fontSize: 2rem;
     --benefitCarousel__benefitHeading--fontSize: 2.5rem;
@@ -45,9 +45,9 @@
 }
 
 .global-deco-major-btn {
-    border: 1px solid orangered;
+    border: 0.1rem solid orangered;
     background-color: var(--color-bright-orange);
-    min-width: 200px;
+    min-width: 20rem;
     min-height: 3rem;
     width: 35rem;
     height: 5rem;
@@ -60,7 +60,7 @@
 }
 .global-deco-vertical-divisor {
     height: 90%;
-    border-left: 1px solid gray;
+    border-left: 0.1rem solid gray;
     margin: 0 0.25rem;
 }
 
@@ -70,10 +70,10 @@
     padding:0;
     box-sizing: border-box;
 }
-body {font-size: 1.6rem;} /* 16px */
+body {font-size: 1.6rem;} 
 ul,ol {list-style:none}
 em,address {font-style:normal}
-sup {font-size: 0.5rem;} /* 8px */
+sup {font-size: 0.5rem;} 
 a {color:inherit; text-decoration-line: none;}
 button {
     border: none;
@@ -123,11 +123,12 @@ body {overflow-x: hidden;}
 .header__search > select, 
 .header__search > input, 
 .header__search > button {
-    margin: 0 -0.5rem; /* stack elements to hide gap between them */
-    border: none;
-    height: 100%;
-    vertical-align: top;
-    display:inline-block;
+     /* stack elements to hide gap between them */
+     border: none;
+     height: 100%;
+     vertical-align: top;
+     display:inline-block;
+     margin-right: -1rem;
 }
 .header__search > .search__categorySelector {
     position: relative;
@@ -145,7 +146,7 @@ body {overflow-x: hidden;}
 .header__search > .search__input:focus {outline: none;} 
 .header__search > .search__submitBtn {
     position: relative;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 0.5rem 0.5rem 0;
     background-color: var(--color-bright-orange);
     width:  var(--header__searchSubmitBtn-width);
     font-size: 2rem;
@@ -157,8 +158,8 @@ body {overflow-x: hidden;}
     display: inline-block;
     vertical-align: top;
     position: relative;
-    right: -1.5rem; /* Compensate whitespace on right side */
-    padding-left: 1rem;
+     /* Compensate whitespace on right side */
+    padding-left: 1.5rem;
     width: var(--header__topBanner--width);
 }
 .header__topBanner .block-img {
@@ -216,7 +217,7 @@ body {overflow-x: hidden;}
     background: no-repeat center / 4rem url('../images/navbar/cart.png');
 }
 
-.cart .cart__num-of-item {
+.cart .cart__numOfItem {
     text-align: center;
     color: var(--color-bright-orange);
 }
@@ -230,8 +231,9 @@ body {overflow-x: hidden;}
 ===============*/
 
 .masthead {
-    position: relative;     
-    width: var(--global-minimum-banner-width);     
+    position: relative;
+    max-width: var(--global-max-banner-width);
+    height: 45rem;
     margin: 0 auto;
     background-color: var(--color-gray-blue--lighten);
     background: url(../images/masthead/masthead_background.png) no-repeat center/cover;
@@ -250,12 +252,12 @@ body {overflow-x: hidden;}
     width: 80%;
 }
 .masthead__campaignMsg > .campaignMsg__CTA > div {margin-top: 0.5rem;}
-.masthead__prime-logo {
+.masthead__primeLogo {
     position: absolute;
     left: 5rem;
     bottom: 4rem;
 }
-.masthead__bg-img {
+.masthead__bgImg {
     display: block;
     width: 100%;
     z-index: var(--bg-img-z-index);
@@ -267,8 +269,9 @@ body {overflow-x: hidden;}
 
 .benefitsCarousel {
     position: relative;
-    top: -5rem; /* Pull up carousel section over masthead */
-    max-width: var(--global-minimum-banner-width);
+     /* Pull up carousel section over masthead */
+    top: -5rem;
+    max-width: var(--global-max-banner-width);
     margin: 0 auto;
 }
 .benefitsCarousel__categories {
@@ -282,8 +285,8 @@ body {overflow-x: hidden;}
     margin: 0 0.1rem;
 }
 .benefitsCarousel__categories .category__img {
-    width: calc(var(--benefitsCarousel__categories--button-width) * 0.75);
-    height: calc(var(--benefitsCarousel__categories--button-height) * 0.7);
+    width: 12rem;
+    height: 14rem;
 }
 .benefitsCarousel__categories .category__btn {
     border: none;
@@ -292,6 +295,7 @@ body {overflow-x: hidden;}
     position: relative;
 }
 .benefitsCarousel__categories .category__heading {
+    display: block;
     font-size: var(--benefitCarousel__categoryHeading--fontSize);
     color: white;
 }
@@ -311,12 +315,12 @@ body {overflow-x: hidden;}
     background: linear-gradient(35deg, rgb(204, 46, 7), rgb(243, 199, 53));
 }
 .benefitsCarousel__cards{
-    width: var(--global-mininum-banner-width);
+    width: var(--global-max-banner-width);
 }
 .benefitsCarousel__cards > li {
-    width: var(--global-minimum-banner-width);
-    margin-bottom: -10rem; /* Shorten bottom margin of each card to pull up section below */
-    padding: 2rem 0;
+    width: var(--global-max-banner-width);
+     /* Shorten bottom margin of each card to pull up section below */
+    height: 30rem;
     visibility: hidden;
     position: absolute;
 }
@@ -326,7 +330,7 @@ body {overflow-x: hidden;}
 }
 
 .benefitsCarousel__cards > li > div {
-    top: 40%;
+    top: 50%;
     transform: translateY(-50%);
     padding-right: 10rem;
 }
@@ -344,7 +348,7 @@ body {overflow-x: hidden;}
 .benefitsCarousel__cards .card-keyword-div {
     color: white;
     font-weight: var(--boldest);
-    box-shadow: 0 0 0 5px var(--category-color-ship);
+    box-shadow: 0 0 0 0.5rem var(--category-color-ship);
     background-color: var(--category-color-ship);
     display: inline-block;
 }
@@ -360,7 +364,7 @@ body {overflow-x: hidden;}
 ===============*/
 .horizontalBanners {
     position: relative;
-    width: var(--global-minimum-banner-width);
+    width: var(--global-max-banner-width);
     margin: 0 auto;
 }
 .horizontalBanners__sectionHeader {
@@ -371,8 +375,8 @@ body {overflow-x: hidden;}
 /* Compensate whitespace on background img  */
 .horizontalBanners__delivery > .campaignMsg {margin-top: 2rem;}
 .horizontalBanners__delivery {color: white;}
-.horizontalBanners__prime-reading,
-.horizontalBanners__prime-video {color: black;}
+.horizontalBanners__primeReading,
+.horizontalBanners__primeVideo {color: black;}
 
 .horizontalBanners__tryPrime {
     height: var(--horizontal-banner-height);
@@ -395,7 +399,7 @@ body {overflow-x: hidden;}
 .local-banner-with-bg-img {
     position: relative;
     height: var(--horizontal-banner-height);
-    width: var(--global-mininum-banner-width);
+    width: var(--global-max-banner-width);
     margin: 0 auto;
 }
 .local-banner-with-bg-img .campaignMsg {
@@ -418,14 +422,14 @@ body {overflow-x: hidden;}
 .local-banner-with-bg-img .campaignMsg a {font-weight: var(--boldest);}
 .local-banner-with-bg-img .bg-img > img {
     width: 100%;
-    min-height: 320px;
+    min-height: 32rem;
     z-index: var(--bg-img-z-index);
 }
 
 .local-banner-without-bg-img {
     height: var(--horizontal-banner-height);
     position: relative;
-    width: var(--global-minimum-banner-width);
+    width: var(--global-max-banner-width);
 }
 .local-banner-without-bg-img > div {
     display:inline-block;
@@ -467,7 +471,8 @@ body {overflow-x: hidden;}
 .local-banner-without-bg-img .carousel__cardSlot {
     display:inline-block;
     position: relative;
-    min-width: 100px;
+    min-width: 10rem;
+    max-width: calc(100% - 3rem - 3rem);
 } 
 .local-banner-without-bg-img .carousel__cardSlot > li {
     visibility: hidden;
@@ -517,14 +522,14 @@ body {overflow-x: hidden;}
 }
 
 .footer__sectionLinks {
-    padding: 4rem;
+    padding: 3rem;
     background-color: var(--color-gray-blue);
     color: white;
     line-height: 2rem;
-    border-bottom: 1px solid darkslategray;
+    border-bottom: 0.1rem solid darkslategray;
 }
 .footer .contents-wrapper {
-    width: 1000px;
+    width: 100rem;
     margin: 0 auto;
     text-align: start;
 }
@@ -561,12 +566,12 @@ body {overflow-x: hidden;}
 .footer__countryInfo .country-selector > a,
 .footer__countryInfo .country-selector > button {
     position: relative;
-    min-height: 15px;
+    min-height: 1.5rem;
     box-sizing: content-box;
     vertical-align: top;
     display: inline-block;
     background: none;
-    border: 1px solid gray;
+    border: 0.1rem solid gray;
     border-radius: 5%;
     padding: 0.5rem 2rem;
     color: white;
@@ -574,7 +579,7 @@ body {overflow-x: hidden;}
 .footer__countryInfo .country-selector span {display: block;height: 2rem;line-height: 2rem;}
 
 .footer__affiliatesSitemap {
-    padding: 3rem 10rem;
+    padding: 3rem;
     background-color: var(--color-gray-blue--darken);
     text-align: center;
     color: white;
@@ -609,4 +614,4 @@ body {overflow-x: hidden;}
 }
 .footer__disclaimer a {font-weight: var(--boldest);}
 .footer__disclaimer > a,
-.footer__disclaimer > span { margin: 0 1rem;}
+.footer__disclaimer > span {margin: 0 1rem;}
