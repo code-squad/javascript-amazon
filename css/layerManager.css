@@ -1,13 +1,14 @@
 /* -------------------------------- 
 Primary style
 -------------------------------- */
+
 .content-layer>ul {
   display: none;
 }
-
+/* 
 .content-layer:hover>ul {
   display: block;
-}
+} */
 
 /* --------------------------------
 departments List Layer 
