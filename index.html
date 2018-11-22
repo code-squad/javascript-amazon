@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./scripts/main.js"></script>
     <link rel="stylesheet" href="./css/main.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:400,800"
@@ -673,9 +672,10 @@
         <div class="tryPrime-message">
           <h2>There's something for everyone</h2>
           <button class="global-deco-major-btn">TRY PRIME</button>
-          <div class="minor-CTA-links">
-            <a href="#">Give the gift of Prime</a> <span>|</span>
-            <a href="#">Enter a promo code</a>
+          <div>
+            <a href="#" class="global-deco-minor-link">Give the gift of Prime</a>
+            <span>|</span>
+            <a href="#" class="global-deco-minor-link">Enter a promo code</a>
           </div>
         </div>
       </div>
@@ -927,8 +927,8 @@
         <span>© 1996-2018, Amazon.com, Inc. or its affiliates</span>
       </div>
     </footer>
-    <nav class="stickyNav / global-hidden">
-        <div class="stickyNav__wrapper">
+    <nav class="stickyNav">
+        <div class="stickyNav__miniBar">
             <div class="stickyNav__logoSlot">
               <img
                 class="stickyNav__brandLogo"
@@ -946,6 +946,34 @@
               <button class="global-deco-major-btn">Try Prime</button>
             </div>
         </div>
+        <div class="stickyNav__detailLayer">
+            <div class="detailLayer__wrapper">
+                <div class="detailLayer__topRow">
+                    <div class="detailLayer__topRightClose">
+                        <a href="#">CLOSE <i class="fas fa-times"></i></a>
+                    </div>
+                </div>
+                <div class="detailLayer__table">
+                    <img class="detailLayer__tableContent" src="./images/stickyNav/bgImg.png" alt="Prime plans detail">
+                </div>
+                <div class="detailLayer__CTArow">
+                    <div class="detailLayer__CTASlot">
+                        <div>
+                            <button class="global-deco-major-btn">Try Prime</button>
+                        </div>
+                        <div>
+                            <a href="#" class="global-deco-minor-link">Are you a student?</a>
+                            <span>|</span>
+                            <a href="#" class="global-deco-minor-link">Do you have a vaild benefit card?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="detailLayer__bottomClose">
+                    <a href="#"><i class="fas fa-chevron-up"></i></a>
+                </div>
+            </div>
+        </div>
     </nav>
+    <script src="./scripts/main.js"></script>
   </body>
 </html>
