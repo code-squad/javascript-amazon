@@ -108,8 +108,11 @@ body {
   overflow-x: hidden;
 }
 main {
-  position: relative;
+  position: absolute;
   z-index: -1;
+  top: var(--header--height);
+  left: 50%;
+  transform: translateX(-50%);
 }
 /*=============
   Header rules  
@@ -713,7 +716,7 @@ main {
   overflow: hidden;
 }
 .stickyNav__miniBar {
-  position: relative;
+  position: sticky;
   width: 100%;
   height: 0;
   transition: all 500ms;
@@ -757,7 +760,7 @@ main {
 }
 
 .stickyNav__detailLayer {
-  position: relative;
+  position: sticky;
   top: 0;
   height: 0;
   overflow: hidden;
