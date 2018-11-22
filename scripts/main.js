@@ -1,51 +1,54 @@
-window.addEventListener("load", () => {
+function setBodyHeight() {
   const body = document.querySelector("body");
   const main = document.querySelector("main");
-  body.style.height = `${body.clientHeight + main.clientHeight - 1}px`;
-});
+  body.style.height = `${body.clientHeight + main.clientHeight - 1}px`; // Reduce 1px to remove white line on page bottom
+}
+function displayPrimeDetailLayerOnClick() {
+  const stickyBar = document.querySelector(".stickyNav");
+  const seeMoreLink = stickyBar.querySelector(
+    ".stickyNav__morePlanBtn .morePlanBtn__link"
+  );
+  seeMoreLink.addEventListener("click", () => {
+    const detailLayer = stickyBar.querySelector(".stickyNav__detailLayer");
+    const miniBar = stickyBar.querySelector(".stickyNav__miniBar");
 
-/* =============== */
-const stick = function() {
+    detailLayer.classList.replace("closed", "opened");
+    miniBar.classList.replace("opened", "closed");
+    window.removeEventListener("scroll", updateStickyBarHeight);
+
+    event.preventDefault();
+  });
+}
+function closePrimeDetailLayerOnClick() {
+  const detailLayer = document.querySelector(".stickyNav__detailLayer");
+  const detailLayerCLoseBtns = detailLayer.querySelectorAll(".closeBtn");
+
+  detailLayerCLoseBtns.forEach(el => {
+    el.addEventListener("click", () => {
+      detailLayer.classList.replace("opened", "closed");
+      window.addEventListener("scroll", updateStickyBarHeight);
+      updateStickyBarHeight();
+
+      event.preventDefault();
+    });
+  });
+}
+function updateStickyBarHeight() {
   const mastheadHeight = document.querySelector(".masthead").clientHeight;
   const headerHeight = document.querySelector(".header").clientHeight;
   const miniBar = document.querySelector(".stickyNav__miniBar");
   if (window.pageYOffset < mastheadHeight + headerHeight) {
-    miniBar.style.height = "0";
+    miniBar.classList.replace("opened", "closed");
     return;
   }
-  miniBar.style.height = "6rem";
-};
-window.addEventListener("scroll", stick);
+  miniBar.classList.replace("closed", "opened");
+}
 
-/* =============== */
-const seeMoreLink = document.querySelector(".stickyNav__morePlanBtn a");
-seeMoreLink.addEventListener("click", () => {
-  const detailLayer = document.querySelector(".stickyNav__detailLayer");
-  const miniBar = document.querySelector(".stickyNav__miniBar");
-
-  detailLayer.style.height = "57rem";
-  miniBar.style.height = "0";
-  window.removeEventListener("scroll", stick);
-
-  event.preventDefault();
+window.addEventListener("load", () => {
+  setBodyHeight(); //Extend body height after page load to fix position:sticky above position:absolute main element
+  displayPrimeDetailLayerOnClick();
+  closePrimeDetailLayerOnClick();
 });
 
-/* =============== */
-const detailLayerCLoseBtnsArr = [
-  document.querySelector(".detailLayer__topRightClose a"),
-  document.querySelector(".detailLayer__bottomClose a")
-];
-
-detailLayerCLoseBtnsArr.forEach(el => {
-  el.addEventListener("click", () => {
-    const detailLayer = document.querySelector(".stickyNav__detailLayer");
-    const miniBar = document.querySelector(".stickyNav__miniBar");
-
-    detailLayer.style.height = "0rem";
-    miniBar.style.height = "0";
-    window.addEventListener("scroll", stick);
-    stick();
-
-    event.preventDefault();
-  });
-});
+/* Display sticky bar on scroll */
+window.addEventListener("scroll", updateStickyBarHeight);
