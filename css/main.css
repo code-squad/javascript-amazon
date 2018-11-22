@@ -108,11 +108,10 @@ body {
   overflow-x: hidden;
 }
 main {
+  width: 100%;
   position: absolute;
   z-index: -1;
   top: var(--header--height);
-  left: 50%;
-  transform: translateX(-50%);
 }
 /*=============
   Header rules  
@@ -217,8 +216,7 @@ main {
   left: 0;
   padding-left: 1rem;
 }
-.header__quickLinks > div,
-.header__quickLinks > a {
+.header__quickLinks .quickLink-item {
   display: inline-block;
   margin: 0 0.5rem;
   vertical-align: bottom;
@@ -711,9 +709,7 @@ main {
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: all 500ms;
   transform: translateZ(0);
-  overflow: hidden;
 }
 .stickyNav__miniBar {
   position: sticky;
@@ -722,18 +718,18 @@ main {
   transition: all 500ms;
   overflow: hidden;
   border-bottom: 1px solid var(--color-gray-blue--lighten);
+  transform: translateZ(0);
 }
 .stickyNav__logoSlot {
   position: absolute;
   left: calc(var(--global-contents-left-padding) * 2);
   width: 10rem;
-  height: 6rem;
+  height: 100%;
   top: 0;
 }
 .stickyNav__brandLogo {
-  width: 90%;
   height: 70%;
-  position: absolute;
+  position: relative;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -747,7 +743,7 @@ main {
 .stickyNav__CTABtn {
   position: absolute;
   right: calc(var(--global-contents-left-padding) * 2);
-  height: 6rem;
+  height: 100%;
   top: 0;
 }
 .stickyNav__CTABtn > .global-deco-major-btn {

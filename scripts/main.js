@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
   const body = document.querySelector("body");
   const main = document.querySelector("main");
-  body.style.height = `${body.clientHeight + main.clientHeight}px`;
+  body.style.height = `${body.clientHeight + main.clientHeight - 1}px`;
 });
 
 /* =============== */
