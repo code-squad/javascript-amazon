@@ -1,4 +1,4 @@
-window.addEventListener("scroll", () => {
+const stick = function() {
   const mastheadHeight = document.querySelector(".masthead").clientHeight;
   const headerHeight = document.querySelector(".header").clientHeight;
   const miniBar = document.querySelector(".stickyNav__miniBar");
@@ -6,9 +6,9 @@ window.addEventListener("scroll", () => {
     miniBar.style.height = "0";
     return;
   }
-
   miniBar.style.height = "6rem";
-});
+};
+window.addEventListener("scroll", stick);
 
 const seeMoreLink = document.querySelector(".stickyNav__morePlanBtn a");
 seeMoreLink.addEventListener("click", () => {
@@ -17,6 +17,7 @@ seeMoreLink.addEventListener("click", () => {
 
   detailLayer.style.height = "57rem";
   miniBar.style.height = "0";
+  window.removeEventListener("scroll", stick);
 
   event.preventDefault();
 });
@@ -30,17 +31,10 @@ detailLayerCLoseBtnsArr.forEach(el => {
   el.addEventListener("click", () => {
     const detailLayer = document.querySelector(".stickyNav__detailLayer");
     const miniBar = document.querySelector(".stickyNav__miniBar");
-    const mastheadHeight = document.querySelector(".masthead").clientHeight;
-    const headerHeight = document.querySelector(".header").clientHeight;
 
     detailLayer.style.height = "0rem";
     miniBar.style.height = "0";
-
-    if (window.pageYOffset < mastheadHeight + headerHeight) {
-      miniBar.style.height = "0";
-      return;
-    }
-    miniBar.style.height = "6rem";
+    window.addEventListener("scroll", stick);
 
     event.preventDefault();
   });
