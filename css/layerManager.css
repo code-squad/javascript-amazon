@@ -4,7 +4,11 @@ Primary style
 
 .content-layer>ul {
   display: none;
+  /* width: 0;
+  opacity: 0;
+  transition: all 0.4s; */
 }
+
 /* 
 .content-layer:hover>ul {
   display: block;
@@ -56,6 +60,7 @@ departments List Layer
   font-family: Tahoma, Arial, sans-serif;
 }
 
+/* 
 .outer-layer .content-layer:hover .content-text {
   color: #e47911;
 }
@@ -63,7 +68,7 @@ departments List Layer
 .outer-layer .content-layer:hover .side-arrow {
   color: #bbb;
 }
-
+ */
 .list-layer {
   width: 180px;
   height: 25px;
