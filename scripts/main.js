@@ -8,14 +8,14 @@ class StickyNav {
       ".stickyNav__morePlanBtn .morePlanBtn__link"
     );
     seeMoreLink.addEventListener("click", () => {
+      event.preventDefault();
+
       const detailLayer = this.base.querySelector(".stickyNav__detailLayer");
       const miniBar = this.base.querySelector(".stickyNav__miniBar");
 
       detailLayer.classList.replace("closed", "opened");
       miniBar.classList.replace("opened", "closed");
       window.removeEventListener("scroll", this.updateVisibility);
-
-      event.preventDefault();
     });
   }
   closeDetailOnClick() {
@@ -24,11 +24,11 @@ class StickyNav {
 
     detailLayerCLoseBtns.forEach(el => {
       el.addEventListener("click", () => {
+        event.preventDefault();
+
         detailLayer.classList.replace("opened", "closed");
         window.addEventListener("scroll", this.updateVisibility);
         this.updateVisibility();
-
-        event.preventDefault();
       });
     });
   }
@@ -42,7 +42,7 @@ class StickyNav {
   }
   setBodyHeight() {
     const body = document.querySelector("body");
-    const totalHeight = Array.from(body.children).reduce((acc, el) => {
+    const totalHeight = [...body.children].reduce((acc, el) => {
       return acc + el.clientHeight;
     }, 0);
     body.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
