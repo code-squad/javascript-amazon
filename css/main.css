@@ -21,6 +21,7 @@
   --bg-img-z-index: -999;
 
   /* section-specific : Header */
+  --header__font-size: 1.4rem;
   --header--height: 11rem;
   --header__logo--width: 14rem;
   --header__topBanner--width: 40rem;
@@ -44,6 +45,9 @@
 
   /* section-specific : Horizontal Banners */
   --horizontal-banner-height: 35rem;
+
+  /* section-specific : StickyNav */
+  --detailLayer__wrapper--width: 90rem;
 }
 
 .global-deco-major-btn {
@@ -120,10 +124,11 @@ main {
 .header {
   background-color: var(--color-gray-blue);
   color: white;
-  font-size: 1.4rem;
+  font-size: var(--header__font-size);
   padding-top: 2rem;
   height: var(--header--height);
   width: 100%;
+  z-index: -1;
 }
 
 .header__firstRow,
@@ -778,7 +783,7 @@ main {
 }
 .detailLayer__wrapper {
   position: relative;
-  width: 90rem;
+  width: var(--detailLayer__wrapper--width);
   height: 100%;
   margin: 0 auto;
 }
@@ -817,4 +822,82 @@ main {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+
+/*=============
+  MegaMenu rules  
+===============*/
+main {
+  visibility: hidden;
+}
+.megaMenu {
+  position: relative;
+  z-index: 101;
+}
+.megaMenu__wrapper {
+  font-size: var(--header__font-size);
+  width: 80rem;
+  margin: 0 auto;
+  margin-top: -0.5rem;
+}
+
+.megaMenu__linkBar {
+  display: inline-block;
+  background-color: white;
+  width: 25%;
+  border: 0.1rem solid #999;
+  border-radius: 0.5rem;
+  height: 52rem;
+  vertical-align: top;
+  padding: 1rem;
+}
+.megaMenu__linkBar:hover {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.megaMenu__linkBar > li {
+  display: block;
+  height: 2.5rem;
+  line-height: 2.5rem;
+}
+.megaMenu__linkBar > li:hover {
+  font-weight: var(--boldest);
+  color: var(--color-bright-orange);
+}
+.megaMenu__linkBar li:nth-of-type(7),
+.megaMenu__linkBar li:nth-of-type(17) {
+  border-bottom: 0.1rem solid #e0e0e0;
+}
+.megaMenu__detail {
+  position: relative;
+  display: inline-block;
+  width: 74%;
+  height: 52rem;
+  font-size: var(--masthead__headingTxt--fontSize);
+  text-align: center;
+  vertical-align: top;
+  margin-left: -1rem;
+}
+.megaMenu__detail > li {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: white;
+  border: 0.1rem solid #999;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  visibility: hidden;
+}
+.megaMenu__detail li:first-child {
+  visibility: visible;
+}
+.megaMenu__detail .detail__slot {
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.megaMenu__detail .detail__id {
+  font-weight: var(--boldest);
+  color: var(--color-bright-orange);
 }
