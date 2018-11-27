@@ -15,7 +15,8 @@ const megaMenu = new MegaMenu({
 window.addEventListener('DOMContentLoaded', () => {
   stickyPlansLayer.displayDetailOnClick();
   stickyPlansLayer.closeDetailOnClick();
-  megaMenu.setTriggerMouseOverEvent();
+  megaMenu.setMenuOpenMouseEvent();
+  megaMenu.setDetailOpenMouseEvent();
 });
 window.addEventListener('load', () => {
   stickyPlansLayer.setBodyHeight(); // Extend body height to make position:sticky work properly

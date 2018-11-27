@@ -856,10 +856,6 @@ main {
   vertical-align: top;
   padding: 1rem;
 }
-.megaMenu__linkBar:hover {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
 .megaMenu__linkBar > li {
   display: block;
   height: 2.5rem;
@@ -893,7 +889,7 @@ main {
   border-bottom-right-radius: 0.5rem;
   visibility: hidden;
 }
-.megaMenu__detail li:first-child {
+.megaMenu__detail > .opened {
   visibility: visible;
 }
 .megaMenu__detail .detail__slot {

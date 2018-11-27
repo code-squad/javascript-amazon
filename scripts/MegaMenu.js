@@ -11,13 +11,34 @@ export default class {
     bgDim.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
   }
 
-  setTriggerMouseOverEvent() {
+  setMenuOpenMouseEvent() {
     const menuWrapper = this.base.querySelector('.megaMenu__wrapper');
     this.trigger.addEventListener('mouseover', () => {
       this.base.classList.replace('closed', 'opened');
     });
     menuWrapper.addEventListener('mouseleave', () => {
       this.base.classList.replace('opened', 'closed');
+    });
+  }
+
+  setDetailOpenMouseEvent() {
+    const menuListItems = this.base.querySelectorAll('.megaMenu__linkBar > li');
+    const details = this.base.querySelector('.megaMenu__detail');
+
+    [...menuListItems].forEach((el) => {
+      el.addEventListener('mouseover', (evt) => {
+        const linkID = evt.toElement.dataset.megamenuid;
+        const layerToDisplay = details.querySelector(`.detail__layer${linkID}`);
+
+        if (!linkID) return;
+        layerToDisplay.classList.add('opened');
+      });
+      el.addEventListener('mouseleave', () => {
+        const layerOnScreen = details.querySelector('.opened');
+
+        if (!layerOnScreen) return;
+        layerOnScreen.classList.remove('opened');
+      });
     });
   }
 }
