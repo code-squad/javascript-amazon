@@ -16,6 +16,9 @@ export default class {
     this.trigger.addEventListener('mouseover', () => {
       this.base.classList.replace('closed', 'opened');
     });
+    this.trigger.addEventListener('mouseleave', () => {
+      this.base.classList.replace('opened', 'closed');
+    });
     menuWrapper.addEventListener('mouseleave', () => {
       this.base.classList.replace('opened', 'closed');
     });

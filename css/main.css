@@ -22,7 +22,7 @@
 
   /* section-specific : Header */
   --header__font-size: 1.4rem;
-  --header--height: 11rem;
+  --header--height: 12rem;
   --header__logo--width: 14rem;
   --header__topBanner--width: 40rem;
   --header__search--width: calc(
@@ -220,11 +220,15 @@ main {
 }
 .header__quickLinks .quickLink-item {
   display: inline-block;
-  margin: 0 0.5rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
   vertical-align: bottom;
 }
-.header__quickLinks > div {
-  margin-right: 0.5rem;
+.quickLink__department:hover {
+  box-shadow: 0 0 0 0.1rem #888;
+  border-radius: 0.2rem;
+  /* outline: #999 solid 0.1rem;
+  outline-offset: 0.2rem; */
 }
 .header__deliveryLocation > div {
   display: inline-block;
@@ -840,7 +844,7 @@ main {
   position: absolute;
   font-size: var(--header__font-size);
   width: 80rem;
-  margin-left: 20rem;
+  margin-left: 19rem;
   margin-top: -0.5rem;
   top: var(--header--height);
   z-index: 1;
