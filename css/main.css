@@ -72,9 +72,6 @@
   border-left: 0.1rem solid gray;
   margin: 0 0.25rem;
 }
-.global-hidden {
-  visibility: hidden;
-}
 /*Base initializers*/
 * {
   margin: 0;
@@ -827,9 +824,6 @@ main {
 /*=============
   MegaMenu rules  
 ===============*/
-main {
-  visibility: hidden;
-}
 .megaMenu {
   position: relative;
   z-index: 101;
@@ -837,7 +831,7 @@ main {
 .megaMenu__wrapper {
   font-size: var(--header__font-size);
   width: 80rem;
-  margin: 0 auto;
+  margin-left: 20rem;
   margin-top: -0.5rem;
 }
 
@@ -900,4 +894,13 @@ main {
 .megaMenu__detail .detail__id {
   font-weight: var(--boldest);
   color: var(--color-bright-orange);
+}
+
+.screenDim {
+  background-color: gray;
+  width: 100%; /* Make it same with body */
+  position: absolute;
+  top: var(--header--height);
+  opacity: 0.7;
+  transform: translateZ(0);
 }
