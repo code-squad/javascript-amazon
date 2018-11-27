@@ -13,14 +13,13 @@ export default class {
 
   setMenuOpenMouseEvent() {
     const menuWrapper = this.base.querySelector('.megaMenu__wrapper');
-    this.trigger.addEventListener('mouseover', () => {
-      this.base.classList.replace('closed', 'opened');
-    });
-    this.trigger.addEventListener('mouseleave', () => {
-      this.base.classList.replace('opened', 'closed');
-    });
-    menuWrapper.addEventListener('mouseleave', () => {
-      this.base.classList.replace('opened', 'closed');
+    [this.trigger, menuWrapper].forEach((el) => {
+      el.addEventListener('mouseover', () => {
+        this.base.classList.replace('closed', 'opened');
+      });
+      el.addEventListener('mouseleave', () => {
+        this.base.classList.replace('opened', 'closed');
+      });
     });
   }
 
