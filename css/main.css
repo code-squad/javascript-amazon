@@ -217,6 +217,7 @@ main {
   position: absolute;
   left: 0;
   padding-left: 1rem;
+  height: 100%;
 }
 .header__quickLinks .quickLink-item {
   display: inline-block;
@@ -241,10 +242,11 @@ main {
   position: absolute;
   right: 0;
   padding-right: 1rem;
+  height: 100%;
 }
 .header__userSection > div,
 .header__userSection > a {
-  margin-right: 1rem;
+  margin: 0.5rem;
   vertical-align: bottom;
   display: inline-block;
 }

@@ -1,7 +1,10 @@
+import { debounce } from './ThrottleAndDebounce.js';
+
 export default class {
   constructor({ htmlEl, triggerEl }) {
     this.base = htmlEl;
     this.trigger = triggerEl;
+    this.cursorOnTrigger = false;
   }
 
   setBgDimHeight() {
@@ -14,11 +17,19 @@ export default class {
   setMenuOpenMouseEvent() {
     const menuWrapper = this.base.querySelector('.megaMenu__wrapper');
     [this.trigger, menuWrapper].forEach((el) => {
-      el.addEventListener('mouseover', () => {
-        this.base.classList.replace('closed', 'opened');
+      el.addEventListener('mouseenter', () => {
+        this.cursorOnTrigger = true;
+        debounce(() => {
+          if (!this.cursorOnTrigger) return;
+          this.base.classList.replace('closed', 'opened');
+        }, 200)();
       });
       el.addEventListener('mouseleave', () => {
-        this.base.classList.replace('opened', 'closed');
+        this.cursorOnTrigger = false;
+        debounce(() => {
+          if (this.cursorOnTrigger) return;
+          this.base.classList.replace('opened', 'closed');
+        }, 100)();
       });
     });
   }
@@ -28,7 +39,7 @@ export default class {
     const details = this.base.querySelector('.megaMenu__detail');
 
     [...menuListItems].forEach((el) => {
-      el.addEventListener('mouseover', (evt) => {
+      el.addEventListener('mouseenter', (evt) => {
         const linkID = evt.toElement.dataset.megamenuid;
         const layerToDisplay = details.querySelector(`.detail__layer${linkID}`);
 
