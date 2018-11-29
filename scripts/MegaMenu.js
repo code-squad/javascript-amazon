@@ -4,7 +4,7 @@ export default class {
   constructor({ htmlEl, triggerEl }) {
     this.base = htmlEl;
     this.trigger = triggerEl;
-    this.cursorOnTrigger = false;
+    this.cursorOnMenu = false;
   }
 
   setBgDimHeight() {
@@ -18,16 +18,16 @@ export default class {
     const menuWrapper = this.base.querySelector('.megaMenu__wrapper');
     [this.trigger, menuWrapper].forEach((el) => {
       el.addEventListener('mouseenter', () => {
-        this.cursorOnTrigger = true;
+        this.cursorOnMenu = true;
         debounce(() => {
-          if (!this.cursorOnTrigger) return;
+          if (!this.cursorOnMenu) return;
           this.base.classList.replace('closed', 'opened');
         }, 200)();
       });
       el.addEventListener('mouseleave', () => {
-        this.cursorOnTrigger = false;
+        this.cursorOnMenu = false;
         debounce(() => {
-          if (this.cursorOnTrigger) return;
+          if (this.cursorOnMenu) return;
           this.base.classList.replace('opened', 'closed');
         }, 100)();
       });
@@ -40,18 +40,39 @@ export default class {
 
     [...menuListItems].forEach((el) => {
       el.addEventListener('mouseenter', (evt) => {
-        const linkID = evt.toElement.dataset.megamenuid;
-        const layerToDisplay = details.querySelector(`.detail__layer${linkID}`);
+        // Open detail on menu list enter
+        const link = evt.toElement;
+        const linkID = link.dataset.megamenuid;
+        const layerToDisplay = details.querySelector(`.detail__layer.item${linkID}`);
 
         if (!linkID) return;
+
+        link.classList.add('opened');
+        details.classList.add('opened');
         layerToDisplay.classList.add('opened');
       });
-      el.addEventListener('mouseleave', () => {
-        const layerOnScreen = details.querySelector('.opened');
+      el.addEventListener('mouseleave', (evt) => {
+        // Close detail on menu list leave
+        const link = evt.fromElement;
+        const linkID = link.dataset.megamenuid;
+        const bCursorWentToDetail = evt.toElement.classList.contains('detail__wrapper');
+        const layerOnDisplay = details.querySelector(`.detail__layer.item${linkID}`);
 
-        if (!layerOnScreen) return;
-        layerOnScreen.classList.remove('opened');
+        if (bCursorWentToDetail) return;
+
+        link.classList.remove('opened');
+        details.classList.remove('opened');
+        if (layerOnDisplay) layerOnDisplay.classList.remove('opened');
       });
+    });
+
+    details.addEventListener('mouseleave', () => {
+      const openedLink = [...menuListItems].filter(el => el.classList.contains('opened'))[0];
+      const layerOnDisplay = details.querySelector('.detail__layer.opened');
+
+      openedLink.classList.remove('opened');
+      details.classList.remove('opened');
+      layerOnDisplay.classList.remove('opened');
     });
   }
 }
