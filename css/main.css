@@ -48,6 +48,10 @@
 
   /* section-specific : StickyNav */
   --detailLayer__wrapper--width: 90rem;
+
+  /* section-specific : Mega Menu */
+  --megaMenu--height: 52rem;
+  --megaMenu-margin-left: 19rem;
 }
 
 .global-deco-major-btn {
@@ -845,7 +849,7 @@ main {
 .megaMenu__wrapper {
   position: absolute;
   font-size: var(--header__font-size);
-  margin-left: 19rem;
+  margin-left: var(--megaMenu-margin-left);
   margin-top: -0.5rem;
   top: var(--header--height);
   z-index: 1;
@@ -857,7 +861,7 @@ main {
   width: 20rem;
   border: 0.1rem solid #999;
   border-radius: 0.5rem;
-  height: 52rem;
+  height: var(--megaMenu--height);
   vertical-align: top;
   padding: 1rem;
   padding-right: 0;
@@ -880,7 +884,7 @@ main {
 .megaMenu__detail {
   position: relative;
   display: none;
-  height: 52rem;
+  height: var(--megaMenu--height);
   width: 60rem;
   font-size: var(--masthead__headingTxt--fontSize);
   text-align: center;
@@ -926,4 +930,21 @@ main {
   top: var(--header--height);
   opacity: 0.7;
   transform: translateZ(0);
+}
+
+.megaMenu__trackerCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80rem;
+  height: var(--megaMenu--height);
+  margin-left: -80rem;
+  margin-top: calc(-1 * var(--megaMenu--height));
+}
+
+.megaMenu__trackerCanvas.opened {
+  margin: 0;
+  top: var(--header--height);
+  left: var(--megaMenu-margin-left);
+  z-index: 1000;
 }

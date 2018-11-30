@@ -10,6 +10,7 @@ const stickyPlansLayer = new StickyNav({
 const megaMenu = new MegaMenu({
   htmlEl: document.querySelector('.megaMenu'),
   triggerEl: document.querySelector('.megaMenu__trigger'),
+  canvasEl: document.querySelector('.megaMenu__trackerCanvas'),
 });
 
 window.addEventListener('DOMContentLoaded', () => {

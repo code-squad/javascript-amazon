@@ -1,10 +1,12 @@
 import { debounce } from './ThrottleAndDebounce.js';
+import CanvasPath from './MegaMenu_canvas.js';
 
 export default class {
-  constructor({ htmlEl, triggerEl }) {
+  constructor({ htmlEl, triggerEl, canvasEl }) {
     this.base = htmlEl;
     this.trigger = triggerEl;
     this.cursorOnMenu = false;
+    this.canvas = new CanvasPath(canvasEl);
   }
 
   setBgDimHeight() {
@@ -39,7 +41,7 @@ export default class {
     const details = this.base.querySelector('.megaMenu__detail');
 
     [...menuListItems].forEach((el) => {
-      el.addEventListener('mouseenter', (evt) => {
+      el.addEventListener('mouseover', (evt) => {
         // Open detail on menu list enter
         const link = evt.toElement;
         const linkID = link.dataset.megamenuid;
