@@ -1,12 +1,8 @@
 import HiddenTopMenu from "./hiddenTopMenu.js";
 import LayerManager from "./layerManager.js";
 
-const searchDocEle = (classEle) => {
-  return document.querySelector(classEle);
-};
-const searchDocAllEle = (classEle) => {
-  return document.querySelectorAll(classEle);
-};
+const searchDocEle = (classEle) => { return document.querySelector(classEle); };
+const searchDocAllEle = (classEle) => { return document.querySelectorAll(classEle); };
 
 const layerManager = new LayerManager({
   dimmedLayer: searchDocEle("#nav-dimmed-cover"),

@@ -11,64 +11,33 @@ export default class LayerManager {
       outerEle: this.ele.outerLayer,
       contentEle: this.ele.contentLayer,
     }
-    let timer = null;
-    this.checkPointInTriangle(layer);
-    this.setCloseListLayer(layer, timer);
-    this.setOpenListLayer(layer, timer);
+    this.setPointInTriangle(layer);
+    this.setOpenListLayer(layer);
+    this.setCloseListLayer(layer);
   }
 
-  setOpenListLayer(layer, timer) {
+  setOpenListLayer(layer) {
     layer.titleEle.addEventListener("mouseenter", () => {
-      clearTimeout(timer);
-      timer = window.setTimeout(() => {
+      window.setTimeout(() => {
         layer.listEle.setAttribute("style", "display: block;");
         layer.dimmedEle.setAttribute("style", "opacity: 0.6; height: 100%;");
       }, 350);
     });
   }
-  setCloseListLayer(layer, timer) {
+  setCloseListLayer(layer) {
     layer.titleEle.addEventListener("mouseleave", () => {
-      clearTimeout(timer);
-      layer.listEle.setAttribute("style", "opacity: 0;");
+      layer.listEle.removeAttribute("style");
       layer.dimmedEle.setAttribute("style", "opacity: 0;");
     });
   }
 
-  checkPointInTriangle(layer) {
-
-    // get MousePosition Point(X,Y)  
-
-    // layer.outerEle.addEventListener("mousemove", (eContent) => {
-    // let posClient = {
-    //   mouseP: {
-    //     x: eContent.clientX,
-    //     y: eContent.clientY,
-    //   },
-    //   startP: {
-    //     x: 0,
-    //     y: 0,
-    //   },
-    //   fixP0: {
-    //     x: 392,
-    //     y: 152,
-    //   },
-    //   fixP1: {
-    //     x: 392,
-    //     y: 550,
-    //   },
-    // }
-
-    // mouseMove시 X,Y 값이 다를 때 startPoint 지정
-    // let setStartPoint = this.getDelayStartPoint(200, eContent, posClient.startP);
-    // boolTriangle = this.getPointInTriangle(posClient.mouseP, setStartPoint, posClient.fixP1, posClient.fixP0);
-
-    // console.log(`${posClient.mouseP.x}: StartPoint X축, ${posClient.mouseP.y}: StartPoint Y축`);
-    // console.log(`${posClient.startP.x}: setPoint X축, ${posClient.startP.y}: setPoint Y축`);
-
-    // });
-
-    let posClient = {
+  setPointInTriangle(layer) {
+    let clientXY = {
       mouseP: {
+        x: 0,
+        y: 0,
+      },
+      stayMouseP: {
         x: 0,
         y: 0,
       },
@@ -81,29 +50,37 @@ export default class LayerManager {
         y: 550,
       },
     }
-    layer.outerEle.addEventListener("mousemove", (e) => {
-      posClient.mouseP.x = e.clientX;
-      posClient.mouseP.y = e.clientY;
-      console.log(`${posClient.mouseP.x} 실시간마우스X ${posClient.mouseP.y} 실시간마우스Y`);
-    })
 
-    let boolTriangle = false;
+    // get MousePosition Point(X,Y)  
+    layer.outerEle.addEventListener("mousemove", (e) => {
+      clientXY.mouseP.x = e.clientX;
+      clientXY.mouseP.y = e.clientY;
+      // console.log(`${clientXY.mouseP.x} 실시간마우스X ${clientXY.mouseP.y} 실시간마우스Y`);
+    });
+
+    // get Stay MousePosition Point(X,Y)
     layer.outerEle.addEventListener("mousemove", this.debounce(200, (e) => {
-      let startPoint = {
-        x: e.clientX,
-        y: e.clientY,
-      }
-      boolTriangle = this.getPointInTriangle(posClient.mouseP, startPoint, posClient.fixP1, posClient.fixP0);
-      console.log(`${boolTriangle} boolean삼각형`);
-      console.log(`${startPoint.x} debounce마우스X ${startPoint.y} debounce마우스Y`);
-      return boolTriangle;
+      clientXY.stayMouseP.x = e.clientX;
+      clientXY.stayMouseP.y = e.clientY;
+      console.log(`${clientXY.stayMouseP.x} debounce 마우스 X ${clientXY.stayMouseP.y} debounce 마우스 Y`);
     }));
 
+    // check Mouse in Triangle
+    let boolTriangle = this.boolPointInTriangle(clientXY.mouseP, clientXY.stayMouseP, clientXY.fixP1, clientXY.fixP0);
+    console.log(boolTriangle);
 
-    // set Element Show / Hidden
+    // hover 기능 
     layer.contentEle.forEach((e) => {
-      this.setShowInnerListLayer(e);
-      this.setHiddenInnerListLayer(e);
+      this.setShowInnerListLayer(e); // show Inner Layer
+      this.setHiddenInnerListLayer(e);  // hidden Inner Layer
+    });
+  }
+
+  // test Active Deactive Method
+  setActiveEvent(layer, boolTriangle) {
+    layer.contentEle.forEach((e) => {
+      (boolTriangle === true) ? this.debounce(300, this.setShowInnerListLayer(e)) : this.setHiddenInnerListLayer(e);
+      // (boolTriangle === true) ? this.setStopInnerListLayer(e) : this.setHiddenInnerListLayer(e);
     });
   }
 
@@ -119,19 +96,6 @@ export default class LayerManager {
       this.setHiddenAttText(eContent);
       this.setHiddenAttribute(eContent);
     });
-  }
-
-  debounce(delay, fn) {
-    let timerId;
-    return function (...args) {
-      if (timerId) {
-        clearTimeout(timerId);
-      }
-      timerId = setTimeout(() => {
-        fn(...args);
-        timerId = null;
-      }, delay);
-    }
   }
 
   setShowAttText(e) {
@@ -153,8 +117,20 @@ export default class LayerManager {
     e.target.lastElementChild.removeAttribute("style");
   }
 
+  // debouncing timer 300m
+  debounce(delay, fn) {
+    let timerId = null;
+    return function (...args) {
+      if (timerId) clearTimeout(timerId);
+      timerId = setTimeout(() => {
+        fn(...args);
+        timerId = null;
+      }, delay);
+    }
+  }
+
   // triangle Algorithm
-  getPointInTriangle(p, p0, p1, p2) {
+  boolPointInTriangle(p, p0, p1, p2) {
     let result = (((p1.y - p0.y) * (p.x - p0.x) - (p1.x - p0.x) * (p.y - p0.y)) || ((p2.y - p1.y) * (p.x - p1.x) - (p2.x - p1.x) * (p.y - p1.y)) || ((p0.y - p2.y) * (p.x - p2.x) - (p0.x - p2.x) * (p.y - p2.y))) >= 0;
     return result;
   }
