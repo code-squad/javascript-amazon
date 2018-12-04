@@ -6,7 +6,7 @@ export default class {
     this.base = htmlEl;
     this.trigger = triggerEl;
     this.cursorOnMenu = false;
-    this.canvas = new CanvasPath(canvasEl);
+    this.canvasPath = new CanvasPath(canvasEl);
   }
 
   setBgDimHeight() {
@@ -41,7 +41,7 @@ export default class {
     const details = this.base.querySelector('.megaMenu__detail');
 
     [...menuListItems].forEach((el) => {
-      el.addEventListener('mouseover', (evt) => {
+      el.addEventListener('mouseenter', (evt) => {
         // Open detail on menu list enter
         const link = evt.toElement;
         const linkID = link.dataset.megamenuid;
