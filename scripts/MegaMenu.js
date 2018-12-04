@@ -6,6 +6,7 @@ export default class {
     this.base = htmlEl;
     this.trigger = triggerEl;
     this.cursorOnMenu = false;
+    this.cursorHeadingDetail = false;
     this.canvasPath = new CanvasPath(canvasEl);
   }
 
@@ -29,7 +30,7 @@ export default class {
       el.addEventListener('mouseleave', () => {
         this.cursorOnMenu = false;
         debounce(() => {
-          if (this.cursorOnMenu) return;
+          if (this.cursorOnMenu || this.cursorHeadingDetail) return;
           this.base.classList.replace('opened', 'closed');
         }, 100)();
       });
@@ -57,14 +58,24 @@ export default class {
         // Close detail on menu list leave
         const link = evt.fromElement;
         const linkID = link.dataset.megamenuid;
-        const bCursorWentToDetail = evt.toElement.classList.contains('detail__wrapper');
+        const destination = evt.toElement;
+        const bCursorWentToDetail = destination.classList.contains('detail__wrapper');
+        const bCursorWentToNextLink = !!destination.dataset.megamenuid;
         const layerOnDisplay = details.querySelector(`.detail__layer.item${linkID}`);
+        const [cursorX, cursorY] = [evt.pageX, evt.pageY];
 
         if (bCursorWentToDetail) return;
+        if (!bCursorWentToNextLink) {
+          // cursor went out of mega menu - close all
+          details.classList.remove('opened');
+          link.classList.remove('opened');
+          if (layerOnDisplay) layerOnDisplay.classList.remove('opened');
+        }
 
-        link.classList.remove('opened');
-        details.classList.remove('opened');
-        if (layerOnDisplay) layerOnDisplay.classList.remove('opened');
+        this.cursorHeadingDetail = true;
+        this.canvasPath.canvas.classList.add('opened');
+        this.canvasPath.drawThresholdToDetail(cursorX, cursorY);
+        // prevent detail layer from being closed
       });
     });
 
