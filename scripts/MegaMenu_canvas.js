@@ -18,6 +18,7 @@ export default class CanvasPath {
     this.context = canvasEl.getContext('2d');
     this.canvas.width = setting.canvasWidth;
     this.canvas.height = setting.canvasHeight;
+    this.cursorHeadingDetail = false;
   }
 
   drawTriangularPath({ point1, point2, point3 }) {
@@ -27,7 +28,6 @@ export default class CanvasPath {
     this.context.lineTo(...point3);
     this.context.closePath();
 
-    this.context.stroke();
     return this.context;
   }
 
@@ -45,5 +45,21 @@ export default class CanvasPath {
 
   clear() {
     this.context.clearRect(0, 0, this.canvas.clientWidth, this.canvas.clientHeight);
+    return true;
+  }
+
+  pathTracker(evt) {
+    const [pointX, pointY] = [evt.pageX - setting.canvasLeft, evt.pageY - setting.canvasTop];
+    const bPointInPath = this.isPointInPath(pointX, pointY);
+
+    if (bPointInPath) return;
+    console.log(';)');
+    // Reset eventListener & flag
+    this.cursorHeadingDetail = false;
+    // this.canvas.removeEventListener('mouseover', this.pathTracker);
+    // Reset canvas state
+    this.clear();
+    this.canvas.classList.remove('opened');
+    // Remove 'opened' class from origin link/detail
   }
 }

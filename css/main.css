@@ -836,15 +836,14 @@ main {
 ===============*/
 .megaMenu {
   position: absolute;
+  display: none;
   z-index: 101;
   top: 0;
   width: 100%;
 }
 .megaMenu.opened {
   visibility: visible;
-}
-.megaMenu.closed {
-  display: none;
+  display: inherit;
 }
 .megaMenu__wrapper {
   position: absolute;
@@ -872,7 +871,6 @@ main {
   width: 100%;
   line-height: 2.5rem;
 }
-.megaMenu__linkBar > li:hover,
 .megaMenu__linkBar > li.opened {
   font-weight: var(--boldest);
   color: var(--color-bright-orange);
