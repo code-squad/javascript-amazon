@@ -18,7 +18,6 @@ export function throttle(func, limit) {
       inThrottle = true;
       setTimeout(() => {
         inThrottle = false;
-        console.log('throttle ended');
       }, limit);
     }
   };

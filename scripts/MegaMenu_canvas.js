@@ -53,13 +53,12 @@ export default class CanvasPath {
     const bPointInPath = this.isPointInPath(pointX, pointY);
 
     if (bPointInPath) return;
-    console.log(';)');
+
     // Reset eventListener & flag
     this.cursorHeadingDetail = false;
-    // this.canvas.removeEventListener('mouseover', this.pathTracker);
+
     // Reset canvas state
     this.clear();
     this.canvas.classList.remove('opened');
-    // Remove 'opened' class from origin link/detail
   }
 }
