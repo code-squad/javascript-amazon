@@ -91,7 +91,7 @@ departments List Layer
 
 .side-arrow {
   position: absolute;
-  right: 10px;
+  right: 15px;
   color: #ddd;
 }
 
@@ -104,7 +104,7 @@ inner Layer
   position: absolute;
   width: 400px;
   height: 408px;
-  left: 200px;
+  left: 204px;
   top: 0;
   border-left: 1px solid #ddd;
 }
