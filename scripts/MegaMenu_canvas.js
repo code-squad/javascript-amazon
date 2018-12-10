@@ -19,6 +19,7 @@ export default class CanvasPath {
     this.canvas.width = setting.canvasWidth;
     this.canvas.height = setting.canvasHeight;
     this.cursorHeadingDetail = false;
+    this.boundPathTracker = null;
   }
 
   drawTriangularPath({ point1, point2, point3 }) {
@@ -55,10 +56,22 @@ export default class CanvasPath {
     if (bPointInPath) return;
 
     // Reset eventListener & flag
+    this.removePathTracker(this.boundPathTracker);
+    this.boundPathTracker = null;
     this.cursorHeadingDetail = false;
 
     // Reset canvas state
     this.clear();
     this.canvas.classList.remove('opened');
+  }
+
+  setPathTracker(cursorX, cursorY) {
+    this.drawThresholdToDetail(cursorX, cursorY);
+    this.boundPathTracker = this.pathTracker.bind(this);
+    window.addEventListener('mousemove', this.boundPathTracker);
+  }
+
+  removePathTracker(pathTracker) {
+    window.removeEventListener('mousemove', pathTracker);
   }
 }

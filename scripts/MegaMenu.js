@@ -35,6 +35,7 @@ export default class {
         if (this.canvasPath.cursorHeadingDetail) return;
         debounce(() => {
           if (this.cursorOnMenu) return;
+          this.closeLinkAndDetail();
           this.closeMenu();
         }, 200)();
       });
@@ -85,11 +86,7 @@ export default class {
         // Open canvas after cursor went to another list link
         this.canvasPath.cursorHeadingDetail = true;
         this.canvasPath.canvas.classList.add('opened');
-        this.canvasPath.drawThresholdToDetail(cursorX, cursorY);
-        this.canvasPath.canvas.addEventListener(
-          'mousemove',
-          this.canvasPath.pathTracker.bind(this.canvasPath),
-        );
+        this.canvasPath.setPathTracker(cursorX, cursorY);
       });
     });
 
