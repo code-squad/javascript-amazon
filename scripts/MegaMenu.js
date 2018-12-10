@@ -97,7 +97,6 @@ export default class {
     });
     this.details.addEventListener('mouseleave', () => {
       this.cursorOnDetail = false;
-      this.classSwitch.closeLinkAndDetail();
     });
   }
 }
