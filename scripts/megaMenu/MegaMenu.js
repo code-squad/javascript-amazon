@@ -50,7 +50,7 @@ export default class {
       if (this.cursorOnMenu) return;
       this.classSwitch.closeLinkAndDetail();
       this.classSwitch.closeMenu();
-    }, 100)();
+    }, 10)();
   }
 
   attachListenerOnDetail() {
