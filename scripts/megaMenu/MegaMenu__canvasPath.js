@@ -1,4 +1,5 @@
 import ClassSwitch from './MegaMenu__classSwitch.js';
+import { throttle } from '../ThrottleAndDebounce.js';
 
 const setting = {
   canvasWidth: 800,
@@ -77,7 +78,7 @@ export default class CanvasPath {
 
   setPathTracker(cursorX, cursorY) {
     this.drawThresholdToDetail(cursorX, cursorY);
-    this.boundPathTracker = this.pathTracker.bind(this);
+    this.boundPathTracker = throttle(this.pathTracker.bind(this), 50);
     window.addEventListener('mousemove', this.boundPathTracker);
   }
 
