@@ -1,6 +1,6 @@
-import { debounce } from './ThrottleAndDebounce.js';
-import CanvasPath from './MegaMenu_canvas.js';
-import ClassSwitch from './MegaMenu_switch.js';
+import { debounce } from '../ThrottleAndDebounce.js';
+import CanvasPath from './MegaMenu__canvasPath.js';
+import ClassSwitch from './MegaMenu__classSwitch.js';
 
 export default class {
   constructor({ htmlEl, triggerEl, canvasEl }) {

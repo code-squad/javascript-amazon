@@ -1,4 +1,4 @@
-import ClassSwitch from './MegaMenu_switch.js';
+import ClassSwitch from './MegaMenu__classSwitch.js';
 
 const setting = {
   canvasWidth: 800,
@@ -69,7 +69,6 @@ export default class CanvasPath {
 
     // Close menu if cursor went out of menu
     const bCursorOutOfMenu = pointX < 0 || pointY < 0;
-    console.log(pointX, pointY);
     if (bCursorOutOfMenu) {
       this.classSwitch.closeLinkAndDetail();
       this.classSwitch.closeMenu();

@@ -1,5 +1,5 @@
-import StickyNav from './StickyNav.js';
-import MegaMenu from './MegaMenu.js';
+import StickyNav from './stickyNav/StickyNav.js';
+import MegaMenu from './megaMenu/MegaMenu.js';
 
 const stickyPlansLayer = new StickyNav({
   htmlEl: document.querySelector('.stickyNav'),
