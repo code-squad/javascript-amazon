@@ -10,6 +10,8 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/header.css">
     <!-- Favicon Input -->
   </head>
   <body>
@@ -18,24 +20,20 @@
 
     <!-- Header -->
     <header>
-      <a href="#" class="nav-link">
-        Display: block, Input background-image, Set background-size, width,
-        height
-      </a>
-
       <!-- Nav Bar(Top) -->
       <nav>
-        <div id="nav-top">
+        <div class="nav-top clearfix">
           <!-- 1. Logo with Text -->
-          <div class="nav-logo-box nav-left">
-            <a href="#" class="nav-logo">amazon</a>
-            <a href="#" class="logo-prime-text">try prime</a>
+          <div class="nav-logo-box left">
+            <a href="https://www.amazon.com/ref=nav_logo" class="nav-logo"></a>
+            <a href="#" class="nav-logo-prime">try prime</a>
           </div>
 
           <!-- 2. Search -->
-          <div class="nav-search nav-left">
+          <div class="nav-search-form left">
             <form action="#" method="GET">
-              <select name="departments" id="drop-down-lists">
+              <span>All</span>
+              <select name="departments" class="drop-down-lists left">
                 <option value="all" disable selected hidden>All</option>
                 <option value="all">All Departments</option>
                 <option value="alexaSkills">Alexa Skills</option>
@@ -119,13 +117,13 @@
           </div>
 
           <!-- 3. Link to Specific Site -->
-          <div class="nav-right"><a href="#">Shop school supplies</a></div>
+          <div class="right"><a href="#">Shop school supplies</a></div>
         </div>
 
         <!-- Nav Bar(Lower) -->
-        <div id="nav-lower">
+        <div class="nav-lower clearfix">
           <!-- 1. Left Menu -->
-          <div class="nav-left">
+          <div class="left">
             <div class="nav-location">
               <a href="#" class='nav-box'>
                 <div class='location-img'>
@@ -159,7 +157,7 @@
           </div>
 
           <!-- 2. Right Menu -->
-          <div class='nav-right'>
+          <div class='right'>
             <div class="nav-lang">
               <a href="#" class='nav-box'>
                 <div class="nav-text">
