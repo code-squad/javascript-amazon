@@ -1,3 +1,5 @@
+import ClassSwitch from './MegaMenu_switch.js';
+
 const setting = {
   canvasWidth: 800,
   canvasHeight: 520,
@@ -13,13 +15,14 @@ const setting = {
 };
 
 export default class CanvasPath {
-  constructor(canvasEl) {
+  constructor(canvasEl, base, menuListItems, detailSection) {
     this.canvas = canvasEl;
     this.context = canvasEl.getContext('2d');
     this.canvas.width = setting.canvasWidth;
     this.canvas.height = setting.canvasHeight;
     this.cursorHeadingDetail = false;
     this.boundPathTracker = null;
+    this.classSwitch = new ClassSwitch(base, menuListItems, detailSection);
   }
 
   drawTriangularPath({ point1, point2, point3 }) {
@@ -63,6 +66,14 @@ export default class CanvasPath {
     // Reset canvas state
     this.clear();
     this.canvas.classList.remove('opened');
+
+    // Close menu if cursor went out of menu
+    const bCursorOutOfMenu = pointX < 0 || pointY < 0;
+    console.log(pointX, pointY);
+    if (bCursorOutOfMenu) {
+      this.classSwitch.closeLinkAndDetail();
+      this.classSwitch.closeMenu();
+    }
   }
 
   setPathTracker(cursorX, cursorY) {

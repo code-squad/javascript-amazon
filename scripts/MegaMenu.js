@@ -1,16 +1,18 @@
 import { debounce } from './ThrottleAndDebounce.js';
 import CanvasPath from './MegaMenu_canvas.js';
+import ClassSwitch from './MegaMenu_switch.js';
 
 export default class {
   constructor({ htmlEl, triggerEl, canvasEl }) {
     this.base = htmlEl;
     this.menuListItems = htmlEl.querySelectorAll('.megaMenu__linkBar > li');
     this.details = htmlEl.querySelector('.megaMenu__detail');
-    this.menuWrapper = this.base.querySelector('.megaMenu__wrapper');
+    this.menuWrapper = htmlEl.querySelector('.megaMenu__wrapper');
     this.trigger = triggerEl;
     this.cursorOnMenu = false;
     this.cursorOnDetail = false;
-    this.canvasPath = new CanvasPath(canvasEl);
+    this.canvasPath = new CanvasPath(canvasEl, this.base, this.menuListItems, this.details);
+    this.classSwitch = new ClassSwitch(this.base, this.menuListItems, this.details);
   }
 
   setBgDimHeight() {
@@ -26,7 +28,7 @@ export default class {
         this.cursorOnMenu = true;
         debounce(() => {
           if (!this.cursorOnMenu) return;
-          this.openMenu();
+          this.classSwitch.openMenu();
         }, 200)();
       });
 
@@ -35,8 +37,8 @@ export default class {
         if (this.canvasPath.cursorHeadingDetail) return;
         debounce(() => {
           if (this.cursorOnMenu) return;
-          this.closeLinkAndDetail();
-          this.closeMenu();
+          this.classSwitch.closeLinkAndDetail();
+          this.classSwitch.closeMenu();
         }, 200)();
       });
     });
@@ -52,13 +54,13 @@ export default class {
         if (this.canvasPath.cursorHeadingDetail) return;
 
         // close detail layer already opened
-        this.closeLinkAndDetail();
+        this.classSwitch.closeLinkAndDetail();
 
         // Stop if destination link doesn't have detail layer
         if (!detailToDisplay) return;
 
         // open detail layer of newly arrived link
-        this.openLinkAndDetail(link, detailToDisplay);
+        this.classSwitch.openLinkAndDetail(link, detailToDisplay);
       });
       el.addEventListener('mouseleave', (evt) => {
         const destination = evt.toElement;
@@ -70,7 +72,7 @@ export default class {
         const [cursorX, cursorY] = [evt.pageX, evt.pageY];
 
         if (bCursorWentToBoundary) {
-          this.closeLinkAndDetail();
+          this.classSwitch.closeLinkAndDetail();
           return;
         }
 
@@ -78,8 +80,8 @@ export default class {
 
         const bCursorWentOutOfMenu = !bCursorWentToNextLink && !this.cursorOnDetail;
         if (bCursorWentOutOfMenu) {
-          this.closeLinkAndDetail();
-          this.closeMenu();
+          this.classSwitch.closeLinkAndDetail();
+          this.classSwitch.closeMenu();
           return;
         }
 
@@ -95,40 +97,7 @@ export default class {
     });
     this.details.addEventListener('mouseleave', () => {
       this.cursorOnDetail = false;
-      this.closeLinkAndDetail();
+      this.classSwitch.closeLinkAndDetail();
     });
-  }
-
-  closeEls(htmlElsArr) {
-    if (htmlElsArr.length === 0) return;
-
-    htmlElsArr.forEach(el => el.classList.remove('opened'));
-  }
-
-  openEls(htmlElsArr) {
-    if (htmlElsArr.length === 0) return;
-
-    htmlElsArr.forEach(el => el.classList.add('opened'));
-  }
-
-  closeMenu() {
-    this.closeEls([this.base]);
-  }
-
-  openMenu() {
-    this.base.classList.add('opened');
-  }
-
-  closeLinkAndDetail() {
-    const openedLinks = [...this.menuListItems].filter(el => el.classList.contains('opened'));
-    const openedDetais = this.details.querySelectorAll('.detail__layer.opened');
-    const detailSection = this.details;
-
-    this.closeEls([...openedLinks, detailSection, ...openedDetais]);
-  }
-
-  openLinkAndDetail(link, detailToDisplay) {
-    const detailSection = this.details;
-    this.openEls([detailSection, link, detailToDisplay]);
   }
 }
