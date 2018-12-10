@@ -5,6 +5,7 @@ import ClassSwitch from './MegaMenu__classSwitch.js';
 export default class {
   constructor({ htmlEl, triggerEl, canvasEl }) {
     this.base = htmlEl;
+    this.menuList = htmlEl.querySelector('.megaMenu__linkBar');
     this.menuListItems = htmlEl.querySelectorAll('.megaMenu__linkBar > li');
     this.details = htmlEl.querySelector('.megaMenu__detail');
     this.menuWrapper = htmlEl.querySelector('.megaMenu__wrapper');
@@ -39,7 +40,7 @@ export default class {
     debounce(() => {
       if (!this.cursorOnMenu) return;
       this.classSwitch.openMenu();
-    }, 250)();
+    }, 100)();
   }
 
   closeMenuOnMouseLeave() {
@@ -49,7 +50,7 @@ export default class {
       if (this.cursorOnMenu) return;
       this.classSwitch.closeLinkAndDetail();
       this.classSwitch.closeMenu();
-    }, 250)();
+    }, 100)();
   }
 
   attachListenerOnDetail() {
@@ -62,10 +63,8 @@ export default class {
   }
 
   attachListenerOnListItems() {
-    [...this.menuListItems].forEach((el) => {
-      el.addEventListener('mouseenter', this.openDetailOnMouseEnter.bind(this));
-      el.addEventListener('mouseleave', this.closeDetailOnMouseLeave.bind(this));
-    });
+    this.menuList.addEventListener('mouseover', this.openDetailOnMouseEnter.bind(this));
+    this.menuList.addEventListener('mouseout', this.closeDetailOnMouseLeave.bind(this));
   }
 
   openDetailOnMouseEnter(evt) {
@@ -91,7 +90,6 @@ export default class {
         this.classSwitch.closeLinkAndDetail();
       },
       anotherLink() {
-        // Open canvas after cursor went to another list link
         this.startCursorTracking(cursorX, cursorY);
       },
       outOfMenu() {

@@ -1,5 +1,4 @@
 import ClassSwitch from './MegaMenu__classSwitch.js';
-import { throttle } from '../ThrottleAndDebounce.js';
 
 const setting = {
   canvasWidth: 800,

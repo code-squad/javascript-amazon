@@ -29,14 +29,14 @@
   border-radius: 0.5rem;
   height: var(--megaMenu--height);
   vertical-align: top;
-  padding: 1rem;
-  padding-right: 0;
+  padding: 1rem 0;
 }
 .megaMenu__linkBar > li {
   display: block;
   height: 2.5rem;
   width: 100%;
   line-height: 2.5rem;
+  padding-left: 1rem;
 }
 .megaMenu__linkBar > li.opened {
   font-weight: var(--boldest);
@@ -99,17 +99,14 @@
 
 .megaMenu__trackerCanvas {
   position: absolute;
+  display: none;
   top: 0;
   left: 0;
   width: 80rem;
   height: var(--megaMenu--height);
-  margin-left: -80rem;
-  margin-top: calc(-1 * var(--megaMenu--height));
 }
 
 .megaMenu__trackerCanvas.opened {
-  margin: 0;
-  top: var(--header--height);
-  left: var(--megaMenu-margin-left);
+  display: initial;
   z-index: 1000;
 }
