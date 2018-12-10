@@ -2,16 +2,21 @@
 /* ----- NAV -----*/
 nav {
   background-color: #232f3e;
+  min-width: 1000px;
 }
 
 .nav-top div {
   position: relative;
   display: inline-block;
+  padding: 12px 0 0 0;
+}
+
+.nav-top div:first-child {
+  padding: 12px 0 0 26px;
 }
 
 .nav-logo-box {
-  padding: 12px 0px 0px 26px;
-  width: 192px;
+  width: 191px;
 }
 
 .nav-logo {
@@ -32,29 +37,36 @@ nav {
   color: #48a3c6;
 }
 
-.nav-search-form {
-  position: relative;
-  padding: 12px 0 0 0;
-}
-
 .nav-search-form span {
   display: inline-block;
   position: absolute;
-  width: 49px;
-  line-height: 34px;
   top: 12px;
   left: 0px;
+  width: 46px;
+  line-height: 34px;
+  color: #666;
   background-color: #f3f3f3;
   text-align: center;
+  font-size: 12px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .drop-down-lists {
+  position: absolute;
   height: 34px;
-  width: 49px;
   border: 0;
   border-radius: 5px 0 0 5px;
   outline: none;
   opacity: 0;
+}
+
+.nav-promotion a {
+  display: inline-block;
+  width: 400px;
+  height: 39px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/img18/events/12dod/12DOD_DesktopSWM_400x39_Shop12._CB479370442_.jpg);
+  background-repeat: no-repeat;
 }
 
 .nav-lower div {
