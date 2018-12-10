@@ -31,10 +31,9 @@ export default class CanvasPath {
     this.context.lineTo(...point2);
     this.context.lineTo(...point3);
     this.context.closePath();
-
-    return this.context;
   }
 
+  // Draw traingle path as rule of thumb if cursor is heading detail layer
   drawThresholdToDetail(cursorX, cursorY) {
     return this.drawTriangularPath({
       point1: [setting.detailStartX, setting.detailYTop],
@@ -52,20 +51,21 @@ export default class CanvasPath {
     return true;
   }
 
+  canvasReset() {
+    this.clear();
+    this.canvas.classList.remove('opened');
+    this.removePathTracker(this.boundPathTracker);
+    this.boundPathTracker = null;
+    this.cursorHeadingDetail = false;
+  }
+
   pathTracker(evt) {
     const [pointX, pointY] = [evt.pageX - setting.canvasLeft, evt.pageY - setting.canvasTop];
     const bPointInPath = this.isPointInPath(pointX, pointY);
 
     if (bPointInPath) return;
 
-    // Reset eventListener & flag
-    this.removePathTracker(this.boundPathTracker);
-    this.boundPathTracker = null;
-    this.cursorHeadingDetail = false;
-
-    // Reset canvas state
-    this.clear();
-    this.canvas.classList.remove('opened');
+    this.canvasReset();
 
     // Close menu if cursor went out of menu
     const bCursorOutOfMenu = pointX < 0 || pointY < 0;

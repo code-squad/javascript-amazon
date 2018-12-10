@@ -18,7 +18,7 @@ export default class ClassSwitch {
   }
 
   closeMenu() {
-    this.closeEls([this.base]);
+    this.base.classList.remove('opened');
   }
 
   openMenu() {

@@ -24,79 +24,107 @@ export default class {
 
   setMenuOpenMouseEvent() {
     [this.trigger, this.menuWrapper].forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        this.cursorOnMenu = true;
-        debounce(() => {
-          if (!this.cursorOnMenu) return;
-          this.classSwitch.openMenu();
-        }, 200)();
-      });
-
-      el.addEventListener('mouseleave', () => {
-        this.cursorOnMenu = false;
-        if (this.canvasPath.cursorHeadingDetail) return;
-        debounce(() => {
-          if (this.cursorOnMenu) return;
-          this.classSwitch.closeLinkAndDetail();
-          this.classSwitch.closeMenu();
-        }, 200)();
-      });
+      el.addEventListener('mouseenter', this.openMenuOnMouseEnter.bind(this));
+      el.addEventListener('mouseleave', this.closeMenuOnMouseLeave.bind(this));
     });
   }
 
   setDetailOpenMouseEvent() {
-    [...this.menuListItems].forEach((el) => {
-      el.addEventListener('mouseenter', (evt) => {
-        const link = evt.toElement;
-        const linkID = link.dataset.megamenuid;
-        const detailToDisplay = this.details.querySelector(`.detail__layer.item${linkID}`);
+    this.attachListenerOnDetail();
+    this.attachListenerOnListItems();
+  }
 
-        if (this.canvasPath.cursorHeadingDetail) return;
+  openMenuOnMouseEnter() {
+    this.cursorOnMenu = true;
+    debounce(() => {
+      if (!this.cursorOnMenu) return;
+      this.classSwitch.openMenu();
+    }, 100)();
+  }
 
-        // close detail layer already opened
-        this.classSwitch.closeLinkAndDetail();
+  closeMenuOnMouseLeave() {
+    this.cursorOnMenu = false;
+    if (this.canvasPath.cursorHeadingDetail) return;
+    debounce(() => {
+      if (this.cursorOnMenu) return;
+      this.classSwitch.closeLinkAndDetail();
+      this.classSwitch.closeMenu();
+    }, 100)();
+  }
 
-        // Stop if destination link doesn't have detail layer
-        if (!detailToDisplay) return;
-
-        // open detail layer of newly arrived link
-        this.classSwitch.openLinkAndDetail(link, detailToDisplay);
-      });
-      el.addEventListener('mouseleave', (evt) => {
-        const destination = evt.toElement;
-        const bCursorWentToDetail = [...destination.classList].filter(
-          cl => cl.indexOf('detail') > -1,
-        ).length;
-        const bCursorWentToBoundary = destination.classList.contains('megaMenu__linkBar');
-        const bCursorWentToNextLink = !!destination.dataset.megamenuid;
-        const [cursorX, cursorY] = [evt.pageX, evt.pageY];
-
-        if (bCursorWentToBoundary) {
-          this.classSwitch.closeLinkAndDetail();
-          return;
-        }
-
-        if (bCursorWentToDetail || this.canvasPath.cursorHeadingDetail) return;
-
-        const bCursorWentOutOfMenu = !bCursorWentToNextLink && !this.cursorOnDetail;
-        if (bCursorWentOutOfMenu) {
-          this.classSwitch.closeLinkAndDetail();
-          this.classSwitch.closeMenu();
-          return;
-        }
-
-        // Open canvas after cursor went to another list link
-        this.canvasPath.cursorHeadingDetail = true;
-        this.canvasPath.canvas.classList.add('opened');
-        this.canvasPath.setPathTracker(cursorX, cursorY);
-      });
-    });
-
+  attachListenerOnDetail() {
     this.details.addEventListener('mouseenter', () => {
       this.cursorOnDetail = true;
     });
     this.details.addEventListener('mouseleave', () => {
       this.cursorOnDetail = false;
     });
+  }
+
+  attachListenerOnListItems() {
+    [...this.menuListItems].forEach((el) => {
+      el.addEventListener('mouseenter', this.openDetailOnMouseEnter.bind(this));
+      el.addEventListener('mouseleave', this.closeDetailOnMouseLeave.bind(this));
+    });
+  }
+
+  openDetailOnMouseEnter(evt) {
+    const link = evt.toElement;
+    const linkID = link.dataset.megamenuid;
+    const detailToDisplay = this.details.querySelector(`.detail__layer.item${linkID}`);
+
+    // Ignore further action if cursor is heading detail layer on canvas path
+    if (this.canvasPath.cursorHeadingDetail) return;
+
+    // Close detail layer already opened
+    this.classSwitch.closeLinkAndDetail();
+
+    // Display detail only if the link has linked detail layer
+    if (detailToDisplay) this.classSwitch.openLinkAndDetail(link, detailToDisplay);
+  }
+
+  closeDetailOnMouseLeave(evt) {
+    const destination = this.getCursorDestination(evt.toElement);
+    const [cursorX, cursorY] = [evt.pageX, evt.pageY];
+    const action = {
+      boundary() {
+        this.classSwitch.closeLinkAndDetail();
+      },
+      anotherLink() {
+        // Open canvas after cursor went to another list link
+        this.startCursorTracking(cursorX, cursorY);
+      },
+      outOfMenu() {
+        this.classSwitch.closeLinkAndDetail();
+        this.classSwitch.closeMenu();
+      },
+    };
+
+    if (action[destination]) action[destination].bind(this)();
+  }
+
+  getCursorDestination(toEl) {
+    if (toEl.classList.contains('megaMenu__linkBar')) {
+      return 'boundary';
+    }
+    if ([...toEl.classList].filter(cl => cl.indexOf('detail') > -1).length) {
+      return 'detailLayer';
+    }
+    if (this.canvasPath.cursorHeadingDetail) {
+      return 'headingDetail';
+    }
+    if (toEl.dataset.megamenuid) {
+      return 'anotherLink';
+    }
+    if (!this.cursorOnDetail) {
+      return 'oufOfMenu';
+    }
+    return 'else';
+  }
+
+  startCursorTracking(cursorX, cursorY) {
+    this.canvasPath.cursorHeadingDetail = true;
+    this.canvasPath.canvas.classList.add('opened');
+    this.canvasPath.setPathTracker(cursorX, cursorY);
   }
 }
