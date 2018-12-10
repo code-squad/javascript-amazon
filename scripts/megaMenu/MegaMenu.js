@@ -39,7 +39,7 @@ export default class {
     debounce(() => {
       if (!this.cursorOnMenu) return;
       this.classSwitch.openMenu();
-    }, 100)();
+    }, 250)();
   }
 
   closeMenuOnMouseLeave() {
@@ -49,7 +49,7 @@ export default class {
       if (this.cursorOnMenu) return;
       this.classSwitch.closeLinkAndDetail();
       this.classSwitch.closeMenu();
-    }, 100)();
+    }, 250)();
   }
 
   attachListenerOnDetail() {

@@ -78,7 +78,7 @@ export default class CanvasPath {
 
   setPathTracker(cursorX, cursorY) {
     this.drawThresholdToDetail(cursorX, cursorY);
-    this.boundPathTracker = throttle(this.pathTracker.bind(this), 50);
+    this.boundPathTracker = this.pathTracker.bind(this);
     window.addEventListener('mousemove', this.boundPathTracker);
   }
 
