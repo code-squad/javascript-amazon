@@ -1,8 +1,9 @@
 /* ----- HEADER -----*/
-/* ----- NAV -----*/
+/* ----- NAV TOP -----*/
 nav {
   background-color: #232f3e;
   min-width: 1000px;
+  font-size: 13px;
 }
 
 .nav-top div {
@@ -69,6 +70,49 @@ nav {
   background-repeat: no-repeat;
 }
 
-.nav-lower div {
+/* ----- NAV LOWER -----*/
+
+.nav-location {
   display: inline-block;
+}
+
+.nav-box,
+.nav-box div {
+  display: inline-block;
+}
+
+.nav-box {
+  margin-top: 5px;
+  margin-left: 12px;
+}
+
+.nav-box:hover {
+  border: 1px solid #666;
+  border-radius: 3px;
+}
+
+.nav-box .location-img {
+  width: 22px;
+  height: 25px;
+  margin-left: 2px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-position: -68px 77px;
+}
+
+.nav-box .nav-text span {
+  display: block;
+  color: #fff;
+}
+
+.nav-box .nav-text .text1 {
+  padding-top: 10px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.nav-box .nav-text .text2 {
+  font-size: 14px;
+  font-weight: 700;
+  padding-right: 12px;
+  padding-bottom: 5px;
 }
