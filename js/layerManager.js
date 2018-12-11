@@ -16,7 +16,7 @@ export default class LayerManager {
       stayMouseP: {
         x: 0,
         y: 0,
-        active: false,
+        debounceAct: false,
       },
       fixP0: {
         x: 400,
@@ -61,21 +61,25 @@ export default class LayerManager {
       this.clientXY.mouseP.y = mouse.clientY;
       // console.log(`${this.clientXY.mouseP.x} 실시간마우스X ${this.clientXY.mouseP.y} 실시간마우스Y`);
 
-      this.boolTriangle = this.boolMouseInTriangle(this.clientXY.mouseP, this.clientXY.stayMouseP, this.clientXY.fixP1, this.clientXY.fixP0);
-      // console.log(this.boolTriangle, "myTriangle");
+      if (!this.clientXY.stayMouseP.debounceAct) this.boolTriangle = false;
+      else this.boolTriangle = this.boolMouseInTriangle(this.clientXY.mouseP, this.clientXY.stayMouseP, this.clientXY.fixP1, this.clientXY.fixP0);
+      console.log(this.boolTriangle, "myTriangle");
     });
 
     // get Stay Mouse Position Point(X,Y)
-    layer.outerEle.addEventListener("mousemove", this.debounce(300, (mouse) => {
+    layer.outerEle.addEventListener("mousemove", this.debounce(200, (mouse) => {
       this.clientXY.stayMouseP.x = mouse.clientX;
       this.clientXY.stayMouseP.y = mouse.clientY;
-      // if (this.clientXY.stayMouseP.active) return this.clientXY.stayMouseP.active = false;
-      this.clientXY.stayMouseP.active = true;
+      // if (this.boolTriangle) this.clientXY.stayMouseP.debounceAct = false;
+      // else this.clientXY.stayMouseP.debounceAct = true;
+      this.clientXY.stayMouseP.debounceAct = true;
       console.log(`${this.clientXY.stayMouseP.x} debounce 마우스 X ${this.clientXY.stayMouseP.y} debounce 마우스 Y`);
     }));
+
   }
 
   searchInnerListLayer(layer) {
+    layer.outerEle.addEventListener("mouseleave", layer.contentEle.forEach((activeLayer) => this.setHiddenInnerListLayer(activeLayer)));
     layer.contentEle.forEach((activeLayer) => {
       this.setShowInnerListLayer(activeLayer);
       this.setHiddenInnerListLayer(activeLayer);
@@ -84,26 +88,23 @@ export default class LayerManager {
 
   setShowInnerListLayer(liElement) {
     liElement.addEventListener("mouseenter", (activeEle) => {
-      // if (this.boolTriangle) return this.debounce(1000, this.setShowInnerListLayer(liElement));
-
+      console.log(this.clientXY.stayMouseP.debounceAct, "debounce 기능 작동")
       this.setShowAttText(activeEle);
-      console.log(this.clientXY.stayMouseP.active)
-      if (this.boolTriangle && this.clientXY.stayMouseP.active) return this.deactiveShowListLayer(liElement);
-      else if (!this.clientXY.stayMouseP.active) this.setShowAttribute(activeEle);
+      // if (this.boolTriangle && this.clientXY.stayMouseP.debounceAct) return this.deactiveShowListLayer(liElement);
+      // else if (!this.clientXY.stayMouseP.debounceAct || !this.boolTriangle) this.setShowAttribute(activeEle);
+
+      if (this.boolTriangle) return this.deactiveShowListLayer(liElement);
+      else this.setShowAttribute(activeEle);
     });
   }
 
   setHiddenInnerListLayer(liElement) {
     liElement.addEventListener("mouseleave", (activeEle) => {
-      // if (this.boolTriangle) return this.debounce(1000, this.setHiddenInnerListLayer(liElement, layer));
-      // const test = this.checkTest();
-      // const lg = test[test.length - 1] === activeEle;
-      // console.log(test, activeEle.target);
-      // if (lg) return this.setShowInnerListLayer(liElement);
       this.setHiddenAttText(activeEle);
-      if (this.boolTriangle && this.clientXY.stayMouseP.active) return this.deactiveHiddenListLayer(liElement);
-      else if (!this.clientXY.stayMouseP.active) this.setHiddenAttribute(activeEle);
-      this.clientXY.stayMouseP.active = false;
+      // if (this.boolTriangle && this.clientXY.stayMouseP.debounceAct) return this.deactiveHiddenListLayer(liElement);
+      // else if (!this.clientXY.stayMouseP.debounceAct || !this.boolTriangle) this.setHiddenAttribute(activeEle);
+      if (this.boolTriangle) return this.deactiveHiddenListLayer(liElement);
+      else this.setHiddenAttribute(activeEle);
     });
   }
 
@@ -112,7 +113,7 @@ export default class LayerManager {
       const activeStyle = e.lastElementChild.getAttribute("style");
       return !!activeStyle;
     });
-    return openEle;
+    return openEle[openEle.length - 1];
   }
 
   deactiveShowListLayer(liElement) {
@@ -141,6 +142,9 @@ export default class LayerManager {
 
   setHiddenAttribute(active) {
     active.target.lastElementChild.removeAttribute("style");
+    this.clientXY.stayMouseP.debounceAct = false;
+    this.clientXY.stayMouseP.x = 0;
+    this.clientXY.stayMouseP.y = 0;
   }
 
   // debouncing timer 300m
