@@ -35,13 +35,6 @@ export default class LayerManager {
     });
   }
 
-  searchInnerListLayer(layer) {
-    layer.contentEle.forEach((activeLayer) => {
-      this.setShowInnerListLayer(activeLayer, layer);
-      this.setHiddenInnerListLayer(activeLayer);
-    });
-  }
-
   checkMouseInTriangle(layer) {
     let clientXY = {
       mouseP: {
@@ -62,13 +55,6 @@ export default class LayerManager {
       },
     }
 
-    // get Stay Mouse Position Point(X,Y)
-    layer.outerEle.addEventListener("mousemove", this.debounce(300, (mouse) => {
-      clientXY.stayMouseP.x = mouse.clientX;
-      clientXY.stayMouseP.y = mouse.clientY;
-      console.log(`${clientXY.stayMouseP.x} debounce 마우스 X ${clientXY.stayMouseP.y} debounce 마우스 Y`);
-    }));
-
     // get Mouse Position Point(X,Y) & check Mouse Position in Triangle 
     layer.outerEle.addEventListener("mousemove", (mouse) => {
       clientXY.mouseP.x = mouse.clientX;
@@ -79,18 +65,24 @@ export default class LayerManager {
       // console.log(this.boolTriangle, "myTriangle");
     });
 
-    // console.log(this.mousePosition, "checkinTriangle");
+    // get Stay Mouse Position Point(X,Y)
+    layer.outerEle.addEventListener("mousemove", this.debounce(300, (mouse) => {
+      clientXY.stayMouseP.x = mouse.clientX;
+      clientXY.stayMouseP.y = mouse.clientY;
+      // console.log(`${clientXY.stayMouseP.x} debounce 마우스 X ${clientXY.stayMouseP.y} debounce 마우스 Y`);
+    }));
   }
 
-  setShowInnerListLayer(activeLayer, layer) {
+  searchInnerListLayer(layer) {
+    layer.contentEle.forEach((activeLayer) => {
+      this.setShowInnerListLayer(activeLayer);
+      this.setHiddenInnerListLayer(activeLayer);
+    });
+  }
+
+  setShowInnerListLayer(activeLayer) {
     activeLayer.addEventListener("mouseenter", (activeEle) => {
-      // layer.outerEle.addEventListener("mousemove", this.debounce(200, (mouse) => {
-      //   this.mousePosition.stayMouseP.x = mouse.clientX;
-      //   this.mousePosition.stayMouseP.y = mouse.clientY;
-      //   console.log(`${this.mousePosition.stayMouseP.x} debounce 마우스 X ${this.mousePosition.stayMouseP.y} debounce 마우스 Y`);
-      //   this.boolTriangle = this.boolMouseInTriangle(this.mousePosition.mouseP, this.mousePosition.stayMouseP, this.mousePosition.fixP1, this.mousePosition.fixP0);
-      // }));
-      console.log(this.boolTriangle);
+      console.log(activeLayer, activeEle);
       if (this.boolTriangle) return this.deactiveShowListLayer(activeLayer);
       this.setShowAttText(activeEle);
       this.setShowAttribute(activeEle);
@@ -105,12 +97,25 @@ export default class LayerManager {
     });
   }
 
+  activeShowInnerLayer() {
+
+  }
+
+  activeHideInnerLayer() {
+
+  }
+
   deactiveShowListLayer(activeLayer) {
-    activeLayer.removeEventListener("mouseenter", (activeEle) => this.setShowAttribute(activeEle));
+    activeLayer.removeEventListener("mouseenter", (activeEle) => {
+      this.setShowAttText(activeEle);
+      this.setShowAttribute(activeEle)
+    });
   }
 
   deactiveHiddenListLayer(activeLayer) {
-    activeLayer.removeEventListener("mouseleave", (activeEle) => this.setHiddenAttribute(activeEle));
+    activeLayer.removeEventListener("mouseleave", (activeEle) => {
+      this.setHiddenAttribute(activeEle)
+    });
   }
 
   setShowAttText(active) {
@@ -147,7 +152,21 @@ export default class LayerManager {
 
   // triangle Algorithm
   boolMouseInTriangle(p, p0, p1, p2) {
+    // 초기값 예외
+    const startStayMousePosition = p0.x === 0 && p0.y === 0;
+    if (startStayMousePosition) return false;
     let result = (((p1.y - p0.y) * (p.x - p0.x) - (p1.x - p0.x) * (p.y - p0.y)) || ((p2.y - p1.y) * (p.x - p1.x) - (p2.x - p1.x) * (p.y - p1.y)) || ((p0.y - p2.y) * (p.x - p2.x) - (p0.x - p2.x) * (p.y - p2.y))) >= 0;
     return result;
+  }
+
+  // 직각 유무 파악 
+  slope(a, b) {
+    // const x = b.x - a.x;
+    // const y = b.y - a.y;
+    // const rad = Math.atan2(x, y);
+    const degree = parseInt((Math.atan2(b.x - a.x, b.y - a.y) * 180) / Math.PI);
+    // console.log(degree)
+    // return (b.y - a.y) / (b.x - a.x);
+    return;
   }
 }
