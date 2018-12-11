@@ -34,6 +34,7 @@ export default class LayerManager {
     this.setCloseListLayer();
     this.searchInnerListLayer();
     this.setTriangleMousePosition();
+    this.setCloseInnerListLayer();
   }
 
   // set Display Block Department list Layer, show Delay 350ms
@@ -56,10 +57,13 @@ export default class LayerManager {
     this.layer.dimmedEle.setAttribute("style", "opacity: 0;");
   }
 
+  setCloseInnerListLayer() {
+    this.layer.outerEle.addEventListener("mouseleave", this.searchInnerListLayer());
+  }
+
   // check Mouse Position in Triangle
   checkMouseInTriangle() {
     this.layer.outerEle.addEventListener("mousemove", () => this.boolMouseInTriangle(this.clientXY.mouseP, this.clientXY.stayMouseP, this.clientXY.fixP1, this.clientXY.fixP0));
-    console.log(this.boolTriangle, "myTriangle");
   }
 
   // Triangle Position Setting
@@ -101,6 +105,7 @@ export default class LayerManager {
 
       // deactive Element Display Show
       if (this.boolTriangle) return this.deactiveShowListLayer(liElement);
+      // if (this.boolTriangle) return this.debounce(300, this.setShowInnerListLayer(liElement));
       else this.setShowAttribute(activeEle);
     });
   }
@@ -112,6 +117,7 @@ export default class LayerManager {
 
       // deactive Element Display Hidden
       if (this.boolTriangle) return this.deactiveHiddenListLayer(liElement);
+      // if (this.boolTriangle) return this.debounce(300, this.setHiddenInnerListLayer(liElement));
       else this.setHiddenAttribute(activeEle);
     });
   }
@@ -202,6 +208,7 @@ export default class LayerManager {
     const startStayMousePosition = (p0.x === 0 && p0.y === 0);
     if (startStayMousePosition) return this.boolTriangle = false;
 
+    console.log(this.boolTriangle, "myTriangle");
     // 삼각형 안에 마우스 유무 계산 => true / false 반환 
     this.boolTriangle = (((p1.y - p0.y) * (p.x - p0.x) - (p1.x - p0.x) * (p.y - p0.y)) || ((p2.y - p1.y) * (p.x - p1.x) - (p2.x - p1.x) * (p.y - p1.y)) || ((p0.y - p2.y) * (p.x - p2.x) - (p0.x - p2.x) * (p.y - p2.y))) >= 0;
     return this.boolTriangle;
