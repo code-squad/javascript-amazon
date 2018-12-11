@@ -5,8 +5,8 @@ const setting = {
   canvasHeight: 520,
 
   // canvas root position to calculate internal coordinate
-  canvasTop: 120, // height of page header
-  canvasLeft: 190, // width of left margin
+  canvasTopOffset: 120, // height of page header
+  canvasLeftOffset: 190, // width of left margin
 
   // canvas offset for detail area to draw triangle path
   detailStartX: 190, // width of top level megaMenu nav
@@ -33,12 +33,12 @@ export default class CanvasPath {
     this.context.closePath();
   }
 
-  // Draw traingle path as rule of thumb if cursor is heading detail layer
+  // Draw traingle path as rule of thumb whether cursor is heading detail layer
   drawThresholdToDetail(cursorX, cursorY) {
     return this.drawTriangularPath({
       point1: [setting.detailStartX, setting.detailYTop],
       point2: [setting.detailStartX, setting.detailYBottom],
-      point3: [cursorX - setting.canvasLeft, cursorY - setting.canvasTop],
+      point3: [cursorX - setting.canvasLeftOffset, cursorY - setting.canvasTopOffset],
     });
   }
 
@@ -51,18 +51,11 @@ export default class CanvasPath {
     return true;
   }
 
-  canvasReset() {
-    this.clear();
-    this.canvas.classList.remove('opened');
-    this.removePathTracker(this.boundPathTracker);
-    this.boundPathTracker = null;
-    this.cursorHeadingDetail = false;
-  }
-
   pathTracker(evt) {
-    const [pointX, pointY] = [evt.pageX - setting.canvasLeft, evt.pageY - setting.canvasTop];
-    const bPointInPath = this.isPointInPath(pointX, pointY);
+    const pointX = evt.pageX - setting.canvasLeftOffset;
+    const pointY = evt.pageY - setting.canvasTopOffset;
 
+    const bPointInPath = this.isPointInPath(pointX, pointY);
     if (bPointInPath) return;
 
     this.canvasReset();
@@ -83,5 +76,13 @@ export default class CanvasPath {
 
   removePathTracker(pathTracker) {
     window.removeEventListener('mousemove', pathTracker);
+  }
+
+  canvasReset() {
+    this.clear();
+    this.canvas.classList.remove('opened');
+    this.removePathTracker(this.boundPathTracker);
+    this.boundPathTracker = null;
+    this.cursorHeadingDetail = false;
   }
 }

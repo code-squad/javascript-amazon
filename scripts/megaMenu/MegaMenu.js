@@ -11,15 +11,18 @@ export default class {
     this.menuWrapper = htmlEl.querySelector('.megaMenu__wrapper');
     this.trigger = triggerEl;
     this.cursorOnMenu = false;
-    this.cursorOnDetail = false;
     this.canvasPath = new CanvasPath(canvasEl, this.base, this.menuListItems, this.details);
     this.classSwitch = new ClassSwitch(this.base, this.menuListItems, this.details);
   }
 
+  /* =======
+  Initial listener / style assignment
+  ======= */
   setBgDimHeight() {
     const bgDim = this.base.querySelector('.megaMenu__screenDim');
     const body = document.querySelector('body');
     const totalHeight = [...body.children].reduce((acc, el) => acc + el.clientHeight, 0);
+
     bgDim.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
   }
 
@@ -31,10 +34,13 @@ export default class {
   }
 
   setDetailOpenMouseEvent() {
-    this.attachListenerOnDetail();
-    this.attachListenerOnListItems();
+    this.menuList.addEventListener('mouseover', this.openDetailOnMouseEnter.bind(this));
+    this.menuList.addEventListener('mouseout', this.closeDetailOnMouseLeave.bind(this));
   }
 
+  /* =======
+  Event handlers - Menu
+  ======= */
   openMenuOnMouseEnter() {
     this.cursorOnMenu = true;
     debounce(() => {
@@ -53,20 +59,9 @@ export default class {
     }, 10)();
   }
 
-  attachListenerOnDetail() {
-    this.details.addEventListener('mouseenter', () => {
-      this.cursorOnDetail = true;
-    });
-    this.details.addEventListener('mouseleave', () => {
-      this.cursorOnDetail = false;
-    });
-  }
-
-  attachListenerOnListItems() {
-    this.menuList.addEventListener('mouseover', this.openDetailOnMouseEnter.bind(this));
-    this.menuList.addEventListener('mouseout', this.closeDetailOnMouseLeave.bind(this));
-  }
-
+  /* =======
+  Event handlers - Detail
+  ======= */
   openDetailOnMouseEnter(evt) {
     const link = evt.toElement;
     const linkID = link.dataset.megamenuid;
@@ -114,10 +109,7 @@ export default class {
     if (toEl.dataset.megamenuid) {
       return 'anotherLink';
     }
-    if (!this.cursorOnDetail) {
-      return 'oufOfMenu';
-    }
-    return 'else';
+    return 'outOfMenu';
   }
 
   startCursorTracking(cursorX, cursorY) {
