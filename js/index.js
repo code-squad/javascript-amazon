@@ -5,11 +5,11 @@ const searchDocEle = (classEle) => { return document.querySelector(classEle); };
 const searchDocAllEle = (classEle) => { return document.querySelectorAll(classEle); };
 
 const layerManager = new LayerManager({
-  dimmedLayer: searchDocEle("#nav-dimmed-cover"),
-  titleLayer: searchDocEle(".departments-title-layer"),
-  departmentListLayer: searchDocEle(".departments-layer-list"),
-  outerLayer: searchDocEle(".outer-layer"),
-  contentLayer: searchDocAllEle(".content-layer"),
+  dimmedEle: searchDocEle("#nav-dimmed-cover"),
+  titleEle: searchDocEle(".departments-title-layer"),
+  departmentListEle: searchDocEle(".departments-layer-list"),
+  outerEle: searchDocEle(".outer-layer"),
+  contentEle: searchDocAllEle(".content-layer"),
 });
 
 const topMenu = new HiddenTopMenu({
