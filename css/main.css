@@ -1,3 +1,6 @@
+@import "megaMenu.css";
+@import "stickyNav.css";
+
 /*=============
   Global rules  
 ===============*/
@@ -21,7 +24,8 @@
   --bg-img-z-index: -999;
 
   /* section-specific : Header */
-  --header--height: 11rem;
+  --header__font-size: 1.4rem;
+  --header--height: 12rem;
   --header__logo--width: 14rem;
   --header__topBanner--width: 40rem;
   --header__search--width: calc(
@@ -44,6 +48,13 @@
 
   /* section-specific : Horizontal Banners */
   --horizontal-banner-height: 35rem;
+
+  /* section-specific : StickyNav */
+  --detailLayer__wrapper--width: 90rem;
+
+  /* section-specific : Mega Menu */
+  --megaMenu--height: 52rem;
+  --megaMenu-margin-left: 19rem;
 }
 
 .global-deco-major-btn {
@@ -67,9 +78,6 @@
   height: 90%;
   border-left: 0.1rem solid gray;
   margin: 0 0.25rem;
-}
-.global-hidden {
-  visibility: hidden;
 }
 /*Base initializers*/
 * {
@@ -120,10 +128,11 @@ main {
 .header {
   background-color: var(--color-gray-blue);
   color: white;
-  font-size: 1.4rem;
+  font-size: var(--header__font-size);
   padding-top: 2rem;
   height: var(--header--height);
   width: 100%;
+  z-index: -1;
 }
 
 .header__firstRow,
@@ -215,14 +224,19 @@ main {
   position: absolute;
   left: 0;
   padding-left: 1rem;
+  height: 100%;
 }
 .header__quickLinks .quickLink-item {
   display: inline-block;
-  margin: 0 0.5rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
   vertical-align: bottom;
 }
-.header__quickLinks > div {
-  margin-right: 0.5rem;
+.quickLink__department:hover {
+  box-shadow: 0 0 0 0.1rem #888;
+  border-radius: 0.2rem;
+  /* outline: #999 solid 0.1rem;
+  outline-offset: 0.2rem; */
 }
 .header__deliveryLocation > div {
   display: inline-block;
@@ -235,10 +249,11 @@ main {
   position: absolute;
   right: 0;
   padding-right: 1rem;
+  height: 100%;
 }
 .header__userSection > div,
 .header__userSection > a {
-  margin-right: 1rem;
+  margin: 0.5rem;
   vertical-align: bottom;
   display: inline-block;
 }
@@ -697,124 +712,4 @@ main {
 .footer__disclaimer > a,
 .footer__disclaimer > span {
   margin: 0 1rem;
-}
-
-/*=============
-  stickyNav rules  
-===============*/
-.stickyNav {
-  background-color: var(--color-gray-blue);
-  color: white;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  transform: translateZ(0);
-}
-.stickyNav__miniBar {
-  position: sticky;
-  width: 100%;
-  transition: all 500ms;
-  overflow: hidden;
-  border-bottom: 1px solid var(--color-gray-blue--lighten);
-  transform: translateZ(0);
-}
-.stickyNav__miniBar.opened {
-  height: 6rem;
-}
-.stickyNav__miniBar.closed {
-  height: 0;
-}
-.stickyNav__logoSlot {
-  position: absolute;
-  left: calc(var(--global-contents-left-padding) * 2);
-  width: 10rem;
-  height: 100%;
-  top: 0;
-}
-.stickyNav__brandLogo {
-  height: 70%;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.stickyNav__morePlanBtn {
-  position: absolute;
-  left: 33%;
-  right: 33%;
-  text-align: center;
-  bottom: 0;
-}
-.stickyNav__CTABtn {
-  position: absolute;
-  right: calc(var(--global-contents-left-padding) * 2);
-  height: 100%;
-  top: 0;
-}
-.stickyNav__CTABtn > .global-deco-major-btn {
-  position: relative;
-  width: 12rem;
-  height: 4rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.4rem;
-}
-
-.stickyNav__detailLayer {
-  position: sticky;
-  top: 0;
-  overflow: hidden;
-  background-color: white;
-  color: black;
-  width: 100%;
-  transition: all 500ms;
-  transform: translateZ(0);
-}
-.stickyNav__detailLayer.opened {
-  height: 57rem;
-}
-.stickyNav__detailLayer.closed {
-  height: 0;
-}
-.detailLayer__wrapper {
-  position: relative;
-  width: 90rem;
-  height: 100%;
-  margin: 0 auto;
-}
-.detailLayer__topRow {
-  width: 100%;
-  height: 2rem;
-}
-.detailLayer__topRightClose {
-  position: absolute;
-  right: 3rem;
-  top: 0;
-}
-.detailLayer__table {
-  width: 85rem;
-  margin: 0 auto;
-}
-.detailLayer__tableContent {
-  width: 100%;
-}
-.detailLayer__CTArow {
-  position: relative;
-  margin: 1rem auto;
-  height: 6rem;
-}
-.detailLayer__CTASlot {
-  position: absolute;
-  right: 0;
-  text-align: center;
-}
-.detailLayer__CTASlot .global-deco-major-btn {
-  width: 25rem;
-  height: 4rem;
-  font-size: 1.4rem;
-}
-.detailLayer__bottomClose {
-  bottom: 0;
-  width: 100%;
-  text-align: center;
 }

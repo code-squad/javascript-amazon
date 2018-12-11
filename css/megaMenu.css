@@ -1,0 +1,112 @@
+/*=============
+  MegaMenu rules  
+===============*/
+.megaMenu {
+  position: absolute;
+  display: none;
+  z-index: 101;
+  top: 0;
+  width: 100%;
+}
+.megaMenu.opened {
+  visibility: visible;
+  display: inherit;
+}
+.megaMenu__wrapper {
+  position: absolute;
+  font-size: var(--header__font-size);
+  margin-left: var(--megaMenu-margin-left);
+  margin-top: -0.5rem;
+  top: var(--header--height);
+  z-index: 1;
+}
+
+.megaMenu__linkBar {
+  display: inline-block;
+  background-color: white;
+  width: 20rem;
+  border: 0.1rem solid #999;
+  border-radius: 0.5rem;
+  height: var(--megaMenu--height);
+  vertical-align: top;
+  padding: 1rem 0;
+}
+.megaMenu__linkBar > li {
+  display: block;
+  height: 2.5rem;
+  width: 100%;
+  line-height: 2.5rem;
+  padding-left: 1rem;
+}
+.megaMenu__linkBar > li.opened {
+  font-weight: var(--boldest);
+  color: var(--color-bright-orange);
+}
+.megaMenu__linkBar li:nth-of-type(7),
+.megaMenu__linkBar li:nth-of-type(17) {
+  border-bottom: 0.1rem solid #e0e0e0;
+}
+.megaMenu__detail {
+  position: relative;
+  display: none;
+  height: var(--megaMenu--height);
+  width: 60rem;
+  font-size: var(--masthead__headingTxt--fontSize);
+  text-align: center;
+  vertical-align: top;
+  margin-left: -1rem;
+}
+.megaMenu__detail.opened {
+  display: inline-block;
+}
+.megaMenu__detail > li {
+  height: 100%;
+  width: 60rem;
+  position: absolute;
+  background-color: white;
+  border: 0.1rem solid #999;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  visibility: hidden;
+}
+.megaMenu__detail > .opened {
+  visibility: visible;
+}
+.megaMenu__detail .detail__wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 5rem;
+}
+.megaMenu__detail .detail__slot {
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.megaMenu__detail .detail__id {
+  font-weight: var(--boldest);
+  color: var(--color-bright-orange);
+}
+
+.megaMenu__screenDim {
+  background-color: gray;
+  width: 100%; /* Make it same with body */
+  position: absolute;
+  top: var(--header--height);
+  opacity: 0.7;
+  transform: translateZ(0);
+}
+
+.megaMenu__trackerCanvas {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 80rem;
+  height: var(--megaMenu--height);
+}
+
+.megaMenu__trackerCanvas.opened {
+  display: initial;
+  z-index: 1000;
+}
