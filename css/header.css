@@ -105,13 +105,12 @@ nav {
 
 .nav-location {
   width: 192px;
-  height: 55px;
-  padding: 10px 5px;
+  padding: 8px 5px;
 }
 
 .nav-menu-box {
   display: inline-block;
-  padding: 5px;
+  padding: 5px 15px;
   border: 1px solid transparent;
   text-decoration: none;
 }
@@ -126,10 +125,10 @@ nav {
 }
 
 .nav-menu-box .nav-menu-img {
-  width: 22px;
+  width: 19px;
   height: 25px;
   background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
-  background-position: -68px 77px;
+  background-position: -70px 77px;
 }
 
 .nav-menu-box .nav-menu-text span {
@@ -153,19 +152,27 @@ nav {
   display: inline-block;
 }
 
-.nav-departments {
+.nav-main {
+  height: 53px;
+}
+
+.nav-main .nav-departments {
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 18px;
+}
+
+.nav-main .nav-main-link {
   display: inline-block;
 }
 
-.nav-departments .nav-box {
-  margin-top: 18px;
-}
-
-.nav-links {
-  display: inline-block;
-}
-
-.nav-links a {
+.nav-main .nav-main-link a {
   color: #ccc;
+  font-size: 13px;
   text-decoration: none;
+  padding-right: 11px;
+}
+
+.nav-main .nav-main-link a:hover {
+  text-decoration: underline;
 }
