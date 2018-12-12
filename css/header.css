@@ -104,47 +104,53 @@ nav {
 /* ----- NAV LOWER -----*/
 
 .nav-location {
-  display: inline-block;
-  width: 191px;
+  width: 192px;
+  height: 55px;
+  padding: 10px 5px;
 }
 
-.nav-box,
-.nav-box div {
+.nav-menu-box {
   display: inline-block;
-}
-
-.nav-box {
-  padding: 5px 10px;
+  padding: 5px;
   border: 1px solid transparent;
+  text-decoration: none;
 }
 
-.nav-box:hover {
+.nav-menu-box:hover {
   border: 1px solid #666;
   border-radius: 3px;
 }
 
-.nav-box .location-img {
+.nav-menu-box > div {
+  display: inline-block;
+}
+
+.nav-menu-box .nav-menu-img {
   width: 22px;
   height: 25px;
   background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
   background-position: -68px 77px;
 }
 
-.nav-box .nav-text span {
+.nav-menu-box .nav-menu-text span {
   display: block;
   color: #fff;
 }
 
-.nav-box .nav-text .text1 {
+.nav-menu-box .nav-menu-text .text1 {
   font-size: 12px;
   font-weight: 400;
   line-height: 13px;
 }
 
-.nav-box .nav-text .text2 {
+.nav-menu-box .nav-menu-text .text2 {
   font-size: 14px;
   font-weight: 700;
   line-height: 15px;
+}
+
+.nav-info > div {
+  display: inline-block;
 }
 
 .nav-departments {
@@ -162,8 +168,4 @@ nav {
 .nav-links a {
   color: #ccc;
   text-decoration: none;
-}
-
-.nav-info > div {
-  display: inline-block;
 }
