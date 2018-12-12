@@ -18,10 +18,6 @@ html {
   float: right;
 }
 
-.clearfix::after {
-  display: block;
-  content: "";
-  clear: both;
-  height: 0;
-  visibility: hidden;
+.middle {
+  overflow: hidden;
 }
