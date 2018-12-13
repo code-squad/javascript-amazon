@@ -43,12 +43,13 @@ nav {
 
 .nav-search-form {
   position: relative;
-  padding: 11px 24px 0 0;
+  padding: 11px 40px 0 0;
 }
 
 .nav-search-select .nav-select-option {
   display: inline-block;
   width: 46px;
+  height: 35px;
   line-height: 35px;
   color: #666;
   background-color: #f3f3f3;
