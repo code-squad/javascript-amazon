@@ -35,7 +35,6 @@ export default class LayerManager {
   }
 
   init() {
-    // this.checkMouseInTriangle();
     this.setOpenListLayer();
     this.setCloseListLayer();
     this.searchInnerListLayer();
@@ -79,13 +78,11 @@ export default class LayerManager {
   getMoveMousePosition(mouse) {
     this.clientXY.moveMouse.x = mouse.clientX;
     this.clientXY.moveMouse.y = mouse.clientY;
-    // console.log(`${this.clientXY.mouseP.x} 실시간마우스X ${this.clientXY.mouseP.y} 실시간마우스Y`);
   }
 
   getStayMousePosition(mouse) {
     this.clientXY.stayMouse.x = mouse.clientX;
     this.clientXY.stayMouse.y = mouse.clientY;
-    console.log(`${this.clientXY.stayMouse.x} debounce 마우스 X ${this.clientXY.stayMouse.y} debounce 마우스 Y`);
   }
 
   // search Active <li> element Layer
@@ -99,7 +96,6 @@ export default class LayerManager {
   // Active <li> Child Element Display Show(=block) 
   setShowInnerListLayer(liElement) {
     liElement.addEventListener("mouseenter", (activeEle) => {
-      // console.log(this.clientXY.stayMouseP.debounceAct, "debounce 기능 작동")
       this.setShowAttText(activeEle);
 
       // deactive Element Display Show
@@ -131,15 +127,6 @@ export default class LayerManager {
 
   deactiveHiddenListLayer(liElement) {
     liElement.removeEventListener("mouseleave", (activeEle) => this.setHiddenAttribute(activeEle));
-  }
-
-  // test Method search Active <li> Element Layer
-  checkTest() {
-    const openEle = [...this.layer.contentEle].filter((e) => {
-      const activeStyle = e.lastElementChild.getAttribute("style");
-      return !!activeStyle;
-    });
-    return openEle[openEle.length - 1];
   }
 
   // Setting Display Dimmed Text 
