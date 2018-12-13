@@ -66,8 +66,8 @@ export default class LayerManager {
     // get Move Mouse Position Point(X,Y)
     this.layer.outerEle.addEventListener("mousemove", (mouse) => this.getMoveMousePosition(mouse));
 
-    // get Stay Mouse Position Point(X,Y) + debounce 200ms
-    this.layer.outerEle.addEventListener("mousemove", this.debounce(200, (mouse) => this.getStayMousePosition(mouse)));
+    // get Stay Mouse Position Point(X,Y) + debounce 300ms
+    this.layer.outerEle.addEventListener("mousemove", this.debounce(300, (mouse) => this.getStayMousePosition(mouse)));
   }
 
   getMoveMousePosition(mouse) {
@@ -79,7 +79,7 @@ export default class LayerManager {
   getStayMousePosition(mouse) {
     this.clientXY.stayMouse.x = mouse.clientX;
     this.clientXY.stayMouse.y = mouse.clientY;
-    console.log(`${this.clientXY.stayMouse.x} debounce 마우스 X ${this.clientXY.stayMouse.y} debounce 마우스 Y ${this.clientXY.stayMouse.debounceAct} 디바운스 작동`);
+    console.log(`${this.clientXY.stayMouse.x} debounce 마우스 X ${this.clientXY.stayMouse.y} debounce 마우스 Y`);
   }
 
   // search Active <li> element Layer
