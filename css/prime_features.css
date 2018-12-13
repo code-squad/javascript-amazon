@@ -75,7 +75,7 @@
   cursor: pointer;
 }
 
-#prime-features .prime-feature-slide .slide-display {
+#prime-features .video-slide .slide-display {
   width: 280px;
   height: 210px;
   background-image: url(https://www.whats-on-netflix.com/wp-content/uploads/2018/08/will-jack-ryan-be-on-netflix.jpg);
@@ -118,10 +118,30 @@
   background-size: cover;
 }
 
-#prime-features .prime-feature-video .feature-content .feature-headline {
-  width: 560px;
+#prime-features .prime-feature-readfree .feature-content .feature-headline {
+  width: 400px;
 }
 
-#prime-features .prime-feature-video .feature-content .feature-subline {
-  width: 510px;
+#prime-features .prime-feature-readfree .feature-content .feature-subline {
+  width: 450px;
+}
+
+#prime-features .music-slide .slide-display {
+  width: 220px;
+  height: 210px;
+  background-image: url(https://t1.daumcdn.net/cfile/tistory/9956E13C5B42F47201);
+  background-size: cover;
+  background-position: center;
+}
+
+#prime-features .prime-feature-movies-tv {
+  height: 350px;
+  padding: 63px 66px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeVideo_01._CB512237077_.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#prime-features .prime-feature-movies-tv .feature-content .feature-headline {
+  width: 530px;
 }
