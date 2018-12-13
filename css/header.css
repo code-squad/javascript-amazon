@@ -105,12 +105,12 @@ nav {
 
 .nav-location {
   width: 192px;
-  padding: 8px 5px;
+  padding: 8px 5px 0;
 }
 
 .nav-menu-box {
   display: inline-block;
-  padding: 5px 15px;
+  padding: 5px 10px;
   border: 1px solid transparent;
   text-decoration: none;
 }
@@ -124,7 +124,7 @@ nav {
   display: inline-block;
 }
 
-.nav-menu-box .nav-menu-img {
+.nav-menu-box .nav-location-img {
   width: 19px;
   height: 25px;
   background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
@@ -148,12 +148,31 @@ nav {
   line-height: 15px;
 }
 
-.nav-info > div {
+.nav-info {
+  padding: 3px 5px;
+}
+
+.nav-info .nav-menu-box {
   display: inline-block;
 }
 
+.nav-info .globe-img {
+  width: 17px;
+  height: 17px;
+  background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/InternationalCustomerPreferencesNavAssets-icp_sprite-7d1bfde38eb13748605e178896ede63a4aa68e0c._V2_.png);
+  background-position: -76px -24px;
+}
+
+.nav-info .nav-cart .cart-img {
+  display: inline-block;
+  width: 40px;
+  height: 30px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-position: -9px -338px;
+}
+
 .nav-main {
-  height: 53px;
+  height: 52px;
 }
 
 .nav-main .nav-departments {
@@ -164,6 +183,7 @@ nav {
 
 .nav-main .nav-main-link {
   display: inline-block;
+  margin-bottom: 20px;
 }
 
 .nav-main .nav-main-link a {
