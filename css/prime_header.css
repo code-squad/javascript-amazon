@@ -50,12 +50,6 @@
   color: #fff;
 }
 
-#prime-header .prime-header-content .plans a .plans-arrow {
-  display: inline-block;
-  border: 5px solid transparent;
-  border-left-color: #fff;
-}
-
 #prime-header .prime-header-content .prime-logo {
   width: 90px;
   margin-top: 40px;

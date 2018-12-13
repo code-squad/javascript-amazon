@@ -35,3 +35,9 @@ main {
   min-width: 1000px;
   max-width: 1400px;
 }
+
+.left-arrow {
+  display: inline-block;
+  border: 5px solid transparent;
+  border-left-color: #002f36;
+}
