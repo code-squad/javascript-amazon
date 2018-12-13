@@ -1,3 +1,9 @@
+// 버그 수정 사항
+/*
+  1. 중간 상품영역 대각선 이동시 삼각형 알고리즘 on상태에 해당 상하상품 영역 hover기능 작동 X 버그 
+  2. 서브메뉴 영역(inner-layer) hover 이후 완전히 나갈시(department 탐색 중단의 경우) 서브메뉴 block off 초기화 필요 
+*/
+
 export default class LayerManager {
   constructor(layer) {
     this.layer = {
