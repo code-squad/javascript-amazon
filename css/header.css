@@ -4,8 +4,10 @@ header {
   top: 0;
   left: 0;
   font-family: Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1em;
+}
+
+.fa-caret-down {
+  cursor: pointer;
 }
 
 .nav-main {
@@ -38,7 +40,7 @@ header {
 
 /* header 상단 */
 .nav-top {
-  height: 39px;
+  height: 47px;
 }
 
 /* header icon */
@@ -59,7 +61,7 @@ header {
 
 .nav-prime-link {
   position: absolute;
-  font-size: 12px;
+  font-size: 1rem;
   top: 34px;
   left: 93px;
   color: #48a3c6;
@@ -127,7 +129,6 @@ header {
   display: block;
   height: 100%;
   width: 100%;
-  font-size: 14px;
   padding: 0;
   margin: 0;
   cursor: pointer;
@@ -143,7 +144,7 @@ header {
 
 .fa-search {
   position: absolute;
-  font-size: 25px;
+  font-size: 1.7rem;
   top: 5px;
   left: 10px;
 }
@@ -170,8 +171,7 @@ header {
 .nav-bottom {
   min-width: 1400px;
   width: 100%;
-  height: 60px;
-  padding-top: 5px;
+  height: 53px;
   position: relative;
 }
 
@@ -186,14 +186,13 @@ header {
 .nav-location-title {
   display: inline-block;
   color: #fff;
-  margin-top: 9px;
-  margin-left: 35px;
+  margin: 5px 0 4px 35px;
 }
 
 .fa-map-marker-alt {
   position: absolute;
   display: inline-block;
-  font-size: 20px;
+  font-size: 1.3rem;
   clear: both;
   left: 13px;
   top: 23px;
@@ -201,7 +200,7 @@ header {
 
 .nav-location-title-line_1 {
   display: inline-block;
-  font-size: 12px;
+  font-size: 0.8rem;
   line-height: 14px;
   height: 14px;
   font-weight: 400;
@@ -215,7 +214,7 @@ header {
 
 .nav-location-title-line_2 {
   display: inline-block;
-  font-size: 14px;
+  font-size: 0.9rem;
   line-height: 15px;
   font-weight: 700;
   padding-bottom: 4px;
@@ -237,40 +236,22 @@ header {
 }
 
 .nav-shop {
-  margin-top: 2px;
-  margin: 25px 5px 0 0;
-  width: auto;
-  padding: 6px 0 0 0;
+  margin-top: 20px;
+  width: 135px;
+  height: 35px;
   float: left;
 }
 
-.departments-list {
-  text-decoration: none;
-  padding: 0 15px 0 15px;
-  height: 26px;
-  margin-top: 16px;
-  clear: both;
-}
-
-.departments-title {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  line-height: 15px;
-  font-weight: 700;
-  padding-bottom: 5px;
-  text-decoration: none;
-  color: #fff;
-}
 
 .fa-caret-down {
   color: #a7acb2;
+  font-size: 0.875rem;
 }
 
 .nav-container {
   width: 1050px;
-  padding: 2px 0 0 0;
-  margin: 32px 0 0;
-  height: 37px;
+  margin: 28px 0 0;
+  height: 28px;
   float: left;
 }
 
@@ -280,16 +261,53 @@ header {
   padding: 0 9px;
   margin-bottom: 25px;
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 0.8125rem;
   cursor: pointer;
 }
 
+/* -------------------------------- 
+departments Layer 
+-------------------------------- */
+.departments-title-layer {
+  text-decoration: none;
+  padding: 8px 0 0 20px;
+  width: 100%;
+  height: 100%;
+  clear: both;
+  cursor: pointer;
+}
+
+.departments-title {
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* --------------------------------
+background dimmed
+-------------------------------- */
+
+#nav-dimmed-cover {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  z-index: 3;
+  background-color: #000;
+  background-size: cover;
+  width: 100%;
+  height: 0;
+  transition: all 0.3s;
+}
+
+
 /* 하단 우측 */
 .nav-bottom-right {
-  display: inline-block;
   width: 500px;
-  height: 55px;
-  padding: 0 20px 5px 0;
+  height: 53px;
+  padding: 0 20px 3px 0;
   float: right;
 }
 
@@ -298,7 +316,7 @@ header {
   padding: 20px 0 0 32px;
   color: #fff;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1em;
   float: right;
 }
@@ -306,7 +324,7 @@ header {
 .bottom-right-font-lg {
   display: inline-block;
   color: #fff;
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 15px;
   font-weight: 700;
   padding-bottom: 4px;
@@ -317,14 +335,14 @@ header {
 .bottom-right-font-sm {
   display: inline-block;
   color: #ccc;
-  font-size: 12px;
+  font-size: 0.75rem;
   line-height: 1em;
   white-space: nowrap;
   font-family: Arial, sans-serif;
 }
 
 .nav-link-language {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .nav-link-border {
@@ -340,4 +358,8 @@ header {
 .nav-single-row-link {
   height: 26px;
   margin-top: 12px;
+}
+
+.nav-link-icon {
+  padding-right: 2px;
 }

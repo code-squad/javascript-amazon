@@ -4,7 +4,11 @@ export default class HiddenTopMenu {
   }
 
   init() {
-    const yAxisOperatePoint = { displayVal: 300, showTopMenuVal: 400, hiddenTopMenuVal: 400 };
+    const yAxisOperatePoint = {
+      displayVal: 300,
+      showTopMenuVal: 400,
+      hiddenTopMenuVal: 400
+    };
     this.scrollMenuHandler(yAxisOperatePoint.displayVal, yAxisOperatePoint.showTopMenuVal, yAxisOperatePoint.hiddenTopMenuVal);
     this.clickOpenMenuHandler();
     this.clickCloseMenuHandler();
@@ -16,10 +20,11 @@ export default class HiddenTopMenu {
       const b_Display = yPos > displayVal;
       const b_ShowMenu = yPos > showVal;
       const b_HiddenMenu = yPos < hiddenVal;
+      const hiddenAllEle = this.ele.hiddenAllContentsEle;
 
-      this.ele.hiddenAllContentsEle.classList.toggle("trans-display-block", b_Display);
-      this.ele.hiddenAllContentsEle.classList.toggle("trans-hidden-outerContents", b_HiddenMenu);
-      this.ele.hiddenAllContentsEle.classList.toggle("trans-show-outerContents", b_ShowMenu);
+      hiddenAllEle.classList.toggle("trans-display-block", b_Display);
+      hiddenAllEle.classList.toggle("trans-hidden-outerContents", b_HiddenMenu);
+      hiddenAllEle.classList.toggle("trans-show-outerContents", b_ShowMenu);
     });
   }
 
