@@ -152,15 +152,15 @@
   background-position: center;
 }
 
-#prime-carousel .carousel-play .play-display .feature-content {
+#prime-carousel .carousel-play .play-display .play-card-content {
   margin-left: 50%;
 }
 
 #prime-carousel
   .carousel-play
   .play-display
-  .feature-content
-  .feature-cate-text {
+  .play-card-content
+  .play-card-cate-text {
   display: inline-block;
   background-image: linear-gradient(
     30deg,
@@ -176,17 +176,25 @@
 #prime-carousel
   .carousel-play
   .play-display
-  .feature-content
-  .feature-headline {
+  .play-card-content
+  .play-card-headline {
   font-size: 26px;
   font-weight: 100;
   margin-bottom: 15px;
 }
-#prime-carousel .carousel-play .play-display .feature-content .feature-subline {
+#prime-carousel
+  .carousel-play
+  .play-display
+  .play-card-content
+  .play-card-subline {
   width: 400px;
   margin-bottom: 15px;
 }
-#prime-carousel .carousel-play .play-display .feature-content .feature-link {
+#prime-carousel
+  .carousel-play
+  .play-display
+  .play-card-content
+  .play-card-link {
   font-weight: 600;
   text-decoration: none;
   color: #002f36;

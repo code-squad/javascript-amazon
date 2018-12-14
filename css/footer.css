@@ -1,0 +1,12 @@
+footer {
+}
+footer .back-to-top {
+  display: block;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  background-color: #37475a;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+}
