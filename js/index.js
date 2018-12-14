@@ -12,7 +12,7 @@ const topMenu = new HiddenTopMenu({
   transHiddenOuterEle: document.querySelector(".trans-hidden-outerContents"),
 });
 
-const carousel = new CarouselMenu();
+// const carousel = new CarouselMenu();
 
 topMenu.init();
-carousel.init();
+// carousel.init();
