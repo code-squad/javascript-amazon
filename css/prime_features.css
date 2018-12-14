@@ -1,9 +1,9 @@
-#prime-features .feature-container {
-  margin-top: 70px;
+#prime-features * {
+  color: #002f36;
 }
 
-.feature-content * {
-  color: #002f36;
+#prime-features .feature-container {
+  margin-top: 70px;
 }
 
 #prime-features .feature-container .feature-content .feature-headline {
@@ -24,8 +24,8 @@
 }
 
 #prime-features .prime-features-start {
-  color: #002f36;
   font-size: 26px;
+  font-weight: 100;
   margin: 30px 72px 10px;
   letter-spacing: 1px;
 }
@@ -144,4 +144,27 @@
 
 #prime-features .prime-feature-movies-tv .feature-content .feature-headline {
   width: 530px;
+}
+
+#prime-features .prime-selling {
+  height: 435px;
+  padding: 63px 66px;
+  margin-top: 30px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/FinalCTA_01._CB515489489_.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#prime-features .prime-selling .selling-content {
+  width: 360px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#prime-features .prime-selling .selling-content .selling-headline {
+  margin-bottom: 30px;
+}
+
+#prime-features .prime-selling .selling-content .selling-link {
+  margin-top: 30px;
 }

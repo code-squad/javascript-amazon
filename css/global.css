@@ -1,4 +1,4 @@
-/* ----- GLOBAL -----*/
+/* --- GLOBAL ---*/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -40,4 +40,33 @@ main {
   display: inline-block;
   border: 5px solid transparent;
   border-left-color: #002f36;
+}
+
+/* --- PRIME PUTTON --- */
+.btn-container {
+  position: relative;
+}
+
+.btn-prime-text {
+  display: inline-block;
+  width: 360px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #284d40;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #ffa724;
+  border: 1px solid #ff6138;
+}
+
+.btn-prime {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 50px;
+  opacity: 0;
+  cursor: pointer;
 }

@@ -19,33 +19,6 @@
   margin-bottom: 30px;
 }
 
-#prime-header .prime-header-content form {
-  position: relative;
-}
-
-#prime-header .prime-header-content .btn-prime-text {
-  display: inline-block;
-  width: 360px;
-  height: 55px;
-  line-height: 55px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #284d40;
-  text-align: center;
-  text-transform: uppercase;
-  background-color: #ffa724;
-  border: 1px solid #ff6138;
-}
-
-#prime-header .prime-header-content .btn-prime {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 360px;
-  height: 50px;
-  opacity: 0;
-}
-
 #prime-header .prime-header-content .plans a {
   color: #fff;
 }
