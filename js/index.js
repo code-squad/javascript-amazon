@@ -1,4 +1,5 @@
 import HiddenTopMenu from "./hiddenTopMenu.js";
+import CarouselMenu from "./carousel.js";
 
 const topMenu = new HiddenTopMenu({
   closeButtonEle: document.querySelector(".close-button"),
@@ -11,4 +12,7 @@ const topMenu = new HiddenTopMenu({
   transHiddenOuterEle: document.querySelector(".trans-hidden-outerContents"),
 });
 
+const carousel = new CarouselMenu();
+
 topMenu.init();
+carousel.init();
