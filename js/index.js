@@ -1,9 +1,7 @@
 import HiddenTopMenu from "./hiddenTopMenu.js";
 import LayerManager from "./layerManager.js";
 import CarouselMenu from "./carousel.js";
-
-const $ = (classEle) => { return document.querySelector(classEle); };
-const $All = (classEle) => { return document.querySelectorAll(classEle); };
+import { $, $All } from "./docSelector.js";
 
 const layerManager = new LayerManager({
   dimmedEle: $("#nav-dimmed-cover"),
@@ -29,4 +27,3 @@ const carousel = new CarouselMenu();
 layerManager.init();
 topMenu.init();
 carousel.init();
-
