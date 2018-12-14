@@ -1,5 +1,6 @@
 import HiddenTopMenu from "./hiddenTopMenu.js";
 import LayerManager from "./layerManager.js";
+import CarouselMenu from "./carousel.js";
 
 const searchDocEle = (classEle) => { return document.querySelector(classEle); };
 const searchDocAllEle = (classEle) => { return document.querySelectorAll(classEle); };
@@ -23,5 +24,9 @@ const topMenu = new HiddenTopMenu({
   transHiddenOuterEle: searchDocEle(".trans-hidden-outerContents")
 });
 
+const carousel = new CarouselMenu();
+
 layerManager.init();
 topMenu.init();
+carousel.init();
+
