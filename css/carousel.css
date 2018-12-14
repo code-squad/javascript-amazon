@@ -1,0 +1,134 @@
+/* Prime-static-benefits Carousel Card */
+.benefit-1 {
+  margin: 15px 0 30px 0;
+  padding: 30px 70px 48px 70px;
+  height: 310px;
+}
+
+/* Carousel Card > benefit-content */
+.scroller-container {
+  width: 680px;
+  height: 100%;
+  display: inline-block;
+  float: left;
+}
+
+#video-scroller {
+  height: 100%;
+  width: 360px;
+  margin: 0 auto 0 auto;
+}
+
+
+.a-carousel-row-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+}
+
+.a-carousel-left-button {
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: inline-block;
+}
+
+.a-carousel-center {
+  height: 100%;
+  width: 280px;
+  overflow: visible;
+  position: relative;
+  z-index: 3;
+  margin: 0 40px;
+}
+
+.a-carousel-viewport {
+  height: 100%;
+}
+
+.a-carousel {
+  height: 100%;
+}
+
+.a-carousel-list-card,
+.a-link-category>* {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.a-carousel-right-button {
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: inline-block;
+}
+
+.a-carousel-goto-prevpage {
+  width: 13px;
+  height: 20px;
+  margin: 0 20px 0 0;
+  position: relative;
+  top: 50%;
+  color: #002F36;
+}
+
+.a-carousel-goto-nextpage {
+  width: 13px;
+  height: 20px;
+  margin: 0 0 0 20px;
+  position: relative;
+  top: 50%;
+  color: #002F36;
+}
+
+.a-icon {
+  background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIBaseCSS-sprite_1x-6c462f5…._V2_.png);
+  -webkit-background-size: 400px 900px;
+  background-size: 400px 900px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Carousel Card > benefit-content */
+.benefit-content {
+  width: 580px;
+  height: 100%;
+  display: inline-block;
+  float: right;
+}
+
+.a-link-nomal {
+  text-decoration: none;
+  color: #002F36;
+}
+
+.benefit-header {
+  width: 100%;
+  font-size: 44px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  line-height: 48px;
+  padding: 0;
+  color: #002F36;
+  font-family: 'Amazon Ember', Tahoma, Arial, sans-serif;
+}
+
+.benefit-blurb {
+  width: 500px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 25px;
+  margin-bottom: 20px;
+}
+
+.benefit-cta {
+  font-size: 18px;
+}
