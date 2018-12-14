@@ -100,7 +100,7 @@ export default class LayerManager {
 
       // deactive Element Display Show
       if (this.checkSlope(this.clientXY.stayMouse, this.clientXY.moveMouse)) {
-        if (this.checkMouseInTriangle) return this.deactiveShowListLayer(liElement);
+        if (this.checkMouseInTriangle) return activeEle.preventDefault();
         else this.resetStayMousePosition;
       }
       else this.setShowAttribute(activeEle);
@@ -114,19 +114,11 @@ export default class LayerManager {
 
       // deactive Element Display Hidden
       if (this.checkSlope(this.clientXY.stayMouse, this.clientXY.moveMouse)) {
-        if (this.checkMouseInTriangle) return this.deactiveHiddenListLayer(liElement);
+        if (this.checkMouseInTriangle) return activeEle.preventDefault();
         else this.resetStayMousePosition;
       }
       else this.setHiddenAttribute(activeEle);
     });
-  }
-
-  deactiveShowListLayer(liElement) {
-    liElement.removeEventListener("mouseenter", (activeEle) => this.setShowAttribute(activeEle));
-  }
-
-  deactiveHiddenListLayer(liElement) {
-    liElement.removeEventListener("mouseleave", (activeEle) => this.setHiddenAttribute(activeEle));
   }
 
   // Setting Display Dimmed Text 
