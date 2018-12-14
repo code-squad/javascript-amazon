@@ -36,6 +36,7 @@
   margin-top: 0;
   background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeDelivery_01._CB513143338_.png);
   background-repeat: no-repeat;
+  background-position: top center;
   background-size: cover;
 }
 
@@ -107,6 +108,7 @@
   padding: 63px 66px;
   background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeDelivery_01._CB513143338_.png);
   background-repeat: no-repeat;
+  background-position: top center;
   background-size: cover;
 }
 
@@ -115,6 +117,7 @@
   padding: 45px 66px;
   background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeReading_01._CB513286005_.png);
   background-repeat: no-repeat;
+  background-position: top center;
   background-size: cover;
 }
 
