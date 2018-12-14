@@ -128,9 +128,11 @@
 }
 
 #prime-carousel .carousel-play {
+  width: 1112px;
+  margin: 40px auto 0;
 }
 
-#prime-carousel .carousel-play div {
+#prime-carousel .carousel-play > div {
   display: inline-block;
   vertical-align: middle;
 }
@@ -145,10 +147,50 @@
 
 #prime-carousel .carousel-play .play-display {
   width: 1000px;
-  height: 400px;
+  height: 350px;
   background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A01._CB514650866_.jpg);
+  background-position: center;
 }
 
+#prime-carousel .carousel-play .play-display .feature-content {
+  margin-left: 50%;
+}
+
+#prime-carousel
+  .carousel-play
+  .play-display
+  .feature-content
+  .feature-cate-text {
+  display: inline-block;
+  background-image: linear-gradient(
+    30deg,
+    #2c88ae 40%,
+    #00a8e1 85%,
+    #00a8e1 74px
+  );
+  text-transform: uppercase;
+  color: #fff;
+  padding: 7px;
+  margin-bottom: 15px;
+}
+#prime-carousel
+  .carousel-play
+  .play-display
+  .feature-content
+  .feature-headline {
+  font-size: 26px;
+  font-weight: 100;
+  margin-bottom: 15px;
+}
+#prime-carousel .carousel-play .play-display .feature-content .feature-subline {
+  width: 400px;
+  margin-bottom: 15px;
+}
+#prime-carousel .carousel-play .play-display .feature-content .feature-link {
+  font-weight: 600;
+  text-decoration: none;
+  color: #002f36;
+}
 #prime-carousel .carousel-play .play-right-arrow {
   width: 50px;
   height: 50px;
