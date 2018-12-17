@@ -1,5 +1,6 @@
 import StickyNav from './stickyNav/StickyNav.js';
 import MegaMenu from './megaMenu/MegaMenu.js';
+// import MiniCarousel from './miniCarousel/MiniCarousel.js';
 
 const stickyPlansLayer = new StickyNav({
   htmlEl: document.querySelector('.stickyNav'),
