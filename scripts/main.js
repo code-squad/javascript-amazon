@@ -1,6 +1,6 @@
 import StickyNav from './stickyNav/StickyNav.js';
 import MegaMenu from './megaMenu/MegaMenu.js';
-// import MiniCarousel from './miniCarousel/MiniCarousel.js';
+import MiniCarousel from './miniCarousel/MiniCarousel.js';
 
 const stickyPlansLayer = new StickyNav({
   htmlEl: document.querySelector('.stickyNav'),
@@ -13,12 +13,15 @@ const megaMenu = new MegaMenu({
   triggerEl: document.querySelector('.megaMenu__trigger'),
   canvasEl: document.querySelector('.megaMenu__trackerCanvas'),
 });
+const miniCarousel = new MiniCarousel();
 
 window.addEventListener('DOMContentLoaded', () => {
   stickyPlansLayer.displayDetailOnClick();
   stickyPlansLayer.closeDetailOnClick();
   megaMenu.setMenuOpenMouseEvent();
   megaMenu.setDetailOpenMouseEvent();
+  miniCarousel.fetchPrimeMusicCarousel();
+  miniCarousel.fetchPrimeOriginalCarousel();
 });
 window.addEventListener('load', () => {
   stickyPlansLayer.setMainHeight(); // Extend body height to make position:sticky work properly
