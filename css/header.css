@@ -1,0 +1,199 @@
+/* ----- HEADER -----*/
+/* ----- NAV TOP -----*/
+nav {
+  background-color: #232f3e;
+  min-width: 1000px;
+}
+
+.nav-logo-box {
+  position: relative;
+  width: 192px;
+  padding: 11px 0 0 26px;
+}
+
+.nav-logo-box .nav-logo {
+  display: inline-block;
+  width: 100px;
+  height: 33px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-position: -9px -49px;
+}
+
+.nav-logo-box .nav-logo-prime {
+  position: absolute;
+  top: 31px;
+  left: 93px;
+  color: #48a3c6;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.nav-promotion {
+  padding: 9px 0 0;
+}
+
+.nav-promotion .nav-promotion-link {
+  display: inline-block;
+  width: 400px;
+  height: 39px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/img18/events/12dod/12DOD_DesktopSWM_400x39_Shop12._CB479370442_.jpg);
+  background-repeat: no-repeat;
+}
+
+.nav-search-form {
+  position: relative;
+  padding: 11px 25px 0 0;
+}
+
+.nav-search-select .nav-select-option {
+  display: inline-block;
+  width: 46px;
+  height: 35px;
+  line-height: 35px;
+  color: #666;
+  background-color: #f3f3f3;
+  text-align: center;
+  font-size: 12px;
+  border-right: 1px solid #cdcdcd;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.nav-search-select select {
+  position: absolute;
+  top: 11px;
+  height: 35px;
+  opacity: 0;
+}
+
+.nav-search-submit {
+  position: relative;
+}
+
+.nav-search-submit .nav-btn-image {
+  display: inline-block;
+  width: 45px;
+  height: 35px;
+  background-color: #febd69;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-position: 2px -283px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.nav-search-submit .nav-btn-submit {
+  position: absolute;
+  top: 0;
+  width: 46px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.nav-search-input {
+  position: relative;
+}
+
+.nav-search-input .nav-input-bar {
+  width: 100%;
+  height: 35px;
+  border: none;
+}
+
+/* ----- NAV LOWER -----*/
+
+.nav-location {
+  width: 192px;
+  padding: 8px 5px 0;
+}
+
+.nav-menu-box {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.nav-menu-box:hover {
+  border: 1px solid #666;
+  border-radius: 3px;
+}
+
+.nav-menu-box > div {
+  display: inline-block;
+}
+
+.nav-menu-box .nav-location-img {
+  width: 19px;
+  height: 25px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-position: -70px 77px;
+}
+
+.nav-menu-box .nav-menu-text span {
+  display: block;
+  color: #fff;
+}
+
+.nav-menu-box .nav-menu-text .text1 {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 13px;
+}
+
+.nav-menu-box .nav-menu-text .text2 {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 15px;
+}
+
+.nav-info {
+  padding: 3px 5px;
+}
+
+.nav-info .nav-menu-box {
+  display: inline-block;
+}
+
+.nav-info .globe-img {
+  width: 17px;
+  height: 17px;
+  background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/InternationalCustomerPreferencesNavAssets-icp_sprite-7d1bfde38eb13748605e178896ede63a4aa68e0c._V2_.png);
+  background-position: -76px -24px;
+}
+
+.nav-info .nav-cart .cart-img {
+  display: inline-block;
+  width: 40px;
+  height: 30px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-position: -9px -338px;
+}
+
+.nav-main {
+  height: 52px;
+}
+
+.nav-main .nav-departments {
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 18px;
+}
+
+.nav-main .nav-main-link {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.nav-main .nav-main-link a {
+  color: #ccc;
+  font-size: 13px;
+  text-decoration: none;
+  padding-right: 11px;
+}
+
+.nav-main .nav-main-link a:hover {
+  text-decoration: underline;
+}

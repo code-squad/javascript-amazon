@@ -1,0 +1,173 @@
+#prime-features * {
+  color: #002f36;
+}
+
+#prime-features .feature-container {
+  margin-top: 70px;
+}
+
+#prime-features .feature-container .feature-content .feature-headline {
+  font-size: 45px;
+  font-weight: 100;
+  width: 450px;
+  margin-bottom: 15px;
+}
+
+#prime-features .feature-container .feature-content .feature-subline {
+  width: 400px;
+  margin-bottom: 15px;
+}
+
+#prime-features .feature-container .feature-content .feature-link {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#prime-features .prime-features-start {
+  font-size: 26px;
+  font-weight: 100;
+  margin: 30px 72px 10px;
+  letter-spacing: 1px;
+}
+
+#prime-features .prime-feature-delivery {
+  height: 350px;
+  padding: 63px 66px;
+  margin-top: 0;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeDelivery_01._CB513143338_.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+#prime-features .prime-feature-delivery .feature-content * {
+  color: #fff;
+}
+
+#prime-features .prime-feature-video,
+#prime-features .prime-feature-music {
+  overflow: hidden;
+}
+
+#prime-features .prime-feature-video > div,
+#prime-features .prime-feature-music > div {
+  width: 50%;
+  float: left;
+}
+
+#prime-features .prime-feature-slide {
+  text-align: right;
+  padding-right: 100px;
+}
+
+#prime-features .prime-feature-slide div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#prime-features .prime-feature-slide .slide-left-arrow {
+  width: 15px;
+  height: 20px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+  background-size: 200px auto;
+  background-repeat: no-repeat;
+  background-position: -101px -266px;
+  margin-right: 17px;
+  cursor: pointer;
+}
+
+#prime-features .video-slide .slide-display {
+  width: 280px;
+  height: 210px;
+  background-image: url(https://www.whats-on-netflix.com/wp-content/uploads/2018/08/will-jack-ryan-be-on-netflix.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+#prime-features .prime-feature-slide .slide-right-arrow {
+  width: 15px;
+  height: 20px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+  background-size: 200px auto;
+  background-repeat: no-repeat;
+  background-position: -118px -266px;
+  margin-left: 17px;
+  cursor: pointer;
+}
+
+#prime-features .prime-feature-video .feature-content .feature-headline {
+  width: 560px;
+}
+
+#prime-features .prime-feature-video .feature-content .feature-subline {
+  width: 510px;
+}
+
+#prime-features .prime-feature-delivery {
+  height: 350px;
+  padding: 63px 66px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeDelivery_01._CB513143338_.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+#prime-features .prime-feature-readfree {
+  height: 350px;
+  padding: 45px 66px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeReading_01._CB513286005_.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+#prime-features .prime-feature-readfree .feature-content .feature-headline {
+  width: 400px;
+}
+
+#prime-features .prime-feature-readfree .feature-content .feature-subline {
+  width: 450px;
+}
+
+#prime-features .music-slide .slide-display {
+  width: 220px;
+  height: 210px;
+  background-image: url(https://t1.daumcdn.net/cfile/tistory/9956E13C5B42F47201);
+  background-size: cover;
+  background-position: center;
+}
+
+#prime-features .prime-feature-movies-tv {
+  height: 350px;
+  padding: 63px 66px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeVideo_01._CB512237077_.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#prime-features .prime-feature-movies-tv .feature-content .feature-headline {
+  width: 530px;
+}
+
+#prime-features .prime-selling {
+  height: 435px;
+  padding: 63px 66px;
+  margin-top: 30px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/FinalCTA_01._CB515489489_.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#prime-features .prime-selling .selling-content {
+  width: 360px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#prime-features .prime-selling .selling-content .selling-headline {
+  margin-bottom: 30px;
+}
+
+#prime-features .prime-selling .selling-content .selling-link {
+  margin-top: 30px;
+}

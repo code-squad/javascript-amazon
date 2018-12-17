@@ -4,398 +4,386 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Amazon.com: Amazon Prime</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/prime_header.css" />
+    <link rel="stylesheet" href="./css/prime_carousel.css">
+    <link rel="stylesheet" href="./css/prime_features.css" />
+    <link rel="stylesheet" href="./css/footer.css">
     <!-- Favicon Input -->
   </head>
   <body>
-    <!-- this is for BackToTop featrue -->
     <a name="top"></a>
 
-    <!-- Header -->
     <header>
-      <a href="#" class="nav-link">
-        Display: block, Input background-image, Set background-size, width,
-        height
-      </a>
-
-      <!-- Nav Bar(Top) -->
       <nav>
-        <div id="nav-top">
-          <!-- 1. Logo with Text -->
-          <div class="nav-logo-box nav-left">
-            <a href="#" class="nav-logo">amazon</a>
-            <a href="#" class="logo-prime-text">try prime</a>
+        <div class="nav-top clearfix">
+          <div class="nav-logo-box left">
+            <a href="https://www.amazon.com/ref=nav_logo" class="nav-logo"></a>
+            <a href="#" class="nav-logo-prime">try prime</a>
           </div>
 
-          <!-- 2. Search -->
-          <div class="nav-search nav-left">
+          <div class="nav-promotion right">
+            <a href="#" class="nav-promotion-link"></a>
+          </div>
+
+          <div class="nav-search-form middle">
             <form action="#" method="GET">
-              <select name="departments" id="drop-down-lists">
-                <option value="all" disable selected hidden>All</option>
-                <option value="all">All Departments</option>
-                <option value="alexaSkills">Alexa Skills</option>
-                <option value="amazonDevices">Amazon Devices</option>
-                <option value="amazonWarehouse">Amazon Warehouse</option>
-                <option value="appliances">Appliances</option>
-                <option value="appsGames">Apps & Games</option>
-                <option value="artsCraftsSewing">Arts, Crafts & Sewing</option>
-                <option value="automotivePartsAccessories">
-                  Automotive Parts & Accessories
-                </option>
-                <option value="baby">Baby</option>
-                <option value="beautyPersonalCare">
-                  Beauty & Personal Care
-                </option>
-                <option value="books">Books</option>
-                <option value="cdsVinyl">Cds & Vinyl</option>
-                <option value="cellPhonesAccessories">
-                  Cell Phones & Accessories
-                </option>
-                <option value="clothingShoesJewelry">
-                  Clothing, Shoes & Jewelry
-                </option>
-                <option value="women">&nbsp;&nbsp;&nbsp;Women</option>
-                <option value="men">&nbsp;&nbsp;&nbsp;Men</option>
-                <option value="girls">&nbsp;&nbsp;&nbsp;Girls</option>
-                <option value="boys">&nbsp;&nbsp;&nbsp;Boys</option>
-                <option value="baby">&nbsp;&nbsp;&nbsp;Baby</option>
-                <option value="collectiblesFineArt">
-                  Collectibles & Fine art
-                </option>
-                <option value="computers">Computers</option>
-                <option value="courses">Courses</option>
-                <option value="creditPaymentCards">
-                  Credit and Payment Cards
-                </option>
-                <option value="digitalMusic">Digital Music</option>
-                <option value="electronics">Electronics</option>
-                <option value="gardenOutdoor">Garden & Outdoor</option>
-                <option value="giftCards">Gift Cards</option>
-                <option value="groceryGourmetFood"
+              <div class='nav-search-select left'>
+                <span class="nav-select-option">All</span>
+                <select name="departments">
+                  <option value="all">All Departments</option>
+                  <option value="alexaSkills">Alexa Skills</option>
+                  <option value="amazonDevices">Amazon Devices</option>
+                  <option value="amazonWarehouse">Amazon Warehouse</option>
+                  <option value="appliances">Appliances</option>
+                  <option value="appsGames">Apps & Games</option>
+                  <option value="artsCraftsSewing">Arts, Crafts & Sewing</option>
+                  <option value="automotivePartsAccessories">
+                    Automotive Parts & Accessories
+                  </option>
+                  <option value="baby">Baby</option>
+                  <option value="beautyPersonalCare">
+                    Beauty & Personal Care
+                  </option>
+                  <option value="books">Books</option>
+                  <option value="cdsVinyl">Cds & Vinyl</option>
+                  <option value="cellPhonesAccessories">
+                    Cell Phones & Accessories
+                  </option>
+                  <option value="clothingShoesJewelry">
+                    Clothing, Shoes & Jewelry
+                  </option>
+                  <option value="women">&nbsp;&nbsp;&nbsp;Women</option>
+                  <option value="men">&nbsp;&nbsp;&nbsp;Men</option>
+                  <option value="girls">&nbsp;&nbsp;&nbsp;Girls</option>
+                  <option value="boys">&nbsp;&nbsp;&nbsp;Boys</option>
+                  <option value="baby">&nbsp;&nbsp;&nbsp;Baby</option>
+                  <option value="collectiblesFineArt">
+                    Collectibles & Fine art
+                  </option>
+                  <option value="computers">Computers</option>
+                  <option value="courses">Courses</option>
+                  <option value="creditPaymentCards">
+                    Credit and Payment Cards
+                  </option>
+                  <option value="digitalMusic">Digital Music</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="gardenOutdoor">Garden & Outdoor</option>
+                  <option value="giftCards">Gift Cards</option>
+                  <option value="groceryGourmetFood"
                   >Grocery & Gourmet Food</option
-                >
-                <option value="handmade">Handmade</option>
-                <option value="healthHouseholdBabyCare">
-                  Health, Household & Baby Care
-                </option>
-                <option value="homeBusinessServices">
-                  Home & Business Services
-                </option>
-                <option value="homeKitchen">Home & Kitchen</option>
-                <option value="industrialScientific">
-                  Industrial & Scientific
-                </option>
-                <option value="kindleStore">Kindle Store</option>
-                <option value="luggageTravelGear">Luggage & Travel Gear</option>
-                <option value="luxuryBeauty">Luxury Beauty</option>
-                <option value="magazineSubscriptions">
-                  Magazine Subscriptions
-                </option>
-                <option value="moviesTv">Movies & TV</option>
-                <option value="musicalInstruments">Musical Instruments</option>
-                <option value="officeProducts">Office Products</option>
-                <option value="petSupplies">Pet Supplies</option>
-                <option value="primeExclusiveSavings">
-                  Prime Exclusive Savings
-                </option>
-                <option value="primePantry">Prime Pantry</option>
-                <option value="primeVideo">Prime Video</option>
-                <option value="software">Software</option>
-                <option value="toolsHomeImprovement">
-                  Tools & Home Improvement
-                </option>
-                <option value="toysGames">Toys & Games</option>
-                <option value="vehicles">Vehicles</option>
-                <option value="videoGames">Video Games</option>
-              </select>
-              <input type="text" class="nav-search-input" />
-              <input type="submit" class="nav-search-submit" />
+                  >
+                  <option value="handmade">Handmade</option>
+                  <option value="healthHouseholdBabyCare">
+                    Health, Household & Baby Care
+                  </option>
+                  <option value="homeBusinessServices">
+                    Home & Business Services
+                  </option>
+                  <option value="homeKitchen">Home & Kitchen</option>
+                  <option value="industrialScientific">
+                    Industrial & Scientific
+                  </option>
+                  <option value="kindleStore">Kindle Store</option>
+                  <option value="luggageTravelGear">Luggage & Travel Gear</option>
+                  <option value="luxuryBeauty">Luxury Beauty</option>
+                  <option value="magazineSubscriptions">
+                    Magazine Subscriptions
+                  </option>
+                  <option value="moviesTv">Movies & TV</option>
+                  <option value="musicalInstruments">Musical Instruments</option>
+                  <option value="officeProducts">Office Products</option>
+                  <option value="petSupplies">Pet Supplies</option>
+                  <option value="primeExclusiveSavings">
+                    Prime Exclusive Savings
+                  </option>
+                  <option value="primePantry">Prime Pantry</option>
+                  <option value="primeVideo">Prime Video</option>
+                  <option value="software">Software</option>
+                  <option value="toolsHomeImprovement">
+                    Tools & Home Improvement
+                  </option>
+                  <option value="toysGames">Toys & Games</option>
+                  <option value="vehicles">Vehicles</option>
+                  <option value="videoGames">Video Games</option>
+                </select>
+              </div>
+              <div class="nav-search-submit right">
+                <span class="nav-btn-image"></span>
+                <input type="submit" class="nav-btn-submit"/>
+              </div>
+              <div class="nav-search-input middle">
+                <input type="text" class="nav-input-bar"/>
+              </div>
             </form>
           </div>
-
-          <!-- 3. Link to Specific Site -->
-          <div class="nav-right"><a href="#">Shop school supplies</a></div>
         </div>
 
-        <!-- Nav Bar(Lower) -->
-        <div id="nav-lower">
-          <!-- 1. Left Menu -->
-          <div class="nav-left">
-            <div class="nav-location">
-              <a href="#" class='nav-box'>
-                <div class='location-img'>
-                  <img src="" alt="location-logo" />
-                </div>
-                <div class="nav-text">
-                  <span class="text1">Deliver to</span>
-                  <span class="text2">Korea, Repulic of</span>
-                </div>
-              </a>
-            </div>
-              
+        <div class="nav-lower clearfix">
+          <div class="nav-location left">
+            <a href="#" class='nav-menu-box'>
+              <div class='nav-location-img'></div>
+              <div class="nav-menu-text">
+                <span class="text1">Deliver to</span>
+                <span class="text2">Korea, Republic of</span>
+              </div>
+            </a>
+          </div>
+
+          <div class='nav-info right'>
+            <a href="#" class='nav-menu-box nav-lang'>
+              <div class="nav-menu-text">
+                <span class="text2 globe-img"></span>
+                <span class="text1">EN</span>
+              </div>
+            </a>
+
+            <a href="#" class='nav-menu-box nav-signIn'>
+              <div class="nav-menu-text">
+                <span class="text1">Hello. Sign in</span>
+                <span class="text2">Account & Lists</span>
+              </div>
+            </a>
+
+            <a href="#" class='nav-menu-box nav-orders'>
+              <div class="nav-menu-text">
+                <span class="text1"></span>
+                <span class="text2 order-text">Orders</span>
+              </div>
+            </a>
+
+            <a href="#" class='nav-menu-box nav-cart'>
+              <div class='cart-img'></div>
+              <div class="nav-menu-text">
+                <span class="text1"></span>
+                <span class="text2 cart-text">Cart</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="nav-main middle">
             <div class="nav-departments">
-              <a href="#" class='nav-box'>
-                <div class="nav-text">
+              <a href="#" class='nav-menu-box'>
+                <div class="nav-menu-text">
                   <span class="text1"></span>
                   <span class="text2">Departments</span>
                 </div>
               </a>
             </div>
-              
-            <div class="nav-links">
-              <a href="https://www.amazon.com">your amazon.com</a>
-              <a href="https://www.amazon.com">today's deals</a>
-              <a href="https://www.amazon.com">gift cards</a>
-              <a href="https://www.amazon.com">registry</a>
-              <a href="https://www.amazon.com">sell</a>
-              <a href="https://www.amazon.com">treasure truck</a>
-              <a href="https://www.amazon.com">help</a>
-            </div>
-          </div>
-
-          <!-- 2. Right Menu -->
-          <div class='nav-right'>
-            <div class="nav-lang">
-              <a href="#" class='nav-box'>
-                <div class="nav-text">
-                  <span class="text1">EN</span>
-                  <span class="text2">globe-image</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="nav-signIn">
-              <a href="#" class='nav-box'>
-                <div class="nav-text">
-                  <span class="text1">Hello. Sign in</span>
-                  <span class="text2">Account & Lists</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="nav-orders">
-              <a href="#" class='nav-box'>
-                <div class="nav-text">
-                  <span class="text1"></span>
-                  <span class="text2">Orders</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="nav-prime">
-              <a href="#" class='nav-box'>
-                <div class="nav-text">
-                  <span class="text1"></span>
-                  <span class="text2">Try Prime</span>
-                </div>
-              </a>
-            </div>
-
-            <div class="nav-cart">
-                <a href="#" class='nav-box'>
-                  <div class='cart-img'>
-                    <img src="" alt="cart-logo" />
-                  </div>
-                  <div class="nav-text">
-                    <span class="text1"></span>
-                    <span class="text2">cart</span>
-                  </div>
-                </a>
-              </div>
+            <div class="nav-main-link"><a href="https://www.amazon.com">Your Amazon.com</a></div>
+            <div class="nav-main-link"><a href="https://www.amazon.com">Today's Deals</a></div>
+            <div class="nav-main-link"><a href="https://www.amazon.com">Gift Cards</a></div>
+            <div class="nav-main-link"><a href="https://www.amazon.com">Registry</a></div>
+            <div class="nav-main-link"><a href="https://www.amazon.com">Sell</a></div>
+            <div class="nav-main-link"><a href="https://www.amazon.com">Treasure Truck</a></div>
+            <div class="nav-main-link"><a href="https://www.amazon.com">Help</a></div>
           </div>
         </div>
       </nav>
     </header>
-
-    <!-- Main Section -->
+  
     <main>
-      <!-- Big Header Image Section -->
+      <!-- Big Header Image Section -->    
       <section id="prime-header">
-        <!-- 1. Content for image -->
         <div class="prime-header-content">
-          <h1 class='main-headline'>There's something for everyone with Prime</h1>
-          <p class='sub-headline'>Check out what's included with your Prime membership</p>
-          <form action="#" method="POST">
+          <h2 class='main-headline'>There's something for everyone with Prime!</h1>
+          <div class='sub-headline'>Check out what's included with your Prime membership</div>
+          <form action="#" method="POST" class="btn-prime-container">
+            <span class='btn-prime-text'>Try Prime</span>
             <input type="submit" value="tryPrime" class='btn-prime'/>
           </form>
-          <p>
+          <div class="price">
             <sup>$</sup>12<sup>99</sup>/month. Cancel anytime
-          </p>
-          <p><a href="#">See more plans</a></p> 
-          <div class='prime-logo'><img src="#" alt="prime" /></div>
+          </div>
+          <div class="plans"><a href="#">See more plans <span class="left-arrow"></span></a></div>
+          <div class='prime-logo'><img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_White._CB515573990_.svg" alt="primeLogo"></div>
         </div>
       </section>
     
+
       <!-- Carousel Section -->
       <section id="prime-carousel">
-        <!-- 1. Cards -->
         <div class="carousel-cards">
-          <div class="card">
-            <div id="card-ship">
-              <div class="card-click"></div>
-              <p class="card-name">Ship</p>
-              <div class="btn-carousel">
-                <span class="btn1"></span>
-                <span class="btn2"></span>
-                <span class="btn3"></span>
-                <span class="btn4"></span>
+          <div class="card none">
+            <div class="card-ship click">
+              <div class="card-click-zone">
+                <div class="card-name">Ship</div>
+              </div>
+              <div class="card-btn-container">
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
               </div>
             </div>
           </div>
 
           <div class="card">
-            <div id="card-stream">
-              <div class="card-click"></div>
-              <p class="card-name">Stream</p>
-              <div class="btn-carousel">
-                <span class="btn1"></span>
-                <span class="btn2"></span>
-                <span class="btn3"></span>
-                <span class="btn4"></span>
-                <span class="btn5"></span>
+            <div class="card-stream">
+              <div class="card-click-zone">
+                <div class="card-name">Stream</div>
+              </div>
+              <div class="card-btn-container">
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
               </div>
             </div>
           </div>
 
           <div class="card">
-            <div id="card-shop">
-              <div class="card-click"></div>
-              <p class="card-name">Shop</p>
-              <div class="btn-carousel">
-                <span class="btn1"></span>
-                <span class="btn2"></span>
-                <span class="btn3"></span>
-                <span class="btn4"></span>
+            <div class="card-shop">
+              <div class="card-click-zone">
+                <div class="card-name">Shop</div>
+              </div>
+              <div class="card-btn-container">
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
               </div>
             </div>
           </div>
 
           <div class="card">
-            <div id="card-read">
-              <div class="card-click"></div>
-              <p class="card-name">Read</p>
-              <div class="btn-carousel">
-                <span class="btn1"></span>
-                <span class="btn2"></span>
+            <div class="card-read">
+              <div class="card-click-zone">
+                <div class="card-name">Read</div>
+              </div>
+              <div class="card-btn-container">
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
               </div>
             </div>
           </div>
 
           <div class="card">
-              <div id="card-more">
-                <div class="card-click"></div>
-                <p class="card-name">More</p>
-                <div class="btn-carousel">
-                  <span class="btn1"></span>
-                  <span class="btn2"></span>
-                </div>
+            <div class="card-more">
+              <div class="card-click-zone">
+                <div class="card-name">More</div>
+              </div>
+              <div class="card-btn-container">
+                <span class="btn-carousel"></span>
+                <span class="btn-carousel"></span>
               </div>
             </div>
+          </div>
         </div>
-        
-        <!-- 2. Carousel -->
+
         <div class="carousel-play">
           <div class="play-left-arrow"></div>
-          <div class="play-display"></div>
+          <div class="play-display">
+            <div class="play-card-content">
+              <div class="play-card-cate-text">two-day shipping</div>
+              <h2 class="play-card-headline">
+                Fast, free delivery on over 100 million items
+              </h2>
+              <div class="play-card-subline">
+                Super-fast shipping, tens of millions of items, and flexible
+                delivery options to fit your life. Get your order in two days or
+                faster.
+              </div>
+              <a href="#" class="play-card-link">Explore Prime Delivery <span class="left-arrow"></span></a>
+            </div>
+          </div>
           <div class="play-right-arrow"></div>
         </div>
       </section>
+    
 
       <!-- Prime Features Section -->
       <section id="prime-features">
-        <!-- Text -->
         <div class="prime-features-start">
           Here's a little more about Prime that we think you'll love:
         </div>
 
-        <!-- Feature 1: fast, free delivery -->
-        <div class="prime-feature-delivery">
+        <div class="prime-feature-delivery feature-container">
           <div class="feature-content">
-            <h2>Fast, free delivery on over 100 million items</h2>
-            <p>
+            <h2 class="feature-headline">
+              Fast, free delivery on over 100 million items
+            </h2>
+            <div class="feature-subline">
               Super-fast shipping, tens of millions of items, and flexible
               delivery options to fit your life. Get your order in two days or
               faster.
-            </p>
-            <a href="#">Explore Prime Delivery</a>
+            </div>
+            <a href="#" class="feature-link">Explore Prime Delivery <span class="left-arrow"></span></a>
           </div>
         </div>
 
-        <!-- Feature 2: video -->
-        <div class="prime-feature-video">
-          <div class="prime-feature-slide">
+        <div class="prime-feature-video feature-container">
+          <div class="prime-feature-slide video-slide">
             <div class="slide-left-arrow"></div>
             <div class="slide-display"></div>
             <div class="slide-right-arrow"></div>
           </div>
           <div class="feature-content">
-            <h2>Prime Originals, exclusively on Prime Video</h2>
-            <p>
+            <h2 class="feature-headline">
+              Prime Originals, exclusively on Prime Video
+            </h2>
+            <div class="feature-subline">
               Prime Video is the only place where you can watch Prime Original
               series like The Tick, The Marvelous Mrs. Maisel, Jean-Claude Van
               Johnson, and The Last Tycoon.
-            </p>
-            <a href="#">Explore Prime Video</a>
+            </div>
+            <a href="#" class="feature-link">Explore Prime Video <span class="left-arrow"></span></a>
           </div>
         </div>
 
-        <!-- Feature 3: read free -->
-        <div class="prime-feature-readfree">
+        <div class="prime-feature-readfree feature-container">
           <div class="feature-content">
-            <h1>Prime members read free</h1>
-            <p>
+            <h2 class="feature-headline">Prime members read free</h2>
+            <div class="feature-subline">
               SEach month, Prime members can download one of six editors' picks
               for free—before the official publication date. Downloaded titles
               are yours to keep.
-            </p>
-            <a href="#">Explore Prime Reading</a>
+            </div>
+            <a href="#" class="feature-link">Explore Prime Reading <span class="left-arrow"></span></a>
           </div>
         </div>
 
-        <!-- Feature 4: music -->
-        <div class="prime-feature-music">
-          <div class="prime-feature-slide">
+        <div class="prime-feature-music feature-container">
+          <div class="prime-feature-slide music-slide">
             <div class="slide-left-arrow"></div>
             <div class="slide-display"></div>
             <div class="slide-right-arrow"></div>
           </div>
           <div class="feature-content">
-            <h2>Stay on top of the hottest music</h2>
-            <p>
+            <h2 class="feature-headline">Stay on top of the hottest music</h2>
+            <div class="feature-subline">
               These songs and artists are the cream of the this month's crop of
               new music. Check out the latest from Taylor Swift, Old Dominion,
               Kesha, and Brett Young.
-            </p>
-            <a href="#">Explore Prime Music</a>
+            </div>
+            <a href="#" class="feature-link">Explore Prime Music <span class="left-arrow"></span></a>
           </div>
         </div>
 
-        <!-- Feature 5: movies ans TV -->
-        <div class="prime-feature-movies-tv">
+        <div class="prime-feature-movies-tv feature-container">
           <div class="feature-content">
-            <h2>Stream or download hit movies and TV exclusives</h2>
-            <p>
+            <h2 class="feature-headline">
+              Stream or download hit movies and TV exclusives
+            </h2>
+            <div class="feature-subline">
               As a Prime member, you can watch thousands of popular movies and
               TV shows at no extra cost, including Amazon Originals.
-            </p>
-            <a href="#">Learn more about Prime Video</a>
+            </div>
+            <a href="#" class="feature-link">Learn more about Prime Video <span class="left-arrow"></span></a>
           </div>
         </div>
 
-        <!-- Prime Selling -->
         <div class="prime-selling">
           <div class="selling-content">
-            <h2>There's something for everyone</h2>
-            <form action="#" method="POST">
-              <input type="submit" value="tryPrime" class='btn-prime'/>
+            <h2 class="selling-headline">There's something for everyone</h2>
+            <form action="#" method="POST" class="btn-prime-container">
+              <span class="btn-prime-text">Try Prime</span>
+              <input type="submit" value="tryPrime" class="btn-prime" />
             </form>
-            <div>
-              <a href="#">Give the gift of Prime</a>
+            <div class="selling-link">
+              <a href="#">Give the gift of Prime</a> <span>|</span>
               <a href="#">Enter a promo code</a>
             </div>
           </div>
@@ -404,12 +392,11 @@
     </main>
 
     <!-- Footer Section -->
+    
     <footer>
-      <!-- Back to Top -->
-      <a href="#top">Back to top</a>
+      <a href="#top" class="back-to-top">Back to top</a>
 
-      <!-- Help -->
-      <div class="footer-menu">
+      <!-- <div class="footer-menu">
         <div class="footer-row">
           <div class="column-4">
             <div>Get to Know Us</div>
@@ -464,7 +451,7 @@
         </div>
 
         <div class="footer-logo-lang">
-          <a href="#"><div class="logo-small"></div></a> 
+          <a href="#"><div class="logo-small"></div></a>
           <div class="lang-small">
             <span class="lang-globe"></span>
             <span class="lang">English</span>
@@ -477,81 +464,52 @@
         </div>
       </div>
 
-      <!-- All links related to Amazon -->
       <div class="footer-family-site">
         <div class="footer-row">
           <ul class="colunm-7">
             <li>
               <a href="#">
-                <p class="site-name">Amazon Music</p>
-                <p class="site-desc">Stream millions</p>
-                <p class="site-desc">of songs</p>
+                <div class="site-name">Amazon Music</div>
+                <div class="site-desc">
+                  <span>Stream millions</span>
+                  <span>of songs</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Amazon Business</p>
-                <p class="site-desc">Everything For</p>
-                <p class="site-desc">Your Business</p>
+                <div class="site-name">Amazon Business</div>
+                <div class="site-desc">
+                  <span>Everything For</span>
+                  <span>Your Business</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Book Depository</p>
-                <p class="site-desc">Books With Free</p>
-                <p class="site-desc">Delivery Worldwide</p>
+                <div class="site-name">Book Depository</div>
+                <div class="site-desc">
+                  <span>Books With Free</span>
+                  <span>Delivery Worldwide</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Goodreads</p>
-                <p class="site-desc">Book reviews</p>
-                <p class="site-desc">& recommendations</p>
+                <div class="site-name">Goodreads</div>
+                <div class="site-desc">
+                  <span>Book reviews</span>
+                  <span>& recommendations</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Withoutabox</p>
-                <p class="site-desc">Submit to</p>
-                <p class="site-desc">Film Festivals</p>
-              </a>
-            </li>
-          </ul>
-          
-          <ul class="colunm-7">
-            <li>
-              <a href="#">
-                <p class="site-name">Amazon Advertising</p>
-                <p class="site-desc">Find, attract, and</p>
-                <p class="site-desc">engage customers</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">AmazonGlobal</p>
-                <p class="site-desc">Ship Orders</p>
-                <p class="site-desc">Internationally</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">Box Office Mojo</p>
-                <p class="site-desc">Find Movie</p>
-                <p class="site-desc">Box Office Data</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">IMDb</p>
-                <p class="site-desc">Movies, TV</p>
-                <p class="site-desc">& Celebrities</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">Woot!</p>
-                <p class="site-desc">Deals and</p>
-                <p class="site-desc">Shenanigans</p>
+                <div class="site-name">Withoutabox</div>
+                <div class="site-desc">
+                  <span>Submit to</span>
+                  <span>Film Festivals</span>
+                </div>
               </a>
             </li>
           </ul>
@@ -559,75 +517,47 @@
           <ul class="colunm-7">
             <li>
               <a href="#">
-                <p class="site-name">Amazon Drive</p>
-                <p class="site-desc">Cloud storage</p>
-                <p class="site-desc">from Amazon</p>
+                <div class="site-name">Amazon Advertising</div>
+                <div class="site-desc">
+                  <span>Find, attract, and</span>
+                  <span>engage customers</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Home Services</p>
-                <p class="site-desc">Handpicked Pros</p>
-                <p class="site-desc">Happiness Guarantee</p>
+                <div class="site-name">AmazonGlobal</div>
+                <div class="site-desc">
+                  <span>Ship Orders</span>
+                  <span>Internationally</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">ComiXology</p>
-                <p class="site-desc">Thousands of</p>
-                <p class="site-desc">Digital Comics</p>
+                <div class="site-name">Box Office Mojo</div>
+                <div class="site-desc">
+                  <span>Find Movie</span>
+                  <span>Box Office Data</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">IMDbPro</p>
-                <p class="site-desc">Get info Entertainment</p>
-                <p class="site-desc">Professionals Need</p>
+                <div class="site-name">IMDb</div>
+                <div class="site-desc">
+                  <span>Movies, TV</span>
+                  <span>& Celebrities</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Zappos</p>
-                <p class="site-desc">Shoes &</p>
-                <p class="site-desc">Clothing</p>
-              </a>
-            </li>
-          </ul>
-
-          <ul class="colunm-7">
-            <li>
-              <a href="#">
-                <p class="site-name">6pm</p>
-                <p class="site-desc">Score deals</p>
-                <p class="site-desc">on fashion brands</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">Amazon Inspire</p>
-                <p class="site-desc">Digital Educational</p>
-                <p class="site-desc">Resources</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">CreateSpace</p>
-                <p class="site-desc">Indie Print Publishing</p>
-                <p class="site-desc">Made Easy</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">Junglee.com</p>
-                <p class="site-desc">Shop Online</p>
-                <p class="site-desc">in india</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">Souq.com</p>
-                <p class="site-desc">Shop Online in</p>
-                <p class="site-desc">the Middle East</p>
+                <div class="site-name">Woot!</div>
+                <div class="site-desc">
+                  <span>Deals and</span>
+                  <span>Shenanigans</span>
+                </div>
               </a>
             </li>
           </ul>
@@ -635,75 +565,47 @@
           <ul class="colunm-7">
             <li>
               <a href="#">
-                <p class="site-name">AbeBooks</p>
-                <p class="site-desc">Books, art</p>
-                <p class="site-desc">& collectibles</p>
+                <div class="site-name">Amazon Drive</div>
+                <div class="site-desc">
+                  <span>Cloud storage</span>
+                  <span>from Amazon</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Amazon Rapids</p>
-                <p class="site-desc">Fun stories for</p>
-                <p class="site-desc">kids on the go</p>
+                <div class="site-name">Home Services</div>
+                <div class="site-desc">
+                  <span>Handpicked Pros</span>
+                  <span>Happiness Guarantee</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">DPReview</p>
-                <p class="site-desc">Digital</p>
-                <p class="site-desc">Photography</p>
+                <div class="site-name">ComiXology</div>
+                <div class="site-desc">
+                  <span>Thousands of</span>
+                  <span>Digital Comics</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Kindle Direct Publishing</p>
-                <p class="site-desc">Indie Digital Publishing</p>
-                <p class="site-desc">Made Easy</p>
+                <div class="site-name">IMDbPro</div>
+                <div class="site-desc">
+                  <span>Get info Entertainment</span>
+                  <span>Professionals Need</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Subscribe with Amazon</p>
-                <p class="site-desc">Discover & try</p>
-                <p class="site-desc">subscription services</p>
-              </a>
-            </li>
-          </ul>
-
-          <ul class="colunm-7">
-            <li>
-              <a href="#">
-                <p class="site-name">ACX</p>
-                <p class="site-desc">Audiobook Publishing</p>
-                <p class="site-desc">Made Easy</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">Amazon Web Services</p>
-                <p class="site-desc">Scalable Cloud</p>
-                <p class="site-desc">Computing Services</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">East Dane</p>
-                <p class="site-desc">Designer Men's</p>
-                <p class="site-desc">Fashion</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">Prime Video Direct</p>
-                <p class="site-desc">Video Distribution</p>
-                <p class="site-desc">Made Easy</p>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <p class="site-name">PillPack</p>
-                <p class="site-desc">Pharmacy Simplified</p>
-                <p class="site-desc"></p>
+                <div class="site-name">Zappos</div>
+                <div class="site-desc">
+                  <span>Shoes &</span>
+                  <span>Clothing</span>
+                </div>
               </a>
             </li>
           </ul>
@@ -711,37 +613,191 @@
           <ul class="colunm-7">
             <li>
               <a href="#">
-                <p class="site-name">Alexa</p>
-                <p class="site-desc">Actionable Analytics</p>
-                <p class="site-desc">for the Web</p>
+                <div class="site-name">6pm</div>
+                <div class="site-desc">
+                  <span>Score deals</span>
+                  <span>on fashion brands</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Audible</p>
-                <p class="site-desc">Download</p>
-                <p class="site-desc">Audiobooks</p>
+                <div class="site-name">Amazon Inspire</div>
+                <div class="site-desc">
+                  <span>Digital Educational</span>
+                  <span>Resources</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Fabric</p>
-                <p class="site-desc">Sewing, Quilting</p>
-                <p class="site-desc">& Knitting</p>
+                <div class="site-name">CreateSpace</div>
+                <div class="site-desc">
+                  <span>Indie Print Publishing</span>
+                  <span>Made Easy</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Shopbop</p>
-                <p class="site-desc">Designer</p>
-                <p class="site-desc">Fashion Brands</p>
+                <div class="site-name">Junglee.com</div>
+                <div class="site-desc">
+                  <span>Shop Online</span>
+                  <span>in india</span>
+                </div>
               </a>
             </li>
             <li>
               <a href="#">
-                <p class="site-name">Amazon Second Chance</p>
-                <p class="site-desc">Pass it on, trade it in,</p>
-                <p class="site-desc">give it a second life</p>
+                <div class="site-name">Souq.com</div>
+                <div class="site-desc">
+                  <span>Shop Online in</span>
+                  <span>the Middle East</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="colunm-7">
+            <li>
+              <a href="#">
+                <div class="site-name">AbeBooks</div>
+                <div class="site-desc">
+                  <span>Books, art</span>
+                  <span>& collectibles</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Amazon Rapids</div>
+                <div class="site-desc">
+                  <span>Fun stories for</span>
+                  <span>kids on the go</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">DPReview</div>
+                <div class="site-desc">
+                  <span>Digital</span>
+                  <span>Photography</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Kindle Direct Publishing</div>
+                <div class="site-desc">
+                  <span>Indie Digital Publishing</span>
+                  <span>Made Easy</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Subscribe with Amazon</div>
+                <div class="site-desc">
+                  <span>Discover & try</span>
+                  <span>subscription services</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="colunm-7">
+            <li>
+              <a href="#">
+                <div class="site-name">ACX</div>
+                <div class="site-desc">
+                  <span>Audiobook Publishing</span>
+                  <span>Made Easy</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Amazon Web Services</div>
+                <div class="site-desc">
+                  <span>Scalable Cloud</span>
+                  <span>Computing Services</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">East Dane</div>
+                <div class="site-desc">
+                  <span>Designer Men's</span>
+                  <span>Fashion</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Prime Video Direct</div>
+                <div class="site-desc">
+                  <span>Video Distribution</span>
+                  <span>Made Easy</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">PillPack</div>
+                <div class="site-desc">
+                  <span>Pharmacy Simplified</span>
+                  <span></span>
+                  </div>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="colunm-7">
+            <li>
+              <a href="#">
+                <div class="site-name">Alexa</div>
+                <div class="site-desc">
+                  <span>Actionable Analytics</span>
+                  <span>for the Web</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Audible</div>
+                <div class="site-desc">
+                  <span>Download</span>
+                  <span>Audiobooks</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Fabric</div>
+                <div class="site-desc">
+                  <span>Sewing, Quilting</span>
+                  <span>& Knitting</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Shopbop</div>
+                <div class="site-desc">
+                  <span>Designer</span>
+                  <span>Fashion Brands</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <div class="site-name">Amazon Second Chance</div>
+                <div class="site-desc">
+                  <span>Pass it on, trade it in,</span>
+                  <span>give it a second life</span>
+                </div>
               </a>
             </li>
           </ul>
@@ -753,7 +809,7 @@
             <span class="copyright">&copy; 1996-2018, Amazon.com, Inc. or its affiliates</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </footer>
   </body>
 </html>

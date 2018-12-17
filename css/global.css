@@ -1,0 +1,72 @@
+/* --- GLOBAL ---*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.middle {
+  overflow: hidden;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+main {
+  margin: 0 auto;
+  min-width: 1000px;
+  max-width: 1400px;
+}
+
+.left-arrow {
+  display: inline-block;
+  border: 5px solid transparent;
+  border-left-color: #002f36;
+}
+
+/* --- PRIME PUTTON --- */
+.btn-prime-container {
+  position: relative;
+}
+
+.btn-prime-text {
+  display: inline-block;
+  width: 360px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #284d40;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #ffa724;
+  border: 1px solid #ff6138;
+}
+
+.btn-prime {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 50px;
+  opacity: 0;
+  cursor: pointer;
+}
