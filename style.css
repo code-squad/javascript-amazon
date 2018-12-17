@@ -2,3 +2,19 @@ body {
     margin:0;
 }
 
+.head-search-container{
+    overflow:hidden;
+    background-color:#24313f;
+}
+
+.head-search-icon {
+    float:left;    
+}
+
+.head-search {
+    float:left;
+}
+
+.head-search-right {
+    float:right;
+}
