@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
   megaMenu.setDetailOpenMouseEvent();
 });
 window.addEventListener('load', () => {
-  stickyPlansLayer.setBodyHeight(); // Extend body height to make position:sticky work properly
+  stickyPlansLayer.setMainHeight(); // Extend body height to make position:sticky work properly
   megaMenu.setBgDimHeight(); // Expand background dim div to entire viewport
   window.addEventListener('scroll', () => {
     stickyPlansLayer.updateVisibility(); // Display sticky bar on scroll

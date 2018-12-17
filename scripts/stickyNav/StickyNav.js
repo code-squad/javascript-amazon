@@ -42,9 +42,9 @@ export default class {
     miniBar.classList.replace('closed', 'opened');
   }
 
-  setBodyHeight() {
-    const body = document.querySelector('body');
-    const totalHeight = [...body.children].reduce((acc, el) => acc + el.clientHeight, 0);
-    body.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
+  setMainHeight() {
+    const main = document.querySelector('main');
+    const totalHeight = [...main.children].reduce((acc, el) => acc + el.clientHeight, 0);
+    main.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
   }
 }
