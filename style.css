@@ -8,13 +8,23 @@ body {
 }
 
 .head-search-icon {
-    float:left;    
+    float:left;
+    margin: 5px 15px;
 }
 
 .head-search {
+    width: 400px;
+    height: 44px;
     float:left;
+}
+
+.head-search-block {
+    padding-left: 30px;
+    padding-top: 11px;
 }
 
 .head-search-right {
     float:right;
 }
+
+.
