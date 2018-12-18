@@ -25,8 +25,6 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 window.addEventListener('load', () => {
   stickyPlansLayer.setWrapperHeight(); // Extend body height to make position:sticky work properly
+  stickyPlansLayer.updateListenerForVisibility('add'); // Display sticky bar on scroll
   megaMenu.setBgDimHeight(); // Expand background dim div to entire viewport
-  window.addEventListener('scroll', () => {
-    stickyPlansLayer.updateVisibility(); // Display sticky bar on scroll
-  });
 });

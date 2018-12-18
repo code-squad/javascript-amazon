@@ -14,7 +14,7 @@ export default class {
 
       detailLayer.classList.add('opened');
       miniBar.classList.remove('opened');
-      window.removeEventListener('scroll', this.updateVisibility);
+      this.updateListenerForVisibility('remove');
     });
   }
 
@@ -27,7 +27,7 @@ export default class {
         event.preventDefault();
 
         detailLayer.classList.remove('opened');
-        window.addEventListener('scroll', this.updateVisibility);
+        this.updateListenerForVisibility('add');
         this.updateVisibility();
       });
     });
@@ -46,5 +46,18 @@ export default class {
     const body = document.querySelector('body');
     const totalHeight = [...body.children].reduce((acc, el) => acc + el.clientHeight, 0);
     body.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
+  }
+
+  updateListenerForVisibility(type) {
+    if (!this.boundUpdateVisibility) {
+      this.boundUpdateVisibility = this.updateVisibility.bind(this);
+    }
+
+    if (type === 'add') {
+      document.addEventListener('scroll', this.boundUpdateVisibility);
+    }
+    if (type === 'remove') {
+      document.removeEventListener('scroll', this.boundUpdateVisibility);
+    }
   }
 }
