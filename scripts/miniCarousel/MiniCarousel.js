@@ -1,11 +1,12 @@
 export default class MiniCarousel {
   createLiHTMLWithJSON({ id, src, alt }) {
-    return `<li><img data-imgId="${id}" src="${src}" alt="${alt}" /></li>`;
+    return `<li class="carousel__card"><img data-imgId="${id}" src="${src}" alt="${alt}" /></li>`;
   }
 
   fetchCarouselJSON(resURI, targetEl, useXHR = false) {
     if (useXHR) {
       /* equivalent XHR codes */
+      return;
     }
 
     fetch(resURI)
@@ -16,6 +17,7 @@ export default class MiniCarousel {
       })
       .then(res => res.reduce((acc, obj) => `${acc}${this.createLiHTMLWithJSON(obj)}\n`, '\n'))
       .then((res) => {
+        /* Set width of container ul */
         const target = targetEl;
         target.innerHTML = res;
       });

@@ -1,5 +1,43 @@
+.local-banner-without-bg-img .mini-carousel {
+  height: 100%;
+  text-align: center;
+  vertical-align: top;
+  position: absolute;
+  right: 0;
+  margin-right: 10rem;
+}
+.local-banner-without-bg-img .mini-carousel .carousel__btnSlot,
+.local-banner-without-bg-img .mini-carousel .carousel__cardSlot {
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.local-banner-without-bg-img .carousel__btnSlot {
+  width: 3rem;
+  vertical-align: top;
+}
+.local-banner-without-bg-img .carousel__btnSlot > button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.local-banner-without-bg-img .carousel__cardSlot {
+  min-width: 10rem;
+  width: 34rem;
+  white-space: nowrap;
+}
+.local-banner-without-bg-img .carousel__cardSlot img {
+  height: calc(var(--horizontal-banner-height) * 0.7);
+}
+
 .mini-carousel .placeholder {
   width: 30rem;
   height: 66%;
   background-color: aquamarine;
+}
+
+.mini-carousel .carousel__card {
+  display: inline;
 }

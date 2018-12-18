@@ -10,6 +10,9 @@
   z-index: 100;
   transform: translateZ(0);
 }
+.stickyNav__wrapper {
+  z-index: -100;
+}
 .stickyNav__miniBar {
   position: sticky;
   width: 100%;
@@ -17,12 +20,10 @@
   overflow: hidden;
   border-bottom: 1px solid var(--color-gray-blue--lighten);
   transform: translateZ(0);
+  height: 0;
 }
 .stickyNav__miniBar.opened {
   height: 6rem;
-}
-.stickyNav__miniBar.closed {
-  height: 0;
 }
 .stickyNav__logoSlot {
   position: absolute;
@@ -68,12 +69,10 @@
   width: 100%;
   transition: all 500ms;
   transform: translateZ(0);
+  height: 0;
 }
 .stickyNav__detailLayer.opened {
   height: 57rem;
-}
-.stickyNav__detailLayer.closed {
-  height: 0;
 }
 .detailLayer__wrapper {
   position: relative;

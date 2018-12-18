@@ -12,8 +12,8 @@ export default class {
       const detailLayer = this.base.querySelector('.stickyNav__detailLayer');
       const miniBar = this.base.querySelector('.stickyNav__miniBar');
 
-      detailLayer.classList.replace('closed', 'opened');
-      miniBar.classList.replace('opened', 'closed');
+      detailLayer.classList.add('opened');
+      miniBar.classList.remove('opened');
       window.removeEventListener('scroll', this.updateVisibility);
     });
   }
@@ -26,7 +26,7 @@ export default class {
       el.addEventListener('click', () => {
         event.preventDefault();
 
-        detailLayer.classList.replace('opened', 'closed');
+        detailLayer.classList.remove('opened');
         window.addEventListener('scroll', this.updateVisibility);
         this.updateVisibility();
       });
@@ -36,15 +36,15 @@ export default class {
   updateVisibility() {
     const miniBar = this.base.querySelector('.stickyNav__miniBar');
     if (window.pageYOffset < this.threshold) {
-      miniBar.classList.replace('opened', 'closed');
+      miniBar.classList.remove('opened');
       return;
     }
-    miniBar.classList.replace('closed', 'opened');
+    miniBar.classList.add('opened');
   }
 
-  setMainHeight() {
-    const main = document.querySelector('main');
-    const totalHeight = [...main.children].reduce((acc, el) => acc + el.clientHeight, 0);
-    main.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
+  setWrapperHeight() {
+    const body = document.querySelector('body');
+    const totalHeight = [...body.children].reduce((acc, el) => acc + el.clientHeight, 0);
+    body.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
   }
 }

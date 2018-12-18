@@ -88,6 +88,7 @@
 }
 body {
   font-size: 1.6rem;
+  overflow-x: hidden;
 }
 ul,
 ol {
@@ -112,14 +113,9 @@ button {
 button:focus {
   outline: none;
 }
-
-body {
-  overflow-x: hidden;
-}
 main {
   width: 100%;
   position: absolute;
-  z-index: -1;
   top: var(--header--height);
 }
 /*=============
@@ -524,49 +520,6 @@ main {
   width: 50%;
   position: absolute;
   right: 0;
-}
-.local-banner-without-bg-img .mini-carousel {
-  height: 100%;
-  text-align: center;
-  vertical-align: top;
-  position: absolute;
-  right: 0;
-  margin-right: 10rem;
-}
-.local-banner-without-bg-img .mini-carousel > div,
-.local-banner-without-bg-img .mini-carousel > ul {
-  height: 100%;
-}
-.local-banner-without-bg-img .carousel__btnSlot {
-  display: inline-block;
-  position: relative;
-  width: 3rem;
-  vertical-align: top;
-}
-.local-banner-without-bg-img .carousel__btnSlot > button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.local-banner-without-bg-img .carousel__cardSlot {
-  display: inline-block;
-  position: relative;
-  min-width: 10rem;
-  max-width: calc(100% - 3rem - 3rem);
-}
-.local-banner-without-bg-img .carousel__cardSlot > li {
-  visibility: hidden;
-  position: absolute;
-}
-.local-banner-without-bg-img .carousel__cardSlot > :first-child {
-  visibility: visible;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.local-banner-without-bg-img .carousel__cardSlot img {
-  height: calc(var(--horizontal-banner-height) * 0.7);
 }
 
 .local-banner-without-bg-img .campaignMsg {

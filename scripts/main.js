@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
   miniCarousel.fetchPrimeOriginalCarousel();
 });
 window.addEventListener('load', () => {
-  stickyPlansLayer.setMainHeight(); // Extend body height to make position:sticky work properly
+  stickyPlansLayer.setWrapperHeight(); // Extend body height to make position:sticky work properly
   megaMenu.setBgDimHeight(); // Expand background dim div to entire viewport
   window.addEventListener('scroll', () => {
     stickyPlansLayer.updateVisibility(); // Display sticky bar on scroll
