@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>amazon step1</title>
+    <link rel="stylesheet" type="text/css" href="amazon_cocoa.css">
+
+</head>
+
+<body>
+    <header id="header-bar">
+        <div id="logo-area">
+            <a href="https://www.amazon.com/amazonprime?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0" target="_self">
+                <img src="img_src/amazon_logo.png" alt="" style="margin: 5px 0px 0px 5px">
+            </a>
+        </div>
+        <div id="search-panel">
+            <div id="department-view">All
+                <img src="img_src/down_arrow.png" alt="" style="width: 20%">
+            </div>
+            <div id="search-field"></div>
+            <div id="search-button">
+                <img src="img_src/magnifier.png" alt="" style="text-align: center">
+            </div>
+        </div>
+        <div id="header-banner-area">
+            <img src="img_src/banner.jpg" alt="">
+        </div>
+    </header>
+
+
+    <nav id="nav-bar">
+        <div id="location-panel">
+            <div id="location-icon">
+                <img src="img_src/loc_icon.png" alt="">
+            </div>
+            <div style="float: left; margin-top:7px">
+                <span style="font-size: 13px">Deliver to</span><br>
+                <span style="font-weight: bold; font-size: 14px">Korea, Republic of</span>
+            </div>
+        </div>
+
+        <div id="nav-menu-area" style="font-size: 14px">
+            <ul>
+                <li class="nav-menu-list">
+                    <div class="nav-menu-name" style="font-weight: bold">
+                        Departments
+                        <img src="img_src/down_arrow.png" alt="" style="width: 8%">
+                    </div>
+                </li>
+                <li class="nav-menu-list">
+                    <div class="nav-menu-name">
+                        <a href="https://www.amazon.com/gp/yourstore/home?ref=nav_cs_ys">
+                            Your Amazon.com
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-menu-list">
+                    <div class="nav-menu-name">
+                        <a href="https://www.amazon.com/international-sales-offers/b/?ie=UTF8&node=15529609011&ref=nav_navm_intl_deal_btn">
+                            Today's Deals
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-menu-list">
+                    <div class="nav-menu-name">
+                        <a href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
+                            Gift Cards
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-menu-list">
+                    <div class="nav-menu-name">
+                        <a href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
+                            Registry
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-menu-list">
+                    <div class="nav-menu-name">
+                        <a href="https://www.amazon.com/b/?_encoding=UTF8&ld=AZUSSOA-sell&node=12766669011&ref=nav_cs_sell">
+                            Sell
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-menu-list">
+                    <div class="nav-menu-name">
+                        <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=508510&ref=nav_cs_help">
+                            Help
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="user-panel">
+            <div id="cart-to-checkout">
+                <a href="https://www.amazon.com/gp/cart/view.html?ref=nav_cart">
+                    <div style="width: 80px; height: 33px">
+                        <img src="img_src/cart.png" alt="" style="position: relative">
+                        <div style="color: orange; font-weight: bold; position: relative; right:14px; bottom:40px; text-align: center">0</div>
+                        <div style="font-weight: bold; position: relative; left: 40px; bottom: 39px">Cart</div>
+                    </div>
+                </a>
+            </div>
+
+            <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l">
+                <div id="account-panel" style="padding-top: 7px">
+                    <span style="font-size: 13px">Hello, Sign in</span><br>
+                    <span style="font-weight: bold; font-size: 14px">Account & Lists</span>
+                    <span><img src="img_src/down_arrow.png" alt="" style="width: 6%"></span>
+                    <span style="font-weight: bold; font-size: 14px; margin-left: 14px">Orders</span>
+                </div>
+            </a>
+
+            <div id="lang-selection-panel">
+                <div style="font-size:12px; text-align: center; padding-top: 10px">EN</div>
+                <div style="width: 32px; height: 32px; padding-left: 22px">
+                    <img src="img_src/globe.png" alt="" style="width: 60%">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section>
+        <h3 style="display:none">section-main</h3>
+        <div class="sections-area" style="height:476px">
+            <div class="sections-images" style="background-image: url(img_src/main_header.png); height: 476px">
+                <div style=" width:400px; position: relative; top:40px; left:40px;font-size: 40px; color:white">
+                    There's something for everyone with Prime!
+                </div>
+                <div style="width:400px; position: relative; top:70px; left:40px;font-size: 25px; color:white">
+                    Check out what's included with your Prime membership.
+                </div>
+                <a class="link-style" href="https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l">
+                    <div id="try-prime-button" style="color: rgb(30,79,65)">
+                        TRY PRIME
+                    </div>
+                </a>
+                <p style="width:400px; color: white; position: relative; top:90px; left:40px;">
+                    $12.99/month. Cancel anytime.<br>
+                    See more plans<br>
+                    <a style="text-decoration: underline" href="https://www.amazon.com/b?ie=UTF8&node=10184390011&ref=dex_hdm_pap_desktop">
+                        Holiday Delivery Calendar
+                    </a>
+                </p>
+                <div style="width:150px; position: relative; top:85px; left:40px; float:left; z-index:10"><img src="img_src/prime_logo.png"
+                        alt="" style="width:65%">
+                </div>
+                <div class="section-cards-area">
+                    <div class="section-cards" style="background:rgb(1,164,222)">
+                        <img class="section-cards-images" src="img_src/card-1.png" alt="" style="width:60%">
+                        <div class="section-cards-titles">Ship</div>
+                    </div>
+                    <div class="section-cards" style="background:rgb(250,67,27)">
+                        <img class="section-cards-images" src="img_src/card-2.png" alt="" style="width:60%">
+                        <div class="section-cards-titles">Stream</div>
+                    </div>
+                    <div class="section-cards" style="background:rgb(233,164,92)">
+                        <img class="section-cards-images" src="img_src/card-3.png" alt="" style="width:50%">
+                        <div class="section-cards-titles">Shop</div>
+                    </div>
+                    <div class="section-cards" style="background:rgb(0,189,172)">
+                        <img class="section-cards-images" src="img_src/card-4.png" alt="" style="width:40%">
+                        <div class="section-cards-titles">Read</div>
+                    </div>
+                    <div class="section-cards" style="background:rgb(255,180,4);">
+                        <img class="section-cards-images" src="img_src/card-5.png" alt="" style="width:60%">
+                        <div class="section-cards-titles">More</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="display:none">section-B</h3>
+        <div class="sections-area" style="height: 800px; background:white">
+            <div class="sections-images" style="background-image: url(img_src/section-B.jpg); height: 400px; top:260px; position: relative;">
+                <div style="color:black; width:400px; height: 230px; position: absolute; left:702px; top:20px">
+                    <div style="width:168px; height:16px; padding:12px 0; text-align:center; background:rgb(0,167,227); color:white; font-size:17px">
+                        TWO-DAY SHIPPING</div>
+                    <div style="font-size:25px; margin: 20px 0">
+                        Fast, free delivery on over 100 million items
+                    </div>
+                    <div style="margin:0 0 10px">
+                        Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.
+                    </div>
+                    <div style="font-weight:bold">
+                        <a style="color:black" href="https://www.amazon.com/b?node=15247183011">
+                            Explore Prime Delivery
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div style="position:absolute; bottom:30px; left:70px; font-size:30px">
+                Here's a little more about Prime that we think you'll love:
+            </div>
+        </div>
+
+        <h3 style="display:none">section-C</h3>
+        <div class="sections-area" style="height: 293px">
+            <div class="sections-images" style="background-image: url(img_src/section-C.png); height: 320px; position: relative; top:-27px">
+                <div style="width:400px; position:relative; top:100px; left:60px; color:white">
+                    <div style="font-size:40px; margin: 20px 0">Fast, free delivery on over 100 million items</div>
+                    <div style="margin:0 0 10px">Super-fast shipping, tens of millions of items, and flexible delivery
+                        options to fit your life.</div>
+                    <a style="font-weight:bold" href="https://www.amazon.com/b?node=15247183011">
+                        Explore Prime Delivery
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <a class="link-style" href="#logo-area">
+            <div id="footer-back-to-top">
+                back to top
+            </div>
+        </a>
+        <div id="prime-sitemap">
+            <div id="footer-prime-sitemap-area">
+                <div class="footer-prime-sitemap-sections">
+                    <ul>
+                        <li class="footer-sitemap-main-entries"><span>Get to Know Us</span>
+                            <ul class="footer-sitemap-sub-entry-area">
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.jobs/">
+                                        Careers</a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://blog.aboutamazon.com/?utm_source=gateway&utm_medium=footer">
+                                        Blog
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.aboutamazon.com/?utm_source=gateway&utm_medium=footer">
+                                        About Amazon
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/ir">
+                                        Investor Relations
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/amazon-devices/b/ref=footer_devices?ie=UTF8&node=2102313011">
+                                        Amazon Devices
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-prime-sitemap-sections">
+                    <ul>
+                        <li class="footer-sitemap-main-entries"><span>Make Money with Us</span>
+                            <ul class="footer-sitemap-sub-entry-area">
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/gp/redirect.html/ref=footer_soa?_encoding=UTF8&location=https%3A%2F%2Fservices.amazon.com%2Fcontent%2Fsell-on-amazon.htm%2Fref%3Dfooter_soa%3Fld%3DAZFSSOA&source=standards&token=6D14D9F0E8CC2831C68BA56C95FCDC34988C3979">
+                                        Sell on Amazon
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/gp/redirect.html/ref=footer_sell_svcs?_encoding=UTF8&location=https%3A%2F%2Fservices.amazon.com%2Fselling-services%2Fbenefits.htm%3Fld%3DAZUSVAS-globalfooter&source=standards&token=C11D6CD96DB34C590F5368F18106AAC385ECAAC6">
+                                        Sell Your Services on Amazon
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://services.amazon.com/amazon-business.html?ld=usb2bunifooter">
+                                        Sell on Amazon Business
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://developer.amazon.com/">
+                                        Sell Your Apps on Amazon
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://affiliate-program.amazon.com/">
+                                        Become an Affiliate
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://advertising.amazon.com/?ref=ext_amzn_ftr">
+                                        Advertise Your Products
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/gp/seller-account/mm-summary-page.html/ref=footer_publishing?ie=UTF8&ld=AZFooterSelfPublish&topic=200260520">
+                                        Self-Publish with Us
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/b/ref=footer_seeall?_encoding=UTF8&ld=AZUSSOA-seeall&node=13605942011">
+                                        See all
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-prime-sitemap-sections">
+                    <ul>
+                        <li class="footer-sitemap-main-entries"><span>Amazon Payment Products</span>
+                            <ul class="footer-sitemap-sub-entry-area">
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/dp/B07984JN3L?_encoding=UTF8&ie=UTF-8&plattr=ACOMFO">
+                                        Amazon Business Card
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/b/ref=footer_swp?ie=UTF8&node=16218619011">
+                                        Shop with Points
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/Reload-Your-Gift-Card-Balance/b/ref=footer_reload_us?ie=UTF8&node=10232440011">
+                                        Reload Your Balance
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/Currency-Converter/b/ref=footer_tfx?ie=UTF8&node=388305011">
+                                        Amazon Currency Converter
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-prime-sitemap-sections">
+                    <ul>
+                        <li class="footer-sitemap-main-entries"><span>Let Us Help You</span>
+                            <ul class="footer-sitemap-sub-entry-area">
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/gp/css/homepage.html/ref=footer_ya">
+                                        Your Account
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26ref_%3Dfooter_yo&pageId=webcs-yourorder&showRmrMe=1">
+                                        Your Orders
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/gp/help/customer/display.html/ref=footer_shiprates?ie=UTF8&nodeId=468520">
+                                        Shipping Rates & Policies
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/gp/orc/returns/homepage.html/ref=orc_surl_ret_hp?fg=1">
+                                        Returns & Replacements
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/ap/signin?openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fmn%2Fdcw%2Fmyx.html%2Fref%3Dkinw_myk_redirect&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&&accountStatusPolicy=P1">
+                                        Manage Your Content and Devices
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/gp/BIT/ref=footer_bit_v2_us_A0029?bitCampaignCode=A0029">
+                                        Amazon Assistant
+                                    </a>
+                                </li>
+                                <li class="footer-sub-entries">
+                                    <a href="https://www.amazon.com/gp/help/customer/display.html/ref=footer_gw_m_b_he?ie=UTF8&nodeId=508510">
+                                        Help
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
