@@ -71,21 +71,21 @@
   display: inline-block;
 }
 
-.a-carousel-goto-prevpage {
+.a-carousel-prevpage {
   width: 13px;
   height: 20px;
   margin: 0 20px 0 0;
-  position: relative;
-  top: 50%;
+  position: absolute;
+  top: 105px;
   color: #002F36;
 }
 
-.a-carousel-goto-nextpage {
+.a-carousel-nextpage {
   width: 13px;
   height: 20px;
   margin: 0 0 0 20px;
-  position: relative;
-  top: 50%;
+  position: absolute;
+  top: 105px;
   color: #002F36;
 }
 

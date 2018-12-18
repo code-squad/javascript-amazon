@@ -3,6 +3,15 @@ export default class Carousel {
   }
 
   init() {
+    this.moveLeftIMG();
+    this.moveRightIMG();
+  }
+
+  moveLeftIMG() {
+
+  }
+
+  moveRightIMG() {
 
   }
 }

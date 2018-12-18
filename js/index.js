@@ -22,7 +22,12 @@ const topMenu = new HiddenTopMenu({
   transHiddenOuterEle: $(".trans-hidden-outerContents")
 });
 
-const carousel = new CarouselMenu();
+const carousel = new CarouselMenu({
+  carousel: $(".carousel-item"),
+  carouseList: $All(".carousel-item"),
+  prev: $(".a-carousel-prevpage"),
+  next: $(".a-carousel-nextpage"),
+});
 
 layerManager.init();
 topMenu.init();
