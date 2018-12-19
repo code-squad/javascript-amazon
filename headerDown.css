@@ -1,0 +1,20 @@
+.head-nav-container {
+    overflow:hidden;
+    background-color:#24313f;
+}
+
+.head-nav-location{
+    float:left;
+}
+
+.head-nav-location-img {
+    float:left;
+}
+
+.head-nav {
+    float:left;
+}
+
+.head-nav-right {
+    float:left;
+}
