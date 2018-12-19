@@ -1,10 +1,31 @@
 .head-nav-container {
+    font-family: arial,sans-serif;
     overflow:hidden;
     background-color:#24313f;
 }
 
 .head-nav-location{
     float:left;
+    width:185px;
+}
+
+.head-nav-location-img {
+    padding-top:3px;
+    margin:5px 5px 5px 15px;
+}
+
+.head-nav-location-word {
+    font-size: 12px;
+    color:#fff
+}
+
+.head-nav-location-user {
+    position:relative;
+    bottom:3px;
+    font-size: 14px;
+    line-height: 15px;
+    font-weight: 700;
+    color:#fff;
 }
 
 .head-nav-location-img {
