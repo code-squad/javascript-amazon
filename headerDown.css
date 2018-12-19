@@ -34,6 +34,7 @@
 /* 끝 */
 
 .head-nav {
+    margin:6px 0px 0px 6px;
     width:851px;
     float:left;
 }
@@ -41,11 +42,14 @@
 .head-nav-list {
     list-style:none;
     padding-left:10px;
+    margin:5px 0px 0px 0px;
 }
 
 .head-nav-list-el-selector {
     display:inline-block;
+    margin:4px;
     position: relative;
+    bottom:1px;
 }
 
 .head-nav-list-el-selector-word {
@@ -54,6 +58,7 @@
     color:#fff;
     font-family: arial,sans-serif;
     font-weight: 700;
+    margin-right: 30px;
 }
 
 .head-arrow-bright {
@@ -63,13 +68,20 @@
     border-color: transparent;
     border-top: 4px solid #a7acb2;
     top:8px;
+    right:17px;
 }
 
 .head-nav-list-el {
     display:inline-block;
     font-size:13px;
-    color:#fff
+    color:#ccc;
+    margin: 0px 3.5px;
+    text-decoration: none;
 }
+.head-nav-list-el :hover {
+    text-decoration: underline;
+}
+
 .head-nav-right {
     float:left;
 }
