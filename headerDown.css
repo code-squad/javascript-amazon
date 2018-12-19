@@ -32,6 +32,7 @@
     float:left;
 }
 /* 끝 */
+
 .head-nav {
     width:851px;
     float:left;
@@ -53,6 +54,15 @@
     color:#fff;
     font-family: arial,sans-serif;
     font-weight: 700;
+}
+
+.head-arrow-bright {
+    position: absolute;
+    border-style: solid;
+    border-width: 4px;
+    border-color: transparent;
+    border-top: 4px solid #a7acb2;
+    top:8px;
 }
 
 .head-nav-list-el {
