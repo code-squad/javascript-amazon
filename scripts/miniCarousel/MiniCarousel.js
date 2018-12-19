@@ -1,9 +1,9 @@
 export default class MiniCarousel {
   constructor({ htmlElSelector, resURI }) {
-    const base = document.querySelector(`${htmlElSelector} .mini-carousel`);
+    const baseEl = document.querySelector(`${htmlElSelector} .mini-carousel`);
 
-    this.base = base;
-    this.cardSlot = base.querySelector('.carousel__cardSlot');
+    this.base = baseEl;
+    this.cardSlot = baseEl.querySelector('.carousel__cardSlot');
     this.resURI = resURI;
   }
 
@@ -42,8 +42,8 @@ export default class MiniCarousel {
     target.style.width = `${firstChildWidth}px`;
   }
 
-  moveCardNext(cardsEl) {
-    [...cardsEl].forEach((el) => {
+  moveCardNext() {
+    [...this.cardsEl].forEach((el) => {
       const minusOne = numStr => (parseInt(numStr, 10) === 1 ? '4' : `${parseInt(numStr, 10) - 1}`);
       const currentClassName = el.className;
       const newClassName = currentClassName.replace(
@@ -55,8 +55,8 @@ export default class MiniCarousel {
     });
   }
 
-  moveCardBefore(cardsEl) {
-    [...cardsEl].forEach((el) => {
+  moveCardBefore() {
+    [...this.cardsEl].forEach((el) => {
       const currentClassName = el.className;
       const newClassName = currentClassName.replace(
         /(slot)([0-9])/,
@@ -70,18 +70,30 @@ export default class MiniCarousel {
   setListenerToController() {
     const toBeforeBtn = this.base.querySelector('.carousel__btnSlot:nth-of-type(1)');
     const toNextBtn = this.base.querySelector('.carousel__btnSlot:nth-of-type(2)');
-    const cardsEl = this.base.querySelectorAll('.carousel__card');
 
-    toBeforeBtn.addEventListener('click', () => {
-      this.moveCardBefore(cardsEl);
-    });
-    toNextBtn.addEventListener('click', () => {
-      this.moveCardNext(cardsEl);
-    });
+    toBeforeBtn.addEventListener('click', this.moveCardBefore.bind(this));
+    toNextBtn.addEventListener('click', this.moveCardNext.bind(this));
   }
 
   initOnLoad() {
+    this.cardsEl = this.base.querySelectorAll('.carousel__card');
     this.setCarouselsInitialWidth();
     this.setListenerToController();
+    this.startAutoRotate(this.moveCardNext.bind(this));
+  }
+
+  startAutoRotate(rotateFn) {
+    let lastStamp = 0;
+
+    function rotate(timestamp) {
+      const bTimeToPaint = timestamp - lastStamp >= 3000;
+      if (bTimeToPaint) {
+        rotateFn();
+        lastStamp = timestamp;
+      }
+      requestAnimationFrame(rotate);
+    }
+
+    requestAnimationFrame(rotate);
   }
 }

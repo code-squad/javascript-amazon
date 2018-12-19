@@ -47,14 +47,14 @@
 }
 
 .mini-carousel .carousel__card.slot1 {
-  left: 0;
+  transform: translate(-50%, -50%);
 }
 .mini-carousel .carousel__card.slot2 {
-  left: 100%;
+  transform: translate(50%, -50%);
 }
 .mini-carousel .carousel__card.slot3 {
-  left: 200%;
+  transform: translate(150%, -50%);
 }
 .mini-carousel .carousel__card.slot4 {
-  left: -100%;
+  transform: translate(-150%, -50%);
 }
