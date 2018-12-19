@@ -31,11 +31,18 @@
 .head-nav-location-img {
     float:left;
 }
-
+/* 끝 */
 .head-nav {
     float:left;
 }
 
+.head-nav-list {
+    list-style:none
+    
+}
+.head-nav-list-el {
+    display:inline-block;
+}
 .head-nav-right {
     float:left;
 }
