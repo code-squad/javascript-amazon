@@ -7,19 +7,18 @@
 }
 
 /* Carousel Card > benefit-content */
-.scroller-container {
+.carousel-container {
   width: 680px;
   height: 100%;
-  display: inline-block;
+  display: block;
   float: left;
 }
 
-#video-scroller {
+#carousel {
   height: 100%;
   width: 360px;
   margin: 0 auto 0 auto;
 }
-
 
 .a-carousel-row-inner {
   position: relative;
@@ -103,7 +102,6 @@
   width: 580px;
   height: 100%;
   display: inline-block;
-  float: right;
 }
 
 .a-link-nomal {

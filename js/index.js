@@ -23,8 +23,10 @@ const topMenu = new HiddenTopMenu({
 });
 
 const carousel = new CarouselMenu({
-  carousel: $(".carousel-item"),
-  carouseList: $All(".carousel-item"),
+  carousel: $("#carousel"),
+  innerCarousel: $(".a-carousel-row-inner"),
+  a_Carousel: $(".a-carousel-item"),
+  a_CarouseList: $All(".a-carousel-item"),
   prev: $(".a-carousel-prevpage"),
   next: $(".a-carousel-nextpage"),
 });
