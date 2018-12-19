@@ -40,4 +40,18 @@ export default class MiniCarousel {
 
     this.fetchCarouselJSON(URIPrimeOriginal, primeOriginalEl);
   }
+
+  setUlWidthFitChild(targetElSelector) {
+    const target = document.querySelector(targetElSelector);
+    const firstChildWidth = target.children[0].offsetWidth;
+
+    target.style.width = `${firstChildWidth}px`;
+  }
+
+  setCarouselsInitialWidth() {
+    this.setUlWidthFitChild('.horizontalBanners__prime-music .mini-carousel .carousel__cardSlot');
+    this.setUlWidthFitChild(
+      '.horizontalBanners__prime-original .mini-carousel .carousel__cardSlot',
+    );
+  }
 }
