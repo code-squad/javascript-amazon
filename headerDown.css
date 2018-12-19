@@ -45,6 +45,12 @@
     margin:5px 0px 0px 0px;
 }
 
+.departments-arrow{
+    position: relative;
+    top: 8px;
+    left:5px;
+}
+
 .head-nav-list-el-selector {
     display:inline-block;
     margin:4px;
@@ -67,8 +73,6 @@
     border-width: 4px;
     border-color: transparent;
     border-top: 4px solid #a7acb2;
-    top:8px;
-    right:17px;
 }
 
 .head-nav-list-el {
@@ -84,11 +88,14 @@
 
 /* right */
 .head-nav-right {
+    
     float:left;
 }
 
 .head-nav-right-list {
     list-style:none;
+    padding:0px;
+    margin:0px;
 }
 
 .head-nav-right-list-el {
@@ -96,5 +103,12 @@
 }
 
 .head-nav-right-list-language {
-    
+    position: relative;
+}
+.head-nav-right-list-language-user {
+    font-size:14px;
+    color:#ccc
+}
+.language-arrow {
+    position: relative;
 }
