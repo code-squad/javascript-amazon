@@ -1,9 +1,17 @@
 export default class MiniCarousel {
-  createLiHTMLWithJSON({ id, src, alt }) {
-    return `<li class="carousel__card"><img data-imgId="${id}" src="${src}" alt="${alt}" /></li>`;
+  constructor({ htmlElSelector, resURI }) {
+    const base = document.querySelector(`${htmlElSelector} .mini-carousel`);
+
+    this.base = base;
+    this.cardSlot = base.querySelector('.carousel__cardSlot');
+    this.resURI = resURI;
   }
 
-  fetchCarouselJSON(resURI, targetEl, useXHR = false) {
+  createLiHTMLWithJSON({ id, src, alt }) {
+    return `<li class="carousel__card slot${id}"><img class="carousel__thumbnail" data-imgId="${id}" src="${src}" alt="${alt}" /></li>`;
+  }
+
+  fetchCarouselJSONToSlot(resURI, targetEl, useXHR = false) {
     if (useXHR) {
       /* equivalent XHR codes */
       return;
@@ -23,35 +31,57 @@ export default class MiniCarousel {
       });
   }
 
-  fetchPrimeMusicCarousel() {
-    const URIPrimeMusic = '/res/primeMusic.json';
-    const primeMusicEl = document.querySelector(
-      '.horizontalBanners__prime-music .mini-carousel .carousel__cardSlot',
-    );
-
-    this.fetchCarouselJSON(URIPrimeMusic, primeMusicEl);
+  fetchCarouselRes() {
+    this.fetchCarouselJSONToSlot(this.resURI, this.cardSlot);
   }
 
-  fetchPrimeOriginalCarousel() {
-    const URIPrimeOriginal = '/res/primeOriginal.json';
-    const primeOriginalEl = document.querySelector(
-      '.horizontalBanners__prime-original .mini-carousel .carousel__cardSlot',
-    );
-
-    this.fetchCarouselJSON(URIPrimeOriginal, primeOriginalEl);
-  }
-
-  setUlWidthFitChild(targetElSelector) {
-    const target = document.querySelector(targetElSelector);
+  setCarouselsInitialWidth() {
+    const target = this.cardSlot;
     const firstChildWidth = target.children[0].offsetWidth;
 
     target.style.width = `${firstChildWidth}px`;
   }
 
-  setCarouselsInitialWidth() {
-    this.setUlWidthFitChild('.horizontalBanners__prime-music .mini-carousel .carousel__cardSlot');
-    this.setUlWidthFitChild(
-      '.horizontalBanners__prime-original .mini-carousel .carousel__cardSlot',
-    );
+  moveCardNext(cardsEl) {
+    [...cardsEl].forEach((el) => {
+      const minusOne = numStr => (parseInt(numStr, 10) === 1 ? '4' : `${parseInt(numStr, 10) - 1}`);
+      const currentClassName = el.className;
+      const newClassName = currentClassName.replace(
+        /(slot)([0-9])/,
+        (_, $1, $2) => `${$1}${minusOne($2)}`,
+      );
+
+      el.className = newClassName;
+    });
+  }
+
+  moveCardBefore(cardsEl) {
+    [...cardsEl].forEach((el) => {
+      const currentClassName = el.className;
+      const newClassName = currentClassName.replace(
+        /(slot)([0-9])/,
+        (_, $1, $2) => `${$1}${(parseInt($2, 10) % 4) + 1}`,
+      );
+
+      el.className = newClassName;
+    });
+  }
+
+  setListenerToController() {
+    const toBeforeBtn = this.base.querySelector('.carousel__btnSlot:nth-of-type(1)');
+    const toNextBtn = this.base.querySelector('.carousel__btnSlot:nth-of-type(2)');
+    const cardsEl = this.base.querySelectorAll('.carousel__card');
+
+    toBeforeBtn.addEventListener('click', () => {
+      this.moveCardBefore(cardsEl);
+    });
+    toNextBtn.addEventListener('click', () => {
+      this.moveCardNext(cardsEl);
+    });
+  }
+
+  initOnLoad() {
+    this.setCarouselsInitialWidth();
+    this.setListenerToController();
   }
 }

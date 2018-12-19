@@ -13,19 +13,27 @@ const megaMenu = new MegaMenu({
   triggerEl: document.querySelector('.megaMenu__trigger'),
   canvasEl: document.querySelector('.megaMenu__trackerCanvas'),
 });
-const miniCarousel = new MiniCarousel();
+const miniCarouselMusic = new MiniCarousel({
+  htmlElSelector: '.horizontalBanners__prime-music',
+  resURI: '/res/primeMusic.json',
+});
+const miniCarouselOriginal = new MiniCarousel({
+  htmlElSelector: '.horizontalBanners__prime-original',
+  resURI: '/res/primeOriginal.json',
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   stickyPlansLayer.displayDetailOnClick();
   stickyPlansLayer.closeDetailOnClick();
   megaMenu.setMenuOpenMouseEvent();
   megaMenu.setDetailOpenMouseEvent();
-  miniCarousel.fetchPrimeMusicCarousel();
-  miniCarousel.fetchPrimeOriginalCarousel();
+  miniCarouselMusic.fetchCarouselRes();
+  miniCarouselOriginal.fetchCarouselRes();
 });
 window.addEventListener('load', () => {
   stickyPlansLayer.setWrapperHeight(); // Extend body height to make position:sticky work properly
   stickyPlansLayer.updateListenerForVisibility('add'); // Display sticky bar on scroll
   megaMenu.setBgDimHeight(); // Expand background dim div to entire viewport
-  miniCarousel.setCarouselsInitialWidth();
+  miniCarouselMusic.initOnLoad();
+  miniCarouselOriginal.initOnLoad();
 });

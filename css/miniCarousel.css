@@ -43,17 +43,18 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  transition: all 0.1s;
 }
 
-.mini-carousel .carousel__card:nth-of-type(1) {
+.mini-carousel .carousel__card.slot1 {
   left: 0;
 }
-.mini-carousel .carousel__card:nth-of-type(2) {
+.mini-carousel .carousel__card.slot2 {
   left: 100%;
 }
-.mini-carousel .carousel__card:nth-of-type(3) {
+.mini-carousel .carousel__card.slot3 {
   left: 200%;
 }
-.mini-carousel .carousel__card:nth-of-type(4) {
-  left: 300%;
+.mini-carousel .carousel__card.slot4 {
+  left: -100%;
 }
