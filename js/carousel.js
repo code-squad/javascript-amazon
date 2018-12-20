@@ -3,22 +3,36 @@ export default class Carousel {
     this.layer = {
       carousel: layer.carousel,
       innerCarousel: layer.innerCarousel,
-      a_Carousel: layer.a_Carousel,
-      a_CarouselList: layer.a_CarouselList,
+      carouselItem: layer.a_CarouselItem,
+      allCarousel: layer.a_CarouselList,
       prevIMG: layer.prev,
       nextIMG: layer.next,
-    };
+    }
+    this.itemWidth = this.layer.carouselItem.offsetWidth;
+    this.itemHeight = this.layer.carouselItem.offsetHeight;
+    this.itemLength = this.layer.allCarousel;
+    console.log(this.itemLength);
+
+    this.offset = 0;
+    this.currentItem = 1;
   }
 
   init() {
+    this.setCarouselStyle();
     this.moveToPrev();
     this.moveToNext();
     this.attachEvent();
   }
 
+  setCarouselStyle() {
+    this.layer.innerCarousel.style.width = this.itemWidth + 'px';
+    this.layer.innerCarousel.style.height = this.itemHeight + 'px';
+    this.layer.innerCarousel.style.opacity = 0;
+  }
+
   attachEvent() {
-    this.layer.carousel.style.width = this.layer.a_Carousel.offsetWidth + 'px';
-    this.layer.carousel.style.height = this.layer.a_Carousel.offsetHeight + 'px';
+    this.layer.prevIMG.addEventListener("click", this.moveToPrev.bind(this));
+    this.layer.nextIMG.addEventListener("click", this.moveToNext.bind(this));
   }
 
   moveToPrev() {
@@ -27,5 +41,10 @@ export default class Carousel {
 
   moveToNext() {
 
+  }
+
+  move() {
+    this.layer.innerCarousel.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
+    this.layer.innerCarousel.style.transform = `translate3D(0px, 0 ,0)`;
   }
 }

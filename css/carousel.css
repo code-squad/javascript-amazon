@@ -70,7 +70,7 @@
   display: inline-block;
 }
 
-.a-carousel-prevpage {
+.a-carousel-prev {
   width: 13px;
   height: 20px;
   margin: 0 20px 0 0;
@@ -79,7 +79,7 @@
   color: #002F36;
 }
 
-.a-carousel-nextpage {
+.a-carousel-next {
   width: 13px;
   height: 20px;
   margin: 0 0 0 20px;
@@ -130,4 +130,12 @@
 
 .benefit-cta {
   font-size: 18px;
+}
+
+.carousel {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  /* carousel 요소의 width/height의 셋팅이 완료될 때까지 감춘다. */
+  opacity: 0;
 }

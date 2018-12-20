@@ -23,12 +23,12 @@ const topMenu = new HiddenTopMenu({
 });
 
 const carousel = new CarouselMenu({
-  carousel: $("#carousel"),
-  innerCarousel: $(".a-carousel-row-inner"),
-  a_Carousel: $(".a-carousel-item"),
+  carousel: $(".a-carousel-center"),
+  innerCarousel: $(".a-carousel-viewport"),
+  a_CarouselItem: $(".a-carousel-item"),
   a_CarouseList: $All(".a-carousel-item"),
-  prev: $(".a-carousel-prevpage"),
-  next: $(".a-carousel-nextpage"),
+  prev: $(".a-carousel-prev"),
+  next: $(".a-carousel-next"),
 });
 
 layerManager.init();
