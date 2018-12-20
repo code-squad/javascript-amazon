@@ -1,6 +1,7 @@
 import StickyNav from './stickyNav/StickyNav.js';
 import MegaMenu from './megaMenu/MegaMenu.js';
 import MiniCarousel from './miniCarousel/MiniCarousel.js';
+import { debounce } from './ThrottleAndDebounce.js';
 
 const stickyPlansLayer = new StickyNav({
   htmlEl: document.querySelector('.stickyNav'),
@@ -16,10 +17,12 @@ const megaMenu = new MegaMenu({
 const miniCarouselMusic = new MiniCarousel({
   htmlElSelector: '.horizontalBanners__prime-music',
   resURI: '/res/primeMusic.json',
+  util: { debounce },
 });
 const miniCarouselOriginal = new MiniCarousel({
   htmlElSelector: '.horizontalBanners__prime-original',
   resURI: '/res/primeOriginal.json',
+  util: { debounce },
 });
 
 window.addEventListener('DOMContentLoaded', () => {
