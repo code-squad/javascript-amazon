@@ -37,27 +37,39 @@
 }
 
 .a-carousel-center {
+  position: relative;
   height: 100%;
   width: 280px;
-  overflow: visible;
-  position: relative;
   z-index: 3;
   margin: 0 40px;
 }
 
 .a-carousel-viewport {
-  height: 100%;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  /* carousel 요소의 width/height의 셋팅이 완료될 때까지 감춘다. */
+  opacity: 0;
 }
 
 .a-carousel {
-  height: 100%;
+  position: relative;
+  width: 1120px;
+  height: 232px;
+  left: -280px;
 }
 
-.a-carousel-list-card,
 .a-link-category>* {
   width: 100%;
   height: 100%;
   cursor: pointer;
+}
+
+.a-carousel-item {
+  width: 280px;
+  height: 232px;
+  display: block;
+  float: left;
 }
 
 .a-carousel-right-button {
@@ -97,6 +109,14 @@
   vertical-align: top;
 }
 
+.carousel-control {
+  font-size: 1.5em;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 /* Carousel Card > benefit-content */
 .benefit-content {
   width: 580px;
@@ -132,10 +152,34 @@
   font-size: 18px;
 }
 
+.button-arrow {
+  font-size: 1.3rem;
+}
+
+.carousel-control {
+  position: absolute;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}
+
 .carousel {
   position: relative;
   margin: 0 auto;
   overflow: hidden;
   /* carousel 요소의 width/height의 셋팅이 완료될 때까지 감춘다. */
   opacity: 0;
+}
+
+.show {
+  opacity: 1;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.move {
+  transition: 200ms, ease-out, translate3D(0px, 0, 0);
 }

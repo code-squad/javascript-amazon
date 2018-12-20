@@ -10,11 +10,16 @@ export default class Carousel {
     }
     this.itemWidth = this.layer.carouselItem.offsetWidth;
     this.itemHeight = this.layer.carouselItem.offsetHeight;
-    this.itemLength = this.layer.allCarousel;
-    console.log(this.itemLength);
+    this.itemLength = this.layer.allCarousel.length;
+    console.log(this.layer.prevIMG, this.layer.nextIMG)
 
     this.offset = 0;
     this.currentItem = 1;
+
+    this.config = {
+      duration: 200,
+      easing: 'ease-out'
+    };
   }
 
   init() {
@@ -25,9 +30,13 @@ export default class Carousel {
   }
 
   setCarouselStyle() {
-    this.layer.innerCarousel.style.width = this.itemWidth + 'px';
-    this.layer.innerCarousel.style.height = this.itemHeight + 'px';
-    this.layer.innerCarousel.style.opacity = 0;
+    this.layer.innerCarousel.classList.toggle("show");
+  }
+
+  move() {
+    // this.layer.carousel.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
+    // this.layer.carousel.style.transform = `translate3D(0px, 0 ,0)`;
+    this.layer.carousel.classList.add("move")
   }
 
   attachEvent() {
@@ -36,15 +45,15 @@ export default class Carousel {
   }
 
   moveToPrev() {
-
+    this.offset += this.itemWidth;
+    this.move();
+    this.currentItem--;
   }
 
   moveToNext() {
-
+    this.offset -= this.itemWidth;
+    this.move();
+    this.currentItem++;
   }
 
-  move() {
-    this.layer.innerCarousel.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
-    this.layer.innerCarousel.style.transform = `translate3D(0px, 0 ,0)`;
-  }
 }
