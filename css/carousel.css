@@ -48,6 +48,7 @@
   position: relative;
   margin: 0 auto;
   overflow: hidden;
+
   /* carousel 요소의 width/height의 셋팅이 완료될 때까지 감춘다. */
   opacity: 0;
 }
@@ -85,7 +86,7 @@
 .a-carousel-prev {
   width: 13px;
   height: 20px;
-  margin: 0 20px 0 0;
+  margin: 0 27px 0 0;
   position: absolute;
   top: 105px;
   color: #002F36;
@@ -94,19 +95,10 @@
 .a-carousel-next {
   width: 13px;
   height: 20px;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 27px;
   position: absolute;
   top: 105px;
   color: #002F36;
-}
-
-.a-icon {
-  background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIBaseCSS-sprite_1x-6c462f5…._V2_.png);
-  -webkit-background-size: 400px 900px;
-  background-size: 400px 900px;
-  background-repeat: no-repeat;
-  display: inline-block;
-  vertical-align: top;
 }
 
 .carousel-control {
@@ -115,6 +107,19 @@
   border-color: transparent;
   cursor: pointer;
   text-decoration: none;
+}
+
+.button-arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.3rem;
+}
+
+.carousel-control {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
 }
 
 /* Carousel Card > benefit-content */
@@ -152,25 +157,6 @@
   font-size: 18px;
 }
 
-.button-arrow {
-  font-size: 1.3rem;
-}
-
-.carousel-control {
-  position: absolute;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border-color: transparent;
-  cursor: pointer;
-}
-
-.carousel {
-  position: relative;
-  margin: 0 auto;
-  overflow: hidden;
-  /* carousel 요소의 width/height의 셋팅이 완료될 때까지 감춘다. */
-  opacity: 0;
-}
 
 .show {
   opacity: 1;
