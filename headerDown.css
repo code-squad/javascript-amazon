@@ -104,15 +104,17 @@
 
 .head-nav-right-list-language {
     position: relative;
-    padding:10px;
+    margin:10px;
+    text-decoration: none;
 }
 .head-nav-right-list-language-user {
-    position: relative;
-    right:2px;
     font-size:12px;
-    color:#ccc
+    position: relative;
+    left:-10.3px;
+    color:#ccc;
 }
 .language-arrow {
     position: relative;
     top:7px;
+    left:6px;
 }
