@@ -90,6 +90,7 @@
 .head-nav-right {
     
     float:left;
+    margin-bottom:4px;
 }
 
 .head-nav-right-list {
@@ -117,4 +118,10 @@
     position: relative;
     top:7px;
     left:6px;
+}
+.head-nav-right-linkborder{
+    border-right: 1px solid #555;
+    display: inline-block;
+    width: 1px;
+    height: 29px;
 }
