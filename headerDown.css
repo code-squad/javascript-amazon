@@ -101,6 +101,7 @@
 
 .head-nav-right-list-el {
     display:inline-block;
+    cursor: pointer;
 }
 
 .head-nav-right-list-language {
@@ -130,7 +131,6 @@
     bottom:2px;
     margin:10px;
     text-decoration: none;
-    
 }
 .head-nav-right-list-account-msg{
     color:#ccc;
