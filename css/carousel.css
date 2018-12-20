@@ -157,15 +157,10 @@
   font-size: 18px;
 }
 
-
 .show {
   opacity: 1;
 }
 
 .disabled {
   opacity: 0.5;
-}
-
-.move {
-  transition: 200ms, ease-out, translate3D(0px, 0, 0);
 }

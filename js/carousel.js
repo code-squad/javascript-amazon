@@ -34,9 +34,8 @@ export default class Carousel {
   }
 
   move() {
-    // this.layer.carousel.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
-    // this.layer.carousel.style.transform = `translate3D(0px, 0 ,0)`;
-    this.layer.carousel.classList.add("move")
+    this.layer.carousel.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
+    this.layer.carousel.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 
   attachEvent() {
@@ -55,5 +54,4 @@ export default class Carousel {
     this.move();
     this.currentItem++;
   }
-
 }
