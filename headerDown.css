@@ -125,3 +125,26 @@
     width: 1px;
     height: 29px;
 }
+.head-nav-right-list-account {
+    position: relative;
+    bottom:2px;
+    margin:10px;
+    text-decoration: none;
+    
+}
+.head-nav-right-list-account-msg{
+    color:#ccc;
+    font-size:12px;
+}
+.head-nav-right-list-account-user {
+    position: relative;
+    right: -11.5px;
+    color:#fcfcfc;
+    font-size: 14px;
+    font-weight: 700;
+}
+.account-arrow{
+    position: relative;
+    left: 123px;
+    bottom: 9px;
+}
