@@ -55,9 +55,10 @@
 
 .a-carousel {
   position: relative;
-  width: 1120px;
+  width: 1680px;
   height: 232px;
   left: 0;
+  overflow: hidden;
 }
 
 .a-link-category>* {

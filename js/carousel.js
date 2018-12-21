@@ -1,24 +1,35 @@
 export default class Carousel {
   constructor(layer) {
-    this.layer = {
-      childLayer: layer.carousel,
+    this.carousel = {
+      olLayer: layer.carousel,
       showLayer: layer.parentCarousel,
-      carouselItem: layer.a_CarouselItem,
-      allCarousel: layer.a_CarouselList,
+      item: layer.a_CarouselItem,
+      allItems: layer.a_CarouselList,
       prev: layer.prev,
       next: layer.next,
     }
 
-    this.itemWidth = this.layer.carouselItem.offsetWidth;
-    this.itemHeight = this.layer.carouselItem.offsetHeight;
-    this.itemLength = this.layer.allCarousel.length;
+    this.itemWidth = this.carousel.item.offsetWidth;
+    this.itemHeight = this.carousel.item.offsetHeight;
+    this.itemLength = this.carousel.allItems.length;
 
     this.offset = 0;
     this.currentItem = 1;
 
-    this.config = {
+    this.config = Carousel.mergeConfig(carousel);
+
+  }
+  static mergeConfig(config) {
+    const defaultConfig = {
+      selector: '.carousel',
       duration: 200,
-      easing: 'ease-out'
+      easing: 'ease-out',
+      infinite: true,
+    };
+
+    return {
+      ...defaultConfig,
+      ...config
     };
   }
 
@@ -27,52 +38,94 @@ export default class Carousel {
     this.moveToPrev();
     this.moveToNext();
     this.attachEvent();
+    if (this.config.infinite) {
+      this.insertClone();
+      this.offset = -this.itemWidth;
+      this.moveWithoutAnimation();
+    } else {
+      this.checkMovable();
+    }
+  }
+
+  isClone() {
+    return this.currentItem === 0 || this.currentItem === this.itemLength + 1;
   }
 
   setCarouselStyle() {
-    this.layer.showLayer.classList.toggle("show");
+    this.carousel.showLayer.classList.toggle("show");
   }
 
   move() {
-    this.layer.childLayer.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
-    this.layer.childLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+    this.isTransiting = true;
+    this.carousel.olLayer.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
+    this.carousel.olLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+  }
+
+  moveWithoutAnimation() {
+    this.carousel.olLayer.style.transition = 'none';
+    this.carousel.olLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 
   attachEvent() {
-    this.layer.prev.addEventListener("click", this.moveToPrev.bind(this));
-    this.layer.next.addEventListener("click", this.moveToNext.bind(this));
+    this.carousel.prev.addEventListener("click", this.moveToPrev.bind(this));
+    this.carousel.next.addEventListener("click", this.moveToNext.bind(this));
   }
 
   moveToPrev() {
     this.offset += this.itemWidth;
     this.move();
     this.currentItem--;
-    this.checkMovable();
+
+    if (this.config.infinite) {
+      if (this.isClone()) {
+        this.offset -= this.itemLength * this.itemWidth;
+        setTimeout(() => this.moveWithoutAnimation(), 200);
+        this.currentItem = this.currentItem + this.itemLength;
+      }
+    } else {
+      this.checkMovable();
+    }
   }
 
   moveToNext() {
     this.offset -= this.itemWidth;
     this.move();
     this.currentItem++;
-    this.checkMovable();
+
+    if (this.config.infinite) {
+      if (this.isClone()) {
+        this.offset += this.itemLength * this.itemWidth;
+        setTimeout(() => this.moveWithoutAnimation(), 200);
+        this.currentItem = this.currentItem - this.itemLength;
+      }
+    } else {
+      this.checkMovable();
+    }
   }
 
-  // prev, next 버튼 활성화/비활성화 결정
+  insertClone() {
+    const firstItem = this.carousel.allItems[0];
+    const lastItem = this.carousel.allItems[this.carousel.allItems.length - 1];
+
+    this.carousel.olLayer.insertBefore(lastItem.cloneNode(true), this.carousel.olLayer.firstChild);
+    this.carousel.olLayer.appendChild(firstItem.cloneNode(true));
+  }
+
   checkMovable() {
     if (this.currentItem === 1) {
-      this.layer.prev.disabled = true;
-      this.layer.prev.classList.add('disabled');
+      this.carousel.prev.disabled = true;
+      this.carousel.prev.classList.add('disabled');
     } else {
-      this.layer.prev.disabled = false;
-      this.layer.prev.classList.remove('disabled');
+      this.carousel.prev.disabled = false;
+      this.carousel.prev.classList.remove('disabled');
     }
 
     if (this.currentItem === this.itemLength) {
-      this.layer.next.disabled = true;
-      this.layer.next.classList.add('disabled');
+      this.carousel.next.disabled = true;
+      this.carousel.next.classList.add('disabled');
     } else {
-      this.layer.next.disabled = false;
-      this.layer.next.classList.remove('disabled');
+      this.carousel.next.disabled = false;
+      this.carousel.next.classList.remove('disabled');
     }
   }
 }
