@@ -48,18 +48,32 @@ export default class MiniCarousel extends CommonLib {
     return dataArr.reduce((acc, obj) => `${acc}${this.createLiHTMLWithJSON(obj)}\n`, '');
   }
 
-  displayMiniCarousel() {
-    this.setCarouselInitialWidth();
-    this.base.classList.add('ready');
+  displayMiniCarousel(bOnRetry, numOfRetry = 0) {
+    const bImgLoaded = this.setCarouselInitialWidth();
+    if (bImgLoaded) {
+      this.base.classList.add('ready');
+      return true;
+    }
+
+    if (bOnRetry && numOfRetry <= 3) {
+      setTimeout(() => {
+        // if first image couldn't be loaded, retry 3 times more after 0.5 secs
+        this.displayMiniCarousel(true, numOfRetry + 1);
+      }, 500);
+    }
+    return false;
   }
 
   setCarouselInitialWidth() {
     const target = this.cardSlot;
     const firstChildWidth = target.children[0].offsetWidth;
 
+    if (!firstChildWidth) return false;
+
     if (target.style.width !== firstChildWidth) {
       target.style.width = `${Math.round(firstChildWidth) - 1}px`;
     }
+    return true;
   }
 
   initOnLoad() {
@@ -73,21 +87,19 @@ export default class MiniCarousel extends CommonLib {
   setListenerToController() {
     const toBeforeBtn = this.base.querySelector('.carousel__btnSlot.prevBtn');
     const toNextBtn = this.base.querySelector('.carousel__btnSlot.nextBtn');
-    const cards = this.base.querySelectorAll('.carousel__card');
 
     toBeforeBtn.addEventListener('click', () => {
-      this.moveCardBefore(cards);
+      this.moveCardBefore();
       this.pauseAutoRotate();
     });
     toNextBtn.addEventListener('click', () => {
-      this.moveCardNext(cards);
+      this.moveCardNext();
       this.pauseAutoRotate();
     });
   }
 
   startAutoRotate() {
-    const cards = this.base.querySelectorAll('.carousel__card');
-    const rotateFn = this.moveCardNext.bind(this, cards);
+    const rotateFn = this.moveCardNext.bind(this);
     const rAF = this.animFrame;
     let lastTimeStamp = 0;
 
@@ -112,7 +124,9 @@ export default class MiniCarousel extends CommonLib {
     this.animFrame.funcOnDebounce();
   }
 
-  moveCardNext(cards) {
+  moveCardNext() {
+    const cards = this.base.querySelectorAll('.carousel__card');
+
     function minusOne(numStr) {
       const num = parseInt(numStr, 10);
       return num === 1 ? '4' : `${num - 1}`;
@@ -123,7 +137,9 @@ export default class MiniCarousel extends CommonLib {
     [...cards].forEach(card => this.updateCardClass(card, updator));
   }
 
-  moveCardBefore(cards) {
+  moveCardBefore() {
+    const cards = this.base.querySelectorAll('.carousel__card');
+
     const updator = (_, $1, $2) => `${$1}${(parseInt($2, 10) % 4) + 1}`;
 
     [...cards].forEach(card => this.updateCardClass(card, updator));
