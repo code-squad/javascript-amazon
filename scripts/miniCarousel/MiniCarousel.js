@@ -1,23 +1,11 @@
-class RAFAction {
-  constructor() {
-    this.RAFId = null;
-  }
+import RAFAction from './rAFModule/RAFAction.js';
 
-  animate(callback) {
-    this.RAFId = requestAnimationFrame(callback);
-  }
-
-  stop() {
-    cancelAnimationFrame(this.RAFId);
-  }
-}
 export default class MiniCarousel {
-  constructor({ htmlElSelector, resURI, util }) {
+  constructor({ htmlElSelector, util }) {
     const baseEl = document.querySelector(`${htmlElSelector} .mini-carousel`);
 
     this.base = baseEl;
     this.cardSlot = baseEl.querySelector('.carousel__cardSlot');
-    this.resURI = resURI;
     this.animFrame = new RAFAction();
     this.util = util;
   }
@@ -26,7 +14,7 @@ export default class MiniCarousel {
     return `<li class="carousel__card slot${id}"><img class="carousel__thumbnail" data-imgId="${id}" src="${src}" alt="${alt}" /></li>`;
   }
 
-  fetchCarouselJSONToSlot(resURI, targetEl) {
+  fetchCarouselRes(resURI) {
     function process(evt) {
       if (evt.target.status !== 200) {
         console.log(`request failed - result status code: ${evt.target.status}`);
@@ -38,7 +26,7 @@ export default class MiniCarousel {
         '\n',
       );
 
-      const target = targetEl;
+      const target = this.cardSlot;
       target.innerHTML = HTMLtxt;
 
       this.contentsReady = true;
@@ -54,10 +42,6 @@ export default class MiniCarousel {
     xhr.addEventListener('load', process.bind(this));
     xhr.open('GET', resURI);
     xhr.send();
-  }
-
-  fetchCarouselRes() {
-    this.fetchCarouselJSONToSlot(this.resURI, this.cardSlot);
   }
 
   setCarouselsInitialWidth() {
