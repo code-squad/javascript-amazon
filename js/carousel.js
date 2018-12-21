@@ -17,8 +17,8 @@ export default class Carousel {
     this.currentItem = 1;
 
     this.config = Carousel.mergeConfig(carousel);
-
   }
+
   static mergeConfig(config) {
     const defaultConfig = {
       selector: '.carousel',
@@ -35,9 +35,11 @@ export default class Carousel {
 
   init() {
     this.setCarouselStyle();
-    this.moveToPrev();
-    this.moveToNext();
+    this.moveController();
     this.attachEvent();
+  }
+
+  moveController() {
     if (this.config.infinite) {
       this.insertClone();
       this.offset = -this.itemWidth;
@@ -47,12 +49,16 @@ export default class Carousel {
     }
   }
 
+  setCarouselStyle() {
+    this.carousel.showLayer.classList.add("show");
+  }
+
   isClone() {
     return this.currentItem === 0 || this.currentItem === this.itemLength + 1;
   }
 
-  setCarouselStyle() {
-    this.carousel.showLayer.classList.toggle("show");
+  delayMoveWithoutAnimation() {
+    return setTimeout(() => this.moveWithoutAnimation(), 200);
   }
 
   move() {
@@ -66,40 +72,33 @@ export default class Carousel {
     this.carousel.olLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 
-  attachEvent() {
-    this.carousel.prev.addEventListener("click", this.moveToPrev.bind(this));
-    this.carousel.next.addEventListener("click", this.moveToNext.bind(this));
-  }
-
   moveToPrev() {
     this.offset += this.itemWidth;
     this.move();
     this.currentItem--;
-
-    if (this.config.infinite) {
-      if (this.isClone()) {
-        this.offset -= this.itemLength * this.itemWidth;
-        setTimeout(() => this.moveWithoutAnimation(), 200);
-        this.currentItem = this.currentItem + this.itemLength;
-      }
-    } else {
-      this.checkMovable();
-    }
+    (this.config.infinite) ? this.setPrevMove() : this.checkMovable();
   }
 
   moveToNext() {
     this.offset -= this.itemWidth;
     this.move();
     this.currentItem++;
+    (this.config.infinite) ? this.setNextMove() : this.checkMovable();
+  }
 
-    if (this.config.infinite) {
-      if (this.isClone()) {
-        this.offset += this.itemLength * this.itemWidth;
-        setTimeout(() => this.moveWithoutAnimation(), 200);
-        this.currentItem = this.currentItem - this.itemLength;
-      }
-    } else {
-      this.checkMovable();
+  setPrevMove() {
+    if (this.isClone()) {
+      this.offset -= this.itemLength * this.itemWidth;
+      this.delayMoveWithoutAnimation();
+      this.currentItem = this.currentItem + this.itemLength;
+    }
+  }
+
+  setNextMove() {
+    if (this.isClone()) {
+      this.offset += this.itemLength * this.itemWidth;
+      this.delayMoveWithoutAnimation();
+      this.currentItem = this.currentItem - this.itemLength;
     }
   }
 
@@ -112,20 +111,12 @@ export default class Carousel {
   }
 
   checkMovable() {
-    if (this.currentItem === 1) {
-      this.carousel.prev.disabled = true;
-      this.carousel.prev.classList.add('disabled');
-    } else {
-      this.carousel.prev.disabled = false;
-      this.carousel.prev.classList.remove('disabled');
-    }
+    (this.currentItem === 1) ? this.carousel.prev.disabled = true : this.carousel.prev.disabled = false;
+    (this.currentItem === this.itemLength) ? this.carousel.next.disabled = true : this.carousel.next.disabled = false;
+  }
 
-    if (this.currentItem === this.itemLength) {
-      this.carousel.next.disabled = true;
-      this.carousel.next.classList.add('disabled');
-    } else {
-      this.carousel.next.disabled = false;
-      this.carousel.next.classList.remove('disabled');
-    }
+  attachEvent() {
+    this.carousel.prev.addEventListener("click", this.moveToPrev.bind(this));
+    this.carousel.next.addEventListener("click", this.moveToNext.bind(this));
   }
 }
