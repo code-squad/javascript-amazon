@@ -1,13 +1,14 @@
 import RAFAction from './rAFModule/RAFAction.js';
+import CommonLib from '../commonLib.js';
 
-export default class MiniCarousel {
-  constructor({ htmlElSelector, util }) {
+export default class MiniCarousel extends CommonLib {
+  constructor({ htmlElSelector }) {
+    super();
     const baseEl = document.querySelector(`${htmlElSelector} .mini-carousel`);
 
     this.base = baseEl;
     this.cardSlot = baseEl.querySelector('.carousel__cardSlot');
     this.animFrame = new RAFAction();
-    this.util = util;
   }
 
   createLiHTMLWithJSON({ id, src, alt }) {
@@ -127,7 +128,7 @@ export default class MiniCarousel {
   pauseAutoRotate() {
     this.animFrame.stop();
     if (!this.animFrame.onDebounce) {
-      this.animFrame.onDebounce = this.util.debounce(this.startAutoRotate, 5000).bind(this);
+      this.animFrame.onDebounce = this.debounce(this.startAutoRotate, 5000).bind(this);
     }
     this.animFrame.onDebounce();
   }
