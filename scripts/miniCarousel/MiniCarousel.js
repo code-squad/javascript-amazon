@@ -12,40 +12,48 @@ export default class MiniCarousel extends CommonLib {
   }
 
   createLiHTMLWithJSON({ id, src, alt }) {
-    return `<li class="carousel__card slot${id}"><img class="carousel__thumbnail" data-imgId="${id}" src="${src}" alt="${alt}" /></li>`;
+    return `
+    <li class="carousel__card slot${id}">
+      <img class="carousel__thumbnail" data-imgId="${id}" src="${src}" alt="${alt}" />
+    </li>
+    `;
   }
 
   fetchCarouselRes(resURI) {
-    function process(evt) {
-      if (evt.target.status !== 200) {
-        console.log(`request failed - result status code: ${evt.target.status}`);
-      }
-      const xhrResponse = evt.target.response;
-      const resArr = JSON.parse(xhrResponse);
-      const HTMLtxt = resArr.reduce(
-        (acc, obj) => `${acc}${this.createLiHTMLWithJSON(obj)}\n`,
-        '\n',
-      );
-
-      const target = this.cardSlot;
-      target.innerHTML = HTMLtxt;
-
-      this.contentsReady = true;
-
-      if (this.loaded) {
-        this.setCarouselsInitialWidth(); // update width by new images
-        this.base.classList.add('ready'); // reveal section as painting completed
-      }
-    }
-
     const xhr = new XMLHttpRequest();
 
-    xhr.addEventListener('load', process.bind(this));
+    xhr.addEventListener('load', this.setCarouselInnerHTML.bind(this));
     xhr.open('GET', resURI);
     xhr.send();
   }
 
-  setCarouselsInitialWidth() {
+  setCarouselInnerHTML({ target: xhrResult }) {
+    const HTMLtxt = this.xhrToHTML(xhrResult);
+
+    if (!HTMLtxt) return;
+    this.cardSlot.innerHTML = HTMLtxt;
+
+    this.bContentsReady = true;
+    if (this.bPageLoaded) this.displayMiniCarousel();
+  }
+
+  xhrToHTML(xhrResult) {
+    if (xhrResult.status !== 200) {
+      console.log(`request failed - result status code: ${xhrResult.status}`);
+      return false;
+    }
+
+    const dataArr = JSON.parse(xhrResult.response);
+
+    return dataArr.reduce((acc, obj) => `${acc}${this.createLiHTMLWithJSON(obj)}\n`, '');
+  }
+
+  displayMiniCarousel() {
+    this.setCarouselInitialWidth();
+    this.base.classList.add('ready');
+  }
+
+  setCarouselInitialWidth() {
     const target = this.cardSlot;
     const firstChildWidth = target.children[0].offsetWidth;
 
@@ -54,82 +62,78 @@ export default class MiniCarousel extends CommonLib {
     }
   }
 
-  moveCardNext() {
-    const cardsEl = this.base.querySelectorAll('.carousel__card');
+  initOnLoad() {
+    this.bPageLoaded = true;
+    if (this.bContentsReady) this.displayMiniCarousel();
 
-    [...cardsEl].forEach((el) => {
-      const target = el;
-      const minusOne = numStr => (parseInt(numStr, 10) === 1 ? '4' : `${parseInt(numStr, 10) - 1}`);
-      const currentClassName = el.className;
-      const newClassName = currentClassName.replace(
-        /(slot)([0-9])/,
-        (_, $1, $2) => `${$1}${minusOne($2)}`,
-      );
-
-      target.className = newClassName;
-    });
-  }
-
-  moveCardBefore() {
-    const cardsEl = this.base.querySelectorAll('.carousel__card');
-
-    [...cardsEl].forEach((el) => {
-      const target = el;
-      const currentClassName = el.className;
-      const newClassName = currentClassName.replace(
-        /(slot)([0-9])/,
-        (_, $1, $2) => `${$1}${(parseInt($2, 10) % 4) + 1}`,
-      );
-
-      target.className = newClassName;
-    });
+    this.setListenerToController();
+    this.startAutoRotate();
   }
 
   setListenerToController() {
     const toBeforeBtn = this.base.querySelector('.carousel__btnSlot.prevBtn');
     const toNextBtn = this.base.querySelector('.carousel__btnSlot.nextBtn');
+    const cards = this.base.querySelectorAll('.carousel__card');
 
     toBeforeBtn.addEventListener('click', () => {
-      this.moveCardBefore();
+      this.moveCardBefore(cards);
       this.pauseAutoRotate();
     });
     toNextBtn.addEventListener('click', () => {
-      this.moveCardNext();
+      this.moveCardNext(cards);
       this.pauseAutoRotate();
     });
   }
 
-  initOnLoad() {
-    this.loaded = true;
-    if (this.contentsReady) {
-      this.setCarouselsInitialWidth(); // set width by cached data
-      this.base.classList.add('ready'); // reveal section as painting completed
-    }
-    this.setListenerToController();
-    this.startAutoRotate();
-  }
-
   startAutoRotate() {
-    const rotateFn = this.moveCardNext.bind(this);
-    const aniFrame = this.animFrame;
-    let lastStamp = 0;
+    const cards = this.base.querySelectorAll('.carousel__card');
+    const rotateFn = this.moveCardNext.bind(this, cards);
+    const rAF = this.animFrame;
+    let lastTimeStamp = 0;
 
     function rotate(timestamp) {
-      const bTimeToPaint = timestamp - lastStamp >= 3000;
+      const bTimeToPaint = timestamp - lastTimeStamp >= 3000;
       if (bTimeToPaint) {
         rotateFn();
-        lastStamp = timestamp;
+        lastTimeStamp = timestamp;
       }
-      aniFrame.animate(rotate);
+      rAF.animate(rotate);
     }
-    aniFrame.animate(rotate);
+
+    rAF.animate(rotate);
   }
 
   pauseAutoRotate() {
     this.animFrame.stop();
-    if (!this.animFrame.onDebounce) {
-      this.animFrame.onDebounce = this.debounce(this.startAutoRotate, 5000).bind(this);
+
+    if (!this.animFrame.funcOnDebounce) {
+      this.animFrame.funcOnDebounce = this.debounce(this.startAutoRotate, 5000).bind(this);
     }
-    this.animFrame.onDebounce();
+    this.animFrame.funcOnDebounce();
+  }
+
+  moveCardNext(cards) {
+    function minusOne(numStr) {
+      const num = parseInt(numStr, 10);
+      return num === 1 ? '4' : `${num - 1}`;
+    }
+
+    const updator = (_, $1, $2) => `${$1}${minusOne($2)}`;
+
+    [...cards].forEach(card => this.updateCardClass(card, updator));
+  }
+
+  moveCardBefore(cards) {
+    const updator = (_, $1, $2) => `${$1}${(parseInt($2, 10) % 4) + 1}`;
+
+    [...cards].forEach(card => this.updateCardClass(card, updator));
+  }
+
+  updateCardClass(card, updatorFn) {
+    const updatedClassName = card.className.replace(/(slot)([0-9])/, updatorFn);
+
+    card.className = updatedClassName;
+
+    return card.className;
   }
 }
