@@ -25,8 +25,8 @@ window.addEventListener('DOMContentLoaded', () => {
   stickyPlansLayer.closeDetailOnClick();
   megaMenu.setMenuOpenMouseEvent();
   megaMenu.setDetailOpenMouseEvent();
-  miniCarouselMusic.fetchCarouselRes('/res/primeMusic.json');
-  miniCarouselOriginal.fetchCarouselRes('/res/primeOriginal.json');
+  miniCarouselMusic.fetchCarouselRes('./res/primeMusic.json');
+  miniCarouselOriginal.fetchCarouselRes('./res/primeOriginal.json');
 });
 window.addEventListener('load', () => {
   stickyPlansLayer.setWrapperHeight(); // Extend body height to make position:sticky work properly
