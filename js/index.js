@@ -24,7 +24,7 @@ const topMenu = new HiddenTopMenu({
 
 const carousel = new CarouselMenu({
   carousel: $(".a-carousel"),
-  innerCarousel: $(".a-carousel-viewport"),
+  parentCarousel: $(".a-carousel-viewport"),
   a_CarouselItem: $(".a-carousel-item"),
   a_CarouselList: $All(".a-carousel-item"),
   prev: $(".a-carousel-prev"),

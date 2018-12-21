@@ -1,13 +1,14 @@
 export default class Carousel {
   constructor(layer) {
     this.layer = {
-      carousel: layer.carousel,
-      innerCarousel: layer.innerCarousel,
+      childLayer: layer.carousel,
+      showLayer: layer.parentCarousel,
       carouselItem: layer.a_CarouselItem,
       allCarousel: layer.a_CarouselList,
       prev: layer.prev,
       next: layer.next,
     }
+
     this.itemWidth = this.layer.carouselItem.offsetWidth;
     this.itemHeight = this.layer.carouselItem.offsetHeight;
     this.itemLength = this.layer.allCarousel.length;
@@ -29,12 +30,12 @@ export default class Carousel {
   }
 
   setCarouselStyle() {
-    this.layer.innerCarousel.classList.toggle("show");
+    this.layer.showLayer.classList.toggle("show");
   }
 
   move() {
-    this.layer.carousel.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
-    this.layer.carousel.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+    this.layer.childLayer.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
+    this.layer.childLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 
   attachEvent() {
