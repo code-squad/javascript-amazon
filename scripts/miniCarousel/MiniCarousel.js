@@ -26,7 +26,7 @@ export default class MiniCarousel {
     return `<li class="carousel__card slot${id}"><img class="carousel__thumbnail" data-imgId="${id}" src="${src}" alt="${alt}" /></li>`;
   }
 
-  fetchCarouselJSONToSlot(resURI, targetEl, useXHR = true) {
+  fetchCarouselJSONToSlot(resURI, targetEl) {
     function process(evt) {
       if (evt.target.status !== 200) {
         console.log(`request failed - result status code: ${evt.target.status}`);
@@ -40,29 +40,20 @@ export default class MiniCarousel {
 
       const target = targetEl;
       target.innerHTML = HTMLtxt;
+
+      this.contentsReady = true;
+
+      if (this.loaded) {
+        this.setCarouselsInitialWidth(); // update width by new images
+        this.base.classList.add('ready'); // reveal section as painting completed
+      }
     }
 
-    if (useXHR) {
-      const xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
 
-      xhr.addEventListener('load', process.bind(this));
-      xhr.open('GET', resURI);
-      xhr.send();
-
-      return;
-    }
-
-    fetch(resURI)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP error, status = ${res.status}`);
-
-        return res.json();
-      })
-      .then(res => res.reduce((acc, obj) => `${acc}${this.createLiHTMLWithJSON(obj)}\n`, '\n'))
-      .then((res) => {
-        const target = targetEl;
-        target.innerHTML = res;
-      });
+    xhr.addEventListener('load', process.bind(this));
+    xhr.open('GET', resURI);
+    xhr.send();
   }
 
   fetchCarouselRes() {
@@ -73,7 +64,9 @@ export default class MiniCarousel {
     const target = this.cardSlot;
     const firstChildWidth = target.children[0].offsetWidth;
 
-    target.style.width = `${Math.round(firstChildWidth) - 1}px`;
+    if (target.style.width !== firstChildWidth) {
+      target.style.width = `${Math.round(firstChildWidth) - 1}px`;
+    }
   }
 
   moveCardNext() {
@@ -122,7 +115,11 @@ export default class MiniCarousel {
   }
 
   initOnLoad() {
-    this.setCarouselsInitialWidth();
+    this.loaded = true;
+    if (this.contentsReady) {
+      this.setCarouselsInitialWidth(); // set width by cached data
+      this.base.classList.add('ready'); // reveal section as painting completed
+    }
     this.setListenerToController();
     this.startAutoRotate();
   }

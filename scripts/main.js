@@ -26,6 +26,7 @@ const miniCarouselOriginal = new MiniCarousel({
 });
 
 window.addEventListener('DOMContentLoaded', () => {
+  console.log('main.js - DOMContentLoaded');
   stickyPlansLayer.displayDetailOnClick();
   stickyPlansLayer.closeDetailOnClick();
   megaMenu.setMenuOpenMouseEvent();
@@ -34,6 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
   miniCarouselOriginal.fetchCarouselRes();
 });
 window.addEventListener('load', () => {
+  console.log('main.js - Page load completed');
   stickyPlansLayer.setWrapperHeight(); // Extend body height to make position:sticky work properly
   stickyPlansLayer.updateListenerForVisibility('add'); // Display sticky bar on scroll
   megaMenu.setBgDimHeight(); // Expand background dim div to entire viewport

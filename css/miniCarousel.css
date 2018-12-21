@@ -32,6 +32,14 @@
   height: calc(var(--horizontal-banner-height) * 0.7);
 }
 
+.mini-carousel {
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.mini-carousel.ready {
+  opacity: 100;
+}
+
 .mini-carousel .placeholder {
   width: 30rem;
   height: 66%;
