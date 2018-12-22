@@ -1,0 +1,51 @@
+.head-nav-right-list {
+    margin:0px;
+}
+
+.head-nav-container {
+    background-color:#24313f;
+    overflow:auto;
+}
+/* location */
+.head-nav-location-container{
+    float:left;
+    width:186px;
+    padding-left:10px;
+}
+
+.head-nav-location {
+    color:#fff;
+    font-size:12px;
+    font-family: arial,sans-serif;
+    width:155px;
+    height:32px;
+    padding:9px 2px 2px 2px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.head-nav-location:hover{
+    border: 1px solid #767d85;
+    border-radius: 2px 2px 0px 0px;
+}
+
+.head-nav-location-img {
+    float:left;
+    margin: 5px 4px 0px 0px   
+}
+.head-nav-location-word{
+    padding-right:50px;
+}
+.head-nav-location-user {
+    position: relative;
+    bottom:1px;
+    font-weight: 900;
+    font-size:14px;
+}
+.head-nav {
+    float:left;
+}
+
+.head-nav-right {
+    float:left;
+}

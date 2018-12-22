@@ -5,6 +5,7 @@ body {
 .head-search-container{
     overflow:hidden;
     background-color:#24313f;
+    height:49px;
 }
 
 .head-search-icon {
