@@ -91,6 +91,7 @@ main {
   text-transform: uppercase;
   background-color: #ffa724;
   border: 1px solid #ff6138;
+  border-radius: 3px;
 }
 
 .btn-prime {

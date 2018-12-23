@@ -197,3 +197,56 @@ nav {
 .nav-main .nav-main-link a:hover {
   text-decoration: underline;
 }
+
+/* ----- NAV PLAN LAYER -----*/
+
+.nav-plan-layer {
+  border-bottom: 1px solid #54b7fd;
+}
+
+.nav-plan-layer .nav-hidden-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: #232f3e;
+  border-bottom: 1px solid #54b7fd;
+  overflow: hidden;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-prime-logo {
+  width: 5rem;
+  height: 3.75rem;
+  margin: 10px 20px 2px 95px;
+  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_Blue._CB515489499_.svg);
+  background-repeat: no-repeat;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-prime-btn {
+  margin: 10px 15px;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-prime-btn .btn-prime-text,
+.nav-plan-layer .nav-hidden-layer .nav-hidden-prime-btn .btn-prime {
+  width: 10rem;
+  height: 3rem;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-see-more {
+  text-align: center;
+  color: #fff;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-see-more {
+  text-align: center;
+  color: #fff;
+  margin-top: 35px;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-see-more .down-arrow {
+  display: inline-block;
+  border: 6px solid transparent;
+  border-top-color: #fff;
+  margin-top: 5px;
+}
