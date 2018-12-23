@@ -201,19 +201,31 @@ nav {
 /* ----- NAV PLAN LAYER -----*/
 
 .nav-plan-layer {
-  border-bottom: 1px solid #54b7fd;
+  position: relative;
 }
 
 .nav-plan-layer .nav-hidden-layer {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 10;
   background-color: #232f3e;
-  border-bottom: 1px solid #54b7fd;
+  border-bottom: 2px solid #54b7fd;
+
+  transition: height 1s;
+}
+
+.nav-plan-layer .nav-hidden-layer.hidden {
+  height: 0;
   overflow: hidden;
 }
+
+.nav-plan-layer .nav-hidden-layer.visible {
+  height: 4.5625rem;
+  overflow: hidden;
+}
+
 
 .nav-plan-layer .nav-hidden-layer .nav-hidden-prime-logo {
   width: 5rem;
@@ -231,11 +243,6 @@ nav {
 .nav-plan-layer .nav-hidden-layer .nav-hidden-prime-btn .btn-prime {
   width: 10rem;
   height: 3rem;
-}
-
-.nav-plan-layer .nav-hidden-layer .nav-hidden-see-more {
-  text-align: center;
-  color: #fff;
 }
 
 .nav-plan-layer .nav-hidden-layer .nav-hidden-see-more {
