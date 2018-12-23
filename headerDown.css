@@ -116,7 +116,7 @@
     display: inline-block;
 }
 .head-nav-right-list-language{
-    padding: 4px 14px;
+    padding: 4px 13px;
     border:1px solid transparent;
     cursor: pointer;
 }
@@ -140,11 +140,39 @@
     height: 29px;
 }
 .head-nav-right-list-account{
-    border:5px;
+    padding: 4px 12px 4px 5px;
+    border:1px solid transparent
+}
+.head-nav-right-list-account:hover{
+    border:1px solid #767d85;
+    border-radius:1px 1px 0px 0px;
 }
 .head-nav-right-list-account-msg{
-    display:block
+    display:block;
+    font-weight: 400;
 }
 .head-nav-right-list-account-user{
     display:inline-block;
+    color:#fff;
+    font-size:14px;
+    font-weight: 700;
+}
+.account-arrow{
+    display:inline-block;
+    position: relative;
+    bottom:5px;
+}
+
+.head-nav-right-list-order{
+    padding:4px 8px;
+    border:1px solid transparent
+}
+.head-nav-right-list-order:hover{
+    border:1px solid #767d85;
+    border-radius: 1px 1px 0px 0px;
+}
+.head-nav-right-list-order-word{
+    color:#fff;
+    font-size:14px;
+    font-weight: 700;
 }
