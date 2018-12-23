@@ -54,6 +54,8 @@
     list-style: none;
     padding:0px;
     margin-top:6px;
+    margin-bottom:0px;
+    height:39px;
 }
 .head-nav-list > li{
     display:inline-block;
@@ -98,4 +100,51 @@
 }
 .head-nav-list-el:hover {
     text-decoration: underline;
+}
+/* nav-right */
+.head-nav-right{
+    position:relative;
+    float:right;
+    color:#ccc;
+    font-size:12px;
+}
+.head-nav-right-list{
+    list-style: none;
+    padding:0px;
+}
+.head-nav-right-list > li{
+    display: inline-block;
+}
+.head-nav-right-list-language{
+    padding: 4px 14px;
+    border:1px solid transparent;
+    cursor: pointer;
+}
+.head-nav-right-list-language:hover{
+    border:1px solid #767d85;
+    border-radius:1px 1px 0px 0px;
+}
+.head-nav-right-list-language-user{
+    position: relative;
+    right:1px;
+}
+.language-arrow{
+    display:inline-block;
+    position: relative;
+    bottom:9.5px;
+}
+.head-nav-right-linkborder{
+    border-right: 1px solid #555;
+    display: inline-block;
+    width: 1px;
+    height: 29px;
+}
+.head-nav-right-list-account{
+    border:5px;
+}
+.head-nav-right-list-account-msg{
+    display:block
+}
+.head-nav-right-list-account-user{
+    display:inline-block;
 }
