@@ -107,6 +107,7 @@
     float:right;
     color:#ccc;
     font-size:12px;
+    margin-right:10px;
 }
 .head-nav-right-list{
     list-style: none;
@@ -141,7 +142,8 @@
 }
 .head-nav-right-list-account{
     padding: 4px 12px 4px 5px;
-    border:1px solid transparent
+    border:1px solid transparent;
+    cursor: pointer;
 }
 .head-nav-right-list-account:hover{
     border:1px solid #767d85;
@@ -165,7 +167,8 @@
 
 .head-nav-right-list-order{
     padding:4px 8px;
-    border:1px solid transparent
+    border:1px solid transparent;
+    cursor: pointer;
 }
 .head-nav-right-list-order:hover{
     border:1px solid #767d85;
@@ -175,4 +178,32 @@
     color:#fff;
     font-size:14px;
     font-weight: 700;
+}
+
+.head-nav-right-list-cart{
+    padding:4px 6px;
+    border:1px solid transparent;
+}
+.head-nav-right-list-cart:hover{
+    border:1px solid #767d85;
+    border-radius:1px 1px 0px 0px;
+}
+.head-nav-right-list-cart-num{
+    position: relative;
+    bottom: 18px;
+    right: 24px;
+    color:#e58f42;
+    font-size:16px;
+    font-weight: 700;
+}
+.head-nav-right-list-cart-word{
+    position: relative;
+    right:16px;
+    color:#fff;
+    font-size:14px;
+    font-weight: 700;
+}
+
+header{
+    border-bottom:2px solid #53a8de;
 }
