@@ -13,9 +13,13 @@ export default class MiniCarousel extends CommonLib {
     this.autoRotationDebounce = timer.autoRotationDebounce;
   }
 
-  createLiHTMLWithJSON({ id, src, alt }) {
+  createLiHTMLWithJSON(jsonArr) {
+    const { id, src, alt } = jsonArr;
+    const len = jsonArr.length;
+    const setLast = slotId => (slotId === len ? 'Last' : slotId);
+
     return `
-    <li class="carousel__card slot${id}">
+    <li class="carousel__card slot${setLast(id)}">
       <img class="carousel__thumbnail" data-imgId="${id}" src="${src}" alt="${alt}" />
     </li>
     `;
@@ -131,27 +135,36 @@ export default class MiniCarousel extends CommonLib {
 
   moveCardNext() {
     const cards = this.base.querySelectorAll('.carousel__card');
+    const len = cards.length;
 
-    function minusOne(numStr) {
+    function minusOne(numStr, total) {
+      if (numStr === 'Last') return total - 1;
+
       const num = parseInt(numStr, 10);
-      return num === 1 ? '4' : `${num - 1}`;
+      return num === 1 ? 'Last' : `${num - 1}`;
     }
-
-    const updator = (_, $1, $2) => `${$1}${minusOne($2)}`;
+    const updator = (_, $1, $2) => `${$1}${minusOne($2, len)}`;
 
     cards.forEach(card => this.updateCardClass(card, updator));
   }
 
   moveCardBefore() {
     const cards = this.base.querySelectorAll('.carousel__card');
+    const len = cards.length;
 
-    const updator = (_, $1, $2) => `${$1}${(parseInt($2, 10) % 4) + 1}`;
+    function plusOne(numStr, total) {
+      if (numStr === 'Last') return 1;
+
+      const num = parseInt(numStr, 10);
+      return num === total - 1 ? 'Last' : (num % total) + 1;
+    }
+    const updator = (_, $1, $2) => `${$1}${plusOne($2, len)}`;
 
     cards.forEach(card => this.updateCardClass(card, updator));
   }
 
   updateCardClass(card, updatorFn) {
-    const updatedClassName = card.className.replace(/(slot)([0-9])/, updatorFn);
+    const updatedClassName = card.className.replace(/(slot)([0-9]|Last)/, updatorFn);
 
     card.className = updatedClassName;
 

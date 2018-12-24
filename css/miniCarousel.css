@@ -61,17 +61,18 @@ Slots > card slot
   top: 50%;
   transform: translateY(-50%);
   transition: all 0.1s;
+  opacity: 0;
 }
 
 .mini-carousel .carousel__card.slot1 {
   transform: translate(-50%, -50%);
+  opacity: 100;
 }
 .mini-carousel .carousel__card.slot2 {
   transform: translate(50%, -50%);
+  opacity: 100;
 }
-.mini-carousel .carousel__card.slot3 {
-  transform: translate(150%, -50%);
-}
-.mini-carousel .carousel__card.slot4 {
+.mini-carousel .carousel__card.slotLast {
   transform: translate(-150%, -50%);
+  opacity: 100;
 }
