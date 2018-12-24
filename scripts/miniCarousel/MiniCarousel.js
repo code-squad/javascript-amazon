@@ -119,7 +119,7 @@ export default class MiniCarousel extends CommonLib {
     this.animFrame.stop();
 
     if (!this.animFrame.funcOnDebounce) {
-      this.animFrame.funcOnDebounce = this.debounce(this.startAutoRotate, 5000).bind(this);
+      this.animFrame.funcOnDebounce = super.debounce(this.startAutoRotate, 5000).bind(this);
     }
     this.animFrame.funcOnDebounce();
   }
@@ -134,7 +134,7 @@ export default class MiniCarousel extends CommonLib {
 
     const updator = (_, $1, $2) => `${$1}${minusOne($2)}`;
 
-    [...cards].forEach(card => this.updateCardClass(card, updator));
+    cards.forEach(card => this.updateCardClass(card, updator));
   }
 
   moveCardBefore() {
@@ -142,7 +142,7 @@ export default class MiniCarousel extends CommonLib {
 
     const updator = (_, $1, $2) => `${$1}${(parseInt($2, 10) % 4) + 1}`;
 
-    [...cards].forEach(card => this.updateCardClass(card, updator));
+    cards.forEach(card => this.updateCardClass(card, updator));
   }
 
   updateCardClass(card, updatorFn) {
