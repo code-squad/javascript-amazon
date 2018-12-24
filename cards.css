@@ -1,0 +1,12 @@
+.carousel-nav{
+    text-align: center;
+}
+
+.carousel-nav-right-list{
+    margin:0px;
+    padding:0px;
+    list-style:none;
+}
+.carousel-nav-right-list-el{
+    display:inline-block;
+}
