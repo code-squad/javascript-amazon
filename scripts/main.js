@@ -13,11 +13,19 @@ const megaMenu = new MegaMenu({
   triggerEl: document.querySelector('.megaMenu__trigger'),
   canvasEl: document.querySelector('.megaMenu__trackerCanvas'),
 });
+
+/* miniCarousel setup */
+const miniCarouselTiming = {
+  autoRotationTiming: 3000, // ms
+  autoRotationDebounce: 5000, // ms
+};
 const miniCarouselMusic = new MiniCarousel({
   htmlElSelector: '.horizontalBanners__prime-music',
+  timer: miniCarouselTiming,
 });
 const miniCarouselOriginal = new MiniCarousel({
   htmlElSelector: '.horizontalBanners__prime-original',
+  timer: miniCarouselTiming,
 });
 
 window.addEventListener('DOMContentLoaded', () => {

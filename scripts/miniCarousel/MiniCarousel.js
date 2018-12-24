@@ -2,13 +2,15 @@ import RAFAction from './rAFModule/RAFAction.js';
 import CommonLib from '../commonLib.js';
 
 export default class MiniCarousel extends CommonLib {
-  constructor({ htmlElSelector }) {
+  constructor({ htmlElSelector, timer }) {
     super();
     const baseEl = document.querySelector(`${htmlElSelector} .mini-carousel`);
 
     this.base = baseEl;
     this.cardSlot = baseEl.querySelector('.carousel__cardSlot');
     this.animFrame = new RAFAction();
+    this.autoRotationTiming = timer.autoRotationTiming;
+    this.autoRotationDebounce = timer.autoRotationDebounce;
   }
 
   createLiHTMLWithJSON({ id, src, alt }) {
@@ -55,7 +57,7 @@ export default class MiniCarousel extends CommonLib {
       return true;
     }
 
-    if (bOnRetry && numOfRetry <= 3) {
+    if (numOfRetry <= 3) {
       setTimeout(() => {
         // if first image couldn't be loaded, retry 3 times more after 0.5 secs
         this.displayMiniCarousel(true, numOfRetry + 1);
@@ -101,10 +103,11 @@ export default class MiniCarousel extends CommonLib {
   startAutoRotate() {
     const rotateFn = this.moveCardNext.bind(this);
     const rAF = this.animFrame;
+    const rotationTiming = this.autoRotationTiming;
     let lastTimeStamp = 0;
 
     function rotate(timestamp) {
-      const bTimeToPaint = timestamp - lastTimeStamp >= 3000;
+      const bTimeToPaint = timestamp - lastTimeStamp >= rotationTiming;
       if (bTimeToPaint) {
         rotateFn();
         lastTimeStamp = timestamp;
@@ -119,7 +122,9 @@ export default class MiniCarousel extends CommonLib {
     this.animFrame.stop();
 
     if (!this.animFrame.funcOnDebounce) {
-      this.animFrame.funcOnDebounce = super.debounce(this.startAutoRotate, 5000).bind(this);
+      this.animFrame.funcOnDebounce = super
+        .debounce(this.startAutoRotate, this.autoRotationDebounce)
+        .bind(this);
     }
     this.animFrame.funcOnDebounce();
   }
