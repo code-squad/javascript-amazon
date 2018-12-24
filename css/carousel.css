@@ -161,3 +161,7 @@
 .show {
   opacity: 1;
 }
+
+.active {
+  transition: all 200ms ease-out;
+}

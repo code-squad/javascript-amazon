@@ -17,11 +17,11 @@ export default class Carousel {
     this.currentItem = 1;
 
     this.config = Carousel.mergeConfig(carousel);
+    this.infinite = true;
   }
 
-  static mergeConfig(config) {
+  static mergeConfig(carouselConfig) {
     const defaultConfig = {
-      selector: '.carousel',
       duration: 200,
       easing: 'ease-out',
       infinite: true,
@@ -29,7 +29,7 @@ export default class Carousel {
 
     return {
       ...defaultConfig,
-      ...config
+      ...carouselConfig
     };
   }
 
@@ -37,6 +37,11 @@ export default class Carousel {
     this.setCarouselStyle();
     this.moveController();
     this.attachEvent();
+  }
+
+  attachEvent() {
+    this.carousel.prev.addEventListener("click", this.moveToPrev.bind(this));
+    this.carousel.next.addEventListener("click", this.moveToNext.bind(this));
   }
 
   moveController() {
@@ -63,12 +68,12 @@ export default class Carousel {
 
   move() {
     this.isTransiting = true;
-    this.carousel.olLayer.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
+    this.carousel.olLayer.classList.add("active");
     this.carousel.olLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 
   moveWithoutAnimation() {
-    this.carousel.olLayer.style.transition = 'none';
+    this.carousel.olLayer.classList.remove("active");
     this.carousel.olLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 
@@ -113,10 +118,5 @@ export default class Carousel {
   checkMovable() {
     (this.currentItem === 1) ? this.carousel.prev.disabled = true : this.carousel.prev.disabled = false;
     (this.currentItem === this.itemLength) ? this.carousel.next.disabled = true : this.carousel.next.disabled = false;
-  }
-
-  attachEvent() {
-    this.carousel.prev.addEventListener("click", this.moveToPrev.bind(this));
-    this.carousel.next.addEventListener("click", this.moveToNext.bind(this));
   }
 }
