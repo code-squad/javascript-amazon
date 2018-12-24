@@ -54,20 +54,14 @@ export default class MiniCarousel extends CommonLib {
     return dataArr.reduce((acc, obj) => `${acc}${this.createLiHTMLWithJSON(obj)}\n`, '');
   }
 
-  displayMiniCarousel(bOnRetry, numOfRetry = 0) {
-    const bImgLoaded = this.setCarouselInitialWidth();
-    if (bImgLoaded) {
-      this.base.classList.add('ready');
-      return true;
+  displayMiniCarousel() {
+    const firstImg = this.cardSlot.querySelector('.carousel__thumbnail');
+    if (!firstImg.complete) {
+      setTimeout(this.displayMiniCarousel.bind(this), 500);
     }
 
-    if (numOfRetry <= 3) {
-      setTimeout(() => {
-        // if first image couldn't be loaded, retry 3 times more after 0.5 secs
-        this.displayMiniCarousel(true, numOfRetry + 1);
-      }, 500);
-    }
-    return false;
+    this.setCarouselInitialWidth();
+    this.base.classList.add('ready');
   }
 
   setCarouselInitialWidth() {
