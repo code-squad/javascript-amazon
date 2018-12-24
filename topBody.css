@@ -50,3 +50,19 @@
     margin-top: 10px;
     font-size: 14px;
 }
+
+.top-body-content-link{
+    color:#fff;
+    font-size:14px;
+}
+.top-body-content-arrow{
+    padding-left:3px;
+    font-size:3px;
+    display:inline-block;
+}
+
+.top-body-conetent-prime-img{
+    margin-top:34px;
+    width:80px;
+    height:50px;
+}
