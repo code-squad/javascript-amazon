@@ -33,8 +33,10 @@
     text-align: center;
     border:2px solid #e06c44;
     border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
 }
 .top-body-content-button:hover{
+    background-color:#f0c14b;
 }
 .top-body-content-button-word{
     font-family: 'Amazon Ember',  Arial,  sans-serif;
@@ -42,4 +44,9 @@
     font-size:20px;
     color:#304a3f;
     line-height: 52px;
+}
+
+.top-body-content-fee{
+    margin-top: 10px;
+    font-size: 14px;
 }
