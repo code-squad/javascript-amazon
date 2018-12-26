@@ -1,5 +1,6 @@
 import StickyNav from './stickyNav/StickyNav.js';
 import MegaMenu from './megaMenu/MegaMenu.js';
+import MiniCarousel from './miniCarousel/MiniCarousel.js';
 
 const stickyPlansLayer = new StickyNav({
   htmlEl: document.querySelector('.stickyNav'),
@@ -13,16 +14,32 @@ const megaMenu = new MegaMenu({
   canvasEl: document.querySelector('.megaMenu__trackerCanvas'),
 });
 
+/* miniCarousel setup */
+const miniCarouselTiming = {
+  autoRotationTiming: 3000, // ms
+  autoRotationDebounce: 5000, // ms
+};
+const miniCarouselMusic = new MiniCarousel({
+  htmlElSelector: '.horizontalBanners__prime-music',
+  timer: miniCarouselTiming,
+});
+const miniCarouselOriginal = new MiniCarousel({
+  htmlElSelector: '.horizontalBanners__prime-original',
+  timer: miniCarouselTiming,
+});
+
 window.addEventListener('DOMContentLoaded', () => {
   stickyPlansLayer.displayDetailOnClick();
   stickyPlansLayer.closeDetailOnClick();
   megaMenu.setMenuOpenMouseEvent();
   megaMenu.setDetailOpenMouseEvent();
+  miniCarouselMusic.fetchCarouselRes('./res/primeMusic.json');
+  miniCarouselOriginal.fetchCarouselRes('./res/primeOriginal.json');
 });
 window.addEventListener('load', () => {
-  stickyPlansLayer.setBodyHeight(); // Extend body height to make position:sticky work properly
+  stickyPlansLayer.setWrapperHeight(); // Extend body height to make position:sticky work properly
+  stickyPlansLayer.updateListenerForVisibility('add'); // Display sticky bar on scroll
   megaMenu.setBgDimHeight(); // Expand background dim div to entire viewport
-  window.addEventListener('scroll', () => {
-    stickyPlansLayer.updateVisibility(); // Display sticky bar on scroll
-  });
+  miniCarouselMusic.initOnLoad();
+  miniCarouselOriginal.initOnLoad();
 });

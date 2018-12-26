@@ -12,9 +12,9 @@ export default class {
       const detailLayer = this.base.querySelector('.stickyNav__detailLayer');
       const miniBar = this.base.querySelector('.stickyNav__miniBar');
 
-      detailLayer.classList.replace('closed', 'opened');
-      miniBar.classList.replace('opened', 'closed');
-      window.removeEventListener('scroll', this.updateVisibility);
+      detailLayer.classList.add('opened');
+      miniBar.classList.remove('opened');
+      this.updateListenerForVisibility('remove');
     });
   }
 
@@ -26,8 +26,8 @@ export default class {
       el.addEventListener('click', () => {
         event.preventDefault();
 
-        detailLayer.classList.replace('opened', 'closed');
-        window.addEventListener('scroll', this.updateVisibility);
+        detailLayer.classList.remove('opened');
+        this.updateListenerForVisibility('add');
         this.updateVisibility();
       });
     });
@@ -36,15 +36,28 @@ export default class {
   updateVisibility() {
     const miniBar = this.base.querySelector('.stickyNav__miniBar');
     if (window.pageYOffset < this.threshold) {
-      miniBar.classList.replace('opened', 'closed');
+      miniBar.classList.remove('opened');
       return;
     }
-    miniBar.classList.replace('closed', 'opened');
+    miniBar.classList.add('opened');
   }
 
-  setBodyHeight() {
+  setWrapperHeight() {
     const body = document.querySelector('body');
     const totalHeight = [...body.children].reduce((acc, el) => acc + el.clientHeight, 0);
     body.style.height = `${totalHeight - 1}px`; // Reduce 1px to remove white line on page bottom
+  }
+
+  updateListenerForVisibility(type) {
+    if (!this.boundUpdateVisibility) {
+      this.boundUpdateVisibility = this.updateVisibility.bind(this);
+    }
+
+    if (type === 'add') {
+      document.addEventListener('scroll', this.boundUpdateVisibility);
+    }
+    if (type === 'remove') {
+      document.removeEventListener('scroll', this.boundUpdateVisibility);
+    }
   }
 }

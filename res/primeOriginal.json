@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "src": "./images/StaticBlade/movie1.jpg",
+    "alt": "Prime Original movie The Romanoffs"
+  },
+  {
+    "id": 2,
+    "src": "./images/StaticBlade/movie2.jpg",
+    "alt": "Prime Original movie jack Ryan"
+  },
+  {
+    "id": 3,
+    "src": "./images/StaticBlade/movie3.jpg",
+    "alt": "Prime Original movie The Marvelous Mrs. Maisel"
+  },
+  {
+    "id": 4,
+    "src": "./images/StaticBlade/movie4.jpg",
+    "alt": "Prime Original movie The man in the high castle"
+  }
+]

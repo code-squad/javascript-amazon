@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "src": "./images/StaticBlade/music1.jpg",
+    "alt": "Prime music banner Breet Young"
+  },
+  {
+    "id": 2,
+    "src": "./images/StaticBlade/music2.jpg",
+    "alt": "Prime music banner Taylor Swift"
+  },
+  {
+    "id": 3,
+    "src": "./images/StaticBlade/music3.jpg",
+    "alt": "Prime music banner Old Dominion"
+  },
+  {
+    "id": 4,
+    "src": "./images/StaticBlade/music4.jpg",
+    "alt": "Prime music banner Shakira"
+  },
+  {
+    "id": 5,
+    "src": "./images/StaticBlade/music1.jpg",
+    "alt": "Prime music banner Breet Young"
+  },
+  {
+    "id": 6,
+    "src": "./images/StaticBlade/music2.jpg",
+    "alt": "Prime music banner Taylor Swift"
+  },
+  {
+    "id": 7,
+    "src": "./images/StaticBlade/music3.jpg",
+    "alt": "Prime music banner Old Dominion"
+  },
+  {
+    "id": 8,
+    "src": "./images/StaticBlade/music4.jpg",
+    "alt": "Prime music banner Shakira"
+  }
+]
