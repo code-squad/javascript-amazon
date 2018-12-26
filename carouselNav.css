@@ -10,3 +10,37 @@
 .carousel-nav-right-list-el{
     display:inline-block;
 }
+
+.box-card-container{
+    background:linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
+    width:150px;
+    height:210px;
+}
+
+.stream-card-container{
+    background:linear-gradient(30deg, #CC0C39 40%, #FF6138 85%, #FF6138 74px);
+    width:150px;
+    height:210px;
+}
+
+.shop-card-container{
+    background: linear-gradient(30deg, #A90067 40%, #E31F64 85%, #E31F64 74px);
+    width:150px;
+    height:210px;
+}
+
+.read-card-container{
+    background: linear-gradient(30deg, #008577 40%, #36C2B4 85%, #36C2B4 74px);
+    width:150px;
+    height:210px;
+}
+
+.more-card-container{
+    background: linear-gradient(30deg, #FF6138 40%, #FFC400 85%, #FFC400 74px);
+    width:150px;
+    height:210px;
+}
+
+.index-container > div{
+    display:inline-block;
+}
