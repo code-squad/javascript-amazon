@@ -1,0 +1,121 @@
+/* ----- NAV PLAN LAYER -----*/
+
+.nav-plan-layer {
+    position: relative;
+  }
+  
+.nav-plan-layer .nav-hidden-layer {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 10;
+background-color: #232f3e;
+border-bottom: 2px solid #54b7fd;
+
+transition: height 1s;
+}
+
+.nav-plan-layer .nav-hidden-layer.hidden {
+height: 0;
+overflow: hidden;
+}
+
+.nav-plan-layer .nav-hidden-layer.visible {
+height: 4.5625rem;
+overflow: hidden;
+}
+
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-prime-logo {
+width: 5rem;
+height: 3.75rem;
+margin: 10px 20px 2px 95px;
+background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_Blue._CB515489499_.svg);
+background-repeat: no-repeat;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-prime-btn {
+margin: 10px 15px;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-prime-btn .btn-prime-text,
+.nav-plan-layer .nav-hidden-layer .nav-hidden-prime-btn .btn-prime {
+width: 10rem;
+height: 3rem;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-see-more {
+text-align: center;
+color: #fff;
+margin-top: 35px;
+}
+
+.nav-plan-layer .nav-hidden-layer .nav-hidden-see-more .down-arrow {
+display: inline-block;
+border: 6px solid transparent;
+border-top-color: #fff;
+margin-top: 5px;
+}
+
+.nav-hidden-plan {
+    background: #fff;
+}
+
+.plan-container .plan-header,
+.plan-container .plan-contents {
+display:flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 13rem;
+min-width: 50rem;
+}
+
+.plan-header .plan-prime-logo img {
+width: 4.375rem;
+}
+
+.plan-header .plan-header-title {
+font-size: 1.375rem;
+}
+
+.plan-header .plan-img {
+position: relative;
+}
+
+.plan-header .plan-img .close-btn {
+position: absolute;
+top: 0.3rem;
+right: 0;
+}
+
+.plan-header .plan-img .close-btn span {
+font-weight: bold;
+color: #bbb;
+}
+
+.plan-header .plan-img img {
+width: 13.75rem;
+}
+
+.plan-contents .content-option {
+padding: 0.8rem 1.3rem;
+border: 1px solid #000;
+}
+
+.plan-contents input[type="radio"] {
+display: none;
+}
+
+.plan-contents .content-option .title {
+font-size: 1.3rem;
+margin-bottom: 2rem;
+}
+
+.plan-contents .content-option .title span {
+display: block;
+}
+
+.plan-contents .content-option .benefit div {
+line-height: 1.5;
+}

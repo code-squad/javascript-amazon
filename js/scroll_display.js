@@ -1,4 +1,4 @@
-window.addEventListener("scroll", function displayPlanLayer() {
+window.addEventListener("scroll", function () {
     const navLower = document.querySelector(".nav-lower");
     const primeButton = document.querySelector(".prime-header-content .btn-prime-container");
     const layer = document.querySelector(".nav-plan-layer .nav-hidden-layer");
