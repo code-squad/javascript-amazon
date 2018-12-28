@@ -1,55 +1,44 @@
 .carousel-nav {
-    text-align: center;
+    text-align:center;
 }
 
 .carousel-nav-right-list {
-    margin: 0px;
     padding: 0px;
     list-style: none;
+    margin:0px 331px;
 }
 
 .carousel-nav-right-list-el {
     display: inline-block;
+    vertical-align: middle;
 }
 
-.box-card-container {
+.card-container {
     position: relative;
+    cursor: pointer;
+    width: 150px;
+    height: 210px;
+    margin: 0px 1px;
+}
+
+.box {
     background: linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
-    width: 150px;
-    height: 210px;
-    margin: 0px 1px;
 }
 
-.stream-card-container {
-    position: relative;
+.stream {
     background: linear-gradient(30deg, #CC0C39 40%, #FF6138 85%, #FF6138 74px);
-    width: 150px;
-    height: 210px;
-    margin: 0px 1px;
 }
 
-.shop-card-container {
-    position: relative;
+.shop {
     background: linear-gradient(30deg, #A90067 40%, #E31F64 85%, #E31F64 74px);
-    width: 150px;
-    height: 210px;
-    margin: 0px 1px;
 }
 
-.read-card-container {
-    position: relative;
+.read {
     background: linear-gradient(30deg, #008577 40%, #36C2B4 85%, #36C2B4 74px);
-    width: 150px;
-    height: 210px;
-    margin: 0px 1px;
 }
 
-.more-card-container {
-    position: relative;
+.more {
     background: linear-gradient(30deg, #FF6138 40%, #FFC400 85%, #FFC400 74px);
-    width: 150px;
-    height: 210px;
-    margin: 0px 1px;
 }
 
 .nav-name {
@@ -64,16 +53,6 @@
     bottom: 21px;
 }
 
-.box-card-container-selected {
-    position: relative;
-    float:left;
-    background: linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
-    width: 150px;
-    height: 210px;
-    padding: 30px;
-    margin: 0px 1px;
-}
-
 .index-container>div {
     display: inline-block;
 }
@@ -82,6 +61,6 @@
     width: 150px;
 }
 
-.card-image-selected {
-    width: 215px;
+.selected{
+    border:20px;
 }
