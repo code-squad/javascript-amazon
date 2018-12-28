@@ -1,3 +1,5 @@
+let isHiddenBarShow = false;
+
 window.addEventListener("scroll", function () {
     const navLower = document.querySelector(".nav-lower");
     const primeButton = document.querySelector(".prime-header-content .btn-prime-container");
@@ -16,8 +18,10 @@ window.addEventListener("scroll", function () {
 
     if(isPassedPrimeButton) {
         layer.classList.add("visible");
+        isHiddenBarShow = true;
     } 
     else {
         layer.classList.remove("visible");
+        isHiddenBarShow = false;
     }
 });
