@@ -48,9 +48,7 @@
   position: relative;
   margin: 0 auto;
   overflow: hidden;
-
-  /* carousel 요소의 width/height의 셋팅이 완료될 때까지 감춘다. */
-  opacity: 0;
+  opacity: 1;
 }
 
 .a-carousel {
@@ -158,10 +156,6 @@
   font-size: 18px;
 }
 
-.show {
-  opacity: 1;
-}
-
 .active {
-  transition: all 200ms ease-out;
+  transition: all 93ms ease-out;
 }
