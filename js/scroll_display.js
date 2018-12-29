@@ -3,25 +3,23 @@ let isHiddenBarShow = false;
 window.addEventListener("scroll", function () {
     const navLower = document.querySelector(".nav-lower");
     const primeButton = document.querySelector(".prime-header-content .btn-prime-container");
-    const layer = document.querySelector(".nav-plan-layer .nav-hidden-layer");
+    const hiddenBar = document.querySelector(".nav-hidden-bar");
+    const hiddenBarWrapper = document.querySelector(".bar-wrapper");
 
     const offsetForPosition = navLower.offsetTop + navLower.offsetHeight;
     const offsetForPlanLayer = primeButton.offsetTop + primeButton.offsetHeight;
     const isPassedNavLower = this.scrollY >= offsetForPosition;
     const isPassedPrimeButton = this.scrollY >= offsetForPlanLayer;
     
-    if(isPassedNavLower) {
-        layer.style.position = "fixed";
-    } else {
-        layer.style.position = "absolute";
-    }
+    if(isPassedNavLower) hiddenBarWrapper.style.position = "fixed";
+    else hiddenBarWrapper.style.position = "absolute";
 
     if(isPassedPrimeButton) {
-        layer.classList.add("visible");
+        hiddenBar.classList.replace("hidden", "visible");
         isHiddenBarShow = true;
     } 
     else {
-        layer.classList.remove("visible");
+        hiddenBar.classList.replace("visible", "hidden");
         isHiddenBarShow = false;
     }
 });
