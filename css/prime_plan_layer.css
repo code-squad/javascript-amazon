@@ -2,12 +2,21 @@
   
 .nav-plan-layer {
     position: relative;
-    border-bottom: 2px solid #54b7fd;
+    background: #fff;
+    border-bottom: 3px solid #54b7fd;
+}
+
+.nav-plan-layer.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 .nav-plan-layer .nav-hidden-bar {
     height: 0;
-    transition: height 1s;
+    overflow: hidden;
+    transition: height 0.5s;
 }
 
 .hidden {
@@ -19,17 +28,11 @@
 }
 
 .nav-plan-layer .nav-hidden-bar .bar-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
     background-color: #232f3e;
-    border-bottom: 2px solid #54b7fd;
 }
 
 .bar-wrapper .bar-prime-logo {
@@ -72,13 +75,22 @@
     line-height: 2.8rem;
 }
 
+.nav-hidden-close {
+    text-align: center;
+    padding: 1rem 0;
+}
 
+.nav-hidden-close .close-arrow {
+    display: inline-block;
+    width: 0.9rem;
+    height: 0.9rem;
+    border: 2px solid black;
+    border-right: none;
+    border-bottom: none;
+    transform: rotateZ(45deg);
+}
 
 /* ----- NAV PLAN LAYER -----*/
-
-.nav-hidden-plan {
-    background: #fff;
-}
 
 .plan-container .plan-wrapper {
     width: 64rem;
