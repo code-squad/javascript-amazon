@@ -1,16 +1,17 @@
 /* ----- NAV PLAN BAR -----*/
   
 .nav-plan-layer {
-    position: relative;
-    background: #fff;
+    position: absolute;
+    width: 100%;
     border-bottom: 3px solid #54b7fd;
+    z-index: 999;
 }
 
 .nav-plan-layer.fixed {
     position: fixed;
     top: 0;
-    width: 100%;
-    z-index: 100;
+    left: 0;
+    right: 0;
 }
 
 .nav-plan-layer .nav-hidden-bar {
@@ -22,12 +23,12 @@
     border-bottom: 3px solid #54b7fd;
 }
 
-.hidden {
-    display: none;
+.nav-plan-layer .nav-hidden-bar.visible {
+    height: 4.7rem;
 }
 
-.visible {
-    display: block;
+.hidden {
+    display: none;
 }
 
 .nav-plan-layer .nav-hidden-bar .bar-wrapper {
@@ -79,8 +80,14 @@
 }
 
 .nav-hidden-close {
+    height: 0;
+    overflow: hidden;
     text-align: center;
-    padding: 1rem 0;
+    background: #fff;
+}
+
+.nav-hidden-close.visible {
+    height: 1rem;
 }
 
 .nav-hidden-close .close-arrow {
@@ -98,8 +105,13 @@
 .nav-plan-layer .nav-hidden-plan {
     width: 100%;
     height: 0;
+    background: #fff;
     overflow: hidden;
     transition: height 0.7s;
+}
+
+.nav-plan-layer .nav-hidden-plan.visible {
+    height: 41rem;
 }
 
 .plan-container .plan-wrapper {
