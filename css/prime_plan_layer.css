@@ -14,9 +14,12 @@
 }
 
 .nav-plan-layer .nav-hidden-bar {
+    position: absolute;
+    width: 100%;
     height: 0;
     overflow: hidden;
     transition: height 0.5s;
+    border-bottom: 3px solid #54b7fd;
 }
 
 .hidden {
@@ -38,7 +41,7 @@
 .bar-wrapper .bar-prime-logo {
     width: 16rem;
     height: 3.2rem;
-    margin: 0.5rem;
+    margin: 0.7rem 0;
     background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_Blue._CB515489499_.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -91,6 +94,13 @@
 }
 
 /* ----- NAV PLAN LAYER -----*/
+
+.nav-plan-layer .nav-hidden-plan {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.7s;
+}
 
 .plan-container .plan-wrapper {
     width: 64rem;
