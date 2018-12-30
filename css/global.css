@@ -41,6 +41,10 @@ a {
   color: #5c8aff;
 }
 
+.hidden {
+  display: none;
+}
+
 .left {
   float: left;
 }

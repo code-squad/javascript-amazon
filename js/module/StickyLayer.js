@@ -1,12 +1,20 @@
-export default class{
-    constructor(stickyEl){
-        this.stickyEl = stickyEl;
-        this.bShowHiddenBar = false;
+class Scroll{
+    constructor(baseEl = window){
+        this.baseEl = baseEl;
     }
 
-    pinElement(){
+    addEvent(...evtListeners){
+        evtListeners.forEach(evtListener => this.baseEl.addEventListener("scroll", evtListener));
+    }
+}
+
+class StickyLayer{
+    constructor({ stickyEl }){
+        this.stickyEl = stickyEl;
+    }
+
+    pinElement({ thresholdEl }){
         return () => {
-            const thresholdEl = document.querySelector(".nav-lower");
             const threshold = thresholdEl.offsetTop + thresholdEl.offsetHeight;
             const isPassedThreshold = window.scrollY >= threshold;
             
@@ -15,10 +23,8 @@ export default class{
         }
     }
 
-    displayHiddenBar(){
+    displayHiddenBar({ hiddenBar, thresholdEl }){
         return () => {
-            const hiddenBar = this.stickyEl.querySelector(".nav-hidden-bar");
-            const thresholdEl = document.querySelector(".prime-header-content .btn-prime-container");
             const threshold = thresholdEl.offsetTop + thresholdEl.offsetHeight;
             const isPassedThreshold = window.scrollY >= threshold;
         
@@ -32,7 +38,7 @@ export default class{
         const hiddenPlan = this.stickyEl.querySelector(".nav-hidden-plan");
         const hiddenBar = this.stickyEl.querySelector(".nav-hidden-bar");
         const barCloseBtn = this.stickyEl.querySelector(".nav-hidden-close");
-        const contentCloseBtn = document.querySelectorAll("#content-close-btn");
+        const contentCloseBtn = this.stickyEl.querySelectorAll("#content-close-btn");
         
         seeMoreBtn.addEventListener("click", () => {
             hiddenPlan.classList.add("visible");
@@ -47,3 +53,5 @@ export default class{
         }));
     }
 }
+
+export { StickyLayer, Scroll }

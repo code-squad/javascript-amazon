@@ -3,8 +3,9 @@
 .nav-plan-layer {
     position: absolute;
     width: 100%;
+    background: #fff;
     border-bottom: 3px solid #54b7fd;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .nav-plan-layer.fixed {
@@ -14,25 +15,18 @@
     right: 0;
 }
 
-.nav-plan-layer .nav-hidden-bar {
-    position: absolute;
+.nav-plan-layer > div {
     width: 100%;
     height: 0;
     overflow: hidden;
     transition: height 0.5s;
-    border-bottom: 3px solid #54b7fd;
 }
 
 .nav-plan-layer .nav-hidden-bar.visible {
-    height: 4.7rem;
-}
-
-.hidden {
-    display: none;
+    height: 4.6rem;
 }
 
 .nav-plan-layer .nav-hidden-bar .bar-wrapper {
-    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,28 +60,22 @@
 }
 
 .bar-wrapper .bar-prime-btn {
-    margin: 0.5rem 1.2rem;
+    margin: auto 1.2rem;
 }
 
-.bar-wrapper .bar-prime-btn span.btn-prime-text,
-.bar-wrapper .bar-prime-btn input.btn-prime {
+.bar-wrapper .bar-prime-btn .btn-prime-text,
+.bar-wrapper .bar-prime-btn .btn-prime {
     width: 16rem;
     height: 2.8rem;
 }
 
-.bar-wrapper .bar-prime-btn span.btn-prime-text {
+.bar-wrapper .bar-prime-btn .btn-prime-text {
     line-height: 2.8rem;
 }
 
-.nav-hidden-close {
-    height: 0;
-    overflow: hidden;
-    text-align: center;
-    background: #fff;
-}
-
 .nav-hidden-close.visible {
-    height: 1rem;
+    height: 1.5rem;
+    text-align: center;
 }
 
 .nav-hidden-close .close-arrow {
@@ -97,17 +85,7 @@
     border: 2px solid black;
     border-right: none;
     border-bottom: none;
-    transform: rotateZ(45deg);
-}
-
-/* ----- NAV PLAN LAYER -----*/
-
-.nav-plan-layer .nav-hidden-plan {
-    width: 100%;
-    height: 0;
-    background: #fff;
-    overflow: hidden;
-    transition: height 0.7s;
+    transform: translateY(0.5rem) rotateZ(45deg);
 }
 
 .nav-plan-layer .nav-hidden-plan.visible {
