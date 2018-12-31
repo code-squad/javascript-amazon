@@ -1,6 +1,7 @@
 /* ----- HEADER -----*/
 /* ----- NAV TOP -----*/
 nav {
+  position: relative;
   background-color: #232f3e;
   min-width: 1000px;
 }
@@ -197,3 +198,4 @@ nav {
 .nav-main .nav-main-link a:hover {
   text-decoration: underline;
 }
+

@@ -6,6 +6,7 @@
     <title>Amazon.com: Amazon Prime</title>
     <link rel="stylesheet" href="./css/global.css" />
     <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/prime_plan_layer.css">
     <link rel="stylesheet" href="./css/prime_header.css" />
     <link rel="stylesheet" href="./css/prime_carousel.css">
     <link rel="stylesheet" href="./css/prime_features.css" />
@@ -119,7 +120,6 @@
             </form>
           </div>
         </div>
-
         <div class="nav-lower clearfix">
           <div class="nav-location left">
             <a href="#" class='nav-menu-box'>
@@ -180,6 +180,106 @@
             <div class="nav-main-link"><a href="https://www.amazon.com">Help</a></div>
           </div>
         </div>
+        <div class="nav-plan-layer">
+           <div class="nav-hidden-plan">
+            <div class="plan-container">
+              <div class="plan-wrapper">
+                <div class="plan-header">
+                  <div class="plan-prime-logo plan-item">
+                    <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/Prime/LPS/Logo_Prime._CB503588967_.png" alt="primeLogo">
+                  </div>
+                  <div class="plan-header-title plan-item">There's something for everyone</div>
+                  <div class="plan-img plan-item">
+                    <div class="close-btn" id="content-close-btn">close&nbsp;&nbsp;&nbsp;<span>X</span></div>
+                    <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/GBB_Illustration_01._CB514227929_.png" alt="planImage">
+                  </div>
+                </div>
+                <div class="plan-contents">
+                  <input type="radio" id="plan-option-choice">
+                  <label for="plan-option-choice">
+                    <div class="content-option">
+                      <div class="title">
+                        <span>Prime Video</span>
+                        <span><strong>$8<sup>99</sup></strong> /month</span>
+                      </div>
+                      <div class="benefit">
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Prime Video</div>
+                        <div>FREE Two-Day shipping</div>
+                        <div>Unlimited music streaming</div>
+                        <div>Unlimited photo storage</div>
+                        <div>Unlimited reading</div>
+                        <div>FREE Same-Day Delivery</div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="radio" id="plan-option-choice">
+                  <label for="plan-option-choice">
+                    <div class="content-option">
+                      <div class="title">
+                        <span>Prime Monthly</span>
+                        <span><strong>$12<sup>99</sup></strong> /month</span>
+                      </div>
+                      <div class="benefit">
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Prime Video</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;FREE Two-Day shipping</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Unlimited music streaming</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Unlimited photo storage</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Unlimited reading</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;FREE Same-Day Delivery</div>
+                      </div>
+                    </div>
+                  </label>
+                  <input type="radio" id="plan-option-choice">
+                  <label for="plan-option-choice">
+                    <div class="content-option">
+                      <div class="title">
+                        <span>Prime annual</span>
+                        <span><strong>$119</strong>/year</span>
+                      </div>
+                      <div class="benefit">
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Prime Video</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;FREE Two-Day shipping</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Unlimited music streaming</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Unlimited photo storage</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;Unlimited reading</div>
+                        <div><span class="benefit-check"></span>&nbsp;&nbsp;&nbsp;FREE Same-Day Delivery</div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+                <div class="plan-prime-btn">
+                  <form action="#" method="GET" class="btn-prime-container">
+                    <span class='btn-prime-text'>Try Prime</span>
+                    <input type="submit" value="tryPrime" class='btn-prime'/>
+                  </form>
+                </div>
+                <div class="plan-discount-link">
+                  <a href="#">Are you a Student?</a>
+                  <span>&nbsp;|&nbsp;</span>
+                  <a href="#">Do you have a valid EBT/Medicaid card?</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="nav-hidden-bar">
+            <ul class="bar-wrapper">
+              <li class="bar-prime-logo"></li>
+              <li class="bar-see-more">
+                <span>See more plans</span>
+                <span class="down-arrow"></span>
+              </li>
+              <li class="bar-prime-btn">
+                <form action="#" method="POST" class="btn-prime-container">
+                  <span class='btn-prime-text'>Try Prime</span>
+                  <input type="submit" value="tryPrime" class='btn-prime'/>
+                </form>
+              </li>
+            </ul>
+          </div>
+          <div class="nav-hidden-close">
+            <span class="close-arrow" id="content-close-btn"></span>
+          </div>
+        </div>
       </nav>
     </header>
   
@@ -187,8 +287,8 @@
       <!-- Big Header Image Section -->    
       <section id="prime-header">
         <div class="prime-header-content">
-          <h2 class='main-headline'>There's something for everyone with Prime!</h1>
-          <div class='sub-headline'>Check out what's included with your Prime membership</div>
+          <h2 class='main-headline headline'>There's something for everyone with Prime!</h1>
+          <div class='sub-headline subline'>Check out what's included with your Prime membership</div>
           <form action="#" method="POST" class="btn-prime-container">
             <span class='btn-prime-text'>Try Prime</span>
             <input type="submit" value="tryPrime" class='btn-prime'/>
@@ -278,10 +378,10 @@
           <div class="play-display">
             <div class="play-card-content">
               <div class="play-card-cate-text">two-day shipping</div>
-              <h2 class="play-card-headline">
+              <h2 class="play-card-headline headline">
                 Fast, free delivery on over 100 million items
               </h2>
-              <div class="play-card-subline">
+              <div class="play-card-subline subline">
                 Super-fast shipping, tens of millions of items, and flexible
                 delivery options to fit your life. Get your order in two days or
                 faster.
@@ -302,10 +402,10 @@
 
         <div class="prime-feature-delivery feature-container">
           <div class="feature-content">
-            <h2 class="feature-headline">
+            <h2 class="feature-headline headline">
               Fast, free delivery on over 100 million items
             </h2>
-            <div class="feature-subline">
+            <div class="feature-subline subline">
               Super-fast shipping, tens of millions of items, and flexible
               delivery options to fit your life. Get your order in two days or
               faster.
@@ -321,10 +421,10 @@
             <div class="slide-right-arrow"></div>
           </div>
           <div class="feature-content">
-            <h2 class="feature-headline">
+            <h2 class="feature-headline headline">
               Prime Originals, exclusively on Prime Video
             </h2>
-            <div class="feature-subline">
+            <div class="feature-subline subline">
               Prime Video is the only place where you can watch Prime Original
               series like The Tick, The Marvelous Mrs. Maisel, Jean-Claude Van
               Johnson, and The Last Tycoon.
@@ -335,9 +435,9 @@
 
         <div class="prime-feature-readfree feature-container">
           <div class="feature-content">
-            <h2 class="feature-headline">Prime members read free</h2>
-            <div class="feature-subline">
-              SEach month, Prime members can download one of six editors' picks
+            <h2 class="feature-headline headline">Prime members read free</h2>
+            <div class="feature-subline subline">
+              Each month, Prime members can download one of six editors' picks
               for free—before the official publication date. Downloaded titles
               are yours to keep.
             </div>
@@ -352,8 +452,8 @@
             <div class="slide-right-arrow"></div>
           </div>
           <div class="feature-content">
-            <h2 class="feature-headline">Stay on top of the hottest music</h2>
-            <div class="feature-subline">
+            <h2 class="feature-headline headline">Stay on top of the hottest music</h2>
+            <div class="feature-subline subline">
               These songs and artists are the cream of the this month's crop of
               new music. Check out the latest from Taylor Swift, Old Dominion,
               Kesha, and Brett Young.
@@ -364,10 +464,10 @@
 
         <div class="prime-feature-movies-tv feature-container">
           <div class="feature-content">
-            <h2 class="feature-headline">
+            <h2 class="feature-headline headline">
               Stream or download hit movies and TV exclusives
             </h2>
-            <div class="feature-subline">
+            <div class="feature-subline subline">
               As a Prime member, you can watch thousands of popular movies and
               TV shows at no extra cost, including Amazon Originals.
             </div>
@@ -377,7 +477,7 @@
 
         <div class="prime-selling">
           <div class="selling-content">
-            <h2 class="selling-headline">There's something for everyone</h2>
+            <h2 class="selling-headline headline">There's something for everyone</h2>
             <form action="#" method="POST" class="btn-prime-container">
               <span class="btn-prime-text">Try Prime</span>
               <input type="submit" value="tryPrime" class="btn-prime" />
@@ -812,4 +912,5 @@
       </div> -->
     </footer>
   </body>
+  <script src="./js/app.js" type="module"></script>
 </html>
