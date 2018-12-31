@@ -1,66 +1,11 @@
-.carousel-nav {
-    text-align:center;
-}
-
-.carousel-nav-right-list {
-    padding: 0px;
+.carousel-card-list {
     list-style: none;
-    margin:0px 331px;
 }
 
-.carousel-nav-right-list-el {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.card-container {
-    position: relative;
-    cursor: pointer;
-    width: 150px;
-    height: 210px;
-    margin: 0px 1px;
+.carousel-card-list-element{
+    display:inline-block;
 }
 
 .box {
-    background: linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
-}
-
-.stream {
-    background: linear-gradient(30deg, #CC0C39 40%, #FF6138 85%, #FF6138 74px);
-}
-
-.shop {
-    background: linear-gradient(30deg, #A90067 40%, #E31F64 85%, #E31F64 74px);
-}
-
-.read {
-    background: linear-gradient(30deg, #008577 40%, #36C2B4 85%, #36C2B4 74px);
-}
-
-.more {
-    background: linear-gradient(30deg, #FF6138 40%, #FFC400 85%, #FFC400 74px);
-}
-
-.nav-name {
-    color: #FFF;
-    background-color: transparent;
-    position: absolute;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 400;
-    bottom: 21px;
-}
-
-.index-container>div {
-    display: inline-block;
-}
-
-.card-image {
-    width: 150px;
-}
-
-.selected{
-    border:20px;
+    background-image:linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
 }
