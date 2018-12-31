@@ -7,5 +7,36 @@
 }
 
 .box {
-    background-image:linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
+    background-image:url('./amazonImage/box.png'), linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
+}
+
+.stream {
+    background-image:url('./amazonImage/stream.png'), linear-gradient(30deg, #CC0C39 40%, #FF6138 90%, #FF6138 48px);
+}
+
+.shop {
+    background-image:url('./amazonImage/shop.png'), linear-gradient(30deg, #A90067 40%, #E31F64 90%, #E31F64 48px);
+}
+
+.read {
+    background-image: url('./amazonImage/read.png'), linear-gradient(30deg, #008577 40%, #36C2B4 90%, #36C2B4 48px);
+}
+
+.more {
+    background-image: url('./amazonImage/more.png'), linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px);
+}
+
+.carousel-card-container {
+    background-size: 150px 210px;
+    width:150px;
+    height:210px;
+}
+
+.carousel-card-selected{
+    position:absolute;
+    background-size: 202px 262px;
+    width: 202px;
+    height: 262px;
+    z-index:-1;
+    opacity: 0;
 }
