@@ -43,27 +43,39 @@ nav {
 }
 
 .nav-search-form {
-  position: relative;
   padding: 11px 25px 0 0;
+}
+
+.nav-search-select {
+  position: relative;
 }
 
 .nav-search-select .nav-select-option {
   display: inline-block;
-  width: 46px;
+  width: auto;
   height: 35px;
-  line-height: 35px;
   color: #666;
   background-color: #f3f3f3;
   text-align: center;
   font-size: 12px;
+  line-height: 35px;
+  padding: 0 0.6rem;
   border-right: 1px solid #cdcdcd;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
+.nav-search-select .nav-select-option::after {
+  display: inline-block;
+  content: "";
+  border: 0.25rem solid transparent;
+  border-top-color: #666;
+  vertical-align: middle;
+}
+
 .nav-search-select select {
   position: absolute;
-  top: 11px;
+  top: 0;
   height: 35px;
   opacity: 0;
 }

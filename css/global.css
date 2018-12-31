@@ -14,7 +14,7 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
   padding: 0;
-  border: 1px solid red;
+  border: 0;
   box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
@@ -79,6 +79,10 @@ main {
   display: inline-block;
   border: 5px solid transparent;
   border-left-color: #002f36;
+}
+
+.white-arrow {
+  border-left-color: #fff;
 }
 
 /* --- PRIME PUTTON --- */
