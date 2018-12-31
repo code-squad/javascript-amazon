@@ -13,7 +13,7 @@ export default class Carousel {
 
     this.itemWidth = this.carousel.item.offsetWidth;
     this.itemHeight = this.carousel.item.offsetHeight;
-    this.itemLength = this.carousel.allItems.length;
+    this.itemsLength = this.carousel.allItems.length;
 
     this.offset = 0;
     this.currentItem = 1;
@@ -33,45 +33,51 @@ export default class Carousel {
   }
 
   init() {
-    this.moveController();
+    this.setInfinityCarousel();
     this.attachEvent();
   }
 
   attachEvent() {
-    if (this.config.infinite) {
-      // this.carousel.olLayer.addEventListener("load", this.setRAF(this.carousel, this.itemWidth));
-    } else {
+    this.autoMoveEvent();
+    this.cancelAutoMoveEvent();
+    this.clickEvent();
+  }
 
-    }
+  autoMoveEvent() {
+    this.carousel.olLayer.addEventListener("load", this.setRequestAF(this.carousel, this.itemWidth));
+  }
+
+  cancelAutoMoveEvent() {
+
+  }
+
+  clickEvent() {
     this.carousel.prev.addEventListener("click", this.moveToPrev.bind(this));
     this.carousel.next.addEventListener("click", this.moveToNext.bind(this));
   }
 
-  setRAF(carousel, itemWidth) {
-    let moveWidth = 0;
-    this.move();
+  setRequestAF() {
+    const moveToNextFn = this.moveToNext.bind(this);
     function run() {
-      console.log(moveWidth);
-      carousel.olLayer.style.transform = `translate3D(${parseInt(0) + moveWidth}px, 0, 0)`;
-      console.log(carousel.olLayer.style.transform);
-      moveWidth = moveWidth - itemWidth;
+      moveToNextFn();
       setTimeout(() => requestAnimationFrame(run), 3000);
     }
     requestAnimationFrame(run);
   }
 
-  moveController() {
-    if (this.config.infinite) {
-      this.insertClone();
-      this.offset = -this.itemWidth;
-      this.moveWithoutAnimation();
-    } else {
-      this.checkMovable();
-    }
+  setInfinityCarousel() {
+    // if(this.config.infinite){
+
+    // } else{
+    //   this.checkMovable()
+    // }
+    this.insertClone();
+    this.offset = -this.itemWidth;
+    this.moveWithoutAnimation();
   }
 
   isClone() {
-    return this.currentItem === 0 || this.currentItem === this.itemLength + 1;
+    return this.currentItem === 0 || this.currentItem === this.itemsLength + 1;
   }
 
   delayMoveWithoutAnimation() {
@@ -108,17 +114,17 @@ export default class Carousel {
 
   setPrevMove() {
     if (this.isClone()) {
-      this.offset -= this.itemLength * this.itemWidth;
+      this.offset -= this.itemsLength * this.itemWidth;
       this.delayMoveWithoutAnimation();
-      this.currentItem = this.currentItem + this.itemLength;
+      this.currentItem = this.currentItem + this.itemsLength;
     }
   }
 
   setNextMove() {
     if (this.isClone()) {
-      this.offset += this.itemLength * this.itemWidth;
+      this.offset += this.itemsLength * this.itemWidth;
       this.delayMoveWithoutAnimation();
-      this.currentItem = this.currentItem - this.itemLength;
+      this.currentItem = this.currentItem - this.itemsLength;
     }
   }
 
