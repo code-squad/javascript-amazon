@@ -1,4 +1,5 @@
-import { Scroll, StickyLayer } from "./module/StickyLayer.js"
+import { StickyLayer } from "./module/StickyLayer.js"
+import { Scroll } from "./module/Scroll.js"
 
 window.addEventListener("DOMContentLoaded", () => {
     const scroll = new Scroll;

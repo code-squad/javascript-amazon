@@ -150,6 +150,14 @@ nav {
   line-height: 15px;
 }
 
+.nav-menu-box.nav-down-arr::after {
+  display: inline-block;
+  content: "";
+  border: 0.3rem solid transparent;
+  border-top-color: #ccc;
+  vertical-align: middle;
+}
+
 .nav-info {
   padding: 3px 5px;
 }

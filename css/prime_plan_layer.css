@@ -3,7 +3,6 @@
 .nav-plan-layer {
     position: absolute;
     width: 100%;
-    background: #fff;
     border-bottom: 3px solid #54b7fd;
     z-index: 9999;
 }
@@ -15,7 +14,7 @@
     right: 0;
 }
 
-.nav-plan-layer > div {
+.nav-plan-layer .hidden-content {
     width: 100%;
     height: 0;
     overflow: hidden;
@@ -71,6 +70,11 @@
 
 .bar-wrapper .bar-prime-btn .btn-prime-text {
     line-height: 2.8rem;
+}
+
+.nav-hidden-close,
+.nav-hidden-plan {
+    background-color:#fff;
 }
 
 .nav-hidden-close.visible {

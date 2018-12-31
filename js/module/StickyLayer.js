@@ -1,13 +1,3 @@
-class Scroll{
-    constructor(baseEl = window){
-        this.baseEl = baseEl;
-    }
-
-    addEvent(...evtListeners){
-        evtListeners.forEach(evtListener => this.baseEl.addEventListener("scroll", evtListener));
-    }
-}
-
 class StickyLayer{
     constructor({ stickyEl }){
         this.stickyEl = stickyEl;
@@ -54,4 +44,4 @@ class StickyLayer{
     }
 }
 
-export { StickyLayer, Scroll }
+export { StickyLayer }
