@@ -38,7 +38,7 @@
   height: 350px;
   padding: 63px 66px;
   margin-top: 0;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeDelivery_01._CB513143338_.png);
+  background-image: url(../img/PrimeDelivery.png);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -72,7 +72,7 @@
 #prime-features .prime-feature-slide .slide-left-arrow {
   width: 15px;
   height: 20px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+  background-image: url(../img/carouselArrow.png);
   background-size: 200px auto;
   background-repeat: no-repeat;
   background-position: -101px -266px;
@@ -83,7 +83,7 @@
 #prime-features .video-slide .slide-display {
   width: 280px;
   height: 210px;
-  background-image: url(https://www.whats-on-netflix.com/wp-content/uploads/2018/08/will-jack-ryan-be-on-netflix.jpg);
+  background-image: url(../img/jackryan.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -91,7 +91,7 @@
 #prime-features .prime-feature-slide .slide-right-arrow {
   width: 15px;
   height: 20px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+  background-image: url(../img/carouselArrow.png);
   background-size: 200px auto;
   background-repeat: no-repeat;
   background-position: -118px -266px;
@@ -107,19 +107,10 @@
   width: 510px;
 }
 
-#prime-features .prime-feature-delivery {
-  height: 350px;
-  padding: 63px 66px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeDelivery_01._CB513143338_.png);
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
-}
-
 #prime-features .prime-feature-readfree {
   height: 350px;
   padding: 45px 66px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeReading_01._CB513286005_.png);
+  background-image: url(../img/PrimeReading.png);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -136,7 +127,7 @@
 #prime-features .music-slide .slide-display {
   width: 220px;
   height: 210px;
-  background-image: url(https://t1.daumcdn.net/cfile/tistory/9956E13C5B42F47201);
+  background-image: url(../img/brettyoung.jpeg);
   background-size: cover;
   background-position: center;
 }
@@ -144,7 +135,7 @@
 #prime-features .prime-feature-movies-tv {
   height: 350px;
   padding: 63px 66px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeVideo_01._CB512237077_.png);
+  background-image: url(../img/PrimeVideo.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -157,7 +148,7 @@
   height: 435px;
   padding: 63px 66px;
   margin-top: 30px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/FinalCTA_01._CB515489489_.jpg);
+  background-image: url(../img/PrimeSelling.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }

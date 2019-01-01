@@ -26,7 +26,7 @@
   transform: translate(-50%, -50%);
   width: 202px;
   height: 260px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png),
+  background-image: url(../img/cardShipImg.png),
     linear-gradient(30deg, #2c88ae 40%, #00a8e1 85%, #00a8e1 74px);
   background-size: 700%, cover;
   background-position: 10px 15px;
@@ -72,7 +72,7 @@
   transform: translate(-50%, -50%);
   height: 260px;
   width: 202px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png),
+  background-image: url(../img/cardStreamImg.png),
     linear-gradient(30deg, #cc0c39 40%, #ff6138 90%, #ff6138 48px);
   background-size: 700%, cover;
   background-position: 10px 15px;
@@ -85,7 +85,7 @@
   transform: translate(-50%, -50%);
   height: 260px;
   width: 202px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png),
+  background-image: url(../img/cardShopImg.png),
     linear-gradient(30deg, #a90067 40%, #e31f64 90%, #e31f64 48px);
   background-size: 700%, cover;
   background-position: 10px 15px;
@@ -98,7 +98,7 @@
   transform: translate(-50%, -50%);
   height: 260px;
   width: 202px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png),
+  background-image: url(../img/cardReadImg.png),
     linear-gradient(30deg, #008577 40%, #36c2b4 90%, #36c2b4 48px);
   background-size: 700%, cover;
   background-position: 10px 15px;
@@ -111,7 +111,7 @@
   transform: translate(-50%, -50%);
   height: 260px;
   width: 202px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png),
+  background-image: url(../img/cardMoreImg.png),
     linear-gradient(30deg, #ff6138 40%, #ffc400 90%, #ffc400 48px);
   background-size: 700%, cover;
   background-position: 10px 15px;
@@ -142,13 +142,13 @@
   height: 50px;
   background-position: -52px 0;
   background-size: 300%;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+  background-image: url(../img/carouselArrow.png);
 }
 
 #prime-carousel .carousel-play .play-display {
   width: 1000px;
   height: 350px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A01._CB514650866_.jpg);
+  background-image: url(../img/carouselBg.jpg);
   background-position: center;
 }
 
@@ -204,5 +204,5 @@
   height: 50px;
   background-position: -50px -98px;
   background-size: 300%;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+  background-image: url(../img/carouselArrow.png);
 }

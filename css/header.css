@@ -16,7 +16,7 @@ nav {
   display: inline-block;
   width: 100px;
   height: 33px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-image: url(../img/nav-sprite-global_bluebeacon.png);
   background-position: -9px -49px;
 }
 
@@ -38,7 +38,7 @@ nav {
   display: inline-block;
   width: 400px;
   height: 39px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/img18/events/12dod/12DOD_DesktopSWM_400x39_Shop12._CB479370442_.jpg);
+  background-image: url(../img/Shop12.jpg);
   background-repeat: no-repeat;
 }
 
@@ -89,7 +89,7 @@ nav {
   width: 45px;
   height: 35px;
   background-color: #febd69;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-image: url(../img/nav-sprite-global_bluebeacon.png);
   background-position: 2px -283px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -141,7 +141,7 @@ nav {
 .nav-menu-box .nav-location-img {
   width: 19px;
   height: 25px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-image: url(../img/nav-sprite-global_bluebeacon.png);
   background-position: -70px 77px;
 }
 
@@ -181,7 +181,7 @@ nav {
 .nav-info .globe-img {
   width: 17px;
   height: 17px;
-  background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/InternationalCustomerPreferencesNavAssets-icp_sprite-7d1bfde38eb13748605e178896ede63a4aa68e0c._V2_.png);
+  background-image: url(../img/InternationalCustomerPreferencesNavAssets.png);
   background-position: -76px -24px;
 }
 
@@ -189,7 +189,7 @@ nav {
   display: inline-block;
   width: 40px;
   height: 30px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
+  background-image: url(../img/nav-sprite-global_bluebeacon.png);
   background-position: -9px -338px;
 }
 
