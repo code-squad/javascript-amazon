@@ -14,6 +14,7 @@
             <ul>
                 <li>
                     <a href="https://www.amazon.com/amazonprime?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0">
+                        <img src="" alt="amazon-logo">
                     </a>
                 </li>
                 <li>
@@ -24,6 +25,7 @@
                             <option value="automotive">Automotive</option>
                         </select>
                         <input type="text">
+                        <button id="sch-btn"></button>
                     </span>
                 </li>
                 <li>
@@ -66,9 +68,6 @@
                     <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26ref%3Dnav_orders_first&pageId=webcs-yourorder&showRmrMe=1">Orders</a>
                 </li>
                 <li>
-                    <a href="https://www.amazon.com/amazonprime?_encoding=UTF8&ref=nav_prime_try_btn">Try Prime &#9660;</a>
-                </li>
-                <li>
                     <a href="https://www.amazon.com/gp/cart/view.html?ref=nav_cart">
                         <img src="" alt="cart-icon"> Cart
                     </a>
@@ -77,7 +76,7 @@
         </nav>
     </header>
 
-    <div class="contents">
+    <div class="cnt">
         <div class="top-banner">
             <img src="" alt="bgr-img">
             <h3>There's something for everyone with Prime!</h3>
@@ -140,66 +139,68 @@
                 </li>
             </ul>
         </div>
-        <div>
-            <img src="" alt="ad-icon">
-            <span>TWO-DAY SHIPPING</span>
-            <h3>Fast, free delivery on over 100 million items</h3>
-            <span>super-fast shipping, tens of million of items, and flexible delivery options to fit your life. </span>
-            <a href="">Explore Pime Delivery &#9658;</a>
+
+        <div class="crsl-card">
+            <img src="" alt="crsl-icon">
+            <span class="crsl-top">TWO-DAY SHIPPING</span>
+            <h3 class="crsl-title">Fast, free delivery on over 100 million items</h3>
+            <span class="crsl-body">super-fast shipping, tens of million of items, and flexible delivery options to fit your life. </span>
+            <a href="" class="crsl-link">Explore Pime Delivery &#9658;</a>
         </div>
+
         <div class="mid-banner">
-            <h3>Here's a little more about Prime that we think you'll love:</h3>
+            <h3 id="mid-banner-title">Here's a little more about Prime that we think you'll love:</h3>
             <ul>
                 <li>
                     <div>
-                        <img src="" alt="background">
-                        <h3>Fast, free delivery on over 100 million items</h3>
-                        <span>Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</span>
-                        <a href="">Explore Pime Delivery &#9658;</a>
+                        <img src="" alt="background" class="banner-bgr">
+                        <h3 class="banner-title">Fast, free delivery on over 100 million items</h3>
+                        <span class="banner-body">Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</span>
+                        <a href="" class="banner-link">Explore Pime Delivery &#9658;</a>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="" alt="movie-posters">
-                        <h3>Prime Originals, exclusively on Prime Video</h3>
-                        <span> Prime Video is the only place where you can watch Prime Original series like "The Marvelous Mrs.
+                        <img src="" alt="movie-posters" class="banner-crsl">
+                        <h3 class="banner-title">Prime Originals, exclusively on Prime Video</h3>
+                        <span class="banner-body"> Prime Video is the only place where you can watch Prime Original series like "The Marvelous Mrs.
                             Maisel", "Tom Clancy's Jack Ryan", "Homecoming", and "The Man in the High Castle".</span>
-                        <a href="">Explore Prime Video &#9658;</a>
+                        <a href="" class="banner-link">Explore Prime Video &#9658;</a>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="" alt="background">
-                        <h3>Prime members read free</h3>
-                        <span>Each month, Prime members can download one of six editors' picks for free—before the official publication
+                        <img src="" alt="background" class="banner-crsl">
+                        <h3 class="banner-title">Prime members read free</h3>
+                        <span class="banner-body">Each month, Prime members can download one of six editors' picks for free—before the official publication
                             date. Downloaded titles are yours to keep.</span>
-                        <a href="">Explore Prime Reading</a>
+                        <a href="" class="banner-link">Explore Prime Reading</a>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="" alt="music albums">
-                        <h3>Stay on top of the hottest music</h3>
-                        <span>These songs and artists are the cream of this month's crop of new music. Check out the latest from
+                        <img src="" alt="music albums" class="banner-crsl">
+                        <h3 class="banner-title">Stay on top of the hottest music</h3>
+                        <span class="banner-body">These songs and artists are the cream of this month's crop of new music. Check out the latest from
                             Taylor Swift, Old Dominion, Kesha, and Brett Young.</span>
-                        <a href="">Explore Prime Music</a>
+                        <a href="" class="banner-link">Explore Prime Music</a>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <img src="" alt="background">
-                        <h3>Watch movies, TV, live events, and more</h3>
-                        <span> Prime members enjoy exclusive access to a growing lineup of award-winning Prime Originals, plus thousands
+                        <img src="" alt="background" class="banner-crsl">
+                        <h3 class="banner-title">Watch movies, TV, live events, and more</h3>
+                        <span class="banner-body"> Prime members enjoy exclusive access to a growing lineup of award-winning Prime Originals, plus thousands
                             of popular movies and TV shows—all at no extra cost and available to watch on practically any
                             device.
                         </span>
-                        <a href="">Learn more about Prime Video</a>
+                        <a href="" class="banner-link">Learn more about Prime Video</a>
                     </div>
                 </li>
                 <li>
                     <div>
                         <img src="" alt="icon">
-                        <h3>There's something for everyone</h3>
+                        <h3 id="bottom-banner-title">There's something for everyone</h3>
                         <button type="button"> TRY PRIME </button>
                         <a href="">Give the gift of Prime</a> &#124;
                         <a href="">Enter a promo code</a>
@@ -210,7 +211,7 @@
     </div>
 
     <footer>
-        <button type="button"> Back to top </button>
+        <button type="button" id = "back-to-top"> Back to top </button>
     </footer>
 
 </body>
