@@ -1,386 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="headerUp.css" />
+    <link rel="stylesheet" href="headerDown.css" />
+    <link rel="stylesheet" href="topBody.css" />
+    <link rel="stylesheet" href="carouselNav.css" />
+    <link rel="stylesheet" href="carousel.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<link rel="stylesheet" href="headerUp.css">
-	<link rel="stylesheet" href="headerDown.css">
-	<link rel="stylesheet" href="topBody.css">
-	<link rel="stylesheet" href="carouselNav.css">
-	<link rel="stylesheet" href="carousel.css">
-</head>
+  <body>
+    <header>
+      <div class="head-search-container">
+        <div class="head-search-icon">
+          <img src="./amazonImage/amazonIcon.png" alt="amazon" />
+        </div>
+        <div class="head-search">
+          <div class="head-search-block">
+            <div class="head-search-selector-button"></div>
+            <select class="head-search-selector" name="" id="">
+              <option value="">All</option>
+              <option value="">arts & craft</option>
+              <option value="">Automotive</option>
+              <option value="">Baby</option>
+              <option value="">Beauty & Personal Care</option>
+            </select>
+            <span class="head-arrow"></span>
+            <input class="head-search-blank" type="text" />
+            <button class="head-search-button">😚</button>
+          </div>
+        </div>
+        <div class="head-search-right">
+          <a href="#"
+            ><img
+              class="head-search-right-img"
+              src="./amazonImage/amazonRight.png"
+              alt="shop12"
+          /></a>
+        </div>
+      </div>
+      <div class="head-nav-container">
+        <div class="head-nav-location-container">
+          <div class="head-nav-location" onclick="window.location.href='#';">
+            <div class="head-nav-location-img">
+              <img src="./amazonImage/location.png" alt="img" />
+            </div>
+            <span class="head-nav-location-word">Deliver to</span>
+            <span class="head-nav-location-user">Korea, Republic of</span>
+          </div>
+        </div>
+        <div class="head-nav">
+          <ul class="head-nav-list">
+            <li class="head-nav-list-el-selector">
+              <div class="head-nav-list-el-selector-word">
+                Departments
+                <div class="departments-arrow">
+                  <span class="head-arrow-bright"></span>
+                </div>
+              </div>
+            </li>
+            <li class="head-nav-list-el">
+              <a class="head-nav-list-el" href="#">Your Amazon.com</a>
+            </li>
+            <li class="head-nav-list-el">
+              <a class="head-nav-list-el" href="#">Today's Deals</a>
+            </li>
+            <li class="head-nav-list-el">
+              <a class="head-nav-list-el" href="#">Gift Cards</a>
+            </li>
+            <li class="head-nav-list-el">
+              <a class="head-nav-list-el" href="#">Registry</a>
+            </li>
+            <li class="head-nav-list-el">
+              <a class="head-nav-list-el" href="#">Sell</a>
+            </li>
+            <li class="head-nav-list-el">
+              <a class="head-nav-list-el" href="#">Help</a>
+            </li>
+          </ul>
+        </div>
+        <div class="head-nav-right">
+          <ul class="head-nav-right-list">
+            <li class="head-nav-right-list-el">
+              <div
+                class="head-nav-right-list-language"
+                onclick="window.location.href='#';"
+              >
+                <span class="head-nav-right-list-language-user">EN</span> <br />
+                <span><img src="./amazonImage/global.png"/></span>
+                <div class="language-arrow">
+                  <span class="head-arrow-bright"></span>
+                </div>
+              </div>
+            </li>
+            <li class="head-nav-right-list-el">
+              <span class="head-nav-right-linkborder"></span>
+            </li>
+            <li class="head-nav-right-list-el">
+              <div
+                class="head-nav-right-list-account"
+                onclick="window.location.href='#';"
+              >
+                <span class="head-nav-right-list-account-msg"
+                  >Hello, Sign in</span
+                >
+                <span class="head-nav-right-list-account-user"
+                  >Account & Lists</span
+                >
+                <div class="account-arrow">
+                  <span class="head-arrow-bright"></span>
+                </div>
+              </div>
+            </li>
+            <li class="head-nav-right-list-el">
+              <div
+                class="head-nav-right-list-order"
+                onclick="window.location.href='#';"
+              >
+                <span class="head-nav-right-list-order-word">Orders</span>
+              </div>
+            </li>
+            <li class="head-nav-right-list-el">
+              <div
+                class="head-nav-right-list-cart"
+                onclick="window.location.href='#';"
+              >
+                <span><img src="./amazonImage/cart.png" alt="cart"/></span>
+                <span class="head-nav-right-list-cart-num">0</span>
+                <span class="head-nav-right-list-cart-word">Cart</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
 
-<body>
-	<header>
-		<div class='head-search-container'>
-			<div class='head-search-icon'>
-				<img src="./amazonImage/amazonIcon.png" alt="amazon">
-			</div>
-			<div class='head-search'>
-				<div class='head-search-block'>
-					<div class='head-search-selector-button'></div>
-					<select class='head-search-selector' name="" id="">
-						<option value="">All</option>
-						<option value="">arts & craft</option>
-						<option value="">Automotive</option>
-						<option value="">Baby</option>
-						<option value="">Beauty & Personal Care</option>
-					</select>
-					<span class='head-arrow'></span>
-					<input class='head-search-blank' type="text">
-					<button class='head-search-button'>😚</button>
-				</div>
-			</div>
-			<div class='head-search-right'>
-				<a href='#'><img class='head-search-right-img' src="./amazonImage/amazonRight.png" alt="shop12"></a>
-			</div>
-		</div>
-		<div class='head-nav-container'>
-			<div class='head-nav-location-container'>
-				<div class='head-nav-location' onclick="window.location.href='#';">
-					<div class='head-nav-location-img'><img src="./amazonImage/location.png" alt="img"></div>
-					<span class='head-nav-location-word'>Deliver to</span>
-					<span class='head-nav-location-user'>Korea, Republic of</span>
-				</div>
-			</div>
-			<div class='head-nav'>
-				<ul class='head-nav-list'>
-					<li class='head-nav-list-el-selector'>
-						<div class='head-nav-list-el-selector-word'>
-							Departments<div class='departments-arrow'><span class='head-arrow-bright'></span></div>
-						</div>
-					</li>
-					<li class='head-nav-list-el'><a class='head-nav-list-el' href="#">Your Amazon.com</a></li>
-					<li class='head-nav-list-el'><a class='head-nav-list-el' href="#">Today's Deals</a></li>
-					<li class='head-nav-list-el'><a class='head-nav-list-el' href="#">Gift Cards</a></li>
-					<li class='head-nav-list-el'><a class='head-nav-list-el' href="#">Registry</a></li>
-					<li class='head-nav-list-el'><a class='head-nav-list-el' href="#">Sell</a></li>
-					<li class='head-nav-list-el'><a class='head-nav-list-el' href="#">Help</a></li>
-				</ul>
-			</div>
-			<div class='head-nav-right'>
-				<ul class='head-nav-right-list'>
-					<li class='head-nav-right-list-el'>
-						<div class='head-nav-right-list-language' onclick="window.location.href='#';">
-							<span class='head-nav-right-list-language-user'>EN</span>
-							<br>
-							<span><img src="./amazonImage/global.png"></span>
-							<div class='language-arrow'><span class='head-arrow-bright'></span></div>
-						</div>
-					</li>
-					<li class='head-nav-right-list-el'><span class='head-nav-right-linkborder'></span></li>
-					<li class='head-nav-right-list-el'>
-						<div class='head-nav-right-list-account' onclick="window.location.href='#';">
-							<span class='head-nav-right-list-account-msg'>Hello, Sign in</span>
-							<span class='head-nav-right-list-account-user'>Account & Lists</span>
-							<div class='account-arrow'><span class='head-arrow-bright'></span></div>
-						</div>
-					</li>
-					<li class='head-nav-right-list-el'>
-						<div class='head-nav-right-list-order' onclick="window.location.href='#';">
-							<span class='head-nav-right-list-order-word'>Orders</span>
-						</div>
-					</li>
-					<li class='head-nav-right-list-el'>
-						<div class='head-nav-right-list-cart' onclick="window.location.href='#';">
-							<span><img src="./amazonImage/cart.png" alt="cart"></span>
-							<span class='head-nav-right-list-cart-num'>0</span>
-							<span class='head-nav-right-list-cart-word'>Cart</span>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</header>
+    <div class="wholeBody">
+      <div class="top-body-container">
+        <div class="top-body-background">
+          <div class="top-body-content-container">
+            <h1 class="top-body-content-header">
+              There's something for <br />everyone with Prime!
+            </h1>
+            <div class="top-body-content-header-word">
+              Check out what's included with your <br />Prime membership.
+            </div>
+            <div
+              class="top-body-content-button"
+              onclick="window.location.href='#';"
+            >
+              <div class="top-body-content-button-word">TRY PRIME</div>
+            </div>
+            <div class="top-body-content-fee">
+              <sup>$</sup>12<sup>99</sup>/month. Cancel anytime.
+            </div>
+            <div>
+              <a class="top-body-content-link" href="#">See More Plan</a>
+              <div class="top-body-content-arrow">▶︎</div>
+            </div>
+            <div>
+              <a class="top-body-content-link" href="#"
+                >Holiday Delivery Calendar</a
+              >
+              <div class="top-body-content-arrow">▶</div>
+            </div>
+            <div class="top-body-conetent-prime-img">
+              <img src="./amazonImage/primeLogoWhite.svg" alt="prime" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-	<div class='wholeBody'>
-		<div class='top-body-container'>
-			<div class='top-body-background'>
-				<div class='top-body-content-container'>
-					<h1 class='top-body-content-header'>There's something for <br>everyone with Prime!</h1>
-					<div class='top-body-content-header-word'>Check out what's included with your <br>Prime membership.</div>
-					<div class='top-body-content-button' onclick='window.location.href="#";'>
-						<div class='top-body-content-button-word'>TRY PRIME</div>
-					</div>
-					<div class='top-body-content-fee'><sup>$</sup>12<sup>99</sup>/month. Cancel anytime.</div>
-					<div><a class='top-body-content-link' href="#">See More Plan</a>
-						<div class='top-body-content-arrow'>▶︎</div>
-					</div>
-					<div><a class='top-body-content-link' href="#">Holiday Delivery Calendar</a>
-						<div class='top-body-content-arrow'>▶</div>
-					</div>
-					<div class='top-body-conetent-prime-img'><img src="./amazonImage/primeLogoWhite.svg" alt="prime"></div>
-				</div>
-			</div>
-		</div>
+      <div class="carousel-container">
+        <div class="carousel-card">
+          <ul class="carousel-card-list">
+            <li clase="carousel-card-list-element">
+              <div class="carousel-card-container box">
+                <div class="box"></div>
+                <div class="carousel-card-context-container">
+                  <div class="nav-word">Ship</div>
+                  <ul class="index-container">
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li clase="carousel-card-list-element">
+              <div class="carousel-card-container stream">
+                <div class="carousel-card-selected stream"></div>
+                <div class="carousel-card-context-container">
+                  <div class="nav-word">Stream</div>
+                  <ul class="index-container">
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li clase="carousel-card-list-element">
+              <div class="carousel-card-container shop">
+                <div class="shop"></div>
+                <div class="carousel-card-context-container">
+                  <div class="nav-word">Shop</div>
+                  <ul class="index-container">
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li clase="carousel-card-list-element">
+              <div class="carousel-card-container read">
+                <div class="read"></div>
+                <div class="carousel-card-context-container">
+                  <div class="nav-word">Read</div>
+                  <ul class="index-container">
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li clase="carousel-card-list-element">
+              <div class="carousel-card-container more">
+                <div class="more"></div>
+                <div class="carousel-card-context-container">
+                  <div class="nav-word">More</div>
+                  <ul class="index-container">
+                    <li><div class="button-blank"></div></li>
+                    <li><div class="button-blank"></div></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- carousel -->
+        <div class="carousel">
+          <div class="carousel-button-container">
+            <button class="carousel-button-container-button-left"></button>
+          </div>
+          <div class="carousel-list-container">
+            <ul class="carousel-list">
+              <li class="carousel-lise-el twoDayShipping carousel-show">
+                <div class="carousel-content-container">
+                  <div class="carousel-ship-color">TWO-DAY SHIPPING</div>
+                  <div class="card-headline">Fast, free delivery on over 100 million items</div>
+                  <div class="card-body">Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery ></a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el SameDayDelivery">
+                <div class="carousel-content-container">
+                  <div class="carousel-ship-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-ship-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-ship-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-stream-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-stream-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-stream-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-stream-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-stream-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-shop-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-shop-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-shop-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-shop-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-read-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-read-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-more-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="carousel-list-el">
+                <div class="carousel-content-container">
+                  <div class="carousel-more-color">two day shipping</div>
+                  <div class="card-headline"></div>
+                  <div class="card-body"></div>
+                  <div>
+                    <a class="normal-link" title="name" href="#"
+                      >Explore Prime Delivery</a
+                    >
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="carousel-button-container">
+            <button class="carousel-button-container-button-right"></button>
+          </div>
+        </div>
+      </div>
+      <div id="middle-body">
+        <div id="middle-body-leadmsg">
+          Here's a little more about Prime that we think you'll love:
+        </div>
+        <div id="middle-body-context">
+          <div id="middle-body-header">
+            Fast, free delivery on over 100 million items
+          </div>
+          <div id="middle-body-body">
+            Super-fast shipping, tens of millions of items, and flexible
+            delivery options to fit your life.
+          </div>
+          <a class="normal-link" href="#">Explore Prime Delivery</a>
+        </div>
 
-		<div class='carousel-container'>
-			<div class='carousel-card'>
-				<ul class='carousel-card-list'>
-					<li clase='carousel-card-list-element'>
-						<div class='carousel-card-container box'>
-							<div class='box'></div>
-							<div class='carousel-card-context-container'>
-								<div class='nav-word'>Ship</div>
-								<ul class='index-container'>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</li>
-					<li clase='carousel-card-list-element'>
-						<div class='carousel-card-container stream'>
-							<div class='carousel-card-selected stream'></div>
-							<div class='carousel-card-context-container'>
-								<div class='nav-word'>Ship</div>
-								<ul class='index-container'>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</li>
-					<li clase='carousel-card-list-element'>
-						<div class='carousel-card-container shop'>
-							<div class='shop'></div>
-							<div class='carousel-card-context-container'>
-								<div class='nav-word'>Ship</div>
-								<ul class='index-container'>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</li>
-					<li clase='carousel-card-list-element'>
-						<div class='carousel-card-container read'>
-							<div class='read'></div>
-							<div class='carousel-card-context-container'>
-								<div class='nav-word'>Ship</div>
-								<ul class='index-container'>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</li>
-					<li clase='carousel-card-list-element'>
-						<div class='carousel-card-container more'>
-							<div class='more'></div>
-							<div class='carousel-card-context-container'>
-								<div class='nav-word'>Ship</div>
-								<ul class='index-container'>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-									<li>
-										<div class='button-blank'></div>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<!-- carousel -->
-			<div class='carousel'>
-				<div class='carousel-button-container'>
-					<button class='carousel-button-container-button-left'></button>
-				</div>
-				<div>
-					<ul>
-						<li class='carousel-one'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-two carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-three carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-four carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-five carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-six carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-seven carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-eight carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-nine carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-ten carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-eleven carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-twelve carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-thirteen carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-fourteen carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-fifteen carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-sixteen carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-						<li class='carousel-seventeen carousel-hidden'>
-							<span>two day shipping</span>
-							<div class='card-headline'></div>
-							<div class='card-body'></div>
-							<div><a class='normal-link' title='name' href="#">Explore Prime Delivery</a></div>
-						</li>
-					</ul>
-				</div>
-				<div class='carousel-button-container'>
-					<button class='carousel-button-container-button-right'></button>
-				</div>
-			</div>
-		</div>
-		<div id='middle-body'>
-			<div id='middle-body-leadmsg'>Here's a little more about Prime that we think you'll love:</div>
-			<div id='middle-body-context'>
-				<div id='middle-body-header'>Fast, free delivery on over 100 million items</div>
-				<div id='middle-body-body'>Super-fast shipping, tens of millions of items, and flexible delivery
-					options to fit your life.</div>
-				<a class='normal-link' href="#">Explore Prime Delivery</a>
-			</div>
+        <div id="middle-body-scroller">
+          <div><button>◁</button></div>
+          <div>
+            <ul>
+              <li><img src="fisrt" alt="first" /></li>
+              <li><img src="second" alt="second" /></li>
+              <li><img src="third" alt="third" /></li>
+            </ul>
+          </div>
+          <div><button>▷</button></div>
 
-			<div id='middle-body-scroller'>
-				<div>
-					<button>◁</button>
-				</div>
-				<div>
-					<ul>
-						<li>
-							<img src="fisrt" alt="first">
-						</li>
-						<li>
-							<img src="second" alt="second">
-						</li>
-						<li>
-							<img src="third" alt="third">
-						</li>
-					</ul>
-				</div>
-				<div>
-					<button>▷</button>
-				</div>
-
-				<div id='middle-body-scroller-explain'>
-					<div id='middle-body-scroller-explain-header'>Prime Originals, exclusively on Prime Video</div>
-					<div id='middle-body-scroller-explain-body'>Prime Video is the only place where you can watch Prime
-						Original series like "The Marvelous Mrs. Maisel", "Tom Clancy's Jack Ryan", "Homecoming", and
-						"The Man in the High Castle".</div>
-					<a class='normal-link' href="#">Explore Prime Video</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-</body>
-
+          <div id="middle-body-scroller-explain">
+            <div id="middle-body-scroller-explain-header">
+              Prime Originals, exclusively on Prime Video
+            </div>
+            <div id="middle-body-scroller-explain-body">
+              Prime Video is the only place where you can watch Prime Original
+              series like "The Marvelous Mrs. Maisel", "Tom Clancy's Jack Ryan",
+              "Homecoming", and "The Man in the High Castle".
+            </div>
+            <a class="normal-link" href="#">Explore Prime Video</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

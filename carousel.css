@@ -1,6 +1,23 @@
 button {
     border:0px;
 }
+.carousel{
+    
+}
+.carousel-list{
+    display:inline-block;
+    padding:0px;
+    margin:0px;
+}
+.carousel-list-el{
+    display:none;
+}
+.carousel-button-container{
+    display:inline-block;
+}
+.carousel-list-container{
+    display:inline-block;
+}
 
 .carousel-button-container-button-left {
     width: 52px;
@@ -9,14 +26,16 @@ button {
     background-size: 52px;
 }
 
-.carousel-one{
-    width: 1000px;
+.twoDayShipping{
+    width: 100px;
     height: 100px;
     background-image: url('./amazonImage/twoDayShipping.jpg')
 }
 
-.carousel-hidden {
-    display: none;
+.carousel-show {
+    display:inline-block;
+    width: 1048px;
+    height: 380px;
 }
 
 .carousel-button-container-button-right {
