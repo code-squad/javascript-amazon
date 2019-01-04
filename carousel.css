@@ -1,0 +1,27 @@
+button {
+    border:0px;
+}
+
+.carousel-button-container-button-left {
+    width: 52px;
+    height: 52px;
+    background-image: url('./amazonImage/carouselLeftBtn.png');
+    background-size: 52px;
+}
+
+.carousel-one{
+    width: 1000px;
+    height: 100px;
+    background-image: url('./amazonImage/twoDayShipping.jpg')
+}
+
+.carousel-hidden {
+    display: none;
+}
+
+.carousel-button-container-button-right {
+    width: 52px;
+    height: 52px;
+    background-image: url('./amazonImage/carouselRightBtn.png');
+    background-size: 52px;
+}
