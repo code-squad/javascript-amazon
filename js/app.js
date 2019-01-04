@@ -1,7 +1,7 @@
 import { StickyLayer } from "./module/StickyLayer.js"
 import { Scroll } from "./module/Scroll.js"
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
     const scroll = new Scroll;
     const stickyLayer = new StickyLayer({
         stickyEl: document.querySelector(".nav-plan-layer")

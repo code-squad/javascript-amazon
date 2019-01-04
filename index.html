@@ -27,80 +27,8 @@
           <form action="#" method="GET">
             <div class='nav-search-select left'>
               <span class="nav-select-option">All&nbsp;&nbsp;</span>
-              <select name="departments">
-                <option value="all">All Departments</option>
-                <option value="alexaSkills">Alexa Skills</option>
-                <option value="amazonDevices">Amazon Devices</option>
-                <option value="amazonWarehouse">Amazon Warehouse</option>
-                <option value="appliances">Appliances</option>
-                <option value="appsGames">Apps & Games</option>
-                <option value="artsCraftsSewing">Arts, Crafts & Sewing</option>
-                <option value="automotivePartsAccessories">
-                  Automotive Parts & Accessories
-                </option>
-                <option value="baby">Baby</option>
-                <option value="beautyPersonalCare">
-                  Beauty & Personal Care
-                </option>
-                <option value="books">Books</option>
-                <option value="cdsVinyl">Cds & Vinyl</option>
-                <option value="cellPhonesAccessories">
-                  Cell Phones & Accessories
-                </option>
-                <option value="clothingShoesJewelry">
-                  Clothing, Shoes & Jewelry
-                </option>
-                <option value="women">&nbsp;&nbsp;&nbsp;Women</option>
-                <option value="men">&nbsp;&nbsp;&nbsp;Men</option>
-                <option value="girls">&nbsp;&nbsp;&nbsp;Girls</option>
-                <option value="boys">&nbsp;&nbsp;&nbsp;Boys</option>
-                <option value="baby">&nbsp;&nbsp;&nbsp;Baby</option>
-                <option value="collectiblesFineArt">
-                  Collectibles & Fine art
-                </option>
-                <option value="computers">Computers</option>
-                <option value="courses">Courses</option>
-                <option value="creditPaymentCards">
-                  Credit and Payment Cards
-                </option>
-                <option value="digitalMusic">Digital Music</option>
-                <option value="electronics">Electronics</option>
-                <option value="gardenOutdoor">Garden & Outdoor</option>
-                <option value="giftCards">Gift Cards</option>
-                <option value="groceryGourmetFood">Grocery & Gourmet Food</option>
-                <option value="handmade">Handmade</option>
-                <option value="healthHouseholdBabyCare">
-                  Health, Household & Baby Care
-                </option>
-                <option value="homeBusinessServices">
-                  Home & Business Services
-                </option>
-                <option value="homeKitchen">Home & Kitchen</option>
-                <option value="industrialScientific">
-                  Industrial & Scientific
-                </option>
-                <option value="kindleStore">Kindle Store</option>
-                <option value="luggageTravelGear">Luggage & Travel Gear</option>
-                <option value="luxuryBeauty">Luxury Beauty</option>
-                <option value="magazineSubscriptions">
-                  Magazine Subscriptions
-                </option>
-                <option value="moviesTv">Movies & TV</option>
-                <option value="musicalInstruments">Musical Instruments</option>
-                <option value="officeProducts">Office Products</option>
-                <option value="petSupplies">Pet Supplies</option>
-                <option value="primeExclusiveSavings">
-                  Prime Exclusive Savings
-                </option>
-                <option value="primePantry">Prime Pantry</option>
-                <option value="primeVideo">Prime Video</option>
-                <option value="software">Software</option>
-                <option value="toolsHomeImprovement">
-                  Tools & Home Improvement
-                </option>
-                <option value="toysGames">Toys & Games</option>
-                <option value="vehicles">Vehicles</option>
-                <option value="videoGames">Video Games</option>
+              <select name="departments" id="select-category">
+                <script async src="./js/option.js"></script>
               </select>
             </div>
             <div class="nav-search-submit right">
@@ -275,7 +203,7 @@
       </div>
     </nav>
   </header>
-
+  
   <main>
     <!-- Big Header Image Section -->
     <section id="prime-header">
@@ -488,7 +416,8 @@
   <footer>
     <a href="#top" class="back-to-top">Back to top</a>
   </footer>
-  <script src="./js/app.js" type="module"></script>
+  
+  <script async src="./js/app.js" type="module"></script>
 </body>
 
 </html>
