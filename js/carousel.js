@@ -1,3 +1,5 @@
+import { throttle, debounce } from './setThrottleDebounce.js';
+
 export default class Carousel {
   constructor(layer) {
     this.carousel = {
@@ -13,20 +15,14 @@ export default class Carousel {
 
     this.SHOWING_CLASS = "show";
     this.classShow = document.querySelector(`.${this.SHOWING_CLASS}`);
+
+    this.requestID = null;
+    this.reactAuto;
   }
 
   init() {
-    this.setCarouselItem();
-    this.attachEvent();
-  }
-
-  attachEvent() {
     this.clickEvent();
     this.audoMoveEvent();
-  }
-
-  setCarouselItem() {
-    this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
   }
 
   audoMoveEvent() {
@@ -34,8 +30,13 @@ export default class Carousel {
   }
 
   clickEvent() {
-    this.carousel.prev.addEventListener('click', (e) => this.moveToPrev(e));
-    this.carousel.next.addEventListener('click', (e) => this.moveToNext(e))
+    this.carousel.prev.addEventListener('click', () => {
+      this.moveToPrev();
+    });
+    this.carousel.next.addEventListener('click', () => {
+      this.moveToNext();
+      this.pauseAutoSlide();
+    });
   }
 
   moveToPrev() {
@@ -48,7 +49,6 @@ export default class Carousel {
   }
 
   moveToNext() {
-    // set ClassName(`.show`)가 set 되지 않은 상태
     const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
 
     showSlide.classList.remove(this.SHOWING_CLASS);
@@ -69,9 +69,7 @@ export default class Carousel {
 
   autoSlideRenderer() {
     function slide() {
-      const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
-
-      if (showSlide) this.moveToNext();
+      if (this.classShow) this.moveToNext();
       else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
 
       setTimeout(() => requestAnimationFrame(slide.bind(this)), 3000);
@@ -79,4 +77,12 @@ export default class Carousel {
     this.requestID = requestAnimationFrame(slide.bind(this));
   }
 
+  pauseAutoSlide() {
+    cancelAnimationFrame(this.requestID);
+
+    if (!this.reactAuto) {
+      this.reactAuto = debounce(this.autoSlideRenderer, 5000).bind(this);
+    }
+    this.reactAuto();
+  }
 }
