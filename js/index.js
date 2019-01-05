@@ -26,10 +26,13 @@ const carousel = new CarouselMenu({
   carousel: $(".a-carousel"),
   parentCarousel: $(".a-carousel-viewport"),
   a_CarouselItem: $(".a-carousel-item"),
+  a_CarouselFirstItem: $(".a-carousel-item:first-child"),
+  a_CarouselLastItem: $(".a-carousel-item:last-child"),
   a_CarouselList: $All(".a-carousel-item"),
   prev: $(".a-carousel-prev"),
   next: $(".a-carousel-next"),
 });
+
 
 layerManager.init();
 topMenu.init();

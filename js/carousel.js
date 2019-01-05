@@ -1,143 +1,82 @@
-import { throttle, debounce } from './setThrottleDebounce.js';
-
 export default class Carousel {
   constructor(layer) {
     this.carousel = {
-      olLayer: layer.carousel,
+      ulLayer: layer.carousel,
       showLayer: layer.parentCarousel,
       item: layer.a_CarouselItem,
+      firstItem: layer.a_CarouselFirstItem,
+      lastItem: layer.a_CarouselLastItem,
       allItems: layer.a_CarouselList,
       prev: layer.prev,
       next: layer.next,
     }
 
-    this.itemWidth = this.carousel.item.offsetWidth;
-    this.itemHeight = this.carousel.item.offsetHeight;
-    this.itemsLength = this.carousel.allItems.length;
-
-    this.offset = 0;
-    this.currentItem = 1;
-
-    this.config = Carousel.mergeConfig(carousel);
-  }
-
-  static mergeConfig(carouselConfig) {
-    const defaultConfig = {
-      infinite: true,
-    };
-
-    return {
-      ...defaultConfig,
-      ...carouselConfig
-    };
+    this.SHOWING_CLASS = "show";
+    this.classShow = document.querySelector(`.${this.SHOWING_CLASS}`);
   }
 
   init() {
-    this.setInfinityCarousel();
+    this.setCarouselItem();
     this.attachEvent();
   }
 
   attachEvent() {
-    this.autoMoveEvent();
-    this.cancelAutoMoveEvent();
     this.clickEvent();
+    this.audoMoveEvent();
   }
 
-  autoMoveEvent() {
-    this.carousel.olLayer.addEventListener("load", this.setRequestAF(this.carousel, this.itemWidth));
+  setCarouselItem() {
+    this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
   }
 
-  cancelAutoMoveEvent() {
-
+  audoMoveEvent() {
+    this.carousel.ulLayer.addEventListener("load", this.autoSlideRenderer());
   }
 
   clickEvent() {
-    this.carousel.prev.addEventListener("click", this.moveToPrev.bind(this));
-    this.carousel.next.addEventListener("click", this.moveToNext.bind(this));
-  }
-
-  setRequestAF() {
-    const moveToNextFn = this.moveToNext.bind(this);
-    function run() {
-      moveToNextFn();
-      setTimeout(() => requestAnimationFrame(run), 3000);
-    }
-    requestAnimationFrame(run);
-  }
-
-  setInfinityCarousel() {
-    // if(this.config.infinite){
-
-    // } else{
-    //   this.checkMovable()
-    // }
-    this.insertClone();
-    this.offset = -this.itemWidth;
-    this.moveWithoutAnimation();
-  }
-
-  isClone() {
-    return this.currentItem === 0 || this.currentItem === this.itemsLength + 1;
-  }
-
-  delayMoveWithoutAnimation() {
-    // TODO: [] 빠르게 연속적으로 click event 발생시 미세한 event Animation Time의 격차 발생 수정 필요. (debounce? throttle 기능으로 가능?)
-    return setTimeout(() => this.moveWithoutAnimation(), 200);
-    // return debounce(200, this.moveWithoutAnimation()); // 문제있음..
-  }
-
-  move() {
-    this.carousel.olLayer.classList.add("active");
-    this.carousel.olLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
-  }
-
-  moveWithoutAnimation() {
-    this.carousel.olLayer.classList.remove("active");
-    this.carousel.olLayer.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+    this.carousel.prev.addEventListener('click', (e) => this.moveToPrev(e));
+    this.carousel.next.addEventListener('click', (e) => this.moveToNext(e))
   }
 
   moveToPrev() {
-    this.offset += this.itemWidth;
-    this.move();
-    this.currentItem--;
-    // (this.config.infinite) ? this.setPrevMove() : this.checkMovable();
-    this.setPrevMove();
+    const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
+
+    showSlide.classList.remove(this.SHOWING_CLASS);
+    const prevSlide = showSlide.previousElementSibling;
+
+    this.setPrevShow(prevSlide);
   }
 
   moveToNext() {
-    this.offset -= this.itemWidth;
-    this.move();
-    this.currentItem++;
-    // (this.config.infinite) ? this.setNextMove() : this.checkMovable();
-    this.setNextMove();
+    // set ClassName(`.show`)가 set 되지 않은 상태
+    const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
+
+    showSlide.classList.remove(this.SHOWING_CLASS);
+    const nextSlide = showSlide.nextElementSibling;
+
+    this.setNextShow(nextSlide);
   }
 
-  setPrevMove() {
-    if (this.isClone()) {
-      this.offset -= this.itemsLength * this.itemWidth;
-      this.delayMoveWithoutAnimation();
-      this.currentItem = this.currentItem + this.itemsLength;
+  setPrevShow(prevSlide) {
+    if (prevSlide) prevSlide.classList.add(this.SHOWING_CLASS);
+    else this.carousel.lastItem.classList.add(this.SHOWING_CLASS);
+  }
+
+  setNextShow(nextSlide) {
+    if (nextSlide) nextSlide.classList.add(this.SHOWING_CLASS);
+    else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
+  }
+
+  autoSlideRenderer() {
+    function slide() {
+      const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
+
+      if (showSlide) this.moveToNext();
+      else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
+
+      setTimeout(() => requestAnimationFrame(slide.bind(this)), 3000);
     }
+    this.requestID = requestAnimationFrame(slide.bind(this));
   }
 
-  setNextMove() {
-    if (this.isClone()) {
-      this.offset += this.itemsLength * this.itemWidth;
-      this.delayMoveWithoutAnimation();
-      this.currentItem = this.currentItem - this.itemsLength;
-    }
-  }
-
-  insertClone() {
-    const firstItem = this.carousel.allItems[0];
-    const lastItem = this.carousel.allItems[this.carousel.allItems.length - 1];
-
-    this.carousel.olLayer.insertBefore(lastItem.cloneNode(true), this.carousel.olLayer.firstChild);
-    this.carousel.olLayer.appendChild(firstItem.cloneNode(true));
-  }
-
-  // checkMovable() {
-  //   (this.currentItem === 1) ? this.carousel.prev.disabled = true : this.carousel.prev.disabled = false;
-  //   (this.currentItem === this.itemLength) ? this.carousel.next.disabled = true : this.carousel.next.disabled = false;
-  // }
 }
