@@ -1,0 +1,18 @@
+[
+    {
+        "src" : "../img/video_carousel1.jpg",
+        "alt" : "Jack Ryan"
+    },
+    {
+        "src" : "../img/video_carousel2.jpg",
+        "alt" : "Home Comming"
+    },
+    {
+        "src" : "../img/video_carousel3.jpg",
+        "alt" : "The Man in the High Castle"
+    },
+    {
+        "src" : "../img/video_carousel4.jpg",
+        "alt" : "The Marvelous Mrs. Maisel"
+    }
+]

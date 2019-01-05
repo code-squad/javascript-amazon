@@ -28,7 +28,6 @@
             <div class='nav-search-select left'>
               <span class="nav-select-option">All&nbsp;&nbsp;</span>
               <select name="departments" id="select-category">
-                <script async src="./js/optionHTML.js"></script>
               </select>
             </div>
             <div class="nav-search-submit right">
@@ -337,10 +336,12 @@
       </div>
 
       <div class="prime-feature-video feature-container">
-        <div class="prime-feature-slide video-slide">
-          <div class="slide-left-arrow"></div>
-          <div class="slide-display"></div>
-          <div class="slide-right-arrow"></div>
+        <div class="feature-carousel video-carousel">
+          <div class="carousel carousel-left-arrow"></div>
+          <div class="carousel carousel-display" id="video-card">
+            <ul class="carousel-wrapper"></ul>
+          </div>
+          <div class="carousel carousel-right-arrow"></div>
         </div>
         <div class="feature-content">
           <h2 class="feature-headline headline">
@@ -368,10 +369,10 @@
       </div>
 
       <div class="prime-feature-music feature-container">
-        <div class="prime-feature-slide music-slide">
-          <div class="slide-left-arrow"></div>
-          <div class="slide-display"></div>
-          <div class="slide-right-arrow"></div>
+        <div class="feature-carousel music-carousel">
+          <div class="carousel carousel-left-arrow"></div>
+          <div class="carousel carousel-display"></div>
+          <div class="carousel carousel-right-arrow"></div>
         </div>
         <div class="feature-content">
           <h2 class="feature-headline headline">Stay on top of the hottest music</h2>
