@@ -72,6 +72,12 @@ button {
 .amazonFamily {
     background-image: url('./amazonImage/amazonFamily.jpg')
 }
+.primeReading {
+    background-image: url('./amazonImage/primeReading.jpg')
+}
+.amazonFirstReads {
+    background-image: url('./amazonImage/amazonFirstReads.jpg')
+}
 
 .carousel-show {
     display: inline-block;
@@ -109,6 +115,13 @@ button {
 .carousel-shop-color {
     display: inline-block;
     background-color: #E31F64;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+.carousel-read-color {
+    display: inline-block;
+    background-color: #36C2B4;
     color: #fff;
     padding: 5px 10px;
     margin-bottom: 20px;
