@@ -18,8 +18,30 @@
     display:inline-block;
 }
 .middle-body-carousel-list-container{
+    position: relative;
     display:inline-block;
 }
+.middle-body-carousel-list-container:before{
+    display: inline-block;
+    content: "";
+    position: absolute;
+    box-shadow: 0px 0px 10px 50px grey;
+    transform: rotate(-8deg);
+    z-index: -1;
+    left: 47px;
+    top: 56px;
+}
+.middle-body-carousel-list-container:after{
+    content: "";
+    position: absolute;
+    top: 10px;
+    box-shadow: 0px 0px 10px 50px grey;
+    transform: rotate(8deg);
+    z-index: -1;
+    right: 47px;
+    top: 56px;
+}
+
 .middle-body-carousel-list{
     padding:0px;
     margin:0px;
