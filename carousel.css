@@ -36,38 +36,43 @@ button {
 .twoDayShipping {
     background-image: url('./amazonImage/twoDayShipping.jpg');
 }
-
 .sameDayDelivery {
     background-image: url('./amazonImage/sameDayDelivery.jpg');
 }
-
 .releaseDayDelivery {
     background-image: url("./amazonImage/releaseDayDelivery.jpg");
 }
-
 .primeNow {
     background-image: url("./amazonImage/primeNow.jpg")
 }
-
-.primeVideo{
+.primeVideo {
     background-image: url("./amazonImage/primeVideo.jpg")
 }
-
 .twitchPrime {
     background-image: url('./amazonImage/twitchPrime.jpg')
 }
-
 .primeMusic {
     background-image: url('./amazonImage/primeMusic.jpg')
 }
-
 .primeOriginals {
     background-image: url("./amazonImage/primeOriginals.jpg")
 }
-
 .audibleChannels {
     background-image: url('./amazonImage/audibleChannels.jpg')
 }
+.primeAtWholeFoodsMarket {
+    background-image: url('./amazonImage/PrimeAtWholeFoodsMarket.jpg')
+}
+.alexaVoiceShopping{
+    background-image: url('./amazonImage/AlexaVoiceShopping.jpg')
+}
+.justWithPrime {
+    background-image: url('./amazonImage/justWithPrime.jpg')
+}
+.amazonFamily {
+    background-image: url('./amazonImage/amazonFamily.jpg')
+}
+
 .carousel-show {
     display: inline-block;
     width: 1048px;
@@ -94,13 +99,19 @@ button {
     padding: 5px 10px;
     margin-bottom: 20px;
 }
-
 .carousel-stream-color {
     display: inline-block;
     background-color: #FF6138;
     color: #fff;
     padding: 5px 10px;
-    margin-bottom: 20px;   
+    margin-bottom: 20px;
+}
+.carousel-shop-color {
+    display: inline-block;
+    background-color: #E31F64;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;
 }
 
 .card-headline {
@@ -111,6 +122,7 @@ button {
 }
 
 .card-body {
+    color:#575757;
     font-size: 18px;
     line-height: 28px;
     font-weight: 400;
@@ -118,8 +130,8 @@ button {
 }
 
 .carousel-link {
-    font-size:18px;
-    color:#000;
+    font-size: 18px;
+    color: #000;
     cursor: pointer;
     font-weight: 700;
     text-decoration: none;
