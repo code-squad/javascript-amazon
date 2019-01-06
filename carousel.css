@@ -13,7 +13,7 @@ button {
 }
 
 .carousel-list-el {
-    background-position: -98px -29px;
+    background-position: -98px -21px;
     display: none;
 }
 
@@ -49,6 +49,25 @@ button {
     background-image: url("./amazonImage/primeNow.jpg")
 }
 
+.primeVideo{
+    background-image: url("./amazonImage/primeVideo.jpg")
+}
+
+.twitchPrime {
+    background-image: url('./amazonImage/twitchPrime.jpg')
+}
+
+.primeMusic {
+    background-image: url('./amazonImage/primeMusic.jpg')
+}
+
+.primeOriginals {
+    background-image: url("./amazonImage/primeOriginals.jpg")
+}
+
+.audibleChannels {
+    background-image: url('./amazonImage/audibleChannels.jpg')
+}
 .carousel-show {
     display: inline-block;
     width: 1048px;
