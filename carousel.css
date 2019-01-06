@@ -35,7 +35,6 @@ button {
 
 .twoDayShipping {
     background-image: url('./amazonImage/twoDayShipping.jpg');
-    
 }
 
 .sameDayDelivery {
@@ -44,6 +43,10 @@ button {
 
 .releaseDayDelivery {
     background-image: url("./amazonImage/releaseDayDelivery.jpg");
+}
+
+.primeNow {
+    background-image: url("./amazonImage/primeNow.jpg")
 }
 
 .carousel-show {
@@ -60,20 +63,25 @@ button {
     margin-left: 20px;
 }
 
-.carousel-ship-color {
-    display: inline-block;
-}
-
 .carousel-content-container {
     margin-left: 50%;
     margin-right: 5%;
 }
 
 .carousel-ship-color {
+    display: inline-block;
     background-color: #00A8E1;
     color: #fff;
     padding: 5px 10px;
     margin-bottom: 20px;
+}
+
+.carousel-stream-color {
+    display: inline-block;
+    background-color: #FF6138;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;   
 }
 
 .card-headline {
