@@ -1,6 +1,34 @@
-.middle-body-carousel-left-button-container{
-    padding:3px;
+.middle-body-carousel {
+    display:inline-block;
+    width:630px;
+    height:230px;
+    text-align:right;
 }
+.middle-body-carousel-button-container{
+    display:inline-block;
+}
+.middle-body-carousel-list-container{
+    display:inline-block;
+}
+.middle-body-carousel-list{
+    padding:0px;
+    margin:0px;
+}
+.middle-body-carousel-list-el {
+    display:none;
+    width:280px;
+    height:210px;
+}
+.image-show {
+    display:inline-block;
+}
+.middle-body-carousel-list > li {
+    list-style: none;
+}
+.middle-body-carousel-list-image {
+    width:100%;
+}
+
 .middle-body-carousel-left-button {
     background-image: url('./amazonImage/middleBodyCarouselLeftBtn.png');
     width:9.75px;
@@ -13,8 +41,4 @@
     width:9.75px;
     height:15px;
     background-size:9.75px 15px;
-}
-
-.middle-body-carousel-list > li {
-    list-style: none;
 }
