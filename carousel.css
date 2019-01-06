@@ -1,22 +1,28 @@
 button {
-    border:0px;
+    border: 0px;
 }
-.carousel{
-    
+
+.carousel {
+    margin: 0px 119px;
 }
-.carousel-list{
-    display:inline-block;
-    padding:0px;
-    margin:0px;
+
+.carousel-list {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
 }
-.carousel-list-el{
-    display:none;
+
+.carousel-list-el {
+    background-position: -98px -29px;
+    display: none;
 }
-.carousel-button-container{
-    display:inline-block;
+
+.carousel-button-container {
+    display: inline-block;
 }
-.carousel-list-container{
-    display:inline-block;
+
+.carousel-list-container {
+    display: inline-block;
 }
 
 .carousel-button-container-button-left {
@@ -24,16 +30,24 @@ button {
     height: 52px;
     background-image: url('./amazonImage/carouselLeftBtn.png');
     background-size: 52px;
+    margin-right: 20px;
 }
 
-.twoDayShipping{
-    width: 100px;
-    height: 100px;
-    background-image: url('./amazonImage/twoDayShipping.jpg')
+.twoDayShipping {
+    background-image: url('./amazonImage/twoDayShipping.jpg');
+    
+}
+
+.sameDayDelivery {
+    background-image: url('./amazonImage/sameDayDelivery.jpg');
+}
+
+.releaseDayDelivery {
+    background-image: url("./amazonImage/releaseDayDelivery.jpg");
 }
 
 .carousel-show {
-    display:inline-block;
+    display: inline-block;
     width: 1048px;
     height: 380px;
 }
@@ -43,4 +57,47 @@ button {
     height: 52px;
     background-image: url('./amazonImage/carouselRightBtn.png');
     background-size: 52px;
+    margin-left: 20px;
+}
+
+.carousel-ship-color {
+    display: inline-block;
+}
+
+.carousel-content-container {
+    margin-left: 50%;
+    margin-right: 5%;
+}
+
+.carousel-ship-color {
+    background-color: #00A8E1;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
+.card-headline {
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.carousel-link {
+    font-size:18px;
+    color:#000;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.carousel-link:hover {
+    text-decoration: underline;
 }
