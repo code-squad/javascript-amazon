@@ -157,9 +157,9 @@ main {
   width: var(--header__search--width);
 }
 /* Layout of internal elements */
-.header__search > select,
-.header__search > input,
-.header__search > button {
+.header__search .search__categorySelector,
+.header__search .search__inputWrapper,
+.header__search .search__submitBtn {
   /* stack elements to hide gap between them */
   border: none;
   height: 100%;
@@ -167,28 +167,33 @@ main {
   display: inline-block;
   margin-right: -1rem;
 }
-.header__search > .search__categorySelector {
+.header__search .search__categorySelector {
   position: relative;
   width: var(--search__categorySelector--width);
   font-size: 1.2rem;
   z-index: 100; /*  place category selector over input bar */
   background-color: #dcdcdc;
 }
-.header__search > .search__categorySelector:focus {
+.header__search .search__categorySelector:focus {
   outline: none;
 }
-.header__search > .search__input {
+.header__search .search__inputWrapper {
+  position: relative;
   width: calc(
     100% - var(--search__categorySelector--width) -
       var(--search__submitBtn--width)
   );
+}
+.header__search .search__input {
+  height: 100%;
+  width: 100%;
   padding: 0 2rem; /*  Set text display location to right to compensate stacked margins */
   font-size: 1.2rem;
 }
-.header__search > .search__input:focus {
+.header__search .search__input:focus {
   outline: none;
 }
-.header__search > .search__submitBtn {
+.header__search .search__submitBtn {
   position: relative;
   border-radius: 0 0.5rem 0.5rem 0;
   background-color: var(--color-bright-orange);
@@ -196,7 +201,7 @@ main {
   font-size: 2rem;
   z-index: 100;
 }
-.header__search > .search__submitBtn:focus {
+.header__search .search__submitBtn:focus {
   outline: none;
 }
 

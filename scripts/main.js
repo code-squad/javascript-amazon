@@ -1,6 +1,7 @@
 import StickyNav from './stickyNav/StickyNav.js';
 import MegaMenu from './megaMenu/MegaMenu.js';
 import MiniCarousel from './miniCarousel/MiniCarousel.js';
+import SearchAutoFill from './searchAutoFill/SearchAutoFill.js';
 
 const stickyPlansLayer = new StickyNav({
   htmlEl: document.querySelector('.stickyNav'),
@@ -28,6 +29,15 @@ const miniCarouselOriginal = new MiniCarousel({
   timer: miniCarouselTiming,
 });
 
+const searchAutoFill = new SearchAutoFill({
+  apiURI: 'http://crong.codesquad.kr:8080/amazon/ac/',
+  el: {
+    inputEl: document.querySelector('.search__input'),
+    suggestionWrapperEl: document.querySelector('.search__suggestion'),
+  },
+  suggestionTemplateFn: ({ value, refTag }) => `<li><a href="/${refTag}">${value}</a></li>`,
+});
+
 window.addEventListener('DOMContentLoaded', () => {
   stickyPlansLayer.displayDetailOnClick();
   stickyPlansLayer.closeDetailOnClick();
@@ -35,6 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
   megaMenu.setDetailOpenMouseEvent();
   miniCarouselMusic.fetchCarouselRes('./res/primeMusic.json');
   miniCarouselOriginal.fetchCarouselRes('./res/primeOriginal.json');
+  searchAutoFill.init();
 });
 window.addEventListener('load', () => {
   stickyPlansLayer.setWrapperHeight(); // Extend body height to make position:sticky work properly

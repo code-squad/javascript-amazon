@@ -1,6 +1,6 @@
 import CommonLib from '../commonLib.js';
 
-const { debounce } = new CommonLib().debounce;
+const { debounce } = CommonLib.prototype;
 
 class Observable {
   constructor() {
@@ -21,7 +21,7 @@ class Observable {
 }
 
 class Model extends Observable {
-  constructor({ apiURI }) {
+  constructor(apiURI) {
     super();
     this.suggestion = null;
     this.API_URI = apiURI;
@@ -29,15 +29,22 @@ class Model extends Observable {
 
   updateSuggestion(searchWord) {
     const queryURL = `${this.API_URI}${searchWord}`;
-    fetch(queryURL)
+    const init = {
+      method: 'GET',
+      headers: { 'Content-Type': 'image/jpeg' },
+      mode: 'cors',
+    };
+    const request = new Request(queryURL, init);
+
+    fetch(request)
       .then(response => response.json())
       .catch(err => console.log(`Error during fetch: ${err}`))
       .then(json => this.setSuggestion(json));
   }
 
-  setSuggestion(json) {
-    this.suggestion = json;
-    super.notify(this.getSuggestion);
+  setSuggestion({ suggestions }) {
+    this.suggestion = suggestions;
+    super.notify(this.getSuggestion());
   }
 
   getSuggestion() {
@@ -54,15 +61,15 @@ class Controller extends Observable {
   }
 
   init() {
-    this.model.subscribe(this.sendUpdateToView);
+    this.model.subscribe(this.sendUpdateToView.bind(this));
   }
 
   query(searchWord) {
     if (!this.queryOnDebounce) {
-      this.queryOnDebounce = debounce(this.model.updateSuggestion(searchWord), 1000);
+      this.queryOnDebounce = debounce(this.model.updateSuggestion.bind(this.model), 1000);
     }
 
-    this.queryOnDebounce();
+    this.queryOnDebounce(searchWord);
   }
 
   sendUpdateToView(data) {
@@ -70,8 +77,9 @@ class Controller extends Observable {
     super.notify(formattedHTML);
   }
 
-  templatizeData({ suggestions }) {
-    return suggestions.forEach(data => this.suggestionTemplateFn(data));
+  templatizeData(suggestions) {
+    const listItems = suggestions.reduce((acc, data) => acc + this.suggestionTemplateFn(data), '');
+    return `<ul>${listItems}</ul>`;
   }
 }
 
@@ -83,8 +91,9 @@ class View {
   }
 
   init() {
-    this.controller.subscribe(this.updateSuggestion);
-    this.inputEl.addEventListener('change', this.queryController);
+    this.controller.init();
+    this.controller.subscribe(this.updateSuggestion.bind(this));
+    this.inputEl.addEventListener('keyup', this.queryController.bind(this));
   }
 
   queryController({ target }) {
@@ -98,10 +107,14 @@ class View {
 }
 
 export default class SearchAutoFill {
-  constructor(inputEl, suggestionWrapperEl, suggestionTemplateFn) {
-    const model = new Model({ apiURI: 'http://crong.codesquad.kr:8080/amazon-ac/' });
+  constructor({ apiURI, el: { inputEl, suggestionWrapperEl }, suggestionTemplateFn }) {
+    const model = new Model(apiURI);
     const controller = new Controller(model, suggestionTemplateFn);
     const view = new View({ controller, inputEl, suggestionWrapperEl });
-    this.mvc = { model, controller, view };
+    this.mvc = { model, view, controller };
+  }
+
+  init() {
+    this.mvc.view.init();
   }
 }
