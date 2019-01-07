@@ -72,24 +72,24 @@ export default class Carousel {
 
   autoSlideRenderer() {
     const moveFn = this.moveToNext.bind(this);
-    function slide(e) {
-      console.log(e); // requestAnimationFrame에 전달되는 인자 안에 Timer가 담겨져서 전달됨.
-      // https://developer.mozilla.org/ko/docs/Web/API/Window/requestAnimationFrame 참고
+    let startTime = 0;
 
-      if (this.classShow) moveFn();
-      else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
+    function slide(timestamp) {
+      if (!startTime) startTime = timestamp;
+      let progressTime = timestamp - startTime;
 
-      this.timer = setTimeout(() => {
-        this.requestID = requestAnimationFrame(slide.bind(this))
-      }, 3000);
+      if (progressTime >= 3000) {
+        if (this.classShow) moveFn();
+        else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
+        startTime = 0;
+      }
+      this.requestID = requestAnimationFrame(slide.bind(this))
     }
     this.requestID = requestAnimationFrame(slide.bind(this));
   }
 
   pauseAutoSlide() {
-    console.log(this.requestID);
     cancelAnimationFrame(this.requestID);
-    clearTimeout(this.timer);
 
     if (!this.reactAuto) this.reactAuto = debounce(this.autoSlideRenderer, 5000).bind(this);
     this.reactAuto();
