@@ -1,0 +1,108 @@
+.middle-body-carousel-container {
+    padding: 40px 0px;
+}
+.middle-body-carousel-list > li {
+    list-style: none;
+}
+
+.middle-body-carousel {
+    display:inline-block;
+    width:630px;
+    height:230px;
+    text-align:right;
+}
+
+.middle-body-carousel-button-container{
+    position:relative;
+    bottom: 95px;
+    display:inline-block;
+}
+.middle-body-carousel-list-container{
+    position: relative;
+    display:inline-block;
+}
+.middle-body-carousel-list-container:before{
+    display: inline-block;
+    content: "";
+    position: absolute;
+    box-shadow: 0px 0px 10px 50px grey;
+    transform: rotate(-8deg);
+    z-index: -1;
+    left: 47px;
+    top: 56px;
+}
+.middle-body-carousel-list-container:after{
+    content: "";
+    position: absolute;
+    top: 10px;
+    box-shadow: 0px 0px 10px 50px grey;
+    transform: rotate(8deg);
+    z-index: -1;
+    right: 47px;
+    top: 56px;
+}
+
+.middle-body-carousel-list{
+    padding:0px;
+    margin:0px;
+}
+.middle-body-carousel-list-el {
+    display:none;
+    width:280px;
+    height:210px;
+}
+.middle-body-carousel-list-image {
+    width:100%;
+}
+.image-show {
+    display:inline-block;
+}
+
+
+
+.middle-body-carousel-left-button {
+    background-image: url('./amazonImage/middleBodyCarouselLeftBtn.png');
+    margin-right:15px;
+    width:9.75px;
+    height:15px;
+    background-size:9.75px 15px;
+}
+.middle-body-carousel-right-button {
+    background-image: url('./amazonImage/middleBodyCarouselRightBtn.png');
+    margin-left:15px;
+    width:9.75px;
+    height:15px;
+    background-size:9.75px 15px;
+}
+
+.middle-body-carousel-text{
+    display:inline-block;
+    color:#002F36;
+    width:580px;
+    height:230px;
+}
+
+.middle-body-carousel-headline {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.middle-body-carousel-body {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 25px;
+    margin-bottom: 20px;
+    margin-right: 130px;
+}
+
+.middle-body-carousel-link {
+    color:#002F36;
+    text-decoration: none;
+}
+.middle-body-carousel-link:hover{
+    text-decoration: underline;
+}
+
+.middle-body-carousel-text {
+    margin-left:100px;
+}

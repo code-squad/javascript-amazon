@@ -1,0 +1,68 @@
+
+.top-body-container{
+    margin:0px 20px;
+    font-family: 'Amazon Ember', Tahoma, Arial, sans-serif;
+}
+.top-body-background{
+    background-image:url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Header_01._CB513133335_.png);
+    background-color: #0079b4;
+    color: #fff;
+    height:396px;
+    padding: 32px 0 48px 0;
+}
+
+.top-body-content-container{
+    margin: 0px 65px;
+}
+
+.top-body-content-header{
+    margin-top:0px;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+.top-body-content-header-word{
+    font-size:22px;
+    margin-bottom:33px;
+}
+
+.top-body-content-button{
+    width:366px;
+    height:52px;
+    background-color:#eda844;
+    text-align: center;
+    border:2px solid #e06c44;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+}
+.top-body-content-button:hover{
+    background-color:#f0c14b;
+}
+.top-body-content-button-word{
+    font-family: 'Amazon Ember',  Arial,  sans-serif;
+    font-weight: bold;
+    font-size:20px;
+    color:#304a3f;
+    line-height: 52px;
+}
+
+.top-body-content-fee{
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.top-body-content-link{
+    color:#fff;
+    font-size:14px;
+}
+.top-body-content-arrow{
+    padding-left:3px;
+    font-size:3px;
+    display:inline-block;
+}
+
+.top-body-conetent-prime-img{
+    margin-top:34px;
+    width:80px;
+    height:50px;
+}

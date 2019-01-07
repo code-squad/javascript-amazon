@@ -1,0 +1,190 @@
+button {
+    border: 0px;
+    padding:0px;
+}
+
+.carousel {
+    margin: 0px 119px;
+}
+
+.carousel-list {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+}
+
+.carousel-list-el {
+    background-position: -98px -21px;
+    display: none;
+}
+
+.carousel-button-container {
+    display: inline-block;
+}
+
+.carousel-list-container {
+    display: inline-block;
+}
+
+.carousel-button-container-button-left {
+    width: 52px;
+    height: 52px;
+    background-image: url('./amazonImage/carouselLeftBtn.png');
+    background-size: 52px;
+    margin-right: 20px;
+}
+
+/* backgroundImage */
+.twoDayShipping {
+    background-image: url('./amazonImage/twoDayShipping.jpg');
+}
+
+.sameDayDelivery {
+    background-image: url('./amazonImage/sameDayDelivery.jpg');
+}
+
+.releaseDayDelivery {
+    background-image: url("./amazonImage/releaseDayDelivery.jpg");
+}
+
+.primeNow {
+    background-image: url("./amazonImage/primeNow.jpg")
+}
+
+.primeVideo {
+    background-image: url("./amazonImage/primeVideo.jpg")
+}
+
+.twitchPrime {
+    background-image: url('./amazonImage/twitchPrime.jpg')
+}
+
+.primeMusic {
+    background-image: url('./amazonImage/primeMusic.jpg')
+}
+
+.primeOriginals {
+    background-image: url("./amazonImage/primeOriginals.jpg")
+}
+
+.audibleChannels {
+    background-image: url('./amazonImage/audibleChannels.jpg')
+}
+
+.primeAtWholeFoodsMarket {
+    background-image: url('./amazonImage/PrimeAtWholeFoodsMarket.jpg')
+}
+
+.alexaVoiceShopping {
+    background-image: url('./amazonImage/AlexaVoiceShopping.jpg')
+}
+
+.justWithPrime {
+    background-image: url('./amazonImage/justWithPrime.jpg')
+}
+
+.amazonFamily {
+    background-image: url('./amazonImage/amazonFamily.jpg')
+}
+
+.primeReading {
+    background-image: url('./amazonImage/primeReading.jpg')
+}
+
+.amazonFirstReads {
+    background-image: url('./amazonImage/amazonFirstReads.jpg')
+}
+
+.cashBack {
+    background-image: url('./amazonImage/cashBack.jpg')
+}
+
+.amazonPhotos {
+    background-image: url('./amazonImage/amazonPhotos.jpg')
+}
+/* End */
+.carousel-show {
+    display: inline-block;
+    width: 1048px;
+    height: 380px;
+}
+
+.carousel-button-container-button-right {
+    width: 52px;
+    height: 52px;
+    background-image: url('./amazonImage/carouselRightBtn.png');
+    background-size: 52px;
+    margin-left: 20px;
+}
+
+.carousel-content-container {
+    margin-left: 50%;
+    margin-right: 5%;
+}
+
+.carousel-ship-color {
+    display: inline-block;
+    background-color: #00A8E1;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
+.carousel-stream-color {
+    display: inline-block;
+    background-color: #FF6138;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
+.carousel-shop-color {
+    display: inline-block;
+    background-color: #E31F64;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
+.carousel-read-color {
+    display: inline-block;
+    background-color: #36C2B4;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
+.carousel-more-color {
+    display: inline-block;
+    background-color: #FFC400;
+    color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
+.card-headline {
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    color: #575757;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.carousel-link {
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.carousel-link:hover {
+    text-decoration: underline;
+}

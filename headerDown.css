@@ -1,0 +1,209 @@
+.head-nav-right-list {
+    margin:0px;
+}
+
+.head-nav-container {
+    background-color:#24313f;
+    overflow:auto;
+}
+/* location */
+.head-nav-location-container{
+    float:left;
+    width:186px;
+    padding-left:10px;
+}
+.head-nav-location {
+    color:#fff;
+    font-size:12px;
+    font-family: arial,sans-serif;
+    width:155px;
+    height:32px;
+    padding:9px 2px 2px 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+.head-nav-location:hover{
+    border: 1px solid #767d85;
+    border-radius: 2px 2px 0px 0px;
+}
+
+.head-nav-location-img {
+    float:left;
+    margin: 5px 4px 0px 0px   
+}
+
+.head-nav-location-word{
+    padding-right:50px;
+}
+.head-nav-location-user {
+    position: relative;
+    bottom:1px;
+    font-weight: 900;
+    font-size:14px;
+}
+/* navigator */
+.head-nav {
+    float:left;
+}
+
+.head-nav-right {
+    float:left;
+}
+
+.head-nav-list{
+    list-style: none;
+    padding:0px;
+    margin-top:6px;
+    margin-bottom:0px;
+    height:39px;
+}
+.head-nav-list > li{
+    display:inline-block;
+}
+
+.head-nav-list-el-selector{
+    padding:10px 0px 10px 0px;
+    color:#fff;
+    
+}
+.head-nav-list-el-selector-word{
+    font-weight:700;
+    font-size:14px;
+    padding: 5px 25px 5px 10px;
+    border:1px solid transparent;
+}
+.head-nav-list-el-selector-word:hover{
+    border:1px solid #767d85;
+    border-radius:1px 1px 0px 0px;
+}
+.head-arrow-bright{
+    position: absolute;
+    border-style: solid;
+    border-width: 4px;
+    border-color: transparent;
+    border-top: 4px solid #a7acb2
+}
+.departments-arrow{
+    position: relative;
+    top: -9px;
+    left: 90px;
+    display: inline
+}
+
+.head-nav-list-el{
+    position: relative;
+    top:1px;
+    font-size:13px;
+    text-decoration: none;
+    color:#cccccc;
+    margin-left: 6px;
+}
+.head-nav-list-el:hover {
+    text-decoration: underline;
+}
+/* nav-right */
+.head-nav-right{
+    position:relative;
+    float:right;
+    color:#ccc;
+    font-size:12px;
+    margin-right:10px;
+}
+.head-nav-right-list{
+    list-style: none;
+    padding:0px;
+}
+.head-nav-right-list > li{
+    display: inline-block;
+}
+.head-nav-right-list-language{
+    padding: 4px 13px;
+    border:1px solid transparent;
+    cursor: pointer;
+}
+.head-nav-right-list-language:hover{
+    border:1px solid #767d85;
+    border-radius:1px 1px 0px 0px;
+}
+.head-nav-right-list-language-user{
+    position: relative;
+    right:1px;
+}
+.language-arrow{
+    display:inline-block;
+    position: relative;
+    bottom:9.5px;
+}
+.head-nav-right-linkborder{
+    border-right: 1px solid #555;
+    display: inline-block;
+    width: 1px;
+    height: 29px;
+}
+.head-nav-right-list-account{
+    padding: 4px 12px 4px 5px;
+    border:1px solid transparent;
+    cursor: pointer;
+}
+.head-nav-right-list-account:hover{
+    border:1px solid #767d85;
+    border-radius:1px 1px 0px 0px;
+}
+.head-nav-right-list-account-msg{
+    display:block;
+    font-weight: 400;
+}
+.head-nav-right-list-account-user{
+    display:inline-block;
+    color:#fff;
+    font-size:14px;
+    font-weight: 700;
+}
+.account-arrow{
+    display:inline-block;
+    position: relative;
+    bottom:5px;
+}
+
+.head-nav-right-list-order{
+    padding:4px 8px;
+    border:1px solid transparent;
+    cursor: pointer;
+}
+.head-nav-right-list-order:hover{
+    border:1px solid #767d85;
+    border-radius: 1px 1px 0px 0px;
+}
+.head-nav-right-list-order-word{
+    color:#fff;
+    font-size:14px;
+    font-weight: 700;
+}
+
+.head-nav-right-list-cart{
+    padding:4px 6px;
+    border:1px solid transparent;
+}
+.head-nav-right-list-cart:hover{
+    border:1px solid #767d85;
+    border-radius:1px 1px 0px 0px;
+}
+.head-nav-right-list-cart-num{
+    position: relative;
+    bottom: 18px;
+    right: 24px;
+    color:#e58f42;
+    font-size:16px;
+    font-weight: 700;
+}
+.head-nav-right-list-cart-word{
+    position: relative;
+    right:16px;
+    color:#fff;
+    font-size:14px;
+    font-weight: 700;
+}
+
+header{
+    border-bottom:2px solid #53a8de;
+}

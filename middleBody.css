@@ -1,0 +1,43 @@
+.middle-body-leadmsg {
+    display: inline-block;
+    color: #002F36;
+    font-size: 28px;
+    margin: 30px 70px 15px;
+}
+
+.middle-body-content-container {
+    background-image: url('./amazonImage/middleBodyContentBackground.png');
+    margin: 0px 20px;
+    height:330px;
+}
+
+.middle-body-text {
+    color:#fff;
+    display:inline-block;
+    margin-left: 80px;
+    margin-top: 50px;
+    width: 500px;
+}
+
+.middle-body-headline {
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+.middle-body-body {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 25px;
+    margin-bottom: 20px;
+    width: 420px;
+}
+
+.middle-body-link {
+    color:#fff;
+    text-decoration: none;
+}
+
+.middle-body-link:hover{
+    text-decoration: underline;
+}
