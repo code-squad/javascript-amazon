@@ -34,6 +34,7 @@ export default class Carousel {
   clickEvent() {
     this.carousel.prev.addEventListener('click', () => {
       this.moveToPrev();
+      this.pauseAutoSlide();
     });
     this.carousel.next.addEventListener('click', () => {
       this.moveToNext();
