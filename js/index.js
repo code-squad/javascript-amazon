@@ -31,6 +31,7 @@ const carousel = new CarouselMenu({
   a_CarouselList: $All(".a-carousel-item"),
   prev: $(".a-carousel-prev"),
   next: $(".a-carousel-next"),
+  classShow: $(".show"),
 });
 
 

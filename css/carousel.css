@@ -115,6 +115,7 @@
   position: absolute;
   top: 105px;
   color: #002F36;
+
 }
 
 .carousel-control {
@@ -136,6 +137,9 @@
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
+  border-style: none;
+  border: 0px;
+  text-decoration: none;
 }
 
 /* Carousel Card > benefit-content */

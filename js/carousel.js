@@ -11,6 +11,7 @@ export default class Carousel {
       allItems: layer.a_CarouselList,
       prev: layer.prev,
       next: layer.next,
+      classShow: layer.classShow,
     }
 
     this.SHOWING_CLASS = "show";
@@ -18,14 +19,15 @@ export default class Carousel {
 
     this.requestID = null;
     this.reactAuto;
+    this.timer; // clear setTimeout Method
   }
 
   init() {
     this.clickEvent();
-    this.audoMoveEvent();
+    this.autoMoveEvent();
   }
 
-  audoMoveEvent() {
+  autoMoveEvent() {
     this.carousel.ulLayer.addEventListener("load", this.autoSlideRenderer());
   }
 
@@ -52,7 +54,7 @@ export default class Carousel {
     const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
 
     showSlide.classList.remove(this.SHOWING_CLASS);
-    const nextSlide = showSlide.nextElementSibling;
+    const nextSlide = showSlide.nextElementSibling
 
     this.setNextShow(nextSlide);
   }
@@ -68,21 +70,27 @@ export default class Carousel {
   }
 
   autoSlideRenderer() {
-    function slide() {
-      if (this.classShow) this.moveToNext();
+    const moveFn = this.moveToNext.bind(this);
+    function slide(e) {
+      console.log(e); // requestAnimationFrame에 전달되는 인자 안에 Timer가 담겨져서 전달됨.
+      // https://developer.mozilla.org/ko/docs/Web/API/Window/requestAnimationFrame 참고
+
+      if (this.classShow) moveFn();
       else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
 
-      setTimeout(() => requestAnimationFrame(slide.bind(this)), 3000);
+      this.timer = setTimeout(() => {
+        this.requestID = requestAnimationFrame(slide.bind(this))
+      }, 3000);
     }
     this.requestID = requestAnimationFrame(slide.bind(this));
   }
 
   pauseAutoSlide() {
+    console.log(this.requestID);
     cancelAnimationFrame(this.requestID);
+    clearTimeout(this.timer);
 
-    if (!this.reactAuto) {
-      this.reactAuto = debounce(this.autoSlideRenderer, 5000).bind(this);
-    }
+    if (!this.reactAuto) this.reactAuto = debounce(this.autoSlideRenderer, 5000).bind(this);
     this.reactAuto();
   }
 }
