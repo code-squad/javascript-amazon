@@ -9,7 +9,10 @@
 
 /*
  [UX Improvement on View]
- - [ ] Basic UI - height, color, margin/padding...
+ - [V] Basic UI - height, color, margin/padding...
+ - [ ] Background dim on auto suggestion
+ - [ ] highlight text matching search word
+
  - [ ] Can navigate with keyboard arrow keys
  - [ ] focus made by arrow key highlights suggestion
  - [ ] Input value updates on navigation with keyboard

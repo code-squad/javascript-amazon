@@ -84,7 +84,7 @@ class Controller extends Observable {
       (acc, data) => acc + this.suggestionTemplateFn(data, searchWord),
       '',
     );
-    return `<ul>${listItems}</ul>`;
+    return `<ul class="search__suggestionUl">${listItems}</ul>`;
   }
 }
 
