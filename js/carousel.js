@@ -6,7 +6,6 @@ export default class Carousel {
       ulLayer: layer.carousel,
       showLayer: layer.parentCarousel,
       item: layer.a_CarouselItem,
-      firstItem: layer.a_CarouselFirstItem,
       lastItem: layer.a_CarouselLastItem,
       allItems: layer.a_CarouselList,
       prev: layer.prev,
@@ -16,6 +15,7 @@ export default class Carousel {
 
     this.SHOWING_CLASS = "show";
     this.classShow = document.querySelector(`.${this.SHOWING_CLASS}`);
+    this.firstItem = this.carousel.ulLayer.firstElementChild;
 
     this.requestID = null;
     this.reactAuto;
@@ -27,20 +27,35 @@ export default class Carousel {
     this.xmlRequest();
   }
 
+  setCarouselShow() {
+    this.carousel.ulLayer.firstElementChild.classList.add(`${this.SHOWING_CLASS}`);
+  }
+
   xmlRequest(regURL) {
     const xhr = new XMLHttpRequest();
 
     xhr.addEventListener("load", () => {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          const responseObj = JSON.parse(xhr.responseText);
-          console.log(responseObj)
-        }
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        const responseObj = JSON.parse(xhr.responseText);
+        responseObj.map(element => {
+          this.createHTMLTemplate(element)
+        });
+        this.setCarouselShow.call(this);
       }
     });
 
     xhr.open('GET', regURL);
     xhr.send();
+  }
+
+  createHTMLTemplate({ src, alt, id }) {
+    return this.carousel.ulLayer.innerHTML += `
+    <li class="a-carousel-item">
+    <a href="#" class="a-link-category">
+    <img src="${src}" alt="${alt}", id="${id}">
+    </a>
+    </li>
+    `.trim();
   }
 
   autoMoveEvent() {
@@ -70,6 +85,7 @@ export default class Carousel {
   moveToNext() {
     const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
 
+    console.log(this.carousel.firstItem)
     showSlide.classList.remove(this.SHOWING_CLASS);
     const nextSlide = showSlide.nextElementSibling
 
@@ -96,6 +112,7 @@ export default class Carousel {
       let bProgressTime = (timestamp - startTime) >= setMilSecTime;
 
       if (bProgressTime) {
+        console.log(this.classShow, this.carousel);
         if (this.classShow) moveFn();
         else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
         startTime = 0; // Timer Reset
