@@ -19,12 +19,28 @@ export default class Carousel {
 
     this.requestID = null;
     this.reactAuto;
-    this.timer; // clear setTimeout Method
   }
 
   init() {
     this.clickEvent();
     this.autoMoveEvent();
+    this.xmlRequest();
+  }
+
+  xmlRequest(regURL) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("load", () => {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          const responseObj = JSON.parse(xhr.responseText);
+          console.log(responseObj)
+        }
+      }
+    });
+
+    xhr.open('GET', regURL);
+    xhr.send();
   }
 
   autoMoveEvent() {
@@ -76,12 +92,13 @@ export default class Carousel {
 
     function slide(timestamp) {
       if (!startTime) startTime = timestamp;
-      let progressTime = timestamp - startTime;
+      const setMilSecTime = 3000;
+      let bProgressTime = (timestamp - startTime) >= setMilSecTime;
 
-      if (progressTime >= 3000) {
+      if (bProgressTime) {
         if (this.classShow) moveFn();
         else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
-        startTime = 0;
+        startTime = 0; // Timer Reset
       }
       this.requestID = requestAnimationFrame(slide.bind(this))
     }

@@ -34,6 +34,9 @@ const carousel = new CarouselMenu({
   classShow: $(".show"),
 });
 
+window.addEventListener("DOMContentLoaded", () => {
+  carousel.xmlRequest('../JSON/primeMoive.json');
+});
 
 layerManager.init();
 topMenu.init();
