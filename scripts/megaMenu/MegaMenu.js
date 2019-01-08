@@ -19,7 +19,7 @@ export default class {
   Initial listener / style assignment
   ======= */
   setBgDimHeight() {
-    const bgDim = this.base.querySelector('.megaMenu__screenDim');
+    const bgDim = document.querySelector('.megaMenu__screenDim');
     const body = document.querySelector('body');
     const totalHeight = [...body.children].reduce((acc, el) => acc + el.clientHeight, 0);
 

@@ -85,6 +85,12 @@
   line-height: var(--suggestion-line-height);
 }
 
-.search__suggestionLi--matched {
+.search__suggestionLi a {
+  display: block;
+}
+.search__suggestionLi a:focus {
   color: orange;
+}
+.search__suggestionLi:hover {
+  background-color: lightgray;
 }

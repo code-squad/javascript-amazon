@@ -29,6 +29,22 @@ class Model extends Observable {
   }
 
   updateSuggestion(searchWord) {
+    // MOCK keywords section start
+    const supportingWords = ['iphone8', 'bicycle hel', 'javascript'];
+    const bSupportedSearch = supportingWords.reduce((bMatched, word) => {
+      if (bMatched) return true;
+      return word.indexOf(searchWord) > -1;
+    }, false);
+    if (!bSupportedSearch) {
+      alert(`Sorry! 
+      Search word '${searchWord}' is not supported on testing env :P
+      Please try: ['iphone8', 'bicycle hel', 'javascript']`);
+      return;
+    }
+    // MOCK keywords section end
+
+    if (!searchWord) this.setSuggestion({ suggestions: null }, null);
+
     const queryURL = `${this.API_URI}${searchWord}`;
     const init = {
       method: 'GET',
@@ -80,6 +96,8 @@ class Controller extends Observable {
   }
 
   templatizeData(suggestions, searchWord) {
+    if (!searchWord) return '';
+
     const listItems = suggestions.reduce(
       (acc, data) => acc + this.suggestionTemplateFn(data, searchWord),
       '',
@@ -108,6 +126,10 @@ class View {
 
   updateSuggestion(formattedHTML) {
     this.suggestionWrapperEl.innerHTML = formattedHTML;
+    document.querySelector('.main__dimmer').classList.add('opened');
+    if (!formattedHTML) {
+      document.querySelector('.main__dimmer').classList.remove('opened');
+    }
   }
 }
 
