@@ -35,7 +35,20 @@ const searchAutoFill = new SearchAutoFill({
     inputEl: document.querySelector('.search__input'),
     suggestionWrapperEl: document.querySelector('.search__suggestion'),
   },
-  suggestionTemplateFn: ({ value, refTag }) => `<li><a href="/${refTag}">${value}</a></li>`,
+  suggestionTemplateFn({ value, refTag }, searchWord) {
+    function replaceWhiteSpace(string, replaceChar) {
+      return string.replace(/\s/g, replaceChar);
+    }
+
+    const ref = replaceWhiteSpace(refTag, '+');
+    const fieldKeyword = replaceWhiteSpace(value, '+');
+    const prefix = replaceWhiteSpace(searchWord, '+');
+
+    return `
+    <li class="search__suggestionLi">
+      <a href="/search?ref=${ref}&field-keywords=${fieldKeyword}&prefix=${prefix}">${value}</a>
+    </li>`;
+  },
 });
 
 window.addEventListener('DOMContentLoaded', () => {

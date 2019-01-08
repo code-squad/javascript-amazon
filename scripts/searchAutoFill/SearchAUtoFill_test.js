@@ -9,6 +9,7 @@
 
 /*
  [UX Improvement on View]
+ - [ ] Basic UI - height, color, margin/padding...
  - [ ] Can navigate with keyboard arrow keys
  - [ ] focus made by arrow key highlights suggestion
  - [ ] Input value updates on navigation with keyboard

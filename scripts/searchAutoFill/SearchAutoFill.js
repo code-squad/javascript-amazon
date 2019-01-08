@@ -15,8 +15,8 @@ class Observable {
     this.subscription.delete(fn);
   }
 
-  notify(data) {
-    this.subscription.forEach(fn => fn(data));
+  notify(...data) {
+    this.subscription.forEach(fn => fn(...data));
   }
 }
 
@@ -24,6 +24,7 @@ class Model extends Observable {
   constructor(apiURI) {
     super();
     this.suggestion = null;
+    this.searchWord = null;
     this.API_URI = apiURI;
   }
 
@@ -39,16 +40,17 @@ class Model extends Observable {
     fetch(request)
       .then(response => response.json())
       .catch(err => console.log(`Error during fetch: ${err}`))
-      .then(json => this.setSuggestion(json));
+      .then(json => this.setSuggestion(json, searchWord));
   }
 
-  setSuggestion({ suggestions }) {
+  setSuggestion({ suggestions }, searchWord) {
     this.suggestion = suggestions;
-    super.notify(this.getSuggestion());
+    this.searchWord = searchWord;
+    super.notify(...this.getSuggestion());
   }
 
   getSuggestion() {
-    return this.suggestion;
+    return [this.suggestion, this.searchWord];
   }
 }
 
@@ -72,13 +74,16 @@ class Controller extends Observable {
     this.queryOnDebounce(searchWord);
   }
 
-  sendUpdateToView(data) {
-    const formattedHTML = this.templatizeData(data);
+  sendUpdateToView(data, searchWord) {
+    const formattedHTML = this.templatizeData(data, searchWord);
     super.notify(formattedHTML);
   }
 
-  templatizeData(suggestions) {
-    const listItems = suggestions.reduce((acc, data) => acc + this.suggestionTemplateFn(data), '');
+  templatizeData(suggestions, searchWord) {
+    const listItems = suggestions.reduce(
+      (acc, data) => acc + this.suggestionTemplateFn(data, searchWord),
+      '',
+    );
     return `<ul>${listItems}</ul>`;
   }
 }
