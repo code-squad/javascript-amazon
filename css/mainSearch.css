@@ -80,6 +80,7 @@
 .search__suggestionLi {
   padding: 0 1rem;
   color: black;
+  font-weight: bold;
   background-color: white;
   height: var(--suggestion-line-height);
   line-height: var(--suggestion-line-height);
@@ -93,4 +94,8 @@
 }
 .search__suggestionLi:hover {
   background-color: lightgray;
+}
+
+.search__suggestion--matchStr {
+  color: orange;
 }

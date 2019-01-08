@@ -10,9 +10,9 @@
 /*
  [UX Improvement on View]
  - [V] Basic UI - height, color, margin/padding...
- - [ ] Background dim on auto suggestion
- - [ ] highlight text matching search word
- - [ ] Block query when user clears input
+ - [V] Background dim on auto suggestion
+ - [V] highlight text matching search word
+ - [V] Block query when user clears input
 
  - [ ] Can navigate with keyboard arrow keys
     >> Reference: https://stackoverflow.com/questions/33790668/arrow-keys-navigation-through-li-no-jquery/34420491
