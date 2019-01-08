@@ -5,7 +5,7 @@ class Ajax {
         xmlHttpReq.open("GET", url);
         xmlHttpReq.addEventListener("load", function(){
             const jsonData = JSON.parse(this.responseText);
-            callback(jsonData);   
+            callback(jsonData);
         })
         xmlHttpReq.send();
     }

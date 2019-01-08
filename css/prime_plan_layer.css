@@ -3,7 +3,7 @@
 .nav-plan-layer {
     position: absolute;
     width: 100%;
-    border-bottom: 3px solid #54b7fd;
+    border-bottom: 2.5px solid #54b7fd;
     z-index: 9999;
 }
 

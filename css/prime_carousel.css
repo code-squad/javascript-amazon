@@ -1,0 +1,26 @@
+#prime-features .video-carousel .carousel-display {
+    width: 280px;
+    height: 210px;
+    overflow: hidden;
+  }
+  
+  .carousel-display .carousel-wrapper {
+    display: flex;
+    width: 70rem;
+    transform: translateX(-17.5rem);
+  }
+
+  .carousel-display .carousel-wrapper.slide {
+    transform: none;
+    transition: all 0.5s;
+  }
+  
+  .carousel-display .carousel-wrapper .carousel-item {
+    width: 100%;
+  }
+  
+  .carousel-display .carousel-wrapper .carousel-item img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }

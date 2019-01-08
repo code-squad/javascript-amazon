@@ -15,7 +15,6 @@ class HTMLTemplate {
                 return HTML += `<li class="carousel-item"><img src=${img.src} alt="${img.alt}"></li>`; 
             }, "")
 
-            console.log(resultHTML);
             HTMLEl.innerHTML = resultHTML;
         }
     }

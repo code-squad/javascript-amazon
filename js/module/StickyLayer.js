@@ -4,10 +4,9 @@ class StickyLayer{
     }
 
     pinElement({ thresholdEl }){
-        return () => {
+        return (evt) => {
             const threshold = thresholdEl.offsetTop + thresholdEl.offsetHeight;
             const isPassedThreshold = window.scrollY >= threshold;
-            
             if(isPassedThreshold) this.stickyEl.classList.add("fixed");
             else this.stickyEl.classList.remove("fixed");
         }
