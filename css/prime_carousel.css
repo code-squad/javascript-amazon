@@ -2,25 +2,35 @@
     width: 280px;
     height: 210px;
     overflow: hidden;
-  }
+}
   
-  .carousel-display .carousel-wrapper {
+.carousel-display .carousel-wrapper {
     display: flex;
     width: 70rem;
-    transform: translateX(-17.5rem);
-  }
+}
 
-  .carousel-display .carousel-wrapper.slide {
+.carousel-display .carousel-wrapper.slideLeftOn,
+.carousel-display .carousel-wrapper.slideRightOn {
+    transform: translateX(-17.5rem);
+    transition: all 0.3s;
+}
+ 
+.carousel-display .carousel-wrapper.slideLeftOff {
+    transform: translateX(-35rem);
+    transition: none;
+}
+
+.carousel-display .carousel-wrapper.slideRightOff {
     transform: none;
-    transition: all 0.5s;
-  }
-  
-  .carousel-display .carousel-wrapper .carousel-item {
+    transition: none;
+}
+
+.carousel-display .carousel-wrapper .carousel-item {
     width: 100%;
-  }
+}
   
-  .carousel-display .carousel-wrapper .carousel-item img {
+.carousel-display .carousel-wrapper .carousel-item img {
     display: inline-block;
     width: 100%;
     height: 100%;
-  }
+}

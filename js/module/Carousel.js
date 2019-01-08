@@ -23,12 +23,16 @@ class Carousel {
 
     displayNextCard(){
         const firstChild = this.targetHTML.firstElementChild;
-        this.targetHTML.insertBefore(firstChild, null);    
+        this.targetHTML.insertBefore(firstChild, null);
+        
+        this.slideAnimation("right");
     }
 
     displayPrevCard(){
         const prevChild = this.targetHTML.lastElementChild;
-        this.targetHTML.insertAdjacentElement("afterbegin", prevChild);  
+        this.targetHTML.insertAdjacentElement("afterbegin", prevChild);     
+
+        this.slideAnimation("left");
     }
 
     autoPlay(){
@@ -47,11 +51,24 @@ class Carousel {
         }, 5000);
     }
 
-    slideAnimation(){
-        const bSlide = this.targetHTML.classList.contains("slide");
+    slideAnimation(direction){
+        if(direction === "right") {
+            this.targetHTML.classList.replace("slideLeftOn", "slideRightOn");
+            this.targetHTML.classList.add("slideRightOff");
+            
+            setTimeout(() => {
+                this.targetHTML.classList.remove("slideRightOff");
+            }, 0)
+        }
+        else if (direction === "left") {
+            this.targetHTML.classList.replace("slideRightOn", "slideLeftOn");
+            this.targetHTML.classList.add("slideLeftOff");
+            
+            setTimeout(() => {
+                this.targetHTML.classList.remove("slideLeftOff");
+            }, 0)
+        }
 
-        if(bSlide) this.targetHTML.classList.remove("slide");
-        else this.targetHTML.classList.add("slide");       
     }
 }
 
