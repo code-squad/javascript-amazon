@@ -78,7 +78,6 @@
 }
 
 .search__suggestionLi {
-  padding: 0 1rem;
   color: black;
   font-weight: bold;
   background-color: white;
@@ -87,11 +86,11 @@
 }
 
 .search__suggestionLi a {
+  padding: 0 1em;
   display: block;
 }
-.search__suggestionLi a:focus {
-  color: orange;
-}
+
+.search__suggestionLi.focused,
 .search__suggestionLi:hover {
   background-color: lightgray;
 }

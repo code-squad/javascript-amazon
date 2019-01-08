@@ -43,7 +43,11 @@ class Model extends Observable {
     }
     // MOCK keywords section end
 
-    if (!searchWord) this.setSuggestion({ suggestions: null }, null);
+    if (!searchWord) {
+      this.setSuggestion({ suggestions: null }, null);
+      return;
+    }
+    if (searchWord === this.searchWord) return;
 
     const queryURL = `${this.API_URI}${searchWord}`;
     const init = {
@@ -130,6 +134,15 @@ class View {
     if (!formattedHTML) {
       document.querySelector('.main__dimmer').classList.remove('opened');
     }
+  }
+
+  navigateList() {
+    // 포커스가 유지가 안 되니...
+    // 클래스로 사기치면 될 거 같은데...
+    // ArrowDown 이벤트에
+    //  현재 focused클래스 있는 줄의 아래 줄로 클래스 옮겨주고
+    //  input value 갱신해주고
+    //  input focus 해주고
   }
 }
 
