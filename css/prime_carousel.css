@@ -7,22 +7,17 @@
 .video-carousel .carousel-display .carousel-wrapper {
     display: flex;
     width: 70rem;
+    transform: translateX(-17.5rem);
 }
 
-.video-carousel .carousel-display .carousel-wrapper.slideLeftOn,
-.video-carousel .carousel-display .carousel-wrapper.slideRightOn {
-    transform: translateX(-17.5rem);
+.video-carousel .carousel-display .carousel-wrapper.slideLeftOn {
+    transform: none;
     transition: all 0.3s;
 }
- 
-.video-carousel .carousel-display .carousel-wrapper.slideLeftOff {
-    transform: translateX(-35rem);
-    transition: none;
-}
 
-.video-carousel .carousel-display .carousel-wrapper.slideRightOff {
-    transform: none;
-    transition: none;
+.video-carousel .carousel-display .carousel-wrapper.slideRightOn {
+    transform: translateX(-35rem);
+    transition: all 0.3s;
 }
 
 .video-carousel .carousel-display .carousel-wrapper .carousel-item {
@@ -44,21 +39,17 @@
 .music-carousel .carousel-display .carousel-wrapper {
     display: flex;
     width: 55rem;
-}
-.music-carousel .carousel-display .carousel-wrapper.slideLeftOn,
-.music-carousel .carousel-display .carousel-wrapper.slideRightOn {
     transform: translateX(-13.75rem);
-    transition: all 0.3s;
-}
- 
-.music-carousel .carousel-display .carousel-wrapper.slideLeftOff {
-    transform: translateX(-27.5rem);
-    transition: none;
 }
 
-.music-carousel .carousel-display .carousel-wrapper.slideRightOff {
+.music-carousel .carousel-display .carousel-wrapper.slideLeftOn {
     transform: none;
-    transition: none;
+    transition: all 0.3s;
+}
+
+.music-carousel .carousel-display .carousel-wrapper.slideRightOn {
+    transform: translateX(-27.5rem);
+    transition: all 0.3s;
 }
 
 .music-carousel .carousel-display .carousel-wrapper .carousel-item {

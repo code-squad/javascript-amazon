@@ -22,17 +22,15 @@ class Carousel {
     }
 
     displayNextCard(){
-        const firstChild = this.targetHTML.firstElementChild;
-        this.targetHTML.insertBefore(firstChild, null);
-        
-        this.slideAnimation("right");
+        this.targetHTML.classList.add("slideRightOn");
+        this.targetHTML.removeEventListener("transitionend", this.slideLeftAnimationEvent);
+        this.targetHTML.addEventListener("transitionend", this.slideRightAnimationEvent);
     }
 
     displayPrevCard(){
-        const prevChild = this.targetHTML.lastElementChild;
-        this.targetHTML.insertAdjacentElement("afterbegin", prevChild);     
-
-        this.slideAnimation("left");
+        this.targetHTML.classList.add("slideLeftOn");
+        this.targetHTML.removeEventListener("transitionend", this.slideRightAnimationEvent);
+        this.targetHTML.addEventListener("transitionend", this.slideLeftAnimationEvent);
     }
 
     autoPlay(){
@@ -51,24 +49,18 @@ class Carousel {
         }, 5000);
     }
 
-    slideAnimation(direction){
-        if(direction === "right") {
-            this.targetHTML.classList.replace("slideLeftOn", "slideRightOn");
-            this.targetHTML.classList.add("slideRightOff");
-            
-            setTimeout(() => {
-                this.targetHTML.classList.remove("slideRightOff");
-            }, 0)
-        }
-        else if (direction === "left") {
-            this.targetHTML.classList.replace("slideRightOn", "slideLeftOn");
-            this.targetHTML.classList.add("slideLeftOff");
-            
-            setTimeout(() => {
-                this.targetHTML.classList.remove("slideLeftOff");
-            }, 0)
-        }
+    slideRightAnimationEvent(){
+        const firstChild = this.firstElementChild;
+                    
+        this.insertBefore(firstChild, null);
+        this.classList.remove("slideRightOn");
+    }
 
+    slideLeftAnimationEvent(){
+        const prevChild = this.lastElementChild;
+
+        this.insertAdjacentElement("afterbegin", prevChild);
+        this.classList.remove("slideLeftOn");
     }
 }
 
