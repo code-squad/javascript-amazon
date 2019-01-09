@@ -112,7 +112,7 @@ class Controller extends Observable {
   }
 
   templatizeData(suggestions, searchWord) {
-    if (!searchWord) return '';
+    if (!searchWord || !suggestions) return '';
 
     const listItems = suggestions.reduce(
       (acc, data) => acc + this.suggestionTemplateFn(data, searchWord),
@@ -142,7 +142,7 @@ class View {
       evt.preventDefault();
       this.navigateList(evt);
     }
-    if (evt.type === 'keyup') this.queryController(evt);
+    if (!bArrowUpOrDown && evt.type === 'keyup') this.queryController(evt);
   }
 
   queryController({ target }) {
@@ -158,15 +158,9 @@ class View {
     }
   }
 
-  navigateList(evt) {
-    const currentModel = this.controller.model;
-    const [, originalSearchWord] = currentModel.getSuggestion();
-
+  navigateList({ key }) {
+    const [, originalSearchWord] = this.controller.model.getSuggestion();
     const wrapper = this.suggestionWrapperEl;
-    const firstSuggestion = wrapper.querySelector('.search__suggestionLi');
-    const lastSuggestion = wrapper.querySelector('.search__suggestionLi:last-of-type');
-    const focusedItem = wrapper.querySelector('.focused');
-
     const focusOn = el => el.classList.add('focused');
     const focusOff = el => el.classList.remove('focused');
     const updateInput = (string) => {
@@ -175,47 +169,65 @@ class View {
     };
 
     const action = {
-      ArrowDown: () => {
-        // User is heading down to first suggestion
-        if (!focusedItem) {
-          focusOn(firstSuggestion);
-          updateInput(firstSuggestion.innerText);
-          return;
-        }
-
-        if (focusedItem === lastSuggestion) {
-          // User pressed DOWN on last item => Do NOTHING
-        } else {
-          // User is going down further
-          const nextItem = focusedItem.nextElementSibling;
-          focusOff(focusedItem);
-          focusOn(nextItem);
-          updateInput(nextItem.innerText);
-        }
-      },
-      ArrowUp: () => {
-        // User pressed UP on input field => Do NOTHING
-        if (!focusedItem) return;
-
-        if (focusedItem === firstSuggestion) {
-          // User is heading back to input from first suggestion
-          focusOff(focusedItem);
-          updateInput(originalSearchWord);
-        } else {
-          // User is going up
-          const previousItem = focusedItem.previousElementSibling;
-          focusOff(focusedItem);
-          focusOn(previousItem);
-          updateInput(previousItem.innerText);
-        }
-      },
+      ArrowDown: (...args) => this.actOnArrowDown(...args),
+      ArrowUp: (...args) => this.actOnArrowUp(...args),
     };
-    action[evt.key]();
+
+    const state = {
+      wrapper,
+      fn: { focusOn, focusOff, updateInput },
+      originalSearchWord,
+    };
+
+    action[key].call(this, state);
 
     // enter key 누르거나 검색버튼 누르면
     //    preventDefault하고
     //    focused 있으면 그 링크 실행
     //      없으면 검색어로 검색 실행 (URL scheme 미적용)
+  }
+
+  actOnArrowDown({ wrapper, fn: { focusOn, focusOff, updateInput } }) {
+    const firstSuggestion = wrapper.querySelector('.search__suggestionLi');
+    const lastSuggestion = wrapper.querySelector('.search__suggestionLi:last-of-type');
+    const focusedItem = wrapper.querySelector('.focused');
+
+    // User is heading down to first suggestion
+    if (!focusedItem) {
+      focusOn(firstSuggestion);
+      updateInput(firstSuggestion.innerText);
+      return;
+    }
+
+    if (focusedItem === lastSuggestion) {
+      // User pressed DOWN on last item => Do NOTHING
+    } else {
+      // User is going down further
+      const nextItem = focusedItem.nextElementSibling;
+      focusOff(focusedItem);
+      focusOn(nextItem);
+      updateInput(nextItem.innerText);
+    }
+  }
+
+  actOnArrowUp({ wrapper, fn: { focusOn, focusOff, updateInput }, originalSearchWord }) {
+    const firstSuggestion = wrapper.querySelector('.search__suggestionLi');
+    const focusedItem = wrapper.querySelector('.focused');
+
+    // User pressed UP on input field => Do NOTHING
+    if (!focusedItem) return;
+
+    if (focusedItem === firstSuggestion) {
+      // User is heading back to input from first suggestion
+      focusOff(focusedItem);
+      updateInput(originalSearchWord);
+    } else {
+      // User is going up
+      const previousItem = focusedItem.previousElementSibling;
+      focusOff(focusedItem);
+      focusOn(previousItem);
+      updateInput(previousItem.innerText);
+    }
   }
 }
 
