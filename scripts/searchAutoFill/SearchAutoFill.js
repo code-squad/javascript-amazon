@@ -45,8 +45,10 @@ class Model extends Observable {
 
     fetch(request)
       .then(response => response.json())
-      .catch(err => console.log(`Error during fetch: ${err}`))
-      .then(json => this.setSuggestion(json, searchWord));
+      .then((json) => {
+        if (json) this.setSuggestion(json, searchWord);
+      })
+      .catch(err => console.log(`Error during fetch: ${err}`));
   }
 
   clearSuggestion() {
@@ -120,15 +122,33 @@ class View {
     document
       .querySelector('.megaMenu__trigger')
       .addEventListener('mouseenter', this.clearSuggestion.bind(this));
+    document
+      .querySelector('.search__submitBtn')
+      .addEventListener('mousedown', this.doByMouseInput.bind(this));
   }
 
   doByKeyInput(evt) {
-    const bArrowUpOrDown = evt.key === 'ArrowDown' || evt.key === 'ArrowUp';
-    if (bArrowUpOrDown && evt.type === 'keydown') {
-      evt.preventDefault();
-      this.navigateList(evt);
+    switch (evt.key) {
+      case 'ArrowDown':
+      case 'ArrowUp':
+        evt.preventDefault();
+        if (evt.type === 'keydown') this.navigateList(evt);
+        break;
+
+      case 'Enter':
+        evt.preventDefault();
+        if (evt.type === 'keydown') this.moveToSearchResult();
+        break;
+
+      default:
+        if (evt.type === 'keyup') this.queryController(evt);
+        break;
     }
-    if (!bArrowUpOrDown && evt.type === 'keyup') this.queryController(evt);
+  }
+
+  doByMouseInput(evt) {
+    evt.preventDefault();
+    this.moveToSearchResult();
   }
 
   queryController({ target }) {
@@ -170,11 +190,6 @@ class View {
     };
 
     action[key].call(this, state);
-
-    // enter key 누르거나 검색버튼 누르면
-    //    preventDefault하고
-    //    focused 있으면 그 링크 실행
-    //      없으면 검색어로 검색 실행 (URL scheme 미적용)
   }
 
   actOnArrowDown({ wrapper, fn: { focusOn, focusOff, updateInput } }) {
@@ -218,6 +233,24 @@ class View {
       focusOn(previousItem);
       updateInput(previousItem.innerText);
     }
+  }
+
+  moveToSearchResult(bReally = false) {
+    if (!bReally) {
+      // Close suggestion list on mock env
+      this.clearSuggestion();
+      return;
+    }
+    // Open focused suggestion if available
+    const focusedItem = document.querySelector('.search__suggestionLi.focused');
+    if (focusedItem) {
+      const targetLink = focusedItem.innerHTML.match(/(href=")(.*?)(")/)[2];
+      window.location.assign(`${targetLink}`);
+      return;
+    }
+
+    // Else then, do search without additional info
+    document.querySelector('.header__search').submit();
   }
 }
 

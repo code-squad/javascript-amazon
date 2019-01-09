@@ -27,7 +27,7 @@
                 alt="Brand logo"
             />
         </div>
-        <form class="header__search" action="submit" method="get">
+        <form class="header__search" action="/search" method="get" autocomplete="off">
             <button class="search__categorySelectorBtn">
                 <span>all ▾</span>
             </button>
@@ -97,7 +97,7 @@
                 >
             </select>
             <div class="search__inputWrapper">
-                <input class="search__input" type="text" />
+                <input class="search__input" type="text" name="field-keywords"/>
                 <div class="search__suggestion"></div>
             </div>
             <button class="search__submitBtn" type="submit">

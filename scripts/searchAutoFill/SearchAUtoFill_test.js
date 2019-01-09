@@ -19,7 +19,7 @@
     - [V] focus made by arrow key highlights suggestion
     - [V] Input value updates on navigation with keyboard
         - [V] keystroke during navigation updates input value
-    - [ ] Enter key on suggestion list focus initiate search
+    - [V] Enter key on suggestion list focus initiate search
       >> Related: View > navigateList()
  - [V] Close suggestion bar if search section lose focus
  - [V] Close suggestion bar if mouse enter mega menu
