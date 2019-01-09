@@ -31,14 +31,10 @@
     background-color: #232f3e;
 }
 
-.bar-wrapper .bar-prime-logo {
-    width: 16rem;
+.bar-wrapper .bar-prime-logo img{
+    width: 7rem;
     height: 3.2rem;
-    margin: 0.7rem 0;
-    background-image: url(../img/Prime_blue_log.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    margin: 0.7rem 5rem;
 }
 
 .bar-wrapper .bar-see-more {

@@ -1,24 +1,44 @@
 class StickyLayer{
     constructor({ stickyEl }){
         this.stickyEl = stickyEl;
+        this.bPinEl = false;
+        this.bHiddenbar = false;
     }
 
     pinElement({ thresholdEl }){
-        return () => {
+        
+        return (e) => {
             const threshold = thresholdEl.offsetTop + thresholdEl.offsetHeight;
             const isPassedThreshold = window.scrollY >= threshold;
-            if(isPassedThreshold) this.stickyEl.classList.add("fixed");
-            else this.stickyEl.classList.remove("fixed");
+
+            if(isPassedThreshold && this.bPinEl) return;
+            
+            if(isPassedThreshold) {
+                this.stickyEl.classList.add("fixed");
+                this.bPinEl = true;
+            }
+            else {
+                this.stickyEl.classList.remove("fixed");
+                this.bPinEl = false;
+            }
         }
     }
 
     displayHiddenBar({ hiddenBar, thresholdEl }){
-        return () => {
+        return (e) => {
             const threshold = thresholdEl.offsetTop + thresholdEl.offsetHeight;
             const isPassedThreshold = window.scrollY >= threshold;
-        
-            if(isPassedThreshold) hiddenBar.classList.add("visible");
-            else hiddenBar.classList.remove("visible");
+
+            if(isPassedThreshold && this.bHiddenbar) return;
+
+            if(isPassedThreshold) {
+                hiddenBar.classList.add("visible");
+                this.bHiddenbar = true;
+            }
+            else {
+                hiddenBar.classList.remove("visible");
+                this.bHiddenbar = false;
+            }
         }
     }
 
