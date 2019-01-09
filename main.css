@@ -1,0 +1,33 @@
+/* header {
+    background-color: #26313e;
+} */
+
+body {
+    background-color: #26313e;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.sch {
+    display: inline-block;
+}
+
+.amz-logo-container{
+    width: 192px;
+    height: 38px;
+    position: inline;
+    float: left;
+    margin: 10px;
+    
+}
+
+.amz-logo {
+    background-image: url('https://m.media-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png');
+    background-repeat: no-repeat;
+    background-position: 4% 14%;
+    width: 98px;
+    height: 36px;
+    margin-left: 10px
+}
