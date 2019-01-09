@@ -69,6 +69,7 @@ header #header-top-mid {
   height: 35px;
 }
 
+
 #nav-searchbar #header-searching-title {
   position: relative;
   float: left;
@@ -86,7 +87,6 @@ header #header-top-mid {
   float: left;
   border-top: 1px solid transparent;
   width: 961.656px;
-  ;
   height: 34px;
 }
 
@@ -153,14 +153,13 @@ header #header-bottom-nav {
 /* header-bottom-nav LEFT */
 
 #header-bottom-nav #nav-left {
-  height: 50px;
+  height: 40px;
   position: relative;
   float: left;
   width: 192px;
 }
 
 #nav-left #nav-location {
-  height: 50px;
   display: block;
   padding: 5px 0 8px 10px;
 }
@@ -185,7 +184,7 @@ header #header-bottom-nav {
   position: relative;
   float: left;
   width: 1068px;
-  height: 50px;
+  height: 40px;
 }
 
 #nav-middle #nav-shopCategory {
@@ -193,7 +192,6 @@ header #header-bottom-nav {
   float: left;
   position: relative;
   width: 120px;
-  height: 50px;
 }
 
 #nav-shopCategory #shopCategory-textField {
@@ -216,7 +214,6 @@ header #header-bottom-nav {
 #nav-middle #nav-list-a {
   padding-top: 23px;
   float: left;
-  height: 50px;
 }
 
 #nav-list-a>a {
@@ -230,14 +227,14 @@ header #header-bottom-nav {
 
 #header-bottom-nav #nav-right {
   float: right;
-  height: 50px;
+  height: 40px;
   position: relative;
   width: 420px;
 }
 
 #nav-right #nav-list {
   float: left;
-  height: 50px;
+  /* height: 50px; */
   padding: 6px 7px 0 32px;
   text-decoration: none;
   margin-top: 2px;
@@ -376,6 +373,66 @@ body {
   margin: 0;
 }
 
+/* nav-plans */
+
+.nav-plans-bar{
+  background-color:  #232f3e;
+  border-bottom: 2px solid #00a8e1;
+  height: 99px;
+  margin: 0;
+  height: 70px;
+  text-align: center;
+}
+
+.plans-bars {
+  width: 560px;
+  padding: 0 130px;
+  float: left;
+}
+
+.bars-midImg{
+  padding: 17px 0 10px 0;
+  font-size: 19px;
+}
+
+.plans-bars-logo{
+  float: left;
+  height: 68px;
+  padding: 10px;
+}
+
+.logo-arrow{
+  padding: 0 135px;
+  display: block;
+  height: 18px;
+  max-width: 100%;
+  border: 0;
+  color: #fafafa;
+}
+
+#bars-right{
+  padding: 12px 130px 10px 130px;
+}
+
+.plans-button{
+  padding-top: 14px;
+  width: 133px;
+  height: 46px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #ff6138;
+  background-color: #ffa724;
+  float: right;
+}
+
+.see-more-plans{
+  text-align: center;
+  color: #fff;
+}
+
+
+/*body main*/
 #body-main-content {
   font-size: 13px;
   height: 3325px;
