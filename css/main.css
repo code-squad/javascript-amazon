@@ -663,14 +663,6 @@ nav {
   width: 450px;
 }
 
-#prime-features .music-carousel .carousel-display {
-  width: 220px;
-  height: 210px;
-  background-image: url(../img/brettyoung.jpeg);
-  background-size: cover;
-  background-position: center;
-}
-
 #prime-features .prime-feature-movies-tv {
   height: 350px;
   padding: 63px 66px;
@@ -738,8 +730,11 @@ nav {
 }
 
 #prime-header .prime-header-content .prime-logo {
-  width: 90px;
   margin-top: 40px;
+}
+
+#prime-header .prime-header-content .prime-logo img {
+  width: 90px;
 }
 
 footer .back-to-top {

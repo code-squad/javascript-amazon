@@ -8,11 +8,16 @@ const scroll = new Scroll;
 const stickyLayer = new StickyLayer({ stickyEl: document.querySelector(".nav-plan-layer") });
 const htmlTemplate = new HTMLTemplate;
 const ajax = new Ajax;
-const carousel = new Carousel({
-    targetHTML: document.querySelector(".carousel-wrapper"), 
-    prevBtn: document.querySelector(".carousel-left-arrow"), 
-    nextBtn: document.querySelector(".carousel-right-arrow"), 
+const videoCarousel = new Carousel({
+    targetHTML: document.querySelector(".video-carousel .carousel-wrapper"), 
+    prevBtn: document.querySelector(".video-carousel .carousel-left-arrow"), 
+    nextBtn: document.querySelector(".video-carousel .carousel-right-arrow"), 
 });
+const musicCarousel = new Carousel({
+    targetHTML: document.querySelector(".music-carousel .carousel-wrapper"), 
+    prevBtn: document.querySelector(".music-carousel .carousel-left-arrow"), 
+    nextBtn: document.querySelector(".music-carousel .carousel-right-arrow"), 
+})
 
 document.addEventListener("DOMContentLoaded", () => {
     ajax.getReq(
@@ -23,6 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ajax.getReq(
         "../../json/videoCarousel.json",
         htmlTemplate.carouselHTML({ HTMLEl: document.querySelector("#video-card ul") })
+    )
+
+    ajax.getReq(
+        "../../json/musicCarousel.json",
+        htmlTemplate.carouselHTML({ HTMLEl: document.querySelector("#music-card ul") })
     )
 })
 
@@ -39,6 +49,7 @@ window.addEventListener("load", () => {
  
     stickyLayer.displayHiddenPlan();
 
-    carousel.run();
+    videoCarousel.run();
+    musicCarousel.run();
 });
 

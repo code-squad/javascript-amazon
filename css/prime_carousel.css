@@ -1,35 +1,71 @@
-#prime-features .video-carousel .carousel-display {
+.video-carousel .carousel-display {
     width: 280px;
     height: 210px;
     overflow: hidden;
 }
   
-.carousel-display .carousel-wrapper {
+.video-carousel .carousel-display .carousel-wrapper {
     display: flex;
     width: 70rem;
 }
 
-.carousel-display .carousel-wrapper.slideLeftOn,
-.carousel-display .carousel-wrapper.slideRightOn {
+.video-carousel .carousel-display .carousel-wrapper.slideLeftOn,
+.video-carousel .carousel-display .carousel-wrapper.slideRightOn {
     transform: translateX(-17.5rem);
     transition: all 0.3s;
 }
  
-.carousel-display .carousel-wrapper.slideLeftOff {
+.video-carousel .carousel-display .carousel-wrapper.slideLeftOff {
     transform: translateX(-35rem);
     transition: none;
 }
 
-.carousel-display .carousel-wrapper.slideRightOff {
+.video-carousel .carousel-display .carousel-wrapper.slideRightOff {
     transform: none;
     transition: none;
 }
 
-.carousel-display .carousel-wrapper .carousel-item {
+.video-carousel .carousel-display .carousel-wrapper .carousel-item {
     width: 100%;
 }
   
-.carousel-display .carousel-wrapper .carousel-item img {
+.video-carousel .carousel-display .carousel-wrapper .carousel-item img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.music-carousel .carousel-display {
+    width: 220px;
+    height: 210px;
+    overflow: hidden;
+}
+
+.music-carousel .carousel-display .carousel-wrapper {
+    display: flex;
+    width: 55rem;
+}
+.music-carousel .carousel-display .carousel-wrapper.slideLeftOn,
+.music-carousel .carousel-display .carousel-wrapper.slideRightOn {
+    transform: translateX(-13.75rem);
+    transition: all 0.3s;
+}
+ 
+.music-carousel .carousel-display .carousel-wrapper.slideLeftOff {
+    transform: translateX(-27.5rem);
+    transition: none;
+}
+
+.music-carousel .carousel-display .carousel-wrapper.slideRightOff {
+    transform: none;
+    transition: none;
+}
+
+.music-carousel .carousel-display .carousel-wrapper .carousel-item {
+    width: 100%;
+}
+  
+.music-carousel .carousel-display .carousel-wrapper .carousel-item img {
     display: inline-block;
     width: 100%;
     height: 100%;

@@ -11,7 +11,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
 }
 
 .nav-plan-layer .hidden-content {
@@ -36,9 +35,10 @@
     width: 16rem;
     height: 3.2rem;
     margin: 0.7rem 0;
-    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_Blue._CB515489499_.svg);
+    background-image: url(../img/Prime_blue_log.png);
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
 }
 
 .bar-wrapper .bar-see-more {
@@ -93,7 +93,7 @@
 }
 
 .nav-plan-layer .nav-hidden-plan.visible {
-    height: 41rem;
+    height: 42rem;
 }
 
 .plan-container .plan-wrapper {
