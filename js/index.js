@@ -29,11 +29,6 @@ const carousel = new CarouselMenu({
   next: $(".a-carousel-next"),
 });
 
-// 비동기 전달에 우선순위를 정리해야 할듯 함
-// 현 문제점 : DOM 구조가 생성이 되지 않아 Carousel Element가 없음(=없으므로 탐색 시 null) 
-// 의도(해결법): JSON 전달 => DOM 생성 => 각 Element 탐색 및 Node 변경 활용.
-// event Deligation을 활용
-// 문제 해결 순서: 비동기 데이터 먼저 받기 => Event Deligation 탐색 활용.
 window.addEventListener("DOMContentLoaded", () => {
   carousel.xmlHttpRequest('../JSON/primeMoive.json');
 });
