@@ -1,37 +1,33 @@
 import { throttle, debounce } from './setThrottleDebounce.js';
+import { $, $All } from "./docSelector.js";
 
 export default class Carousel {
   constructor(layer) {
     this.carousel = {
       ulLayer: layer.carousel,
       showLayer: layer.parentCarousel,
-      item: layer.a_CarouselItem,
-      lastItem: layer.a_CarouselLastItem,
-      allItems: layer.a_CarouselList,
       prev: layer.prev,
       next: layer.next,
-      classShow: layer.classShow,
     }
 
     this.SHOWING_CLASS = "show";
-    this.classShow = document.querySelector(`.${this.SHOWING_CLASS}`);
-    this.firstItem = this.carousel.ulLayer.firstElementChild;
 
     this.requestID = null;
     this.reactAuto;
+    this.itemLayer;
   }
 
   init() {
     this.clickEvent();
     this.autoMoveEvent();
-    this.xmlRequest();
+    this.xmlHttpRequest();
   }
 
   setCarouselShow() {
     this.carousel.ulLayer.firstElementChild.classList.add(`${this.SHOWING_CLASS}`);
   }
 
-  xmlRequest(regURL) {
+  xmlHttpRequest(regURL) {
     const xhr = new XMLHttpRequest();
 
     xhr.addEventListener("load", () => {
@@ -41,11 +37,23 @@ export default class Carousel {
           this.createHTMLTemplate(element)
         });
         this.setCarouselShow.call(this);
+        this.searchItemLayer();
       }
     });
 
     xhr.open('GET', regURL);
     xhr.send();
+  }
+
+  searchItemLayer() {
+    this.itemLayer = {
+      item: $(".a-carousel-item"),
+      firstItem: $(".a-carousel-item:first-child"),
+      lastItem: $(".a-carousel-item:last-child"),
+      listItem: $All(".a-carousel-item"),
+      classShow: $(`.${this.SHOWING_CLASS}`),
+    };
+    return this.itemLayer;
   }
 
   createHTMLTemplate({ src, alt, id }) {
@@ -85,7 +93,6 @@ export default class Carousel {
   moveToNext() {
     const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
 
-    console.log(this.carousel.firstItem)
     showSlide.classList.remove(this.SHOWING_CLASS);
     const nextSlide = showSlide.nextElementSibling
 
@@ -94,12 +101,12 @@ export default class Carousel {
 
   setPrevShow(prevSlide) {
     if (prevSlide) prevSlide.classList.add(this.SHOWING_CLASS);
-    else this.carousel.lastItem.classList.add(this.SHOWING_CLASS);
+    else this.itemLayer.lastItem.classList.add(this.SHOWING_CLASS);
   }
 
   setNextShow(nextSlide) {
     if (nextSlide) nextSlide.classList.add(this.SHOWING_CLASS);
-    else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
+    else this.itemLayer.firstItem.classList.add(this.SHOWING_CLASS);
   }
 
   autoSlideRenderer() {
@@ -112,9 +119,8 @@ export default class Carousel {
       let bProgressTime = (timestamp - startTime) >= setMilSecTime;
 
       if (bProgressTime) {
-        console.log(this.classShow, this.carousel);
-        if (this.classShow) moveFn();
-        else this.carousel.firstItem.classList.add(this.SHOWING_CLASS);
+        if (this.itemLayer.classShow) moveFn();
+        else this.itemLayer.firtstItem.classList.add(this.SHOWING_CLASS);
         startTime = 0; // Timer Reset
       }
       this.requestID = requestAnimationFrame(slide.bind(this))
