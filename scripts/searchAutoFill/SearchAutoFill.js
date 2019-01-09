@@ -29,32 +29,6 @@ class Model extends Observable {
   }
 
   updateSuggestion(searchWord) {
-    // MOCK keywords section start
-    const supportingWords = ['iphone8', 'bicycle hel', 'javascript'];
-    const bSupportedSearch = supportingWords.reduce((bMatched, word) => {
-      if (bMatched) return true;
-      return word.indexOf(searchWord) > -1;
-    }, false);
-    if (!bSupportedSearch) {
-      this.setSuggestion(
-        {
-          suggestions: [
-            {
-              value: `${searchWord}: Sorry! Search word '${searchWord}' is not supported on testing env :P`,
-              refTag: 'none',
-            },
-            {
-              value: `${searchWord}: Please try one of following: ['iphone8', 'bicycle hel', 'javascript']`,
-              refTag: 'none',
-            },
-          ],
-        },
-        searchWord,
-      );
-      return;
-    }
-    // MOCK keywords section end
-
     if (!searchWord) {
       this.setSuggestion({ suggestions: null }, null);
       return;
@@ -73,6 +47,10 @@ class Model extends Observable {
       .then(response => response.json())
       .catch(err => console.log(`Error during fetch: ${err}`))
       .then(json => this.setSuggestion(json, searchWord));
+  }
+
+  clearSuggestion() {
+    this.setSuggestion({ suggestions: null }, null);
   }
 
   setSuggestion({ suggestions }, searchWord) {
@@ -106,6 +84,10 @@ class Controller extends Observable {
     this.queryOnDebounce(searchWord);
   }
 
+  clearQuery() {
+    this.model.clearSuggestion();
+  }
+
   sendUpdateToView(data, searchWord) {
     const formattedHTML = this.templatizeData(data, searchWord);
     super.notify(formattedHTML);
@@ -134,6 +116,10 @@ class View {
     this.controller.subscribe(this.updateSuggestion.bind(this));
     this.inputEl.addEventListener('keydown', this.doByKeyInput.bind(this));
     this.inputEl.addEventListener('keyup', this.doByKeyInput.bind(this));
+    this.inputEl.addEventListener('focusout', this.clearSuggestion.bind(this));
+    document
+      .querySelector('.megaMenu__trigger')
+      .addEventListener('mouseenter', this.clearSuggestion.bind(this));
   }
 
   doByKeyInput(evt) {
@@ -156,6 +142,10 @@ class View {
     if (!formattedHTML) {
       document.querySelector('.main__dimmer').classList.remove('opened');
     }
+  }
+
+  clearSuggestion() {
+    this.controller.clearQuery();
   }
 
   navigateList({ key }) {
