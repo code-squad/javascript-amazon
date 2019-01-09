@@ -82,7 +82,7 @@ export default class Carousel {
   }
 
   moveToPrev() {
-    const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
+    const showSlide = $(`.${this.SHOWING_CLASS}`);
 
     showSlide.classList.remove(this.SHOWING_CLASS);
     const prevSlide = showSlide.previousElementSibling;
@@ -91,7 +91,7 @@ export default class Carousel {
   }
 
   moveToNext() {
-    const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
+    const showSlide = $(`.${this.SHOWING_CLASS}`);
 
     showSlide.classList.remove(this.SHOWING_CLASS);
     const nextSlide = showSlide.nextElementSibling
