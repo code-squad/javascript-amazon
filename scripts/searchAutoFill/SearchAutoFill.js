@@ -36,9 +36,21 @@ class Model extends Observable {
       return word.indexOf(searchWord) > -1;
     }, false);
     if (!bSupportedSearch) {
-      alert(`Sorry! 
-      Search word '${searchWord}' is not supported on testing env :P
-      Please try: ['iphone8', 'bicycle hel', 'javascript']`);
+      this.setSuggestion(
+        {
+          suggestions: [
+            {
+              value: `${searchWord}: Sorry! Search word '${searchWord}' is not supported on testing env :P`,
+              refTag: 'none',
+            },
+            {
+              value: `${searchWord}: Please try one of following: ['iphone8', 'bicycle hel', 'javascript']`,
+              refTag: 'none',
+            },
+          ],
+        },
+        searchWord,
+      );
       return;
     }
     // MOCK keywords section end
@@ -120,7 +132,17 @@ class View {
   init() {
     this.controller.init();
     this.controller.subscribe(this.updateSuggestion.bind(this));
-    this.inputEl.addEventListener('keyup', this.queryController.bind(this));
+    this.inputEl.addEventListener('keydown', this.doByKeyInput.bind(this));
+    this.inputEl.addEventListener('keyup', this.doByKeyInput.bind(this));
+  }
+
+  doByKeyInput(evt) {
+    const bArrowUpOrDown = evt.key === 'ArrowDown' || evt.key === 'ArrowUp';
+    if (bArrowUpOrDown && evt.type === 'keydown') {
+      evt.preventDefault();
+      this.navigateList(evt);
+    }
+    if (evt.type === 'keyup') this.queryController(evt);
   }
 
   queryController({ target }) {
@@ -136,13 +158,64 @@ class View {
     }
   }
 
-  navigateList() {
-    // 포커스가 유지가 안 되니...
-    // 클래스로 사기치면 될 거 같은데...
-    // ArrowDown 이벤트에
-    //  현재 focused클래스 있는 줄의 아래 줄로 클래스 옮겨주고
-    //  input value 갱신해주고
-    //  input focus 해주고
+  navigateList(evt) {
+    const currentModel = this.controller.model;
+    const [, originalSearchWord] = currentModel.getSuggestion();
+
+    const wrapper = this.suggestionWrapperEl;
+    const firstSuggestion = wrapper.querySelector('.search__suggestionLi');
+    const lastSuggestion = wrapper.querySelector('.search__suggestionLi:last-of-type');
+    const focusedItem = wrapper.querySelector('.focused');
+
+    const focusOn = el => el.classList.add('focused');
+    const focusOff = el => el.classList.remove('focused');
+    const updateInput = (string) => {
+      this.inputEl.value = string;
+      this.inputEl.focus();
+    };
+
+    const action = {
+      ArrowDown: () => {
+        // User is heading down to first suggestion
+        if (!focusedItem) {
+          focusOn(firstSuggestion);
+          updateInput(firstSuggestion.innerText);
+          return;
+        }
+
+        if (focusedItem === lastSuggestion) {
+          // User pressed DOWN on last item => Do NOTHING
+        } else {
+          // User is going down further
+          const nextItem = focusedItem.nextElementSibling;
+          focusOff(focusedItem);
+          focusOn(nextItem);
+          updateInput(nextItem.innerText);
+        }
+      },
+      ArrowUp: () => {
+        // User pressed UP on input field => Do NOTHING
+        if (!focusedItem) return;
+
+        if (focusedItem === firstSuggestion) {
+          // User is heading back to input from first suggestion
+          focusOff(focusedItem);
+          updateInput(originalSearchWord);
+        } else {
+          // User is going up
+          const previousItem = focusedItem.previousElementSibling;
+          focusOff(focusedItem);
+          focusOn(previousItem);
+          updateInput(previousItem.innerText);
+        }
+      },
+    };
+    action[evt.key]();
+
+    // enter key 누르거나 검색버튼 누르면
+    //    preventDefault하고
+    //    focused 있으면 그 링크 실행
+    //      없으면 검색어로 검색 실행 (URL scheme 미적용)
   }
 }
 
