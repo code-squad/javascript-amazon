@@ -13,3 +13,7 @@ html{
 a{
     text-decoration: none;
 }
+
+nav{
+    list-style: none;
+}
