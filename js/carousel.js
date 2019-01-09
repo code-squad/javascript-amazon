@@ -91,9 +91,11 @@ export default class Carousel {
   }
 
   moveToNext() {
+    // 여기서 this.itemLayer.classShow를 탐색이 가능 -> 그런데 DOM nextElementSibling이 넘어가지 않음..
     const showSlide = document.querySelector(`.${this.SHOWING_CLASS}`);
 
     showSlide.classList.remove(this.SHOWING_CLASS);
+    // Prev Method와 Next Method의 DOM에서 nextElementSibling이 넘어가지 않는 이유는??? (개선점)
     const nextSlide = showSlide.nextElementSibling
 
     this.setNextShow(nextSlide);
