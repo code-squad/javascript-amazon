@@ -1,0 +1,45 @@
+.btn{
+    &__search{
+        width: 4.5rem;
+        height: 100%;
+        position: relative;
+        background-color: $color-submit-button;
+        &::after{
+            content: '';
+            position: absolute;
+            display: block;
+            height: 100%;
+            background: url(../images/TodaysDeals.png);
+        }
+        &__submit{
+            position: relative;
+            display: block;
+            height: 100%;
+            width: 100%;
+            font-size: 14px;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+            outline: 0;
+            color: $color-text-white;
+            background: 0 0;
+            border: none;
+            text-indent: -1000px;
+            line-height: 1px;
+        }
+        &__img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            width: 2.1rem;
+            height: 2.1rem;
+            text-indent: -5rem;
+            color: $color-text-white;
+            background: url(../images/nav-sprite-global_icons.png);
+            background-position: -10px -290px;
+            background-size: 350px;
+        }
+    }
+}

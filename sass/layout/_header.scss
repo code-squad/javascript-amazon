@@ -1,0 +1,39 @@
+.header{
+    background-color: $color-primary;
+    &__top{
+        display: flex;
+        padding-top: 0.9rem;
+        &__logo-box{
+            padding-left: 2.7rem;
+            padding-top: 0.2rem;
+            width: 19.2rem;
+            &__logo{
+                width: 9.7rem;
+                height: 3rem;
+                background: url(../images/nav-sprite-global_icons.png);
+                background-position: -1rem -5.1rem;
+                background-size: 35rem;
+            }
+        }
+        &__search-box{
+            width: 100%;
+            height: 3.5rem;
+            flex: 1;
+            padding-right: 2.5rem;
+        }
+        &__banner{
+
+        }
+    }
+    &__bottom{
+        &__nation-box{
+
+        }
+        &__nav-box{
+
+        }
+        &__nav-tool{
+
+        }
+    }
+}

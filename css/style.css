@@ -1,0 +1,115 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box; }
+
+.btn__search {
+  width: 4.5rem;
+  height: 100%;
+  position: relative;
+  background-color: #febd69; }
+  .btn__search::after {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 100%;
+    background: url(../images/TodaysDeals.png); }
+  .btn__search__submit {
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: 0;
+    color: #fff;
+    background: 0 0;
+    border: none;
+    text-indent: -1000px;
+    line-height: 1px; }
+  .btn__search__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.1rem;
+    height: 2.1rem;
+    text-indent: -5rem;
+    color: #fff;
+    background: url(../images/nav-sprite-global_icons.png);
+    background-position: -10px -290px;
+    background-size: 350px; }
+
+.form {
+  width: 100%; }
+  .form__search-box {
+    display: flex;
+    height: 100%;
+    width: 100%; }
+    .form__search-box__select-box {
+      height: 100%; }
+      .form__search-box__select-box__select {
+        height: 100%;
+        font-size: 1.4rem;
+        padding-left: 1rem;
+        border: 0;
+        border-radius: 0;
+        outline: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none; }
+      .form__search-box__select-box__select::-ms-expand {
+        display: none; }
+    .form__search-box__label {
+      height: 100%;
+      flex: 1; }
+    .form__search-box__search {
+      height: 100%;
+      width: 100%;
+      outline: 0;
+      border: 0; }
+
+.row {
+  display: grid;
+  grid-auto-rows: minmax(100px, auto); }
+  .row .col-1-of-2 {
+    grid-row: 1/2; }
+  .row .col-1-of-4 {
+    grid-row: 1/4; }
+  .row .header-left {
+    width: 19.2rem; }
+  .row .header-center {
+    width: 67.3rem; }
+  .row .header-right {
+    width: 40rem; }
+
+.header {
+  background-color: #232f3e; }
+  .header__top {
+    display: flex;
+    padding-top: 0.9rem; }
+    .header__top__logo-box {
+      padding-left: 2.7rem;
+      padding-top: 0.2rem;
+      width: 19.2rem; }
+      .header__top__logo-box__logo {
+        width: 9.7rem;
+        height: 3rem;
+        background: url(../images/nav-sprite-global_icons.png);
+        background-position: -1rem -5.1rem;
+        background-size: 35rem; }
+    .header__top__search-box {
+      width: 100%;
+      height: 3.5rem;
+      flex: 1;
+      padding-right: 2.5rem; }
