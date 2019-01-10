@@ -38,7 +38,7 @@ class Model extends Observable {
     const queryURL = `${this.API_URI}${searchWord}`;
     const init = {
       method: 'GET',
-      headers: { 'Content-Type': 'image/jpeg' },
+      headers: { 'Content-Type': 'application/json' },
       mode: 'cors',
     };
     const request = new Request(queryURL, init);
