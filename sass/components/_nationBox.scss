@@ -1,0 +1,59 @@
+.nation-box{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    &__nation-img{
+        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-2x_optimized._CB474516457_.png);
+        background-size: 350px;
+        width: 22px;
+        height: 22px;    
+        background-position: -68px -340px;
+    }
+    &__text-box{
+        padding-left: 0.2rem;
+        color: $color-text-white;
+        &__desc{
+            display: block;
+            font-size: 1.2rem;
+        }
+        &__nation{
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.nav-box{
+    display: flex;
+    margin-top: 2.4rem;
+    &__departments{
+        padding: 0 1rem;
+        color: $color-text-white;
+        font-weight: bold;
+        font-size: 1.4rem;
+        margin-right: 1rem;
+        &__img{
+            display: inline-block;
+            border-style: solid;
+            border-style: dashed;
+            border-width: 4px;
+            border-color: transparent;
+            border-top: 4px solid $color-nav-icon;
+            border-bottom-width: 0;
+            width: 0;
+            height: 0;
+            font-size: 0;
+            line-height: 0;
+            margin: 0 0 2px 5px;
+        }
+    }
+    &__list{
+        display: flex;
+        list-style: none;
+        &__item{
+            color: $color-text-light;
+            font-size: 1.3rem;
+            padding: 0 .9rem;
+        }
+    }
+}

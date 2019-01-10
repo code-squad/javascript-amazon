@@ -10,75 +10,134 @@
     </head>
     <body>
         <header class="header">
-            <div class="header__top">
-                <div class="header__top__logo-box">
-                    <div class="header__top__logo-box__logo"></div>
+            <div class="header__top row">
+                <div class="header-left">
+                    <div class="header__top__logo-box">
+                        <div class="header__top__logo-box__logo"></div>
+                    </div>
                 </div>
-                <div class="header__top__search-box">
-                    <form class="form__search-box" name="site-search">
-                        <div class="form__search-box__select-box">
-                            <select class="form__search-box__select-box__select">
-                                <option selected="selected" value="search-alias=aps">All Departments</option>
-                                <option value="search-alias=arts-crafts-ship">Arts &amp; Crafts</option>
-                                <option value="search-alias=automotive-ship">Automotive</option>
-                                <option value="search-alias=baby-products-ship">Baby</option>
-                                <option value="search-alias=beauty-ship">Beauty &amp; Personal Care</option>
-                                <option value="search-alias=stripbooks-ship">Books</option>
-                                <option value="search-alias=computers-ship">Computers</option>
-                            </select>
-                        </div>
-                        <label class="form__search-box__label">
-                            <input class="form__search-box__search" type="text" class="">
-                            Search
-                        </label>
-                        <div class="btn__search">
-                            <input class="btn__search__submit" type="submit">
-                            <div class="btn__search__img">Go</div>
-                        </div>
-                    </form>
+                <div class="header-center">
+                    <div class="header__top__search-box">
+                        <form class="form__search-box" name="site-search">
+                            <div class="form__search-box__select-box">
+                                <select class="form__search-box__select-box__select">
+                                    <option selected="selected" value="search-alias=aps">All Departments</option>
+                                    <option value="search-alias=arts-crafts-ship">Arts &amp; Crafts</option>
+                                    <option value="search-alias=automotive-ship">Automotive</option>
+                                    <option value="search-alias=baby-products-ship">Baby</option>
+                                    <option value="search-alias=beauty-ship">Beauty &amp; Personal Care</option>
+                                    <option value="search-alias=stripbooks-ship">Books</option>
+                                    <option value="search-alias=computers-ship">Computers</option>
+                                </select>
+                            </div>
+                            <label class="form__search-box__label">
+                                <input class="form__search-box__search" type="text" class="">
+                                <!-- Search -->
+                            </label>
+                            <div class="btn__search">
+                                <input class="btn__search__submit" type="submit">
+                                <div class="btn__search__img">Go</div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="header__top__banner-box">
-                    <a href="#">
-                        <img src="./images/TodaysDeals.png" alt="Learn More">
-                    </a>
+                <div class="header-right">
+                    <div class="header__top__banner-box">
+                        <a href="#">
+                            <img src="./images/TodaysDeals.png" alt="Learn More">
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="header__bottom">
-                <div class="header__bottom__nation-box">
-                    Departments
+            <div class="header__bottom row">
+                <div class="header-left">
+                    <div class="nation-box">
+                        <div class="nation-box__nation-img"></div>
+                        <div class="nation-box__text-box">
+                            <span class="nation-box__text-box__desc">Deliver to</span>
+                            <span class="nation-box__text-box__nation">Korea, Republic of</span>
+                        </div>
+                    </div>
                 </div>
-                <nav class="header__bottom__nav-box">
-                    <ul>
-                        <li>Your Amazon.com</li>
-                        <li>Today's Deals</li>
-                        <li>Gift Cards</li>
-                        <li>Registry</li>
-                        <li>Sell</li>
-                        <li>Help</li>
-                    </ul>
-                </nav>
-                <div class="header__bottom__nav-tool">
+                <div class="header-center">
+                    <nav class="nav-box">
+                        <ul class="nav-box__departments">
+                            <span class="nav-box__departments__text">Departments</span>
+                            <span class="nav-box__departments__img"></span>
+                        </ul>
+                        <ul class="nav-box__list">
+                            <li class="nav-box__list__item">Your Amazon.com</li>
+                            <li class="nav-box__list__item">Today's Deals</li>
+                            <li class="nav-box__list__item">Gift Cards</li>
+                            <li class="nav-box__list__item">Registry</li>
+                            <li class="nav-box__list__item">Sell</li>
+                            <li class="nav-box__list__item">Help</li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <div class="header__bottom__nav-tool">
+                        <span>
 
+                        </span>
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+                    </div>
                 </div>
             </div>
         </header>
         <main>
             <section  class="section-prime-about">
-                <img class="section-prime-about__logo" src="#" alt="prime logo">
-                <h1>The best of Shopping and Entertainment.</h1>
-                <form>
-                    <input class="" type="text">
+                <img class="section-prime-about__logo" src="./images/logo_prime_about.svg" alt="prime logo">
+                <h2 class="section-prime-about__heading-text">The best of Shopping and Entertainment.</h2>
+                <form class="section-prime-about__form">
+                    <div class="section-prime-about__form__submit-box">
+                        <input class="section-prime-about__form__submit-box__submit" type="submit" value="TRY PRIME">
+                    </div>
                 </form>
-                <p>$1299/month. Cancel anytime.</p>
+                <p class="section-prime-about--info">$1299/month. Cancel anytime.</p>
                 <div class="section-prime-about__text-box">
-                    <span><a href="#">Are you a Student?</a></span> 
+                    <span class="section-prime-about__text-box__text">
+                        <a href="#">Are you a Student?</a>
+                    </span> 
                     <span>|</span>
-                    <span><a href="#">Do you have a valid EBT/Medicaid card?</a></span>
+                    <span class="section-prime-about__text-box__text">
+                        <a href="#">Do you have a valid EBT/Medicaid card?</a>
+                    </span>
                 </div>
-                <p><a href="#">See more plans</a></p>
+                <div class="section-prime-about--more">
+
+                    <p class="section-prime-about--more__text">See more plans</p>
+                    <span class="section-prime-about--more__icon"></span>
+                </div>
             </section>
             <section  class="section-prime-detail">
-
+                <h2 class="section-prime-detail__heading-text">Check out what's included with your Prime membership:</h2>
+                <div class="section-prime-detail__container">
+                    <ul class="cards">
+                        <li class="cards__card">
+                            <span class="cards__card__title">Fast, Free Delivery</span>
+                        </li>
+                        <li class="cards__card">
+                                <span class="cards__card__title">Exclusive Deals and Offers</span>
+                        </li>
+                        <li class="cards__card">
+                                <span class="cards__card__title">
+                                        Prime Originals, movies and TV shows</span>
+                        </li>
+                        <li class="cards__card">
+                                <span class="cards__card__title">
+                                        Over 2 million songs ad free</span>
+                        </li>
+                    </ul>
+                </div>
             </section>
             <section  class="section-prime-benefit">
 

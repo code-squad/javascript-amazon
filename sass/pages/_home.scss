@@ -1,0 +1,83 @@
+.section-prime-about{
+    padding-top: 3.2rem;
+    padding-bottom: 3.4rem;
+    background-color: $color-secondary;
+    background: radial-gradient(bottom right,#00A8E1,#0079b4);
+    background: -ms-radial-gradient(bottom right,#00A8E1,#0079b4);
+    background: -moz-radial-gradient(bottom right,#00A8E1,#0079b4);
+    background: -o-radial-gradient(bottom right,#00A8E1,#0079b4);
+    background: -webkit-radial-gradient(bottom right,#00A8E1,#0079b4);
+
+    color: $color-text-white;
+    text-align: center;
+    &__logo{
+        width: 8rem;
+        padding-bottom: 2.5rem;
+    }
+    &__heading-text{
+        font-size: 4.2rem;
+        font-weight: bold;
+        margin-bottom: 2.5rem;
+    }
+    &__form{
+        &__submit-box{
+            margin: auto;
+            height: 5.2rem;
+            width: 36rem;
+            &__submit{
+                background-color: $color-prime-submit-button;
+                border: 1px solid $color-prime-submit-border;
+                font-size: 2rem;
+                font-weight: bold;
+                color: $color-prime-submit-text;
+                border-radius: .2rem;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+        }
+    }
+    &--info{
+        margin: 1rem 0 2rem;
+        font-size: 1.4rem;
+    }
+    &__text-box{
+        &__text{
+            font-size: 1.4rem;
+        }
+    }
+    &--more{
+        display: inline-flex;
+        align-items: center;
+        margin-top: .2rem;
+        &__text{
+            font-size: 1.4rem;
+            text-decoration: underline;
+        }
+        &__icon{
+            background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+            -moz-background-size: 158px auto;
+            background-size: 158px auto;
+            width: 6px;
+            height: 9px;
+            display: inline-block;
+            vertical-align: middle;
+            background-position: 0 -233px;
+            margin: 0 6px;
+        }
+    }
+}
+
+.section-prime-detail{
+    padding: 2rem 0;
+    text-align: center;
+    &__heading-text{
+        font-size: 2.2rem;
+        font-weight: 300;
+    }
+    &__container{
+        &__cards{
+            
+        }
+    }
+}

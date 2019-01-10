@@ -11,6 +11,9 @@ html {
 body {
   box-sizing: border-box; }
 
+a {
+  color: #fff; }
+
 .btn__search {
   width: 4.5rem;
   height: 100%;
@@ -50,6 +53,56 @@ body {
     background-position: -10px -290px;
     background-size: 350px; }
 
+.nation-box {
+  display: flex;
+  align-items: center;
+  margin: 10px; }
+  .nation-box__nation-img {
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-2x_optimized._CB474516457_.png);
+    background-size: 350px;
+    width: 22px;
+    height: 22px;
+    background-position: -68px -340px; }
+  .nation-box__text-box {
+    padding-left: 0.2rem;
+    color: #fff; }
+    .nation-box__text-box__desc {
+      display: block;
+      font-size: 1.2rem; }
+    .nation-box__text-box__nation {
+      font-size: 1.4rem;
+      font-weight: bold; }
+
+.nav-box {
+  display: flex;
+  margin-top: 2.4rem; }
+  .nav-box__departments {
+    padding: 0 1rem;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-right: 1rem; }
+    .nav-box__departments__img {
+      display: inline-block;
+      border-style: solid;
+      border-style: dashed;
+      border-width: 4px;
+      border-color: transparent;
+      border-top: 4px solid #a7acb2;
+      border-bottom-width: 0;
+      width: 0;
+      height: 0;
+      font-size: 0;
+      line-height: 0;
+      margin: 0 0 2px 5px; }
+  .nav-box__list {
+    display: flex;
+    list-style: none; }
+    .nav-box__list__item {
+      color: #ccc;
+      font-size: 1.3rem;
+      padding: 0 .9rem; }
+
 .form {
   width: 100%; }
   .form__search-box {
@@ -81,7 +134,8 @@ body {
 
 .row {
   display: grid;
-  grid-auto-rows: minmax(100px, auto); }
+  grid-auto-columns: minmax(auto, auto);
+  grid-template-columns: 19.2rem 67.3rem 40rem; }
   .row .col-1-of-2 {
     grid-row: 1/2; }
   .row .col-1-of-4 {
@@ -97,7 +151,7 @@ body {
   background-color: #232f3e; }
   .header__top {
     display: flex;
-    padding-top: 0.9rem; }
+    padding-top: 0.7rem; }
     .header__top__logo-box {
       padding-left: 2.7rem;
       padding-top: 0.2rem;
@@ -106,10 +160,74 @@ body {
         width: 9.7rem;
         height: 3rem;
         background: url(../images/nav-sprite-global_icons.png);
-        background-position: -1rem -5.1rem;
-        background-size: 35rem; }
+        background-size: 35rem;
+        background-position: -1rem -5.1rem; }
     .header__top__search-box {
       width: 100%;
       height: 3.5rem;
       flex: 1;
       padding-right: 2.5rem; }
+  .header__bottom__nation-box {
+    color: #fff; }
+
+.section-prime-about {
+  padding-top: 3.2rem;
+  padding-bottom: 3.4rem;
+  background-color: #0079b4;
+  background: radial-gradient(bottom right, #00A8E1, #0079b4);
+  background: -ms-radial-gradient(bottom right, #00A8E1, #0079b4);
+  background: -moz-radial-gradient(bottom right, #00A8E1, #0079b4);
+  background: -o-radial-gradient(bottom right, #00A8E1, #0079b4);
+  background: -webkit-radial-gradient(bottom right, #00A8E1, #0079b4);
+  color: #fff;
+  text-align: center; }
+  .section-prime-about__logo {
+    width: 8rem;
+    padding-bottom: 2.5rem; }
+  .section-prime-about__heading-text {
+    font-size: 4.2rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem; }
+  .section-prime-about__form__submit-box {
+    margin: auto;
+    height: 5.2rem;
+    width: 36rem; }
+    .section-prime-about__form__submit-box__submit {
+      background-color: #ffa724;
+      border: 1px solid #ff6138;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #284d40;
+      border-radius: .2rem;
+      width: 100%;
+      height: 100%;
+      cursor: pointer; }
+  .section-prime-about--info {
+    margin: 1rem 0 2rem;
+    font-size: 1.4rem; }
+  .section-prime-about__text-box__text {
+    font-size: 1.4rem; }
+  .section-prime-about--more {
+    display: inline-flex;
+    align-items: center;
+    margin-top: .2rem; }
+    .section-prime-about--more__text {
+      font-size: 1.4rem;
+      text-decoration: underline; }
+    .section-prime-about--more__icon {
+      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+      -moz-background-size: 158px auto;
+      background-size: 158px auto;
+      width: 6px;
+      height: 9px;
+      display: inline-block;
+      vertical-align: middle;
+      background-position: 0 -233px;
+      margin: 0 6px; }
+
+.section-prime-detail {
+  padding: 2rem 0;
+  text-align: center; }
+  .section-prime-detail__heading-text {
+    font-size: 2.2rem;
+    font-weight: 300; }

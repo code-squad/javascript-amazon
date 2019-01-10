@@ -2,7 +2,7 @@
     background-color: $color-primary;
     &__top{
         display: flex;
-        padding-top: 0.9rem;
+        padding-top: 0.7rem;
         &__logo-box{
             padding-left: 2.7rem;
             padding-top: 0.2rem;
@@ -11,8 +11,8 @@
                 width: 9.7rem;
                 height: 3rem;
                 background: url(../images/nav-sprite-global_icons.png);
-                background-position: -1rem -5.1rem;
                 background-size: 35rem;
+                background-position: -1rem -5.1rem;
             }
         }
         &__search-box{
@@ -27,10 +27,12 @@
     }
     &__bottom{
         &__nation-box{
-
+            color: $color-text-white;
         }
         &__nav-box{
+            &__text{
 
+            }
         }
         &__nav-tool{
 
