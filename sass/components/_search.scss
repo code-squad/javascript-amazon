@@ -1,10 +1,10 @@
-
 .search{
     display: grid;
     grid-template-columns: max-content 1fr 4.5rem;
     grid-template-rows: 3.5rem;
     &__select{
         position: relative;
+        overflow: hidden;
         &__view{
             padding: .2rem 2.1rem 0 1.1rem;
             border-right: 1px solid #cdcdcd;
@@ -37,7 +37,6 @@
             position: absolute;
             left: 0;
             top: 0;
-            overflow: hidden;
             opacity: 0;
             height: 100%;
             font-size: 1.4rem;
@@ -51,6 +50,9 @@
         }
         &__list::-ms-expand {
             display: none;            
+        }
+        &:hover &__view{
+
         }
     }
     &__label{

@@ -9,9 +9,7 @@
         margin: .2rem 0 0 2.7rem;
         width: 9.7rem;
         height: 3rem;
-        background: url(../images/nav-sprite-global_icons.png);
-        background-size: 35rem;
-        background-position: -1rem -5.1rem;
+        @include sprite-global-icons(-10px, -51px);
     }
     &__search{
         padding-right: 2.5rem;
@@ -20,67 +18,116 @@
         margin-top: -.2rem;
     }
     &__nation-box{
+        margin: auto;
+        padding: .2rem 1.8rem 0 .5rem;
     }
-    &__nav-box{
-        align-items: center;
-        &__text{
-
-        }
+    &__nav{
+        align-self: end;
+        padding-bottom: .3rem;
     }
-    &__nav-tool{
-        display: flex;
-        align-items: center;
-        padding-top: .8rem;
-        padding-left: 7rem;
-        &--language{
-            .global-icon{
-                display: inline-block;
-                margin-left: .1rem;
-                width: 14px;
-                height: 14px;
-                background-image: url(../images/InternationalCustomer.png);
-                background-size: 142px 120px;
-                background-position: -77px -24px;
-            }
-            .nav-arrow{
-                padding-bottom: .3rem;
-            }
-        }
-        .bar{
-            border-right: 1px solid #555;
-            display: inline-block;
-            margin-bottom: 5px;
-            width: 1px;
-            height: 29px;
-            margin-left: .5rem;
-            margin-right: 1rem;
-        }
-        &--orders{
-            padding: 1.7rem 1rem 0 1.3rem;
-        }
-        &--cart{
-            position: relative;
-            .nav__cart-counter{
-                padding-left: 2.5rem;
-            }
-            .nav__big-text{
-                position: absolute;
-                bottom: 0;
-                right: -4rem;
-            }
-        }
+    &__tools{
+        display: grid;
+        grid-template-columns: repeat(5, max-content);
+        align-items: end;
+        padding: 0 0 .3rem 3.5rem;
+        
     }
 }
+
+.language{
+    padding: .9rem .6rem .3rem 1.6rem;
+    border: 1px solid transparent;
+    &--text{
+        font-size: 1.2rem;
+        color: #ccc;
+    }
+    .global-icon{
+        display: inline-block;
+        margin-top: .1rem;
+        margin-left: .2rem;
+        width: 14px;
+        height: 14px;
+        @include sprite-international-icons(-77px, -24px);
+    }
+    .nav-arrow{
+        margin-left: .2rem;
+        padding-bottom: .2rem;
+        border-top-color: #a7acb2;
+    }
+    &:hover{
+        @include style-link-hover;
+    }
+}
+
+.bar{
+    border-right: 1px solid #555;
+    display: inline-block;
+    margin-bottom: 5px;
+    width: 1px;
+    height: 29px;
+}
+.sign-in{
+    padding: .9rem .6rem .5rem 1.2rem;
+    border: 1px solid transparent;
+    &--guide{
+        font-size: 1.2rem;
+        color: #ccc;
+    }
+    &--info{
+        line-height: 1.4rem;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #fff;
+    }
+    .nav-arrow{
+        margin-left: .2rem;
+        border-top-color: #a7acb2;
+    }
+    &:hover{
+        @include style-link-hover;
+    }
+}
+.orders{
+    padding: .4rem .7rem;
+    border: 1px solid transparent;
+    &:hover{
+        @include style-link-hover;
+    }
+}
+.cart{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.1rem 2.1rem .4rem 1.2rem;
+
+    border: 1px solid transparent;
+    .nav__cart-counter{
+        position: absolute;
+        top: .55rem;
+        left: .45rem;
+        padding-left: 2.5rem;
+        font-weight: bold;
+    }
+    &-image{
+        @include sprite-global-icons(-10px,-340px);
+        width: 38px;
+        height: 26px;
+        display: block;
+        overflow: hidden;
+        margin-bottom: .1rem;
+    }
+    &:hover{
+        @include style-link-hover;
+    }
+}
+
+
 .nav-arrow{
-    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png);
-    background-position: 0 1000px;
+    @include sprite-global-icons(0 ,1000px);
     background-repeat: repeat-x;
     border-top-color: #a7acb2;
     display: inline-block;
-    border-style: solid;
-    border-style: dashed;
-    border-width: 4px;
-    border-color: transparent;
+    border: 4px dashed transparent;
     border-top: 4px solid #606060;
     border-bottom-width: 0;
     width: 0;
@@ -88,16 +135,4 @@
     font-size: 0;
     line-height: 0;
     margin: 0 0 2px 5px;
-}
-.cart-image{
-    background-image: url(../images/nav-sprite-global_icons.png);
-    background-size: 350px;
-    background-position: -10px -340px;
-    width: 38px;
-    height: 26px;
-    display: block;
-    overflow: hidden;
-    position: absolute;
-    left: 8px;
-    top: 5px;
 }

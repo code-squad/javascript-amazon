@@ -1,23 +1,30 @@
-.section-prime-about{
-    padding-top: 3.2rem;
-    padding-bottom: 3.4rem;
+.prime-about{
+    height: 47.6rem;
+    padding: 3.2rem 0 4.8rem 7rem;
     background-color: $color-secondary;
     background: radial-gradient(bottom right,#00A8E1,#0079b4);
     background: -ms-radial-gradient(bottom right,#00A8E1,#0079b4);
     background: -moz-radial-gradient(bottom right,#00A8E1,#0079b4);
     background: -o-radial-gradient(bottom right,#00A8E1,#0079b4);
     background: -webkit-radial-gradient(bottom right,#00A8E1,#0079b4);
-
+    background: url(../../images/Prime_about.png);
+    background-size: auto 47.6rem;
+    background-position: left top;
+    background-repeat: no-repeat;
+    
     color: $color-text-white;
-    text-align: center;
     &__logo{
         width: 8rem;
-        padding-bottom: 2.5rem;
     }
-    &__heading-text{
+    &__heading-1{
         font-size: 4.2rem;
         font-weight: bold;
         margin-bottom: 2.5rem;
+    }
+    &__paragraph{
+        font-size: 2.2rem;
+        line-height: 2.5rem;
+        font-weight: 300;
     }
     &__form{
         &__submit-box{
@@ -68,7 +75,7 @@
     }
 }
 
-.section-prime-detail{
+.prime-detail{
     padding: 2rem 0;
     text-align: center;
     &__heading-text{
@@ -77,7 +84,6 @@
         font-weight: 300;
     }
     &__container{
-        
         text-align: center;
     }
 }

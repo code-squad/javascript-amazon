@@ -1,16 +1,19 @@
 .nation-box{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: .2rem;
-    padding-right: 1.8rem;
+    &__link{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        padding: .6rem .8rem .6rem .3rem;
+        &:hover{
+            @include style-link-hover;
+        }
+    }
     &__nation-img{
         margin-top: .2rem;
-        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-2x_optimized._CB474516457_.png);
-        background-size: 350px;
         width: 22px;
-        height: 22px;    
-        background-position: -68px -340px;
+        height: 22px;   
+        @include sprite-global-icons(-68px, -340px); 
     }
     &__text-box{
         padding-left: .3rem;

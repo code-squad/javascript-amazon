@@ -45,45 +45,51 @@
                     <img src="./images/TodaysDeals.png" alt="Learn More">
                 </a>
             </div>
-            <div class="nation-box">
-                <div class="nation-box__nation-img"></div>
-                <div class="nation-box__text-box">
-                    <span class="nation-box__text-box__desc">Deliver to</span>
-                    <span class="nation-box__text-box__nation">Korea, Republic of</span>
+            <nav class="header__nation-box">
+                <div class="nation-box">
+                    <a class="nation-box__link" href="#none">
+                        <div class="nation-box__nation-img"></div>
+                        <div class="nation-box__text-box">
+                            <span class="nation-box__text-box__desc">Deliver to</span>
+                            <span class="nation-box__text-box__nation">Korea, Republic of</span>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <nav class="nav-box">
-                <ul class="nav-box__departments">
-                    <span class="nav-box__departments__text">Departments</span>
-                    <span class="nav-box__departments__img"></span>
-                </ul>
-                <ul class="nav-box__list">
-                    <li class="nav-box__list__item">Your Amazon.com</li>
-                    <li class="nav-box__list__item">Today's Deals</li>
-                    <li class="nav-box__list__item">Gift Cards</li>
-                    <li class="nav-box__list__item">Registry</li>
-                    <li class="nav-box__list__item">Sell</li>
-                    <li class="nav-box__list__item">Help</li>
-                </ul>
             </nav>
-            <div class="header__nav-tool">
-                <div class="header__nav-tool--language">
-                    <p class="nav__small-text">EN</p>
+            <div class="header__nav">
+                <nav class="nav">
+                    <div class="nav__departments">
+                        <a class="nav__departments__link" href="#none"> 
+                            <span class="nav__departments__text">Departments</span>
+                        </a>
+                        <span class="nav__departments__img"></span>
+                    </div>
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#" class="nav__link">Your Amazon.com</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Today's Deals</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Gift Cards</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Registry</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Sell</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Help</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header__tools">
+                <div class="language">
+                    <p class="language--text">EN</p>
                     <span class="global-icon"></span>
                     <span class="nav-arrow"></span>
                 </div>
-                <span class="bar">
-
-                </span>
-                <div class="header__nav-tool--sign-in">
-                    <p class="nav__small-text">Hello, Sign in</p>
-                    <span class="nav__big-text">Account & Lists</span>
+                <span class="bar"></span>
+                <div class="sign-in">
+                    <p class="sign-in--guide">Hello, Sign in</p>
+                    <span class="sign-in--info">Account & Lists</span>
                     <span class="nav-arrow"></span>
                 </div>
-                <div class="header__nav-tool--orders">
+                <div class="orders">
                     <span class="nav__big-text">Orders</span>
                 </div>
-                <div class="header__nav-tool--cart">
+                <div class="cart">
                     <span class="cart-image"></span>
                     <span class="nav__cart-counter">0</span>
                     <span class="nav__big-text">Cart</span>
@@ -91,33 +97,33 @@
             </div>
         </header>
         <main>
-            <section  class="section-prime-about">
-                <img class="section-prime-about__logo" src="./images/logo_prime_about.svg" alt="prime logo">
-                <h2 class="section-prime-about__heading-text">The best of Shopping and Entertainment.</h2>
-                <form class="section-prime-about__form">
-                    <div class="section-prime-about__form__submit-box">
-                        <input class="section-prime-about__form__submit-box__submit" type="submit" value="TRY PRIME">
+            <section  class="prime-about">
+                <h1 class="prime-about__heading-1">There's something for everyone with Prime!</h1>
+                <p class="prime-about__paragraph">Check out what's included with your Prime membership.</p>
+                <form class="prime-about__form">
+                    <div class="prime-about__form__submit-box">
+                        <input class="prime-about__form__submit-box__submit" type="submit" value="TRY PRIME">
                     </div>
                 </form>
-                <p class="section-prime-about--info">$1299/month. Cancel anytime.</p>
-                <div class="section-prime-about__text-box">
-                    <span class="section-prime-about__text-box__text">
+                <p class="prime-about--info">$1299/month. Cancel anytime.</p>
+                <div class="prime-about__text-box">
+                    <span class="prime-about__text-box__text">
                         <a href="#">Are you a Student?</a>
                     </span> 
                     <span>|</span>
-                    <span class="section-prime-about__text-box__text">
+                    <span class="prime-about__text-box__text">
                         <a href="#">Do you have a valid EBT/Medicaid card?</a>
                     </span>
                 </div>
-                <div class="section-prime-about--more">
-
-                    <p class="section-prime-about--more__text">See more plans</p>
-                    <span class="section-prime-about--more__icon"></span>
+                <div class="prime-about--more">
+                    <p class="prime-about--more__text">See more plans</p>
+                    <span class="prime-about--more__icon"></span>
                 </div>
+                <img class="prime-about__logo" src="./images/logo_prime_about.svg" alt="prime logo">
             </section>
-            <section  class="section-prime-detail">
-                <h2 class="section-prime-detail__heading-text">Check out what's included with your Prime membership:</h2>
-                <div class="section-prime-detail__container">
+            <section  class="prime-detail">
+                <h2 class="prime-detail__heading-text">Check out what's included with your Prime membership:</h2>
+                <div class="prime-detail__container">
                     <ul class="cards">
                         <li class="cards__card">
                             <span class="cards__card__title">Fast, Free Delivery</span>
@@ -175,10 +181,10 @@
                     </div>
                 </div>
             </section>
-            <section  class="section-prime-benefit">
+            <section  class="prime-benefit">
 
             </section>
-            <section  class="section-prime-">
+            <section  class="prime-">
 
             </section>
         </main>
