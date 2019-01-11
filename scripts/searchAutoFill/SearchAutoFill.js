@@ -44,7 +44,12 @@ class Model extends Observable {
     const request = new Request(queryURL, init);
 
     fetch(request)
-      .then(response => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          return new Error(`HTTP error with status code ${response.status}`);
+        }
+        return response.json();
+      })
       .then((json) => {
         if (json) this.setSuggestion(json, searchWord);
       })
