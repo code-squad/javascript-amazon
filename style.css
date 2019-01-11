@@ -1,17 +1,55 @@
 /* layout */
 
-.header{
+.header {
     width: 100%;
     height: 106px;
     background-color: #26313e;
 }
 
-.cnt{
+.cnt {
     width: 100%;
 }
 
-.footer{
+.footer {
     width: 100%;
+}
+
+/* header-top */
+
+.top-header {
+    width: 100%;
+    height: 46px;
+}
+
+li {
+    display: inline-block;
+}
+
+/* amazon-logo */
+
+.amz-logo-container {
+    width: 192px;
+    height: 38px;
+}
+
+.amz-logo {
+    width: 98px;
+    height: 36px;
+    background: url('https://m.media-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png') no-repeat center top;
+    background-position: 4% 14%;
+    margin-left: 18px;
+    margin-top: 10px;
+}
+
+/* search-box */
+
+.dept-selector {
+    height: 35px;
+    border: 1px solid grey;
+    border-radius: 10px 0px 0px 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 /*
