@@ -51,6 +51,7 @@ const searchAutoFill = new SearchAutoFill({
     suggestionWrapperEl: document.querySelector('.search__suggestion'),
   },
   suggestionTemplateFn,
+  awaitTiming: 500,
 });
 
 window.addEventListener('DOMContentLoaded', () => {
