@@ -1,0 +1,100 @@
+:root {
+  --suggestion-line-height: 3rem;
+  --header__search--width: calc(
+    99% - var(--header__logo--width) - var(--header__topBanner--width)
+  );
+  --header__search--height: 3rem;
+  --search__categorySelector--width: 12rem;
+  --search__submitBtn--width: 4rem;
+}
+
+.header__search {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  padding: 0 3rem;
+  height: var(--header__search--height);
+  width: var(--header__search--width);
+}
+/* Layout of internal elements */
+.header__search .search__categorySelectorBtn,
+.header__search .search__categorySelector,
+.header__search .search__inputWrapper,
+.header__search .search__submitBtn {
+  /* stack elements to hide gap between them */
+  border: none;
+  height: 100%;
+  vertical-align: top;
+}
+.header__search .search__inputWrapper {
+  position: absolute;
+  left: 7rem;
+  width: calc(100% - 2 * var(--search__submitBtn--width) - 6rem);
+  z-index: 101;
+}
+.header__search .search__input {
+  height: 100%;
+  width: 100%;
+  padding: 0 2rem; /*  Set text display location to right to compensate stacked margins */
+  font-size: 1.2rem;
+  border: none;
+}
+.header__search .search__input:focus {
+  outline: none;
+}
+.header__search .search__submitBtn {
+  position: absolute;
+  right: 3rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  background-color: var(--color-bright-orange);
+  width: var(--search__submitBtn--width);
+  font-size: 2rem;
+  z-index: 102;
+}
+.header__search .search__submitBtn:focus {
+  outline: none;
+  background-color: brown;
+}
+
+.search__categorySelectorBtn {
+  position: absolute;
+  left: 3rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  background-color: lightgray;
+  width: var(--search__submitBtn--width);
+  font-size: 1.2rem;
+  z-index: 102;
+}
+.header__search .search__categorySelector {
+  position: absolute;
+  left: 3rem;
+  width: var(--search__submitBtn--width);
+  z-index: 103; /*  place category selector over input bar */
+  opacity: 0;
+}
+
+.search__suggestionUl {
+  border: 1px solid lightgray;
+}
+
+.search__suggestionLi {
+  color: black;
+  font-weight: bold;
+  background-color: white;
+  height: var(--suggestion-line-height);
+  line-height: var(--suggestion-line-height);
+}
+
+.search__suggestionLi a {
+  padding: 0 1em;
+  display: block;
+}
+
+.search__suggestionLi.focused,
+.search__suggestionLi:hover {
+  background-color: lightgray;
+}
+
+.search__suggestion--matchStr {
+  color: orange;
+}
