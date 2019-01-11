@@ -72,12 +72,12 @@
     padding: 2rem 0;
     text-align: center;
     &__heading-text{
+        margin-bottom: 2rem;
         font-size: 2.2rem;
         font-weight: 300;
     }
     &__container{
-        &__cards{
-            
-        }
+        
+        text-align: center;
     }
 }

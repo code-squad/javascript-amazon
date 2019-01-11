@@ -1,3 +1,112 @@
 .cards{
-    
+    display: grid;
+    grid-template-columns: repeat(4, 19.7rem);
+    grid-template-rows: 6.5rem;
+    grid-auto-flow: column;
+    grid-gap: .6rem;
+    justify-content: center;
+    list-style: none;
+    &__card{
+        position: relative;
+        background-color: #2492C1;
+        &__title{
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 300;
+            padding: 0 25px;
+            margin: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FFF;
+            pointer-events: none;
+        }
+        &__content{
+
+        }
+    }
+}
+
+#primeComparisonTable {
+    border: 2px solid #e1e1e1;
+    min-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#primeComparisonTable .small-gray {
+    font-size: 10px;
+    color: #808080;
+    display: block;
+    line-height: 11px;
+    margin-bottom: 20px;
+}
+
+table#primeComparisonTable:last-child {
+    margin-bottom: inherit;
+}
+
+#primeComparisonTable .header-row {
+    height: 36px;
+}
+
+#primeComparisonTable tr.header-row th {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    vertical-align: middle;
+    font-weight: 700;
+}
+
+#primeComparisonTable tr {
+    height: 44px;
+}
+
+#primeComparisonTable tr:nth-child(odd) {
+    background: #ebebeb;
+}
+
+#primeComparisonTable th:nth-child(2) {
+    padding: 0px;
+    text-align: center;
+    min-width: 100px;
+}
+
+#primeComparisonTable th:nth-child(2) img {
+    width: 55px;
+    padding-top: 5px;
+    margin: 0 auto;
+}
+
+
+#primeComparisonTable tr th,
+#primeComparisonTable tr td {
+    font-size: 13px;
+    font-weight: normal;        
+    line-height: 20px;
+    padding: 12px 5px 0px;
+}
+
+#primeComparisonTable tr th:first-child,
+#primeComparisonTable tr td:first-child {
+    text-align: left;
+}
+
+#primeComparisonTable tr td:nth-child(2) {
+    color: #05a934;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#primeComparisonTable tr td:nth-child(3) {
+    color: #df746e;
+    font-weight: bold;
+}
+
+#primeComparisonTable .column-heading {
+    min-width: 90px;
 }

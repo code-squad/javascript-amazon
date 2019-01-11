@@ -1,7 +1,8 @@
 .row{
     display: grid;
-    grid-auto-columns: minmax(auto, auto);
+    grid-template-rows: 4.4rem 5.5rem;
     grid-template-columns: 19.2rem 67.3rem 40rem;
+
     .col-1-of-2{
         grid-row: 1/2
     }
