@@ -45,8 +45,7 @@ function suggestionTemplateFn({ value, refTag }, searchWord) {
   </li>`;
 }
 const searchAutoFill = new SearchAutoFill({
-  // apiURI: 'http://crong.codesquad.kr:8080/amazon/ac/',
-  apiURI: 'http://localhost:3030/ac/',
+  apiURI: 'https://codesquadacapi.herokuapp.com/ac/',
   el: {
     inputEl: document.querySelector('.search__input'),
     suggestionWrapperEl: document.querySelector('.search__suggestion'),
