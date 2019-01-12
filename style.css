@@ -19,6 +19,7 @@
 .top-header {
     width: 100%;
     height: 46px;
+    text-align: center;
 }
 
 li {
@@ -47,6 +48,7 @@ li {
     width: 381px;
     margin: 10px auto;
     vertical-align: middle;
+    text-align: center;
 }
 
 .dept-selector {
@@ -72,6 +74,7 @@ li {
     border: 1px solid grey;
     border-radius: 0px 10px 10px 0px;
     float: right;
+    cursor: pointer;
 }
 
 /* event-logo */
