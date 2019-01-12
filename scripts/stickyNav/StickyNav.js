@@ -4,6 +4,16 @@ export default class {
     this.threshold = threshold;
   }
 
+  init() {
+    this.displayDetailOnClick();
+    this.closeDetailOnClick();
+  }
+
+  layout() {
+    this.setWrapperHeight(); // Extend body height to make position:sticky work properly
+    this.updateListenerForVisibility('add'); // Display sticky bar on scroll
+  }
+
   displayDetailOnClick() {
     const seeMoreLink = this.base.querySelector('.stickyNav__morePlanBtn .morePlanBtn__link');
     seeMoreLink.addEventListener('click', () => {

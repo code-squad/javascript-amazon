@@ -15,6 +15,11 @@ export default class {
     this.classSwitch = new ClassSwitch(this.base, this.menuListItems, this.details);
   }
 
+  init() {
+    this.setMenuOpenMouseEvent();
+    this.setDetailOpenMouseEvent();
+  }
+
   /* =======
   Initial listener / style assignment
   ======= */

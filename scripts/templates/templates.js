@@ -1,4 +1,4 @@
-export default (template = {
+const template = {
   suggestion({ value, refTag }, searchWord) {
     const replaceWhiteSpace = (string, replaceChar) => string.replace(/\s/g, replaceChar);
     const ref = replaceWhiteSpace(refTag, '+');
@@ -14,4 +14,6 @@ export default (template = {
       <a href="/search?ref=${ref}&field-keywords=${fieldKeyword}&prefix=${prefix}">${displayVal}</a>
     </li>`;
   },
-});
+};
+
+export default template;
