@@ -1,14 +1,14 @@
-class Ajax {
-    getReq(url, callback){
-        const xmlHttpReq = new XMLHttpRequest;
+export const ajax = {
+    getReq(url){
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
 
-        xmlHttpReq.open("GET", url);
-        xmlHttpReq.addEventListener("load", function(){
-            const jsonData = JSON.parse(this.responseText);
-            callback(jsonData);
-        })
-        xmlHttpReq.send();
+            xhr.open("GET", url);
+            xhr.addEventListener("load", () => {
+                if(xhr.status >= 200 && xhr.status < 400) resolve(JSON.parse(xhr.response));
+                else reject(xhr.status);
+            });
+            xhr.send();
+        });
     }
 }
-
-export { Ajax };
