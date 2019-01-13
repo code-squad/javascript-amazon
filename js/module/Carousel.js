@@ -1,52 +1,56 @@
 class Carousel {
-    constructor({ targetHTML, prevBtn, nextBtn }){
+    constructor({ targetHTML, intervalTime, delayTime }){
         this.targetHTML = targetHTML;
-        this.prevBtn = prevBtn;
-        this.nextBtn = nextBtn;
+        this.intervalTime = intervalTime;
+        this.delayTime = delayTime;
         this.playID;
         this.timer;
     }
 
     run(){
-        this.autoPlay();
+        const prevBtn = this.targetHTML.querySelector(".carousel-left-arrow");
+        const nextBtn = this.targetHTML.querySelector(".carousel-right-arrow");
 
-        this.prevBtn.addEventListener("click", () => {
+        prevBtn.addEventListener("click", () => {
             this.displayPrevCard();
             this.delayAutoPlay();
         });
 
-        this.nextBtn.addEventListener("click", () => {
+        nextBtn.addEventListener("click", () => {
             this.displayNextCard();
             this.delayAutoPlay();
         });
+
+        this.autoPlay(this.intervalTime);
     }
 
     displayNextCard(){
-        this.targetHTML.classList.add("slideRightOn");
-        this.targetHTML.removeEventListener("transitionend", this.slideLeftAnimationEvent);
-        this.targetHTML.addEventListener("transitionend", this.slideRightAnimationEvent);
+        const displayEl = this.targetHTML.querySelector(".carousel-wrapper");
+
+        displayEl.classList.add("slideRightOn");
+        displayEl.removeEventListener("transitionend", this.slideLeftAnimationEvent);
+        displayEl.addEventListener("transitionend", this.slideRightAnimationEvent);
     }
 
     displayPrevCard(){
-        this.targetHTML.classList.add("slideLeftOn");
-        this.targetHTML.removeEventListener("transitionend", this.slideRightAnimationEvent);
-        this.targetHTML.addEventListener("transitionend", this.slideLeftAnimationEvent);
+        const displayEl = this.targetHTML.querySelector(".carousel-wrapper");
+
+        displayEl.classList.add("slideLeftOn");
+        displayEl.removeEventListener("transitionend", this.slideRightAnimationEvent);
+        displayEl.addEventListener("transitionend", this.slideLeftAnimationEvent);
     }
 
     autoPlay(){
-        this.playID = setInterval(() => {
-            this.displayNextCard();
-        }, 3000);
+        this.displayNextCard();
+        this.playID = setTimeout(this.autoPlay.bind(this), this.intervalTime);
     }
 
     delayAutoPlay(){
-        clearInterval(this.playID);
+        clearTimeout(this.playID);
 
         if(this.timer) clearTimeout(this.timer);
 
-        this.timer = setTimeout(() => {
-            this.autoPlay();    
-        }, 5000);
+        this.timer = setTimeout(this.autoPlay.bind(this), this.delayTime);
     }
 
     slideRightAnimationEvent(){
