@@ -7,11 +7,11 @@ class Observable {
     this.subscription = new Set();
   }
 
-  subscribe(fn) {
+  addSubscriber(fn) {
     this.subscription.add(fn);
   }
 
-  unsubscribe(fn) {
+  removeSubscriber(fn) {
     this.subscription.delete(fn);
   }
 
@@ -44,7 +44,12 @@ class Model extends Observable {
     const request = new Request(queryURL, init);
 
     fetch(request)
-      .then(response => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          return new Error(`HTTP error with status code ${response.status}`);
+        }
+        return response.json();
+      })
       .then((json) => {
         if (json) this.setSuggestion(json, searchWord);
       })
@@ -67,20 +72,24 @@ class Model extends Observable {
 }
 
 class Controller extends Observable {
-  constructor(model, suggestionTemplateFn) {
+  constructor(model, suggestionTemplateFn, awaitTiming) {
     super();
     this.model = model;
     this.suggestionTemplateFn = suggestionTemplateFn;
     this.queryOnDebounce = null;
+    this.awaitTiming = awaitTiming;
   }
 
   init() {
-    this.model.subscribe(this.sendUpdateToView.bind(this));
+    this.model.addSubscriber(this.sendUpdateToView.bind(this));
   }
 
   query(searchWord) {
     if (!this.queryOnDebounce) {
-      this.queryOnDebounce = debounce(this.model.updateSuggestion.bind(this.model), 1000);
+      this.queryOnDebounce = debounce(
+        this.model.updateSuggestion.bind(this.model),
+        this.awaitTiming,
+      );
     }
 
     this.queryOnDebounce(searchWord);
@@ -115,7 +124,7 @@ class View {
 
   init() {
     this.controller.init();
-    this.controller.subscribe(this.updateSuggestion.bind(this));
+    this.controller.addSubscriber(this.updateSuggestion.bind(this));
     this.inputEl.addEventListener('keydown', this.doByKeyInput.bind(this));
     this.inputEl.addEventListener('keyup', this.doByKeyInput.bind(this));
     this.inputEl.addEventListener('focusout', this.clearSuggestion.bind(this));
@@ -157,11 +166,15 @@ class View {
   }
 
   updateSuggestion(formattedHTML) {
+    const dimmer = document.querySelector('.main__dimmer');
+
     this.suggestionWrapperEl.innerHTML = formattedHTML;
-    document.querySelector('.main__dimmer').classList.add('opened');
-    if (!formattedHTML) {
-      document.querySelector('.main__dimmer').classList.remove('opened');
+
+    if (formattedHTML) {
+      dimmer.classList.add('opened');
+      return;
     }
+    dimmer.classList.remove('opened');
   }
 
   clearSuggestion() {
@@ -255,9 +268,9 @@ class View {
 }
 
 export default class SearchAutoFill {
-  constructor({ apiURI, el: { inputEl, suggestionWrapperEl }, suggestionTemplateFn }) {
+  constructor({ apiURI, el: { inputEl, suggestionWrapperEl }, suggestionTemplateFn, awaitTiming }) {
     const model = new Model(apiURI);
-    const controller = new Controller(model, suggestionTemplateFn);
+    const controller = new Controller(model, suggestionTemplateFn, awaitTiming);
     const view = new View({ controller, inputEl, suggestionWrapperEl });
     this.mvc = { model, view, controller };
   }
