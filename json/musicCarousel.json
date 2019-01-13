@@ -1,18 +1,18 @@
 [
     {
-        "src" : "../img/carouselCards/music_carousel1.jpg",
+        "src" : "./img/carouselCards/music_carousel1.jpg",
         "alt" : "Jack Ryan"
     },
     {
-        "src" : "../img/carouselCards/music_carousel2.jpg",
+        "src" : "./img/carouselCards/music_carousel2.jpg",
         "alt" : "Home Comming"
     },
     {
-        "src" : "../img/carouselCards/music_carousel3.jpg",
+        "src" : "./img/carouselCards/music_carousel3.jpg",
         "alt" : "The Man in the High Castle"
     },
     {
-        "src" : "../img/carouselCards/music_carousel4.jpg",
+        "src" : "./img/carouselCards/music_carousel4.jpg",
         "alt" : "The Marvelous Mrs. Maisel"
     }
 ]
