@@ -1,41 +1,53 @@
 .prime-about{
-    height: 47.6rem;
-    padding: 3.2rem 0 4.8rem 7rem;
+    height: 47.4rem;
+    padding: 3rem 0 0 7rem;
     background-color: $color-secondary;
     background: radial-gradient(bottom right,#00A8E1,#0079b4);
     background: -ms-radial-gradient(bottom right,#00A8E1,#0079b4);
     background: -moz-radial-gradient(bottom right,#00A8E1,#0079b4);
     background: -o-radial-gradient(bottom right,#00A8E1,#0079b4);
     background: -webkit-radial-gradient(bottom right,#00A8E1,#0079b4);
-    background: url(../../images/Prime_about.png);
+    background: url(../../static/images/Prime_about.png);
     background-size: auto 47.6rem;
     background-position: left top;
     background-repeat: no-repeat;
     
+    font-family: AmazonEmber, arial, sans-serif;
     color: $color-text-white;
+    sup{
+        font-size: 55%;
+    }
+    .story{
+        width: 50rem;
+    }
     &__logo{
         width: 8rem;
     }
     &__heading-1{
+        line-height: 1.2;
         font-size: 4.2rem;
-        font-weight: bold;
-        margin-bottom: 2.5rem;
+        margin-bottom: 2.6rem;
     }
     &__paragraph{
+        width: 40rem;
+        margin-bottom: 3.2rem;
         font-size: 2.2rem;
         line-height: 2.5rem;
         font-weight: 300;
     }
     &__form{
         &__submit-box{
-            margin: auto;
-            height: 5.2rem;
+            height: 5.5rem;
             width: 36rem;
             &__submit{
                 background-color: $color-prime-submit-button;
-                border: 1px solid $color-prime-submit-border;
+                padding-left: .1rem;
+                padding-bottom: .1rem;
+                border: .1rem solid $color-prime-submit-border;
+                border-bottom-width: .2rem;
                 font-size: 2rem;
                 font-weight: bold;
+                font-family: AmazonEmber;
                 color: $color-prime-submit-text;
                 border-radius: .2rem;
                 width: 100%;
@@ -45,7 +57,7 @@
         }
     }
     &--info{
-        margin: 1rem 0 2rem;
+        margin-top: .9rem;
         font-size: 1.4rem;
     }
     &__text-box{
@@ -54,9 +66,10 @@
         }
     }
     &--more{
-        display: inline-flex;
+        display: flex;
         align-items: center;
         margin-top: .2rem;
+        margin-bottom: 3.5rem;
         &__text{
             font-size: 1.4rem;
             text-decoration: underline;
@@ -65,19 +78,20 @@
             background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
             -moz-background-size: 158px auto;
             background-size: 158px auto;
-            width: 6px;
-            height: 9px;
+            width: .6rem;
+            height: .9rem;
             display: inline-block;
             vertical-align: middle;
             background-position: 0 -233px;
-            margin: 0 6px;
+            margin-top: .4rem;
+            margin-left: .6rem;
         }
     }
 }
 
 .prime-detail{
-    padding: 2rem 0;
-    text-align: center;
+    position: relative;
+    top: -9.2rem;
     &__heading-text{
         margin-bottom: 2rem;
         font-size: 2.2rem;

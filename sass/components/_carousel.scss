@@ -1,0 +1,8 @@
+.carousel{
+    height: 40rem;
+    &__list{}
+    &__item{}
+    &__ship-1{
+        background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(../static/images/Card_ship_01.jpg)
+    }
+}

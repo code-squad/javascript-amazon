@@ -15,7 +15,7 @@ body {
 a {
   color: #fff; }
 
-* {
+html {
   font-family: arial, sans-serif; }
 
 .nav__big-text {
@@ -31,32 +31,58 @@ a {
   color: #f08804;
   font-size: 1.6rem; }
 
+@font-face {
+  font-family: AmazonEmber;
+  src: url(../static/font/AmazonEmber_300.woff) format("woff");
+  font-weight: 300; }
+
+@font-face {
+  font-family: AmazonEmber;
+  src: url(../static/font/AmazonEmber_400.woff2) format("woff2");
+  font-weight: 400; }
+
+@font-face {
+  font-family: AmazonEmber;
+  src: url(../static/font/AmazonEmber_700.woff2) format("woff2");
+  font-weight: 700; }
+
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 19.7rem);
-  grid-template-rows: 6.5rem;
+  grid-template-columns: repeat(5, 15rem);
+  grid-template-rows: 21rem;
   grid-auto-flow: column;
   grid-gap: .6rem;
   justify-content: center;
   list-style: none; }
   .cards__card {
     position: relative;
-    background-color: #2492C1; }
+    height: 100%;
+    background-size: 1200px auto, 100% 100%;
+    background-position: 0px 0px, 0px 0px;
+    background-repeat: no-repeat, repeat;
+    cursor: pointer; }
     .cards__card__title {
       position: absolute;
       left: 0;
-      right: 0;
+      bottom: 2.4rem;
       width: 100%;
-      text-align: center;
-      font-size: 16px;
+      font-family: AmazonEmber;
       font-weight: 300;
-      padding: 0 25px;
-      margin: auto;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 300;
       color: #FFF;
       pointer-events: none; }
+    .cards__card--blue {
+      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png), linear-gradient(30deg, #2C88AE 40%, #00A8E1 90%, #00A8E1 48px); }
+    .cards__card--red {
+      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png), linear-gradient(30deg, #CC0C39 40%, #FF6138 90%, #FF6138 48px); }
+    .cards__card--pink {
+      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png), linear-gradient(30deg, #A90067 40%, #E31F64 90%, #E31F64 48px); }
+    .cards__card--green {
+      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png), linear-gradient(30deg, #008577 40%, #36C2B4 90%, #36C2B4 48px); }
+    .cards__card--orange {
+      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png), linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px); }
 
 #primeComparisonTable {
   border: 2px solid #e1e1e1;
@@ -138,7 +164,7 @@ table#primeComparisonTable:last-child {
   margin-top: .2rem;
   width: 22px;
   height: 22px;
-  background: url(../images/nav-sprite-global_icons.png);
+  background: url(../static/images/nav-sprite-global_icons.png);
   background-size: 350px;
   background-position: -68px -340px; }
 
@@ -198,16 +224,21 @@ table#primeComparisonTable:last-child {
       outline: 0;
       -webkit-appearance: none;
       -moz-appearance: none;
-      appearance: none; }
+      appearance: none;
+      cursor: pointer; }
     .search__select__list::-ms-expand {
       display: none; }
+    .search__select:hover .search__select__view {
+      background-color: #dadada; }
   .search__label {
     overflow: hidden; }
   .search__search {
     width: 100%;
     height: 100%;
     outline: 0;
-    border: 0; }
+    border: 0;
+    text-indent: .8rem;
+    font-size: 1.5rem; }
   .search__btn {
     position: relative;
     border-radius: 0 .4rem .4rem 0;
@@ -234,7 +265,7 @@ table#primeComparisonTable:last-child {
       height: 2.1rem;
       text-indent: -5rem;
       color: #fff;
-      background: url(../images/nav-sprite-global_icons.png);
+      background: url(../static/images/nav-sprite-global_icons.png);
       background-position: -10px -290px;
       background-size: 350px; }
 
@@ -249,7 +280,7 @@ table#primeComparisonTable:last-child {
     margin: .2rem 0 0 2.7rem;
     width: 9.7rem;
     height: 3rem;
-    background: url(../images/nav-sprite-global_icons.png);
+    background: url(../static/images/nav-sprite-global_icons.png);
     background-size: 350px;
     background-position: -10px -51px; }
   .header__search {
@@ -269,7 +300,7 @@ table#primeComparisonTable:last-child {
     padding: 0 0 .3rem 3.5rem; }
 
 .language {
-  padding: .9rem .6rem .3rem 1.6rem;
+  padding: 1rem .4rem .3rem 1.45rem;
   border: 1px solid transparent; }
   .language--text {
     font-size: 1.2rem;
@@ -277,15 +308,15 @@ table#primeComparisonTable:last-child {
   .language .global-icon {
     display: inline-block;
     margin-top: .1rem;
-    margin-left: .2rem;
+    margin-left: .1rem;
     width: 14px;
     height: 14px;
-    background-image: url(../images/International_icon.png);
+    background-image: url(../static/images/International_icon.png);
     background-size: 142px 120px;
     background-position: -77px -24px; }
   .language .nav-arrow {
-    margin-left: .2rem;
-    padding-bottom: .2rem;
+    margin-left: .4rem;
+    padding-bottom: .3rem;
     border-top-color: #a7acb2; }
   .language:hover {
     border: .1rem solid #4f5965;
@@ -295,12 +326,12 @@ table#primeComparisonTable:last-child {
 .bar {
   border-right: 1px solid #555;
   display: inline-block;
-  margin-bottom: 5px;
+  margin-bottom: .6rem;
   width: 1px;
   height: 29px; }
 
 .sign-in {
-  padding: .9rem .6rem .5rem 1.2rem;
+  padding: .7rem .8rem .6rem 1rem;
   border: 1px solid transparent; }
   .sign-in--guide {
     font-size: 1.2rem;
@@ -319,7 +350,7 @@ table#primeComparisonTable:last-child {
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5); }
 
 .orders {
-  padding: .4rem .7rem;
+  padding: .4rem .7rem .5rem 1.05rem;
   border: 1px solid transparent; }
   .orders:hover {
     border: .1rem solid #4f5965;
@@ -330,7 +361,7 @@ table#primeComparisonTable:last-child {
   position: relative;
   display: flex;
   align-items: flex-end;
-  padding: 1.1rem 2.1rem .4rem 1.2rem;
+  padding: 1.1rem 2.1rem .5rem 1.2rem;
   border: 1px solid transparent; }
   .cart .nav__cart-counter {
     position: absolute;
@@ -339,7 +370,7 @@ table#primeComparisonTable:last-child {
     padding-left: 2.5rem;
     font-weight: bold; }
   .cart-image {
-    background: url(../images/nav-sprite-global_icons.png);
+    background: url(../static/images/nav-sprite-global_icons.png);
     background-size: 350px;
     background-position: -10px -340px;
     width: 38px;
@@ -353,7 +384,7 @@ table#primeComparisonTable:last-child {
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5); }
 
 .nav-arrow {
-  background: url(../images/nav-sprite-global_icons.png);
+  background: url(../static/images/nav-sprite-global_icons.png);
   background-size: 350px;
   background-position: 0 1000px;
   background-repeat: repeat-x;
@@ -411,52 +442,63 @@ table#primeComparisonTable:last-child {
       text-decoration: underline; }
 
 .prime-about {
-  height: 47.6rem;
-  padding: 3.2rem 0 4.8rem 7rem;
+  height: 47.4rem;
+  padding: 3rem 0 0 7rem;
   background-color: #0079b4;
   background: radial-gradient(bottom right, #00A8E1, #0079b4);
   background: -ms-radial-gradient(bottom right, #00A8E1, #0079b4);
   background: -moz-radial-gradient(bottom right, #00A8E1, #0079b4);
   background: -o-radial-gradient(bottom right, #00A8E1, #0079b4);
   background: -webkit-radial-gradient(bottom right, #00A8E1, #0079b4);
-  background: url(../../images/Prime_about.png);
+  background: url(../../static/images/Prime_about.png);
   background-size: auto 47.6rem;
   background-position: left top;
   background-repeat: no-repeat;
+  font-family: AmazonEmber, arial, sans-serif;
   color: #fff; }
+  .prime-about sup {
+    font-size: 55%; }
+  .prime-about .story {
+    width: 50rem; }
   .prime-about__logo {
     width: 8rem; }
   .prime-about__heading-1 {
+    line-height: 1.2;
     font-size: 4.2rem;
-    font-weight: bold;
-    margin-bottom: 2.5rem; }
+    margin-bottom: 2.6rem; }
   .prime-about__paragraph {
+    width: 40rem;
+    margin-bottom: 3.2rem;
     font-size: 2.2rem;
     line-height: 2.5rem;
     font-weight: 300; }
   .prime-about__form__submit-box {
-    margin: auto;
-    height: 5.2rem;
+    height: 5.5rem;
     width: 36rem; }
     .prime-about__form__submit-box__submit {
       background-color: #ffa724;
-      border: 1px solid #ff6138;
+      padding-left: .1rem;
+      padding-bottom: .1rem;
+      border: 0.1rem solid #ff6138;
+      border-bottom-width: .2rem;
       font-size: 2rem;
       font-weight: bold;
+      font-family: AmazonEmber;
       color: #284d40;
       border-radius: .2rem;
       width: 100%;
       height: 100%;
       cursor: pointer; }
   .prime-about--info {
-    margin: 1rem 0 2rem;
+    margin-top: .9rem;
     font-size: 1.4rem; }
   .prime-about__text-box__text {
     font-size: 1.4rem; }
   .prime-about--more {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    margin-top: .2rem; }
+    margin-top: .2rem;
+    margin-bottom: 3.5rem; }
     .prime-about--more__text {
       font-size: 1.4rem;
       text-decoration: underline; }
@@ -464,16 +506,17 @@ table#primeComparisonTable:last-child {
       background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
       -moz-background-size: 158px auto;
       background-size: 158px auto;
-      width: 6px;
-      height: 9px;
+      width: .6rem;
+      height: .9rem;
       display: inline-block;
       vertical-align: middle;
       background-position: 0 -233px;
-      margin: 0 6px; }
+      margin-top: .4rem;
+      margin-left: .6rem; }
 
 .prime-detail {
-  padding: 2rem 0;
-  text-align: center; }
+  position: relative;
+  top: -9.2rem; }
   .prime-detail__heading-text {
     margin-bottom: 2rem;
     font-size: 2.2rem;

@@ -47,12 +47,13 @@
             -webkit-appearance: none; 
             -moz-appearance: none;    
             appearance: none;
+            cursor: pointer;
         }
         &__list::-ms-expand {
             display: none;            
         }
         &:hover &__view{
-
+            background-color: #dadada;
         }
     }
     &__label{
@@ -63,6 +64,8 @@
         height: 100%;
         outline: 0;
         border: 0;
+        text-indent: .8rem;
+        font-size: 1.5rem;
     }
     &__btn{
         position: relative;
@@ -92,7 +95,7 @@
             height: 2.1rem;
             text-indent: -5rem;
             color: $color-text-white;
-            background: url(../images/nav-sprite-global_icons.png);
+            background: url(../static/images/nav-sprite-global_icons.png);
             background-position: -10px -290px;
             background-size: 350px;
         }

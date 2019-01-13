@@ -1,32 +1,48 @@
 .cards{
     display: grid;
-    grid-template-columns: repeat(4, 19.7rem);
-    grid-template-rows: 6.5rem;
+    grid-template-columns: repeat(5, 15rem);
+    grid-template-rows: 21rem;
     grid-auto-flow: column;
     grid-gap: .6rem;
     justify-content: center;
     list-style: none;
     &__card{
         position: relative;
-        background-color: #2492C1;
+        height: 100%;
+        background-size: 1200px auto, 100% 100%;
+        background-position: 0px 0px, 0px 0px;
+        background-repeat: no-repeat, repeat;
+        cursor: pointer;
         &__title{
             position: absolute;
             left: 0;
-            right: 0;
+            bottom: 2.4rem;
             width: 100%;
-            text-align: center;
-            font-size: 16px;
+            font-family: AmazonEmber;
             font-weight: 300;
-            padding: 0 25px;
-            margin: auto;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 300;
             color: #FFF;
             pointer-events: none;
         }
         &__content{
 
+        }
+        &--blue{
+            background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png), linear-gradient(30deg, #2C88AE 40%, #00A8E1 90%, #00A8E1 48px);
+        }
+        &--red{
+            background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png), linear-gradient(30deg, #CC0C39 40%, #FF6138 90%, #FF6138 48px);
+        }
+        &--pink{
+            background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png), linear-gradient(30deg, #A90067 40%, #E31F64 90%, #E31F64 48px);
+        }
+        &--green{
+            background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png), linear-gradient(30deg, #008577 40%, #36C2B4 90%, #36C2B4 48px);
+        }
+        &--orange{
+            background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png), linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px);
         }
     }
 }
