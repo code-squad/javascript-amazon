@@ -1,208 +1,63 @@
-#prime-carousel {
-  position: relative;
-  top: -58px;
+.video-carousel .carousel-display {
+    width: 280px;
+    height: 210px;
+    overflow: hidden;
+}
+  
+.video-carousel .carousel-display .carousel-wrapper {
+    display: flex;
+    width: 70rem;
+    transform: translateX(-17.5rem);
 }
 
-.carousel-cards {
-  text-align: center;
+.video-carousel .carousel-display .carousel-wrapper.slideLeftOn {
+    transform: none;
+    transition: all 0.3s;
 }
 
-.carousel-cards .card:last-child {
-  margin: 0;
+.video-carousel .carousel-display .carousel-wrapper.slideRightOn {
+    transform: translateX(-35rem);
+    transition: all 0.3s;
 }
 
-.card {
-  position: relative;
-  width: 150px;
-  height: 212px;
-  display: inline-block;
-  overflow: hidden;
+.video-carousel .carousel-display .carousel-wrapper .carousel-item {
+    width: 100%;
+}
+  
+.video-carousel .carousel-display .carousel-wrapper .carousel-item img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
-.card .card-ship {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 202px;
-  height: 260px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png),
-    linear-gradient(30deg, #2c88ae 40%, #00a8e1 85%, #00a8e1 74px);
-  background-size: 700%, cover;
-  background-position: 10px 15px;
+.music-carousel .carousel-display {
+    width: 220px;
+    height: 210px;
+    overflow: hidden;
 }
 
-.card-click-zone {
-  position: relative;
-  top: 24px;
-  width: 100%;
-  height: 212px;
-  cursor: pointer;
+.music-carousel .carousel-display .carousel-wrapper {
+    display: flex;
+    width: 55rem;
+    transform: translateX(-13.75rem);
 }
 
-.card-click-zone .card-name {
-  position: absolute;
-  left: 50%;
-  bottom: 25px;
-  color: #fff;
-  font-size: 18px;
-  text-align: center;
-  transform: translateX(-50%);
+.music-carousel .carousel-display .carousel-wrapper.slideLeftOn {
+    transform: none;
+    transition: all 0.3s;
 }
 
-.card-btn-container {
-  position: absolute;
-  left: 50%;
-  bottom: 10px;
-  transform: translateX(-50%);
+.music-carousel .carousel-display .carousel-wrapper.slideRightOn {
+    transform: translateX(-27.5rem);
+    transition: all 0.3s;
 }
 
-.btn-carousel {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #cccccc;
+.music-carousel .carousel-display .carousel-wrapper .carousel-item {
+    width: 100%;
 }
-
-.card-stream {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 260px;
-  width: 202px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png),
-    linear-gradient(30deg, #cc0c39 40%, #ff6138 90%, #ff6138 48px);
-  background-size: 700%, cover;
-  background-position: 10px 15px;
-}
-
-.card-shop {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 260px;
-  width: 202px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png),
-    linear-gradient(30deg, #a90067 40%, #e31f64 90%, #e31f64 48px);
-  background-size: 700%, cover;
-  background-position: 10px 15px;
-}
-
-.card-read {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 260px;
-  width: 202px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png),
-    linear-gradient(30deg, #008577 40%, #36c2b4 90%, #36c2b4 48px);
-  background-size: 700%, cover;
-  background-position: 10px 15px;
-}
-
-.card-more {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 260px;
-  width: 202px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png),
-    linear-gradient(30deg, #ff6138 40%, #ffc400 90%, #ffc400 48px);
-  background-size: 700%, cover;
-  background-position: 10px 15px;
-}
-
-.none {
-  overflow: visible;
-  z-index: 1;
-}
-
-.card .click {
-  background-position: 0px 0;
-  background-size: 800%, cover;
-}
-
-#prime-carousel .carousel-play {
-  width: 1112px;
-  margin: 40px auto 0;
-}
-
-#prime-carousel .carousel-play > div {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-#prime-carousel .carousel-play .play-left-arrow {
-  width: 50px;
-  height: 50px;
-  background-position: -52px 0;
-  background-size: 300%;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
-}
-
-#prime-carousel .carousel-play .play-display {
-  width: 1000px;
-  height: 350px;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A01._CB514650866_.jpg);
-  background-position: center;
-}
-
-#prime-carousel .carousel-play .play-display .play-card-content {
-  margin-left: 50%;
-}
-
-#prime-carousel
-  .carousel-play
-  .play-display
-  .play-card-content
-  .play-card-cate-text {
-  display: inline-block;
-  background-image: linear-gradient(
-    30deg,
-    #2c88ae 40%,
-    #00a8e1 85%,
-    #00a8e1 74px
-  );
-  text-transform: uppercase;
-  color: #fff;
-  padding: 7px;
-  margin-bottom: 15px;
-}
-#prime-carousel
-  .carousel-play
-  .play-display
-  .play-card-content
-  .play-card-headline {
-  font-size: 26px;
-  font-weight: 100;
-  margin-bottom: 15px;
-}
-#prime-carousel
-  .carousel-play
-  .play-display
-  .play-card-content
-  .play-card-subline {
-  width: 400px;
-  margin-bottom: 15px;
-}
-#prime-carousel
-  .carousel-play
-  .play-display
-  .play-card-content
-  .play-card-link {
-  font-weight: 600;
-  text-decoration: none;
-  color: #002f36;
-}
-#prime-carousel .carousel-play .play-right-arrow {
-  width: 50px;
-  height: 50px;
-  background-position: -50px -98px;
-  background-size: 300%;
-  background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+  
+.music-carousel .carousel-display .carousel-wrapper .carousel-item img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
 }

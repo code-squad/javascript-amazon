@@ -3,8 +3,7 @@
 .nav-plan-layer {
     position: absolute;
     width: 100%;
-    background: #fff;
-    border-bottom: 3px solid #54b7fd;
+    border-bottom: 2.5px solid #54b7fd;
     z-index: 9999;
 }
 
@@ -12,10 +11,9 @@
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
 }
 
-.nav-plan-layer > div {
+.nav-plan-layer .hidden-content {
     width: 100%;
     height: 0;
     overflow: hidden;
@@ -33,13 +31,10 @@
     background-color: #232f3e;
 }
 
-.bar-wrapper .bar-prime-logo {
-    width: 16rem;
+.bar-wrapper .bar-prime-logo img{
+    width: 7rem;
     height: 3.2rem;
-    margin: 0.7rem 0;
-    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_Blue._CB515489499_.svg);
-    background-repeat: no-repeat;
-    background-position: center;
+    margin: 0.7rem 5rem;
 }
 
 .bar-wrapper .bar-see-more {
@@ -73,6 +68,11 @@
     line-height: 2.8rem;
 }
 
+.nav-hidden-close,
+.nav-hidden-plan {
+    background-color:#fff;
+}
+
 .nav-hidden-close.visible {
     height: 1.5rem;
     text-align: center;
@@ -89,7 +89,7 @@
 }
 
 .nav-plan-layer .nav-hidden-plan.visible {
-    height: 41rem;
+    height: 42rem;
 }
 
 .plan-container .plan-wrapper {

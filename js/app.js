@@ -1,20 +1,21 @@
-import { Scroll, StickyLayer } from "./module/StickyLayer.js"
+import { StickyLayer } from "./module/StickyLayer.js"
+import { Carousel } from "./module/Carousel.js";
 
-window.addEventListener("DOMContentLoaded", () => {
-    const scroll = new Scroll;
-    const stickyLayer = new StickyLayer({
-        stickyEl: document.querySelector(".nav-plan-layer")
-    });
-
-    scroll.addEvent(
-        stickyLayer.pinElement({
-            thresholdEl: document.querySelector(".nav-lower")
-        }),
-        stickyLayer.displayHiddenBar({
-            hiddenBar: stickyLayer.stickyEl.querySelector(".nav-hidden-bar"),
-            thresholdEl: document.querySelector(".prime-header-content .btn-prime-container")
-        })
-    );
- 
-    stickyLayer.displayHiddenPlan();
+const stickyLayer = new StickyLayer({ stickyEl: document.querySelector(".nav-plan-layer") });
+const videoCarousel = new Carousel({
+    targetHTML: document.querySelector(".video-carousel"), 
+    intervalTime: 3000,
+    delayTime: 5000
+});
+const musicCarousel = new Carousel({
+    targetHTML: document.querySelector(".music-carousel"), 
+    intervalTime: 3000,
+    delayTime: 5000
 })
+
+
+window.addEventListener("load", () => {
+    stickyLayer.run();
+    videoCarousel.run();
+    musicCarousel.run();
+});
