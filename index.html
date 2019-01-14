@@ -10,14 +10,16 @@
     </head>
     <body>
         <header class="header">
-            <div class="header__logo"></div>
+            <div class="header__logo">
+                <a class="header__logo__link" href="#none"></a>
+            </div>
             <div class="header__search">
                 <form class="form" name="site-search">
                     <div class="search">
                         <div class="search__select">
                             <div class="search__select__view">
                                 <span class="search__select__view__text">All</span>
-                                <i class="search__select__view__icon"></i>
+                                <div class="nav-arrow"></div>
                             </div>
                             <select class="search__select__list">
                                 <option selected="selected" value="search-alias=aps">All Departments</option>
@@ -41,7 +43,7 @@
                 </form>
             </div>
             <div class="header__banner-box">
-                <a href="#">
+                <a href="#none">
                     <img src="./static/images/TodaysDeals.png" alt="Learn More">
                 </a>
             </div>
@@ -51,7 +53,7 @@
                         <div class="nation-box__nation-img"></div>
                         <div class="nation-box__text-box">
                             <span class="nation-box__text-box__desc">Deliver to</span>
-                            <span class="nation-box__text-box__nation">Korea, Republic of</span>
+                            <span class="nav__big-text">Korea, Republic of</span>
                         </div>
                     </a>
                 </div>
@@ -62,7 +64,7 @@
                         <a class="nav__departments__link" href="#none"> 
                             <span class="nav__departments__text">Departments</span>
                         </a>
-                        <span class="nav__departments__img"></span>
+                        <span class="nav-arrow"></span>
                     </div>
                     <ul class="nav__list">
                         <li class="nav__item"><a href="#" class="nav__link">Your Amazon.com</a></li>
@@ -117,7 +119,7 @@
             <section  class="prime-detail">
                 <div class="prime-detail__container">
                     <ul class="cards">
-                        <li class="cards__card cards__card--blue">
+                        <li class="cards__card cards__card--blue card__selected">
                             <span class="cards__card__title">Ship</span>
                         </li>
                         <li class="cards__card cards__card--red">
@@ -136,18 +138,17 @@
                     <div class="carousel">
                         <ul class="carousel__list">
                             <li class="carousel__item carousel__ship-1">
-
+                                <div class="text-box">
+                                    <div class="text-box__guide">TWO-DAY SHIPPING</div>
+                                    <div class="text-box__heading">Fast, free delivery on over 100 million items</div>
+                                    <p class="text-box__paragraph">Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
+                                    <a class="text-box__link" href="#none">Explore Prime Delivery</a>
+                                </div>
                             </li>
                         </ul>
                         
                     </div>
                 </div>
-            </section>
-            <section  class="prime-benefit">
-
-            </section>
-            <section  class="prime-">
-
             </section>
         </main>
         <footer>

@@ -26,9 +26,6 @@
             color: #FFF;
             pointer-events: none;
         }
-        &__content{
-
-        }
         &--blue{
             background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png), linear-gradient(30deg, #2C88AE 40%, #00A8E1 90%, #00A8E1 48px);
         }
@@ -47,82 +44,12 @@
     }
 }
 
-#primeComparisonTable {
-    border: 2px solid #e1e1e1;
-    min-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#primeComparisonTable .small-gray {
-    font-size: 10px;
-    color: #808080;
-    display: block;
-    line-height: 11px;
-    margin-bottom: 20px;
-}
-
-table#primeComparisonTable:last-child {
-    margin-bottom: inherit;
-}
-
-#primeComparisonTable .header-row {
-    height: 36px;
-}
-
-#primeComparisonTable tr.header-row th {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    vertical-align: middle;
-    font-weight: 700;
-}
-
-#primeComparisonTable tr {
-    height: 44px;
-}
-
-#primeComparisonTable tr:nth-child(odd) {
-    background: #ebebeb;
-}
-
-#primeComparisonTable th:nth-child(2) {
-    padding: 0px;
-    text-align: center;
-    min-width: 100px;
-}
-
-#primeComparisonTable th:nth-child(2) img {
-    width: 55px;
-    padding-top: 5px;
-    margin: 0 auto;
-}
-
-
-#primeComparisonTable tr th,
-#primeComparisonTable tr td {
-    font-size: 13px;
-    font-weight: normal;        
-    line-height: 20px;
-    padding: 12px 5px 0px;
-}
-
-#primeComparisonTable tr th:first-child,
-#primeComparisonTable tr td:first-child {
-    text-align: left;
-}
-
-#primeComparisonTable tr td:nth-child(2) {
-    color: #05a934;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-#primeComparisonTable tr td:nth-child(3) {
-    color: #df746e;
-    font-weight: bold;
-}
-
-#primeComparisonTable .column-heading {
-    min-width: 90px;
+.card__selected{
+    margin-left: -2.6rem;
+    margin-top: -3rem;
+    width: 202px;
+    height: 262px;
+    background-size: 1616px auto, 100% 100%;
+    background-position: 0px 0, 0px 0px;;
+    z-index: 999;
 }

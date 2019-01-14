@@ -6,7 +6,7 @@
         position: relative;
         overflow: hidden;
         &__view{
-            padding: .2rem 2.1rem 0 1.1rem;
+            padding: .2rem .8rem 0 1.1rem;
             border-right: 1px solid #cdcdcd;
             border-radius: .4rem 0 0 .4rem;
             height: 100%;
@@ -16,6 +16,9 @@
                 line-height: 3.3rem;
                 font-size: 1.2rem;
                 color: #666;
+            }
+            .nav-arrow{
+                margin-left: .2rem;
             }
             &__icon{
                 position: absolute;
@@ -71,7 +74,7 @@
         position: relative;
         border-radius: 0 .4rem .4rem 0;
         background-color: $color-search-submit-button;
-
+        cursor: pointer;
         &__submit{
             position: relative;
             display: block;
@@ -90,7 +93,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-52%, -52%);
             width: 2.1rem;
             height: 2.1rem;
             text-indent: -5rem;

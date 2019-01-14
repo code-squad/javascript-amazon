@@ -24,11 +24,11 @@ html {
   font-size: 1.4rem; }
 
 .nav__small-text {
-  color: #ccc;
+  color: #fff;
   font-size: 1.3rem; }
 
 .nav__cart-counter {
-  color: #f08804;
+  color: #fff;
   font-size: 1.6rem; }
 
 @font-face {
@@ -84,70 +84,33 @@ html {
     .cards__card--orange {
       background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png), linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px); }
 
-#primeComparisonTable {
-  border: 2px solid #e1e1e1;
-  min-width: 320px;
-  margin-left: auto;
-  margin-right: auto; }
+.card__selected {
+  margin-left: -2.6rem;
+  margin-top: -3rem;
+  width: 202px;
+  height: 262px;
+  background-size: 1616px auto, 100% 100%;
+  background-position: 0px 0, 0px 0px;
+  z-index: 999; }
 
-#primeComparisonTable .small-gray {
-  font-size: 10px;
-  color: #808080;
-  display: block;
-  line-height: 11px;
-  margin-bottom: 20px; }
+.carousel__list {
+  margin: 0 auto;
+  margin-top: 3rem;
+  height: 40rem;
+  width: 91.3rem; }
 
-table#primeComparisonTable:last-child {
-  margin-bottom: inherit; }
+.carousel__item {
+  list-style: none;
+  height: 100%; }
+  .carousel__item .text-box {
+    width: 50%;
+    max-width: 480px;
+    margin-left: 50%;
+    text-align: left; }
 
-#primeComparisonTable .header-row {
-  height: 36px; }
-
-#primeComparisonTable tr.header-row th {
-  padding-top: 7px;
-  padding-bottom: 7px;
-  vertical-align: middle;
-  font-weight: 700; }
-
-#primeComparisonTable tr {
-  height: 44px; }
-
-#primeComparisonTable tr:nth-child(odd) {
-  background: #ebebeb; }
-
-#primeComparisonTable th:nth-child(2) {
-  padding: 0px;
-  text-align: center;
-  min-width: 100px; }
-
-#primeComparisonTable th:nth-child(2) img {
-  width: 55px;
-  padding-top: 5px;
-  margin: 0 auto; }
-
-#primeComparisonTable tr th,
-#primeComparisonTable tr td {
-  font-size: 13px;
-  font-weight: normal;
-  line-height: 20px;
-  padding: 12px 5px 0px; }
-
-#primeComparisonTable tr th:first-child,
-#primeComparisonTable tr td:first-child {
-  text-align: left; }
-
-#primeComparisonTable tr td:nth-child(2) {
-  color: #05a934;
-  font-weight: bold;
-  text-align: center;
-  text-transform: uppercase; }
-
-#primeComparisonTable tr td:nth-child(3) {
-  color: #df746e;
-  font-weight: bold; }
-
-#primeComparisonTable .column-heading {
-  min-width: 90px; }
+.carousel__ship-1 {
+  background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255, 255, 255, 0) 45px), url(../static/images/Card_ship_01.jpg);
+  background-position: center; }
 
 .nation-box__link {
   display: flex;
@@ -187,7 +150,7 @@ table#primeComparisonTable:last-child {
     position: relative;
     overflow: hidden; }
     .search__select__view {
-      padding: .2rem 2.1rem 0 1.1rem;
+      padding: .2rem .8rem 0 1.1rem;
       border-right: 1px solid #cdcdcd;
       border-radius: .4rem 0 0 .4rem;
       height: 100%;
@@ -197,6 +160,8 @@ table#primeComparisonTable:last-child {
         line-height: 3.3rem;
         font-size: 1.2rem;
         color: #666; }
+      .search__select__view .nav-arrow {
+        margin-left: .2rem; }
       .search__select__view__icon {
         position: absolute;
         top: 1.6rem;
@@ -242,7 +207,8 @@ table#primeComparisonTable:last-child {
   .search__btn {
     position: relative;
     border-radius: 0 .4rem .4rem 0;
-    background-color: #febd69; }
+    background-color: #febd69;
+    cursor: pointer; }
     .search__btn__submit {
       position: relative;
       display: block;
@@ -260,7 +226,7 @@ table#primeComparisonTable:last-child {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-52%, -52%);
       width: 2.1rem;
       height: 2.1rem;
       text-indent: -5rem;
@@ -269,39 +235,39 @@ table#primeComparisonTable:last-child {
       background-position: -10px -290px;
       background-size: 350px; }
 
-.header {
-  display: grid;
-  grid-template-rows: 4rem 4.8rem;
-  grid-template-columns: 19.2rem 1fr 40rem;
-  padding-top: 1.1rem;
-  border-bottom: .2rem solid #00a8e1;
-  background-color: #232f3e; }
-  .header__logo {
-    margin: .2rem 0 0 2.7rem;
-    width: 9.7rem;
-    height: 3rem;
-    background: url(../static/images/nav-sprite-global_icons.png);
-    background-size: 350px;
-    background-position: -10px -51px; }
-  .header__search {
-    padding-right: 2.5rem; }
-  .header__banner-box {
-    margin-top: -.2rem; }
-  .header__nation-box {
-    margin: auto;
-    padding: .2rem 1.8rem 0 .5rem; }
-  .header__nav {
-    align-self: end;
-    padding-bottom: .3rem; }
-  .header__tools {
-    display: grid;
-    grid-template-columns: repeat(5, max-content);
-    align-items: end;
-    padding: 0 0 .3rem 3.5rem; }
+.text-box {
+  text-align: left;
+  height: 100%;
+  width: 100%;
+  font-family: AmazonEmber; }
+  .text-box__guide {
+    margin-bottom: 2rem;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+    background-color: #00A8E1; }
+  .text-box__heading {
+    padding-bottom: 2rem;
+    font-size: 2.8rem;
+    font-weight: 300; }
+  .text-box__paragraph {
+    margin-bottom: 2rem;
+    line-height: 2.8rem;
+    font-size: 1.8rem;
+    font-weight: 300; }
+  .text-box__link {
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: #002F36; }
+    .text-box__link:hover {
+      text-decoration: underline; }
 
 .language {
   padding: 1rem .4rem .3rem 1.45rem;
-  border: 1px solid transparent; }
+  border: 1px solid transparent;
+  cursor: pointer; }
   .language--text {
     font-size: 1.2rem;
     color: #ccc; }
@@ -332,7 +298,8 @@ table#primeComparisonTable:last-child {
 
 .sign-in {
   padding: .7rem .8rem .6rem 1rem;
-  border: 1px solid transparent; }
+  border: 1px solid transparent;
+  cursor: pointer; }
   .sign-in--guide {
     font-size: 1.2rem;
     color: #ccc; }
@@ -351,7 +318,8 @@ table#primeComparisonTable:last-child {
 
 .orders {
   padding: .4rem .7rem .5rem 1.05rem;
-  border: 1px solid transparent; }
+  border: 1px solid transparent;
+  cursor: pointer; }
   .orders:hover {
     border: .1rem solid #4f5965;
     border-radius: .3rem;
@@ -362,12 +330,14 @@ table#primeComparisonTable:last-child {
   display: flex;
   align-items: flex-end;
   padding: 1.1rem 2.1rem .5rem 1.2rem;
-  border: 1px solid transparent; }
+  border: 1px solid transparent;
+  cursor: pointer; }
   .cart .nav__cart-counter {
     position: absolute;
     top: .55rem;
     left: .45rem;
     padding-left: 2.5rem;
+    color: #f08804;
     font-weight: bold; }
   .cart-image {
     background: url(../static/images/nav-sprite-global_icons.png);
@@ -382,6 +352,39 @@ table#primeComparisonTable:last-child {
     border: .1rem solid #4f5965;
     border-radius: .3rem;
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5); }
+
+.header {
+  display: grid;
+  grid-template-rows: 4rem 4.8rem;
+  grid-template-columns: 19.2rem 1fr 40rem;
+  padding-top: 1.1rem;
+  border-bottom: 0.2rem solid #00a8e1;
+  background-color: #232f3e; }
+  .header__logo {
+    margin: .2rem 0 0 2.7rem;
+    width: 9.7rem;
+    height: 3rem;
+    background: url(../static/images/nav-sprite-global_icons.png);
+    background-size: 350px;
+    background-position: -10px -51px; }
+    .header__logo__link {
+      width: 100%;
+      height: 100%; }
+  .header__search {
+    padding-right: 2.5rem; }
+  .header__banner-box {
+    margin-top: -.2rem; }
+  .header__nation-box {
+    margin: auto;
+    padding: .2rem 1.8rem 0 .5rem; }
+  .header__nav {
+    align-self: end;
+    padding-bottom: .3rem; }
+  .header__tools {
+    display: grid;
+    grid-template-columns: repeat(5, max-content);
+    align-items: end;
+    padding: 0 0 .3rem 3.5rem; }
 
 .nav-arrow {
   background: url(../static/images/nav-sprite-global_icons.png);
@@ -427,6 +430,9 @@ table#primeComparisonTable:last-child {
       border-radius: .3rem;
       box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5);
       padding: .4rem .9rem .4rem 1.3rem; }
+    .nav__departments .nav-arrow {
+      margin-left: .2rem;
+      border-top-color: #a7acb2; }
   .nav__list {
     padding-top: .3rem;
     display: grid;
@@ -516,7 +522,7 @@ table#primeComparisonTable:last-child {
 
 .prime-detail {
   position: relative;
-  top: -9.2rem; }
+  top: -6rem; }
   .prime-detail__heading-text {
     margin-bottom: 2rem;
     font-size: 2.2rem;

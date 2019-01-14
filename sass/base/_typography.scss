@@ -3,16 +3,16 @@ html{
 }
 
 .nav__big-text{
-  color: #fff;
+  color: $color-text-white;
   font-weight: bold;
   font-size: 1.4rem;
 }
 .nav__small-text{
-  color: #ccc;
+  color: $color-text-white;
   font-size: 1.3rem;
 }
 .nav__cart-counter{
-  color: #f08804;
+  color: $color-text-white;
   font-size: 1.6rem;
 }
 
