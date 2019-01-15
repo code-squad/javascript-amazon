@@ -1,0 +1,118 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+html {
+	font-size: 1rem;
+	font-family: Arial, sans-serif;
+}
+
+.navbar {
+	background-color: #232f3e;
+}
+
+.logo {
+	padding: 13px 18px 0 27px;
+	width: 190px;
+	height: 26px;
+	float: left;
+}
+
+.logo-img {
+	width: 100px;
+	height: 30px;
+}
+
+.logo-primeLink {
+	font-size: 11px;
+	font-weight: 700;
+	text-decoration: underline;
+	color: #48A3C6;
+	position: absolute;
+	top: 31px;
+	left: 96px;
+}
+
+.search-bar {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 882px;
+	height: 37px;
+	margin: 10px 18px 0 27px;
+	border-radius: 4px 4px 4px 4px;
+	background-color: #fff;
+	position: relative;
+}
+
+.selector {
+	border-radius: 4px 4px 4px 4px;
+	position: relative;
+	width: 60px;
+	display: inline-block;
+	padding: 10px;
+	height: 100%;
+}
+
+.selector-ico {
+	position: absolute;
+	top: 18px;
+	left: 35px;
+	border-style: solid;
+	border-width: 4px;
+	border-color: transparent;
+	border-top: 4px solid #666;
+	border-bottom-width: 0;
+}
+
+.inputsearch {
+	font-size: 16px;
+	height: 100%;
+	position: absolute;
+	width: 778px;
+}
+
+.selector-list {
+	border-radius: 4px 4px 4px 4px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 45px;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.searchexecute {
+	position: relative;
+	width: 45px;
+	height: 100%;
+	float: right;
+	background-color: #febd69;
+	border-radius: 0px 4px 4px 0px;
+}
+
+.searchexecute_ico {
+	position: relative;
+	height: 21px;
+	width: 21px;
+	top: 7px;
+	left: 13px;
+}
+
+.evnetimg {
+	float: right;
+	display: inline-block;
+	position: absolute;
+	margin: 13px 8px 0 0px;
+}
