@@ -23,6 +23,19 @@
         font-size: 1.8rem;
         font-weight: 300;
     }
+    &__link-box{
+        .arrow-icon{
+            background-image: url(../static/images/Sprites_icons.png);
+            -moz-background-size: 158px auto;
+            background-size: 158px auto;
+            background-position: -6px -233px;
+            width: 6px;
+            height: 9px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 6px;
+        }
+    }
     &__link{
         text-decoration: none;
         font-size: 1.8rem;

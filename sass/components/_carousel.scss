@@ -1,22 +1,13 @@
 .carousel{
-    &__list{
-        margin: 0 auto;
-        margin-top: 3rem;
-        height: 40rem;
-        width: 91.3rem;
-    }
     &__item{
         list-style: none;
         height: 100%;
         .text-box{
             width: 50%;
-            max-width: 480px;
+            max-width: 48rem;
             margin-left: 50%;
             text-align: left;
         }
     }
-    &__ship-1{
-        background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(../static/images/Card_ship_01.jpg);
-        background-position: center;
-    }
+    
 }

@@ -1,17 +1,10 @@
 .prime-about{
     height: 47.4rem;
     padding: 3rem 0 0 7rem;
-    background-color: $color-secondary;
-    background: radial-gradient(bottom right,#00A8E1,#0079b4);
-    background: -ms-radial-gradient(bottom right,#00A8E1,#0079b4);
-    background: -moz-radial-gradient(bottom right,#00A8E1,#0079b4);
-    background: -o-radial-gradient(bottom right,#00A8E1,#0079b4);
-    background: -webkit-radial-gradient(bottom right,#00A8E1,#0079b4);
     background: url(../../static/images/Prime_about.png);
     background-size: auto 47.6rem;
-    background-position: left top;
+    background-position: left bottom;
     background-repeat: no-repeat;
-    
     font-family: AmazonEmber, arial, sans-serif;
     color: $color-text-white;
     sup{
@@ -53,6 +46,9 @@
                 width: 100%;
                 height: 100%;
                 cursor: pointer;
+                &:hover{
+                    background-color: #ffc400;
+                }
             }
         }
     }
@@ -91,7 +87,8 @@
 
 .prime-detail{
     position: relative;
-    top: -6rem;
+    top: -9.2rem;
+    margin-bottom: -9.2rem;
     &__heading-text{
         margin-bottom: 2rem;
         font-size: 2.2rem;
@@ -99,5 +96,154 @@
     }
     &__container{
         text-align: center;
+        .carousel{
+            width: 100%;
+            height: 100%;
+            &__list{
+                margin: 0 auto;
+                height: 40rem;
+                width: 91.3rem;
+            }
+            &__item{
+                padding-top: 3rem;
+            }
+            &__ship-1{
+                background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(../static/images/Card_ship_01.jpg);
+                background-position: center;
+            }
+            .text-box{
+                &__link-box{
+                    .arrow-icon{
+                        background-position: -6px -233px;
+                        margin: 0 0 .3rem .4rem;
+                    }
+                }
+                &__link{
+                    line-height: 1.8rem;
+                }
+            }
+        }
+    }
+}
+
+.prime-more{
+    margin-top: 2rem;
+    &__heading-2{
+        margin-left: 7rem;
+        margin-bottom: .8rem;
+        font-family: AmazonEmber;
+        font-size: 2.8rem;
+        font-weight: 300;
+    }
+    &--delivery{
+        height: 36rem;
+        padding-left: 7rem;
+        background-image: url("../static/images/PrimeDelivery.png");
+        background-size: auto 360px;
+        background-position: top center;
+        .text-box{
+            width: 50rem;
+            padding-top: 6.5rem;
+            &__heading{
+                line-height: 4.8rem;
+                font-size: 4.8rem;
+                font-weight: 300;
+                color: $color-text-white;
+            }
+            &__paragraph{
+                width: 42rem;
+                line-height: 2.5rem;
+                font-size: 1.8rem;
+                color: $color-text-white;
+            }
+            &__link{
+                line-height: 1.8rem;
+                color: $color-text-white;
+            }
+            &__link-box{
+                .arrow-icon{
+                    background-position: 0 -233px;
+                    margin: 0 0 .3rem .4rem;
+                }
+            }
+        }
+    }
+    &--Video{
+        display: grid;
+        grid-template-columns: 1fr 58rem;
+        height: 36.8rem;
+        margin-top: 0rem;
+        padding: 6rem 7rem 0;
+        .carousel{
+            display: grid;
+            grid-template-columns: 4rem 28rem 4rem;
+            grid-template-rows: 21rem;
+            justify-content: center;
+            padding-top: .8rem;
+            padding-right: 1.7rem;
+            &__list{
+                width: 100%;
+                height: 100%;
+                margin: 0 auto;
+            }
+            &__item{
+                background: url(../static/images/video.jpg);
+                background-size: cover;
+            }
+            &__arrow-box{
+                position: relative;
+                .arrow-icon{
+                    position: absolute;
+                    top: 40.5%;
+                }
+            }
+            &__left{
+                .arrow-icon{
+                    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+                    background-size: 158px auto;
+                    background-position: -79px -208px;
+                    left: .3rem;
+                    width: 13px;
+                    height: 20px;
+                    display: inline-block;
+                    cursor: pointer;
+                }
+            }
+            &__right{
+                .arrow-icon{
+                    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+                    background-size: 158px auto;
+                    background-position: -92px -208px;
+                    right: .3rem;
+                    width: 13px;
+                    height: 20px;
+                    display: inline-block;
+                    cursor: pointer;
+                }
+            }
+        }
+        .text-box{
+            width: 58rem;
+            color: $color-text-dark;
+            font-family: AmazonEmber;
+            &__heading{
+                line-height: 4.8rem;
+                font-size: 4.8rem;
+                font-weight: 300;
+            }
+            &__paragraph{
+                width: 50rem;
+                line-height: 2.5rem;
+                font-size: 1.8rem;
+            }
+            &__link{
+                line-height: 1.8rem;
+            }
+            &__link-box{
+                .arrow-icon{
+                    margin: 0 0 .3rem .4rem;
+                }
+            }
+        }
     }
 }

@@ -31,6 +31,9 @@ html {
   color: #fff;
   font-size: 1.6rem; }
 
+[class^=prime--] {
+  font-family: AmazonEmber; }
+
 @font-face {
   font-family: AmazonEmber;
   src: url(../static/font/AmazonEmber_300.woff) format("woff");
@@ -47,6 +50,7 @@ html {
   font-weight: 700; }
 
 .cards {
+  padding: 2.6rem 0;
   display: grid;
   grid-template-columns: repeat(5, 15rem);
   grid-template-rows: 21rem;
@@ -57,14 +61,11 @@ html {
   .cards__card {
     position: relative;
     height: 100%;
-    background-size: 1200px auto, 100% 100%;
-    background-position: 0px 0px, 0px 0px;
-    background-repeat: no-repeat, repeat;
     cursor: pointer; }
     .cards__card__title {
       position: absolute;
       left: 0;
-      bottom: 2.4rem;
+      bottom: 2.2rem;
       width: 100%;
       font-family: AmazonEmber;
       font-weight: 300;
@@ -74,43 +75,80 @@ html {
       color: #FFF;
       pointer-events: none; }
     .cards__card--blue {
-      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png), linear-gradient(30deg, #2C88AE 40%, #00A8E1 90%, #00A8E1 48px); }
+      background-image: linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px); }
+      .cards__card--blue .clickable {
+        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png), linear-gradient(30deg, #2C88AE 40%, #00A8E1 90%, #00A8E1 48px); }
     .cards__card--red {
-      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png), linear-gradient(30deg, #CC0C39 40%, #FF6138 90%, #FF6138 48px); }
+      background-image: linear-gradient(30deg, #CC0C39 40%, #FF6138 85%, #FF6138 74px); }
+      .cards__card--red .clickable {
+        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png), linear-gradient(30deg, #CC0C39 40%, #FF6138 90%, #FF6138 48px); }
     .cards__card--pink {
-      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png), linear-gradient(30deg, #A90067 40%, #E31F64 90%, #E31F64 48px); }
+      background-image: linear-gradient(30deg, #A90067 40%, #E31F64 85%, #E31F64 74px); }
+      .cards__card--pink .clickable {
+        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png), linear-gradient(30deg, #A90067 40%, #E31F64 90%, #E31F64 48px); }
     .cards__card--green {
-      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png), linear-gradient(30deg, #008577 40%, #36C2B4 90%, #36C2B4 48px); }
+      background-image: linear-gradient(30deg, #008577 40%, #36C2B4 85%, #36C2B4 74px); }
+      .cards__card--green .clickable {
+        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png), linear-gradient(30deg, #008577 40%, #36C2B4 90%, #36C2B4 48px); }
     .cards__card--orange {
-      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png), linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px); }
+      background-image: linear-gradient(30deg, #FF6138 40%, #FFC400 85%, #FFC400 74px); }
+      .cards__card--orange .clickable {
+        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png), linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px); }
+    .cards__card .clickable {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 21rem;
+      background-size: 1200px auto, 100% 100%;
+      background-position: 0px 0px, 0px 0px;
+      background-repeat: no-repeat, repeat; }
+    .cards__card .pagination-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: .5rem;
+      justify-items: center;
+      position: absolute;
+      bottom: 1.4rem;
+      left: 50%;
+      transform: translateX(-50%); }
+      .cards__card .pagination-box .pagination {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: #fff;
+        opacity: .5; }
 
 .card__selected {
   margin-left: -2.6rem;
-  margin-top: -3rem;
-  width: 202px;
-  height: 262px;
-  background-size: 1616px auto, 100% 100%;
-  background-position: 0px 0, 0px 0px;
-  z-index: 999; }
-
-.carousel__list {
-  margin: 0 auto;
-  margin-top: 3rem;
-  height: 40rem;
-  width: 91.3rem; }
+  margin-top: -2.6rem;
+  width: 20.2rem;
+  height: 26.2rem; }
+  .card__selected .clickable {
+    background-size: 1616px auto, 100% 100%;
+    background-position: 0px -26px, 0px 0px;
+    z-index: 999;
+    bottom: 26px; }
+  .card__selected .clickable::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -.8rem;
+    height: 100%;
+    width: .8rem;
+    background-color: #000;
+    filter: blur(4px);
+    opacity: .4; }
+  .card__selected .pagination-box .pagination__selected {
+    opacity: 1; }
 
 .carousel__item {
   list-style: none;
   height: 100%; }
   .carousel__item .text-box {
     width: 50%;
-    max-width: 480px;
+    max-width: 48rem;
     margin-left: 50%;
     text-align: left; }
-
-.carousel__ship-1 {
-  background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255, 255, 255, 0) 45px), url(../static/images/Card_ship_01.jpg);
-  background-position: center; }
 
 .nation-box__link {
   display: flex;
@@ -137,10 +175,8 @@ html {
   .nation-box__text-box__desc {
     display: block;
     font-size: 1.2rem; }
-  .nation-box__text-box__nation {
-    line-height: 1.4rem;
-    font-size: 1.4rem;
-    font-weight: bold; }
+  .nation-box__text-box .nav__big-text {
+    line-height: 1.4rem; }
 
 .search {
   display: grid;
@@ -211,6 +247,8 @@ html {
     cursor: pointer; }
     .search__btn__submit {
       position: relative;
+      width: 100%;
+      height: 100%;
       display: block;
       font-size: 14px;
       padding: 0;
@@ -234,6 +272,8 @@ html {
       background: url(../static/images/nav-sprite-global_icons.png);
       background-position: -10px -290px;
       background-size: 350px; }
+    .search__btn:hover {
+      background-color: #f3a847; }
 
 .text-box {
   text-align: left;
@@ -257,6 +297,16 @@ html {
     line-height: 2.8rem;
     font-size: 1.8rem;
     font-weight: 300; }
+  .text-box__link-box .arrow-icon {
+    background-image: url(../static/images/Sprites_icons.png);
+    -moz-background-size: 158px auto;
+    background-size: 158px auto;
+    background-position: -6px -233px;
+    width: 6px;
+    height: 9px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 6px; }
   .text-box__link {
     text-decoration: none;
     font-size: 1.8rem;
@@ -335,7 +385,7 @@ html {
   .cart .nav__cart-counter {
     position: absolute;
     top: .55rem;
-    left: .45rem;
+    left: .5rem;
     padding-left: 2.5rem;
     color: #f08804;
     font-weight: bold; }
@@ -450,15 +500,9 @@ html {
 .prime-about {
   height: 47.4rem;
   padding: 3rem 0 0 7rem;
-  background-color: #0079b4;
-  background: radial-gradient(bottom right, #00A8E1, #0079b4);
-  background: -ms-radial-gradient(bottom right, #00A8E1, #0079b4);
-  background: -moz-radial-gradient(bottom right, #00A8E1, #0079b4);
-  background: -o-radial-gradient(bottom right, #00A8E1, #0079b4);
-  background: -webkit-radial-gradient(bottom right, #00A8E1, #0079b4);
   background: url(../../static/images/Prime_about.png);
   background-size: auto 47.6rem;
-  background-position: left top;
+  background-position: left bottom;
   background-repeat: no-repeat;
   font-family: AmazonEmber, arial, sans-serif;
   color: #fff; }
@@ -495,6 +539,8 @@ html {
       width: 100%;
       height: 100%;
       cursor: pointer; }
+      .prime-about__form__submit-box__submit:hover {
+        background-color: #ffc400; }
   .prime-about--info {
     margin-top: .9rem;
     font-size: 1.4rem; }
@@ -522,10 +568,121 @@ html {
 
 .prime-detail {
   position: relative;
-  top: -6rem; }
+  top: -9.2rem;
+  margin-bottom: -9.2rem; }
   .prime-detail__heading-text {
     margin-bottom: 2rem;
     font-size: 2.2rem;
     font-weight: 300; }
   .prime-detail__container {
     text-align: center; }
+    .prime-detail__container .carousel {
+      width: 100%;
+      height: 100%; }
+      .prime-detail__container .carousel__list {
+        margin: 0 auto;
+        height: 40rem;
+        width: 91.3rem; }
+      .prime-detail__container .carousel__item {
+        padding-top: 3rem; }
+      .prime-detail__container .carousel__ship-1 {
+        background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255, 255, 255, 0) 45px), url(../static/images/Card_ship_01.jpg);
+        background-position: center; }
+      .prime-detail__container .carousel .text-box__link-box .arrow-icon {
+        background-position: -6px -233px;
+        margin: 0 0 .3rem .4rem; }
+      .prime-detail__container .carousel .text-box__link {
+        line-height: 1.8rem; }
+
+.prime-more {
+  margin-top: 2rem; }
+  .prime-more__heading-2 {
+    margin-left: 7rem;
+    margin-bottom: .8rem;
+    font-family: AmazonEmber;
+    font-size: 2.8rem;
+    font-weight: 300; }
+  .prime-more--delivery {
+    height: 36rem;
+    padding-left: 7rem;
+    background-image: url("../static/images/PrimeDelivery.png");
+    background-size: auto 360px;
+    background-position: top center; }
+    .prime-more--delivery .text-box {
+      width: 50rem;
+      padding-top: 6.5rem; }
+      .prime-more--delivery .text-box__heading {
+        line-height: 4.8rem;
+        font-size: 4.8rem;
+        font-weight: 300;
+        color: #fff; }
+      .prime-more--delivery .text-box__paragraph {
+        width: 42rem;
+        line-height: 2.5rem;
+        font-size: 1.8rem;
+        color: #fff; }
+      .prime-more--delivery .text-box__link {
+        line-height: 1.8rem;
+        color: #fff; }
+      .prime-more--delivery .text-box__link-box .arrow-icon {
+        background-position: 0 -233px;
+        margin: 0 0 .3rem .4rem; }
+  .prime-more--Video {
+    display: grid;
+    grid-template-columns: 1fr 58rem;
+    height: 36.8rem;
+    margin-top: 0rem;
+    padding: 6rem 7rem 0; }
+    .prime-more--Video .carousel {
+      display: grid;
+      grid-template-columns: 4rem 28rem 4rem;
+      grid-template-rows: 21rem;
+      justify-content: center;
+      padding-top: .8rem;
+      padding-right: 1.7rem; }
+      .prime-more--Video .carousel__list {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto; }
+      .prime-more--Video .carousel__item {
+        background: url(../static/images/video.jpg);
+        background-size: cover; }
+      .prime-more--Video .carousel__arrow-box {
+        position: relative; }
+        .prime-more--Video .carousel__arrow-box .arrow-icon {
+          position: absolute;
+          top: 40.5%; }
+      .prime-more--Video .carousel__left .arrow-icon {
+        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+        background-size: 158px auto;
+        background-position: -79px -208px;
+        left: .3rem;
+        width: 13px;
+        height: 20px;
+        display: inline-block;
+        cursor: pointer; }
+      .prime-more--Video .carousel__right .arrow-icon {
+        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+        background-size: 158px auto;
+        background-position: -92px -208px;
+        right: .3rem;
+        width: 13px;
+        height: 20px;
+        display: inline-block;
+        cursor: pointer; }
+    .prime-more--Video .text-box {
+      width: 58rem;
+      color: #002F36;
+      font-family: AmazonEmber; }
+      .prime-more--Video .text-box__heading {
+        line-height: 4.8rem;
+        font-size: 4.8rem;
+        font-weight: 300; }
+      .prime-more--Video .text-box__paragraph {
+        width: 50rem;
+        line-height: 2.5rem;
+        font-size: 1.8rem; }
+      .prime-more--Video .text-box__link {
+        line-height: 1.8rem; }
+      .prime-more--Video .text-box__link-box .arrow-icon {
+        margin: 0 0 .3rem .4rem; }
