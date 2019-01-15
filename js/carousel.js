@@ -84,7 +84,6 @@ export default class Carousel {
         responseObj.map(element => this.createHTMLTemplate(element));
         this.searchItemLayer();
         this.insertClone();
-        this.setCarouselShow.call(this);
       }
     });
 

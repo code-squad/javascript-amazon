@@ -53,14 +53,18 @@
 
 .a-carousel {
   position: relative;
-  width: 100%;
+  /* width: 100%; */
+  width: 1680px;
   height: 232px;
   left: 0;
   overflow: hidden;
+  display: flex;
+  transition: all 100ms ease-out;
+  /* transform: translateX(100%); */
 }
 
 .a-link-category>* {
-  width: 100%;
+  width: 280px;
   height: 100%;
   cursor: pointer;
 }
@@ -74,7 +78,6 @@
 
 /* test */
 .a-carousel-item {
-  position: absolute;
   top: 0;
   z-index: 0;
   opacity: 1;
@@ -82,10 +85,6 @@
   align-items: center;
   width: 280px;
   height: 232px;
-  display: block;
-  float: left;
-  transition: all 100ms ease-out;
-  transform: translateX(100%);
 }
 
 
