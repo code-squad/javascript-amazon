@@ -4,7 +4,7 @@
 
 .head-nav-container {
     background-color:#24313f;
-    overflow:auto;
+    overflow:hidden;
 }
 /* location */
 .head-nav-location-container{
