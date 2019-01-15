@@ -44,7 +44,7 @@ li {
 }
 
 /* middle - search-box */
-.top-header-middle{
+.top-header-middle {
     width: 800px;
     margin: 10px auto;
     /* vertical-align: middle;
@@ -65,7 +65,7 @@ li {
     border: 4px solid transparent;
     width: 8px;
     height: 8px;
-    border-right-color:#9499a0;
+    border-right-color: #9499a0;
     border-bottom-color: #9499a0;
     transform: rotateZ(45deg);
     position: absolute;
@@ -108,4 +108,36 @@ li {
     background-repeat: no-repeat;
 }
 
+/* header-bottom */
+.btm-header {
+    width: 100%;
+    height: 46px;
+    text-align: center;
+    margin-top: 10px;
+}
 
+/* left - location  */
+
+.btm-header-left {
+    width: 192px;
+    height: 38px;
+    float: left;
+}
+
+/*  middle  */
+.btm-header-middle {
+    width: 800px;
+    margin: 10px auto;
+    /* vertical-align: middle;
+    text-align: center; */
+    /* position: relative; */
+    float: left;
+}
+
+/*  right  */
+
+.btm-header-right {
+    width: 400px;
+    height: 39px;
+    float: right;
+}
