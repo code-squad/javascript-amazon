@@ -6,7 +6,7 @@
 }
 
 .middle-body-content-container {
-    background-image: url('./amazonImage/middleBodyContentBackground.png');
+    background-image: url('../amazonImage/middleBodyContentBackground.png');
     margin: 0px 20px;
     height:330px;
 }

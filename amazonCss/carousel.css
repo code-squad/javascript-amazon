@@ -29,78 +29,78 @@ button {
 .carousel-button-container-button-left {
     width: 52px;
     height: 52px;
-    background-image: url('./amazonImage/carouselLeftBtn.png');
+    background-image: url('../amazonImage/carouselLeftBtn.png');
     background-size: 52px;
     margin-right: 20px;
 }
 
 /* backgroundImage */
 .twoDayShipping {
-    background-image: url('./amazonImage/twoDayShipping.jpg');
+    background-image: url('../amazonImage/twoDayShipping.jpg');
 }
 
 .sameDayDelivery {
-    background-image: url('./amazonImage/sameDayDelivery.jpg');
+    background-image: url('../amazonImage/sameDayDelivery.jpg');
 }
 
 .releaseDayDelivery {
-    background-image: url("./amazonImage/releaseDayDelivery.jpg");
+    background-image: url("../amazonImage/releaseDayDelivery.jpg");
 }
 
 .primeNow {
-    background-image: url("./amazonImage/primeNow.jpg")
+    background-image: url("../amazonImage/primeNow.jpg")
 }
 
 .primeVideo {
-    background-image: url("./amazonImage/primeVideo.jpg")
+    background-image: url("../amazonImage/primeVideo.jpg")
 }
 
 .twitchPrime {
-    background-image: url('./amazonImage/twitchPrime.jpg')
+    background-image: url('../amazonImage/twitchPrime.jpg')
 }
 
 .primeMusic {
-    background-image: url('./amazonImage/primeMusic.jpg')
+    background-image: url('../amazonImage/primeMusic.jpg')
 }
 
 .primeOriginals {
-    background-image: url("./amazonImage/primeOriginals.jpg")
+    background-image: url("../amazonImage/primeOriginals.jpg")
 }
 
 .audibleChannels {
-    background-image: url('./amazonImage/audibleChannels.jpg')
+    background-image: url('../amazonImage/audibleChannels.jpg')
 }
 
 .primeAtWholeFoodsMarket {
-    background-image: url('./amazonImage/PrimeAtWholeFoodsMarket.jpg')
+    background-image: url('../amazonImage/PrimeAtWholeFoodsMarket.jpg')
 }
 
 .alexaVoiceShopping {
-    background-image: url('./amazonImage/AlexaVoiceShopping.jpg')
+    background-image: url('../amazonImage/AlexaVoiceShopping.jpg')
 }
 
 .justWithPrime {
-    background-image: url('./amazonImage/justWithPrime.jpg')
+    background-image: url('../amazonImage/justWithPrime.jpg')
 }
 
 .amazonFamily {
-    background-image: url('./amazonImage/amazonFamily.jpg')
+    background-image: url('../amazonImage/amazonFamily.jpg')
 }
 
 .primeReading {
-    background-image: url('./amazonImage/primeReading.jpg')
+    background-image: url('../amazonImage/primeReading.jpg')
 }
 
 .amazonFirstReads {
-    background-image: url('./amazonImage/amazonFirstReads.jpg')
+    background-image: url('../amazonImage/amazonFirstReads.jpg')
 }
 
 .cashBack {
-    background-image: url('./amazonImage/cashBack.jpg')
+    background-image: url('../amazonImage/cashBack.jpg')
 }
 
 .amazonPhotos {
-    background-image: url('./amazonImage/amazonPhotos.jpg')
+    background-image: url('../amazonImage/amazonPhotos.jpg')
 }
 /* End */
 .carousel-show {
@@ -112,7 +112,7 @@ button {
 .carousel-button-container-button-right {
     width: 52px;
     height: 52px;
-    background-image: url('./amazonImage/carouselRightBtn.png');
+    background-image: url('../amazonImage/carouselRightBtn.png');
     background-size: 52px;
     margin-left: 20px;
 }
