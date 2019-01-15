@@ -53,14 +53,11 @@
 
 .a-carousel {
   position: relative;
-  /* width: 100%; */
   width: 1680px;
   height: 232px;
   left: 0;
   overflow: hidden;
   display: flex;
-  transition: all 100ms ease-out;
-  /* transform: translateX(100%); */
 }
 
 .a-link-category>* {
@@ -176,15 +173,14 @@
   font-size: 18px;
 }
 
-.activeLeft {
-  transition: none;
+.noneActive {
+  transition: none 0s ease 0s;
 }
 
-.activeRight {
+.active {
   transition: all 1000ms ease-out;
 }
 
 .show {
-  z-index: 1;
-  transform: none;
+  transform: translateX(-280px);
 }

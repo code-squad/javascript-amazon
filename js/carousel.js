@@ -24,38 +24,14 @@ export default class Carousel {
     this.clickEvent();
     // this.autoMoveEvent();
     this.xmlHttpRequest();
+    this.offset = -this.itemLayer.item.offsetWidth;
+    this.moveWithoutAnimation();
   }
 
-  // moveToPrev() {
-  //   const showSlide = $(`.${this.SHOWING_CLASS}`);
-
-  //   showSlide.classList.remove(this.SHOWING_CLASS);
-  //   const prevSlide = showSlide.previousElementSibling;
-
-  //   this.setPrevShow(prevSlide);
-  // }
-
-  // moveToNext() {
-  //   const showSlide = $(`.${this.SHOWING_CLASS}`);
-
-  //   showSlide.classList.remove(this.SHOWING_CLASS);
-  //   const nextSlide = showSlide.nextElementSibling
-
-  //   this.setNextShow(nextSlide);
-  // }
-
-  // setPrevShow(prevSlide) {
-  //   if (prevSlide) prevSlide.classList.add(this.SHOWING_CLASS);
-  //   else this.itemLayer.lastItem.classList.add(this.SHOWING_CLASS);
-  // }
-
-  // setNextShow(nextSlide) {
-  //   if (nextSlide) nextSlide.classList.add(this.SHOWING_CLASS);
-  //   else this.itemLayer.firstItem.classList.add(this.SHOWING_CLASS);
-  // }
-
   setCarouselShow() {
-    this.carousel.ulLayer.firstElementChild.classList.add(`${this.SHOWING_CLASS}`);
+    this.insertClone();
+    this.offset -= this.itemLayer.item.offsetWidth;
+    this.carousel.ulLayer.classList.add(`${this.SHOWING_CLASS}`);
   }
 
   autoMoveEvent() {
@@ -75,6 +51,49 @@ export default class Carousel {
     });
   }
 
+  moveToLeft() {
+    this.offset += this.itemLayer.item.offsetWidth;
+    this.move();
+    this.currentItem--;
+    if (this.isClone()) {
+      this.offset -= this.itemLayer.listItems.length * this.itemLayer.item.offsetWidth;
+      this.carousel.ulLayer.addEventListener("transitionend", this.moveWithoutAnimation());
+      this.currentItem = this.currentItem + this.itemLayer.listItems.length;
+    }
+  }
+
+  moveToRight() {
+    this.offset -= this.itemLayer.item.offsetWidth;
+    this.move();
+    this.currentItem++;
+    if (this.isClone()) {
+      this.offset += this.itemLayer.listItems.length * this.itemLayer.item.offsetWidth;
+      console.log(this.offset, this.itemLayer.item.offsetWidth)
+      // this.carousel.ulLayer.addEventListener("transitionend", this.moveWithoutAnimation());
+      // setTimeout(() => this.moveWithoutAnimation(), 200);
+      this.currentItem = this.currentItem - this.itemLayer.listItems.length;
+    }
+  }
+
+  move() {
+    // this.carousel.ulLayer.classList.remove("noneActive");
+    this.carousel.ulLayer.style.transition = `transform 1000ms ease-out`;
+    this.carousel.ulLayer.style.transform = `translateX(${this.offset}px)`;
+    // this.carousel.ulLayer.classList.add("active");
+  }
+
+  moveWithoutAnimation() {
+    // this.carousel.ulLayer.classList.remove("active");
+
+    this.carousel.ulLayer.style.transition = 'none';
+    this.carousel.ulLayer.style.transform = `translateX(${this.offset}px)`;
+    // this.carousel.ulLayer.classList.add("noneActive");
+  }
+
+  isClone() {
+    return this.currentItem === 0 || this.currentItem === this.itemLayer.listItems.length + 1;
+  }
+
   xmlHttpRequest(regURL) {
     const xhr = new XMLHttpRequest();
 
@@ -83,7 +102,7 @@ export default class Carousel {
         const responseObj = JSON.parse(xhr.responseText);
         responseObj.map(element => this.createHTMLTemplate(element));
         this.searchItemLayer();
-        this.insertClone();
+        this.setCarouselShow.call(this);
       }
     });
 
@@ -99,7 +118,6 @@ export default class Carousel {
       listItems: $All(".a-carousel-item"),
       classShow: $(`.${this.SHOWING_CLASS}`),
     };
-    console.log(this.itemLayer)
     return this.itemLayer;
   }
 
@@ -139,12 +157,7 @@ export default class Carousel {
     this.reactAuto();
   }
 
-  isClone() {
-    return this.currentItem === 0 || this.currentItem === this.itemLayer.listItems.length + 1;
-  }
-
   insertClone() {
-    console.log(this.itemLayer)
     const firstItem = this.itemLayer.listItems[0];
     const lastItem = this.itemLayer.listItems[this.itemLayer.listItems.length - 1];
 
