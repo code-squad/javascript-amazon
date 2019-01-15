@@ -30,7 +30,7 @@ const carousel = new CarouselMenu({
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  carousel.xmlHttpRequest('../JSON/primeMoive.json');
+  carousel.xmlHttpRequest('./JSON/primeMoive.json');
 });
 
 layerManager.init();

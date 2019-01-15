@@ -10,6 +10,9 @@ export default class Carousel {
       next: layer.next,
     }
 
+    this.currentItem = 1;
+    this.offset = 0;
+
     this.SHOWING_CLASS = "show";
 
     this.requestID = null;
@@ -19,12 +22,57 @@ export default class Carousel {
 
   init() {
     this.clickEvent();
-    this.autoMoveEvent();
+    // this.autoMoveEvent();
     this.xmlHttpRequest();
   }
 
+  // moveToPrev() {
+  //   const showSlide = $(`.${this.SHOWING_CLASS}`);
+
+  //   showSlide.classList.remove(this.SHOWING_CLASS);
+  //   const prevSlide = showSlide.previousElementSibling;
+
+  //   this.setPrevShow(prevSlide);
+  // }
+
+  // moveToNext() {
+  //   const showSlide = $(`.${this.SHOWING_CLASS}`);
+
+  //   showSlide.classList.remove(this.SHOWING_CLASS);
+  //   const nextSlide = showSlide.nextElementSibling
+
+  //   this.setNextShow(nextSlide);
+  // }
+
+  // setPrevShow(prevSlide) {
+  //   if (prevSlide) prevSlide.classList.add(this.SHOWING_CLASS);
+  //   else this.itemLayer.lastItem.classList.add(this.SHOWING_CLASS);
+  // }
+
+  // setNextShow(nextSlide) {
+  //   if (nextSlide) nextSlide.classList.add(this.SHOWING_CLASS);
+  //   else this.itemLayer.firstItem.classList.add(this.SHOWING_CLASS);
+  // }
+
   setCarouselShow() {
     this.carousel.ulLayer.firstElementChild.classList.add(`${this.SHOWING_CLASS}`);
+  }
+
+  autoMoveEvent() {
+    this.carousel.ulLayer.addEventListener("load", this.autoSlideRenderer());
+  }
+
+  clickEvent() {
+    this.carousel.prev.addEventListener('click', () => {
+      this.moveToLeft();
+      // this.moveToPrev();
+      // this.pauseAutoSlide();
+    });
+    this.carousel.next.addEventListener('click', () => {
+      this.moveToRight();
+      // this.moveToNext();
+      // this.pauseAutoSlide();
+    });
   }
 
   xmlHttpRequest(regURL) {
@@ -33,11 +81,10 @@ export default class Carousel {
     xhr.addEventListener("load", () => {
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
         const responseObj = JSON.parse(xhr.responseText);
-        responseObj.map(element => {
-          this.createHTMLTemplate(element)
-        });
-        this.setCarouselShow.call(this);
+        responseObj.map(element => this.createHTMLTemplate(element));
         this.searchItemLayer();
+        this.insertClone();
+        this.setCarouselShow.call(this);
       }
     });
 
@@ -50,9 +97,10 @@ export default class Carousel {
       item: $(".a-carousel-item"),
       firstItem: $(".a-carousel-item:first-child"),
       lastItem: $(".a-carousel-item:last-child"),
-      listItem: $All(".a-carousel-item"),
+      listItems: $All(".a-carousel-item"),
       classShow: $(`.${this.SHOWING_CLASS}`),
     };
+    console.log(this.itemLayer)
     return this.itemLayer;
   }
 
@@ -64,49 +112,6 @@ export default class Carousel {
     </a>
     </li>
     `.trim();
-  }
-
-  autoMoveEvent() {
-    this.carousel.ulLayer.addEventListener("load", this.autoSlideRenderer());
-  }
-
-  clickEvent() {
-    this.carousel.prev.addEventListener('click', () => {
-      this.moveToPrev();
-      this.pauseAutoSlide();
-    });
-    this.carousel.next.addEventListener('click', () => {
-      this.moveToNext();
-      this.pauseAutoSlide();
-    });
-  }
-
-  moveToPrev() {
-    const showSlide = $(`.${this.SHOWING_CLASS}`);
-
-    showSlide.classList.remove(this.SHOWING_CLASS);
-    const prevSlide = showSlide.previousElementSibling;
-
-    this.setPrevShow(prevSlide);
-  }
-
-  moveToNext() {
-    const showSlide = $(`.${this.SHOWING_CLASS}`);
-
-    showSlide.classList.remove(this.SHOWING_CLASS);
-    const nextSlide = showSlide.nextElementSibling
-
-    this.setNextShow(nextSlide);
-  }
-
-  setPrevShow(prevSlide) {
-    if (prevSlide) prevSlide.classList.add(this.SHOWING_CLASS);
-    else this.itemLayer.lastItem.classList.add(this.SHOWING_CLASS);
-  }
-
-  setNextShow(nextSlide) {
-    if (nextSlide) nextSlide.classList.add(this.SHOWING_CLASS);
-    else this.itemLayer.firstItem.classList.add(this.SHOWING_CLASS);
   }
 
   autoSlideRenderer() {
@@ -134,4 +139,18 @@ export default class Carousel {
     if (!this.reactAuto) this.reactAuto = debounce(this.autoSlideRenderer, 5000).bind(this);
     this.reactAuto();
   }
+
+  isClone() {
+    return this.currentItem === 0 || this.currentItem === this.itemLayer.listItems.length + 1;
+  }
+
+  insertClone() {
+    console.log(this.itemLayer)
+    const firstItem = this.itemLayer.listItems[0];
+    const lastItem = this.itemLayer.listItems[this.itemLayer.listItems.length - 1];
+
+    this.carousel.ulLayer.insertBefore(lastItem.cloneNode(true), this.carousel.ulLayer.firstChild);
+    this.carousel.ulLayer.appendChild(firstItem.cloneNode(true));
+  }
+
 }

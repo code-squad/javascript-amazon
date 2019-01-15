@@ -177,8 +177,12 @@
   font-size: 18px;
 }
 
-.active {
-  transition: all 100ms ease-out;
+.activeLeft {
+  transition: none;
+}
+
+.activeRight {
+  transition: all 1000ms ease-out;
 }
 
 .show {
