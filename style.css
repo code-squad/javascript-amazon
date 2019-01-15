@@ -26,9 +26,9 @@ li {
     display: inline-block;
 }
 
-/* amazon-logo */
+/* left - amazon-logo */
 
-.amz-logo-container {
+.top-header-left {
     width: 192px;
     height: 38px;
     float: left;
@@ -43,8 +43,8 @@ li {
     margin-top: 10px;
 }
 
-/* search-box */
-.sch-container {
+/* middle - search-box */
+.top-header-middle{
     width: 800px;
     margin: 10px auto;
     /* vertical-align: middle;
@@ -92,9 +92,9 @@ li {
     cursor: pointer;
 }
 
-/* event-logo */
+/* right - event-logo */
 
-.evt-logo-container {
+.top-header-right {
     width: 400px;
     height: 39px;
     float: right;
@@ -107,3 +107,5 @@ li {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+
