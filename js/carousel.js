@@ -10,12 +10,9 @@ export default class Carousel {
       next: layer.next,
     }
 
-    this.currentItem = 1;
-    this.offset = 0;
-
-    this.SHOWING_CLASS = "show";
-
+    // request Animation을 담기 위한 값
     this.requestID = null;
+    // pause시 재작동을 위한 값
     this.reactAuto;
   }
 
@@ -54,7 +51,6 @@ export default class Carousel {
   }
 
   setRightSlide() {
-    // 여기서 this를 쓰는 것보다 탐색한 자료(this.itemLayer)를 기준점으로 적용한다면 Issue가 덜 발생되지 않을 까??(this의 적용 시점이 나의 의도와는 달라지게 되었을 때와 다른사람들에게도 나의 의도를 읽지 못하게 되었을 시점에 대해 예상이 들었음..)
     const firstChild = this.firstElementChild;
 
     this.insertBefore(firstChild, null);
@@ -75,23 +71,11 @@ export default class Carousel {
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
         const responseObj = JSON.parse(xhr.responseText);
         responseObj.map(element => this.createHTMLTemplate(element));
-        this.searchItemLayer();
       }
     });
 
     xhr.open('GET', regURL);
     xhr.send();
-  }
-
-  searchItemLayer() {
-    this.itemLayer = {
-      item: $(".a-carousel-item"),
-      firstItem: $(".a-carousel:first-child"),
-      lastItem: $(".a-carousel-item:last-child"),
-      listItems: $All(".a-carousel-item"),
-      classShow: $(`.${this.SHOWING_CLASS}`),
-    };
-    return this.itemLayer;
   }
 
   createHTMLTemplate({ src, alt, id }) {
