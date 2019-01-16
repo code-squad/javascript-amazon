@@ -1,0 +1,55 @@
+.prime-member-container{
+  overflow: hidden;
+  padding: 0 200px;
+  height: 700px;
+  position: relative;
+  border-bottom: 2px solid #53a8de;
+}
+.prime-member{
+  position: relative;
+}
+.close-button {
+  position: absolute;
+  right:0px;
+  margin: 20px;
+  font-size: 15px;
+}
+.prime-member-header{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top:50px;
+}
+
+.prime-member-header-img-logo{
+  width: 200px;
+}
+
+.prime-member-header-word-container{
+  text-align:center;
+}
+.prime-member-header-word{
+  font-family: 'amazon-UI-bold';
+  font-size:50px;
+}
+.prime-member-header-img-crong{
+  width: 157px;
+}
+
+.close-button-foot-container{
+  position: absolute;
+  bottom:10px;
+  right:0;
+  left:0;
+  text-align: center;
+}
+
+.close-button-foot{
+  width:15px;
+  height:15px;
+  border:3px solid #606060;
+  transform: rotate(45deg);
+  border-right:transparent;
+  border-bottom:transparent;
+
+}
