@@ -293,3 +293,21 @@ header{
   border: var(--arrow-border);
   border-top: var(--arrow-border-top) #a7acb2;
 }
+
+/* nav-right */
+
+.head-nav-right {
+	font-family: Arial, sans-serif;
+}
+
+.head-nav-right-list{
+	display:flex;
+	justify-content: flex-start;
+}
+.head-nav-right-list-language{
+	padding: 6px 12px 3px 12px;
+}
+.head-nav-right-list-language-user{
+	color:#ccc;
+	font-size:12px;
+}
