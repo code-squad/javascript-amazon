@@ -305,9 +305,18 @@ header{
 	justify-content: flex-start;
 }
 .head-nav-right-list-language{
-	padding: 6px 12px 3px 12px;
+	padding: 6px 15px 3px 12px;
 }
 .head-nav-right-list-language-user{
 	color:#ccc;
 	font-size:12px;
+}
+.head-nav-right-list-language-img{
+	position: relative;
+	margin-left:1px;
+}
+.language-arrow{
+	position:absolute;
+	top:6px;
+	right:-3px;
 }
