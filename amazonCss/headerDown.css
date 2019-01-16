@@ -1,13 +1,13 @@
-.head-nav-right-list {
+/* .head-nav-right-list {
     margin:0px;
 }
 
 .head-nav-container {
     background-color:#24313f;
     overflow:hidden;
-}
+} */
 /* location */
-.head-nav-location-container{
+/* .head-nav-location-container{
     float:left;
     width:186px;
     padding-left:10px;
@@ -41,9 +41,9 @@
     font-family: Arial, sans-serif;
     font-weight: 700;
     font-size:14px;
-}
+} */
 /* navigator */
-.head-nav {
+/* .head-nav {
     float:left;
 }
 
@@ -101,9 +101,9 @@
 }
 .head-nav-list-el:hover {
     text-decoration: underline;
-}
+} */
 /* nav-right */
-.head-nav-right{
+/* .head-nav-right{
     position:relative;
     float:right;
     color:#ccc;
@@ -207,4 +207,9 @@
 
 header{
     border-bottom:2px solid #53a8de;
+} */
+.head-nav-container {
+    background-color:#24313f;
+    display:flex;
+    justify-content: space-between;
 }
