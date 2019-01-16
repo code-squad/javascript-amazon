@@ -17,22 +17,14 @@ export default class Carousel {
 
     this.requestID = null;
     this.reactAuto;
-    this.itemLayer;
   }
 
   init() {
     this.clickEvent();
-    // this.autoMoveEvent();
+    this.autoMoveEvent();
     this.xmlHttpRequest();
-    this.offset = -this.itemLayer.item.offsetWidth;
-    this.moveWithoutAnimation();
   }
 
-  setCarouselShow() {
-    this.insertClone();
-    this.offset -= this.itemLayer.item.offsetWidth;
-    this.carousel.ulLayer.classList.add(`${this.SHOWING_CLASS}`);
-  }
 
   autoMoveEvent() {
     this.carousel.ulLayer.addEventListener("load", this.autoSlideRenderer());
@@ -41,57 +33,39 @@ export default class Carousel {
   clickEvent() {
     this.carousel.prev.addEventListener('click', () => {
       this.moveToLeft();
-      // this.moveToPrev();
-      // this.pauseAutoSlide();
+      this.pauseAutoSlide();
     });
     this.carousel.next.addEventListener('click', () => {
       this.moveToRight();
-      // this.moveToNext();
-      // this.pauseAutoSlide();
+      this.pauseAutoSlide();
     });
   }
 
   moveToLeft() {
-    this.offset += this.itemLayer.item.offsetWidth;
-    this.move();
-    this.currentItem--;
-    if (this.isClone()) {
-      this.offset -= this.itemLayer.listItems.length * this.itemLayer.item.offsetWidth;
-      this.carousel.ulLayer.addEventListener("transitionend", this.moveWithoutAnimation());
-      this.currentItem = this.currentItem + this.itemLayer.listItems.length;
-    }
+    this.carousel.ulLayer.classList.add("slideLeft");
+    this.carousel.ulLayer.removeEventListener("transitionend", this.setRightSlide);
+    this.carousel.ulLayer.addEventListener("transitionend", this.setLeftSlide);
   }
 
   moveToRight() {
-    this.offset -= this.itemLayer.item.offsetWidth;
-    this.move();
-    this.currentItem++;
-    if (this.isClone()) {
-      this.offset += this.itemLayer.listItems.length * this.itemLayer.item.offsetWidth;
-      console.log(this.offset, this.itemLayer.item.offsetWidth)
-      // this.carousel.ulLayer.addEventListener("transitionend", this.moveWithoutAnimation());
-      // setTimeout(() => this.moveWithoutAnimation(), 200);
-      this.currentItem = this.currentItem - this.itemLayer.listItems.length;
-    }
+    this.carousel.ulLayer.classList.add("slideRight");
+    this.carousel.ulLayer.removeEventListener("transitionend", this.setLeftSlide);
+    this.carousel.ulLayer.addEventListener("transitionend", this.setRightSlide);
   }
 
-  move() {
-    // this.carousel.ulLayer.classList.remove("noneActive");
-    this.carousel.ulLayer.style.transition = `transform 1000ms ease-out`;
-    this.carousel.ulLayer.style.transform = `translateX(${this.offset}px)`;
-    // this.carousel.ulLayer.classList.add("active");
+  setRightSlide() {
+    // 여기서 this를 쓰는 것보다 탐색한 자료(this.itemLayer)를 기준점으로 적용한다면 Issue가 덜 발생되지 않을 까??(this의 적용 시점이 나의 의도와는 달라지게 되었을 때와 다른사람들에게도 나의 의도를 읽지 못하게 되었을 시점에 대해 예상이 들었음..)
+    const firstChild = this.firstElementChild;
+
+    this.insertBefore(firstChild, null);
+    this.classList.remove("slideRight");
   }
 
-  moveWithoutAnimation() {
-    // this.carousel.ulLayer.classList.remove("active");
+  setLeftSlide() {
+    const prevChild = this.lastElementChild;
 
-    this.carousel.ulLayer.style.transition = 'none';
-    this.carousel.ulLayer.style.transform = `translateX(${this.offset}px)`;
-    // this.carousel.ulLayer.classList.add("noneActive");
-  }
-
-  isClone() {
-    return this.currentItem === 0 || this.currentItem === this.itemLayer.listItems.length + 1;
+    this.insertAdjacentElement("afterbegin", prevChild);
+    this.classList.remove("slideLeft");
   }
 
   xmlHttpRequest(regURL) {
@@ -102,7 +76,6 @@ export default class Carousel {
         const responseObj = JSON.parse(xhr.responseText);
         responseObj.map(element => this.createHTMLTemplate(element));
         this.searchItemLayer();
-        this.setCarouselShow.call(this);
       }
     });
 
@@ -113,7 +86,7 @@ export default class Carousel {
   searchItemLayer() {
     this.itemLayer = {
       item: $(".a-carousel-item"),
-      firstItem: $(".a-carousel-item:first-child"),
+      firstItem: $(".a-carousel:first-child"),
       lastItem: $(".a-carousel-item:last-child"),
       listItems: $All(".a-carousel-item"),
       classShow: $(`.${this.SHOWING_CLASS}`),
@@ -132,7 +105,7 @@ export default class Carousel {
   }
 
   autoSlideRenderer() {
-    const moveFn = this.moveToNext.bind(this);
+    const moveFn = this.moveToRight.bind(this);
     let startTime = 0;
 
     function slide(timestamp) {
@@ -141,8 +114,7 @@ export default class Carousel {
       let bProgressTime = (timestamp - startTime) >= setMilSecTime;
 
       if (bProgressTime) {
-        if (this.itemLayer.classShow) moveFn();
-        else this.itemLayer.firtstItem.classList.add(this.SHOWING_CLASS);
+        moveFn(); // acting Slide Right Fn Method
         startTime = 0; // Timer Reset
       }
       this.requestID = requestAnimationFrame(slide.bind(this))
@@ -152,17 +124,8 @@ export default class Carousel {
 
   pauseAutoSlide() {
     cancelAnimationFrame(this.requestID);
-
-    if (!this.reactAuto) this.reactAuto = debounce(this.autoSlideRenderer, 5000).bind(this);
+    const setReactTimer = 3000;
+    if (!this.reactAuto) this.reactAuto = debounce(this.autoSlideRenderer, setReactTimer).bind(this);
     this.reactAuto();
   }
-
-  insertClone() {
-    const firstItem = this.itemLayer.listItems[0];
-    const lastItem = this.itemLayer.listItems[this.itemLayer.listItems.length - 1];
-
-    this.carousel.ulLayer.insertBefore(lastItem.cloneNode(true), this.carousel.ulLayer.firstChild);
-    this.carousel.ulLayer.appendChild(firstItem.cloneNode(true));
-  }
-
 }

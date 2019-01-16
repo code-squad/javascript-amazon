@@ -53,11 +53,12 @@
 
 .a-carousel {
   position: relative;
-  width: 1680px;
+  width: 1120px;
   height: 232px;
   left: 0;
   overflow: hidden;
   display: flex;
+  transform: translateX(-17.5rem);
 }
 
 .a-link-category>* {
@@ -76,7 +77,6 @@
 /* test */
 .a-carousel-item {
   top: 0;
-  z-index: 0;
   opacity: 1;
   justify-content: center;
   align-items: center;
@@ -84,6 +84,16 @@
   height: 232px;
 }
 
+/* Ul Layer transform Animation*/
+.slideLeft {
+  transform: none;
+  transition: all 0.3s ease-out;
+}
+
+.slideRight {
+  transform: translateX(-35rem);
+  transition: all 0.3s ease-out;
+}
 
 .a-carousel-right-button {
   width: 40px;
@@ -171,16 +181,4 @@
 
 .benefit-cta {
   font-size: 18px;
-}
-
-.noneActive {
-  transition: none 0s ease 0s;
-}
-
-.active {
-  transition: all 1000ms ease-out;
-}
-
-.show {
-  transform: translateX(-280px);
 }
