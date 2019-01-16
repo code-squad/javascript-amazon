@@ -1,0 +1,21 @@
+.top-layer-container{
+  background-color:#24313f;
+  padding: 10px 0;
+}
+.top-layer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.top-layer-icon {
+  width: 80px;
+  height: 50px;
+  background-image: url('../amazonImage/primeLogo.svg');
+  background-size: 80px;
+}
+
+.top-layer-try-prime-button {
+  width: 100px;
+  height: 20px;
+}
