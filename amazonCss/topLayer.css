@@ -1,11 +1,16 @@
-.top-layer-container{
-  background-color:#24313f;
+.top-layer-container {
+  background-color: #24313f;
   padding: 10px 0;
 }
+
 .top-layer {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.top-layer-icon-container {
+  width: 200px;
 }
 
 .top-layer-icon {
@@ -15,7 +20,49 @@
   background-size: 80px;
 }
 
+.top-layer-word {
+  color: var(--color-basic);
+  text-align: center;
+}
+
+.top-layer-contents {
+  margin-top: 10px;
+}
+
+.top-layer-trigger-button-container {
+  text-align: center;
+  position: relative;
+  top: -5px;
+  height: 0;
+}
+
+.top-layer-trigger-button {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--color-basic);
+  transform: rotate(45deg);
+  border-left: transparent;
+  border-top: transparent;
+  background-color: transparent;
+}
+
+.top-layer-try-prime-button-container {
+  width: 200px;
+}
+
 .top-layer-try-prime-button {
-  width: 100px;
-  height: 20px;
+  float: right;
+  background-color: #eda844;
+  width: 132px;
+  height: 40px;
+  color: #304a3f;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid #e06c44;
+  border-radius: 3px;
+}
+
+.top-layer-try-prime-button:hover {
+  cursor: pointer;
+  background-color: #f0c14b;
 }
