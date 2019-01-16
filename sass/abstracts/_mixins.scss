@@ -15,3 +15,11 @@
     background-size: 142px 120px;
     background-position: $X $Y;
 }
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

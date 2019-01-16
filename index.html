@@ -10,93 +10,139 @@
     </head>
     <body>
         <header class="header">
-            <div class="header__logo">
-                <a class="header__logo__link" href="#none"></a>
-            </div>
-            <div class="header__search">
-                <form class="form" name="site-search">
-                    <div class="search">
-                        <div class="search__select">
-                            <div class="search__select__view">
-                                <span class="search__select__view__text">All</span>
-                                <div class="nav-arrow"></div>
+            <div class="header__main">
+                <div class="header__logo">
+                    <a class="header__logo__link" href="#none"></a>
+                </div>
+                <div class="header__search">
+                    <form class="form" name="site-search">
+                        <div class="search">
+                            <div class="search__select">
+                                <div class="search__select__view">
+                                    <span class="search__select__view__text">All</span>
+                                    <div class="nav-arrow"></div>
+                                </div>
+                                <select class="search__select__list">
+                                    <option selected="selected" value="search-alias=aps">All Departments</option>
+                                    <option value="search-alias=arts-crafts-ship">Arts &amp; Crafts</option>
+                                    <option value="search-alias=automotive-ship">Automotive</option>
+                                    <option value="search-alias=baby-products-ship">Baby</option>
+                                    <option value="search-alias=beauty-ship">Beauty &amp; Personal Care</option>
+                                    <option value="search-alias=stripbooks-ship">Books</option>
+                                    <option value="search-alias=computers-ship">Computers</option>
+                                </select>
                             </div>
-                            <select class="search__select__list">
-                                <option selected="selected" value="search-alias=aps">All Departments</option>
-                                <option value="search-alias=arts-crafts-ship">Arts &amp; Crafts</option>
-                                <option value="search-alias=automotive-ship">Automotive</option>
-                                <option value="search-alias=baby-products-ship">Baby</option>
-                                <option value="search-alias=beauty-ship">Beauty &amp; Personal Care</option>
-                                <option value="search-alias=stripbooks-ship">Books</option>
-                                <option value="search-alias=computers-ship">Computers</option>
-                            </select>
+                            <label class="search__label">
+                                <input class="search__search" type="text">
+                                Search
+                            </label>
+                            <div class="search__btn">
+                                <input class="search__btn__submit" type="submit">
+                                <div class="search__btn__img">Go</div>
+                            </div>
                         </div>
-                        <label class="search__label">
-                            <input class="search__search" type="text">
-                            Search
-                        </label>
-                        <div class="search__btn">
-                            <input class="search__btn__submit" type="submit">
-                            <div class="search__btn__img">Go</div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="header__banner-box">
-                <a href="#none">
-                    <img src="./static/images/TodaysDeals.png" alt="Learn More">
-                </a>
-            </div>
-            <nav class="header__nation-box">
-                <div class="nation-box">
-                    <a class="nation-box__link" href="#none">
-                        <div class="nation-box__nation-img"></div>
-                        <div class="nation-box__text-box">
-                            <span class="nation-box__text-box__desc">Deliver to</span>
-                            <span class="nav__big-text">Korea, Republic of</span>
-                        </div>
+                    </form>
+                </div>
+                <div class="header__banner-box">
+                    <a href="#none">
+                        <img src="./static/images/TodaysDeals.png" alt="Learn More">
                     </a>
                 </div>
-            </nav>
-            <div class="header__nav">
-                <nav class="nav">
-                    <div class="nav__departments">
-                        <a class="nav__departments__link" href="#none"> 
-                            <span class="nav__departments__text">Departments</span>
+                <nav class="header__nation-box">
+                    <div class="nation-box">
+                        <a class="nation-box__link" href="#none">
+                            <div class="nation-box__nation-img"></div>
+                            <div class="nation-box__text-box">
+                                <span class="nation-box__text-box__desc">Deliver to</span>
+                                <span class="nav__big-text">Korea, Republic of</span>
+                            </div>
                         </a>
+                    </div>
+                </nav>
+                <div class="header__nav">
+                    <nav class="nav">
+                        <div class="nav__departments">
+                            <a class="nav__departments__link" href="#none"> 
+                                <span class="nav__departments__text">Departments</span>
+                            </a>
+                            <span class="nav-arrow"></span>
+                        </div>
+                        <ul class="nav__list">
+                            <li class="nav__item"><a href="#" class="nav__link">Your Amazon.com</a></li>
+                            <li class="nav__item"><a href="#" class="nav__link">Today's Deals</a></li>
+                            <li class="nav__item"><a href="#" class="nav__link">Gift Cards</a></li>
+                            <li class="nav__item"><a href="#" class="nav__link">Registry</a></li>
+                            <li class="nav__item"><a href="#" class="nav__link">Sell</a></li>
+                            <li class="nav__item"><a href="#" class="nav__link">Help</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header__tools">
+                    <div class="language">
+                        <p class="language--text">EN</p>
+                        <span class="global-icon"></span>
                         <span class="nav-arrow"></span>
                     </div>
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#" class="nav__link">Your Amazon.com</a></li>
-                        <li class="nav__item"><a href="#" class="nav__link">Today's Deals</a></li>
-                        <li class="nav__item"><a href="#" class="nav__link">Gift Cards</a></li>
-                        <li class="nav__item"><a href="#" class="nav__link">Registry</a></li>
-                        <li class="nav__item"><a href="#" class="nav__link">Sell</a></li>
-                        <li class="nav__item"><a href="#" class="nav__link">Help</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="header__tools">
-                <div class="language">
-                    <p class="language--text">EN</p>
-                    <span class="global-icon"></span>
-                    <span class="nav-arrow"></span>
-                </div>
-                <span class="bar"></span>
-                <div class="sign-in">
-                    <p class="sign-in--guide">Hello. Sign in</p>
-                    <span class="sign-in--info">Account & Lists</span>
-                    <span class="nav-arrow"></span>
-                </div>
-                <div class="orders">
-                    <span class="nav__big-text">Orders</span>
-                </div>
-                <div class="cart">
-                    <span class="cart-image"></span>
-                    <span class="nav__cart-counter">0</span>
-                    <span class="nav__big-text">Cart</span>
+                    <span class="bar"></span>
+                    <div class="sign-in">
+                        <p class="sign-in--guide">Hello. Sign in</p>
+                        <span class="sign-in--info">Account & Lists</span>
+                        <span class="nav-arrow"></span>
+                    </div>
+                    <div class="orders">
+                        <span class="nav__big-text">Orders</span>
+                    </div>
+                    <div class="cart">
+                        <span class="cart-image"></span>
+                        <span class="nav__cart-counter">0</span>
+                        <span class="nav__big-text">Cart</span>
+                    </div>
                 </div>
             </div>
+            <nav class="fixed-nav">
+                <div class="fixed-nav__front">
+                    <div class="logo-box">
+                        <img src="./static/images/PrimeLogo_Blue.svg" alt="prime logo">
+                    </div>
+                    <div class="scroll-box">
+                        <p class="scroll-text">See more plans</p>
+                        <div class="scroll-btn">
+                            <img src="./static/images/DownArrow.svg" alt="Button for viewing more plans">
+                        </div>
+                    </div>
+                    <div class="submit-btn">
+                        <input class="prime-about__form__submit-box__submit" type="submit" value="TRY PRIME">
+                    </div>
+                </div>
+                <div class="fixed-nav__submit">
+                    <form class="submit-form">
+                        <div class="submit-form__header">
+                            <img class="logo" src="./static/images/Logo_Prime.png" alt="prime logo">
+                            <h2 class="heading-2">There's something for everyone</h2>
+                            <img class="plan-img" src="./static/images/GBB_Illustration.png" alt="plan-img">
+                            <div class="close-btn">CLOSE
+                                <div class="close-btn__icon"></div>
+                            </div>
+                        </div>
+                        <div class="submit-form__container">
+                            <div class="submit-form__cards">
+                                <div class="submit-form__card">
+
+                                </div>
+                                <div class="submit-form__card">
+
+                                </div>
+                                <div class="submit-form__card">
+
+                                </div>
+                            </div>
+                            <div class="submit-btn">
+                                <input class="prime-about__form__submit-box__submit" type="submit" value="TRY PRIME">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </nav>
         </header>
         <main>
             <section  class="prime-about">
@@ -152,6 +198,9 @@
                         </li>
                     </ul>
                     <div class="carousel">
+                        <div class="carousel__arrow-box carousel__left">
+                            <span class="arrow-icon"></span>
+                        </div>
                         <ul class="carousel__list">
                             <li class="carousel__item carousel__ship-1">
                                 <div class="text-box">
@@ -165,6 +214,9 @@
                                 </div>
                             </li>
                         </ul>
+                        <div class="carousel__arrow-box carousel__right">
+                            <span class="arrow-icon"></span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -205,10 +257,5 @@
                 </section>
             </div>
         </main>
-        <footer>
-            <div class="footer__btn"></div>
-            <div class="footer__nav-access"></div>
-            <div class="footer__nav-link"></div>
-        </footer>
     </body>
 </html>
