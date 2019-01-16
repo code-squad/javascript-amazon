@@ -1,17 +1,21 @@
 @font-face {
   font-family: 'amazon-ember';
   src: url("https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/AmazonEmber_W_Lt._CB513866389_.woff");
-  weight: 300;
 }
 
 @font-face{
   font-family: 'amazon-UI-bold';
   src: url("https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_bd-46b91bda68161c14e554a779643ef4957431987b._V2_.woff2");
-  weight: 500;
 }
 
 @font-face{
   font-family: 'amazon-UI';
   src: url("https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIFont-amazonember_rg-cc7ebaa05a2cd3b02c0929ac0475a44ab30b7efa._V2_.woff2");
-  weight: 700;
+}
+
+:root {
+  --arrow-position: absolute;
+  --arrow-border: 5px solid transparent;
+  --arrow-border-top: 4px solid;
+  --color-basic: #fff;
 }

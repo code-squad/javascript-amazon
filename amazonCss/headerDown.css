@@ -223,9 +223,9 @@ header{
 
 .head-nav-location {
   font-family: Arial, sans-serif;
-  color: #fff;
+  color: var(--color-basic);
   width: 150px;
-  height: 35px;
+  height: 28px;
   padding: 5px;
 }
 
@@ -241,4 +241,35 @@ header{
 .head-nav-location-user {
 	font-size:14px;
 	font-weight: 700;
+}
+
+/* head-nav */
+.head-nav-list {
+	display:flex;
+	justify-content: flex-start;
+	font-family: arial,sans-serif;
+}
+.head-nav-list-el-selector{
+	margin-right:10px;
+	color: var(--color-basic);
+}
+.head-nav-list-el-selector-word{
+	font-size:14px;
+	font-weight: 700;
+}
+.head-nav-list-el {
+	margin-right:10px;
+	color: #ccc;
+	font-size:13px;
+	text-decoration: none;
+}
+
+.head-nav-list-el:hover{
+	text-decoration: underline;
+}
+
+.head-arrow-bright {
+	position: var(--arrow-position);
+  border: var(--arrow-border);
+  border-top: var(--arrow-border-top) #606060;
 }
