@@ -175,15 +175,10 @@ html {
 	font-weight: 700
 }
 
-.menu-ico {
+.menu-arrow {
 	position: absolute;
 	top: 7px;
 	left: 93px;
-	border-style: solid;
-	border-width: 4px;
-	border-color: transparent;
-	border-top: 4px solid #666;
-	border-bottom-width: 0;
 }
 
 .menu-list {
@@ -223,12 +218,15 @@ html {
 	left: 6px;
 }
 
-.usertools-leng-arrow {
+.usertools-leng-arrow, .usertools-login-arrow, .usertools-orders-arrow, .menu-arrow {
 	border-style: solid;
 	border-width: 4px;
 	border-color: transparent;
 	border-top: 4px solid #666;
 	border-bottom-width: 0;
+}
+
+.usertools-leng-arrow {
 	float: left;
 	margin-top: 15px;
 }
@@ -259,11 +257,6 @@ html {
 }
 
 .usertools-login-arrow {
-	border-style: solid;
-	border-width: 4px;
-	border-color: transparent;
-	border-top: 4px solid #666;
-	border-bottom-width: 0;
 	position: relative;
 	top: 10px;
 	left: 5px;
@@ -284,17 +277,13 @@ html {
 .usertools-orders-arrow {
 	position: relative;
 	display: inline-block;
-	border-style: solid;
-	border-width: 4px;
-	border-color: transparent;
-	border-top: 4px solid #666;
-	border-bottom-width: 0;
 	top: -2px;
 }
 
 .usertools-cart {
-	position : relative;
+	position: relative;
 	height: 100%;
+	font-weight: 700;
 }
 
 .usertools-cart-ico {
@@ -306,12 +295,10 @@ html {
 	position: absolute;
 	color: #f08804;
 	font-size: 16px;
-	font-weight: 700;
 	top: 1px;
-	left : 17px;
+	left: 17px;
 }
 
 .usertools-cart-contents {
 	margin-top: 7px;
-	font-weight : 700;
 }
