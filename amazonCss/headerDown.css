@@ -304,7 +304,9 @@ header{
   display: flex;
   justify-content: flex-start;
 }
+
 /* nav-right-language */
+
 .head-nav-right-list-language {
   padding: 6px 15px 3px 12px;
 }
@@ -326,9 +328,34 @@ header{
 }
 
 /* line */
+
 .head-nav-right-linkborder {
   border-right: 1px solid #555;
   display: inline-block;
-	height: 27px;
-	margin-top:6px;
+  height: 27px;
+  margin-top: 6px;
+}
+
+/* account */
+
+.head-nav-right-list-account {
+  padding: 6px 15px 3px 12px;
+}
+
+.head-nav-right-list-account-msg {
+  color: #ccc;
+  font-size: 12px;
+}
+
+.head-nav-right-list-account-user {
+  position: relative;
+  color: var(--color-basic);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.account-arrow {
+  position: absolute;
+  top: 7px;
+  right: -6px;
 }
