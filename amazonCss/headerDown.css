@@ -229,9 +229,13 @@ header{
   color: var(--color-basic);
   width: 150px;
   height: 28px;
-  padding: 5px;
+	padding: 5px;
+	border: var(--hover-border)
 }
-
+.head-nav-location:hover{
+	border: var(--hover-border-active) #4f5965;
+	border-radius: 4px;
+}
 .head-nav-location-img {
   display: inline-block;
 }
@@ -256,7 +260,7 @@ header{
   justify-content: flex-start;
   font-family: arial, sans-serif;
   margin-top: 10px;
-  margin-right: 304px;
+  margin-right: 270px;
 }
 
 .head-nav-list-el-selector {
@@ -264,7 +268,12 @@ header{
   padding-right: 20px;
   position: relative;
   margin-right: 10px;
-  color: var(--color-basic);
+	color: var(--color-basic);
+	border: var(--hover-border);
+}
+.head-nav-list-el-selector:hover{
+	border: var(--hover-border-active) #4f5965;
+	border-radius: 4px;
 }
 
 .head-nav-list-el-selector-word {
@@ -312,7 +321,12 @@ header{
 /* nav-right-language */
 
 .head-nav-right-list-language {
-  padding: 6px 15px 3px 12px;
+	padding: 6px 15px 3px 12px;
+	border: var(--hover-border)
+}
+.head-nav-right-list-language:hover{
+	border: var(--hover-border-active) #4f5965;
+	border-radius: 4px;
 }
 
 .head-nav-right-list-language-user {
@@ -343,7 +357,12 @@ header{
 /* account */
 
 .head-nav-right-list-account {
-  padding: 6px 15px 3px 12px;
+	padding: 6px 20px 3px 15px;
+	border: var(--hover-border);
+}
+.head-nav-right-list-account:hover {
+	border: var(--hover-border-active) #4f5965;
+	border-radius: 4px;
 }
 
 .head-nav-right-list-account-msg {
@@ -368,7 +387,12 @@ header{
 
 .head-nav-right-list-order {
   margin-top: 11px;
-  padding: 5px 9px;
+	padding: 5px 9px;
+	border:var(--hover-border)
+}
+.head-nav-right-list-order:hover {
+	border: var(--hover-border-active) #4f5965;
+	border-radius: 4px;
 }
 
 .head-nav-right-list-order-word {
@@ -381,7 +405,12 @@ header{
 
 .head-nav-right-list-cart {
   position: relative;
-  padding: 2px 15px 3px 12px;
+	padding: 2px 15px 3px 12px;
+	border:var(--hover-border)
+}
+.head-nav-right-list-cart:hover{
+	border: var(--hover-border-active) #4f5965;
+	border-radius: 4px;
 }
 
 .head-nav-right-list-cart-num {
