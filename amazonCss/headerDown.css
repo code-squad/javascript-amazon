@@ -359,3 +359,14 @@ header{
   top: 7px;
   right: -6px;
 }
+/* order */
+
+.head-nav-right-list-order{
+	margin-top:11px;
+	padding: 5px 9px;
+}
+.head-nav-right-list-order-word{
+	color:var(--color-basic);
+	font-size:14px;
+	font-weight:700;
+}
