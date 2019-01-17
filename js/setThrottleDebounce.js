@@ -1,22 +1,22 @@
 export { throttle, debounce }
 
 const throttle = (func, limit) => {
-  let inThrottle
+  let inThrottle;
   return function (...args) {
-    const context = this
+    const context = this;
     if (!inThrottle) {
-      func.apply(context, args)
-      inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
     }
   }
 }
 
 const debounce = (func, delay) => {
-  let time
+  let time;
   return function (...args) {
-    const context = this
-    clearTimeout(time)
-    time = setTimeout(() => func.apply(context, args), delay)
+    const context = this;
+    clearTimeout(time);
+    time = setTimeout(() => func.apply(context, args), delay);
   }
 }

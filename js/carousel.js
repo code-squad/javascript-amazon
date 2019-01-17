@@ -1,5 +1,4 @@
 import { throttle, debounce } from './setThrottleDebounce.js';
-import { $, $All } from "./docSelector.js";
 
 export default class Carousel {
   constructor(layer) {
@@ -21,7 +20,6 @@ export default class Carousel {
     this.autoMoveEvent();
     this.xmlHttpRequest();
   }
-
 
   autoMoveEvent() {
     this.carousel.ulLayer.addEventListener("load", this.autoSlideRenderer());
