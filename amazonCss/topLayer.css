@@ -1,6 +1,18 @@
 .top-layer-container {
   background-color: #24313f;
+  overflow: hidden;
+  height: 0;
+  position: fixed;
+  width: 1440px;
+  top: 0;
+  z-index: 999;
+  transition: height 1s, padding 1s;
+}
+
+.top-layer-active {
+  transition: height 1s, padding 1s;
   padding: 10px 0;
+  height: 50px;
 }
 
 .top-layer {
