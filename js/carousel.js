@@ -15,8 +15,8 @@ export default class Carousel {
     this.reactAuto;
 
     // set Timer(React / Auto act)
-    this.setAutoActTime = 3000;
-    this.setReactTimer = 3000;
+    this.setAutoActTimer = 3000;
+    this.setReactTimer = 3200;
 
     // Auto Act Method On/ Off
     this.autoAct = true;
@@ -27,10 +27,9 @@ export default class Carousel {
 
   init() {
     this.clickEvent();
-    if (this.autoAct) this.autoMoveEvent();
     this.xmlHttpRequest();
+    if (this.autoAct) this.autoMoveEvent();
   }
-
 
   autoMoveEvent() {
     this.carousel.ulLayer.addEventListener("load", this.autoSlideRenderer());
@@ -107,7 +106,7 @@ export default class Carousel {
   autoSlideRenderer() {
     const moveFn = this.moveToRight.bind(this);
     let startTime = 0;
-    const setMilSecTime = this.setAutoActTime;
+    const setMilSecTime = this.setAutoActTimer;
 
     function slide(timestamp) {
       if (!startTime) startTime = timestamp;
