@@ -28,37 +28,41 @@
 				</li>
 				<!--    middle - search-box     -->
 				<li class="top-header-middle">
-					<div class="arrow"></div>
-					<select name="dept-selector" class="dept-selector">
-						<option selected="selected" value="search-alias=aps">All</option>
-						<option value="search-alias=arts-crafts-intl-ship">Arts &amp; Crafts</option>
-						<option value="search-alias=automotive-intl-ship">Automotive</option>
-						<option value="search-alias=baby-products-intl-ship">Baby</option>
-						<option value="search-alias=beauty-intl-ship">Beauty &amp; Personal Care</option>
-						<option value="search-alias=stripbooks-intl-ship">Books</option>
-						<option value="search-alias=computers-intl-ship">Computers</option>
-						<option value="search-alias=digital-music">Digital Music</option>
-						<option value="search-alias=electronics-intl-ship">Electronics</option>
-						<option value="search-alias=digital-text">Kindle Store</option>
-						<option value="search-alias=instant-video">Prime Video</option>
-						<option value="search-alias=fashion-womens-intl-ship">Women's Fashion</option>
-						<option value="search-alias=fashion-mens-intl-ship">Men's Fashion</option>
-						<option value="search-alias=fashion-girls-intl-ship">Girls' Fashion</option>
-						<option value="search-alias=fashion-boys-intl-ship">Boys' Fashion</option>
-						<option value="search-alias=deals-intl-ship">Deals</option>
-						<option value="search-alias=hpc-intl-ship">Health &amp; Household</option>
-						<option value="search-alias=kitchen-intl-ship">Home &amp; Kitchen</option>
-						<option value="search-alias=industrial-intl-ship">Industrial &amp; Scientific</option>
-						<option value="search-alias=luggage-intl-ship">Luggage</option>
-						<option value="search-alias=movies-tv-intl-ship">Movies &amp; TV</option>
-						<option value="search-alias=music-intl-ship">Music, CDs &amp; Vinyl</option>
-						<option value="search-alias=pets-intl-ship">Pet Supplies</option>
-						<option value="search-alias=software-intl-ship">Software</option>
-						<option value="search-alias=sporting-intl-ship">Sports &amp; Outdoors</option>
-						<option value="search-alias=tools-intl-ship">Tools &amp; Home Improvement</option>
-						<option value="search-alias=toys-and-games-intl-ship">Toys &amp; Games</option>
-						<option value="search-alias=videogames-intl-ship">Video Games</option>
-					</select>
+					<!-- <div class="leftContainer"> -->
+					<div class="select-container">
+						<select name="dept-selector" class="dept-selector">
+							<option selected="selected" value="search-alias=aps">All</option>
+							<option value="search-alias=arts-crafts-intl-ship">Arts &amp; Crafts</option>
+							<option value="search-alias=automotive-intl-ship">Automotive</option>
+							<option value="search-alias=baby-products-intl-ship">Baby</option>
+							<option value="search-alias=beauty-intl-ship">Beauty &amp; Personal Care</option>
+							<option value="search-alias=stripbooks-intl-ship">Books</option>
+							<option value="search-alias=computers-intl-ship">Computers</option>
+							<option value="search-alias=digital-music">Digital Music</option>
+							<option value="search-alias=electronics-intl-ship">Electronics</option>
+							<option value="search-alias=digital-text">Kindle Store</option>
+							<option value="search-alias=instant-video">Prime Video</option>
+							<option value="search-alias=fashion-womens-intl-ship">Women's Fashion</option>
+							<option value="search-alias=fashion-mens-intl-ship">Men's Fashion</option>
+							<option value="search-alias=fashion-girls-intl-ship">Girls' Fashion</option>
+							<option value="search-alias=fashion-boys-intl-ship">Boys' Fashion</option>
+							<option value="search-alias=deals-intl-ship">Deals</option>
+							<option value="search-alias=hpc-intl-ship">Health &amp; Household</option>
+							<option value="search-alias=kitchen-intl-ship">Home &amp; Kitchen</option>
+							<option value="search-alias=industrial-intl-ship">Industrial &amp; Scientific</option>
+							<option value="search-alias=luggage-intl-ship">Luggage</option>
+							<option value="search-alias=movies-tv-intl-ship">Movies &amp; TV</option>
+							<option value="search-alias=music-intl-ship">Music, CDs &amp; Vinyl</option>
+							<option value="search-alias=pets-intl-ship">Pet Supplies</option>
+							<option value="search-alias=software-intl-ship">Software</option>
+							<option value="search-alias=sporting-intl-ship">Sports &amp; Outdoors</option>
+							<option value="search-alias=tools-intl-ship">Tools &amp; Home Improvement</option>
+							<option value="search-alias=toys-and-games-intl-ship">Toys &amp; Games</option>
+							<option value="search-alias=videogames-intl-ship">Video Games</option>
+						</select>
+						<div class="arrow"></div>
+						<!-- </div> -->
+					</div>
 					<input type="text" class="sch-input-box">
 					<div class="sch-btn-container">
 						<div class="sch-btn"></div>
@@ -77,18 +81,25 @@
 				<!--    left - location      -->
 				<li class="btm-header-left">
 					<div class="location-icon"></div>
-					<div class="location-text"> Deliver to
-						<br> Korea, Republic of
+					<div class="location-text">
+						<span class="location-text-line1">
+							Deliver to
+						</span>
+						<span class="location-text-line2">
+							Korea, Republic of
+						</span>
 					</div>
 				</li>
 				<!--   	 middle		   -->
 				<li class="btm-header-middle">
-					<div class="dept-selector2">
-						<select name="dept-selector2" id="dept-selector2">
-							<option value="departments">Departments</option>
-							<option value="prime-video">Prime Video</option>
-							<option value="music-cds-vinyl">Music, CDs & Vinyl</option>
-						</select>
+					<div class="departments">
+						<div class="dept-text">Departments</div>
+						<div class="arrow"></div>
+						<!-- <select name="dept-selector2" id="dept-selector2"></select>
+						<option value="departments">Departments</option>
+						<option value="prime-video">Prime Video</option>
+						<option value="music-cds-vinyl">Music, CDs & Vinyl</option>
+					</select> -->
 					</div>
 					<div class="header-mid-links">
 						<ul>
@@ -117,25 +128,44 @@
 				<li class="btm-header-right">
 					<ul>
 						<li>
-							<a href="#">EN
-								<div class="globe-icon"></div>
-								<div class="arrow"></div>
-							</a>
+							<div class="language">
+								<a href="#">
+									<span> EN </span>
+									<div class="globe-icon-container">
+										<div class="globe-icon"></div>
+										<div class="arrow"></div>
+									</div>
+								</a>
+							</div>
 						</li>
 						<li>
-							|
+							<div class="btm-header-border"></div>
 						</li>
 						<li>
-							<a href="#">Hello, Sign in Account & Lists</a>
-							<div class="arrow"></div>
+							<div class="sign-container">
+								<a href="#">
+									<span class="sign-text-line1">Hello, Sign in </span>
+									<span class="sign-text-line2">Account & Lists </span>
+									<div class="arrow"></div>
+								</a>
+							</div>
 						</li>
 						<li>
-							<a href="#">Orders</a>
+							<div class="order-container">
+								<a href="#">
+									<span>Orders</span>
+								</a>
+							</div>
 						</li>
 						<li>
 							<a href="#">
-								<div class="cart-icon"></div>
-								Cart
+								<div class="cart-container">
+									<div class="cart-icon-container">
+										<div class="cart-icon"></div>
+									</div>
+									<div class="cart-number">0</div>
+									<span>Cart</span>
+								</div>
 							</a>
 						</li>
 					</ul>
