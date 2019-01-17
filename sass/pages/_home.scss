@@ -29,31 +29,10 @@
         font-weight: 300;
     }
     &__form{
-        &__submit-box{
-            height: 5.5rem;
-            width: 36rem;
-            &__submit{
-                background-color: $color-prime-submit-button;
-                padding-left: .1rem;
-                padding-bottom: .1rem;
-                border: .1rem solid $color-prime-submit-border;
-                border-bottom-width: .2rem;
-                font-size: 2rem;
-                font-weight: bold;
-                font-family: AmazonEmber;
-                color: $color-prime-submit-text;
-                border-radius: .2rem;
-                width: 100%;
-                height: 100%;
-                cursor: pointer;
-                &:hover{
-                    background-color: #ffc400;
-                }
-            }
-        }
+        display: inline-block;
     }
     &--info{
-        margin-top: .9rem;
+        margin-top: .7rem;
         font-size: 1.4rem;
     }
     &__text-box{

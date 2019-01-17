@@ -55,12 +55,24 @@
 }
 
 .fixed-nav{
+    display: none;
     &__front{
         position: relative;
         text-align: center;
         height: 7rem;
         font-size: 0;
-        display: none;
+        .submit-box{
+            float: right;
+            margin-right: 10.3rem;
+            margin-top: 1.2rem;
+            width: 13.4rem;
+            height: 4.7rem;
+            &__submit{
+                padding-right: .1rem;
+                padding-top: .1rem;
+                font-size: 1.6rem;
+            }
+        }
     }
     &::after {
         content: "";
@@ -95,23 +107,10 @@
         display: inline-block;
         width: 3rem;
     }
-    .submit-btn{
-        position: absolute;
-        top: 50.7%;
-        right: 10.3rem;
-        transform: translateY(-49%);
-        .prime-about__form__submit-box__submit{
-            width: 13.4rem;
-            height: 4.7rem;
-            padding-top: .3rem;
-            padding-right: .1rem;
-            padding-bottom: .3rem;
-            font-size: 1.6rem;
-        }
-    }
+    
     &__submit{
         background-color: $color-text-white;
-        display: none;
+        padding-bottom: 2rem;
         .submit-form{
             width: 96.6rem;
             margin: 0 auto;
@@ -154,8 +153,51 @@
                 }
             }
             &__container{
-                
                 position: relative;
+                .submit-box{
+                    margin-top: 2.65rem;
+                    margin-right: -1.8rem;
+                    text-align: right;
+                    height: auto;
+                    &__submit{
+                        position: relative;
+                        font-size: 1.6rem;
+                        padding-top: .2rem;
+                        padding-right: .1rem;
+                        width: 32rem;
+                        height: 4.7rem;
+                        .scroll-btn{
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            transform: tanslateX(-50%);
+                        }
+                    }
+                }
+                .anchor-box{
+                    padding-top: 1.4rem;
+                    margin-right: -1.7rem;
+                    white-space: nowrap;
+                    .anchor:visited,
+                    .anchor:active,
+                    .anchor:link{
+                        font-family: AmazonEmber;
+                        font-size: 1.3rem;
+                        color: $color-text-link;
+                        text-decoration: none;
+                    }
+                    &__bar{
+                        display: inline-block;
+                        margin: 0 .15rem;
+                        font-size: 1.3rem;
+                        width: .2rem;
+                    }
+                }
+                &::after{
+                    content: '';
+                    display: table;
+                    clear: both;
+                }
             }
             &__cards{
                 display: flex;
