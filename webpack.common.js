@@ -8,8 +8,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    filename: '[name].[chunkhash].js'
   },
+  // devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -40,6 +41,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
+      hash: true,
       template: './index.html',
       filename: 'index.html'
     })
