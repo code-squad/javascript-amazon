@@ -14,20 +14,35 @@ a {
 }
 
 html {
-	font-size: 1rem;
+	font-size: 16px;
 	font-family: Arial, sans-serif;
+}
+
+.nav-wrap {
+	width: 80%;
+	margin: 0 auto;
+	min-width: 1550px;
+}
+
+/* nav-top style */
+
+.navbar, .nav-top {
+	overflow: hidden;
 }
 
 .navbar {
 	background-color: #232f3e;
-	overflow: hidden;
+}
+
+.nav-top>div {
+	margin: 13px 18px 0 0px;
+	float: left;
 }
 
 .logo {
-	padding: 13px 18px 0 27px;
-	width: 190px;
-	height: 26px;
-	float: left;
+	width: 135px;
+	height: 100%;
+	position: relative;
 }
 
 .logo-img {
@@ -41,17 +56,14 @@ html {
 	text-decoration: underline;
 	color: #48A3C6;
 	position: absolute;
-	top: 31px;
-	left: 96px;
+	top: 17px;
+	left: 70px;
 }
 
 .search-bar {
 	box-sizing: border-box;
-	display: inline-block;
 	width: 882px;
-	height: 37px;
-	margin: 10px 18px 0 27px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 	background-color: #fff;
 	position: relative;
 }
@@ -61,8 +73,7 @@ html {
 	position: relative;
 	width: 60px;
 	display: inline-block;
-	padding: 10px;
-	height: 100%;
+	padding: 9px;
 	border-right: 1px solid black;
 }
 
@@ -78,27 +89,27 @@ html {
 }
 
 .inputsearch {
-	font-size: 16px;
+	font-size: 1em;
 	height: 100%;
+	padding-left: 10px;
 	position: absolute;
 	width: 778px;
 }
 
 .selector-list {
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	height: 100%;
-	width: 45px;
+	width: 100%;
 	opacity: 0;
 	cursor: pointer;
 }
 
 .searchexecute {
-	position: relative;
 	width: 45px;
-	height: 100%;
+	height: 36px;
 	float: right;
 	background-color: #febd69;
 	border-radius: 0px 4px 4px 0px;
@@ -112,12 +123,7 @@ html {
 	left: 13px;
 }
 
-.evnetimg {
-	float: right;
-	display: inline-block;
-	position: absolute;
-	margin: 13px 8px 0 0px;
-}
+/* nav-bottom style */
 
 .nav-bottom {
 	margin-top: 15px;
@@ -125,26 +131,19 @@ html {
 	color: #fff;
 }
 
-.location, .menu, .usertools {
+.nav-bottom>div {
 	height: 100%;
-}
-
-.location {
 	float: left;
-	margin: 0px 42px 5px 27px;
+	margin-right: 25px;
 }
 
 .menu {
-	float: left;
-	width: 840px;
+	width: 810px;
 	padding-top: 13px;
 }
 
 .usertools {
-	float: left;
-	height: 100%;
 	width: 450px;
-	color: #ccc;
 }
 
 .location-ico {
@@ -265,7 +264,7 @@ html {
 .usertools-orders, .usertools-prime {
 	margin-top: 7px;
 	margin-left: 1px;
-	padding: 10px 10px 10px 10px;
+	padding: 10px;
 }
 
 .usertools-orders-link {
@@ -301,4 +300,8 @@ html {
 
 .usertools-cart-contents {
 	margin-top: 7px;
+}
+
+.detailpage {
+	display: none;
 }
