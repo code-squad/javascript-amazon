@@ -2,17 +2,19 @@
   background-color: #24313f;
   overflow: hidden;
   height: 0;
-  position: fixed;
+  position: absolute;
   width: 1440px;
-  top: 0;
-  z-index: 999;
+  z-index: 998;
   transition: height 1s, padding 1s;
+  top:98px;
 }
 
 .top-layer-active {
+  position: fixed;
   transition: height 1s, padding 1s;
   padding: 10px 0;
   height: 50px;
+  top:0;
 }
 
 .top-layer {

@@ -4,13 +4,21 @@
   overflow: hidden;
   padding: 0 200px;
   height: 0px;
-  position: relative;
+  position: absolute;
   border-bottom: 2px solid #53a8de;
   transition: height 1s;
+  z-index:999;
 }
 .prime-member-container-active {
   height: 700px;
   z-index: 999;
+  position:absolute;
+  top:99px;
+  transition: height 1s;
+}
+.prime-member-container-scroll-active {
+  position: fixed;
+  top:0;
 }
 .prime-member{
   position: relative;
