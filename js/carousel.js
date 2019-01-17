@@ -27,7 +27,6 @@ export default class Carousel {
 
   init() {
     this.clickEvent();
-    this.xmlHttpRequest();
     if (this.autoAct) this.autoMoveEvent();
   }
 
