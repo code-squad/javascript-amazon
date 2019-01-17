@@ -14,7 +14,7 @@ const musicCarousel = new Carousel({
 })
 
 
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
     stickyLayer.run();
     videoCarousel.run();
     musicCarousel.run();
