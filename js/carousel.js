@@ -13,13 +13,24 @@ export default class Carousel {
     this.requestID = null;
     // pause시 재작동을 위한 값
     this.reactAuto;
+
+    // set Timer(React / Auto act)
+    this.setAutoActTime = 3000;
+    this.setReactTimer = 3000;
+
+    // Auto Act Method On/ Off
+    this.autoAct = true;
+
+    // click Pause AutoAct Method On/ Off
+    this.pauseAct = true;
   }
 
   init() {
     this.clickEvent();
-    this.autoMoveEvent();
+    if (this.autoAct) this.autoMoveEvent();
     this.xmlHttpRequest();
   }
+
 
   autoMoveEvent() {
     this.carousel.ulLayer.addEventListener("load", this.autoSlideRenderer());
@@ -28,11 +39,11 @@ export default class Carousel {
   clickEvent() {
     this.carousel.prev.addEventListener('click', () => {
       this.moveToLeft();
-      this.pauseAutoSlide();
+      if (this.pauseAct) this.pauseAutoSlide();
     });
     this.carousel.next.addEventListener('click', () => {
       this.moveToRight();
-      this.pauseAutoSlide();
+      if (this.pauseAct) this.pauseAutoSlide();
     });
   }
 
@@ -69,11 +80,18 @@ export default class Carousel {
       if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
         const responseObj = JSON.parse(xhr.responseText);
         responseObj.map(element => this.createHTMLTemplate(element));
+        // offsetWidth * n(<li> Length)개 = Total Value: <ul> width (px);
+        this.setUlLayerWidth();
       }
     });
 
     xhr.open('GET', regURL);
     xhr.send();
+  }
+
+  setUlLayerWidth() {
+    const width = this.carousel.ulLayer.offsetWidth * this.carousel.ulLayer.children.length;
+    this.carousel.ulLayer.style.setProperty('width', `${width}px`);
   }
 
   createHTMLTemplate({ src, alt, id }) {
@@ -89,10 +107,10 @@ export default class Carousel {
   autoSlideRenderer() {
     const moveFn = this.moveToRight.bind(this);
     let startTime = 0;
+    const setMilSecTime = this.setAutoActTime;
 
     function slide(timestamp) {
       if (!startTime) startTime = timestamp;
-      const setMilSecTime = 3000;
       let bProgressTime = (timestamp - startTime) >= setMilSecTime;
 
       if (bProgressTime) {
@@ -106,8 +124,7 @@ export default class Carousel {
 
   pauseAutoSlide() {
     cancelAnimationFrame(this.requestID);
-    const setReactTimer = 3000;
-    if (!this.reactAuto) this.reactAuto = debounce(this.autoSlideRenderer, setReactTimer).bind(this);
+    if (!this.reactAuto) this.reactAuto = debounce(this.autoSlideRenderer, this.setReactTimer).bind(this);
     this.reactAuto();
   }
 }
