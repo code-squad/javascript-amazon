@@ -1,0 +1,304 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+html {
+	font-size: 1rem;
+	font-family: Arial, sans-serif;
+}
+
+.navbar {
+	background-color: #232f3e;
+	overflow: hidden;
+}
+
+.logo {
+	padding: 13px 18px 0 27px;
+	width: 190px;
+	height: 26px;
+	float: left;
+}
+
+.logo-img {
+	width: 100px;
+	height: 30px;
+}
+
+.logo-primeLink {
+	font-size: 11px;
+	font-weight: 700;
+	text-decoration: underline;
+	color: #48A3C6;
+	position: absolute;
+	top: 31px;
+	left: 96px;
+}
+
+.search-bar {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 882px;
+	height: 37px;
+	margin: 10px 18px 0 27px;
+	border-radius: 4px 4px 4px 4px;
+	background-color: #fff;
+	position: relative;
+}
+
+.selector {
+	border-radius: 4px 0px 0px 4px;
+	position: relative;
+	width: 60px;
+	display: inline-block;
+	padding: 10px;
+	height: 100%;
+	border-right: 1px solid black;
+}
+
+.selector-ico {
+	position: absolute;
+	top: 18px;
+	left: 35px;
+	border-style: solid;
+	border-width: 4px;
+	border-color: transparent;
+	border-top: 4px solid #666;
+	border-bottom-width: 0;
+}
+
+.inputsearch {
+	font-size: 16px;
+	height: 100%;
+	position: absolute;
+	width: 778px;
+}
+
+.selector-list {
+	border-radius: 4px 4px 4px 4px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 45px;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.searchexecute {
+	position: relative;
+	width: 45px;
+	height: 100%;
+	float: right;
+	background-color: #febd69;
+	border-radius: 0px 4px 4px 0px;
+}
+
+.searchexecute_ico {
+	position: relative;
+	height: 21px;
+	width: 21px;
+	top: 7px;
+	left: 13px;
+}
+
+.evnetimg {
+	float: right;
+	display: inline-block;
+	position: absolute;
+	margin: 13px 8px 0 0px;
+}
+
+.nav-bottom {
+	margin-top: 15px;
+	height: 38px;
+	color: #fff;
+}
+
+.location, .menu, .usertools {
+	height: 100%;
+}
+
+.location {
+	float: left;
+	margin: 0px 42px 5px 27px;
+}
+
+.menu {
+	float: left;
+	width: 840px;
+	padding-top: 13px;
+}
+
+.usertools {
+	float: left;
+	height: 100%;
+	width: 450px;
+	color: #ccc;
+}
+
+.location-ico {
+	width: 20px;
+	height: 22px;
+}
+
+.location-line {
+	display: inline-block;
+}
+
+.location-line1 {
+	display: block;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.location-line2 {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.hamberger-menu {
+	position: relative;
+	display: inline-block;
+	width: 105px;
+	font-size: 14px;
+	font-weight: 700
+}
+
+.menu-arrow {
+	position: absolute;
+	top: 7px;
+	left: 93px;
+}
+
+.menu-list {
+	margin-left: 10px;
+	font-size: 13px;
+}
+
+.menu-list a {
+	color: #ccc;
+	margin-left: 13px;
+}
+
+.usertools-leng, .usertools-login, .usertools-orders, .usertools-prime, .usertools-cart {
+	float: left;
+}
+
+.usertools-leng {
+	height: 100%;
+	width: 45px;
+}
+
+.usertools-leng-satus {
+	width: 25px;
+	float: left;
+}
+
+.usertools-leng-txt {
+	position: relative;
+	left: 4px;
+	font-size: 12px;
+}
+
+.usertools-leng-ico {
+	position: relative;
+	width: 14px;
+	height: 14px;
+	left: 6px;
+}
+
+.usertools-leng-arrow, .usertools-login-arrow, .usertools-orders-arrow, .menu-arrow {
+	border-style: solid;
+	border-width: 4px;
+	border-color: transparent;
+	border-top: 4px solid #666;
+	border-bottom-width: 0;
+}
+
+.usertools-leng-arrow {
+	float: left;
+	margin-top: 15px;
+}
+
+.usertools-border {
+	float: left;
+	border: 1px solid #ccc;
+	height: 30px;
+	padding-top: 0px;
+	margin-top: 4px;
+	margin-bottom: 2px;
+}
+
+.usertools-login {
+	width: 125px;
+	margin-left: 12px;
+}
+
+.usertools-login-text {
+	margin-top: 5px;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.usertools-login-popup {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.usertools-login-arrow {
+	position: relative;
+	top: 10px;
+	left: 5px;
+}
+
+.usertools-orders, .usertools-prime {
+	margin-top: 7px;
+	margin-left: 1px;
+	padding: 10px 10px 10px 10px;
+}
+
+.usertools-orders-link {
+	color: #ccc;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.usertools-orders-arrow {
+	position: relative;
+	display: inline-block;
+	top: -2px;
+}
+
+.usertools-cart {
+	position: relative;
+	height: 100%;
+	font-weight: 700;
+}
+
+.usertools-cart-ico {
+	width: 38px;
+	height: 26px;
+}
+
+.usertools-cart-count {
+	position: absolute;
+	color: #f08804;
+	font-size: 16px;
+	top: 1px;
+	left: 17px;
+}
+
+.usertools-cart-contents {
+	margin-top: 7px;
+}
