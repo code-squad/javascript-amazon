@@ -7,7 +7,9 @@
   <title>Amazon Prime</title>
 </head>
 <body>
-  <a href="#" class="nav__skip">Skip to content</a>
+  <!-- Skip Nav -->
+  <a href="#" class="hidden">Skip to content</a>
+  <!-- Header -->
   <header class="header">
     <!-- Logo -->
     <h1 class="header-logo">
@@ -22,7 +24,7 @@
           <legend class="hidden">Search input</legend>
           <a href="#" class="header-search" title="Open search options">
             <span class="header-search__label">All</span>
-            <i class="icon-arrow"></i>
+            <i class="icon-arrow--down"></i>
           </a>
           <select class="header-search-select">
             <option value="" class="header-search-select__option">All Departments</option>
@@ -42,15 +44,17 @@
       </a>
     </div>
     <div class="header--bottom">
+      <!-- Deliver Info -->
       <a href="#" class="header-deliver">
         <i class="icon-direction"></i>
         Deiliver to <span class="header-deliver--strong">Korea, Republic of</span>
       </a>
+      <!-- Navigation -->
       <nav class="header-nav">
         <h2 class="hidden">Main menu</h2>
         <ul class="header-nav__lists">
           <li>
-            <a href="#">Departments <i class="icon-arrow"></i></a>
+            <a href="#">Departments <i class="icon-arrow--down"></i></a>
             <ul class="header-nav-department__lists">
               <li>
                 <a href="#">Prime video</a>
@@ -83,8 +87,9 @@
           </li>
         </ul>
       </nav>
+      <!-- Users -->
       <div class="header-user">
-        <a href="#" class="header-user-language">EN <i class="icon-language"></i><i class="icon-arrow"></i></a>
+        <a href="#" class="header-user-language">EN <i class="icon-language"></i><i class="icon-arrow--down"></i></a>
         <a href="#" class="header-user-account">Hello, Sign in <span class="header-user-account--strong">Account & Lists <i class="icon-arrow"></i></span></a>
         <a href="#" class="header-user-orders">Orders</a>
         <a href="#" class="header-user-cart">Cart
@@ -94,5 +99,93 @@
       </div>
     </div>
   </header>
+  <div class="wrapper">
+    <!-- Main -->
+    <main class="main" role="main">
+      <h2 class="main__title">There's something for everyone with Prime!</h2>
+      <p class="main__desc">Check out what's included with your Prime Membership.</p>
+      <button class="main__btn">TRY PRIME</button>
+      <p class="main__help"><sup>$</sup>12<sup>99</sup>/month<span class="header-dot">. </span>Cancel anytime.</p>
+      <a href="#" class="main__link">See more plans <i class="icon-arrow--right"></i></a>
+      <img src="~assets/images/PrimeLogo_White.svg" alt="Amazon Prime Logo" class="main__logo">
+    </main>
+    <!-- Carousel -->
+    <section class="carousel">
+      <ul class="carousel-indicator">
+        <li class="carousel-indicator-card">
+          <img src="" alt="" class="carousel-indicator-card__img">
+          <h2 class="carousel-indicator-card__title">Ship</h2>
+          <ul class="carousel-indicator-card-pagination">
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+          </ul>
+        </li>
+        <li class="carousel-indicator-card">
+          <img src="" alt="" class="carousel-indicator-card__img">
+          <h2 class="carousel-indicator-card__title">Ship</h2>
+          <ul class="carousel-indicator-card-pagination">
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+          </ul>
+        </li>
+        <li class="carousel-indicator-card">
+          <img src="" alt="" class="carousel-indicator-card__img">
+          <h2 class="carousel-indicator-card__title">Ship</h2>
+          <ul class="carousel-indicator-card-pagination">
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+          </ul>
+        </li>
+        <li class="carousel-indicator-card">
+          <img src="" alt="" class="carousel-indicator-card__img">
+          <h2 class="carousel-indicator-card__title">Ship</h2>
+          <ul class="carousel-indicator-card-pagination">
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+          </ul>
+        </li>
+        <li class="carousel-indicator-card">
+          <img src="" alt="" class="carousel-indicator-card__img">
+          <h2 class="carousel-indicator-card__title">Ship</h2>
+          <ul class="carousel-indicator-card-pagination">
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+            <li><a href="#"><i class="icon-circle"></i></a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="carousel-slides">
+        <div class="carousel-slides-slide">
+          <h2 class="content__tag">TWO-DAY SHIPPING</h2>
+          <h3 class="content__title">Fast, free delivery on over 100 millions items</h3>
+          <p class="content__desc">Super-fase shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
+          <a href="#" class="content__link">Explore Prime Delivery <i class="icon-arrow-right"></i></a>
+        </div>
+        <button class="carousel__btn carousel__btn--prev"></button>
+        <button class="carousel__btn carousel__btn--next"></button>
+      </div>
+    </section>
+    <section class="benefits">
+      <h2 class="benefits__title">Here's a little more about Prime that we think you'll love:</h2>
+      <div class="benefits-content">
+        <h2 class="content__title">Fast, free delivery on over 100 millions items</h2>
+        <p class="content__desc">Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
+        <a href="#" class="content-link">Explore Prime Delivery <i class="icon-arrow--right"></i></a>
+      </div>
+      <div class="benefits-content">
+        <div class="benefits-content__carousel">
+          <div class="carousel--small">
+            <div class="carousel-slides">
+              <img src="" alt="" class="carousel-slides__slide">
+            </div>
+            <button class="carousel__btn carousel__btn--prev"></button>
+            <button class="carousel__btn carousel__btn--next"></button>
+          </div>
+        </div>
+        <h2 class="content__title">Fast, free delivery on over 100 millions items</h2>
+        <p class="content__desc">Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
+        <a href="#" class="content-link">Explore Prime Delivery <i class="icon-arrow--right"></i></a>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
