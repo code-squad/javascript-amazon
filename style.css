@@ -1,0 +1,501 @@
+body{
+    min-width: 1260px;
+    font-family: arial, sans-serif;
+}
+/* layout */
+
+.header {
+    width: 100%;
+    height: 106px;
+    background-color: #232f3e;
+}
+
+.cnt {
+    width: 100%;
+    text-align: center;
+}
+
+.footer {
+    width: 100%;
+}
+
+/* header-top */
+
+.top-header {
+    width: 100%;
+    height: 46px;
+    /* text-align: center; */
+}
+
+li {
+    display: inline-block;
+}
+
+/* left - amazon-logo */
+
+.top-header-left {
+    /* width: 192px; */
+    height: 38px;
+    float: left;
+}
+
+.amz-logo {
+    width: 98px;
+    height: 36px;
+    background: url('https://m.media-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png') no-repeat center top;
+    background-position: 4% 14%;
+    margin-left: 18px;
+    margin-top: 10px;
+}
+
+/* middle - search-box */
+.top-header-middle {
+    margin-left: 30px;
+    width: 700px;
+    /* margin: 10px auto; */
+    font-size: 0;
+    /* vertical-align: middle;
+    text-align: center; */
+    /* position: relative; */
+    /* float: left; */
+    /* display: inline-block; */
+    text-align: left;
+}
+
+.dept-selector {
+    width: 37px;
+    height: 35px;
+    border: 1px solid #f3f3f3;
+    border-radius: 10px 0px 0px 10px;
+    /* float: left; */
+}
+
+.leftContainer{
+    position: relative;
+    /* float: left; */
+}
+
+.select-container{
+    position: relative;
+    /* width: 100%; */
+    /* height: 100%; */
+    display: inline-block;
+    /* vertical-align: top; */
+    padding-left: 3px;
+}
+/* .leftContainer::after{
+    content: '';
+    clear: both;
+    display: table;
+} */
+
+.arrow {
+    border: 3.5px solid transparent;
+    width: 7px;
+    height: 7px;
+    border-right-color: #9499a0;
+    border-bottom-color: #9499a0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotateZ(45deg);
+}
+
+.sch-input-box {
+    height: 35px;
+    width: 610px;
+    /* float: left; */
+    margin: auto;
+    vertical-align: middle;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.sch-btn-container {
+    width: 45px;
+    height: 35px;
+    background-color: #f5bc68;
+    border-left: 1px solid grey;
+    border-radius: 0px 10px 10px 0px;
+    /* float: left; */
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.sch-btn {
+    width: 100%;
+    height: 35px;
+    background: url('https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png') no-repeat;
+    background-position: -10px -290px;
+    margin: 8px;
+}
+
+/* right - event-logo */
+
+.top-header-right {
+    width: 400px;
+    height: 39px;
+    float: right;
+}
+
+.evt-logo {
+    width: 100%;
+    height: 36px;
+    background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/amazonglobal/images/Fuji/SWM/English/2018/September/Fuji_EN_SWM_TodaysDeals_Sep18._CB484652360_.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* var() */
+
+/* header-bottom */
+.btm-header {
+    width: 100%;
+    height: 46px;
+    margin-top: 14px;
+    vertical-align: bottom;
+}
+
+/* left - location  */
+
+.btm-header-left {
+    /* width: 192px; */
+    height: 38px;
+    float: left;
+    cursor: pointer;
+    padding: 7px;
+    border: 1px solid transparent;
+}
+
+.btm-header-left:hover{
+    border: 1px solid slategray
+}
+
+.location-icon {
+    width: 22px;
+    height: 22px;
+    background: url('https://m.media-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png') no-repeat center top;
+    background-position: -68px -340px;
+    float: left;
+}
+
+.location-text {
+    color: white;
+    text-align: left;
+    float: left;
+    margin-left: 6px;
+}
+
+.location-text-line1 {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.location-text-line2 {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/*  middle  */
+.btm-header-middle {
+    /* margin: 10px auto; */
+    /* font-size: 0; */
+    /* text-align: left; */
+    /* float: left; */
+    /* width: 700px; */
+    margin-left: 30px;
+    /* display: inline-block; */
+}
+
+.departments {
+    /* float: left; */
+    cursor: pointer;
+    position: relative;
+    width: 106px;
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 20px;
+    padding: 7px;
+    border: 1px solid transparent;
+}
+
+.departments:hover{
+    border: 1px solid slategray;
+}
+
+.dept-text{
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.header-mid-links {
+    /* margin-left: 20px; */
+    font-size: 12px;
+    /* padding-right: 20px; */
+    display: inline-block;
+    width: 500px;
+}
+
+.header-mid-links ul li a{
+    padding-right: 10px
+}
+
+.header-mid-links ul li a:link {
+    color: #ccc;
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+.header-mid-links ul li a:visited {
+    color: #ccc;
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+.header-mid-links ul li a:hover {
+    color: #ccc;
+    text-decoration: underline;
+}
+
+/*  right  */
+
+.btm-header-right {
+    /* width: 400px; */
+    height: 43px;
+    float: right;
+    vertical-align: bottom;
+}
+
+.btm-header-right ul li {
+    display: inline-block;
+}
+
+.btm-header-right ul li a{
+    color: #ffffff;
+    text-decoration: none;
+    padding-right: 30px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.language{
+    width: 37px;
+    height: 37px;
+    display: inline-block;
+    position: relative;
+    border: 1px solid transparent;
+    padding: 0 5px;
+    text-align: center;
+}
+
+.language:hover{
+    border: 1px solid slategray;
+}
+
+.language a span{
+    color: #ccc;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.globe-icon-container{
+    width: 14px;
+    height: 14px;
+}
+
+.globe-icon{
+    width: 100%;
+    height: 100%;
+    background-image: url('https://m.media-amazon.com/images/G/01/AUIClients/InternationalCustomerPreferencesNavAssets-icp_sprite-7d1bfde38eb13748605e178896ede63a4aa68e0c._V2_.png');
+    background-position: -77px -24px;
+}
+
+.btm-header-border{
+    border-right: 1px solid #555;
+    height: 34px;
+    padding-left: 10px;
+}
+
+.sign-container{
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.sign-container:hover{
+    border: 1px solid slategray;
+}
+
+.sign-text-line1{
+    color: #ccc;
+    font-size: 12px;
+    display: block;
+    font-weight: 400;
+    margin-left: 20px
+}
+
+.sign-text-line2{
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 20px
+}
+
+.order-container{
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 20px;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.order-container:hover{
+    border: 1px solid slategray;
+}
+
+.cart-container{
+    width: 73px;
+    font-size: 14px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+.cart-container:hover{
+    border: 1px solid slategray;
+}
+
+.cart-number{
+    color: #f08804;
+    font-size: 14px;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+
+.cart-icon-container{
+    width: 38px;
+    height: 26px;
+    display: inline-block;
+    position: relative;
+}
+
+.cart-icon{
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-1x_optimized._CB483188077_.png');
+    background-position: -10px -340px;
+}
+
+/* contents */
+
+/* banner-top */
+.top-banner{
+    background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Header_01._CB513133335_.png');
+    width: 100%;
+    height: 476px;
+    background-repeat: no-repeat;
+    text-align: center;
+    background-position: center top;
+}
+
+.top-banner h3{
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    width: 500px;
+    margin-left: 300px;
+    padding-top: 40px;
+    line-height: 50px;
+    text-align: left;
+}
+
+.top-banner-sub{
+    font-size: 22px;
+    width: 400px;
+    color: #fff;
+    /* font-weight: ; */
+    margin-left: 300px;
+    padding-top: 40px;
+    text-align: left;
+}
+
+.top-banner-btn{
+    width: 400px;
+    background: #f0c14b;
+    border: #a88734;
+    margin-left: 300px;
+    padding-top: 40px;
+}
+
+.top-banner-btn button{
+    width: 100%;
+    height: 100%;
+    color: #0079b4;
+    background: #f0c14b;
+}
+
+.top-banner-cancel{
+    display: block;
+    text-align: left;
+    margin-left: 300px;
+    padding-top: 40px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.top-banner span a{
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    display: block;
+    text-align: left;
+    margin-left: 300px;
+}
+
+.prime-logo{
+    width: 80px;
+    height: 50px;
+    background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_White._CB515573990_.svg');
+    margin-left: 300px;
+    margin-top: 20px;
+}
+
+
+/* feature-cards */
+.feat-cards{
+    text-align: center;
+}
+
+.feat-cards ul li div{
+    width: 150px;
+    height: 210px;
+    background-color:slategray;
+}
+
+
+/* carousel-card */
+.carousel-card{
+    width: 1048px;
+    height: 400px;
+    background-color:grey;
+}
+
+/* banner-middle */
+.mid-banner ul li div{
+    width: 1048px;
+    height: 360px;
+    background-color: black;
+}
+
+/* footer */
+.footer{
+    width: 100%;
+    height: 49px;
+    background-color: #232f3e;
+}
