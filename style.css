@@ -349,18 +349,15 @@ li {
 }
 
 /* contents */
-.cnt{
-    width: 1000px;
-}
 
 /* banner-top */
 .top-banner{
     background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Header_01._CB513133335_.png');
     width: 100%;
     height: 476px;
-    background-size: contain;
     background-repeat: no-repeat;
     text-align: center;
+    background-position: center top;
 }
 
 .top-banner h3{
@@ -368,30 +365,51 @@ li {
     font-weight: 700;
     color: #fff;
     width: 500px;
-    padding-left: 40px;
-    padding-top: 70px;
+    margin-left: 300px;
+    padding-top: 40px;
+    line-height: 50px;
+    text-align: left;
 }
 
 .top-banner-sub{
     font-size: 22px;
     width: 400px;
     color: #fff;
-    padding-left: 40px;
-    padding-top: 30px;
-    font-weight: 100;
+    /* font-weight: ; */
+    margin-left: 300px;
+    padding-top: 40px;
+    text-align: left;
 }
 
 .top-banner-btn{
     width: 400px;
     background: #f0c14b;
     border: #a88734;
+    margin-left: 300px;
+    padding-top: 40px;
 }
 
 .top-banner-btn button{
     width: 100%;
     height: 100%;
     color: #0079b4;
-    text-align: center;
     background: #f0c14b;
 }
 
+.top-banner-cancel{
+    display: block;
+    text-align: left;
+    margin-left: 300px;
+    padding-top: 40px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.top-banner span a{
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    display: block;
+    text-align: left;
+    margin-left: 300px;
+}
