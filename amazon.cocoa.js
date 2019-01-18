@@ -1,66 +1,83 @@
+// amazon_step2 js
+// plans layer / more plans layer class
 
-// scroll Event(hidden Menu)
-const upperPlansLayer = document.querySelector(".upper-plans-layer");
-const upperPlansLayerLine = document.querySelector(".upper-plans-layer-line");
-const upperPlansLayerPanel = document.querySelector(".upper-plans-layer-panel");
-const headerbarHeight = document.querySelector("#header-bar").clientHeight; 
-const tryPrimeButtonElement = document.querySelector("#try-prime-button");
-const tryPrimeBottomHeight = tryPrimeButtonElement.offsetHeight + tryPrimeButtonElement.offsetTop + headerbarHeight;
+const elementObjectForPlansLayer = {
+    upperPlansLayer: document.querySelector(".upper-plans-layer"),
+    upperPlansLayerLine: document.querySelector(".upper-plans-layer-line"),
+    upperPlansLayerPanel: document.querySelector(".upper-plans-layer-panel"),
+    headerbarHeight: document.querySelector("#header-bar").clientHeight,
+    tryPrimeButtonElement: document.querySelector("#try-prime-button"),
+    tryPrimeBottomHeight: document.querySelector("#try-prime-button").offsetHeight + document.querySelector("#try-prime-button").offsetTop + document.querySelector("#header-bar").clientHeight
+}
+
+const elementObjectForMorePlansLayer = {
+    morePlansLayer: document.querySelector(".see-more-plans-layer"),
+    layerExpandAnchor: document.querySelector(".expand-more-plans-layer"),
+    plansLayerHeight: document.querySelector(".upper-plans-layer"),
+    closingAreaMorePlansLayer: document.querySelector(".see-more-plans-layer")
+}
 
 
-function showUpperPlansLayer() {
-    if (window.pageYOffset < headerbarHeight) {
-        upperPlansLayer.classList.remove("scroll-position-fixed-upper-plans-layer");
-        upperPlansLayerLine.classList.remove("scroll-position-fixed-upper-plans-layer-line"); 
+class PlansLayer {
+    constructor(element) {
+        this.upperPlansLayer = element.upperPlansLayer
+        this.upperPlansLayerLine = element.upperPlansLayerLine
+        this.upperPlansLayerPanel = element.upperPlansLayerPanel
+        this.headerbarHeight = element.headerbarHeight
+        this.tryPrimeButtonElement = element.tryPrimeButtonElement
+        this.tryPrimeBottomHeight = element.tryPrimeBottomHeight
+        this.initShowUpperPlansLayer();
     }
-    if (window.pageYOffset >= headerbarHeight && window.pageYOffset < tryPrimeBottomHeight) {
-        upperPlansLayer.classList.add("scroll-position-fixed-upper-plans-layer");
-        upperPlansLayerLine.classList.add("scroll-position-fixed-upper-plans-layer-line");
-        upperPlansLayer.classList.remove("scroll-height-upper-plans-layer", "upper-plans-layer-position-bottom", "upper-plans-layer-position-bottom-keep");
-        upperPlansLayerLine.classList.remove("scroll-height-upper-plans-layer-line", "upper-plans-layer-line-position-bottom", "upper-plans-layer-line-position-bottom-keep");
-        upperPlansLayerPanel.classList.remove("upper-plans-layer-panel-expand");
-    }
-    if (window.pageYOffset >= tryPrimeBottomHeight) {
-        upperPlansLayer.classList.add("scroll-height-upper-plans-layer");
-        upperPlansLayerLine.classList.add("scroll-height-upper-plans-layer-line");
-        upperPlansLayerPanel.classList.add("upper-plans-layer-panel-expand");
+
+    initShowUpperPlansLayer() {
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset < this.headerbarHeight) {
+                this.upperPlansLayer.classList.remove("scroll-position-fixed-upper-plans-layer");
+                this.upperPlansLayerLine.classList.remove("scroll-position-fixed-upper-plans-layer-line");
+            }
+            if (window.pageYOffset >= this.headerbarHeight && window.pageYOffset < this.tryPrimeBottomHeight) {
+                this.upperPlansLayer.classList.add("scroll-position-fixed-upper-plans-layer");
+                this.upperPlansLayerLine.classList.add("scroll-position-fixed-upper-plans-layer-line");
+                this.upperPlansLayer.classList.remove("scroll-height-upper-plans-layer", "upper-plans-layer-position-bottom", "upper-plans-layer-position-bottom-keep");
+                this.upperPlansLayerLine.classList.remove("scroll-height-upper-plans-layer-line", "upper-plans-layer-line-position-bottom", "upper-plans-layer-line-position-bottom-keep");
+                this.upperPlansLayerPanel.classList.remove("upper-plans-layer-panel-expand");
+            }
+            if (window.pageYOffset >= this.tryPrimeBottomHeight) {
+                this.upperPlansLayer.classList.add("scroll-height-upper-plans-layer");
+                this.upperPlansLayerLine.classList.add("scroll-height-upper-plans-layer-line");
+                this.upperPlansLayerPanel.classList.add("upper-plans-layer-panel-expand");
+            }
+        });
     }
 }
 
-window.addEventListener("scroll", showUpperPlansLayer);
+class MorePlansLayer extends PlansLayer {
+    constructor(element, element2) {
+        super(element);
+        this.morePlansLayer = element2.morePlansLayer;
+        this.layerExpandAnchor = element2.layerExpandAnchor
+        this.plansLayerHeight = element2.plansLayerHeight
+        this.closingAreaMorePlansLayer = element2.closingAreaMorePlansLayer
+        this.initExpandMorePlansLayer();
+    }
 
+    initExpandMorePlansLayer() {
+        this.layerExpandAnchor.addEventListener("click", () => {
+            this.morePlansLayer.style.height = `${window.innerHeight}px`;
+            this.upperPlansLayer.style.top = this.morePlansLayer.style.height;
+            this.upperPlansLayerLine.style.top = `${window.innerHeight + this.upperPlansLayer.clientHeight}px`;
+            this.upperPlansLayer.classList.add("upper-plans-layer-position-bottom", "upper-plans-layer-position-bottom-keep");
+            this.upperPlansLayerLine.classList.add("upper-plans-layer-line-position-bottom", "upper-plans-layer-line-position-bottom-keep");
+        });
 
-// 클릭했을 때 펼치지는 이벤트
-const morePlansLayer = document.querySelector(".see-more-plans-layer");
-const layerExpandAnchor = document.querySelector(".expand-more-plans-layer");
-const plansLayerHeight = document.querySelector(".upper-plans-layer");
-
-function expandMorePlansLayer() {
-    morePlansLayer.style.height = `${window.innerHeight}px`;
-    upperPlansLayer.style.top = morePlansLayer.style.height;
-    upperPlansLayerLine.style.top = `${window.innerHeight + upperPlansLayer.clientHeight}px`;
-
-    upperPlansLayer.classList.add("upper-plans-layer-position-bottom", "upper-plans-layer-position-bottom-keep");
-    upperPlansLayerLine.classList.add("upper-plans-layer-line-position-bottom", "upper-plans-layer-line-position-bottom-keep");
+        this.closingAreaMorePlansLayer.addEventListener("click", () => {
+            this.morePlansLayer.style.height = "";
+            this.upperPlansLayer.style.top = "";
+            this.upperPlansLayerLine.style.top = "";
+            this.upperPlansLayer.classList.remove("upper-plans-layer-position-bottom");
+            this.upperPlansLayerLine.classList.remove("upper-plans-layer-line-position-bottom");
+        });
+    }
 }
 
-layerExpandAnchor.addEventListener("click", expandMorePlansLayer);
-
-
-// 클릭했을 때 접혀지는 이벤트
-const closingAreaMorePlansLayer = document.querySelector(".see-more-plans-layer");
-
-function closeMorePlansLayer() {
-    morePlansLayer.style.height = "";
-    upperPlansLayer.style.top = "";
-    upperPlansLayerLine.style.top = "";
-    upperPlansLayer.classList.remove("upper-plans-layer-position-bottom");
-    upperPlansLayerLine.classList.remove("upper-plans-layer-line-position-bottom");
-}
-
-closingAreaMorePlansLayer.addEventListener("click", closeMorePlansLayer);
-
-
-
-
-
+const plansLayer = new MorePlansLayer(elementObjectForPlansLayer, elementObjectForMorePlansLayer);
