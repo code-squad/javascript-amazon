@@ -80,7 +80,8 @@ li {
     /* width: 100%; */
     /* height: 100%; */
     display: inline-block;
-    vertical-align: top;
+    /* vertical-align: top; */
+    padding-left: 3px;
 }
 /* .leftContainer::after{
     content: '';
@@ -161,6 +162,13 @@ li {
     /* width: 192px; */
     height: 38px;
     float: left;
+    cursor: pointer;
+    padding: 7px;
+    border: 1px solid transparent;
+}
+
+.btm-header-left:hover{
+    border: 1px solid slategray
 }
 
 .location-icon {
@@ -205,10 +213,16 @@ li {
     /* float: left; */
     cursor: pointer;
     position: relative;
-    width: 100px;
+    width: 106px;
     margin-top: 10px;
     display: inline-block;
     margin-right: 20px;
+    padding: 7px;
+    border: 1px solid transparent;
+}
+
+.departments:hover{
+    border: 1px solid slategray;
 }
 
 .dept-text{
@@ -232,11 +246,18 @@ li {
 .header-mid-links ul li a:link {
     color: #ccc;
     text-decoration: none;
+    border: 1px solid transparent;
 }
 
 .header-mid-links ul li a:visited {
     color: #ccc;
     text-decoration: none;
+    border: 1px solid transparent;
+}
+
+.header-mid-links ul li a:hover {
+    color: #ccc;
+    text-decoration: underline;
 }
 
 /*  right  */
@@ -245,7 +266,7 @@ li {
     /* width: 400px; */
     height: 43px;
     float: right;
-    /* margin-right: 20px; */
+    vertical-align: bottom;
 }
 
 .btm-header-right ul li {
@@ -261,10 +282,17 @@ li {
 }
 
 .language{
-    width: 31px;
-    height: 43px;
+    width: 37px;
+    height: 37px;
     display: inline-block;
     position: relative;
+    border: 1px solid transparent;
+    padding: 0 5px;
+    text-align: center;
+}
+
+.language:hover{
+    border: 1px solid slategray;
 }
 
 .language a span{
@@ -287,13 +315,17 @@ li {
 
 .btm-header-border{
     border-right: 1px solid #555;
-    width: 1px;
     height: 34px;
     padding-left: 10px;
 }
 
 .sign-container{
     position: relative;
+    border: 1px solid transparent;
+}
+
+.sign-container:hover{
+    border: 1px solid slategray;
 }
 
 .sign-text-line1{
@@ -315,15 +347,26 @@ li {
     display: block;
     font-size: 14px;
     font-weight: 700;
-    margin-left: 20px
+    margin-left: 20px;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.order-container:hover{
+    border: 1px solid slategray;
 }
 
 .cart-container{
-    width: 70px;
+    width: 73px;
     font-size: 14px;
     font-weight: 700;
     position: relative;
     display: inline-block;
+    border: 1px solid transparent;
+}
+
+.cart-container:hover{
+    border: 1px solid slategray;
 }
 
 .cart-number{
