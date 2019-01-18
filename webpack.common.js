@@ -8,9 +8,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[hash].js',
   },
-  // devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -32,10 +31,20 @@ module.exports = {
         test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader',
         options: {
-          name: '[name].[ext]',
+          name: '[name].[hash].[ext]',
           limit: 10000,
+          outputPath: 'fonts/',
         },
-      }
+      },
+      // {
+      //   test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      //   loader: 'file-loader',
+      //   options: {
+      //     name: '[name].[ext]',
+      //     limit: 10000,
+      //     outputPath: 'fonts/',
+      //   },
+      // },
     ]
   },
   plugins: [
