@@ -1,6 +1,12 @@
 # javascript-amazon
 레벨3
 
+## STEP 4 [Carousel Slide]
+- Debounce 적용 경험 블로그 기록
+> - https://medium.com/@feanar729/debounce%EB%9E%80-%EB%AD%98%EA%B9%8C%EC%9A%94-82204c8b953f 
+
+
+
 ## STEP 7 [메가 드롭 다운 메뉴]
 - 마우스에 상위 메뉴에 있는 각 content 메뉴를(outer-layer > content-layer) hover시 하위 메뉴 open 
 - 마우스에 content 메뉴에 일정시간(300ms) 머무를시 마우스 위치값 저장
