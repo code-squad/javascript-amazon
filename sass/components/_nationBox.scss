@@ -1,0 +1,29 @@
+.nation-box{
+    &__link{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        padding: .6rem .8rem .6rem .3rem;
+        &:hover{
+            @include style-link-hover;
+        }
+    }
+    &__nation-img{
+        margin-top: .2rem;
+        width: 22px;
+        height: 22px;   
+        @include sprite-global-icons(-68px, -340px); 
+    }
+    &__text-box{
+        padding-left: .3rem;
+        color: $color-text-white;
+        &__desc{
+            display: block;
+            font-size: 1.2rem;
+        }
+        .nav__big-text{
+            line-height: 1.4rem;
+        }
+    }
+}

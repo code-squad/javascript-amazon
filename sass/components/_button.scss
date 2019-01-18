@@ -1,0 +1,38 @@
+.submit-box{
+    float: right;
+    height: 5.5rem;
+    width: 36rem;
+    &__submit{
+        background-color: $color-prime-submit-button;
+        padding-left: .1rem;
+        padding-bottom: .1rem;
+        border: .1rem solid $color-prime-submit-border;
+        border-bottom-width: .2rem;
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: AmazonEmber;
+        color: $color-prime-submit-text;
+        border-radius: .2rem;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        &:hover{
+            background-color: #ffc400;
+        }
+    }
+}
+
+.submit-btn{
+    position: absolute;
+    top: 50.7%;
+    right: 10.3rem;
+    transform: translateY(-49%);
+    .submit-box__submit{
+        width: 13.4rem;
+        height: 4.7rem;
+        padding-top: .3rem;
+        padding-right: .1rem;
+        padding-bottom: .3rem;
+        font-size: 1.6rem;
+    }
+}

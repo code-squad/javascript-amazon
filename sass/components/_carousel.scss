@@ -1,0 +1,13 @@
+.carousel{
+    &__item{
+        list-style: none;
+        height: 100%;
+        .text-box{
+            width: 50%;
+            max-width: 48rem;
+            margin-left: 50%;
+            text-align: left;
+        }
+    }
+    
+}

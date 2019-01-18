@@ -1,0 +1,22 @@
+{
+  "name": "javascript-amazon",
+  "version": "1.0.0",
+  "description": "Copy Amazon site",
+  "main": "index.js",
+  "scripts": {
+    "compile-sass": "node-sass sass/main.scss css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdvonzoo/javascript-amazon.git"
+  },
+  "author": "B-SENS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pdvonzoo/javascript-amazon/issues"
+  },
+  "homepage": "https://github.com/pdvonzoo/javascript-amazon#readme",
+  "devDependencies": {
+    "node-sass": "^4.11.0"
+  }
+}
