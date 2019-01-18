@@ -378,14 +378,25 @@ body {
 
 /* nav-plans */
 
+.nav-plan-bar-container{
+  z-index: 1;
+  position: absolute;
+}
+
 .nav-plan-bar {
+  top: 0;
+  position: fixed;
   background-color: #232f3e;
   border-bottom: 2px solid #00a8e1;
-  height: 99px;
-  margin: 0;
-  height: 70px;
+  overflow: hidden;
   text-align: center;
+  height: 0;
+  transition: all, 500ms;
 }
+
+.nav-plan-bar.shown {
+  height: 68px;
+ }
 
 .plan-bars {
   width: 560px;
@@ -404,8 +415,11 @@ body {
   padding: 10px;
 }
 
-.logo-arrow {
+.logo-arrow-container{
   padding: 0 135px;
+}
+
+.logo-arrow {
   display: block;
   height: 18px;
   max-width: 100%;
@@ -445,11 +459,31 @@ body {
 /* plan-card */
 
 .plan-card {
-  border: solid 1px gray
+  top: 0;
+  position: fixed;
+  background: white;
+  height: 0;
+  overflow: hidden;
+  /* border: solid 1px gray; */
+  transition: all, 500ms;
+}
+
+#card-list1 {
+  margin-right: 150px;
+}
+
+#card-list3 {
+  margin-left: 150px;
+}
+
+.plan-card-open {
+  height: 645px;
+  overflow: none;
+  border-bottom: 2px solid #00a8e1;
 }
 
 .card {
-  border: solid 1px gray;
+  /* border: solid 1px gray; */
   padding: 0 168px;
   margin: 0 140px;
 }
@@ -489,7 +523,7 @@ body {
 }
 
 #main {
-  border: solid 1px;
+  /* border: solid 1px; */
 }
 
 .card-list {
