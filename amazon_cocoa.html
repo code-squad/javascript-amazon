@@ -5,126 +5,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>amazon step1</title>
+    <title>amazon step2</title>
     <link rel="stylesheet" type="text/css" href="amazon_cocoa.css">
 
 </head>
 
 <body>
     <header id="header-bar">
-        <div id="logo-area">
-            <a href="https://www.amazon.com/amazonprime?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0" target="_self">
-                <img id="logo-image" src="img_src/amazon_logo.png" alt="">
-            </a>
-        </div>
-        <div id="search-panel">
-            <div id="department-view"><span>All</span>
-                <img class="ico-down-arrow" src="img_src/down_arrow.png" alt="">
-            </div>
-            <div id="search-field"></div>
-            <div id="search-button">
-                <img id="ico-magnifier" src="img_src/magnifier.png" alt="">
-            </div>
-        </div>
-        <div id="header-banner-area">
-            <img src="img_src/banner.jpg" alt="">
-        </div>
-    </header>
-
-
-    <nav id="nav-bar">
-        <div id="location-panel">
-            <div id="ico-location">
-                <img src="img_src/loc_icon.png" alt="">
-            </div>
-            <div id="location-text">
-                <span id="deliver-to-text">Deliver to</span><br>
-                <span id="deliver-to-location-text">Korea, Republic of</span>
-            </div>
-        </div>
-
-        <div id="nav-menu-area">
-            <ul>
-                <li class="nav-menu-list">
-                    <div class="nav-menu-name nav-departments-name">
-                        <span>Departments</span>
-                        <img class="ico-down-arrow" src="img_src/down_arrow.png" alt="">
-                    </div>
-                </li>
-                <li class="nav-menu-list">
-                    <div class="nav-menu-name">
-                        <a href="https://www.amazon.com/gp/yourstore/home?ref=nav_cs_ys">
-                            Your Amazon.com
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-menu-list">
-                    <div class="nav-menu-name">
-                        <a href="https://www.amazon.com/international-sales-offers/b/?ie=UTF8&node=15529609011&ref=nav_navm_intl_deal_btn">
-                            Today's Deals
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-menu-list">
-                    <div class="nav-menu-name">
-                        <a href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
-                            Gift Cards
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-menu-list">
-                    <div class="nav-menu-name">
-                        <a href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
-                            Registry
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-menu-list">
-                    <div class="nav-menu-name">
-                        <a href="https://www.amazon.com/b/?_encoding=UTF8&ld=AZUSSOA-sell&node=12766669011&ref=nav_cs_sell">
-                            Sell
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-menu-list">
-                    <div class="nav-menu-name">
-                        <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=508510&ref=nav_cs_help">
-                            Help
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div id="user-panel">
-            <div id="cart-to-checkout-panel">
-                <a href="https://www.amazon.com/gp/cart/view.html?ref=nav_cart">
-                    <img id="ico-cart" src="img_src/cart.png" alt="">
-                    <div id="number-to-checkout">0</div>
-                    <div id="cart-text">Cart</div>
+        <div class="search-bar">
+            <div id="logo-area">
+                <a href="https://www.amazon.com/amazonprime?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0" target="_self">
+                    <img id="logo-image" src="img_src/amazon_logo.png" alt="">
                 </a>
             </div>
-
-            <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l">
-                <div id="account-panel">
-                    <span id="sign-in-text">Hello, Sign in</span><br>
-                    <span class="account-lists-orders-text">Account & Lists</span>
-                    <span><img class="ico-down-arrow" src="img_src/down_arrow.png" alt=""></span>
-                    <span id="orders-text" class="account-lists-orders-text">Orders</span>
+            <div id="search-panel">
+                <div id="department-view"><span>All</span>
+                    <img class="ico-down-arrow" src="img_src/down_arrow.png" alt="">
                 </div>
-            </a>
-
-            <div id="lang-selection-panel">
-                <div id="lang-sign">EN</div>
-                <div id="ico-globe-area">
-                    <img id="ico-globe" src="img_src/globe.png" alt="">
+                <div id="search-field"></div>
+                <div id="search-button">
+                    <img id="ico-magnifier" src="img_src/magnifier.png" alt="">
                 </div>
             </div>
+            <div id="header-banner-area">
+                <img src="img_src/banner.jpg" alt="">
+            </div>
         </div>
-    </nav>
 
+        <nav id="nav-bar">
+            <div id="location-panel">
+                <div id="ico-location">
+                    <img src="img_src/loc_icon.png" alt="">
+                </div>
+                <div id="location-text">
+                    <span id="deliver-to-text">Deliver to</span><br>
+                    <span id="deliver-to-location-text">Korea, Republic of</span>
+                </div>
+            </div>
+
+            <div id="nav-menu-area">
+                <ul>
+                    <li class="nav-menu-list">
+                        <div class="nav-menu-name nav-departments-name">
+                            <span>Departments</span>
+                            <img class="ico-down-arrow" src="img_src/down_arrow.png" alt="">
+                        </div>
+                    </li>
+                    <li class="nav-menu-list">
+                        <div class="nav-menu-name">
+                            <a href="https://www.amazon.com/gp/yourstore/home?ref=nav_cs_ys">
+                                Your Amazon.com
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-menu-list">
+                        <div class="nav-menu-name">
+                            <a href="https://www.amazon.com/international-sales-offers/b/?ie=UTF8&node=15529609011&ref=nav_navm_intl_deal_btn">
+                                Today's Deals
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-menu-list">
+                        <div class="nav-menu-name">
+                            <a href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
+                                Gift Cards
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-menu-list">
+                        <div class="nav-menu-name">
+                            <a href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
+                                Registry
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-menu-list">
+                        <div class="nav-menu-name">
+                            <a href="https://www.amazon.com/b/?_encoding=UTF8&ld=AZUSSOA-sell&node=12766669011&ref=nav_cs_sell">
+                                Sell
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-menu-list">
+                        <div class="nav-menu-name">
+                            <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=508510&ref=nav_cs_help">
+                                Help
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="user-panel">
+                <div id="cart-to-checkout-panel">
+                    <a href="https://www.amazon.com/gp/cart/view.html?ref=nav_cart">
+                        <img id="ico-cart" src="img_src/cart.png" alt="">
+                        <div id="number-to-checkout">0</div>
+                        <div id="cart-text">Cart</div>
+                    </a>
+                </div>
+
+                <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l">
+                    <div id="account-panel">
+                        <span id="sign-in-text">Hello, Sign in</span><br>
+                        <span class="account-lists-orders-text">Account & Lists</span>
+                        <span><img class="ico-down-arrow" src="img_src/down_arrow.png" alt=""></span>
+                        <span id="orders-text" class="account-lists-orders-text">Orders</span>
+                    </div>
+                </a>
+
+                <div id="lang-selection-panel">
+                    <div id="lang-sign">EN</div>
+                    <div id="ico-globe-area">
+                        <img id="ico-globe" src="img_src/globe.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="see-more-plans-layer">
+                <p class="close-see-more-plans-layer close-see-more-plans-center-text">close</p>
+                <p class="close-see-more-plans-layer close-see-more-plans-right-text">close</p>
+            </div>
+            <div class="upper-plans-layer-line"></div>
+            <div class="upper-plans-layer">
+                <div class="upper-plans-layer-panel">
+                    <div class="upper-plans-layer-sub-panel">prime logo area</div>
+                    <div class="upper-plans-layer-sub-panel">
+                        <p class="expand-more-plans-layer no-decoration-hover">See more plans</p>
+                    </div>
+                    <div class="upper-plans-layer-sub-panel">try prime button area</div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <section>
+
         <h3 class="section-name">section-main</h3>
         <div class="sections-area" id="sections-area-main">
             <div class="sections-images" id="sections-image-main">
@@ -379,5 +394,8 @@
     </footer>
 
 </body>
+
+
+<script src="amazon.cocoa.js"></script>
 
 </html>
