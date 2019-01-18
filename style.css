@@ -12,6 +12,7 @@ body{
 
 .cnt {
     width: 100%;
+    text-align: center;
 }
 
 .footer {
@@ -412,4 +413,46 @@ li {
     display: block;
     text-align: left;
     margin-left: 300px;
+}
+
+.prime-logo{
+    width: 80px;
+    height: 50px;
+    background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_White._CB515573990_.svg');
+    margin-left: 300px;
+    margin-top: 20px;
+}
+
+
+/* feature-cards */
+.feat-cards{
+    text-align: center;
+}
+
+.feat-cards ul li div{
+    width: 150px;
+    height: 210px;
+    background-color:slategray;
+}
+
+
+/* carousel-card */
+.carousel-card{
+    width: 1048px;
+    height: 400px;
+    background-color:grey;
+}
+
+/* banner-middle */
+.mid-banner ul li div{
+    width: 1048px;
+    height: 360px;
+    background-color: black;
+}
+
+/* footer */
+.footer{
+    width: 100%;
+    height: 49px;
+    background-color: #232f3e;
 }
