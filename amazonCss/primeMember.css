@@ -1,0 +1,70 @@
+.prime-member-container{
+  background-color:#fff;
+  width:1040px;
+  overflow: hidden;
+  padding: 0 200px;
+  height: 0px;
+  position: absolute;
+  border-bottom: 2px solid #53a8de;
+  transition: height 1s;
+  z-index:999;
+}
+.prime-member-container-active {
+  height: 700px;
+  z-index: 999;
+  position:absolute;
+  top:99px;
+  transition: height 1s;
+}
+.prime-member-container-scroll-active {
+  position: fixed;
+  top:0;
+}
+.prime-member{
+  position: relative;
+}
+.close-button {
+  position: absolute;
+  right:0px;
+  margin: 20px;
+  font-size: 15px;
+}
+.prime-member-header{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top:50px;
+}
+
+.prime-member-header-img-logo{
+  width: 200px;
+}
+
+.prime-member-header-word-container{
+  text-align:center;
+}
+.prime-member-header-word{
+  font-family: 'amazon-UI-bold';
+  font-size:50px;
+}
+.prime-member-header-img-crong{
+  width: 157px;
+}
+
+.close-button-foot-container{
+  position: absolute;
+  bottom:10px;
+  right:0;
+  left:0;
+  text-align: center;
+}
+
+.close-button-foot{
+  width:10px;
+  height:10px;
+  border:2px solid #606060;
+  transform: rotate(45deg);
+  border-right:transparent;
+  border-bottom:transparent;
+}
+

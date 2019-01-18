@@ -18,27 +18,27 @@
 }
 
 .box {
-  background-image: url("./amazonImage/box.png"),
+  background-image: url("../amazonImage/box.png"),
     linear-gradient(30deg, #2c88ae 40%, #00a8e1 85%, #00a8e1 74px);
 }
 
 .stream {
-  background-image: url("./amazonImage/stream.png"),
+  background-image: url("../amazonImage/stream.png"),
     linear-gradient(30deg, #cc0c39 40%, #ff6138 90%, #ff6138 48px);
 }
 
 .shop {
-  background-image: url("./amazonImage/shop.png"),
+  background-image: url("../amazonImage/shop.png"),
     linear-gradient(30deg, #a90067 40%, #e31f64 90%, #e31f64 48px);
 }
 
 .read {
-  background-image: url("./amazonImage/read.png"),
+  background-image: url("../amazonImage/read.png"),
     linear-gradient(30deg, #008577 40%, #36c2b4 90%, #36c2b4 48px);
 }
 
 .more {
-  background-image: url("./amazonImage/more.png"),
+  background-image: url("../amazonImage/more.png"),
     linear-gradient(30deg, #ff6138 40%, #ffc400 90%, #ffc400 48px);
 }
 
@@ -85,7 +85,7 @@
 }
 
 .button-blank {
-  background-image: url("./amazonImage/unSelected.png");
+  background-image: url("../amazonImage/unSelected.png");
   background-size: 10px;
   width: 10px;
   height: 10px;

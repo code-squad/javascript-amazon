@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="headerUp.css" />
-    <link rel="stylesheet" href="headerDown.css" />
-    <link rel="stylesheet" href="topBody.css" />
-    <link rel="stylesheet" href="carouselNav.css" />
-    <link rel="stylesheet" href="carousel.css" />
-    <link rel="stylesheet" href="middleBody.css" />
-    <link rel="stylesheet" href="middleBodyCarousel.css" />
+    <link rel="stylesheet" href="./amazonCss/app.css" />
   </head>
 
   <body>
@@ -22,7 +16,6 @@
         </div>
         <div class="head-search">
           <div class="head-search-block">
-            <div class="head-search-selector-button"></div>
             <select class="head-search-selector" name="" id="">
               <option value="">All</option>
               <option value="">arts & craft</option>
@@ -30,9 +23,13 @@
               <option value="">Baby</option>
               <option value="">Beauty & Personal Care</option>
             </select>
-            <span class="head-arrow"></span>
+            <div class="head-arrow-container">
+              <span class="head-arrow"></span>
+            </div>
             <input class="head-search-blank" type="text" />
-            <button class="head-search-button">😚</button>
+            <button class="head-search-button">
+              <div class="search-icon"></div>
+            </button>
           </div>
         </div>
         <div class="head-search-right">
@@ -50,8 +47,10 @@
             <div class="head-nav-location-img">
               <img src="./amazonImage/location.png" alt="img" />
             </div>
-            <span class="head-nav-location-word">Deliver to</span>
-            <span class="head-nav-location-user">Korea, Republic of</span>
+            <div class="head-nav-location-word-container">
+              <div class="head-nav-location-word">Deliver to</div>
+              <div class="head-nav-location-user">Korea, Republic of</div>
+            </div>
           </div>
         </div>
         <div class="head-nav">
@@ -91,10 +90,12 @@
                 class="head-nav-right-list-language"
                 onclick="window.location.href='#';"
               >
-                <span class="head-nav-right-list-language-user">EN</span> <br />
-                <span><img src="./amazonImage/global.png"/></span>
-                <div class="language-arrow">
-                  <span class="head-arrow-bright"></span>
+                <div class="head-nav-right-list-language-user">EN</div>
+                <div class="head-nav-right-list-language-img">
+                  <img src="./amazonImage/global.png" />
+                  <div class="language-arrow">
+                    <span class="head-arrow-bright"></span>
+                  </div>
                 </div>
               </div>
             </li>
@@ -106,14 +107,14 @@
                 class="head-nav-right-list-account"
                 onclick="window.location.href='#';"
               >
-                <span class="head-nav-right-list-account-msg"
-                  >Hello, Sign in</span
-                >
-                <span class="head-nav-right-list-account-user"
-                  >Account & Lists</span
-                >
-                <div class="account-arrow">
-                  <span class="head-arrow-bright"></span>
+                <div class="head-nav-right-list-account-msg">
+                  Hello. Sign in
+                </div>
+                <div class="head-nav-right-list-account-user">
+                  Account & Lists
+                  <div class="account-arrow">
+                    <span class="head-arrow-bright"></span>
+                  </div>
                 </div>
               </div>
             </li>
@@ -130,7 +131,9 @@
                 class="head-nav-right-list-cart"
                 onclick="window.location.href='#';"
               >
-                <span><img src="./amazonImage/cart.png" alt="cart"/></span>
+                <span class="head-nav-right-list-cart-img"
+                  ><img src="./amazonImage/cart.png" alt="cart"
+                /></span>
                 <span class="head-nav-right-list-cart-num">0</span>
                 <span class="head-nav-right-list-cart-word">Cart</span>
               </div>
@@ -139,6 +142,52 @@
         </div>
       </div>
     </header>
+
+    <div class="prime-member-container">
+      <div class="prime-member">
+        <button class="close-button">CLOSE X</button>
+        <div class="prime-member-header">
+          <div>
+            <img
+              class="prime-member-header-img-logo"
+              src="./amazonImage/codeSquad.png"
+              alt=""
+            />
+          </div>
+          <div class="prime-member-header-word-container">
+            <div class="prime-member-header-word">Everybody Can Do</div>
+            <div class="prime-member-header-word">If You're With Crong</div>
+          </div>
+          <div>
+            <img
+              class="prime-member-header-img-crong"
+              src="./amazonImage/crong.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="close-button-foot-container">
+        <button class="close-button-foot"></button>
+      </div>
+    </div>
+
+    <div class="top-layer-container">
+      <div class="top-layer">
+        <div class="top-layer-icon-container">
+          <div class="top-layer-icon"></div>
+        </div>
+        <div class="top-layer-contents">
+          <div class="top-layer-word">See More Plans</div>
+          <div class="top-layer-trigger-button-container">
+            <button class="top-layer-trigger-button"></button>
+          </div>
+        </div>
+        <div class="top-layer-try-prime-button-container">
+          <button class="top-layer-try-prime-button">TRY PRIME</button>
+        </div>
+      </div>
+    </div>
 
     <div class="wholeBody">
       <div class="top-body-container">
@@ -249,7 +298,7 @@
           </ul>
         </div>
         <!-- carousel -->
-        <div class="carousel">
+        <div class="main-carousel">
           <div class="carousel-button-container">
             <button class="carousel-button-container-button-left"></button>
           </div>
@@ -587,22 +636,31 @@
             <div class="middle-body-carousel-list-container">
               <ul class="middle-body-carousel-list">
                 <li class="middle-body-carousel-list-el image-show">
-                  <img class='middle-body-carousel-list-image' src="./amazonImage/jack.jpg" alt="first" />
+                  <img
+                    class="middle-body-carousel-list-image"
+                    src="./amazonImage/jack.jpg"
+                    alt="first"
+                  />
                 </li>
                 <li class="middle-body-carousel-list-el">
-                  <img class='middle-body-carousel-list-image' src="./amazonImage/homecoming.jpg" alt="second" />
+                  <img
+                    class="middle-body-carousel-list-image"
+                    src="./amazonImage/homecoming.jpg"
+                    alt="second"
+                  />
                 </li>
                 <li class="middle-body-carousel-list-el">
-                  <img class='middle-body-carousel-list-image'
+                  <img
+                    class="middle-body-carousel-list-image"
                     src="./amazonImage/theManInTheHighCastle.jpg"
                     alt="third"
                   />
                 </li>
               </ul>
             </div>
-						<div class="middle-body-carousel-button-container">
-							<button class="middle-body-carousel-right-button"></button>
-						</div>
+            <div class="middle-body-carousel-button-container">
+              <button class="middle-body-carousel-right-button"></button>
+            </div>
           </div>
 
           <div class="middle-body-carousel-text">
@@ -621,5 +679,6 @@
         </div>
       </div>
     </div>
+    <script src="amazonJS/contentLoader.js" type="module"></script>
   </body>
 </html>
