@@ -16,7 +16,7 @@ export default class Carousel {
 
     // set Timer(React / Auto act)
     this.setAutoActTimer = 3000;
-    this.setReactTimer = 3200;
+    this.setReactTimer = 3500;
 
     // Auto Act Method On/ Off
     this.autoAct = true;
