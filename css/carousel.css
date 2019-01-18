@@ -1,0 +1,183 @@
+/* Prime-static-benefits Carousel Card */
+.benefit-1 {
+  margin: 15px 0 30px 0;
+  padding: 30px 70px 48px 70px;
+  height: 310px;
+  min-width: 1400px;
+}
+
+/* Carousel Card > benefit-content */
+.carousel-container {
+  width: 680px;
+  height: 100%;
+  display: block;
+  float: left;
+}
+
+#carousel {
+  height: 100%;
+  width: 360px;
+  margin: 0 auto 0 auto;
+}
+
+.a-carousel-row-inner {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+}
+
+.a-carousel-left-button {
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: inline-block;
+}
+
+.a-carousel-center {
+  position: relative;
+  height: 100%;
+  width: 280px;
+  z-index: 3;
+  margin: 0 40px;
+}
+
+.a-carousel-viewport {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.a-carousel {
+  position: relative;
+  height: 232px;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  transform: translateX(-17.5rem);
+}
+
+.a-link-category>* {
+  width: 280px;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* .a-carousel-item {
+  width: 280px;
+  height: 232px;
+  display: block;
+  float: left;
+} */
+
+/* test */
+.a-carousel-item {
+  top: 0;
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 232px;
+}
+
+/* Ul Layer transform Animation*/
+.slideLeft {
+  transform: none;
+  transition: all 0.3s ease-out;
+}
+
+.slideRight {
+  transform: translateX(-35rem);
+  transition: all 0.3s ease-out;
+}
+
+.a-carousel-right-button {
+  width: 40px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: inline-block;
+}
+
+.a-carousel-prev {
+  width: 13px;
+  height: 20px;
+  margin: 0 27px 0 0;
+  position: absolute;
+  top: 105px;
+  color: #002F36;
+}
+
+.a-carousel-next {
+  width: 13px;
+  height: 20px;
+  margin: 0 0 0 27px;
+  position: absolute;
+  top: 105px;
+  color: #002F36;
+
+}
+
+.carousel-control {
+  font-size: 1.5em;
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button-arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.3rem;
+}
+
+.carousel-control {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  border-style: none;
+  border: 0px;
+  text-decoration: none;
+}
+
+/* Carousel Card > benefit-content */
+.benefit-content {
+  width: 580px;
+  height: 100%;
+  display: inline-block;
+}
+
+.a-link-nomal {
+  text-decoration: none;
+  color: #002F36;
+}
+
+.benefit-header {
+  width: 100%;
+  font-size: 44px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  line-height: 48px;
+  padding: 0;
+  color: #002F36;
+  font-family: 'Amazon Ember', Tahoma, Arial, sans-serif;
+}
+
+.benefit-blurb {
+  width: 500px;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 25px;
+  margin-bottom: 20px;
+}
+
+.benefit-cta {
+  font-size: 18px;
+}

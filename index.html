@@ -3,11 +3,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="../css/header.css">
-  <link rel="stylesheet" href="../css/body.css">
-  <link rel="stylesheet" href="../css/layerManager.css">
-  <link rel="stylesheet" href="../css/hidden-header-plans.css">
-  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/body.css">
+  <link rel="stylesheet" href="./css/layerManager.css">
+  <link rel="stylesheet" href="./css/hidden-header-plans.css">
+  <link rel="stylesheet" href="./css/carousel.css">
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
   <title>Amazon</title>
@@ -207,7 +209,7 @@
       <div class="nav-top">
         <div class="nav-amazon-icon">
           <a href="#">
-            <img src="../image/nav-sprite-global_bluebeacon-V3-1x_optimized.png" alt="" class="amazon-icon-img">
+            <img src="./image/nav-sprite-global_bluebeacon-V3-1x_optimized.png" alt="" class="amazon-icon-img">
             <span class="guide-text">Main Amazon</span>
           </a>
           <a href="#" class="nav-prime-link">Try Prime</a>
@@ -682,39 +684,30 @@
           </div>
         </div>
         <div class="prime-static-benefits benefit-1">
-          <div class="scroller-container">
-            <div id="video-scroller">
+          <div class="carousel-container">
+            <div id="carousel">
               <div class="a-carousel-row-inner">
                 <div class="a-carousel-left-button">
-                  <a href="" class="a-carousel-goto-prevpage">
-                    <span class="a-button-inner">
-                      <i class="fas fa-angle-left"></i>
-                    </span>
-                  </a>
+                  <button class="carousel-control a-carousel-prev">
+                    <i class="fas fa-angle-left button-arrow"></i>
+                  </button>
                 </div>
                 <div class="a-carousel-center">
                   <div class="a-carousel-viewport">
-                    <ol class="a-carousel">
-                      <li class="a-carousel-list-card">
-                        <a href="#" class="a-link-category">
-                          <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/81WN._CB481226577_.jpg"
-                            alt="">
-                        </a>
-                      </li>
-                    </ol>
+                    <ul class="a-carousel">
+
+                    </ul>
                   </div>
                 </div>
                 <div class="a-carousel-right-button">
-                  <a href="" class="a-carousel-goto-nextpage">
-                    <span class="a-button-inner">
-                      <i class="fas fa-angle-right"></i>
-                    </span>
-                  </a>
+                  <button class="carousel-control a-carousel-next">
+                    <i class="fas fa-angle-right button-arrow"></i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <div class="benefit-content ">
+          <div class="benefit-content">
             <h2 class="benefit-header">Prime Originals, exclusively on Prime Video</h2>
             <div class="benefit-blurb">
               Prime Video is the only place where you can watch Prime Original series like "Homecoming", "Marvelous
@@ -738,7 +731,7 @@
 
   <footer id="prime-footer-nav">
   </footer>
-  <script src="../js/index.js" type="module"></script>
+  <script src="./js/index.js" type="module"></script>
 
 </body>
 
