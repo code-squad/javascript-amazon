@@ -7,6 +7,92 @@
   <title>Amazon Prime</title>
 </head>
 <body>
-<script src="./src/main.js" charset="utf-8"></script>
+  <a href="#" class="nav__skip">Skip to content</a>
+  <header class="header">
+    <!-- Logo -->
+    <h1 class="header-logo">
+      <a href="#" aria-label="Amazon" class="header-logo__link">
+        <!-- <img src="~assets/images/" alt="Amazon" class="header-logo__img"> -->
+      </a>
+    </h1>
+    <div class="header--top">
+      <!-- Search Box -->
+      <form action="">
+        <fieldset>
+          <legend class="hidden">Search input</legend>
+          <a href="#" class="header-search" title="Open search options">
+            <span class="header-search__label">All</span>
+            <i class="icon-arrow"></i>
+          </a>
+          <select class="header-search-select">
+            <option value="" class="header-search-select__option">All Departments</option>
+            <option value="" class="header-search-select__option">Arts & Crafts</option>
+            <option value="" class="header-search-select__option">Automotive</option>
+            <option value="" class="header-search-select__option">Baby</option>
+          </select>
+          <input type="text" class="header-search__input" title="Enter search keyword">
+          <button class="header-search__btn" type="submit">
+            <i class="icon-search"></i>
+          </button>
+        </fieldset>
+      </form>
+      <!-- Banner Link -->
+      <a href="#" class="header-banner">
+        <img src="~assets/images/TodaysDeals_Sep18.png" alt="Shop today's deals" class="header-banner__img">
+      </a>
+    </div>
+    <div class="header--bottom">
+      <a href="#" class="header-deliver">
+        <i class="icon-direction"></i>
+        Deiliver to <span class="header-deliver--strong">Korea, Republic of</span>
+      </a>
+      <nav class="header-nav">
+        <h2 class="hidden">Main menu</h2>
+        <ul class="header-nav__lists">
+          <li>
+            <a href="#">Departments <i class="icon-arrow"></i></a>
+            <ul class="header-nav-department__lists">
+              <li>
+                <a href="#">Prime video</a>
+              </li>
+              <li>
+                <a href="#">Music, CDs & Vinyl</a>
+              </li>
+              <li>
+                <a href="#">Digital Music</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Your Amazon.com</a>
+          </li>
+          <li>
+            <a href="#">Today's Deals</a>
+          </li>
+          <li>
+            <a href="#">Gift Cards</a>
+          </li>
+          <li>
+            <a href="#">Registry</a>
+          </li>
+          <li>
+            <a href="#">Sell</a>
+          </li>
+          <li>
+            <a href="#">Help</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-user">
+        <a href="#" class="header-user-language">EN <i class="icon-language"></i><i class="icon-arrow"></i></a>
+        <a href="#" class="header-user-account">Hello, Sign in <span class="header-user-account--strong">Account & Lists <i class="icon-arrow"></i></span></a>
+        <a href="#" class="header-user-orders">Orders</a>
+        <a href="#" class="header-user-cart">Cart
+          <span class="header-user-cart__icon"></span>
+          <span class="header-user-cart__count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
 </body>
 </html>
