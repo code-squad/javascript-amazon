@@ -27,6 +27,10 @@ const carousel = new CarouselMenu({
   parentCarousel: $(".a-carousel-viewport"),
   prev: $(".a-carousel-prev"),
   next: $(".a-carousel-next"),
+  autoActTime: 3000,
+  reactTime: 3500,
+  switchAutoMove: true,
+  switchPause: true,
 });
 
 window.addEventListener("DOMContentLoaded", () => {

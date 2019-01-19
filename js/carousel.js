@@ -15,14 +15,14 @@ export default class Carousel {
     this.reactAuto;
 
     // set Timer(React / Auto act)
-    this.setAutoActTimer = 3000;
-    this.setReactTimer = 3500;
+    this.setAutoActTimer = layer.autoActTime;
+    this.setReactTimer = layer.reactTime;
 
     // Auto Act Method On/ Off
-    this.autoAct = true;
+    this.autoAct = layer.switchAutoMove;
 
     // click Pause AutoAct Method On/ Off
-    this.pauseAct = true;
+    this.pauseAct = layer.switchPause;
   }
 
   init() {
