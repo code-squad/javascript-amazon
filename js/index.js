@@ -1,6 +1,7 @@
 import HiddenTopMenu from "./hiddenTopMenu.js";
 import LayerManager from "./layerManager.js";
 import CarouselMenu from "./carousel.js";
+import SearchAutocomplete from "./searchAutocomplete.js";
 import { $, $All } from "./docSelector.js";
 
 const layerManager = new LayerManager({
