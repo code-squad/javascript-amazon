@@ -1,23 +1,52 @@
-let logoArrow = document.querySelector(".logo-arrow");
-let closeArrow = document.querySelector(".arrow-img");
+class PlanBarScrollEvent {
+  constructor(planBar) {
+    this.planBar = planBar;
+  }
+
+  showPlanBar() {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY >= 100) this.planBar.classList.add('shown');
+      else this.planBar.classList.remove('shown');
+    }.bind(this));
+  }
+}
+
+class PlanCardClickEvent {
+  constructor(planCard, logoArrow, closeBtn, closeArrow) {
+    this.planCard = planCard;
+    this.logoArrow = logoArrow;
+    this.closeBtn = closeBtn;
+    this.closeArrow = closeArrow;
+  }
+
+  openPlanCard() {
+    this.logoArrow.addEventListener("click", function () {
+      this.planCard.classList.add("plan-card-open");
+    }.bind(this));
+  }
+
+  closePlanCard() {
+    this.closeBtn.addEventListener("click", function () {
+      this.planCard.classList.remove("plan-card-open");
+    }.bind(this));
+    
+    this.closeArrow.addEventListener("click", function () {
+      this.planCard.classList.remove("plan-card-open");
+    }.bind(this));
+  }
+}
+
+const planBar = document.querySelector('.nav-plan-bar')
 const planCard = document.querySelector(".plan-card");
+const logoArrow = document.querySelector(".logo-arrow");
 const closeBtn = document.querySelector(".close");
+const closeArrow = document.querySelector(".arrow-img");
 
-logoArrow.addEventListener("click",function(e) {
-  planCard.classList.add("plan-card-open");
-});
+const planBarScrollEvent = new PlanBarScrollEvent(planBar);
+const planCardClickEvent = new PlanCardClickEvent(planCard, logoArrow, closeBtn, closeArrow);
 
-closeBtn.addEventListener("click", function(){
-  planCard.classList.remove("plan-card-open");
-});
+planBarScrollEvent.showPlanBar();
+planCardClickEvent.openPlanCard();
+planCardClickEvent.closePlanCard();
 
-closeArrow.addEventListener("click", function() {
-  planCard.classList.remove("plan-card-open");
-});
 
-window.addEventListener('scroll', function(e) {
-  console.log(e.target)
-  var el = document.querySelector('.nav-plan-bar');
-  if(window.scrollY >= 100) el.classList.add('shown');
-  else el.classList.remove('shown');
-});
