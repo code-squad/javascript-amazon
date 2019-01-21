@@ -375,7 +375,7 @@ body {
 
 /* nav-plans */
 
-.nav-plan-bar-container{
+.nav-plan-bar-container {
   z-index: 1;
   position: absolute;
 }
@@ -393,7 +393,7 @@ body {
 
 .nav-plan-bar.shown {
   height: 68px;
- }
+}
 
 .plan-bars {
   width: 560px;
@@ -412,7 +412,7 @@ body {
   padding: 10px;
 }
 
-.logo-arrow-container{
+.logo-arrow-container {
   padding: 0 135px;
 }
 
@@ -464,26 +464,18 @@ body {
   transition: all, 500ms;
 }
 
-#card-list1 {
-  margin-right: 150px;
-}
-
-#card-list3 {
-  margin-left: 150px;
-}
-
 .plan-card-open {
-  height: 645px;
+  height: 655px;
   overflow: none;
   border-bottom: 2px solid #00a8e1;
 }
 
-.card {
+.card-container {
   padding: 0 168px;
   margin: 0 140px;
 }
 
-#top {
+#card-container-top {
   overflow: hidden;
   height: 165px;
 }
@@ -492,7 +484,7 @@ body {
   margin-top: 48px;
 }
 
-.card span {
+.card-container span {
   margin-top: 72px;
   float: left;
   padding: 0 152px;
@@ -517,28 +509,28 @@ body {
   float: none;
 }
 
-#main {
+#main {}
+
+.card-content-container {
+  overflow: hidden;
 }
 
-.card-list {
+.card-content {
   margin: 0 auto;
   padding: 26px 18px 0 30px;
   border: 1px solid;
   float: left;
 }
 
-#card-list2 {
+#card-content1 {
+  margin-right: 100px;
 }
 
-#card-list3 {}
+#card-content3 {
+  margin-left: 100px;
+}
 
 input[type=radio] {
-  /* position: absolute;
-  display: none; */
-}
-
-.card-container {
-  overflow: hidden;
 }
 
 .card-header {
@@ -553,36 +545,33 @@ input[type=radio] {
   margin-top: 12px;
 }
 
-.card-content-list {
+.card-content-main {
   margin-top: 54px;
   font-weight: 200;
   font-size: 12pt;
 }
 
-.card-content {
+.content-list {
   padding-bottom: 10px;
   line-height: 18px;
   height: 35px;
 }
 
-#card-bottom {
+#card-container-bottom {
   overflow: hidden;
 }
 
-.logo-arrow-bottom {
-  display: block;
-}
-
-.card-bottom-container {
+#card-container-bottom>div {
   float: right;
 }
 
-.logo-arrow-bottom {
+.card-closeBtn-container {
+  display: block;
   justify-content: center;
   padding: 0 10px;
 }
 
-.arrow-container {
+.card-closeBtn-container>div{
   margin: 0 auto;
   width: 15px;
 }
