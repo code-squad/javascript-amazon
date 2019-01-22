@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -19,16 +20,25 @@ module.exports = {
           loader: 'babel-loader',
         }
       },
+      // {
+      //   test: /\.(png|svg|jpg|gif)$/,
+      //   use: [
+      //     {
+      //       loader: 'file-loader'
+      //     }
+      //   ]
+      // },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader'
-          }
-        ]
+        test: /\.(ico|png|jpg|jpeg|gif|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader',
+        options: {
+          name: '[name].[ext]',
+          limit: 10000,
+          outputPath: 'images/',
+        }
       },
       {
-        test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader',
         options: {
           name: '[name].[hash].[ext]',
@@ -36,6 +46,15 @@ module.exports = {
           outputPath: 'fonts/',
         },
       },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
+      }
       // {
       //   test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       //   loader: 'file-loader',
