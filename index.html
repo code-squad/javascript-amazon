@@ -8,12 +8,12 @@
 </head>
 <body>
   <!-- Skip Nav -->
-  <a href="#" class="hidden">Skip to content</a>
+  <a href="#main" class="hidden">Skip to content</a>
   <!-- Header -->
   <header class="header">
     <!-- Logo -->
     <h1 class="header-logo">
-      <a href="#" aria-label="Amazon" class="header-logo__link">
+      <a href="/" aria-label="Amazon" class="header-logo__link">
         <!-- <img src="~assets/images/" alt="Amazon" class="header-logo__img"> -->
       </a>
     </h1>
@@ -22,25 +22,27 @@
       <form action="">
         <fieldset>
           <legend class="hidden">Search input</legend>
-          <a href="#" class="header-search" title="Open search options">
-            <span class="header-search__label">All</span>
-            <i class="icon-arrow--down"></i>
-          </a>
-          <select class="header-search-select">
-            <option value="" class="header-search-select__option">All Departments</option>
-            <option value="" class="header-search-select__option">Arts & Crafts</option>
-            <option value="" class="header-search-select__option">Automotive</option>
-            <option value="" class="header-search-select__option">Baby</option>
-          </select>
-          <input type="text" class="header-search__input" title="Enter search keyword">
-          <button class="header-search__btn" type="submit">
-            <i class="icon-search"></i>
-          </button>
+          <div class="header-search">
+            <button type="button" class="header-search__label" title="Open search options">
+              All
+              <i class="icon-arrow--down"></i>
+            </button>
+            <select class="header-search-select">
+              <option value="" class="header-search-select__option">All Departments</option>
+              <option value="" class="header-search-select__option">Arts & Crafts</option>
+              <option value="" class="header-search-select__option">Automotive</option>
+              <option value="" class="header-search-select__option">Baby</option>
+            </select>
+            <input type="text" class="header-search__input" title="Enter search keyword">
+            <button class="header-search__btn" type="submit">
+              <i class="icon-search"></i>
+            </button>
+          </div>
         </fieldset>
       </form>
       <!-- Banner Link -->
-      <a href="#" class="header-banner">
-        <img src="~assets/images/TodaysDeals_Sep18.png" alt="Shop today's deals" class="header-banner__img">
+      <a href="https://www.amazon.com/b/ref=nav_swm_AE_EN_SWM_Deals?_encoding=UTF8&node=15529609011&pf_rd_m=ATVPDKIKX0DER&pf_rd_s=nav-sitewide-msg-export&pf_rd_r=6Y2NNMP7H1MK5TCWSYZP&pf_rd_r=6Y2NNMP7H1MK5TCWSYZP&pf_rd_t=4201&pf_rd_p=0b6ad79d-73e4-4037-b7c7-83edf48c7d06&pf_rd_p=0b6ad79d-73e4-4037-b7c7-83edf48c7d06&pf_rd_i=navbar-4201" class="header-banner">
+        <img src="./src/assets/images/TodaysDeals_Sep18.png" alt="Shop today's deals" class="header-banner__img">
       </a>
     </div>
     <div class="header--bottom">
@@ -101,26 +103,26 @@
   </header>
   <div class="wrapper">
     <!-- Main -->
-    <main class="main" role="main">
+    <main class="main" role="main" id="main">
       <h2 class="main__title">There's something for everyone with Prime!</h2>
       <p class="main__desc">Check out what's included with your Prime Membership.</p>
       <button class="main__btn">TRY PRIME</button>
       <p class="main__help"><sup>$</sup>12<sup>99</sup>/month<span class="header-dot">. </span>Cancel anytime.</p>
       <a href="#" class="main__link">See more plans <i class="icon-arrow--right"></i></a>
-      <img src="~assets/images/PrimeLogo_White.svg" alt="Amazon Prime Logo" class="main__logo">
+      <img src="./src/assets/images/PrimeLogo_White.svg" alt="Amazon Prime Logo" class="main__logo">
     </main>
     <!-- Plans -->
     <section class="plans">
       <header class="plans-header">
         <h1 class="plans-header-logo">
-          <img src="" alt="" class="plans header-logo__img">
+          <img src="./src/assets/images/PrimeLogo_Blue.svg" alt="Amazon Prime Logo" class="plans header-logo__img">
         </h1>
         <button class="plans-header__btn">See More plans <i class="icon-arrow--down"></i></button>
         <a href="#" class="plans-header__link">TRY PRIME</a>
       </header>
       <div class="plans-content">
         <h1 class="plans-content-logo">
-          <img src="" alt="" class="plans-content-logo__img">
+          <img src="./src/assets/images/Logo_Prime.png" alt="" class="plans-content-logo__img">
         </h1>
         <h2 class="plans-content__subtitle">There's something for everyone</h2>
         <button class="plans-content__btn--close">CLOSE <i class="icon-close"></i></button>
@@ -167,6 +169,10 @@
               </ul>
               <div class="card-radio__button"></div>
             </label>
+            <button class="plans-content__btn">TRY PRIME</button>
+            <a href="#" class="plans-content__link">Are you a Student?</a>
+            <a href="#" class="plans-content__link">Do you have a valid EBT/Medicaid card?</a>
+            <button class="plans-content__btn--close"><i class="icon-arraw--up"></i></button>
           </fieldset>
         </form>
       </div>
@@ -176,7 +182,6 @@
       <h1 class="hidden">Benefits</h1>
       <ul class="carousel-indicator">
         <li class="carousel-indicator-card">
-          <img src="" alt="" class="carousel-indicator-card__img">
           <h2 class="carousel-indicator-card__title">Ship</h2>
           <ul class="carousel-indicator-card-pagination">
             <li><a href="#"><i class="icon-circle"></i></a></li>
@@ -184,7 +189,6 @@
           </ul>
         </li>
         <li class="carousel-indicator-card">
-          <img src="" alt="" class="carousel-indicator-card__img">
           <h2 class="carousel-indicator-card__title">Stream</h2>
           <ul class="carousel-indicator-card-pagination">
             <li><a href="#"><i class="icon-circle"></i></a></li>
@@ -192,7 +196,6 @@
           </ul>
         </li>
         <li class="carousel-indicator-card">
-          <img src="" alt="" class="carousel-indicator-card__img">
           <h2 class="carousel-indicator-card__title">Shop</h2>
           <ul class="carousel-indicator-card-pagination">
             <li><a href="#"><i class="icon-circle"></i></a></li>
@@ -200,7 +203,6 @@
           </ul>
         </li>
         <li class="carousel-indicator-card">
-          <img src="" alt="" class="carousel-indicator-card__img">
           <h2 class="carousel-indicator-card__title">Read</h2>
           <ul class="carousel-indicator-card-pagination">
             <li><a href="#"><i class="icon-circle"></i></a></li>
@@ -208,7 +210,6 @@
           </ul>
         </li>
         <li class="carousel-indicator-card">
-          <img src="" alt="" class="carousel-indicator-card__img">
           <h2 class="carousel-indicator-card__title">More</h2>
           <ul class="carousel-indicator-card-pagination">
             <li><a href="#"><i class="icon-circle"></i></a></li>
@@ -238,7 +239,7 @@
         <div class="benefits-content__carousel">
           <div class="carousel--small">
             <div class="carousel-slides">
-              <img src="" alt="" class="carousel-slides__slide">
+              <img src="./src/assets/images/mini-carousel/Card-1.jpg" alt="" class="carousel-slides__slide">
             </div>
             <button class="carousel__btn carousel__btn--prev"></button>
             <button class="carousel__btn carousel__btn--next"></button>

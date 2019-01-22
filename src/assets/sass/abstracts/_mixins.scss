@@ -10,3 +10,11 @@
     font-style: normal;
   }
 }
+
+@mixin nav-sprite($width, $height, $x, $y) {
+  background-image: url(../images/sprite/nav-sprite-global.png);
+  background-size: 350px;
+  width: #{$width}px;
+  height: #{$height}px;
+  background-position: #{$x}px #{$y}px;
+}
