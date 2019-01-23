@@ -11,7 +11,9 @@
 @import "./base/typography";
 
 // layout
+@import "./layout/grid.scss";
 @import "./layout/navigation";
 // components
 
 //pages
+@import "./pages/prime";

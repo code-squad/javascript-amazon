@@ -1,0 +1,66 @@
+.main {
+  width: 100%;
+  background: #0079b4 no-repeat url(../images/Header_01.png);
+  background-size: auto 476px;
+  background-position: left top;
+  height: 476px;
+  color: #fff;
+  padding: 3.2rem 0 4.8rem 7rem;
+  &__title {
+    margin-bottom: 2.2rem;
+    width: 50rem;
+    font-size: 4.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  &__desc {
+    margin-bottom: 3.2rem;
+    width: 40rem;
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+  &__btn {
+    min-width: 36rem;
+    height: 5.2rem;
+    background: #ffa724;
+    border: 1px solid #ff6138;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #284d40;
+    line-height: 5.2rem;
+  }
+  &__help {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    sup {
+      position: relative;
+      line-height: 0;
+      vertical-align: baseline;
+      top: -0.5rem;
+      font-size: 55%;
+    }
+  }
+  &__link {
+    margin-bottom: 3.4rem;
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    color: $white;
+    line-height: 19px;
+    & .icon-arrow--right {
+      margin: 0 0.6rem;
+      display: inline-block;
+      @include prime-sprite(6, 9, 0, -233);
+    }
+  }
+  &__logo {
+    width: 8rem;
+    display: block;
+  }
+}
