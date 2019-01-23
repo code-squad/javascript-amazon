@@ -14,7 +14,7 @@ class ScrollEvent_sticky {
     
     closeBtn.addEventListener("click", this.hideLayer.bind(this));
     closeArrowBtn.addEventListener("click", this.hideLayer.bind(this));
-    openArrowBtn.addEventListener("click", this.addhiddenLayer.bind(this));
+    openArrowBtn.addEventListener("click", this.showHiddenLayer.bind(this));
   }
 
   stickyLayerDrop() {
