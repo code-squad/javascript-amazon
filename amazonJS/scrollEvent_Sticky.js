@@ -1,8 +1,19 @@
-class TopLayerEvent {
+class ScrollEvent_sticky {
   constructor(dropBenchMark, topLayer, primeMember) {
     this.dropBenchMark = dropBenchMark;
     this.topLayer = topLayer;
     this.primeMember = primeMember;
+    this.init();
+  }
+
+  init() {
+    const closeBtn = document.querySelector(".close-button");
+    const closeArrowBtn = document.querySelector(".close-button-foot");
+    const openArrowBtn = document.querySelector(".top-layer-trigger-button");
+    
+    closeBtn.addEventListener("click", this.removePrimeMember.bind(this));
+    closeArrowBtn.addEventListener("click", this.removePrimeMember.bind(this));
+    openArrowBtn.addEventListener("click", this.addPrimeMember.bind(this));
   }
 
   topLayerDrop() {
@@ -24,5 +35,4 @@ class TopLayerEvent {
   }
 }
 
-
-export { TopLayerEvent };
+export { ScrollEvent_sticky };
