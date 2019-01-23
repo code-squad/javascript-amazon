@@ -5,7 +5,18 @@ class ScrollEvent_sticky {
     this.hiddenLayer = hiddenLayer;
     this.init();
   }
-
+  addIO() {
+    const io = new IntersectionObserver ((entries) => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > this.dropBenchMark) {
+          entry.target.classList.add('tada');
+        }
+        // 그 외의 경우 'tada' 클래스 제거
+        else {
+          entry.target.classList.remove('tada');
+        }
+      })
+  }
   init() {
     document.addEventListener("scroll", this.stickyLayerDrop.bind(this));
     const closeBtn = document.querySelector(".close-button");
