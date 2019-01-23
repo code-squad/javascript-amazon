@@ -1,6 +1,6 @@
 class Carousel {
-    constructor({ targetHTML, intervalTime, delayTime }){
-        this.targetHTML = targetHTML;
+    constructor({ targetEl, intervalTime, delayTime }){
+        this.targetEl = targetEl;
         this.intervalTime = intervalTime;
         this.delayTime = delayTime;
         this.playID;
@@ -8,8 +8,8 @@ class Carousel {
     }
 
     run(){
-        const prevBtn = this.targetHTML.querySelector(".carousel-left-arrow");
-        const nextBtn = this.targetHTML.querySelector(".carousel-right-arrow");
+        const prevBtn = this.targetEl.querySelector(".carousel-left-arrow");
+        const nextBtn = this.targetEl.querySelector(".carousel-right-arrow");
 
         prevBtn.addEventListener("click", () => {
             this.displayPrevCard();
@@ -25,7 +25,7 @@ class Carousel {
     }
 
     displayNextCard(){
-        const displayEl = this.targetHTML.querySelector(".carousel-wrapper");
+        const displayEl = this.targetEl.querySelector(".carousel-wrapper");
 
         displayEl.classList.add("slideRightOn");
         displayEl.removeEventListener("transitionend", this.slideLeftAnimationEvent);
@@ -33,7 +33,7 @@ class Carousel {
     }
 
     displayPrevCard(){
-        const displayEl = this.targetHTML.querySelector(".carousel-wrapper");
+        const displayEl = this.targetEl.querySelector(".carousel-wrapper");
 
         displayEl.classList.add("slideLeftOn");
         displayEl.removeEventListener("transitionend", this.slideRightAnimationEvent);

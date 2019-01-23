@@ -7,7 +7,7 @@ const template = {
                 return HTML += `<option value=${option.value}>${option.text}</option>`;
             }, "");
 
-            HTMLEl.innerHTML = optionHTML;
+            HTMLEl.innerHTML = optionHTML.trim();
         }
    },
 
@@ -17,7 +17,17 @@ const template = {
                return HTML += `<li class="carousel-item"><img src=${img.src} alt="${img.alt}"></li>`; 
            }, "")
                
-           HTMLEl.innerHTML = carouselHTML;
+           HTMLEl.innerHTML = carouselHTML.trim();
+       }
+   },
+
+   appendSuggestionHTML({ HTMLEl }) {
+       return jsonData => {
+        const suggestionHTML  = jsonData.reduce((HTML, suggestion) => {
+            return HTML += `<a class="suggestion-link" href="#"><li class="suggestion-item">${suggestion.value}</li></a>`; 
+        }, "");
+        
+        HTMLEl.innerHTML = suggestionHTML.trim();
        }
    }
 }

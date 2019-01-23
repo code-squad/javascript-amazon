@@ -24,7 +24,7 @@ class StickyLayer{
     }
 
     displayHiddenBar({ thresholdEl }){
-        const hiddenBar = this.stickyEl.querySelector(".nav-hidden-bar");
+        const hiddenBar = this.stickyEl.querySelector(".hidden-bar");
         let bHiddenbar = false;
 
         return _ => {
@@ -58,9 +58,9 @@ class StickyLayer{
     }
 
     toggleHiddenEl(){
-        const hiddenBar = this.stickyEl.querySelector(".nav-hidden-bar");
-        const hiddenPlan = this.stickyEl.querySelector(".nav-hidden-plan");
-        const hiddenClose = this.stickyEl.querySelector(".nav-hidden-close");
+        const hiddenBar = this.stickyEl.querySelector(".hidden-bar");
+        const hiddenPlan = this.stickyEl.querySelector(".hidden-plan");
+        const hiddenClose = this.stickyEl.querySelector(".hidden-close");
 
         hiddenBar.classList.toggle("hidden");
         hiddenPlan.classList.toggle("visible");

@@ -6,8 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Amazon.com: Amazon Prime</title>
   <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="./css/prime_plan_layer.css">
+  <link rel="stylesheet" href="./css/prime_planlayer.css">
   <link rel="stylesheet" href="./css/prime_carousel.css">
+  <link rel="stylesheet" href="./css/prime_autocomplete.css">
   <script defer src="./js/init.js" type="module"></script>
 </head>
 
@@ -28,7 +29,7 @@
         <div class="nav-search-form middle">
           <form action="#" method="GET">
             <div class='nav-search-select left'>
-              <span class="nav-select-option">All&nbsp;&nbsp;</span>
+              <span class="nav-select-option">All</span>
               <select name="departments" id="select-category">
               </select>
             </div>
@@ -41,7 +42,14 @@
             </div>
           </form>
         </div>
+
+        <div class="nav-search-autocomplete">
+            <ul class="nav-search-suggestion hidden">
+            </ul>
+        </div>
+
       </div>
+
       <div class="nav-lower clearfix">
         <div class="nav-location left">
           <a href="#" class='nav-menu-box'>
@@ -102,8 +110,14 @@
           <div class="nav-main-link"><a href="#">Help</a></div>
         </div>
       </div>
-      <div class="nav-plan-layer">
-        <div class="nav-hidden-plan hidden-content">
+    </nav>
+  </header>
+  
+  <main>
+    <div class="dim"></div>
+
+    <div class="plan-layer">
+        <div class="hidden-plan hidden-content">
           <div class="plan-container">
             <div class="plan-wrapper">
               <div class="plan-header">
@@ -183,7 +197,7 @@
             </div>
           </div>
         </div>
-        <div class="nav-hidden-bar hidden-content">
+        <div class="hidden-bar hidden-content">
           <ul class="bar-wrapper">
             <li class="bar-prime-logo">
               <img src="./img/Prime_blue_log.png" alt="">
@@ -200,15 +214,11 @@
             </li>
           </ul>
         </div>
-        <div class="nav-hidden-close hidden-content">
+        <div class="hidden-close hidden-content">
           <span class="close-arrow" id="content-close-btn"></span>
         </div>
-      </div>
-    </nav>
-  </header>
-  
-  <main>
-    <!-- Big Header Image Section -->
+    </div>
+    
     <section id="prime-header">
       <div class="prime-header-content">
         <h2 class='main-headline headline'>There's something for everyone with Prime!</h2>

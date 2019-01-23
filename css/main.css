@@ -124,6 +124,16 @@ nav {
   min-width: 1000px;
 }
 
+.nav-top {
+  position: relative;
+  z-index: 4;
+}
+
+.nav-lower {
+  position: relative;
+  z-index: 2;
+}
+
 .nav-logo-box {
   position: relative;
   width: 192px;
@@ -177,7 +187,7 @@ nav {
   text-align: center;
   font-size: 12px;
   line-height: 35px;
-  padding: 0 0.6rem;
+  padding: 0 .6rem;
   border-right: 1px solid #cdcdcd;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -186,9 +196,10 @@ nav {
 .nav-search-select .nav-select-option::after {
   display: inline-block;
   content: "";
+  vertical-align: middle;
   border: 0.25rem solid transparent;
   border-top-color: #666;
-  vertical-align: middle;
+  margin-left: .5rem;
 }
 
 .nav-search-select select {
@@ -228,9 +239,12 @@ nav {
 }
 
 .nav-search-input .nav-input-bar {
+  font-size: .9rem;
   width: 100%;
   height: 35px;
+  padding: .5rem;
   border: none;
+  outline: none;
 }
 
 /* ----- NAV LOWER -----*/
