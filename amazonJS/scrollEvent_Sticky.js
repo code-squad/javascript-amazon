@@ -1,37 +1,38 @@
 class ScrollEvent_sticky {
-  constructor(dropBenchMark, topLayer, primeMember) {
+  constructor(dropBenchMark, stickyLayer, hiddenLayer) {
     this.dropBenchMark = dropBenchMark;
-    this.topLayer = topLayer;
-    this.primeMember = primeMember;
+    this.stickyLayer = stickyLayer;
+    this.hiddenLayer = hiddenLayer;
     this.init();
   }
 
   init() {
+    document.addEventListener("scroll", this.stickyLayerDrop.bind(this));
     const closeBtn = document.querySelector(".close-button");
     const closeArrowBtn = document.querySelector(".close-button-foot");
     const openArrowBtn = document.querySelector(".top-layer-trigger-button");
     
-    closeBtn.addEventListener("click", this.removePrimeMember.bind(this));
-    closeArrowBtn.addEventListener("click", this.removePrimeMember.bind(this));
-    openArrowBtn.addEventListener("click", this.addPrimeMember.bind(this));
+    closeBtn.addEventListener("click", this.hideLayer.bind(this));
+    closeArrowBtn.addEventListener("click", this.hideLayer.bind(this));
+    openArrowBtn.addEventListener("click", this.addhiddenLayer.bind(this));
   }
 
-  topLayerDrop() {
+  stickyLayerDrop() {
     if (window.scrollY >= this.dropBenchMark) {
-      this.topLayer.classList.add("top-layer-active");
-      this.primeMember.classList.add("prime-member-container-scroll-active");
+      this.stickyLayer.classList.add("top-layer-active");
+      this.hiddenLayer.classList.add("prime-member-container-scroll-active");
     } else {
-      this.topLayer.classList.remove("top-layer-active");
-      this.primeMember.classList.remove("prime-member-container-scroll-active");
+      this.stickyLayer.classList.remove("top-layer-active");
+      this.hiddenLayer.classList.remove("prime-member-container-scroll-active");
     }
   }
 
-  addPrimeMember() {
-    this.primeMember.classList.add("prime-member-container-active");
+  showHiddenLayer() {
+    this.hiddenLayer.classList.add("prime-member-container-active");
   }
 
-  removePrimeMember() {
-    this.primeMember.classList.remove("prime-member-container-active");
+  hideLayer() {
+    this.hiddenLayer.classList.remove("prime-member-container-active");
   }
 }
 
