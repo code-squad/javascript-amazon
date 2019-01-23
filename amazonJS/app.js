@@ -1,4 +1,4 @@
-import { TopLayerEvent } from "./topLayer.js";
+import { TopLayerEvent } from "./scrollEvent_Sticky.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const headerHeight = window.getComputedStyle(document.querySelector('header')).height;
