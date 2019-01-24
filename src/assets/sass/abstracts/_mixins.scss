@@ -20,10 +20,11 @@
 }
 
 @mixin international-sprite($width, $height, $x, $y) {
-  background-image: url(../images/sprite/international-customer.png);
+  background-image: url(../images/sprite/international-customer-preferences.png);
   width: #{$width}px;
   height: #{$height}px;
   background-position: #{$x}px #{$y}px;
+      background-size: 142px 120px;
 }
 
 @mixin prime-sprite($width, $height, $x, $y) {
@@ -32,4 +33,14 @@
   height: #{$height}px;
   background-position: #{$x}px #{$y}px;
   background-size: 158px auto;
+}
+
+@mixin prime-btn {
+  background: #ffa724;
+  border: 1px solid #ff6138;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #284d40;
+  text-transform: uppercase;
 }

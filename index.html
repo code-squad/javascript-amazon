@@ -107,7 +107,7 @@
     <main class="main" role="main" id="main">
       <h2 class="main__title">There's something for everyone with Prime!</h2>
       <p class="main__desc">Check out what's included with your Prime Membership.</p>
-      <button class="main__btn">TRY PRIME</button>
+      <button class="main__btn">Try Prime</button>
       <p class="main__help"><sup>$</sup>12<sup>99</sup>/month<span class="header-dot">. </span>Cancel anytime.</p>
       <a href="#" class="main__link">See more plans <i class="icon-arrow--right"></i></a>
       <img src="./src/assets/images/PrimeLogo_White.svg" alt="Amazon Prime Logo" class="main__logo">
@@ -116,60 +116,67 @@
     <section class="plans">
       <header class="plans-header">
         <h1 class="plans-header-logo">
-          <img src="./src/assets/images/PrimeLogo_Blue.svg" alt="Amazon Prime Logo" class="plans header-logo__img">
+          <img src="./src/assets/images/PrimeLogo_Blue.svg" alt="Amazon Prime Logo" class="plans-header-logo__img">
         </h1>
-        <button class="plans-header__btn">See More plans <i class="icon-arrow--down"></i></button>
-        <a href="#" class="plans-header__link">TRY PRIME</a>
+        <button class="plans-header__btn">See more plans <i class="plans-header__icon--down"></i></button>
+        <a href="#" class="plans-header__link">Try Prime</a>
       </header>
       <div class="plans-content">
         <h1 class="plans-content-logo">
-          <img src="./src/assets/images/Logo_Prime.png" alt="" class="plans-content-logo__img">
+          <img src="./src/assets/images/Logo_Prime.png" alt="Amazon Prime" class="plans-content-logo__img">
         </h1>
         <h2 class="plans-content__subtitle">There's something for everyone</h2>
-        <button class="plans-content__btn--close">CLOSE <i class="icon-close"></i></button>
+        <button class="plans-content__btn--close">Close <i class="icon-close"></i></button>
         <form action="">
           <fieldset>
             <legend class="hidden">Select amazon prime option.</legend>
-            <input type="radio" id="video" class="plans-content__input card-radio__input">
-            <label for="video" class="plans-content-label card-radio__label">
-              <h2 class="card-radio__title">Prime Video <span class="card-radio__title--strong">$8<sup>99</sup> / month</span></h2>
-              <ul class="card-radio-benefits">
-                <li class="active">Prime Video</li>
-                <li>FREE Two-Day Shipping</li>
-                <li>Unlimited music streaming</li>
-                <li>Unlimited photo storage</li>
-                <li>Unlimited reading</li>
-                <li>FREE Same-Day Delivery</li>
-              </ul>
-              <div class="card-radio__button"></div>
-            </label>
-            <input type="radio" id="monthly" class="plans-content__input">
-            <label for="monthly" class="plans-content-label">
-              <h2 class="card-radio__title">Prime monthly <span class="card-radio__title--strong">$12<sup>99</sup> / month</span></h2>
-              <ul class="card-radio-benefits">
-                <li class="active">Prime Video</li>
-                <li class="active">FREE Two-Day Shipping</li>
-                <li class="active">Unlimited music streaming</li>
-                <li class="active">Unlimited photo storage</li>
-                <li class="active">Unlimited reading</li>
-                <li class="active">FREE Same-Day Delivery</li>
-              </ul>
-              <div class="card-radio__button"></div>
-            </label>
-            <input type="radio" id="annual" class="plans-content__input">
-            <label for="annual" class="plans-content-label">
-              <h2 class="card-radio__title">Prime annual <span class="card-radio__title--strong">$119 / year</span></h2>
-              <p class="card-radio__desc">BEST VALUE</p>
-              <ul class="card-radio-benefits">
-                <li class="active">Prime Video</li>
-                <li class="active">FREE Two-Day Shipping</li>
-                <li class="active">Unlimited music streaming</li>
-                <li class="active">Unlimited photo storage</li>
-                <li class="active">Unlimited reading</li>
-                <li class="active">FREE Same-Day Delivery</li>
-              </ul>
-              <div class="card-radio__button"></div>
-            </label>
+            <div class="card-radio">
+              <input type="radio" id="video" name="prime-plans" class="hidden card-radio__input">
+              <label for="video" class="card-radio__label">
+                <div class="card-radio-content">
+                  <h2 class="card-radio-content__title">Prime Video<br><span class="card-radio-content__title--strong">$8<sup>99</sup></span> /month</h2>
+                  <ul class="card-radio-content-benefits">
+                    <li class="active">Prime Video</li>
+                    <li>FREE Two-Day Shipping</li>
+                    <li>Unlimited music streaming</li>
+                    <li>Unlimited photo storage</li>
+                    <li>Unlimited reading</li>
+                    <li>FREE Same-Day Delivery</li>
+                  </ul>
+                  <div class="card-radio-content__btn"></div>
+                </div>
+              </label>
+              <input type="radio" id="monthly" name="prime-plans" class="hidden card-radio__input">
+              <label for="monthly" class="card-radio__label">
+                <div class="card-radio-content">
+                  <h2 class="card-radio-content__title">Prime Monthly<br><span class="card-radio-content__title--strong">$12<sup>99</sup></span> /month</h2>
+                  <ul class="card-radio-content-benefits">
+                    <li class="active">Prime Video</li>
+                    <li class="active">FREE Two-Day Shipping</li>
+                    <li class="active">Unlimited music streaming</li>
+                    <li class="active">Unlimited photo storage</li>
+                    <li class="active">Unlimited reading</li>
+                    <li class="active">FREE Same-Day Delivery</li>
+                  </ul>
+                  <div class="card-radio-content__btn"></div>
+                </div>
+              </label>
+              <input type="radio" id="annual" name="prime-plans" class="hidden card-radio__input">
+              <label for="annual" class="card-radio__label">
+                <div class="card-radio-content">
+                  <h2 class="card-radio-content__title">Prime Annual<br><span class="card-radio-content__title--strong">$119</span> /month</h2>
+                  <ul class="card-radio-content-benefits">
+                    <li class="active">Prime Video</li>
+                    <li class="active">FREE Two-Day Shipping</li>
+                    <li class="active">Unlimited music streaming</li>
+                    <li class="active">Unlimited photo storage</li>
+                    <li class="active">Unlimited reading</li>
+                    <li class="active">FREE Same-Day Delivery</li>
+                  </ul>
+                  <div class="card-radio-content__btn"></div>
+                </div>
+              </label>
+            </div>
             <button class="plans-content__btn">TRY PRIME</button>
             <a href="#" class="plans-content__link">Are you a Student?</a>
             <a href="#" class="plans-content__link">Do you have a valid EBT/Medicaid card?</a>

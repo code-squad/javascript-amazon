@@ -53,6 +53,9 @@ a {
 html {
   box-sizing: border-box;
 }
+body {
+	color: #111;
+}
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -65,4 +68,12 @@ html {
 
 fieldset {
   border: none;
+}
+
+sup {
+	position: relative;
+	line-height: 0;
+	vertical-align: baseline;
+	top: -0.5rem;
+	font-size: 55%;
 }
