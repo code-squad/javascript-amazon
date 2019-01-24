@@ -6,7 +6,7 @@
 .top-body-background{
     background-image:url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Header_01._CB513133335_.png);
     background-color: #0079b4;
-    color: #fff;
+    color: var(--color-basic);
     height:396px;
     padding: 32px 0 48px 0;
 }
@@ -32,7 +32,7 @@
     background-color:#eda844;
     text-align: center;
     border:2px solid #e06c44;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 4px;
     cursor: pointer;
 }
 .top-body-content-button:hover{
@@ -52,7 +52,7 @@
 }
 
 .top-body-content-link{
-    color:#fff;
+    color:var(--color-basic);
     font-size:14px;
 }
 .top-body-content-arrow{
