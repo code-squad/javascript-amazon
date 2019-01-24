@@ -1,7 +1,7 @@
 
 .top-body-container{
     margin:0px 20px;
-    font-family: 'Amazon Ember', Tahoma, Arial, sans-serif;
+    font-family: 'amazon-ember', Arial, sans-serif;
 }
 .top-body-background{
     background-image:url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Header_01._CB513133335_.png);
@@ -16,10 +16,10 @@
 }
 
 .top-body-content-header{
-    margin-top:0px;
+    font-family: 'amazon-UI-bold', arial, sans-serif;
     font-size: 42px;
-    font-weight: 700;
     margin-bottom: 22px;
+    line-height: 1.2;
 }
 .top-body-content-header-word{
     font-size:22px;
