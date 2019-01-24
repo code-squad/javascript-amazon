@@ -1,9 +1,6 @@
 .middle-body-carousel-container {
     padding: 40px 0px;
 }
-.middle-body-carousel-list > li {
-    list-style: none;
-}
 
 .middle-body-carousel {
     display:inline-block;
