@@ -4,7 +4,8 @@ button {
 }
 
 .main-carousel {
-    margin: 0px 119px;
+    display:flex;
+    justify-content: center;
 }
 
 .carousel-list {
