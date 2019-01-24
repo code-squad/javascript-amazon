@@ -4,8 +4,8 @@
 
 .nav-search-autocomplete .nav-search-suggestion {
     position: absolute;
-    left: 24rem;
-    right: 47rem;
+    left: 15.1rem;
+    right: 29.4rem;
     border: .1rem solid #cdcdcd;
     background: #fff;
 }
@@ -16,13 +16,23 @@
 
 .nav-search-suggestion .suggestion-link .suggestion-item {
     color: #000;
+    font-size: 0;
     padding: .6rem .5rem;
+}
+
+.suggestion-item > span {
+    font-size: 1rem;
+}
+
+.suggestion-item .prefix-highlight {
+    font-weight: 800;
 }
 
 .dimmed {
     position: absolute;
+    left: 0;
     width: 100%;
-    height: 340.7rem;
+    height: 213rem;
     background: #000;
     opacity: 0.6;
     z-index: 3;

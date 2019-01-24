@@ -21,7 +21,9 @@ class Autocomplete {
             const url = this.apiUrl + this.searchEl.value;
             fetch(url)
                 .then(res => res.json())
-                .then(json => json.suggestions)
+                .then(json => { 
+                    return { prefix: json.prefix, suggestions: json.suggestions }
+                })
                 .then(template.appendSuggestionHTML({
                     HTMLEl: HTMLEl
                 }))

@@ -34,7 +34,6 @@ ol, ul {
 
 a {
   text-decoration: none;
-  color: #5c8aff;
 }
 
 .hidden {
@@ -155,7 +154,6 @@ nav {
   color: #48a3c6;
   font-size: 11px;
   font-weight: 700;
-  text-transform: capitalize;
 }
 
 .nav-promotion {
@@ -184,7 +182,6 @@ nav {
   height: 35px;
   color: #666;
   background-color: #f3f3f3;
-  text-align: center;
   font-size: 12px;
   line-height: 35px;
   padding: 0 .6rem;
@@ -229,7 +226,7 @@ nav {
   top: 0;
   width: 46px;
   height: 35px;
-  border: none;
+  border: 0;
   cursor: pointer;
   opacity: 0;
 }
@@ -258,7 +255,6 @@ nav {
   display: inline-block;
   padding: 5px 10px;
   border: 1px solid transparent;
-  text-decoration: none;
 }
 
 .nav-menu-box:hover {
@@ -481,26 +477,27 @@ nav {
 }
 
 #prime-carousel .carousel-play {
-  width: 1112px;
-  margin: 40px auto 0;
-}
-
-#prime-carousel .carousel-play > div {
-  display: inline-block;
-  vertical-align: middle;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 3rem;
 }
 
 #prime-carousel .carousel-play .play-left-arrow {
   width: 50px;
   height: 50px;
-  background-position: -52px 0;
+  margin-right: 3rem;;
+  align-self: center;
+  flex-shrink: 0;
+  background-position: -50px 0;
   background-size: 300%;
   background-image: url(../img/carouselArrow.png);
 }
 
 #prime-carousel .carousel-play .play-display {
-  width: 1000px;
+  width: 870px;
   height: 350px;
+  flex-shrink: 0;
   background-image: url(../img/carouselBg.jpg);
   background-position: center;
 }
@@ -555,6 +552,9 @@ nav {
 #prime-carousel .carousel-play .play-right-arrow {
   width: 50px;
   height: 50px;
+  margin-left: 50px;
+  align-self: center;
+  flex-shrink: 0;
   background-position: -50px -98px;
   background-size: 300%;
   background-image: url(../img/carouselArrow.png);

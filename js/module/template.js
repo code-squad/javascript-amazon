@@ -11,23 +11,30 @@ const template = {
         }
    },
 
-   appendCarouselHTML({ HTMLEl }) {
-       return jsonData => {
-           const carouselHTML  = jsonData.reduce((HTML, img) => {
-               return HTML += `<li class="carousel-item"><img src=${img.src} alt="${img.alt}"></li>`; 
-           }, "")
+    appendCarouselHTML({ HTMLEl }) {
+        return jsonData => {
+            const carouselHTML  = jsonData.reduce((HTML, img) => {
+                return HTML += `<li class="carousel-item"><img src=${img.src} alt="${img.alt}"></li>`; 
+            }, "")
                
-           HTMLEl.innerHTML = carouselHTML.trim();
-       }
+            HTMLEl.innerHTML = carouselHTML.trim();
+        }
    },
 
-   appendSuggestionHTML({ HTMLEl }) {
-       return jsonData => {
-        const suggestionHTML  = jsonData.reduce((HTML, suggestion) => {
-            return HTML += `<a class="suggestion-link" href="#"><li class="suggestion-item">${suggestion.value}</li></a>`; 
-        }, "");
+    appendSuggestionHTML({ HTMLEl }) {
+        return ({ prefix, suggestions }) => {
+            const suggestionHTML  = suggestions.reduce((HTML, suggestion) => {
+                const restWord = suggestion.value.replace(prefix, "");
+                return HTML += 
+                    `<a class="suggestion-link" href="#">
+                        <li class="suggestion-item">
+                            <span class="prefix-highlight">${prefix}</span>
+                            <span>${restWord}</span>
+                        </li>
+                    </a>`; 
+            }, "");
         
-        HTMLEl.innerHTML = suggestionHTML.trim();
-       }
-   }
+            HTMLEl.innerHTML = suggestionHTML.trim();
+        }
+    }
 }
