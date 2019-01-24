@@ -2,8 +2,18 @@ class ScrollEvent_sticky {
   constructor(dropBenchMark, stickyLayer, hiddenLayer) {
     this.stickyLayer = stickyLayer;
     this.hiddenLayer = hiddenLayer;
-    this.init();
     this.makeIO(dropBenchMark);
+    this.init();
+  }
+  
+  init() {
+    const closeBtn = document.querySelector(".close-button");
+    const closeArrowBtn = document.querySelector(".close-button-foot");
+    const openArrowBtn = document.querySelector(".top-layer-trigger-button");
+
+    closeBtn.addEventListener("click", this.hideLayer.bind(this));
+    closeArrowBtn.addEventListener("click", this.hideLayer.bind(this));
+    openArrowBtn.addEventListener("click", this.showHiddenLayer.bind(this));
   }
 
   makeIO(root) {
@@ -19,15 +29,6 @@ class ScrollEvent_sticky {
     return io.observe(root);
   }
 
-  init() {
-    const closeBtn = document.querySelector(".close-button");
-    const closeArrowBtn = document.querySelector(".close-button-foot");
-    const openArrowBtn = document.querySelector(".top-layer-trigger-button");
-
-    closeBtn.addEventListener("click", this.hideLayer.bind(this));
-    closeArrowBtn.addEventListener("click", this.hideLayer.bind(this));
-    openArrowBtn.addEventListener("click", this.showHiddenLayer.bind(this));
-  }
 
   showHiddenLayer() {
     this.hiddenLayer.classList.add("prime-member-container-active");
