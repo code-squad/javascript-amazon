@@ -17,7 +17,7 @@ const autocomplete = new Autocomplete({
     searchEl: document.querySelector(".nav-input-bar")
 })
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
     stickyLayer.run();
     videoCarousel.run();
     musicCarousel.run();

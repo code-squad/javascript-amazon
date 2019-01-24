@@ -1,10 +1,12 @@
+import { util } from "../util.js"
+
 class Carousel {
     constructor({ targetEl, intervalTime, delayTime }){
         this.targetEl = targetEl;
         this.intervalTime = intervalTime;
         this.delayTime = delayTime;
         this.playID;
-        this.timer;
+        // this.timer;
     }
 
     run(){
@@ -47,10 +49,12 @@ class Carousel {
 
     delayAutoPlay(){
         clearTimeout(this.playID);
+        
+        if(!this.delayCarousel) {
+            this.delayCarousel = util.debounce(this.autoPlay.bind(this), this.delayTime);
+        }
 
-        if(this.timer) clearTimeout(this.timer);
-
-        this.timer = setTimeout(this.autoPlay.bind(this), this.delayTime);
+        this.delayCarousel();
     }
 
     slideRightAnimationEvent(){

@@ -25,8 +25,12 @@ const template = {
         return ({ prefix, suggestions }) => {
             const suggestionHTML  = suggestions.reduce((HTML, suggestion) => {
                 const restWord = suggestion.value.replace(prefix, "");
+                const ref = suggestion.refTag;
+                const fieldKeywords = suggestion.value.split(" ").join("+");
+                const url = "http://crong.codesquad.kr:8080/amazon-search?";
+                
                 return HTML += 
-                    `<a class="suggestion-link" href="#">
+                    `<a class="suggestion-link" href="${url}${ref}&${fieldKeywords}&${prefix}">
                         <li class="suggestion-item">
                             <span class="prefix-highlight">${prefix}</span>
                             <span>${restWord}</span>
