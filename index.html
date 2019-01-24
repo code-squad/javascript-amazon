@@ -113,6 +113,8 @@
       <img src="./src/assets/images/PrimeLogo_White.svg" alt="Amazon Prime Logo" class="main__logo">
     </main>
     <!-- Plans -->
+    <!-- <section class="plans plans--open"> -->
+    <!-- <section class="plans plans--scroll"> -->
     <section class="plans">
       <header class="plans-header">
         <h1 class="plans-header-logo">
@@ -165,6 +167,7 @@
               <label for="annual" class="card-radio__label">
                 <div class="card-radio-content">
                   <h2 class="card-radio-content__title">Prime Annual<br><span class="card-radio-content__title--strong">$119</span> /month</h2>
+                  <p class="card-radio-content__desc"><span>Best Value</span></p>
                   <ul class="card-radio-content-benefits">
                     <li class="active">Prime Video</li>
                     <li class="active">FREE Two-Day Shipping</li>
@@ -177,10 +180,12 @@
                 </div>
               </label>
             </div>
-            <button class="plans-content__btn">TRY PRIME</button>
-            <a href="#" class="plans-content__link">Are you a Student?</a>
-            <a href="#" class="plans-content__link">Do you have a valid EBT/Medicaid card?</a>
-            <button class="plans-content__btn--close"><i class="icon-arraw--up"></i></button>
+            <div class="plans-content-btn-group">
+              <button class="plans-content__btn">TRY PRIME</button>
+              <a href="#" class="plans-content__link plans-content__link--first">Are you a Student?</a>
+              <a href="#" class="plans-content__link">Do you have a valid EBT/Medicaid card?</a>
+            </div>
+            <button class="plans-content__btn--close-icon"><i class="icon-arrow--up"></i></button>
           </fieldset>
         </form>
       </div>
@@ -189,40 +194,50 @@
     <section class="carousel">
       <h1 class="hidden">Benefits</h1>
       <ul class="carousel-indicator">
-        <li class="carousel-indicator-card">
-          <h2 class="carousel-indicator-card__title">Ship</h2>
-          <ul class="carousel-indicator-card-pagination">
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-          </ul>
+        <li class="carousel-indicator-card carousel-indicator-card--selected">
+          <div class="carousel-indicator-card-wrapper">
+            <h2 class="carousel-indicator-card__title">Ship</h2>
+            <ul class="carousel-indicator-card-pagination">
+              <li><a href="#" class="active"><i class="icon-circle"></i></a></li>
+              <li><a href="#"><i class="icon-circle"></i></a></li>
+            </ul>
+          </div>
         </li>
         <li class="carousel-indicator-card">
-          <h2 class="carousel-indicator-card__title">Stream</h2>
-          <ul class="carousel-indicator-card-pagination">
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-          </ul>
+          <div class="carousel-indicator-card-wrapper">
+            <h2 class="carousel-indicator-card__title">Stream</h2>
+            <ul class="carousel-indicator-card-pagination">
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+            </ul>
+          </div>
         </li>
         <li class="carousel-indicator-card">
-          <h2 class="carousel-indicator-card__title">Shop</h2>
-          <ul class="carousel-indicator-card-pagination">
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-          </ul>
+          <div class="carousel-indicator-card-wrapper">
+            <h2 class="carousel-indicator-card__title">Shop</h2>
+            <ul class="carousel-indicator-card-pagination">
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+            </ul>
+          </div>
         </li>
         <li class="carousel-indicator-card">
-          <h2 class="carousel-indicator-card__title">Read</h2>
-          <ul class="carousel-indicator-card-pagination">
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-          </ul>
+          <div class="carousel-indicator-card-wrapper">
+            <h2 class="carousel-indicator-card__title">Read</h2>
+            <ul class="carousel-indicator-card-pagination">
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+            </ul>
+          </div>
         </li>
         <li class="carousel-indicator-card">
-          <h2 class="carousel-indicator-card__title">More</h2>
-          <ul class="carousel-indicator-card-pagination">
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-            <li><a href="#"><i class="icon-circle"></i></a></li>
-          </ul>
+          <div class="carousel-indicator-card-wrapper">
+            <h2 class="carousel-indicator-card__title">More</h2>
+            <ul class="carousel-indicator-card-pagination">
+              <li><a href="#"></a></li>
+              <li><a href="#"></a></li>
+            </ul>
+          </div>
         </li>
       </ul>
       <div class="carousel-slides">
@@ -230,7 +245,7 @@
           <h2 class="content__tag">TWO-DAY SHIPPING</h2>
           <h3 class="content__title">Fast, free delivery on over 100 millions items</h3>
           <p class="content__desc">Super-fase shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
-          <a href="#" class="content__link">Explore Prime Delivery <i class="icon-arrow-right"></i></a>
+          <a href="#" class="content__link">Explore Prime Delivery <i class="icon-arrow--right"></i></a>
         </div>
         <button class="carousel__btn carousel__btn--prev"></button>
         <button class="carousel__btn carousel__btn--next"></button>
@@ -241,21 +256,23 @@
       <div class="benefits-content">
         <h2 class="content__title">Fast, free delivery on over 100 millions items</h2>
         <p class="content__desc">Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
-        <a href="#" class="content-link">Explore Prime Delivery <i class="icon-arrow--right"></i></a>
+        <a href="#" class="content__link">Explore Prime Delivery <i class="icon-arrow--right"></i></a>
       </div>
-      <div class="benefits-content">
-        <div class="benefits-content__carousel">
+      <div class="benefits-carousel">
+        <div class="benefits-carousel__wrapper">
           <div class="carousel--small">
-            <div class="carousel-slides">
-              <img src="./src/assets/images/mini-carousel/Card-1.jpg" alt="" class="carousel-slides__slide">
-            </div>
-            <button class="carousel__btn carousel__btn--prev"></button>
-            <button class="carousel__btn carousel__btn--next"></button>
+            <a href="#" class="carousel--small-slides">
+              <img src="./src/assets/images/mini-carousel/Card-1.jpg" alt="" class="carousel--small-slides__slide">
+            </a>
+            <button class="carousel--small__btn carousel--small__btn--prev"></button>
+            <button class="carousel--small__btn carousel--small__btn--next"></button>
           </div>
         </div>
-        <h2 class="content__title">Fast, free delivery on over 100 millions items</h2>
-        <p class="content__desc">Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
-        <a href="#" class="content-link">Explore Prime Delivery <i class="icon-arrow--right"></i></a>
+        <div class="benefits-content--no-bg">
+          <h2 class="content__title">Fast, free delivery on over 100 millions items</h2>
+          <p class="content__desc">Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.</p>
+          <a href="#" class="content__link">Explore Prime Delivery <i class="icon-arrow--right"></i></a>
+        </div>
       </div>
     </section>
   </div>

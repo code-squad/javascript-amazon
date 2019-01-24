@@ -35,6 +35,14 @@
   background-size: 158px auto;
 }
 
+@mixin base-ui-sprite($width, $height, $x, $y) {
+  background-image: url(../images/sprite/AmazonUIBaseCSS-sprite.png);
+  width: #{$width}px;
+  height: #{$height}px;
+  background-position: #{$x}px #{$y}px;
+  background-size: 400px 900px;
+}
+
 @mixin prime-btn {
   background: #ffa724;
   border: 1px solid #ff6138;
@@ -43,4 +51,13 @@
   font-weight: 800;
   color: #284d40;
   text-transform: uppercase;
+}
+
+@mixin clearfix {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
 }

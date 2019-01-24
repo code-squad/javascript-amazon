@@ -1,0 +1,35 @@
+.content {
+  &__tag {
+    margin-bottom: 2rem;
+    padding: 0.6rem 1rem;
+    display: inline-block;
+    background: #00a8e1;
+    color: $white;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  &__title {
+    margin-bottom: 2rem;
+    width: 48rem;
+    line-height: 4.8rem;
+    font-size: 4.8rem;
+    font-weight: 400;
+  }
+  &__desc {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    width: 40rem;
+  }
+  &__link {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: $primary_dark;
+    .icon-arrow--right {
+      @include prime-sprite(6, 9, -6, -233);
+      margin-bottom: 1px;
+      margin-left: 2px;
+      display: inline-block;
+    }
+  }
+}
