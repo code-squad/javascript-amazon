@@ -29,7 +29,6 @@ class ScrollEvent_sticky {
     return io.observe(root);
   }
 
-
   showHiddenLayer() {
     this.hiddenLayer.classList.add("prime-member-container-active");
   }
