@@ -1,4 +1,8 @@
-
+sup {
+    position: relative;
+    font-size:55%;
+    bottom:6px;
+}
 .top-body-container{
     margin:0px 20px;
     font-family: 'amazon-ember', Arial, sans-serif;
