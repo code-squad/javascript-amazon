@@ -5,14 +5,14 @@
 
 .carousel-card-list {
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   z-index: 1px;
   bottom: 80px;
 }
 
 .carousel-card-list>li {
-  display: inline-block;
-  margin-right: 1px;
+  margin: 0px 3px;
 }
 
 .box {
@@ -55,6 +55,7 @@
 }
 
 .carousel-card-context-container {
+  text-align: center;
   position: relative;
   top: 167px;
   z-index: 99;
