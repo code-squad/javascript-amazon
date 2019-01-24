@@ -102,7 +102,6 @@
 .middle-body-carousel-text {
     margin-left:100px;
 } */
-
 .middle-body-carousel-container {
   display: flex;
   padding: 50px 0;
@@ -110,8 +109,59 @@
 
 .middle-body-carousel {
   display: flex;
-  justify-content: center;
+	justify-content: center;
+	align-items: center;
   flex: 1 1;
+}
+
+.middle-body-carousel-button-container{
+	margin: 0px 10px;
+}
+
+.middle-body-carousel-left-button {
+	width:10px;
+	height:17px;
+	background-image:url('../amazonImage/middleBodyCarouselLeftBtn.png');
+	background-size:10px;
+}
+
+.middle-body-carousel-list-container {
+	position: relative;
+	width:280px;
+	height:210px;
+}
+
+.middle-body-carousel-list-image {
+	width:100%;
+}
+
+.middle-body-carousel-right-button {
+	width:10px;
+	height:17px;
+	background-image:url('../amazonImage/middleBodyCarouselRightBtn.png');
+	background-size:10px;
+}
+
+.middle-body-carousel-list-container:before{
+	display: inline-block;
+	content: "";
+	position: absolute;
+	box-shadow: 0px 0px 25px 50px #858585;
+	transform: rotate(-8deg);
+	z-index: -1;
+	left: 47px;
+	top: 56px;
+}
+
+.middle-body-carousel-list-container:after{
+	content: "";
+	position: absolute;
+	top: 10px;
+	box-shadow: 0px 0px 25px 50px #858585;
+	transform: rotate(8deg);
+	z-index: -1;
+	right: 47px;
+	top: 56px;
 }
 
 .middle-body-carousel-text {
@@ -137,11 +187,15 @@
 }
 
 .middle-body-carousel-link {
-	font-family: amazon-UI;
+	font-family: 'amazon-UI';
 	font-weight: 700;
 	text-decoration: none;
 	color:#002F36;
 }
 .middle-body-carousel-link:hover{
 	text-decoration: underline;
+}
+
+.middle-body-carousel-list {
+	display:inline-block;
 }
