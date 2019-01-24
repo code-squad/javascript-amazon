@@ -1,12 +1,11 @@
-.middle-body-carousel-container {
+/* .middle-body-carousel-container {
     padding: 40px 0px;
+    display:flex;
 }
 
 .middle-body-carousel {
-    display:inline-block;
     width:630px;
     height:230px;
-    text-align:right;
 }
 
 .middle-body-carousel-button-container{
@@ -102,4 +101,27 @@
 
 .middle-body-carousel-text {
     margin-left:100px;
+} */
+.middle-body-carousel-container {
+    display:flex;
+    padding: 50px 0;
+}
+
+.middle-body-carousel {
+    display:flex;
+    justify-content: center;
+    flex : 1 1;
+}
+.middle-body-carousel-text{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction:column;
+    flex : 1 1;
+}
+.middle-body-carousel-headline {
+    font-size: 44px;
+    margin-right: 200px;
+}
+.middle-body-carousel-body {
+    
 }
