@@ -1,8 +1,37 @@
-# javascript-amazon
+# Amazon Prime Project
 
-## STEP1 요구사항
-* Amazon의 prime 서비스와 동일하다.
-* HTML,CSS구성은 우측 화면만큼만 구성한다.
-* 상단 이미지아이콘부터 하단내용까지 우측화면과 동일하게 구현한다.
-* Amazon prime 서비스 UI는 우측화면과 다를 수 있다. (다음장의 동영상을 참고한다)
-* 동적인 기능으로 동작하는 숨겨진 HTML은 구현은 지금 단계에서 하지 않는다.
+## Demo
+* [Demo](https://amz-prime.firebaseapp.com/)
+
+## Intro
+* [Amazon Prime](https://www.amazon.com/prime) 메인페이지를 구현하는 프로젝트
+
+## 사용기술
+* HTML
+* CSS
+  - Preprocessors
+    - Sass
+* JavaScript
+* Package Manager
+  - yarn
+* Module Loader/Bundler
+  - webpack
+* Deploy
+  - firebase
+
+## 사용법
+* 패키지 설치
+```bash
+npm install
+yarn install
+```
+* 로컬 개발 버전 실행
+```bash
+npm run dev
+yarn run dev
+```
+* 배포를 위한 빌드
+```bash
+npm run build
+yarn run build
+```
