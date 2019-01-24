@@ -131,6 +131,8 @@
     background-position: calc(100% - 6%) 0;
     display: none;
     & form {
+      margin: 0 auto;
+      max-width: 80rem;
       min-width: 96.6rem;
     }
     &-logo {
@@ -161,6 +163,7 @@
       vertical-align: middle;
     }
     &-btn-group {
+      margin-right: -3rem;
       float: right;
     }
     &__btn {
