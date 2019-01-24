@@ -102,26 +102,46 @@
 .middle-body-carousel-text {
     margin-left:100px;
 } */
+
 .middle-body-carousel-container {
-    display:flex;
-    padding: 50px 0;
+  display: flex;
+  padding: 50px 0;
 }
 
 .middle-body-carousel {
-    display:flex;
-    justify-content: center;
-    flex : 1 1;
+  display: flex;
+  justify-content: center;
+  flex: 1 1;
 }
-.middle-body-carousel-text{
-    display:flex;
-    flex-wrap: wrap;
-    flex-direction:column;
-    flex : 1 1;
+
+.middle-body-carousel-text {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex: 1 1;
 }
+
 .middle-body-carousel-headline {
-    font-size: 44px;
-    margin-right: 200px;
+  font-size: 48px;
+  margin-right: 150px;
+  margin-bottom: 20px;
+  color: #002F36;
 }
+
 .middle-body-carousel-body {
-    
+  font-size: 18px;
+  margin-right: 230px;
+  margin-bottom: 20px;
+	line-height: 25px;
+	color:#002F36;
+}
+
+.middle-body-carousel-link {
+	font-family: amazon-UI;
+	font-weight: 700;
+	text-decoration: none;
+	color:#002F36;
+}
+.middle-body-carousel-link:hover{
+	text-decoration: underline;
 }
