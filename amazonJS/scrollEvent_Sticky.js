@@ -1,15 +1,16 @@
 class ScrollEvent_sticky {
-  constructor(dropBenchMark, stickyLayer, hiddenLayer) {
+  constructor(dropBenchMark, stickyLayer, hiddenLayer, module) {
     this.stickyLayer = stickyLayer;
     this.hiddenLayer = hiddenLayer;
+    this.module = module;
     this.makeIO(dropBenchMark);
     this.init();
   }
   
   init() {
-    const closeBtn = document.querySelector(".close-button");
-    const closeArrowBtn = document.querySelector(".close-button-foot");
-    const openArrowBtn = document.querySelector(".top-layer-trigger-button");
+    const closeBtn = this.module.qs(".close-button");
+    const closeArrowBtn = this.module.qs(".close-button-foot");
+    const openArrowBtn = this.module.qs(".top-layer-trigger-button");
 
     closeBtn.addEventListener("click", this.hideLayer.bind(this));
     closeArrowBtn.addEventListener("click", this.hideLayer.bind(this));
