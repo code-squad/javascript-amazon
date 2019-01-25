@@ -23,21 +23,24 @@ const template = {
 
     appendSuggestionHTML({ HTMLEl }) {
         return ({ prefix, suggestions }) => {
+            if(!suggestions) {
+                HTMLEl.innerHTML = "";
+                return;
+            }
             const suggestionHTML  = suggestions.reduce((HTML, suggestion) => {
+                const url = "http://crong.codesquad.kr:8080/amazon-search?";
+                const fieldKeywords = suggestion.value.split(" ").join("+");
                 const restWord = suggestion.value.replace(prefix, "");
                 const ref = suggestion.refTag;
-                const fieldKeywords = suggestion.value.split(" ").join("+");
-                const url = "http://crong.codesquad.kr:8080/amazon-search?";
-                
+    
                 return HTML += 
                     `<a class="suggestion-link" href="${url}${ref}&${fieldKeywords}&${prefix}">
                         <li class="suggestion-item">
-                            <span class="prefix-highlight">${prefix}</span>
-                            <span>${restWord}</span>
+                            <span class="prefix-highlight">${prefix}</span>${restWord}
                         </li>
                     </a>`; 
             }, "");
-        
+
             HTMLEl.innerHTML = suggestionHTML.trim();
         }
     }

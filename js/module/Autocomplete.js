@@ -1,42 +1,53 @@
 import { template } from "./template.js";
-import { util } from "../util.js"
+import { $, network, debounce } from "../util.js"
+import { URL } from "../config.js"
 
 class Autocomplete {
     constructor({ searchEl }){
         this.searchEl = searchEl;
-        this.apiUrl =  "http://crong.codesquad.kr:8080/amazon/ac/";
+        this.dimmer = this.makeDimmable({ bindTo: $("#dimmer") });
     }
 
     sendReq(){
-        this.searchEl.addEventListener("input", () => {
-            if(!this.send) this.send = util.debounce(this.ajaxApi.bind(this), 1000);
+        this.searchEl.addEventListener("input", () => { 
+            if(!this.send) this.send = debounce(this.inputKeyword.bind(this), 500);
 
             this.send();
         })
     }
 
-    ajaxApi(){
-        const url = this.apiUrl + this.searchEl.value;
-        const HTMLEl = document.querySelector(".nav-search-suggestion");
-        fetch(url)
-            .then(res => res.json())
-            .then(json => { 
-                return { prefix: json.prefix, suggestions: json.suggestions }
-            })
-            .then(template.appendSuggestionHTML({
-                HTMLEl: HTMLEl
-            }))
-            .catch(err => console.log(err));
+    inputKeyword(){
+        const suggestionsWrap = $(".nav-search-suggestion");
+
+        if(this.searchEl.value === "") {
+            suggestionsWrap.innerHTML = "";
+            this.dimmer("hidden");    
+        }
+        else {
+            const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
+    
+            keywordJson
+                .then(template.appendSuggestionHTML({ HTMLEl: suggestionsWrap }))
+                .catch(err => console.log(err));
+                
+            this.dimmer("show");
+        }
     }
 
-    addDimmed(){
-        const dim = document.querySelector(".dim");
-        dim.classList.add("dimmed");
+    makeDimmable({ bindTo }){
+        return command => {
+            if(command === "show") bindTo.classList.add("show");
+            else if(command === "hidden") bindTo.classList.remove("show");
+        }
     }
 
-    removeDimmed(){
-        const dim = document.querySelector(".dim");
-        dim.classList.remove("dimmed");
+    categoryChange() {
+        const selectEl = $("#select-category");
+        const cateNameEl = $(".nav-select-option");
+
+        selectEl.addEventListener("change", function(){
+            cateNameEl.innerText = this.options[this.selectedIndex].innerText;
+        })
     }
 }
 

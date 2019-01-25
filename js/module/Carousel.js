@@ -1,4 +1,4 @@
-import { util } from "../util.js"
+import { $, debounce } from "../util.js"
 
 class Carousel {
     constructor({ targetEl, intervalTime, delayTime }){
@@ -6,12 +6,11 @@ class Carousel {
         this.intervalTime = intervalTime;
         this.delayTime = delayTime;
         this.playID;
-        // this.timer;
     }
 
     run(){
-        const prevBtn = this.targetEl.querySelector(".carousel-left-arrow");
-        const nextBtn = this.targetEl.querySelector(".carousel-right-arrow");
+        const prevBtn = $(".carousel-left-arrow", this.targetEl);
+        const nextBtn = $(".carousel-right-arrow", this.targetEl);
 
         prevBtn.addEventListener("click", () => {
             this.displayPrevCard();
@@ -27,7 +26,7 @@ class Carousel {
     }
 
     displayNextCard(){
-        const displayEl = this.targetEl.querySelector(".carousel-wrapper");
+        const displayEl = $(".carousel-wrapper", this.targetEl);
 
         displayEl.classList.add("slideRightOn");
         displayEl.removeEventListener("transitionend", this.slideLeftAnimationEvent);
@@ -35,7 +34,7 @@ class Carousel {
     }
 
     displayPrevCard(){
-        const displayEl = this.targetEl.querySelector(".carousel-wrapper");
+        const displayEl = $(".carousel-wrapper", this.targetEl);
 
         displayEl.classList.add("slideLeftOn");
         displayEl.removeEventListener("transitionend", this.slideRightAnimationEvent);
@@ -51,7 +50,7 @@ class Carousel {
         clearTimeout(this.playID);
         
         if(!this.delayCarousel) {
-            this.delayCarousel = util.debounce(this.autoPlay.bind(this), this.delayTime);
+            this.delayCarousel = debounce(this.autoPlay.bind(this), this.delayTime);
         }
 
         this.delayCarousel();
