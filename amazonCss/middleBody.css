@@ -12,7 +12,7 @@
 }
 
 .middle-body-text {
-  color: var(--basic-color);
+  color: var(--color-basic);
   display: inline-block;
   margin-left: 80px;
   margin-top: 50px;

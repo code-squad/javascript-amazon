@@ -23,12 +23,8 @@
 
 .middle-body-carousel-list-container {
   position: relative;
-  width: 280px;
-  height: 210px;
-}
-
-.middle-body-carousel-list-image {
-  width: 100%;
+  width: var(--middlebody-carousel--width);
+  height: var(--middlebody-carousel--height);
 }
 
 .middle-body-carousel-right-button {
