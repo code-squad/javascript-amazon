@@ -371,11 +371,221 @@ header #header-bottom-nav {
 /* body line */
 
 body {
+  font-size: 13px;
+  line-height: 19px;
+  color: #111;
+  font-family: Arial, sans-serif;
   width: 1680px;
   height: 4309px;
   margin: 0;
 }
 
+<<<<<<< HEAD
+=======
+/* nav-plans */
+
+.nav-plan-bar {
+  background-color: #232f3e;
+  border-bottom: 2px solid #00a8e1;
+  height: 99px;
+  margin: 0;
+  height: 70px;
+  text-align: center;
+}
+
+.plan-bars {
+  width: 560px;
+  padding: 0 130px;
+  float: left;
+}
+
+.bars-midImg {
+  padding: 17px 0 10px 0;
+  font-size: 19px;
+}
+
+.plan-bars-logo {
+  float: left;
+  height: 68px;
+  padding: 10px;
+}
+
+.logo-arrow {
+  padding: 0 135px;
+  display: block;
+  height: 18px;
+  max-width: 100%;
+  border: 0;
+  color: #fafafa;
+}
+
+#bars-right {
+  padding: 12px 130px 10px 130px;
+}
+
+#plan-button-tryprime {
+  width: 133px;
+  height: 46px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #ff6138;
+  background-color: #ffa724;
+  float: right;
+}
+
+.plan-tryprime-input {
+  background-color: transparent;
+  color: #284d40;
+  font-weight: bold;
+  font-size: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+.see-more-plans {
+  text-align: center;
+  color: #fff;
+}
+
+/* plan-card */
+
+.plan-card {
+  border: solid 1px gray
+}
+
+.card {
+  border: solid 1px gray;
+  padding: 0 168px;
+  margin: 0 140px;
+}
+
+#top {
+  overflow: hidden;
+  height: 165px;
+}
+
+#card-logo {
+  margin-top: 48px;
+}
+
+.card span {
+  margin-top: 72px;
+  float: left;
+  padding: 0 152px;
+  font-weight: 300;
+  font-size: 20pt;
+}
+
+.top-right-content {
+  float: right;
+  position: relative;
+}
+
+.plan-img {}
+
+.close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+#card-tryprime {
+  float: none;
+}
+
+#main {
+  border: solid 1px;
+}
+
+.card-list {
+  margin: 0 auto;
+  padding: 26px 18px 0 30px;
+  border: 1px solid;
+  float: left;
+}
+
+#card-list2 {
+  /* position: relative;
+  left: 50%; */
+}
+
+#card-list3 {}
+
+input[type=radio] {
+  /* position: absolute;
+  display: none; */
+}
+
+.card-container {
+  overflow: hidden;
+}
+
+.card-header {
+  font-weight: 300;
+  font-size: 20pt;
+  line-height: 25px;
+}
+
+.card-price {
+  font-weight: 300;
+  font-size: 20pt;
+  margin-top: 12px;
+}
+
+.card-content-list {
+  margin-top: 54px;
+  font-weight: 200;
+  font-size: 12pt;
+}
+
+.card-content {
+  padding-bottom: 10px;
+  line-height: 18px;
+  height: 35px;
+  /* text-indent: -32px; */
+}
+
+#card-bottom {
+  overflow: hidden;
+}
+
+.logo-arrow-bottom {
+  display: block;
+}
+
+.card-bottom-container {
+  float: right;
+}
+
+.logo-arrow-bottom {
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.arrow-container {
+  margin: 0 auto;
+  width: 15px;
+}
+
+.arrow-img {
+  margin: 0 auto;
+  background-image: url("https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIBaseCSS@variables-sprite_1x-6c462f5dc3bc3e40d0788502814fa7043355712a._V2_.png");
+  background-position: -5px -82px;
+  width: 15px;
+  height: 12px;
+  opacity: .64;
+  position: relative;
+  background-size: 400px 900px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+/*body main*/
+
+>>>>>>> add: plan-card html, css
 #body-main-content {
   font-size: 13px;
   height: 3325px;
@@ -412,7 +622,7 @@ body {
   width: 400px;
 }
 
-#prime-membership-header #button-try-prime {
+.button-tryprime {
   background: #ffa724;
   border-width: 1px;
   border-style: solid;
@@ -422,7 +632,7 @@ body {
   width: 358px;
 }
 
-#button-try-prime>input {
+.tryprime-input {
   background-color: transparent;
   color: #284d40;
   font-weight: bold;
