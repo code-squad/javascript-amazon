@@ -3,7 +3,8 @@ class Module {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
       const parsedObject = JSON.parse(xhr.responseText);
-      handler(parsedObject);
+      console.log(parsedObject);
+      // handler(parsedObject);
     });
     xhr.open(`GET`, `${url}`);
     xhr.send();
