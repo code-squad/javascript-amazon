@@ -52,12 +52,28 @@
   width: var(--middlebody-carousel-width);
   height: var(--middlebody-carousel-height);
   position: relative;
-  right: calc(var(--middlebody-carousel-width)*2);
+  font-size:0px;
 }
 
-.middle-body-carousel-lise-el {
+.middle-body-carousel-list-el {
+  display:inline-block;
   width: 230px;
   height: 180px;
+  background-size: 100%;
+}
+
+.index0 {
+  background-image:url("../amazonImage/jack.jpg");
+  display:none;
+}
+
+.index1{
+  background-image:url("../amazonImage/homecoming.jpg");
+}
+
+.index2{
+  background-image:url("../amazonImage/crong.png");
+  display:none;
 }
 
 .middle-body-carousel-right-button {
