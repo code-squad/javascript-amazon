@@ -1,0 +1,63 @@
+@mixin font-face($font-family, $font-weight, $url) {
+  @font-face {
+    font-family: '#{$font-family}';
+    src: url('#{$url}.eot');
+    src: url('#{$url}.eot?#iefix') format('embedded-opentype'),
+         url('#{$url}.woff2') format('woff2')
+		     url('#{$url}.woff') format('woff'),
+		     url('#{$url}.ttf') format('truetype');
+    font-weight: '#{$font-weight}';
+    font-style: normal;
+  }
+}
+
+@mixin nav-sprite($width, $height, $x, $y) {
+  background-image: url(../images/sprite/nav-sprite-global.png);
+  background-size: 350px;
+  width: #{$width}px;
+  height: #{$height}px;
+  background-position: #{$x}px #{$y}px;
+}
+
+@mixin international-sprite($width, $height, $x, $y) {
+  background-image: url(../images/sprite/international-customer-preferences.png);
+  width: #{$width}px;
+  height: #{$height}px;
+  background-position: #{$x}px #{$y}px;
+      background-size: 142px 120px;
+}
+
+@mixin prime-sprite($width, $height, $x, $y) {
+  background-image: url(../images/sprite/prime-page.png);
+  width: #{$width}px;
+  height: #{$height}px;
+  background-position: #{$x}px #{$y}px;
+  background-size: 158px auto;
+}
+
+@mixin base-ui-sprite($width, $height, $x, $y) {
+  background-image: url(../images/sprite/AmazonUIBaseCSS-sprite.png);
+  width: #{$width}px;
+  height: #{$height}px;
+  background-position: #{$x}px #{$y}px;
+  background-size: 400px 900px;
+}
+
+@mixin prime-btn {
+  background: #ffa724;
+  border: 1px solid #ff6138;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #284d40;
+  text-transform: uppercase;
+}
+
+@mixin clearfix {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}

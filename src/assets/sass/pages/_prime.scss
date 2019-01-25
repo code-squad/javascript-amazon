@@ -1,0 +1,237 @@
+// main
+.main {
+  width: 100%;
+  background: #0079b4 no-repeat url(../images/Header_01.png);
+  background-size: auto 476px;
+  background-position: left top;
+  height: 476px;
+  position: relative;
+  color: #fff;
+  padding: 3.2rem 0 4.8rem 7rem;
+  &__title {
+    margin-bottom: 2.2rem;
+    width: 50rem;
+    font-size: 4.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  &__desc {
+    margin-bottom: 3.2rem;
+    width: 40rem;
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+  &__btn {
+    @include prime-btn;
+    min-width: 36rem;
+    height: 5.2rem;
+    line-height: 5.2rem;
+    font-size: 2rem;
+  }
+  &__help {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  &__link {
+    margin-bottom: 3.4rem;
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    color: $white;
+    line-height: 19px;
+    & .icon-arrow--right {
+      margin: 0 0.6rem;
+      display: inline-block;
+      @include prime-sprite(6, 9, 0, -233);
+    }
+  }
+  &__logo {
+    width: 8rem;
+    display: block;
+  }
+}
+
+// plans
+.plans {
+  width: 100%;
+  position: absolute;
+  // display: none;
+  border-bottom: 2px solid #00a8e1;
+  top: 0;
+  z-index: 99;
+  &--scroll,
+  &--open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+  }
+  &--scroll {
+    height: 7.2rem;
+    & .plans-header {
+      display: flex;
+    }
+  }
+  &--open {
+    height: auto;
+    & .plans-content {
+      display: block;
+    }
+  }
+  &-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 7rem;
+    background: $primary_dark;
+    display: none;
+    &-logo {
+      height: 7rem;
+      &__img {
+        padding: 1rem 0;
+        display: block;
+        height: 100%;
+      }
+    }
+    &__btn {
+      align-self: flex-end;
+      background: transparent;
+      border: none;
+      display: block;
+      font-size: 2rem;
+      font-weight: 300;
+      color: $white;
+    }
+    &__icon--down {
+      margin: 0 auto;
+      display: block;
+      background-image: url(../images/down-arrow_50x30.svg);
+      width: 30px;
+      height: 18px;
+    }
+    &__link {
+      @include prime-btn;
+      padding: 1.5rem 2.5rem 1.1rem 2.5rem;
+      font-size: 1.6rem
+    }
+  }
+  &-content {
+    margin: 0 auto;
+    padding: 0 6% 2rem 6%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: $white no-repeat url(../images/GBB_Illustration_01.png);
+    background-position: calc(100% - 6%) 0;
+    display: none;
+    & form {
+      margin: 0 auto;
+      max-width: 80rem;
+      min-width: 96.6rem;
+    }
+    &-logo {
+      position: absolute;
+      top: 5rem;
+      left: 6%;
+    }
+    &__subtitle {
+      padding-top: 7rem;
+      padding-left: 20%;
+      font-size: 2.6rem;
+      font-weight: 400;
+    }
+    &__btn--close {
+      position: absolute;
+      top: 1rem;
+      right: 6%;
+      background: $white;
+      border: none;
+      text-transform: uppercase;
+      color: #002F36;
+      font-size: 1.6rem;
+    }
+    .icon-close {
+      @include prime-sprite(19, 19, -55, -242);
+      margin-left: 0.5rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &-btn-group {
+      margin-right: -3rem;
+      float: right;
+    }
+    &__btn {
+      @include prime-btn;
+      margin-top: 3rem;
+      display: block;
+      min-width: 32rem;
+      height: 44px;
+      line-height: 44px;
+      font-size: 1.6rem;
+      &--close-icon {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        background: transparent;
+        border: none;
+        .icon-arrow--up {
+          @include base-ui-sprite(15, 12, -5, -82);
+          opacity: 0.64;
+          display: block;
+        }
+      }
+    }
+    &__link {
+      margin-top: 2rem;
+      display: inline-block;
+      color: #0066C1;
+      font-size: 1.3rem;
+      font-weight: 500;
+      &--first::after {
+        content: ' | ';
+        color: #111;
+      }
+    }
+  }
+}
+
+// benefits
+.benefits {
+  background: $white;
+  &__title {
+    margin: 3rem 7rem 1.5rem 7rem;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: $primary_dark;
+  }
+  &-content {
+    padding: 6.5rem 7rem 4.8rem 7rem;
+    color: $white;
+    height: 36rem;
+    background-image: url(../images/StaticBlade_PrimeDelivery_01.png);
+    background-size: auto 360px;
+    background-position: top center;
+    .content__link {
+      color: $white;
+      .icon-arrow--right {
+        background-position: 0 -233px;
+      }
+    }
+  }
+  &-carousel {
+    margin-top: 3.5rem;
+    padding: 3rem 7rem 4.8rem 7rem;
+    color: $primary_dark;
+    display: flex;
+    &__wrapper {
+      position: relative;
+    }
+  }
+}

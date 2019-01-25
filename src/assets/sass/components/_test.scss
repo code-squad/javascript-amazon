@@ -1,0 +1,12 @@
+.test__link {
+  position: fixed;
+  bottom: 0;
+  background: yellow;
+  z-index: 99999;
+  &-nav {
+    left: 2;
+  }
+  &-popup {
+    left: 10rem;
+  }
+}

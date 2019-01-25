@@ -1,0 +1,144 @@
+.card-radio {
+  margin-top: 6rem;
+  display: flex;
+  justify-content: space-between;
+  &__input {
+    // display: none;
+    &[type="radio"]:checked {
+      & + .card-radio__label {
+        .card-radio-content {
+          background: #00a8e1 radial-gradient(at 155px 98px, #00a8e1, #0094c6);
+          color: $white;
+        }
+        .card-radio-content__btn {
+          background: #00a8e1;
+        }
+        li.active {
+          color: $white;
+          &:before {
+            border-color: #000;
+          }
+        }
+      }
+    }
+  }
+  &__label {
+    position: relative;
+    border: 1px solid #000;
+    background: $white;
+    width: 28rem;
+    &:before,
+    &:after {
+      z-index: 0;
+      position: absolute;
+      content: "";
+      bottom: 35px;
+      width: 10px;
+      top: 35px;
+      background: #222;
+      box-shadow: 0 -15px 25px 7px #222;
+    }
+    &:before {
+      left: 16px;
+      transform: rotate(-6deg);
+    }
+    &:after {
+      right: 16px;
+      left: auto;
+      transform: rotate(6deg);
+    }
+  }
+  &-content {
+    padding: 2.6rem 1rem 2rem 3rem;
+    position: relative;
+    z-index: 1;
+    background: $white;
+    &__title {
+      font-size: 2.7rem;
+      letter-spacing: 1px;
+      &--strong {
+        font-weight: 700;
+        sup {
+          top: -0.5em;
+          font-size: 75%;
+        }
+      }
+    }
+    &__desc {
+      position: absolute;
+      top: 8.5rem;
+      left: -1rem;
+      background: url(../images/GBB_SavingsRibbon_01.svg);
+      width: 18.4rem;
+      height: 3.5rem;
+      span {
+        position: absolute;
+        top: 1.7rem;
+        left: 0.9rem;
+        text-transform: uppercase;
+        color: $white;
+        font-weight: 700;
+      }
+      // &:before {
+      //   content: '';
+      //   background: url(../images/GBB_SavingsRibbon_01.svg);
+      //   position: absolute;
+      //   top: -1rem;
+      //   right: 0;
+      //   width: 18.4rem;
+      //   height: 3.5rem;
+      // }
+    }
+    &-benefits {
+      padding-top: 6rem;
+      li {
+        position: relative;
+        padding: 0.5rem;
+        font-size: 1.8rem;
+        color: #eee;
+      }
+      li.active {
+        padding-left: 3.8rem;
+        color: #000;
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 1rem;
+          display: block;
+          width: 10px;
+          height: 20px;
+          border: solid #00A8E1;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+    &__btn {
+      position: absolute;
+      background: $white;
+      border: 2px solid #aaa;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      top: 2.5rem;
+      right: 2rem;
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 1.3rem;
+        height: 1.3rem;
+        background: $white;
+        border-radius: 50%;
+      }
+    }
+  }
+  // input[type="radio"]:checked {
+  //   & + label.card-radio__label {
+  //     background: #00a8e1 radial-gradient(at 155px 98px, #00a8e1, #0094c6);
+  //   }
+  // }
+}

@@ -1,0 +1,23 @@
+// abstracts
+@import "./abstracts/variables";
+@import "./abstracts/functions";
+@import "./abstracts/mixins";
+@import "./abstracts/placeholders";
+
+// vendors
+
+// base
+@import "./base/reset";
+@import "./base/typography";
+
+// layout
+@import "./layout/grid";
+@import "./layout/navigation";
+// components
+@import "./components/input";
+@import "./components/carousel";
+@import "./components/content";
+@import "./components/test";
+
+//pages
+@import "./pages/prime";

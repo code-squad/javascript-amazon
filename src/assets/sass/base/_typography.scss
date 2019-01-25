@@ -1,0 +1,11 @@
+@include font-face('Amazon Ember', 'normal', '../fonts/AmazonEmber_Rg');
+@include font-face('Amazon Ember', 'bold', '../fonts/AmazonEmber_Bd');
+@include font-face('Amazon Ember', 'light', '../fonts/AmazonEmber_Lt');
+
+html {
+  font-size: 10px;
+}
+body {
+  font-family: 'Amazon Ember', sans-serif;
+  font-size: 1.4rem;
+}
