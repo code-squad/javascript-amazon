@@ -1,39 +1,52 @@
 class Carousel_middle {
-  constructor(module) {
+  constructor(playBool, container, right, left, module) {
     this.module = module;
-    this.module.getAjax(this.handler, `./jsonData/data.json`);
+    this.playBool = playBool;
+    this.container = container;
+    this.right = right;
+    this.left = left;
+    this.init();
   }
 
-  handler(parsedObj) {
-    //롸잇, 레프트
+  init() {
+    this.module.getAjax(this.handler.bind(this), `./jsonData/data.json`);
+  }
+
+  partDivider() {
     const playBool = false;
     const container = this.module.qs(".middle-body-carousel-list");
     const right = this.module.qs(".middle-body-carousel-right-button");
     const left = this.module.qs(".middle-body-carousel-left-button");
-    right.addEventListener(
-      "click",
-      moveRight(e, parsedObj, container, playBool)
-    );
-    left.addEventListener("click", moveLeft(e, parsedObj, container, playBool))
+    return [playBool, container, right, left];
   }
 
-  moveRight(e, parsedObj, container, playBool) {
+  handler(parsedObj) {
+    //롸잇, 레프트
+    const partArr = this.partDivider();
+    this.parsedObj = parsedObj;
+    partArr[2].addEventListener("click", this.moveRight);
+    partArr[3].addEventListener("click", this.moveLeft);
+  }
+
+  moveRight() {
     //오른쪽으로 움직이는 부분
-    if (playBool) return;
-    playBool = true;
-    parsedObj.backgroundUrl.unshift(parsedObj.backgroundUrl.pop());
+    const partArr = this.partDivider().bind(this);
+    console.log("hi@");
+    if (partArr[0]) return;
+    partArr[0] = true;
+    this.parsedObj.backgroundUrl.unshift(parsedObj.backgroundUrl.pop());
     //shifting
-    container.style.transform = "translateX(230px)";
-    container.addEventListener("transitionend", () => {
-      parsedObj.backgroundUrl.forEach((v, i) => {
+    partArr[1].style.transform = "translateX(230px)";
+    partArr[1].addEventListener("transitionend", () => {
+      this.parsedObj.backgroundUrl.forEach((v, i) => {
         const part = this.module.qs(`.index${i}`);
         part.style = `background-image:url(${v})`;
       });
-      container.style.transition = "all 0s";
-      container.style.transform = "translateX(0px)";
-      playBool = false;
+      partArr[1].style.transition = "all 0s";
+      partArr[1].style.transform = "translateX(0px)";
+      partArr[0] = false;
     });
-    container.style.transition = "all 0.5s";
+    partArr[1].style.transition = "all 0.5s";
   }
 
   moveLeft(container) {

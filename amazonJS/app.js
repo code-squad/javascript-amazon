@@ -10,7 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".prime-member-container"),
     new Module()
   );
-  new Carousel_middle(new Module());
+  new Carousel_middle(
+    false,
+    document.querySelector('.middle-body-carousel-list'),
+    document.querySelector(".middle-body-carousel-right-button"),
+    document.querySelector(".middle-body-carousel-left-button"),
+    new Module()
+    );
 });
-
-console.log(url)
