@@ -38,6 +38,11 @@ window.addEventListener("DOMContentLoaded", () => {
   carousel.xmlHttpRequest('./JSON/primeMoive.json');
 });
 
+const autoComplete = new SearchAutocomplete({
+
+});
+
 layerManager.init();
 topMenu.init();
 carousel.init();
+autoComplete.init();
