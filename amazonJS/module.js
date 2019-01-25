@@ -2,8 +2,8 @@ class Module {
   getAjax(handler, url) {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
-      const obj = JSON.parse(xhr.responseText);
-      handler(obj);
+      const parsedObject = JSON.parse(xhr.responseText);
+      handler(parsedObject);
     });
     xhr.open(`GET`, `${url}`);
     xhr.send();
