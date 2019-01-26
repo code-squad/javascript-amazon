@@ -42,8 +42,23 @@ class Carousel_middle {
     this.container.style.transition = "all 0.5s";
   }
 
-  moveLeft(container) {
+  moveLeft() {
     //왼쪽으로 움직이는 부분
+    if (this.playBool) return;
+    this.playBool = true;
+    this.parsedArr.push(this.parsedArr.shift());
+    //shifting
+    this.container.style.transform = "translateX(-230px)";
+    this.container.addEventListener("transitionend", () => {
+      this.parsedArr.forEach((v, i) => {
+        const part = this.module.qs(`.index${i}`);
+        part.style = `background-image:url(${v})`;
+      });
+      this.container.style.transition = "all 0s";
+      this.container.style.transform = "translateX(0px)";
+      this.playBool = false;
+    });
+    this.container.style.transition = "all 0.5s";
   }
 }
 
