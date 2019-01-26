@@ -38,7 +38,7 @@ class Carousel_middle {
   }
 
   moveLeft() {
-    //왼쪽으로 움직이는 부분
+    //왼쪽으로 움직이는 부분 
     if (this.playBool) return;
     this.playBool = true;
     this.parsedArr.push(this.parsedArr.shift());
