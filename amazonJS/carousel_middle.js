@@ -18,7 +18,7 @@ class Carousel_middle {
     const backgroundUrlArr = parsedObj.backgroundUrl;
     for (let i = 0; i < backgroundUrlArr.length; i++) {
       this.parsedArr.push(parsedObj["backgroundUrl"][i]);
-    }
+    }//가져온 데이터 클래스에 넣어버리기
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
   }
