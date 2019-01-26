@@ -15,9 +15,9 @@ class Carousel_middle {
 
   handler(parsedObj) {
     //롸잇, 레프트
-    const backgroundUrlArr = parsedObj.backgroundUrl
-    for(let i = 0; i < backgroundUrlArr.length; i++) {
-      this.parsedArr.push(parsedObj['backgroundUrl'][i]);
+    const backgroundUrlArr = parsedObj.backgroundUrl;
+    for (let i = 0; i < backgroundUrlArr.length; i++) {
+      this.parsedArr.push(parsedObj["backgroundUrl"][i]);
     }
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
@@ -30,15 +30,10 @@ class Carousel_middle {
     this.parsedArr.unshift(this.parsedArr.pop());
     //shifting
     this.container.style.transform = "translateX(230px)";
-    this.container.addEventListener("transitionend", () => {
-      this.parsedArr.forEach((v, i) => {
-        const part = this.module.qs(`.index${i}`);
-        part.style = `background-image:url(${v})`;
-      });
-      this.container.style.transition = "all 0s";
-      this.container.style.transform = "translateX(0px)";
-      this.playBool = false;
-    });
+    this.container.addEventListener(
+      "transitionend",
+      this.shuffleArr.bind(this)
+    );
     this.container.style.transition = "all 0.5s";
   }
 
@@ -49,16 +44,21 @@ class Carousel_middle {
     this.parsedArr.push(this.parsedArr.shift());
     //shifting
     this.container.style.transform = "translateX(-230px)";
-    this.container.addEventListener("transitionend", () => {
-      this.parsedArr.forEach((v, i) => {
-        const part = this.module.qs(`.index${i}`);
-        part.style = `background-image:url(${v})`;
-      });
-      this.container.style.transition = "all 0s";
-      this.container.style.transform = "translateX(0px)";
-      this.playBool = false;
-    });
+    this.container.addEventListener(
+      "transitionend",
+      this.shuffleArr.bind(this)
+    );
     this.container.style.transition = "all 0.5s";
+  }
+
+  shuffleArr() {
+    this.parsedArr.forEach((v, i) => {
+      const part = this.module.qs(`.index${i}`);
+      part.style = `background-image:url(${v})`;
+    });
+    this.container.style.transition = "all 0s";
+    this.container.style.transform = "translateX(0px)";
+    this.playBool = false;
   }
 }
 
