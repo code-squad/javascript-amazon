@@ -21,14 +21,12 @@ class Autocomplete {
 
         if(this.searchEl.value === "") {
             suggestionsWrap.innerHTML = null;
-            this.dimmer("hidden");    
         }
         else {
             const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
     
             keywordJson
                 .then(template.appendSuggestionHTML({ HTMLEl: suggestionsWrap }))
-                // .then(this.dimmer("show"))
                 .then(this.keypressEvent.bind(this))
         }
     }
@@ -40,58 +38,48 @@ class Autocomplete {
         }
     }
 
-    categoryChange() {
-        const selectEl = $("#select-category");
-        const cateNameEl = $(".nav-select-option");
-
-        selectEl.addEventListener("change", function(){
-            cateNameEl.innerText = this.options[this.selectedIndex].innerText;
-        })
-    }
-
-    keypressEvent() {
+    keypressEvent(json) {
         const input = this.searchEl;
         const suggestions = $All(".suggestion-link");
+        const helper = {
+            findTarget(){
+                if(currentId < 0) currentId = suggestions.length - 1;
+                if(currentId === suggestions.length) currentId = 0; 
+                
+                return suggestions[currentId];
+            },
+            activeHoverEffect(target) {
+                target.classList.add("hover");
+            },
+            removeHoverEffect(target) {
+                target.classList.remove("hover");
+            },
+            changeInput() {
+                input.value = json[currentId].value;
+            }
+        }
         let currentId = -1;
     
         this.searchEl.addEventListener("keydown", (evt) => {
             if(evt.keyCode === 38) {
-                const [prevTarget, target] = [findTarget(currentId), findTarget(--currentId)];
+                const [prevTarget, target] = [helper.findTarget(currentId), helper.findTarget(--currentId)];
 
-                removeHoverEffect(prevTarget);
-                activeHoverEffect(target);
-                // changeInput(target);
+                helper.removeHoverEffect(prevTarget);
+                helper.activeHoverEffect(target);
+                helper.changeInput(target);
             }
             else if(evt.keyCode === 40) {
-                const [prevTarget, target] = [findTarget(currentId), findTarget(++currentId)];
+                const [prevTarget, target] = [helper.findTarget(currentId), helper.findTarget(++currentId)];
 
-                removeHoverEffect(prevTarget);
-                activeHoverEffect(target);
-                // changeInput(target);
+                helper.removeHoverEffect(prevTarget);
+                helper.activeHoverEffect(target);
+                helper.changeInput(target);
             }
             else if(evt.keyCode === 13) {
-
+                const target = helper.findTarget(currentId);
+                target.click();
             }
         })
-
-        function findTarget(){
-            if(currentId < 0) currentId = suggestions.length - 1;
-            if(currentId === suggestions.length) currentId = 0; 
-            
-            return [...suggestions].filter(suggestion => suggestion.dataset.id === `${currentId}`)[0];
-        }
-
-        function activeHoverEffect(target) {
-            target.classList.add("hover");
-        }
-
-        function removeHoverEffect(target) {
-            target.classList.remove("hover");
-        }
-
-        function changeInput(target) {
-            input.value = target.value;
-        }
     }
 }
 

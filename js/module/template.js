@@ -33,7 +33,7 @@ const template = {
         
                     return HTML += 
                         `<li class="suggestion-item">
-                            <a class="suggestion-link" href="${url}${ref}&${fieldKeywords}&${prefix}" data-id="${id}">
+                            <a class="suggestion-link" href="${url}${ref}&${fieldKeywords}&${prefix}">
                                 <span class="prefix-highlight">${prefix}</span>${restWord}
                             </a> 
                         </li>`;
