@@ -9,9 +9,11 @@ class Autocomplete {
 
     run(){
         this.searchEl.addEventListener("input", () => { 
-            if(!this.send) this.send = debounce(this.showKeywordsList(".nav-search-autocomplete"), 500);
-
-            this.send();
+            if(!this.debouncer) {
+                this.debouncer = debounce(this.showKeywordsList(".nav-search-autocomplete"), 500);
+            }
+            
+            this.debouncer();
         })
     }
 

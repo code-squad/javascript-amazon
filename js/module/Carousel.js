@@ -1,16 +1,15 @@
 import { $, debounce } from "../util.js"
 
 class Carousel {
-    constructor({ bindTo, intervalTime, delayTime }){
+    constructor(bindTo, option){
         this.targetEl = $(bindTo);
-        this.intervalTime = intervalTime;
-        this.delayTime = delayTime;
+        this.option = option
         this.playID;
     }
 
     run(){
-        const prevBtn = $(".carousel-left-arrow", this.targetEl);
-        const nextBtn = $(".carousel-right-arrow", this.targetEl);
+        const prevBtn = $(this.option.leftBtn);
+        const nextBtn = $(this.option.rightBtn);
 
         prevBtn.addEventListener("click", () => {
             this.displayPrevCard();
@@ -22,7 +21,7 @@ class Carousel {
             this.delayAutoPlay();
         });
 
-        this.autoPlay(this.intervalTime);
+        this.autoPlay(this.option.intervalTime);
     }
 
     displayNextCard(){
@@ -43,14 +42,14 @@ class Carousel {
 
     autoPlay(){
         this.displayNextCard();
-        this.playID = setTimeout(this.autoPlay.bind(this), this.intervalTime);
+        this.playID = setTimeout(this.autoPlay.bind(this), this.option.intervalTime);
     }
 
     delayAutoPlay(){
         clearTimeout(this.playID);
         
         if(!this.delayCarousel) {
-            this.delayCarousel = debounce(this.autoPlay.bind(this), this.delayTime);
+            this.delayCarousel = debounce(this.autoPlay.bind(this), this.option.delayTime);
         }
 
         this.delayCarousel();
