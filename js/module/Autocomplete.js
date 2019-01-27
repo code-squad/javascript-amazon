@@ -50,6 +50,7 @@ class Autocomplete {
     }
 
     keypressEvent() {
+        const input = this.searchEl;
         const suggestions = $All(".suggestion-link");
         let currentId = -1;
     
@@ -59,12 +60,14 @@ class Autocomplete {
 
                 removeHoverEffect(prevTarget);
                 activeHoverEffect(target);
+                // changeInput(target);
             }
             else if(evt.keyCode === 40) {
                 const [prevTarget, target] = [findTarget(currentId), findTarget(++currentId)];
 
                 removeHoverEffect(prevTarget);
                 activeHoverEffect(target);
+                // changeInput(target);
             }
             else if(evt.keyCode === 13) {
 
@@ -84,6 +87,10 @@ class Autocomplete {
 
         function removeHoverEffect(target) {
             target.classList.remove("hover");
+        }
+
+        function changeInput(target) {
+            input.value = target.value;
         }
     }
 }

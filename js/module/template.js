@@ -32,11 +32,11 @@ const template = {
                     const ref = suggestion.refTag;
         
                     return HTML += 
-                        `<a class="suggestion-link" href="${url}${ref}&${fieldKeywords}&${prefix}" data-id="${id}">
-                            <li class="suggestion-item">
+                        `<li class="suggestion-item">
+                            <a class="suggestion-link" href="${url}${ref}&${fieldKeywords}&${prefix}" data-id="${id}">
                                 <span class="prefix-highlight">${prefix}</span>${restWord}
-                            </li>
-                        </a>`; 
+                            </a> 
+                        </li>`;
                 }, "");
     
                 HTMLEl.innerHTML = `<ul class="nav-search-suggestion">${suggestionHTML}</ul>`.trim();

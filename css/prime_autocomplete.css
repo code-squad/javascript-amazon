@@ -10,19 +10,18 @@
     background: #fff;
 }
 
-.nav-search-suggestion .suggestion-link {
-    display: block;
-}
-
-.nav-search-suggestion .suggestion-link:hover,
-.nav-search-suggestion .suggestion-link.hover{
-    background: #eee;
-}
-
-.nav-search-suggestion .suggestion-link .suggestion-item {
+.nav-search-suggestion .suggestion-item .suggestion-link {
+    display: inline-block;
+    width: 100%;
     color: #000;
     padding: .6rem .5rem;
 }
+
+.suggestion-item .suggestion-link:hover,
+.suggestion-item .suggestion-link.hover {
+    background: #eee;
+}
+
 
 .suggestion-item .prefix-highlight {
     font-weight: 800;
