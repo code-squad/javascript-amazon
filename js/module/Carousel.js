@@ -1,8 +1,8 @@
 import { $, debounce } from "../util.js"
 
 class Carousel {
-    constructor({ targetEl, intervalTime, delayTime }){
-        this.targetEl = targetEl;
+    constructor({ bindTo, intervalTime, delayTime }){
+        this.targetEl = $(bindTo);
         this.intervalTime = intervalTime;
         this.delayTime = delayTime;
         this.playID;

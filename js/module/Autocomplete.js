@@ -3,21 +3,20 @@ import { $, $All, network, debounce } from "../util.js"
 import { URL } from "../config.js"
 
 class Autocomplete {
-    constructor({ searchEl }){
-        this.searchEl = searchEl;
-        this.dimmer = this.makeDimmable({ bindTo: $("#dimmer") });
+    constructor(target){
+        this.searchEl = $(target);
     }
 
-    sendReq(){
+    run(){
         this.searchEl.addEventListener("input", () => { 
-            if(!this.send) this.send = debounce(this.inputKeyword.bind(this), 500);
+            if(!this.send) this.send = debounce(this.showKeywordsList(".nav-search-autocomplete"), 500);
 
             this.send();
         })
     }
 
-    inputKeyword(){
-        const suggestionsWrap = $(".nav-search-autocomplete");
+    showKeywordsList(containerSelector){
+        const suggestionsWrap = $(containerSelector);
 
         if(this.searchEl.value === "") {
             suggestionsWrap.innerHTML = null;
@@ -26,21 +25,14 @@ class Autocomplete {
             const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
     
             keywordJson
-                .then(template.appendSuggestionHTML({ HTMLEl: suggestionsWrap }))
+                .then(template.appendSuggestionHTML(containerSelector))
                 .then(this.keypressEvent.bind(this))
-                .then(this.dimmer)
-        }
-    }
-
-    makeDimmable({ bindTo }){
-        return command => {
-            if(command === "show") bindTo.classList.add("show");
-            else if(command === "hidden") bindTo.classList.remove("show");
+                .then(this.activeDim("#dimmer"))
         }
     }
 
     keypressEvent(res) {
-        if(!res) "hidden";
+        if(!res) return;
 
         const input = this.searchEl;
         const suggestions = $All(".suggestion-link");
@@ -84,7 +76,17 @@ class Autocomplete {
             }
         })
 
-        return "show";
+        return res;
+    }
+
+    activeDim(bindTo){
+        const targetEl = $(bindTo);
+
+        return bOn => {
+            if(bOn) targetEl.classList.add("show");
+            else targetEl.classList.remove("show");
+        }
+        
     }
 }
 

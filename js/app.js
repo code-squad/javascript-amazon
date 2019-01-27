@@ -5,22 +5,20 @@ import { Autocomplete } from "./module/Autocomplete.js"
 
 const stickyLayer = new StickyLayer(".plan-layer");
 const videoCarousel = new Carousel({
-    targetEl: $(".video-carousel"), 
+    bindTo: ".video-carousel", 
     intervalTime: 3000,
     delayTime: 5000
 });
 const musicCarousel = new Carousel({
-    targetEl: $(".music-carousel"), 
+    bindTo: ".music-carousel", 
     intervalTime: 3000,
     delayTime: 5000
 });
-const autocomplete = new Autocomplete({
-    searchEl: $(".nav-input-bar")
-})
+const autocomplete = new Autocomplete(".nav-input-bar");
 
 window.addEventListener("load", () => {
     stickyLayer.run();
     videoCarousel.run();
     musicCarousel.run();
-    autocomplete.sendReq();
+    autocomplete.run();
 });
