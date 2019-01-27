@@ -1,11 +1,12 @@
 import { $, $All} from "../util.js";
 
 class StickyLayer{
-    constructor({ stickyEl }){
-        this.stickyEl = stickyEl;
+    constructor( bindTo ){
+        this.stickyEl = $(bindTo);
     }
 
-    pinElement({ thresholdEl }){
+    pinElement( selector ){
+        const thresholdEl = $(selector);
         let bPinEl = false;
 
         return _ => {
@@ -25,7 +26,8 @@ class StickyLayer{
         }
     }
 
-    displayHiddenBar({ thresholdEl }){
+    displayHiddenBar( selector ){
+        const thresholdEl = $(selector);
         const hiddenBar = $(".hidden-bar", this.stickyEl);
         let bHiddenbar = false;
 
@@ -66,14 +68,8 @@ class StickyLayer{
     }
 
     run() {
-        window.addEventListener("scroll", this.pinElement({
-            thresholdEl: $(".nav-lower")
-        }))
-
-        window.addEventListener("scroll", this.displayHiddenBar({
-            thresholdEl: $(".prime-header-content .btn-prime-container")
-        }))
-
+        window.addEventListener("scroll", this.pinElement(".nav-lower"));
+        window.addEventListener("scroll", this.displayHiddenBar(".prime-header-content .btn-prime-container"));
         this.displayHiddenPlan();
     }
 }

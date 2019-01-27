@@ -28,6 +28,7 @@ class Autocomplete {
             keywordJson
                 .then(template.appendSuggestionHTML({ HTMLEl: suggestionsWrap }))
                 .then(this.keypressEvent.bind(this))
+                .then(this.dimmer)
         }
     }
 
@@ -38,7 +39,9 @@ class Autocomplete {
         }
     }
 
-    keypressEvent(json) {
+    keypressEvent(res) {
+        if(!res) "hidden";
+
         const input = this.searchEl;
         const suggestions = $All(".suggestion-link");
         const helper = {
@@ -80,6 +83,8 @@ class Autocomplete {
                 target.click();
             }
         })
+
+        return "show";
     }
 }
 

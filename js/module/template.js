@@ -23,24 +23,23 @@ const template = {
         return ({ prefix, suggestions, error }) => {
             if(error) {
                 HTMLEl.innerHTML = "";
+                return;
             }
-            else {
-                const suggestionHTML  = suggestions.reduce((HTML, suggestion, id) => {
-                    const url = "http://crong.codesquad.kr:8080/amazon-search?";
-                    const fieldKeywords = suggestion.value.split(" ").join("+");
-                    const restWord = suggestion.value.replace(prefix, "");
-                    const ref = suggestion.refTag;
+            const suggestionHTML  = suggestions.reduce((HTML, suggestion, id) => {
+                const url = "http://crong.codesquad.kr:8080/amazon-search?";
+                const fieldKeywords = suggestion.value.split(" ").join("+");
+                const restWord = suggestion.value.replace(prefix, "");
+                const ref = suggestion.refTag;
         
-                    return HTML += 
-                        `<li class="suggestion-item">
-                            <a class="suggestion-link" href="${url}${ref}&${fieldKeywords}&${prefix}">
-                                <span class="prefix-highlight">${prefix}</span>${restWord}
-                            </a> 
-                        </li>`;
-                }, "");
+                return HTML += 
+                    `<li class="suggestion-item">
+                        <a class="suggestion-link" href="${url}${ref}&${fieldKeywords}&${prefix}">
+                            <span class="prefix-highlight">${prefix}</span>${restWord}
+                        </a> 
+                    </li>`;
+            }, "");
     
-                HTMLEl.innerHTML = `<ul class="nav-search-suggestion">${suggestionHTML}</ul>`.trim();
-            }
+            HTMLEl.innerHTML = `<ul class="nav-search-suggestion">${suggestionHTML}</ul>`.trim();
 
             return suggestions;
         }

@@ -3,7 +3,7 @@ import { StickyLayer } from "./module/StickyLayer.js"
 import { Carousel } from "./module/Carousel.js";
 import { Autocomplete } from "./module/Autocomplete.js"
 
-const stickyLayer = new StickyLayer({ stickyEl: $(".plan-layer") });
+const stickyLayer = new StickyLayer(".plan-layer");
 const videoCarousel = new Carousel({
     targetEl: $(".video-carousel"), 
     intervalTime: 3000,

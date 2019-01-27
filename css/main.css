@@ -69,7 +69,6 @@ a {
 }
 
 main {
-  position: relative;
   margin: 0 auto;
   min-width: 1000px;
   max-width: 1400px;
