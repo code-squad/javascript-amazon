@@ -16,7 +16,7 @@ const template = {
 
     appendCarouselHTML(selector) {
         const HTMLEl = $(selector);
-        
+
         return jsonData => {
             const carouselHTML  = jsonData.reduce((HTML, img) => {
                 return HTML += 
@@ -29,9 +29,7 @@ const template = {
         }
    },
 
-    appendSuggestionHTML(selector) {
-        const HTMLEl = $(selector);
-
+    appendSuggestionHTML( HTMLEl ) {
         return ({ prefix, suggestions, error }) => {
             if(error) {
                 HTMLEl.innerHTML = "";

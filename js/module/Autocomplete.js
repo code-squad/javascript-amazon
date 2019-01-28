@@ -5,7 +5,7 @@ import { URL } from "../config.js"
 class Autocomplete {
     constructor(target, { keywordsContainer, bDimmer }){
         this.searchEl = $(target);
-        this.keywordsContainer = keywordsContainer;
+        this.keywordsContainer = $(keywordsContainer);
         if(bDimmer) this.dimmer = this.activeDim("#dimmer");
     }
 
@@ -29,6 +29,7 @@ class Autocomplete {
         }
         
         const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
+        
         keywordJson
             .then(template.appendSuggestionHTML(this.keywordsContainer))
             .then(this.keypressEvent.bind(this))
@@ -36,8 +37,7 @@ class Autocomplete {
     }
 
     removeKeywords() {
-        const keywordsContainer = $(this.keywordsContainer);
-        keywordsContainer.innerHTML = null;
+        this.keywordsContainer.innerHTML = null;
     }
 
     keypressEvent(res) {
