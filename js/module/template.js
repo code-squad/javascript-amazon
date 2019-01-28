@@ -30,8 +30,8 @@ const template = {
    },
 
     appendSuggestionHTML( HTMLEl ) {
-        return ({ prefix, suggestions, error }) => {
-            if(error) {
+        return ({ prefix, suggestions, result }) => {
+            if(result === "no data") {
                 HTMLEl.innerHTML = "";
                 return;
             }

@@ -17,14 +17,14 @@ class Autocomplete {
 
         this.searchEl.addEventListener("blur", () => {
             this.removeKeywords();
-            this.dimmer.off();
+            this.dimmer(false);
         })
     }
 
     showKeywords(){
         if(this.searchEl.value === "") {
             this.removeKeywords();
-            this.dimmer.off();
+            this.dimmer(false);
             return;
         }
         
@@ -33,7 +33,7 @@ class Autocomplete {
         keywordJson
             .then(template.appendSuggestionHTML(this.keywordsContainer))
             .then(this.keypressEvent.bind(this))
-            .then(this.dimmer.on)
+            .then(this.dimmer)
     }
 
     removeKeywords() {
@@ -85,19 +85,16 @@ class Autocomplete {
                 target.click();
             }
         })
+
+        return res;
     }
 
     activeDim(bindTo) {
         const targetEl = $(bindTo);
 
-        return {
-            on(){
-                targetEl.classList.add("show");
-            },
-
-            off(){
-                targetEl.classList.remove("show");
-            }
+        return command => {
+            if(command) targetEl.classList.add("show");
+            else targetEl.classList.remove("show");
         }
     }
 }
