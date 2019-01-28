@@ -29,7 +29,7 @@ class Autocomplete {
         }
         
         const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
-        
+
         keywordJson
             .then(template.appendSuggestionHTML(this.keywordsContainer))
             .then(this.keypressEvent.bind(this))
@@ -43,7 +43,7 @@ class Autocomplete {
     keypressEvent(res) {
         if(!res) return;
 
-        const suggestions = $All(".suggestion-link");
+        const suggestions = $All(".suggestion-link", this.keywordsContainer);
         const helper = {
             input: this.searchEl,
             findTarget(){
@@ -59,7 +59,7 @@ class Autocomplete {
                 target.classList.remove("hover");
             },
             changeInput() {
-                helper.input.value = res[currentId].value;
+                this.input.value = res[currentId].value;
             }
         }
         let currentId = -1;
@@ -70,14 +70,14 @@ class Autocomplete {
 
                 helper.removeHoverEffect(prevTarget);
                 helper.activeHoverEffect(target);
-                helper.changeInput(target);
+                helper.changeInput();
             }
             else if(evt.keyCode === 40) {
                 const [prevTarget, target] = [helper.findTarget(currentId), helper.findTarget(++currentId)];
 
                 helper.removeHoverEffect(prevTarget);
                 helper.activeHoverEffect(target);
-                helper.changeInput(target);
+                helper.changeInput();
             }
             else if(evt.keyCode === 13) {
                 const target = helper.findTarget(currentId);
