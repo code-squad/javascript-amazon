@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/body.css">
   <link rel="stylesheet" href="./css/layerManager.css">
   <link rel="stylesheet" href="./css/hidden-header-plans.css">
+  <link rel="stylesheet" href="./css/autoComplete.css">
   <link rel="stylesheet" href="./css/carousel.css">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
@@ -216,63 +217,65 @@
         </div>
         <div class="nav-search">
           <form action="" method="get" class="nav-search-bar">
-            <select class="select-dropdown-menu">
-              <option value="">All Departments</option>
-              <option value="">Amazon Devices</option>
-              <option value="">Amazon Warehouse</option>
-              <option value="">Appliances</option>
-              <option value="">Apps & Games</option>
-              <option value="">Arts, Crafts & Sewing</option>
-              <option value="">Automotive Parts & Accessories</option>
-              <option value="">Baby</option>
-              <option value="">Beauty & Personal Care</option>
-              <option value="">Books</option>
-              <option value="">CDs & Vinyl</option>
-              <option value="">Cell Phones & Accessories</option>
-              <option value="">Clothing, Shoes & Jewelry</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Women</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Men</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Girls</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Boys</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Baby</option>
-              <option value="">Collectibles & Fine Art</option>
-              <option value="">Computers</option>
-              <option value="">Courses</option>
-              <option value="">Credit and Payment Cards</option>
-              <option value="">Digital Music</option>
-              <option value="">Electronics</option>
-              <option value="">Garden & Outdoor</option>
-              <option value="">Gift Cards</option>
-              <option value="">Grocery & Gourmet Food</option>
-              <option value="">Handmade</option>
-              <option value="">Health, Household & Baby Care</option>
-              <option value="">Home & Business Services</option>
-              <option value="">Home & Kitchen</option>
-              <option value="">Industrial & Scientific</option>
-              <option value="">Kindle Store</option>
-              <option value="">Luggage & Travel Gear</option>
-              <option value="">Luxury Beauty</option>
-              <option value="">Magazine Subscriptions</option>
-              <option value="">Movies & TV</option>
-              <option value="">Musical Instruments</option>
-              <option value="">Office Products</option>
-              <option value="">Pet Supplies</option>
-              <option value="">Prime Exclusive Savings</option>
-              <option value="">Prime Pantry</option>
-              <option value="">Prime Video</option>
-              <option value="">Software</option>
-              <option value="">Sports & Outdoors</option>
-              <option value="">Tools & Home Improvement</option>
-              <option value="">Toys & Games</option>
-              <option value="">Vehicles</option>
-              <option value="">Video Games</option>
-            </select>
+            <div class="nav-select-dropdown-menu">
+              <select class="select-dropdown-menu">
+                <option value="">All Departments</option>
+                <option value="">Amazon Devices</option>
+                <option value="">Amazon Warehouse</option>
+                <option value="">Appliances</option>
+                <option value="">Apps & Games</option>
+                <option value="">Arts, Crafts & Sewing</option>
+                <option value="">Automotive Parts & Accessories</option>
+                <option value="">Baby</option>
+                <option value="">Beauty & Personal Care</option>
+                <option value="">Books</option>
+                <option value="">CDs & Vinyl</option>
+                <option value="">Cell Phones & Accessories</option>
+                <option value="">Clothing, Shoes & Jewelry</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Women</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Men</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Girls</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Boys</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Baby</option>
+                <option value="">Collectibles & Fine Art</option>
+                <option value="">Computers</option>
+                <option value="">Courses</option>
+                <option value="">Credit and Payment Cards</option>
+                <option value="">Digital Music</option>
+                <option value="">Electronics</option>
+                <option value="">Garden & Outdoor</option>
+                <option value="">Gift Cards</option>
+                <option value="">Grocery & Gourmet Food</option>
+                <option value="">Handmade</option>
+                <option value="">Health, Household & Baby Care</option>
+                <option value="">Home & Business Services</option>
+                <option value="">Home & Kitchen</option>
+                <option value="">Industrial & Scientific</option>
+                <option value="">Kindle Store</option>
+                <option value="">Luggage & Travel Gear</option>
+                <option value="">Luxury Beauty</option>
+                <option value="">Magazine Subscriptions</option>
+                <option value="">Movies & TV</option>
+                <option value="">Musical Instruments</option>
+                <option value="">Office Products</option>
+                <option value="">Pet Supplies</option>
+                <option value="">Prime Exclusive Savings</option>
+                <option value="">Prime Pantry</option>
+                <option value="">Prime Video</option>
+                <option value="">Software</option>
+                <option value="">Sports & Outdoors</option>
+                <option value="">Tools & Home Improvement</option>
+                <option value="">Toys & Games</option>
+                <option value="">Vehicles</option>
+                <option value="">Video Games</option>
+              </select>
+            </div>
             <div class="nav-search-field">
-              <input type="text" class="input-search-field">
+              <input type="text" class="input-search-field" id="input">
             </div>
             <div class="nav-submit-button">
               <span class="guide-text">Go</span>
-              <input type="button" value="Go" class="nav-search-submit">
+              <input type="submit" value="Go" class="nav-search-submit">
               <i class="fas fa-search"></i>
             </div>
           </form>
@@ -695,7 +698,6 @@
                 <div class="a-carousel-center">
                   <div class="a-carousel-viewport">
                     <ul class="a-carousel">
-
                     </ul>
                   </div>
                 </div>
