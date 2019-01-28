@@ -40,6 +40,8 @@ header {
 
 /* header 상단 */
 .nav-top {
+  position: relative;
+  min-width: 1400px;
   height: 47px;
 }
 
