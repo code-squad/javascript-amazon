@@ -10,9 +10,8 @@ class Autocomplete {
     run(){
         this.searchEl.addEventListener("input", () => { 
             if(!this.debouncer) {
-                this.debouncer = debounce(this.showKeywordsList(".nav-search-autocomplete"), 500);
+                this.debouncer = debounce(this.showKeywordsList.bind(this, ".nav-search-autocomplete"), 500);
             }
-            
             this.debouncer();
         })
     }
@@ -22,6 +21,7 @@ class Autocomplete {
 
         if(this.searchEl.value === "") {
             suggestionsWrap.innerHTML = null;
+            this.activeDim("#dimmer")(false);
         }
         else {
             const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
@@ -36,9 +36,9 @@ class Autocomplete {
     keypressEvent(res) {
         if(!res) return;
 
-        const input = this.searchEl;
         const suggestions = $All(".suggestion-link");
         const helper = {
+            input: this.searchEl,
             findTarget(){
                 if(currentId < 0) currentId = suggestions.length - 1;
                 if(currentId === suggestions.length) currentId = 0; 
@@ -52,7 +52,7 @@ class Autocomplete {
                 target.classList.remove("hover");
             },
             changeInput() {
-                input.value = json[currentId].value;
+                helper.input.value = res[currentId].value;
             }
         }
         let currentId = -1;
@@ -74,6 +74,7 @@ class Autocomplete {
             }
             else if(evt.keyCode === 13) {
                 const target = helper.findTarget(currentId);
+                evt.preventDefault();
                 target.click();
             }
         })

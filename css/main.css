@@ -117,9 +117,13 @@ main {
 
 /* ----- HEADER -----*/
 /* ----- NAV TOP -----*/
+header {
+  min-width: 1000px;
+}
+
 nav {
   background-color: #232f3e;
-  min-width: 1000px;
+  width: 100%;
 }
 
 .nav-top {

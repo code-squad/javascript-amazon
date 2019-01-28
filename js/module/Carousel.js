@@ -47,7 +47,7 @@ class Carousel {
 
     delayAutoPlay(){
         clearTimeout(this.playID);
-        
+    
         if(!this.delayCarousel) {
             this.delayCarousel = debounce(this.autoPlay.bind(this), this.option.delayTime);
         }
