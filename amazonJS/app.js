@@ -1,6 +1,6 @@
 import { Module } from "./module.js"
-import { ScrollEvent_sticky } from "./scrollEvent_sticky.js";
-import { Carousel_middle } from "./carousel_middle.js"
+import { ScrollEvent_sticky } from "./scrollEvent-Sticky.js";
+import { Carousel_middle } from "./carousel-middle.js"
 
 
 document.addEventListener("DOMContentLoaded", () => {
