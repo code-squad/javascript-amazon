@@ -16,7 +16,7 @@ const template = {
 
     appendCarouselHTML(selector) {
         const HTMLEl = $(selector);
-
+        
         return jsonData => {
             const carouselHTML  = jsonData.reduce((HTML, img) => {
                 return HTML += 

@@ -2,6 +2,7 @@
   
 .plan-layer {
     position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
     border-bottom: 2.5px solid #54b7fd;

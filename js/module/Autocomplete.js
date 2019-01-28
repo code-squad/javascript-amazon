@@ -3,34 +3,41 @@ import { $, $All, network, debounce } from "../util.js"
 import { URL } from "../config.js"
 
 class Autocomplete {
-    constructor(target){
+    constructor(target, { keywordsContainer, bDimmer }){
         this.searchEl = $(target);
+        this.keywordsContainer = keywordsContainer;
+        if(bDimmer) this.dimmer = this.activeDim("#dimmer");
     }
 
     run(){
         this.searchEl.addEventListener("input", () => { 
-            if(!this.debouncer) {
-                this.debouncer = debounce(this.showKeywordsList.bind(this, ".nav-search-autocomplete"), 500);
-            }
+            if(!this.debouncer) this.debouncer = debounce(this.showKeywords.bind(this), 500);
             this.debouncer();
+        })
+
+        this.searchEl.addEventListener("blur", () => {
+            this.removeKeywords();
+            this.dimmer.off();
         })
     }
 
-    showKeywordsList(containerSelector){
-        const suggestionsWrap = $(containerSelector);
-
+    showKeywords(){
         if(this.searchEl.value === "") {
-            suggestionsWrap.innerHTML = null;
-            this.activeDim("#dimmer")(false);
+            this.removeKeywords();
+            this.dimmer.off();
+            return;
         }
-        else {
-            const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
-    
-            keywordJson
-                .then(template.appendSuggestionHTML(containerSelector))
-                .then(this.keypressEvent.bind(this))
-                .then(this.activeDim("#dimmer"))
-        }
+        
+        const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
+        keywordJson
+            .then(template.appendSuggestionHTML(this.keywordsContainer))
+            .then(this.keypressEvent.bind(this))
+            .then(this.dimmer.on)
+    }
+
+    removeKeywords() {
+        const keywordsContainer = $(this.keywordsContainer);
+        keywordsContainer.innerHTML = null;
     }
 
     keypressEvent(res) {
@@ -78,18 +85,20 @@ class Autocomplete {
                 target.click();
             }
         })
-
-        return res;
     }
 
-    activeDim(bindTo){
+    activeDim(bindTo) {
         const targetEl = $(bindTo);
 
-        return bOn => {
-            if(bOn) targetEl.classList.add("show");
-            else targetEl.classList.remove("show");
+        return {
+            on(){
+                targetEl.classList.add("show");
+            },
+
+            off(){
+                targetEl.classList.remove("show");
+            }
         }
-        
     }
 }
 

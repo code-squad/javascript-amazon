@@ -15,7 +15,10 @@ const musicCarousel = new Carousel("#music-card", {
     leftBtn: "#music-left",
     rightBtn: "#music-right"
 });
-const autocomplete = new Autocomplete(".nav-input-bar");
+const autocomplete = new Autocomplete(".nav-input-bar", {
+    keywordsContainer: ".nav-search-autocomplete",
+    bDimmer: true
+});
 
 window.addEventListener("load", () => {
     stickyLayer.run();
