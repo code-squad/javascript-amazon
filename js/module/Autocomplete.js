@@ -62,24 +62,29 @@ class Autocomplete {
                 this.input.value = res[currentId].value;
             }
         }
+        const key = {
+            arrowUp: 38,
+            arrowDown: 40,
+            enter: 13
+        }
         let currentId = -1;
     
         this.searchEl.addEventListener("keydown", (evt) => {
-            if(evt.keyCode === 38) {
+            if(evt.keyCode === key.arrowUp) {
                 const [prevTarget, target] = [helper.findTarget(currentId), helper.findTarget(--currentId)];
 
                 helper.removeHoverEffect(prevTarget);
                 helper.activeHoverEffect(target);
                 helper.changeInput();
             }
-            else if(evt.keyCode === 40) {
+            else if(evt.keyCode === key.arrowDown) {
                 const [prevTarget, target] = [helper.findTarget(currentId), helper.findTarget(++currentId)];
 
                 helper.removeHoverEffect(prevTarget);
                 helper.activeHoverEffect(target);
                 helper.changeInput();
             }
-            else if(evt.keyCode === 13) {
+            else if(evt.keyCode === key.enter) {
                 const target = helper.findTarget(currentId);
                 evt.preventDefault();
                 target.click();
