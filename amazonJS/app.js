@@ -4,12 +4,12 @@ import { Carousel_middle } from "./carousel-middle.js"
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const scrollEvent_sticky = new ScrollEvent_sticky(
-    document.querySelector("header"),
-    document.querySelector(".top-layer-container"),
-    document.querySelector(".prime-member-container"),
-    new Module()
-  );
+  const scrollEvent_sticky = new ScrollEvent_sticky({
+    header : document.querySelector("header"),
+    topLayer : document.querySelector(".top-layer-container"),
+    hiddenLayer : document.querySelector(".prime-member-container"),
+    util : new Module()
+  });
   const carousel_middle = new Carousel_middle(
     false,
     document.querySelector('.middle-body-carousel-list'),
