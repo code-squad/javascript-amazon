@@ -1,22 +1,20 @@
 import { qs , getAjax } from './util'
 
 class Carousel_middle {
-  constructor(playBool, container, right, left, module) {
-    this.module = module;
-    this.playBool = playBool;
-    this.container = container;
-    this.right = right;
-    this.left = left;
+  constructor(elObj) {
+    this.container = qs(elObj.container)
+    this.right = qs(elObj.rightBtn);
+    this.left = qs(elObj.leftBtn);
     this.parsedArr = [];
+    this.playBool = false;
     this.isMouseOver = false;
     this.init();
-    this.carouselAuto();
   }
 
   init() {
-    this.module.getAjax(this.handler.bind(this), `./jsonData/data.json`);
+    getAjax(this.handler.bind(this), `./jsonData/data.json`);
     this.checkAuto();
-    // this.carouselAuto();
+    this.carouselAuto();
   }
 
   handler(parsedObj) {
