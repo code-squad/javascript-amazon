@@ -7,16 +7,21 @@ const videoCarousel = new Carousel("#video-card", {
     intervalTime: 3000,
     delayTime: 5000,
     leftBtn: "#video-left",
-    rightBtn: "#video-right"
+    rightBtn: "#video-right",
+    template: "#video-card",
+    ajaxUrl: "/videoCarousel.json"
 });
 const musicCarousel = new Carousel("#music-card", {
     intervalTime: 3000,
     delayTime: 5000,
     leftBtn: "#music-left",
-    rightBtn: "#music-right"
+    rightBtn: "#music-right",
+    template: "#music-card",
+    ajaxUrl: "/musicCarousel.json"
 });
 const autocomplete = new Autocomplete(".nav-input-bar", {
     keywordsContainer: ".nav-search-autocomplete",
+    acTime: 500,
     bDimmer: true
 });
 

@@ -1,13 +1,21 @@
-import { $, debounce } from "../util.js"
+import { $, debounce, network } from "../util.js"
+import { template } from "./template.js";
+import { URL } from "../config.js";
 
 class Carousel {
     constructor(bindTo, option){
         this.targetEl = $(bindTo);
         this.option = option
         this.playID;
+        this.init();
     }
 
-    run(){
+    init() {
+        network.get(`${URL.SERVER}json${this.option.ajaxUrl}`)
+               .then(template.appendCarouselHTML(this.option.template));
+    }
+
+    run() {
         const prevBtn = $(this.option.leftBtn);
         const nextBtn = $(this.option.rightBtn);
 

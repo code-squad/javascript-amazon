@@ -3,28 +3,38 @@ import { $, $All, network, debounce } from "../util.js"
 import { URL } from "../config.js"
 
 class Autocomplete {
-    constructor(target, { keywordsContainer, bDimmer }){
+    constructor(target, { keywordsContainer, acTime, bDimmer }){
         this.searchEl = $(target);
         this.keywordsContainer = $(keywordsContainer);
-        if(bDimmer) this.dimmer = this.activeDim("#dimmer");
+        this.acTime = acTime;
+        if(bDimmer) this.dimmerOn = this.activeDim("#dimmer");
+        this.init();
+    }
+
+    init() {
+        network.get(`${URL.SERVER}json/options.json`)
+                .then(template.appendOptionHTML("#select-category"));
     }
 
     run(){
-        this.searchEl.addEventListener("input", () => { 
-            if(!this.debouncer) this.debouncer = debounce(this.showKeywords.bind(this), 500);
-            this.debouncer();
-        })
+        this.searchEl.addEventListener("input", this.inputEvent.bind(this));
+        this.searchEl.addEventListener("blur", this.blurEvent.bind(this))
+    }
 
-        this.searchEl.addEventListener("blur", () => {
-            this.removeKeywords();
-            this.dimmer(false);
-        })
+    inputEvent() {
+        if(!this.debouncer) this.debouncer = debounce(this.showKeywords.bind(this), this.acTime);
+        this.debouncer();
+    }
+
+    blurEvent() {
+        this.removeKeywords();
+        this.dimmerOn(false);
     }
 
     showKeywords(){
         if(this.searchEl.value === "") {
             this.removeKeywords();
-            this.dimmer(false);
+            this.dimmerOn(false);
             return;
         }
         
@@ -33,7 +43,7 @@ class Autocomplete {
         keywordJson
             .then(template.appendSuggestionHTML(this.keywordsContainer))
             .then(this.keypressEvent.bind(this))
-            .then(this.dimmer)
+            .then(this.dimmerOn)
     }
 
     removeKeywords() {
