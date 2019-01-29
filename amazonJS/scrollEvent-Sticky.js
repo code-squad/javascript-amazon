@@ -1,16 +1,18 @@
+import { qs } from "./module.js";
+
 class ScrollEvent_sticky {
-  constructor(dropBenchMark, stickyLayer, hiddenLayer, module) {
-    this.stickyLayer = stickyLayer;
-    this.hiddenLayer = hiddenLayer;
-    this.module = module;
+  constructor(elObj) {
+    this.header = qs(elObj.header);
+    this.stickyLayer = qs(elObj.stickyLayer);
+    this.hiddenLayer = qs(elObj.hiddenLayer);
     this.makeIO(dropBenchMark);
     this.init();
   }
   
   init() {
-    const closeBtn = this.module.qs(".close-button");
-    const closeArrowBtn = this.module.qs(".close-button-foot");
-    const openArrowBtn = this.module.qs(".top-layer-trigger-button");
+    const closeBtn = qs(".close-button");
+    const closeArrowBtn = qs(".close-button-foot");
+    const openArrowBtn = qs(".top-layer-trigger-button");
 
     closeBtn.addEventListener("click", this.hideLayer.bind(this));
     closeArrowBtn.addEventListener("click", this.hideLayer.bind(this));
