@@ -1,0 +1,21 @@
+/* 기본 CSS */
+
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+html {
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+}
