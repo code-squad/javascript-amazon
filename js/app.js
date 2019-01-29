@@ -8,7 +8,6 @@ const videoCarousel = new Carousel("#video-card", {
     delayTime: 5000,
     leftBtn: "#video-left",
     rightBtn: "#video-right",
-    template: "#video-card",
     ajaxUrl: "/videoCarousel.json"
 });
 const musicCarousel = new Carousel("#music-card", {
@@ -16,7 +15,6 @@ const musicCarousel = new Carousel("#music-card", {
     delayTime: 5000,
     leftBtn: "#music-left",
     rightBtn: "#music-right",
-    template: "#music-card",
     ajaxUrl: "/musicCarousel.json"
 });
 const autocomplete = new Autocomplete(".nav-input-bar", {

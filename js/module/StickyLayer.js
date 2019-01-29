@@ -1,4 +1,4 @@
-import { $, $All} from "../util.js";
+import { $, $All } from "../util.js";
 
 class StickyLayer{
     constructor( bindTo ){

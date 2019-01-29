@@ -1,4 +1,4 @@
-import { template } from "./template.js";
+import { appendOptionHTML, appendSuggestionHTML } from "./template.js";
 import { $, $All, network, debounce } from "../util.js"
 import { URL } from "../config.js"
 
@@ -13,7 +13,7 @@ class Autocomplete {
 
     init() {
         network.get(`${URL.SERVER}json/options.json`)
-                .then(template.appendOptionHTML("#select-category"));
+                .then(appendOptionHTML($("#select-category")));
     }
 
     run(){
@@ -31,19 +31,17 @@ class Autocomplete {
         this.dimmerOn(false);
     }
 
-    showKeywords(){
+    async showKeywords(){
         if(this.searchEl.value === "") {
             this.removeKeywords();
             this.dimmerOn(false);
             return;
         }
         
-        const keywordJson = network.get(`${URL.ACAPI}${this.searchEl.value}`);
-
-        keywordJson
-            .then(template.appendSuggestionHTML(this.keywordsContainer))
-            .then(this.keypressEvent.bind(this))
-            .then(this.dimmerOn)
+        const keywordJson = await network.get(`${URL.ACAPI}${this.searchEl.value}`);
+        const acTemplate = await appendSuggestionHTML(this.keywordsContainer, keywordJson);
+        const keyEvent = await this.keypressEvent(acTemplate);
+        this.dimmerOn(keyEvent);
     }
 
     removeKeywords() {

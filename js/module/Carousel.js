@@ -1,5 +1,5 @@
 import { $, debounce, network } from "../util.js"
-import { template } from "./template.js";
+import { appendCarouselHTML } from "./template.js";
 import { URL } from "../config.js";
 
 class Carousel {
@@ -12,7 +12,7 @@ class Carousel {
 
     init() {
         network.get(`${URL.SERVER}json${this.option.ajaxUrl}`)
-               .then(template.appendCarouselHTML(this.option.template));
+               .then(appendCarouselHTML(this.targetEl));
     }
 
     run() {
