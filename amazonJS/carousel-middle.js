@@ -1,10 +1,11 @@
 import { qs , getAjax } from './util'
 
 class Carousel_middle {
-  constructor(elObj) {
+  constructor(elObj, urlObj) {
     this.container = qs(elObj.container)
     this.right = qs(elObj.rightBtn);
     this.left = qs(elObj.leftBtn);
+    this.jsonUrl = urlObj.url
     this.parsedArr = [];
     this.playBool = false;
     this.isMouseOver = false;
@@ -12,7 +13,7 @@ class Carousel_middle {
   }
 
   init() {
-    getAjax(this.handler.bind(this), `./jsonData/data.json`);
+    getAjax(this.handler.bind(this), this.jsonUrl);
     this.checkAuto();
     this.carouselAuto();
   }
