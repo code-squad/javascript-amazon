@@ -5,7 +5,7 @@ class ScrollEvent_sticky {
     this.header = qs(elObj.header);
     this.stickyLayer = qs(elObj.stickyLayer);
     this.hiddenLayer = qs(elObj.hiddenLayer);
-    this.makeIO(dropBenchMark);
+    this.makeIO(this.header);
     this.init();
   }
   
