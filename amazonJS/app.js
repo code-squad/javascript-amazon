@@ -7,11 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     stickyLayer: ".top-layer-container",
     hiddenLayer: ".prime-member-container"
   });
-  const carousel_middle = new Carousel_middle(
-    false,
-    document.querySelector(".middle-body-carousel-list"),
-    document.querySelector(".middle-body-carousel-right-button"),
-    document.querySelector(".middle-body-carousel-left-button"),
-    new Module()
-  );
+  const carousel_middle = new Carousel_middle({
+    container : ".middle-body-carousel-list",
+    rightBtn : ".middle-body-carousel-right-button",
+    leftBtn : ".middle-body-carousel-left-button"
+  });
 });

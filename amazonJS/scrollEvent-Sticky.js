@@ -1,4 +1,4 @@
-import { qs } from "./module.js";
+import { qs } from "./util.js";
 
 class ScrollEvent_sticky {
   constructor(elObj) {

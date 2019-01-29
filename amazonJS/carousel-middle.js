@@ -1,3 +1,5 @@
+import { qs , getAjax } from './util'
+
 class Carousel_middle {
   constructor(playBool, container, right, left, module) {
     this.module = module;
