@@ -37,7 +37,7 @@ class Carousel_middle {
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = "all 0.5s";
+    this.container.style.transition = "all 0.1s";
   }
 
   moveRight() {
@@ -51,7 +51,7 @@ class Carousel_middle {
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = "all 0.5s";
+    this.container.style.transition = "all 0.1s";
   }
 
   moveLeft() {
@@ -65,7 +65,7 @@ class Carousel_middle {
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = "all 0.5s";
+    this.container.style.transition = "all 0.1s";
   }
 
   shuffleArr() {
