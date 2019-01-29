@@ -24,12 +24,11 @@ class Carousel_middle {
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
   }
-
+///////////////////////////////////////
   moveAuto() {
     if (this.isMouseOver) return;
     this.playBool = true;
     this.parsedArr.push(this.parsedArr.shift());
-    //shifting
     this.container.style.transform = "translateX(-230px)";
     this.container.addEventListener(
       "transitionend",
