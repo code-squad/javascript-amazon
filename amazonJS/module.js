@@ -9,9 +9,11 @@ class Module {
     xhr.send();
   }
 
-  qs(value) {
-    return document.querySelector(value);
-  }
+  
 }
 
-export { Module };
+export function qs(value) {
+  return document.querySelector(value);
+}
+
+// export { Module };
