@@ -19,11 +19,8 @@ class Carousel_middle {
   }
 
   handler(parsedObj) {
-    //롸잇, 레프트
-    const backgroundUrlArr = parsedObj.backgroundUrl;
-    for (let i = 0; i < backgroundUrlArr.length; i++) {
-      this.parsedArr.push(parsedObj["backgroundUrl"][i]);
-    }//가져온 데이터 클래스에 넣어버리기
+    const imgUrlArr = parsedObj.backgroundUrl;
+    this.parsedArr = imgUrlArr.map(v => v)
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
   }
