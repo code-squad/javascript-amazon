@@ -59,7 +59,7 @@
   position: relative;
   right: 230px;
   font-size: 0px;
-  transition: all 0.5s;
+  transition: all 0.5s linear;
   z-index: -50;
 }
 
@@ -130,7 +130,7 @@
 }
 
 .left {
-  width: 245px;
+  width: 33.3%;
   left: 0px;
   z-index: -2;
 }

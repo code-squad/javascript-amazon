@@ -30,9 +30,9 @@ class Carousel_middle {
   moveAuto() {
     if (this.isMouseOver) return;
     this.playBool = true;
-    this.parsedArr.unshift(this.parsedArr.pop());
+    this.parsedArr.push(this.parsedArr.shift());
     //shifting
-    this.container.style.transform = "translateX(230px)";
+    this.container.style.transform = "translateX(-230px)";
     this.container.addEventListener(
       "transitionend",
       this.shuffleArr.bind(this)
@@ -44,9 +44,9 @@ class Carousel_middle {
     //오른쪽으로 움직이는 부분
     if (this.playBool) return;
     this.playBool = true;
-    this.parsedArr.unshift(this.parsedArr.pop());
+    this.parsedArr.push(this.parsedArr.shift());
     //shifting
-    this.container.style.transform = "translateX(230px)";
+    this.container.style.transform = "translateX(-230px)";
     this.container.addEventListener(
       "transitionend",
       this.shuffleArr.bind(this)
@@ -58,9 +58,9 @@ class Carousel_middle {
     //왼쪽으로 움직이는 부분 
     if (this.playBool) return;
     this.playBool = true;
-    this.parsedArr.push(this.parsedArr.shift());
+    this.parsedArr.unshift(this.parsedArr.pop());
     //shifting
-    this.container.style.transform = "translateX(-230px)";
+    this.container.style.transform = "translateX(230px)";
     this.container.addEventListener(
       "transitionend",
       this.shuffleArr.bind(this)
