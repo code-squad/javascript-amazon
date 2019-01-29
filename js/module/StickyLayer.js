@@ -3,6 +3,13 @@ import { $, $All } from "../util.js";
 class StickyLayer{
     constructor( bindTo ){
         this.stickyEl = $(bindTo);
+        this.init();
+    }
+
+    init() {
+        window.addEventListener("scroll", this.pinElement(".nav-lower"));
+        window.addEventListener("scroll", this.displayHiddenBar(".prime-header-content .btn-prime-container"));
+        this.displayHiddenPlan();
     }
 
     pinElement( selector ){
@@ -65,12 +72,6 @@ class StickyLayer{
         hiddenBar.classList.toggle("hidden");
         hiddenPlan.classList.toggle("visible");
         hiddenClose.classList.toggle("visible");
-    }
-
-    run() {
-        window.addEventListener("scroll", this.pinElement(".nav-lower"));
-        window.addEventListener("scroll", this.displayHiddenBar(".prime-header-content .btn-prime-container"));
-        this.displayHiddenPlan();
     }
 }
 

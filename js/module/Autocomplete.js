@@ -4,16 +4,17 @@ import { URL } from "../config.js"
 
 class Autocomplete {
     constructor(target, { keywordsContainer, acTime, bDimmer }){
+        if(bDimmer) this.dimmer = this.activeDim("#dimmer");
         this.searchEl = $(target);
         this.keywordsContainer = $(keywordsContainer);
         this.acTime = acTime;
-        if(bDimmer) this.dimmerOn = this.activeDim("#dimmer");
         this.init();
     }
 
-    init() {
-        network.get(`${URL.SERVER}json/options.json`)
-                .then(appendOptionHTML($("#select-category")));
+    async init() {
+        const json = await network.get(`${URL.SERVER}json/options.json`);
+        appendOptionHTML($("#select-category"), json);
+        this.run();
     }
 
     run(){
@@ -28,20 +29,22 @@ class Autocomplete {
 
     blurEvent() {
         this.removeKeywords();
-        this.dimmerOn(false);
+        this.dimmer.off();
     }
 
     async showKeywords(){
         if(this.searchEl.value === "") {
             this.removeKeywords();
-            this.dimmerOn(false);
+            this.dimmer.off();
             return;
         }
         
         const keywordJson = await network.get(`${URL.ACAPI}${this.searchEl.value}`);
         const acTemplate = await appendSuggestionHTML(this.keywordsContainer, keywordJson);
         const keyEvent = await this.keypressEvent(acTemplate);
-        this.dimmerOn(keyEvent);
+        
+        if(keyEvent) this.dimmer.on();
+        else this.dimmer.off();
     }
 
     removeKeywords() {
@@ -104,10 +107,13 @@ class Autocomplete {
 
     activeDim(bindTo) {
         const targetEl = $(bindTo);
-
-        return command => {
-            if(command) targetEl.classList.add("show");
-            else targetEl.classList.remove("show");
+        return {
+            on() {
+                targetEl.classList.add("show");
+            },
+            off() {
+                targetEl.classList.remove("show");
+            }
         }
     }
 }
