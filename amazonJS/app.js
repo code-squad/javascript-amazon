@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   },{
     jsonUrl : `./jsonData/data.json`
   },{
-    movingLength : '230px'
+    movingLength : '230px',
+    movingTime : '0.1s',
+    transitioning : 'all'
   });
 });

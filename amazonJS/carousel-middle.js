@@ -1,14 +1,14 @@
 import { qs , getAjax } from './util.js'
 
 class Carousel_middle {
-  constructor(elObj, urlObj, option) {
+  constructor(elObj, urlObj, optionObj) {
     this.container = qs(elObj.container)
     this.right = qs(elObj.rightBtn);
     this.left = qs(elObj.leftBtn);
     this.jsonUrl = urlObj.jsonUrl;
-    this.length = option.movingLength;
-    this.time = option.movingTime;
-    this.transitioning = option.transitioning;
+    this.length = optionObj.movingLength;
+    this.time = optionObj.movingTime;
+    this.transitioning = optionObj.transitioning;
     this.playBool = false;
     this.isMouseOver = false;
     this.init();
