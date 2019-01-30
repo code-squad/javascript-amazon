@@ -40,6 +40,11 @@ class NavElements {
     this.morePage.classList.add(classMap.click);
     this.planCnt.classList.add(classMap.donwSize);
   }
+  initInteraction() {
+    this.addScrollEvent();
+    this.addMoreClickEvent();
+    this.addMorePlanDownSizeEvent();
+  }
 }
 
 const classMap = {
@@ -50,6 +55,4 @@ const classMap = {
 };
 
 const navElement = new NavElements();
-navElement.addScrollEvent();
-navElement.addMoreClickEvent();
-navElement.addMorePlanDownSizeEvent();
+navElement.initInteraction();
