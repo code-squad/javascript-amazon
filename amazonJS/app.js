@@ -12,6 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     rightBtn : ".middle-body-carousel-right-button",
     leftBtn : ".middle-body-carousel-left-button"
   },{
-    url : `./jsonData/data.json`
+    jsonUrl : `./jsonData/data.json`
   });
 });

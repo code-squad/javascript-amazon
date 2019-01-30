@@ -1,11 +1,12 @@
 import { qs , getAjax } from './util.js'
 
 class Carousel_middle {
-  constructor(elObj, urlObj) {
+  constructor(elObj, urlObj, option) {
     this.container = qs(elObj.container)
     this.right = qs(elObj.rightBtn);
     this.left = qs(elObj.leftBtn);
-    this.jsonUrl = urlObj.url
+    this.jsonUrl = urlObj.jsonUrl;
+    this.length = option.movingLength;
     this.playBool = false;
     this.isMouseOver = false;
     this.init();
@@ -21,11 +22,10 @@ class Carousel_middle {
     const imgUrlArr = parsedObj.backgroundUrl;
     const linkUrlArr = parsedObj.linkArr;
     this.parsedArr = imgUrlArr.map(v => v);
-    this.linkUrlArr = imgUrlArr.map(v => v);
+    this.linkUrlArr = linkUrlArr.map(v => v);
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
   }
-///////////////////////////////////////
   moveAuto() {
     console.log(this.linkUrlArr);
     if (this.isMouseOver) return;
