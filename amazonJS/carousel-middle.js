@@ -7,6 +7,8 @@ class Carousel_middle {
     this.left = qs(elObj.leftBtn);
     this.jsonUrl = urlObj.jsonUrl;
     this.length = option.movingLength;
+    this.time = option.movingTime;
+    this.transitioning = option.transitioning;
     this.playBool = false;
     this.isMouseOver = false;
     this.init();
@@ -26,31 +28,29 @@ class Carousel_middle {
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
   }
+
   moveAuto() {
-    console.log(this.linkUrlArr);
     if (this.isMouseOver) return;
     this.playBool = true;
     this.parsedArr.push(this.parsedArr.shift());
-    this.container.style.transform = "translateX(-230px)";
+    this.container.style.transform = `translateX(-${this.length})`;
     this.container.addEventListener(
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = "all 0.1s";
+    this.container.style.transition = `${this.transitioning} ${this.time}`;
   }
 
   moveRight() {
-    //오른쪽으로 움직이는 부분
     if (this.playBool) return;
     this.playBool = true;
     this.parsedArr.push(this.parsedArr.shift());
-    //shifting
-    this.container.style.transform = "translateX(-230px)";
+    this.container.style.transform = `translateX(-${this.length})`;
     this.container.addEventListener(
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = "all 0.1s";
+    this.container.style.transition = `${this.transitioning} ${this.time}`;
   }
 
   moveLeft() {

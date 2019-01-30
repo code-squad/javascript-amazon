@@ -13,5 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     leftBtn : ".middle-body-carousel-left-button"
   },{
     jsonUrl : `./jsonData/data.json`
+  },{
+    movingLength : '230px'
   });
 });
