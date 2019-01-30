@@ -60,7 +60,6 @@ class StickyLayer{
         const contentCloseBtn = $All("#content-close-btn", this.stickyEl);
         
         seeMoreBtn.addEventListener("click", this.toggleHiddenEl);
-
         contentCloseBtn.forEach(el => el.addEventListener("click", this.toggleHiddenEl));
     }
 

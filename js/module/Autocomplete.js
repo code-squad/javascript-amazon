@@ -1,5 +1,5 @@
-import { appendOptionHTML, appendSuggestionHTML } from "./template.js";
 import { $, $All, network, debounce } from "../util.js"
+import { createOptionTemplate, createSuggestionTemplate, appendTemplate } from "./template.js";
 import { URL } from "../config.js"
 
 class Autocomplete {
@@ -11,98 +11,81 @@ class Autocomplete {
         this.init();
     }
 
-    async init() {
-        const json = await network.get(`${URL.SERVER}json/options.json`);
-        appendOptionHTML($("#select-category"), json);
-        this.run();
+    init() {
+        this.addOptionDOM();
+        this.searchEl.addEventListener("input", this.inputKeywords.bind(this));
+        this.searchEl.addEventListener("blur", this.removeKeywords.bind(this));
     }
 
-    run(){
-        this.searchEl.addEventListener("input", this.inputEvent.bind(this));
-        this.searchEl.addEventListener("blur", this.blurEvent.bind(this))
-    }
-
-    inputEvent() {
+    inputKeywords() {
         if(!this.debouncer) this.debouncer = debounce(this.showKeywords.bind(this), this.acTime);
         this.debouncer();
     }
 
-    blurEvent() {
-        this.removeKeywords();
-        this.dimmer.off();
+    removeKeywords() {
+        this.keywordsContainer.innerHTML = null;
+        if(this.dimmer) this.dimmer.off();
     }
 
     async showKeywords(){
         if(this.searchEl.value === "") {
             this.removeKeywords();
-            this.dimmer.off();
             return;
         }
         
-        const keywordJson = await network.get(`${URL.ACAPI}${this.searchEl.value}`);
-        const acTemplate = await appendSuggestionHTML(this.keywordsContainer, keywordJson);
-        const keyEvent = await this.keypressEvent(acTemplate);
+        const res = await network.get(`${URL.ACAPI}${this.searchEl.value}`);
+        const suggestionTemplate = createSuggestionTemplate(res);
         
-        if(keyEvent) this.dimmer.on();
-        else this.dimmer.off();
-    }
-
-    removeKeywords() {
-        this.keywordsContainer.innerHTML = null;
-    }
-
-    keypressEvent(res) {
-        if(!res) return;
-
-        const suggestions = $All(".suggestion-link", this.keywordsContainer);
-        const helper = {
-            input: this.searchEl,
-            findTarget(){
-                if(currentId < 0) currentId = suggestions.length - 1;
-                if(currentId === suggestions.length) currentId = 0; 
-                
-                return suggestions[currentId];
-            },
-            activeHoverEffect(target) {
-                target.classList.add("hover");
-            },
-            removeHoverEffect(target) {
-                target.classList.remove("hover");
-            },
-            changeInput() {
-                this.input.value = res[currentId].value;
-            }
+        if(suggestionTemplate) {
+            appendTemplate(this.keywordsContainer, suggestionTemplate);
+            this.searchEl.addEventListener("keydown", this.pressKey());
+            this.dimmer.on();
         }
+        else {
+            this.removeKeywords();
+        }
+    }
+
+    pressKey() {
+        const suggestions = $All(".suggestion-link");
+        
+        if(!suggestions) return ;
+        
         const key = {
             arrowUp: 38,
             arrowDown: 40,
             enter: 13
         }
         let currentId = -1;
-    
-        this.searchEl.addEventListener("keydown", (evt) => {
-            if(evt.keyCode === key.arrowUp) {
-                const [prevTarget, target] = [helper.findTarget(currentId), helper.findTarget(--currentId)];
 
-                helper.removeHoverEffect(prevTarget);
-                helper.activeHoverEffect(target);
-                helper.changeInput();
+        function findTarget(id) {
+            if(id < 0) currentId = suggestions.length - 1;
+            if(id >= suggestions.length) currentId = 0; 
+                
+            return suggestions[currentId];
+        }
+
+        return evt => {
+            if(evt.keyCode === key.arrowUp) {
+                const [prevTarget, target] = [findTarget(currentId), findTarget(--currentId)];
+
+                prevTarget.classList.remove("hover");
+                target.classList.add("hover");
+                this.searchEl.value = suggestions[currentId].innerText;
             }
             else if(evt.keyCode === key.arrowDown) {
-                const [prevTarget, target] = [helper.findTarget(currentId), helper.findTarget(++currentId)];
+                const [prevTarget, target] = [findTarget(currentId), findTarget(++currentId)];
 
-                helper.removeHoverEffect(prevTarget);
-                helper.activeHoverEffect(target);
-                helper.changeInput();
+                prevTarget.classList.remove("hover");
+                target.classList.add("hover");
+                this.searchEl.value = suggestions[currentId].innerText;
             }
             else if(evt.keyCode === key.enter) {
-                const target = helper.findTarget(currentId);
+                const target = findTarget(currentId);
                 evt.preventDefault();
                 target.click();
             }
-        })
-
-        return res;
+        }
     }
 
     activeDim(bindTo) {
@@ -115,6 +98,13 @@ class Autocomplete {
                 targetEl.classList.remove("show");
             }
         }
+    }
+
+    async addOptionDOM() {
+        const jsonData = await network.get(`${URL.SERVER}json/options.json`);
+        const optionTemplate = createOptionTemplate(jsonData);
+
+        appendTemplate($("#select-category"), optionTemplate);
     }
 }
 

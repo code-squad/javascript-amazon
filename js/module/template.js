@@ -1,31 +1,33 @@
 import { URL } from "../config.js"
 
-export function appendOptionHTML( HTMLEl, jsonData ) {
-    const optionHTML = jsonData.reduce((HTML, option) => {
+
+export function appendTemplate(parentEl, template) {
+    if(template) parentEl.innerHTML = template;
+}
+
+export function createOptionTemplate(jsonData) {
+    const optionTemplate = jsonData.reduce((HTML, option) => {
         return HTML += `<option value=${option.value}>${option.text}</option>`;
     }, "");
 
-    HTMLEl.innerHTML = optionHTML.trim();
+    return optionTemplate.trim();
 }
 
-export function appendCarouselHTML( HTMLEl, jsonData ) {
-    const carouselHTML  = jsonData.reduce((HTML, img) => {
+export function createCarouselTemplate(jsonData) {
+    const carouselTemplate = jsonData.reduce((HTML, img) => {
         return HTML += 
             `<li class="carousel-item">
                 <img src=${img.src} alt="${img.alt}">
             </li>`; 
-        }, "")
-               
-    HTMLEl.innerHTML = `<ul class="carousel-wrapper">${carouselHTML}</ul>`.trim();
+    }, "");
+
+    return carouselTemplate.trim();
 }
 
-export function appendSuggestionHTML( HTMLEl, { prefix, suggestions, result } ) {
-    if(result === "no data") {
-        HTMLEl.innerHTML = "";
-        return;
-    }
+export function createSuggestionTemplate({ prefix, suggestions, result }) {
+    if(result === "no data") return;
             
-    const suggestionHTML  = suggestions.reduce((HTML, suggestion) => {
+    const suggestionTemplate  = suggestions.reduce((HTML, suggestion) => {
         const ref = suggestion.refTag;
         const fieldKeywords = suggestion.value.split(" ").join("+");
         const restWord = suggestion.value.replace(prefix, "");
@@ -38,7 +40,5 @@ export function appendSuggestionHTML( HTMLEl, { prefix, suggestions, result } ) 
             </li>`;
     }, "");
     
-    HTMLEl.innerHTML = `<ul class="nav-search-suggestion">${suggestionHTML}</ul>`.trim();
-
-    return suggestions;
+    return `<ul class="nav-search-suggestion">${suggestionTemplate}</ul>`.trim();
 }
