@@ -23,7 +23,7 @@ class Carousel_middle {
   handler(parsedObj) {
     const imgUrlArr = parsedObj.backgroundUrl;
     const linkUrlArr = parsedObj.linkArr;
-    this.parsedArr = imgUrlArr.map(v => v);
+    this.imgUrlArr = imgUrlArr.map(v => v);
     this.linkUrlArr = linkUrlArr.map(v => v);
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
@@ -32,7 +32,7 @@ class Carousel_middle {
   moveAuto() {
     if (this.isMouseOver) return;
     this.playBool = true;
-    this.parsedArr.push(this.parsedArr.shift());
+    this.imgUrlArr.push(this.imgUrlArr.shift());
     this.container.style.transform = `translateX(-${this.length})`;
     this.container.addEventListener(
       "transitionend",
@@ -44,7 +44,7 @@ class Carousel_middle {
   moveRight() {
     if (this.playBool) return;
     this.playBool = true;
-    this.parsedArr.push(this.parsedArr.shift());
+    this.imgUrlArr.push(this.imgUrlArr.shift());
     this.container.style.transform = `translateX(-${this.length})`;
     this.container.addEventListener(
       "transitionend",
@@ -54,22 +54,20 @@ class Carousel_middle {
   }
 
   moveLeft() {
-    //왼쪽으로 움직이는 부분 
     if (this.playBool) return;
     this.playBool = true;
-    this.parsedArr.unshift(this.parsedArr.pop());
-    //shifting
-    this.container.style.transform = "translateX(230px)";
+    this.imgUrlArr.unshift(this.imgUrlArr.pop());
+    this.container.style.transform = `translateX(${this.length})`;
     this.container.addEventListener(
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = "all 0.1s";
+    this.container.style.transition = `${this.transitioning} ${this.time}`;
   }
 
   shuffleArr() {
-    this.parsedArr.forEach((v, i) => {
-      const part = this.module.qs(`.index${i}`);
+    this.imgUrlArr.forEach((v, i) => {
+      const part = qs(`.index${i}`);
       part.style = `background-image:url(${v})`;
     });
     this.container.style.transition = "all 0s";
