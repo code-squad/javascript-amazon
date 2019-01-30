@@ -30,8 +30,12 @@ class Carousel_middle {
   }
 
   moveAuto() {
-    if (this.isMouseOver) return;
+    if (this.isMouseOver) {
+      setTimeout(this.moveAuto.bind(this), 2000);
+      return;
+    }
     this.moveRight();
+    setTimeout(this.moveAuto.bind(this), 2000);
   }
 
   moveRight() {
@@ -83,7 +87,7 @@ class Carousel_middle {
   }
 
   carouselAuto() {
-    setInterval(this.moveAuto.bind(this), 3000);
+    setTimeout(this.moveAuto.bind(this), 3000);
   }
 }
 
