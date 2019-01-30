@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const carousel_middle = new Carousel_middle({
     container : ".middle-body-carousel-list",
     rightBtn : ".middle-body-carousel-right-button",
-    leftBtn : ".middle-body-carousel-left-button"
+    leftBtn : ".middle-body-carousel-left-button",
+    showingLinkEl : ".middle-body-carousel-url"
   },{
     jsonUrl : `./jsonData/data.json`
   },{

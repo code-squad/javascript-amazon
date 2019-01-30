@@ -1,10 +1,11 @@
-import { qs , getAjax } from './util.js'
+import { qs, getAjax } from "./util.js";
 
 class Carousel_middle {
   constructor(elObj, urlObj, optionObj) {
-    this.container = qs(elObj.container)
+    this.container = qs(elObj.container);
     this.right = qs(elObj.rightBtn);
     this.left = qs(elObj.leftBtn);
+    this.showingLinkEl = qs(elObj.showingLinkEl);
     this.jsonUrl = urlObj.jsonUrl;
     this.length = optionObj.movingLength;
     this.time = optionObj.movingTime;
@@ -42,6 +43,8 @@ class Carousel_middle {
     if (this.playBool) return;
     this.playBool = true;
     this.imgUrlArr.push(this.imgUrlArr.shift());
+    this.linkUrlArr.push(this.linkUrlArr.shift());
+    this.initLink();
     this.container.style.transform = `translateX(-${this.length})`;
     this.transitionendEvent();
   }
@@ -50,10 +53,16 @@ class Carousel_middle {
     if (this.playBool) return;
     this.playBool = true;
     this.imgUrlArr.unshift(this.imgUrlArr.pop());
+    this.linkUrlArr.unshift(this.linkUrlArr.pop());
+    this.initLink();
     this.container.style.transform = `translateX(${this.length})`;
     this.transitionendEvent();
   }
 
+  initLink() {
+    this.showingLinkEl.href = `${this.linkUrlArr[1]}`
+  }
+  
   transitionendEvent() {
     this.container.addEventListener(
       "transitionend",
@@ -73,9 +82,9 @@ class Carousel_middle {
   }
 
   checkAuto() {
-    const middleBodyCarousel = document.querySelector('.middle-body-carousel');
-    middleBodyCarousel.addEventListener('mouseover', this.mouseOver.bind(this));
-    middleBodyCarousel.addEventListener('mouseout', this.mouseOut.bind(this));
+    const middleBodyCarousel = document.querySelector(".middle-body-carousel");
+    middleBodyCarousel.addEventListener("mouseover", this.mouseOver.bind(this));
+    middleBodyCarousel.addEventListener("mouseout", this.mouseOut.bind(this));
   }
 
   mouseOver() {
