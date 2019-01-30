@@ -16,8 +16,8 @@ class Carousel_middle {
 
   init() {
     getAjax(this.handler.bind(this), this.jsonUrl);
-    // this.checkAuto();
-    // this.carouselAuto();
+    this.checkAuto();
+    this.carouselAuto();
   }
 
   handler(parsedObj) {
@@ -31,14 +31,7 @@ class Carousel_middle {
 
   moveAuto() {
     if (this.isMouseOver) return;
-    this.playBool = true;
-    this.imgUrlArr.push(this.imgUrlArr.shift());
-    this.container.style.transform = `translateX(-${this.length})`;
-    this.container.addEventListener(
-      "transitionend",
-      this.shuffleArr.bind(this)
-    );
-    this.container.style.transition = `${this.transitioning} ${this.time}`;
+    this.moveRight();
   }
 
   moveRight() {
@@ -46,11 +39,7 @@ class Carousel_middle {
     this.playBool = true;
     this.imgUrlArr.push(this.imgUrlArr.shift());
     this.container.style.transform = `translateX(-${this.length})`;
-    this.container.addEventListener(
-      "transitionend",
-      this.shuffleArr.bind(this)
-    );
-    this.container.style.transition = `${this.transitioning} ${this.time}`;
+    this.transitionendEvent();
   }
 
   moveLeft() {
@@ -58,6 +47,10 @@ class Carousel_middle {
     this.playBool = true;
     this.imgUrlArr.unshift(this.imgUrlArr.pop());
     this.container.style.transform = `translateX(${this.length})`;
+    this.transitionendEvent();
+  }
+
+  transitionendEvent() {
     this.container.addEventListener(
       "transitionend",
       this.shuffleArr.bind(this)
