@@ -3,9 +3,6 @@ class NavElements {
     this.plan = document.querySelector(".plan");
     this.morePage = document.querySelector(".plan-more-contents");
     this.planCnt = document.querySelector(".plan-contents");
-    this.moreCntBtn = document.querySelector(".more-contents-closebtn");
-    this.moreCntArrow = document.querySelector(".more-contents-arrow-img");
-    this.morePlanBtn = document.querySelector(".plan-contents-txt");
     this.navPosition = 112;
     this.primBtnPosition = 465;
   }
@@ -18,8 +15,10 @@ class NavElements {
     this.removeClassList(this.planCnt, "plan-contents-downsize");
   }
   addMorePlanDownSizeEvent() {
-    this.moreCntBtn.addEventListener("click", this.removeClass.bind(this));
-    this.moreCntArrow.addEventListener("click", this.removeClass.bind(this));
+    const moreCntBtn = document.querySelector(".more-contents-closebtn");
+    const moreCntArrow = document.querySelector(".more-contents-arrow-img");
+    moreCntBtn.addEventListener("click", this.removeClass.bind(this));
+    moreCntArrow.addEventListener("click", this.removeClass.bind(this));
   }
   addScrollEvent() {
     window.addEventListener("scroll", this.scrollHandler.bind(this));
@@ -32,7 +31,8 @@ class NavElements {
     else planClassList.remove("plan-scroll-bottom");
   }
   addMoreClickEvent() {
-    this.morePlanBtn.addEventListener("click", this.addClass.bind(this));
+    const morePlanBtn = document.querySelector(".plan-contents-txt");
+    morePlanBtn.addEventListener("click", this.addClass.bind(this));
   }
   addClass() {
     this.plan.classList.add("plan-more-click");
