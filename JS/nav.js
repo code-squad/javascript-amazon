@@ -10,9 +10,9 @@ class NavElements {
     el.classList.remove(className);
   }
   removeClass() {
-    this.removeClassList(this.plan, "plan-more-click");
-    this.removeClassList(this.morePage, "plan-more-click");
-    this.removeClassList(this.planCnt, "plan-contents-downsize");
+    this.removeClassList(this.plan, classMap.click);
+    this.removeClassList(this.morePage, classMap.click);
+    this.removeClassList(this.planCnt, classMap.donwSize);
   }
   addMorePlanDownSizeEvent() {
     const moreCntBtn = document.querySelector(".more-contents-closebtn");
@@ -25,21 +25,29 @@ class NavElements {
   }
   scrollHandler() {
     const planClassList = this.plan.classList;
-    if (pageYOffset > this.navPosition) planClassList.add("plan-scroll-middle");
-    else planClassList.remove("plan-scroll-middle");
-    if (pageYOffset > this.primBtnPosition) planClassList.add("plan-scroll-bottom");
-    else planClassList.remove("plan-scroll-bottom");
+    if (pageYOffset > this.navPosition) planClassList.add(classMap.middleIntrc);
+    else planClassList.remove(classMap.middleIntrc);
+    if (pageYOffset > this.primBtnPosition)
+      planClassList.add(classMap.bottomIntrc);
+    else planClassList.remove(classMap.bottomIntrc);
   }
   addMoreClickEvent() {
     const morePlanBtn = document.querySelector(".plan-contents-txt");
     morePlanBtn.addEventListener("click", this.addClass.bind(this));
   }
   addClass() {
-    this.plan.classList.add("plan-more-click");
-    this.morePage.classList.add("plan-more-click");
-    this.planCnt.classList.add("plan-contents-downsize");
+    this.plan.classList.add(classMap.click);
+    this.morePage.classList.add(classMap.click);
+    this.planCnt.classList.add(classMap.donwSize);
   }
 }
+
+const classMap = {
+  middleIntrc: "plan-scroll-middle",
+  bottomIntrc: "plan-scroll-bottom",
+  click: "plan-more-click",
+  donwSize: "plan-contents-downsize"
+};
 
 const navElement = new NavElements();
 navElement.addScrollEvent();
