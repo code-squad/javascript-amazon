@@ -1,5 +1,8 @@
 {
   "backgroundUrl":["../javascript-amazon/amazonImage/carouselCrong.jpg",
     "../javascript-amazon/amazonImage/jack.jpg",
-    "../javascript-amazon/amazonImage/homecoming.jpg"]
+    "../javascript-amazon/amazonImage/homecoming.jpg"],
+  "linkArr": ["https://codesquad.kr/",
+    "https://www.imdb.com/title/tt5057054/episodes?season=2https://www.imdb.com/title/tt5057054/episodes?season=2",
+    "https://www.imdb.com/title/tt7008682/"]
 }

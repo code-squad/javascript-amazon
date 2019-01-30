@@ -1,4 +1,4 @@
-import { qs , getAjax } from './util'
+import { qs , getAjax } from './util.js'
 
 class Carousel_middle {
   constructor(elObj, urlObj) {
@@ -6,7 +6,6 @@ class Carousel_middle {
     this.right = qs(elObj.rightBtn);
     this.left = qs(elObj.leftBtn);
     this.jsonUrl = urlObj.url
-    this.parsedArr = [];
     this.playBool = false;
     this.isMouseOver = false;
     this.init();
@@ -14,18 +13,21 @@ class Carousel_middle {
 
   init() {
     getAjax(this.handler.bind(this), this.jsonUrl);
-    this.checkAuto();
-    this.carouselAuto();
+    // this.checkAuto();
+    // this.carouselAuto();
   }
 
   handler(parsedObj) {
     const imgUrlArr = parsedObj.backgroundUrl;
-    this.parsedArr = imgUrlArr.map(v => v)
+    const linkUrlArr = parsedObj.linkArr;
+    this.parsedArr = imgUrlArr.map(v => v);
+    this.linkUrlArr = imgUrlArr.map(v => v);
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
   }
 ///////////////////////////////////////
   moveAuto() {
+    console.log(this.linkUrlArr);
     if (this.isMouseOver) return;
     this.playBool = true;
     this.parsedArr.push(this.parsedArr.shift());

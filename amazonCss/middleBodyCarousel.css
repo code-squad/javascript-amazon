@@ -29,6 +29,7 @@
   position: relative;
   width: 230px;
   height: 180px;
+  cursor: pointer;
 }
 
 .middle-body-carousel-list-container:before {
