@@ -19,7 +19,7 @@ class Carousel_middle {
   init() {
     getAjax(this.handler.bind(this), this.ajaxDataUrl);
     this.checkAuto();
-    this.carouselAuto();
+    setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
   }
 
   handler(parsedObj) {
@@ -74,7 +74,7 @@ class Carousel_middle {
 
   shuffleArr() {
     this.imgUrlArr.forEach((v, i) => {
-      const part = qs(document, `.index${i}`);
+      const part = qs(this.container, `.index${i}`);
       part.style = `background-image:url(${v})`;
     });
     this.container.style.transition = "all 0s";
@@ -83,9 +83,8 @@ class Carousel_middle {
   }
 
   checkAuto() {
-    const middleBodyCarousel = document.querySelector(".middle-body-carousel");
-    middleBodyCarousel.addEventListener("mouseover", this.mouseOver.bind(this));
-    middleBodyCarousel.addEventListener("mouseout", this.mouseOut.bind(this));
+    this.container.addEventListener("mouseover", this.mouseOver.bind(this));
+    this.container.addEventListener("mouseout", this.mouseOut.bind(this));
   }
 
   mouseOver() {
@@ -94,10 +93,6 @@ class Carousel_middle {
 
   mouseOut() {
     this.bMouseOver = false;
-  }
-
-  carouselAuto() {
-    setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
   }
 }
 
