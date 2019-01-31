@@ -152,15 +152,6 @@ li {
 
 /* var() */
 
-/* header-bottom */
-.btm-header {
-    width: 100%;
-    height: 46px;
-    margin-top: 14px;
-    vertical-align: bottom;
-}
-
-
 /* header - plans-layer */
 
 .plans-layer {
@@ -248,9 +239,9 @@ li {
     line-height: 3;
 }
 
-/* header - plans-pop-up */
+/* header - plans-extender */
 
-.plans-pop-up {
+.plans-extender {
     background-color: #ffffff;
     border-bottom: 1px solid #00a8e1;
     top: 0;
@@ -265,17 +256,25 @@ li {
     display: inline-block;
 }
 
-.plans-pop-up.shown {
+.plans-extender.shown {
     visibility: visible;
     height: 300px;
     max-height: 300px;
     transition: all 0.5s ease-in-out;
 }
 
-.pop-up-btn{
+.plans-extender-btn{
     font-size: 40px;
     text-align: center;
 
+}
+
+/* header-bottom */
+.btm-header {
+    width: 100%;
+    height: 46px;
+    margin-top: 14px;
+    vertical-align: bottom;
 }
 
 /* left - location  */
