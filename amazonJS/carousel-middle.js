@@ -39,8 +39,8 @@ class Carousel_middle {
   }
 
   moveRight() {
-    if (this.playBool) return;
-    this.playBool = true;
+    if (this.bPlay) return;
+    this.bPlay = true;
     this.imgUrlArr.push(this.imgUrlArr.shift());
     this.linkUrlArr.push(this.linkUrlArr.shift());
     let nowShowingLink = this.linkUrlArr[1];
@@ -50,8 +50,8 @@ class Carousel_middle {
   }
 
   moveLeft() {
-    if (this.playBool) return;
-    this.playBool = true;
+    if (this.bPlay) return;
+    this.bPlay = true;
     this.imgUrlArr.unshift(this.imgUrlArr.pop());
     this.linkUrlArr.unshift(this.linkUrlArr.pop());
     let nowShowingLink = this.linkUrlArr[1];
@@ -79,7 +79,7 @@ class Carousel_middle {
     });
     this.container.style.transition = "all 0s";
     this.container.style.transform = "translateX(0px)";
-    this.playBool = false;
+    this.bPlay = false;
   }
 
   checkAuto() {
@@ -89,11 +89,11 @@ class Carousel_middle {
   }
 
   mouseOver() {
-    this.isMouseOver = true;
+    this.bMouseOver = true;
   }
 
   mouseOut() {
-    this.isMouseOver = false;
+    this.bMouseOver = false;
   }
 
   carouselAuto() {
