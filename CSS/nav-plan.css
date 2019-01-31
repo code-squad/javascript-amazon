@@ -1,0 +1,140 @@
+/* more plan page Style */
+
+.plan {
+	z-index: 1;
+	position: relative;
+	overflow: hidden;
+	height: 0px;
+	width: 100%;
+	background-color: #232f3e;
+	transition: height 1s;
+	border-bottom: 2px solid #00a8e1;
+}
+
+.plan-contents {
+	overflow: hidden;
+	height: 100%;
+	text-align: center;
+	margin: 0 auto;
+	min-width: 1400px;
+}
+
+.plan-contents-logo {
+	float: left;
+	margin-left: 100px;
+}
+
+.plan-contents-btn {
+	float: right;
+	margin-right: 100px;
+	width: 150px;
+	height: 100%;
+}
+
+.contents-btn {
+	width: 132px;
+	height: 44px;
+	margin: 10px;
+	background-color: #ffa724;
+	border-color: #ff6138;
+	border-style: solid;
+	border-width: 1px 1px 2px;
+	border-radius: 3px;
+	font-size: 16px;
+	color: #284d40;
+	font-weight: bold;
+}
+
+.plan-contents-txt {
+	cursor: pointer;
+	display: inline-block;
+	color: #fafafa;
+	font-weight: 300;
+	margin-top: 30px;
+	font-size: 18px;
+}
+
+.downarrow {
+	display: block;
+	width: 30px;
+	height: 18px;
+	margin: 0 auto;
+}
+
+.plan-contents-logo {
+	width: 90px;
+	height: 61px;
+}
+
+.primeblue {
+	height: 59px;
+	padding-top: 5px;
+}
+
+/* show more contents Style */
+
+.plan-more-contents {
+	width: 100%;
+	height: 0px;
+	overflow: hidden;
+	min-width: 1523px;
+	background-color: #fff;
+	transition: height 1s;
+}
+
+.more-contents-wrap {
+	position: relative;
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.more-contents-img {
+	width: 998px;
+	height: 630px;
+	margin: 20px auto;
+}
+
+.more-contents-closebtn, .more-contents-arrow {
+	position: relative;
+}
+
+.more-contents-closebtn {
+	top: 20px;
+	right: 68px;
+	float: right;
+	cursor: pointer;
+}
+
+.more-contents-arrow {
+	margin: 0 auto;
+	width: 20px;
+	height: 15px;
+	bottom: 45px;
+	cursor: pointer;
+}
+
+.more-contents-arrow-img {
+	width: 20px;
+	height: 15px;
+}
+
+/* 스크롤 이벤트 발생시 추가되는 class */
+
+.plan-scroll-bottom {
+	height: 70px;
+}
+
+.plan-scroll-middle {
+	position: fixed;
+	top: 0;
+}
+
+.plan-more-click {
+	height: 671px;
+}
+
+.plan-contents-downsize {
+	height: 0;
+}
