@@ -8,15 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
     hiddenLayer: ".prime-member-container"
   });
   const carousel_middle = new Carousel_middle({
-    container : ".middle-body-carousel-list",
-    rightBtn : ".middle-body-carousel-right-button",
-    leftBtn : ".middle-body-carousel-left-button",
-    showingLinkEl : ".middle-body-carousel-url"
-  },{
-    jsonUrl : `./jsonData/data.json`
-  },{
-    movingLength : '230px',
-    movingTime : '0.1s',
-    transitioning : 'all'
-  });
+      container: ".middle-body-carousel-list",
+      rightBtn: ".middle-body-carousel-right-button",
+      leftBtn: ".middle-body-carousel-left-button",
+      anchorEl: ".middle-body-carousel-url"
+    },{
+      jsonUrl: "./jsonData/data.json"
+    },{
+      carouselSize: "230px",
+      transitionTime: "0.1s",
+      transitionPart: "all"
+    }
+  );
 });
