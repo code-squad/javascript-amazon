@@ -11,6 +11,10 @@ body {
     background-color: #232f3e;
 }
 
+.header.extended{
+    position: relative;
+}
+
 .cnt {
     width: 100%;
     text-align: center;
@@ -157,7 +161,6 @@ li {
     position: fixed;
     width: 100%;
     top: 0;
-    margin: 0;
 }
 .plans-layer {
     background-color: rgb(35, 47, 62);
@@ -193,8 +196,6 @@ li {
 
 .plans-see-more {
     height: 100%;
-    /* align-self: flex-end; */
-    /* margin-bottom: 10px; */
     padding-top: 1.2rem;
 }
 
@@ -252,7 +253,9 @@ li {
 }
 
 .plans-extender.shown.top{
-    margin-top: 106px;
+    position: absolute;
+    top: 6.5rem;
+    transition: none;
 }
 
 .plans-extender-btn{
