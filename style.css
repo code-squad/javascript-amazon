@@ -156,12 +156,54 @@ li {
 
 /* var() */
 
-/* header - plans-layer */
+/* header - plans-layer-wrapper */
+
 .plans-wrapper{
     position: fixed;
     width: 100%;
     top: 0;
 }
+
+/* header - plans-extender */
+
+.plans-extender {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #00a8e1;
+    top: 0;
+    height: 0;
+    z-index: 999;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.plans-extender.shown {
+    visibility: visible;
+    height: 631px;
+    max-height: 631px;
+}
+
+.plans-extender.shown.top{
+    position: absolute;
+    top: 6.5rem;
+    transition: none;
+}
+
+.plans-extender.btn{
+    width: 30px;
+    height: 18px;
+}
+.plans-extender-arrow{
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StickyNav_02_DownArrow_50x30._CB515489498_.svg');
+
+}
+
+/* header - plans-layer */
+
 .plans-layer {
     background-color: rgb(35, 47, 62);
     border-bottom: 1px solid #00a8e1;
@@ -229,39 +271,6 @@ li {
     font-size: 16px;
     font-weight: 700;
     line-height: 3;
-}
-
-/* header - plans-extender */
-
-.plans-extender {
-    width: 100%;
-    background-color: #ffffff;
-    border-bottom: 1px solid #00a8e1;
-    top: 0;
-    height: 0;
-    z-index: 999;
-    visibility: hidden;
-    transition: all 0.5s ease-in-out;
-    max-height: 0;
-    overflow: hidden;
-}
-
-.plans-extender.shown {
-    visibility: visible;
-    height: 631px;
-    max-height: 631px;
-}
-
-.plans-extender.shown.top{
-    position: absolute;
-    top: 6.5rem;
-    transition: none;
-}
-
-.plans-extender-btn{
-    font-size: 40px;
-    text-align: center;
-
 }
 
 /* header-bottom */

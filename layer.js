@@ -6,14 +6,13 @@ class PlansUI {
     }
 
     showLayer() {
-        this.isExtenderShow ? plansUI.checkExtender() : plansUI.showPlansLayer();
+        this.isExtenderShown ? this.checkExtender() : this.showPlansLayer();
     };
 
     showPlansLayer() {
         const plansLayer = document.querySelector('.plans-layer');
         if (window.scrollY > 366) plansLayer.classList.add('shown');
         else plansLayer.classList.remove('shown');
-
     };
 
     checkExtender() {
@@ -29,7 +28,7 @@ class PlansUI {
         }
     };
 
-    showExtender(){
+    showExtender() {
         const plansLayer = document.querySelector('.plans-layer');
         const plansExtender = document.querySelector('.plans-extender');
 
@@ -37,8 +36,8 @@ class PlansUI {
         plansExtender.classList.add('shown');
         this.isExtenderShown = true;
     };
-    
-    closeExtender(){
+
+    closeExtender() {
         const plansExtender = document.querySelector('.plans-extender');
         const plansLayer = document.querySelector('.plans-layer');
 
@@ -46,19 +45,18 @@ class PlansUI {
             plansExtender.classList.remove('shown');
             plansLayer.classList.add('shown');
             plansExtender.classList.remove('top');
-            isExtenderShown = false;
-        }
-        else {
+            this.isExtenderShown = false;
+        } else {
             plansExtender.classList.remove('shown');
             plansExtender.classList.remove('top');
             this.isExtenderShown = false;
         }
-    }   
+    }
 }
 
 const plansUI = new PlansUI();
 
-document.addEventListener("scroll", plansUI.showLayer);
-document.addEventListener("scroll", plansUI.checkExtender);
-plansUI.closeExtenderBtn.addEventListener("click", plansUI.closeExtender);
-plansUI.plansMoreBtn.addEventListener("click", plansUI.showExtender);
+document.addEventListener("scroll", plansUI.showLayer.bind(plansUI));
+document.addEventListener("scroll", plansUI.checkExtender.bind(plansUI));
+plansUI.closeExtenderBtn.addEventListener("click", plansUI.closeExtender.bind(plansUI));
+plansUI.plansMoreBtn.addEventListener("click", plansUI.showExtender.bind(plansUI));
