@@ -1,35 +1,22 @@
 const plansLayer = document.querySelector('.plans-layer');
+const plansExtender = document.querySelector('.plans-extender');
+const plansMoreBtn = document.querySelector('.plans-see-more');
+const closeExtenderBtn = document.querySelector('.plans-extender-btn');
+let isExtenderShown = false;
 
-window.addEventListener("scroll", function (e) {
-    if (window.scrollY > 366) plansLayer.classList.add('shown');
+document.addEventListener("scroll", function () {
+    if (window.scrollY > 366 && !isExtenderShown) plansLayer.classList.add('shown');
     else plansLayer.classList.remove('shown');
 });
 
-const seeMoreBtn = document.querySelector('.plans-see-more-txt');
-const plansExtender = document.querySelector('.plans-extender');
-const closeExtenderBtn = document.querySelector('.plans-extender-btn');
-const header = document.querySelector('.header')
-
-document.addEventListener("scroll", function () {
-    const plansExtenderShown = document.querySelector('.plans-extender.shown');
-    if (window.scrollY < 99 && plansExtenderShown) {
-        plansExtender.style.position = 'absolute';
-        plansExtender.style.top = '6.5rem';
-        header.style.position = 'relative';
-        plansExtenderShown.style.transition = "none";
-    }
-    else if (plansExtenderShown) {
-        plansExtender.style.position = 'fixed';
-        plansExtender.style.top = '0';
-        header.style.position = '';
-        plansExtenderShown.style.transition = "all 0.5s ease-in-out;";
-    }
-});
-
-seeMoreBtn.addEventListener("click", function () {
+plansMoreBtn.addEventListener("click", function (){
+    plansLayer.classList.remove('shown');
     plansExtender.classList.add('shown');
-});
+    isExtenderShown = true;
+})
 
-closeExtenderBtn.addEventListener("click", function (e) {
+closeExtenderBtn.addEventListener("click", function(){
     plansExtender.classList.remove('shown');
+    plansLayer.classList.add('shown');
+    isExtenderShown = false;
 })

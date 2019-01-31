@@ -153,41 +153,32 @@ li {
 /* var() */
 
 /* header - plans-layer */
-
+.plans-wrapper{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    margin: 0;
+}
 .plans-layer {
     background-color: rgb(35, 47, 62);
     border-bottom: 1px solid #00a8e1;
     top: 0;
-    width: 100%;
     height: 0;
-    position: fixed;
     z-index: 999;
     visibility: hidden;
     transition: all 0.5s ease-in-out;
     max-height: 0;
     overflow: hidden;
-    display: inline-block;
-}
-
-.plans-layer.shown {
-    visibility: visible;
-    height: 70px;
-    max-height: 70px;
-    transition: all 0.5s ease-in-out;
-}
-
-.plans-layer.trasitioning{
-
-}
-
-.plans-container {
-    height: 100%;
     display: flex;
     justify-content: space-around;
 }
 
-.plans-container li {
-    margin: 0.5rem;
+.plans-layer.shown {
+    width: 100%;
+    visibility: visible;
+    height: 70px;
+    max-height: 70px;
+    padding-top: 10px;
 }
 
 .plans-logo-container {
@@ -242,25 +233,22 @@ li {
 /* header - plans-extender */
 
 .plans-extender {
+    width: 100%;
     background-color: #ffffff;
     border-bottom: 1px solid #00a8e1;
     top: 0;
-    width: 100%;
     height: 0;
-    position: fixed;
     z-index: 999;
     visibility: hidden;
     transition: all 0.5s ease-in-out;
     max-height: 0;
     overflow: hidden;
-    display: inline-block;
 }
 
 .plans-extender.shown {
     visibility: visible;
-    height: 300px;
-    max-height: 300px;
-    transition: all 0.5s ease-in-out;
+    height: 631px;
+    max-height: 631px;
 }
 
 .plans-extender-btn{
