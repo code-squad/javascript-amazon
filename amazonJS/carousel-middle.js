@@ -11,8 +11,8 @@ class Carousel_middle {
     this.transitionTime = optionObj.transitionTime;
     this.transitionPart = optionObj.transitionPart;
     this.carouselAutoMovingMS = optionObj.carouselAutoMovingMS;
-    this.playBool = false;
-    this.isMouseOver = false;
+    this.bPlay = false;
+    this.bMouseOver = false;
     this.init();
   }
 
@@ -30,12 +30,12 @@ class Carousel_middle {
   }
 
   moveAuto() {
-    if (this.isMouseOver) {
-      setTimeout(this.moveAuto.bind(this), 2000);
+    if (this.bMouseOver) {
+      setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
       return;
     }
     this.moveRight();
-    setTimeout(this.moveAuto.bind(this), 2000);
+    setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
   }
 
   moveRight() {
@@ -97,7 +97,7 @@ class Carousel_middle {
   }
 
   carouselAuto() {
-    setTimeout(this.moveAuto.bind(this), 3000);
+    setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
   }
 }
 
