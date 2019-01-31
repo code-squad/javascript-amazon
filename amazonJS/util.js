@@ -8,6 +8,6 @@ export function getAjax(handler, url) {
   xhr.send();
 }
 
-export function qs(value) {
-  return document.querySelector(value);
+export function qs(node, value) {
+  return node.querySelector(value);
 }
