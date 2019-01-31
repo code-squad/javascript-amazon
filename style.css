@@ -251,6 +251,10 @@ li {
     max-height: 631px;
 }
 
+.plans-extender.shown.top{
+    margin-top: 106px;
+}
+
 .plans-extender-btn{
     font-size: 40px;
     text-align: center;

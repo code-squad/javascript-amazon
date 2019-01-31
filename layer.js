@@ -5,8 +5,15 @@ const closeExtenderBtn = document.querySelector('.plans-extender-btn');
 let isExtenderShown = false;
 
 document.addEventListener("scroll", function () {
-    if (window.scrollY > 366 && !isExtenderShown) plansLayer.classList.add('shown');
-    else plansLayer.classList.remove('shown');
+    console.log(window.scrollY)
+    if (isExtenderShown) {
+        if(window.scrollY < 99) plansExtender.classList.add('top');
+        else plansExtender.classList.remove('top');
+    }
+    else if (!isExtenderShown){
+        if (window.scrollY > 366) plansLayer.classList.add('shown');
+        else plansLayer.classList.remove('shown');
+    }
 });
 
 plansMoreBtn.addEventListener("click", function (){
@@ -16,7 +23,15 @@ plansMoreBtn.addEventListener("click", function (){
 })
 
 closeExtenderBtn.addEventListener("click", function(){
-    plansExtender.classList.remove('shown');
-    plansLayer.classList.add('shown');
-    isExtenderShown = false;
+    if (window.scrollY > 366) {
+        plansExtender.classList.remove('shown');
+        plansLayer.classList.add('shown');
+        plansExtender.classList.remove('top');
+        isExtenderShown = false;
+    }
+    else {
+        plansExtender.classList.remove('shown');
+        plansExtender.classList.remove('top');
+        isExtenderShown = false;
+    }
 })
