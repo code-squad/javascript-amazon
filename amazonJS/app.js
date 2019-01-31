@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
       leftBtn: ".middle-body-carousel-left-button",
       anchorEl: ".middle-body-carousel-url"
     },{
-      jsonUrl: "./jsonData/data.json"
+      ajaxDataUrl: "./jsonData/data.json"
     },{
       carouselSize: "230px",
+      carouselAutoMovingMS: 3000,
       transitionTime: "0.1s",
       transitionPart: "all"
     }

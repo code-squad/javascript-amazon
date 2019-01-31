@@ -6,17 +6,18 @@ class Carousel_middle {
     this.right = qs(document, elObj.rightBtn);
     this.left = qs(document, elObj.leftBtn);
     this.anchorEl = qs(document, elObj.anchorEl);
-    this.jsonUrl = urlObj.jsonUrl;
+    this.ajaxDataUrl = urlObj.ajaxDataUrl;
     this.carouselSize = optionObj.carouselSize;
     this.transitionTime = optionObj.transitionTime;
     this.transitionPart = optionObj.transitionPart;
+    this.carouselAutoMovingMS = optionObj.carouselAutoMovingMS;
     this.playBool = false;
     this.isMouseOver = false;
     this.init();
   }
 
   init() {
-    getAjax(this.handler.bind(this), this.jsonUrl);
+    getAjax(this.handler.bind(this), this.ajaxDataUrl);
     this.checkAuto();
     this.carouselAuto();
   }
