@@ -43,7 +43,8 @@ class Carousel_middle {
     this.playBool = true;
     this.imgUrlArr.push(this.imgUrlArr.shift());
     this.linkUrlArr.push(this.linkUrlArr.shift());
-    this.initLink();
+    let nowShowingLink = this.linkUrlArr[1];
+    this.initLink(nowShowingLink);
     this.container.style.transform = `translateX(-${this.carouselSize})`;
     this.transitionendEvent();
   }
@@ -53,7 +54,7 @@ class Carousel_middle {
     this.playBool = true;
     this.imgUrlArr.unshift(this.imgUrlArr.pop());
     this.linkUrlArr.unshift(this.linkUrlArr.pop());
-    let nowShowingLink = linkArr[1];
+    let nowShowingLink = this.linkUrlArr[1];
     this.initLink(nowShowingLink);
     this.container.style.transform = `translateX(${this.carouselSize})`;
     this.transitionendEvent();
