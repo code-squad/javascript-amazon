@@ -2,14 +2,14 @@ import { qs, getAjax } from "./util.js";
 
 class Carousel_middle {
   constructor(elObj, urlObj, optionObj) {
-    this.container = qs(elObj.container);
-    this.right = qs(elObj.rightBtn);
-    this.left = qs(elObj.leftBtn);
-    this.showingLinkEl = qs(elObj.showingLinkEl);
+    this.container = qs(document, elObj.container);
+    this.right = qs(document, elObj.rightBtn);
+    this.left = qs(document, elObj.leftBtn);
+    this.anchorEl = qs(document, elObj.anchorEl);
     this.jsonUrl = urlObj.jsonUrl;
-    this.length = optionObj.movingLength;
-    this.time = optionObj.movingTime;
-    this.transitioning = optionObj.transitioning;
+    this.carouselSize = optionObj.carouselSize;
+    this.transitionTime = optionObj.transitionTime;
+    this.transitionPart = optionObj.transitionPart;
     this.playBool = false;
     this.isMouseOver = false;
     this.init();
@@ -22,10 +22,8 @@ class Carousel_middle {
   }
 
   handler(parsedObj) {
-    const imgUrlArr = parsedObj.backgroundUrl;
-    const linkUrlArr = parsedObj.linkArr;
-    this.imgUrlArr = imgUrlArr.map(v => v);
-    this.linkUrlArr = linkUrlArr.map(v => v);
+    this.imgUrlArr = parsedObj.backgroundUrl;
+    this.linkUrlArr = parsedObj.linkArr;
     this.right.addEventListener("click", this.moveRight.bind(this));
     this.left.addEventListener("click", this.moveLeft.bind(this));
   }
@@ -45,7 +43,7 @@ class Carousel_middle {
     this.imgUrlArr.push(this.imgUrlArr.shift());
     this.linkUrlArr.push(this.linkUrlArr.shift());
     this.initLink();
-    this.container.style.transform = `translateX(-${this.length})`;
+    this.container.style.transform = `translateX(-${this.carouselSize})`;
     this.transitionendEvent();
   }
 
@@ -55,12 +53,12 @@ class Carousel_middle {
     this.imgUrlArr.unshift(this.imgUrlArr.pop());
     this.linkUrlArr.unshift(this.linkUrlArr.pop());
     this.initLink();
-    this.container.style.transform = `translateX(${this.length})`;
+    this.container.style.transform = `translateX(${this.carouselSize})`;
     this.transitionendEvent();
   }
 
   initLink() {
-    this.showingLinkEl.href = `${this.linkUrlArr[1]}`
+    this.anchorEl.href = `${this.linkUrlArr[1]}`
   }
   
   transitionendEvent() {
@@ -68,12 +66,12 @@ class Carousel_middle {
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = `${this.transitioning} ${this.time}`;
+    this.container.style.transition = `${this.transitionPart} ${this.transitionTime}`;
   }
 
   shuffleArr() {
     this.imgUrlArr.forEach((v, i) => {
-      const part = qs(`.index${i}`);
+      const part = qs(document, `.index${i}`);
       part.style = `background-image:url(${v})`;
     });
     this.container.style.transition = "all 0s";
