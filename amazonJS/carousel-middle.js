@@ -53,13 +53,14 @@ class Carousel_middle {
     this.playBool = true;
     this.imgUrlArr.unshift(this.imgUrlArr.pop());
     this.linkUrlArr.unshift(this.linkUrlArr.pop());
-    this.initLink();
+    let nowShowingLink = linkArr[1];
+    this.initLink(nowShowingLink);
     this.container.style.transform = `translateX(${this.carouselSize})`;
     this.transitionendEvent();
   }
 
-  initLink() {
-    this.anchorEl.href = `${this.linkUrlArr[1]}`
+  initLink(linkArr) {
+    this.anchorEl.href = `${linkArr}`
   }
   
   transitionendEvent() {
