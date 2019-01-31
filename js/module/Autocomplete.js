@@ -12,70 +12,68 @@ class Autocomplete {
     }
 
     init() {
-        this.addOptionDOM();
         this.searchEl.addEventListener("input", this.inputKeywords.bind(this));
         this.searchEl.addEventListener("blur", this.removeKeywords.bind(this));
+        this.addOptionDOM();
     }
 
     inputKeywords() {
-        if(!this.debouncer) this.debouncer = debounce(this.showKeywords.bind(this), this.acTime);
+        if(!this.debouncer) this.debouncer = debounce(this.requestSuggestions.bind(this), this.acTime);
         this.debouncer();
     }
-
-    removeKeywords() {
-        this.keywordsContainer.innerHTML = null;
-        if(this.dimmer) this.dimmer.off();
-    }
-
-    async showKeywords(){
+    
+    async requestSuggestions(){
         if(this.searchEl.value === "") {
             this.removeKeywords();
             return;
         }
         
-        const res = await network.get(`${URL.ACAPI}${this.searchEl.value}`);
-        const suggestionTemplate = createSuggestionTemplate(res);
+        const suggestionJson = await network.get(`${URL.ACAPI}${this.searchEl.value}`);
+        const suggestionTemplate = createSuggestionTemplate(suggestionJson);
         
-        if(suggestionTemplate) {
-            appendTemplate(this.keywordsContainer, suggestionTemplate);
-            this.searchEl.addEventListener("keydown", this.pressKey());
-            this.dimmer.on();
-        }
-        else {
-            this.removeKeywords();
-        }
+        if(suggestionTemplate) this.showKeywords(suggestionTemplate);
+        else this.removeKeywords();
     }
 
-    pressKey() {
+    showKeywords(template) {
+        appendTemplate(this.keywordsContainer, template);
+        this.pressKey = this.setKeyEvent();
+        this.searchEl.addEventListener("keydown", this.pressKey);
+        if(this.dimmer) this.dimmer.on();
+    }
+
+    removeKeywords() {
+        this.keywordsContainer.innerHTML = null;
+        this.searchEl.removeEventListener("keydown", this.pressKey);
+        if(this.dimmer) this.dimmer.off();
+    }
+
+
+    setKeyEvent() {
         const suggestions = $All(".suggestion-link");
-        
-        if(!suggestions) return ;
-        
         const key = {
             arrowUp: 38,
             arrowDown: 40,
             enter: 13
         }
-        let currentId = -1;
-
-        function findTarget(id) {
+        const findTarget = (id) => {
             if(id < 0) currentId = suggestions.length - 1;
             if(id >= suggestions.length) currentId = 0; 
-                
             return suggestions[currentId];
         }
-
+        let currentId = -1;
+        
         return evt => {
             if(evt.keyCode === key.arrowUp) {
                 const [prevTarget, target] = [findTarget(currentId), findTarget(--currentId)];
-
+                
                 prevTarget.classList.remove("hover");
                 target.classList.add("hover");
                 this.searchEl.value = suggestions[currentId].innerText;
             }
             else if(evt.keyCode === key.arrowDown) {
                 const [prevTarget, target] = [findTarget(currentId), findTarget(++currentId)];
-
+                
                 prevTarget.classList.remove("hover");
                 target.classList.add("hover");
                 this.searchEl.value = suggestions[currentId].innerText;
