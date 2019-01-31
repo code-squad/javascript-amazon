@@ -36,10 +36,6 @@ a {
   text-decoration: none;
 }
 
-main {
-  position: relative;
-}
-
 .hidden {
   display: none;
 }
@@ -115,13 +111,15 @@ main {
 
 /* ----- HEADER -----*/
 /* ----- NAV TOP -----*/
-header {
+header,
+footer {
   min-width: 1000px;
 }
 
 nav {
-  background-color: #232f3e;
+  position: relative;
   width: 100%;
+  background-color: #232f3e;
 }
 
 .nav-top {
