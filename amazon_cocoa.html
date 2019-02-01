@@ -232,35 +232,20 @@
         <h3 class="section-name">section-D</h3>
         <div class="sections-area" id="sections-area-D">
 
-
-
             <div class="carousel-module-box">
-                <!-- <div class="cover"></div> -->
+                <div class="cover"></div>
                 <div class="carousel-unit">
-                    <!-- ajax li 엘리먼트 및 img url 데이터 갱신-->
-
-                    <li class="carousel-panels">
-                        <img src="./img_src/ajax_imgs/img1.jpg" alt=""><br>
-                    </li>
-
-
+                    <!-- ajax li 엘리먼트 및 img url 데이터 갱신 부분-->
                 </div>
                 <div class="btn-area">
                     <div class="prev-btn">
-                        <img src="./img_src/prev_btn.png" alt="">
+                        <img class="prev-btn-image" src="./img_src/prev_btn.png" alt="">
                     </div>
                     <div class="next-btn">
-                        <img src="./img_src/next_btn.png" alt="">
+                        <img class="next-btn-image" src="./img_src/next_btn.png" alt="">
                     </div>
                 </div>
-            
-            
             </div>
-
-
-
-
-
 
             <div id="sections-D-text-box">
                 <div id="sections-D-text-1">Prime Originals, exclusively on Prime Video</div>
@@ -442,7 +427,15 @@
 
 </body>
 
+<!-- li 태그 및 img url 템플릿 -->
+<script type="text/template" class="ajax-element-template">
+    <li class="carousel-panels">
+        <img src="{url}" alt=""><br>
+    </li>
+</script>
 
-<script src="amazon.cocoa.js"></script>
+<script type="text/javascript" src="amazon.cocoa.js"></script>
+<script type="text/javascript" src="carousel_module.js"></script>
+
 
 </html>
