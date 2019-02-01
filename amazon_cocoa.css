@@ -1,4 +1,4 @@
-/* amazon_step1 css */
+/* amazon_step4 css */
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -421,6 +421,10 @@ table {
     height: 293px;
 }
 
+#sections-area-D {
+    height: 370px;
+}
+
 .sections-images {
     width: 1366px;
     min-width: 800px;
@@ -632,6 +636,30 @@ table {
 
 #sections-C-text-3 {
     font-weight: bold;
+}
+
+#sections-D-text-box {
+    width: 500px;
+    position: absolute;
+    top: 40px;
+    right: 100px;
+    color: black;
+}
+
+#sections-D-text-1 {
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+#sections-D-text-2 {
+    margin: 0 0 10px;
+    line-height: 27px; 
+}
+
+#sections-D-text-3:link {
+    font-weight: bold;
+    color: black;
+    line-height: 30px; 
 }
 
 #footer-back-to-top {
