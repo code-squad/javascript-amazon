@@ -694,15 +694,21 @@ input[type=radio] {}
 }
 
 .carousel-left {
-  padding : 0 100px 0 170px;
+  padding: 0 100px 0 170px;
   width: 50%;
   float: left;
   overflow: hidden;
 }
 
-.carousel-scroll {
-  margin-top: 83px;
+.carousel-viewPart{
   float: left;
+  width: 280px;
+  overflow: hidden;
+}
+
+.carousel-scroll {
+  float: left;
+  margin-top: 83px;
   width: 13px;
   height: 20px;
   background-color: transparent;
@@ -724,8 +730,22 @@ input[type=radio] {}
   float: left;
 }
 
-.carousel-main-content>img {
+.carousel-ul {
+  overflow: hidden;
+  width: 1120px;
+  padding: 0;
+  list-style-type: none;
+  transform: translateX(0px) translateZ(0px);
+  transition: all, 400ms;
+}
+
+.carousel-li {
+  
+}
+
+.carousel-li img {
   height: 210px;
+  float: left;
 }
 
 .carousel-right {
@@ -749,8 +769,8 @@ input[type=radio] {}
   margin-bottom: 20px;
 }
 
-.carousel-text-link{
-  font-size:18px;
+.carousel-text-link {
+  font-size: 18px;
   color: #002F36;
   cursor: pointer;
   text-decoration: none;

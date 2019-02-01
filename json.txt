@@ -1,0 +1,10 @@
+const  data = [
+  {
+        "id" : 123,
+        "imgurl" : "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/81FZmUh4rcL._CB481469638_.jpg",
+        "text" : 'blah...blah..."
+  },
+    {
+      ...
+    }
+]
