@@ -4,6 +4,8 @@ class PlansUI {
         this.closeExtenderBtn = document.querySelector('.plans-extender-btn');
         this.closeExtenderBtn2 = document.querySelector('.plans-extender-closeBtn')
         this.plansMoreBtn = document.querySelector('.plans-see-more');
+        this.layerPosition = 366;
+        this.headerPosition = 99;
     }
 
     showLayer() {
@@ -12,15 +14,30 @@ class PlansUI {
 
     showPlansLayer() {
         const plansLayer = document.querySelector('.plans-layer');
-        if (window.scrollY > 366) plansLayer.classList.add('shown');
-        else plansLayer.classList.remove('shown');
+        const plansLayerWrapper = document.querySelector('.plans-wrapper');
+        const header = document.querySelector('.header');
+
+        if (window.scrollY > this.layerPosition) {
+            plansLayer.classList.add('shown');
+            header.classList.remove('extended');
+            plansLayerWrapper.classList.remove('closing');
+        }
+        else if (window.scrollY < this.headerPosition) {
+            plansLayerWrapper.classList.add('closing');
+            header.classList.add('extended');
+        }
+        else {
+            plansLayer.classList.remove('shown');
+            header.classList.remove('extended');
+            plansLayerWrapper.classList.remove('closing');
+        }
     };
 
     checkExtender() {
         const header = document.querySelector('.header');
         const plansExtender = document.querySelector('.plans-extender');
 
-        if (window.scrollY < 99) {
+        if (window.scrollY < this.headerPosition) {
             plansExtender.classList.add('top');
             header.classList.add('extended');
         } else {
@@ -42,7 +59,7 @@ class PlansUI {
         const plansExtender = document.querySelector('.plans-extender');
         const plansLayer = document.querySelector('.plans-layer');
 
-        if (window.scrollY > 366) {
+        if (window.scrollY > this.layerPosition) {
             plansExtender.classList.remove('shown');
             plansLayer.classList.add('shown');
             plansExtender.classList.remove('top');
