@@ -1,30 +1,31 @@
 /* ----- NAV PLAN BAR -----*/
   
-.nav-plan-layer {
+.plan-layer {
     position: absolute;
+    left: 0;
     width: 100%;
     border-bottom: 2.5px solid #54b7fd;
-    z-index: 9999;
+    z-index: 2;
 }
 
-.nav-plan-layer.fixed {
+.plan-layer.fixed {
     position: fixed;
     top: 0;
     left: 0;
 }
 
-.nav-plan-layer .hidden-content {
+.plan-layer .hidden-content {
     width: 100%;
     height: 0;
     overflow: hidden;
-    transition: height 0.5s;
+    transition: height 0.7s;
 }
 
-.nav-plan-layer .nav-hidden-bar.visible {
+.plan-layer .hidden-bar.visible {
     height: 4.6rem;
 }
 
-.nav-plan-layer .nav-hidden-bar .bar-wrapper {
+.plan-layer .hidden-bar .bar-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,9 +50,9 @@
 
 .bar-wrapper .bar-see-more .down-arrow {
     width: 0.75rem;
-    border: 6px solid transparent;
+    border: .6rem solid transparent;
     border-top-color: #fff;
-    margin: 5px auto 0;
+    margin: .5rem auto 0;
 }
 
 .bar-wrapper .bar-prime-btn {
@@ -68,27 +69,27 @@
     line-height: 2.8rem;
 }
 
-.nav-hidden-close,
-.nav-hidden-plan {
+.hidden-close,
+.hidden-plan {
     background-color:#fff;
 }
 
-.nav-hidden-close.visible {
+.hidden-close.visible {
     height: 1.5rem;
     text-align: center;
 }
 
-.nav-hidden-close .close-arrow {
+.hidden-close .close-arrow {
     display: inline-block;
     width: 0.9rem;
     height: 0.9rem;
-    border: 2px solid black;
+    border: .2rem solid black;
     border-right: none;
     border-bottom: none;
     transform: translateY(0.5rem) rotateZ(45deg);
 }
 
-.nav-plan-layer .nav-hidden-plan.visible {
+.plan-layer .hidden-plan.visible {
     height: 42rem;
 }
 
@@ -136,7 +137,7 @@
 
 .plan-contents .content-option {
     padding: 1.5rem 2rem;
-    border: 1px solid #000;
+    border: .1rem solid #000;
 }
 
 .plan-contents input[type="radio"] {
@@ -160,7 +161,7 @@
     display: inline-block;
     width: 0.7rem;
     height: 1.4rem;
-    border: 2px solid #000;
+    border: .2rem solid #000;
     border-top: none;
     border-left: none;
     transform: rotateZ(45deg);

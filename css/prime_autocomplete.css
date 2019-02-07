@@ -1,0 +1,44 @@
+.nav-search-autocomplete {
+    position: relative;
+}
+
+.nav-search-autocomplete .nav-search-suggestion {
+    position: absolute;
+    left: 15.1rem;
+    right: 29.4rem;
+    border: .1rem solid #cdcdcd;
+    background: #fff;
+}
+
+.nav-search-suggestion .suggestion-item .suggestion-link {
+    display: inline-block;
+    width: 100%;
+    color: #000;
+    padding: .6rem .5rem;
+}
+
+.suggestion-item .suggestion-link:hover,
+.suggestion-item .suggestion-link.hover {
+    background: #eee;
+}
+
+
+.suggestion-item .prefix-highlight {
+    font-weight: 800;
+}
+
+#dimmer {
+    display: none;
+    position: absolute;
+    top: 6.25rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    opacity: 0.5;
+    z-index: 3;
+}
+
+#dimmer.show {
+    display: block;
+}
