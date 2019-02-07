@@ -8,6 +8,10 @@ class Carousel {
         this.carouselModuleBox = document.querySelector(".carousel-module-box");
         this.carouselUnit = document.querySelector(".carousel-unit");
         this.distance = 0;
+        this.slideTime = {
+            intervalTime : 3000,
+            restartTime : 2000
+        }
     }
 
     callAjax() {
@@ -19,7 +23,7 @@ class Carousel {
             if (oReq.readyState === 4 && oReq.status === 200) {
                 let imgMetadata = JSON.parse(this.responseText);
                 for (let key in imgMetadata) {
-                    document.querySelector(".carousel-unit").innerHTML += ajaxElementTemplate.replace("{url}", imgMetadata[key]["imgURL"]); 
+                    document.querySelector(".carousel-unit").innerHTML += ajaxElementTemplate.replace("{url}", imgMetadata[key]["imgURL"]);
                 }
                 carouselModule.prepareSlidingEvent.call(carouselModule);
             }
@@ -36,13 +40,13 @@ class Carousel {
     }
 
     arrangeCarouselLis() {        
-        this.carouselPanels = document.querySelectorAll(".carousel-panels");      
-        for (let elemnt = 0; elemnt < this.carouselPanels.length; elemnt++) {
-            if (elemnt === 0) {
-                this.carouselPanels[elemnt].style.left = "0px";
+        this.carouselPanels = document.querySelectorAll(".carousel-panels");
+        let elemntIdx = 1;
+        for (let elemnt of this.carouselPanels) {
+            if (elemnt === this.carouselUnit.firstElementChild) {
+                elemnt.style.left = "0px";
             } else {
-                this.carouselPanels[elemnt].style.left = `${this.carouselPanelWidth * elemnt}px`;
-                
+                elemnt.style.left = `${this.carouselPanelWidth * elemntIdx++}px`;
             }
         }
     }
@@ -88,7 +92,7 @@ class Carousel {
 
     // 자동 슬라이딩 시작
     startAutoSlide() {
-        this.startTimerId = setInterval(this.setNextBtn.bind(this), 3000);
+        this.startTimerId = setInterval(this.setNextBtn.bind(this), this.slideTime.intervalTime);
     }
 
     // 트랜지션 이벤트 종료 후 슬라이딩 재개 실행
@@ -99,13 +103,12 @@ class Carousel {
     // 자동 슬라이딩 재개
     resumeAutoSlide(evt) {
         if (this.eventIdentifier === "next-btn" || this.eventIdentifier === "prev-btn") {
-            this.resumeTimerId = setTimeout(this.startAutoSlide.bind(this), 2000);
+            this.resumeTimerId = setTimeout(this.startAutoSlide.bind(this), this.slideTime.restartTime);
             this.eventIdentifier = "";
         } else {
             return;
         }
     }
-
 }
 
 const carouselModule = new Carousel();
