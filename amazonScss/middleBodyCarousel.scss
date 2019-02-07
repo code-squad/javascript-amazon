@@ -1,0 +1,144 @@
+.middle-body-carousel-container {
+  display: flex;
+  padding: 50px 0;
+}
+
+.middle-body-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1;
+  position: relative;
+  overflow:hidden;
+}
+
+.middle-body-carousel-button-container {
+  position: relative;
+  z-index: 30;
+  margin: 0px 10px;
+}
+
+.middle-body-carousel-left-button {
+  width: 10px;
+  height: 17px;
+  background-image: url('../amazonImage/middleBodyCarouselLeftBtn.png');
+  background-size: 10px;
+  cursor: pointer;
+}
+
+.middle-body-carousel-list-container {
+  position: relative;
+  width: 230px;
+  height: 180px;
+  cursor: pointer;
+}
+
+.middle-body-carousel-list-container:before {
+  display: inline-block;
+  content: "";
+  position: absolute;
+  box-shadow: 0px 0px 25px 50px #858585;
+  transform: rotate(-8deg);
+  z-index: -99;
+  left: 47px;
+  top: 56px;
+}
+
+.middle-body-carousel-list-container:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  box-shadow: 0px 0px 25px 50px #858585;
+  transform: rotate(8deg);
+  z-index: -99;
+  right: 47px;
+  top: 56px;
+}
+
+.middle-body-carousel-list {
+  width: var(--middlebody-carousel-width);
+  height: var(--middlebody-carousel-height);
+  position: relative;
+  right: 230px;
+  font-size: 0px;
+  transition: all 0.01s linear;
+  z-index: -50;
+}
+
+.middle-body-carousel-list-el {
+  display: inline-block;
+  width: 230px;
+  height: 180px;
+  background-size: 100%;
+}
+
+.index0 {
+  background-image: url("../amazonImage/carouselCrong.jpg");
+}
+
+.index1 {
+  background-image: url("../amazonImage/jack.jpg");
+}
+
+.index2 {
+  background-image: url("../amazonImage/homecoming.jpg");
+}
+
+.middle-body-carousel-right-button {
+  width: 10px;
+  height: 17px;
+  background-image: url('../amazonImage/middleBodyCarouselRightBtn.png');
+  background-size: 10px;
+  cursor: pointer;
+}
+
+.middle-body-carousel-text {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex: 1 1;
+}
+
+.middle-body-carousel-headline {
+  font-size: 48px;
+  margin-right: 150px;
+  margin-bottom: 20px;
+  color: #002F36;
+}
+
+.middle-body-carousel-body {
+  font-size: 18px;
+  margin-right: 230px;
+  margin-bottom: 20px;
+  line-height: 25px;
+  color: #002F36;
+}
+
+.middle-body-carousel-link {
+  font-family: 'amazon-UI';
+  font-weight: 700;
+  text-decoration: none;
+  color: #002F36;
+}
+
+.middle-body-carousel-link:hover {
+  text-decoration: underline;
+}
+
+.carousel-hider {
+  height: 180px;
+  position: absolute;
+  background-color: #fff;
+}
+
+.left {
+  width: 245px;
+  left: 0px;
+  z-index: -2;
+}
+
+.right {
+  width: 245px;
+  right: 0;
+  z-index: -2;
+}

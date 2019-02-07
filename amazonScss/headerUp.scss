@@ -1,16 +1,16 @@
 body {
   min-width: 1440px;
-  font-family: 'amazon-ember'
+  font-family: 'amazon-ember';
 }
 
 .head-search-container {
   display: flex;
   justify-content: space-between;
   background-color: #24313f;
-}
-
-.head-search-icon {
-  margin: 10px 30px;
+  
+  .head-search-icon {
+    margin: 10px 30px;
+  }
 }
 
 .head-search-block {
