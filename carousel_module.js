@@ -1,17 +1,26 @@
 //amazon step4 carousel module js 
 
+// 슬라이드 시간 설정
+const slideTime = {
+    intervalTime: 3000,
+    restartTime: 2000
+}
+
 // Carousel 클래스
 class Carousel {
-    constructor() {
+    constructor(slideTime) {
+        this.setSlideTime(slideTime);
         this.callAjax();
         this.carouselPanelWidth = 180;
         this.carouselModuleBox = document.querySelector(".carousel-module-box");
         this.carouselUnit = document.querySelector(".carousel-unit");
         this.distance = 0;
-        this.slideTime = {
-            intervalTime : 3000,
-            restartTime : 2000
-        }
+
+    }
+
+    setSlideTime(slideTime) {
+        this.intervalTime = slideTime.intervalTime;
+        this.restartTime = slideTime.restartTime;
     }
 
     callAjax() {
@@ -39,7 +48,7 @@ class Carousel {
         document.addEventListener("DOMContentLoaded", this.triggerResumeAutoSlide());
     }
 
-    arrangeCarouselLis() {        
+    arrangeCarouselLis() {
         this.carouselPanels = document.querySelectorAll(".carousel-panels");
         let elemntIdx = 1;
         for (let elemnt of this.carouselPanels) {
@@ -63,11 +72,14 @@ class Carousel {
     }
 
     setClickBtn(evt) {
-        this.eventIdentifier = evt.target.closest("div").classList[0];
         clearInterval(this.startTimerId);
         clearTimeout(this.resumeTimerId);
-        if (this.eventIdentifier === "next-btn") this.setNextBtn();
-        else if (this.eventIdentifier === "prev-btn") this.setPrevBtn();
+        const closestDivClassList = evt.target.closest("div").classList
+
+        closestDivClassList.contains("next-btn") ?
+            `${this.eventIdentifier = "next-btn"} ${this.setNextBtn()}` :
+            closestDivClassList.contains("prev-btn") ?
+                `${this.eventIdentifier = "prev-btn"} ${this.setPrevBtn()}` : undefined;
     }
 
     setNextBtn() {
@@ -92,24 +104,26 @@ class Carousel {
 
     // 자동 슬라이딩 시작
     startAutoSlide() {
-        this.startTimerId = setInterval(this.setNextBtn.bind(this), this.slideTime.intervalTime);
+        this.startTimerId = setInterval(this.setNextBtn.bind(this), this.intervalTime);
     }
 
     // 트랜지션 이벤트 종료 후 슬라이딩 재개 실행
     triggerResumeAutoSlide() {
         this.carouselUnit.addEventListener("transitionend", this.resumeAutoSlide.bind(this));
+
     }
 
     // 자동 슬라이딩 재개
-    resumeAutoSlide(evt) {
+    resumeAutoSlide() {
         if (this.eventIdentifier === "next-btn" || this.eventIdentifier === "prev-btn") {
-            this.resumeTimerId = setTimeout(this.startAutoSlide.bind(this), this.slideTime.restartTime);
+            this.resumeTimerId = setTimeout(this.startAutoSlide.bind(this), this.restartTime);
             this.eventIdentifier = "";
         } else {
             return;
         }
     }
+
 }
 
-const carouselModule = new Carousel();
+const carouselModule = new Carousel(slideTime);
 
