@@ -3,11 +3,11 @@
 // Carousel 클래스
 class Carousel {
     constructor() {
+        this.callAjax();
+        this.carouselPanelWidth = 180;
         this.carouselModuleBox = document.querySelector(".carousel-module-box");
         this.carouselUnit = document.querySelector(".carousel-unit");
         this.distance = 0;
-        this.callAjax();
-        this.prepareSlidingEvent();
     }
 
     callAjax() {
@@ -19,8 +19,9 @@ class Carousel {
             if (oReq.readyState === 4 && oReq.status === 200) {
                 let imgMetadata = JSON.parse(this.responseText);
                 for (let key in imgMetadata) {
-                    document.querySelector(".carousel-unit").innerHTML += ajaxElementTemplate.replace("{url}", imgMetadata[key]["imgURL"]);
+                    document.querySelector(".carousel-unit").innerHTML += ajaxElementTemplate.replace("{url}", imgMetadata[key]["imgURL"]); 
                 }
+                carouselModule.prepareSlidingEvent.call(carouselModule);
             }
         });
         oReq.open("GET", "http://localhost:3000/img_src/ajax_imgs/imgMetadata");
@@ -28,38 +29,28 @@ class Carousel {
     }
 
     prepareSlidingEvent() {
-        window.addEventListener("load", this.organizeCarouselLis.bind(this));
-        window.addEventListener("load", this.arrangeCarouselLis.bind(this));
-        window.addEventListener("load", this.operateClickEvent.bind(this));
-        window.addEventListener("load", this.startAutoSlide.bind(this));
-        window.addEventListener("load", this.triggerResumeAutoSlide.bind(this));
+        document.addEventListener("DOMContentLoaded", this.arrangeCarouselLis());
+        document.addEventListener("DOMContentLoaded", this.operateClickEvent());
+        document.addEventListener("DOMContentLoaded", this.startAutoSlide());
+        document.addEventListener("DOMContentLoaded", this.triggerResumeAutoSlide());
     }
 
-    organizeCarouselLis() {
-        this.carouselPanels = document.querySelectorAll(".carousel-panels");
-    }
-
-    arrangeCarouselLis() {
+    arrangeCarouselLis() {        
+        this.carouselPanels = document.querySelectorAll(".carousel-panels");      
         for (let elemnt = 0; elemnt < this.carouselPanels.length; elemnt++) {
             if (elemnt === 0) {
                 this.carouselPanels[elemnt].style.left = "0px";
             } else {
-                this.carouselPanels[elemnt].style.left = `${Number(getComputedStyle(this.carouselPanels[0]).width.match(/.\d+/)) * elemnt}px`;
+                this.carouselPanels[elemnt].style.left = `${this.carouselPanelWidth * elemnt}px`;
+                
             }
         }
     }
 
     operateClickEvent() {
-        this.getImageWidth();
         this.addClassCarouselTransition();
         this.carouselModuleBox.addEventListener("click", this.setClickBtn.bind(this));
     }
-
-    getImageWidth() {
-        this.imageWidth = Number(getComputedStyle(this.carouselPanels[0]).width.match(/.\d+/));
-        return this.imageWidth;
-    }
-
 
     addClassCarouselTransition() {
         this.carouselPanels.forEach(elemnt => {
@@ -77,21 +68,21 @@ class Carousel {
 
     setNextBtn() {
         let lastItemLeft = this.carouselUnit.lastElementChild.style.left;
-        this.distance -= this.imageWidth;
+        this.distance -= this.carouselPanelWidth;
         this.carouselPanels.forEach(elemnt => {
             elemnt.style.transform = `translateX(${this.distance}px)`
         })
-        this.carouselUnit.firstElementChild.style.left = `${Number(`${lastItemLeft}`.match(/.\d+/)) + this.imageWidth}px`;
+        this.carouselUnit.firstElementChild.style.left = `${Number(`${lastItemLeft}`.match(/.\d+/)) + this.carouselPanelWidth}px`;
         this.carouselUnit.lastElementChild.insertAdjacentElement("afterend", this.carouselUnit.firstElementChild);
     }
 
     setPrevBtn() {
         let firstItemLeft = this.carouselUnit.firstElementChild.style.left;
-        this.distance += this.imageWidth;
+        this.distance += this.carouselPanelWidth;
         this.carouselPanels.forEach(elemnt => {
             elemnt.style.transform = `translateX(${this.distance}px)`
         })
-        this.carouselUnit.lastElementChild.style.left = `${Number(`${firstItemLeft}`.match(/.\d+/)) - this.imageWidth}px`;
+        this.carouselUnit.lastElementChild.style.left = `${Number(`${firstItemLeft}`.match(/.\d+/)) - this.carouselPanelWidth}px`;
         this.carouselUnit.firstElementChild.insertAdjacentElement("beforebegin", this.carouselUnit.lastElementChild);
     }
 
