@@ -1,28 +1,30 @@
 //amazon step4 carousel module js 
 
-// ajax 요청을 통한 JS 템플릿 완성 및 이미지 로드
-let ajaxElementTemplate = document.querySelector(".ajax-element-template").innerHTML;
-
-let oReq = new XMLHttpRequest();
-
-oReq.addEventListener("load", function () {
-    let imgMetadata = JSON.parse(this.responseText);
-    for (let key in imgMetadata) {
-        document.querySelector(".carousel-unit").innerHTML += ajaxElementTemplate.replace("{url}", imgMetadata[key]["imgURL"]);
-    }
-});
-
-oReq.open("GET", "http://localhost:3000/img_src/ajax_imgs/imgMetadata");
-oReq.send(null);
-
-
 // Carousel 클래스
 class Carousel {
     constructor() {
         this.carouselModuleBox = document.querySelector(".carousel-module-box");
         this.carouselUnit = document.querySelector(".carousel-unit");
         this.distance = 0;
+        this.callAjax();
         this.prepareSlidingEvent();
+    }
+
+    callAjax() {
+        let ajaxElementTemplate = document.querySelector(".ajax-element-template").innerHTML;
+
+        let oReq = new XMLHttpRequest();
+
+        oReq.addEventListener("readystatechange", function () {
+            if (oReq.readyState === 4 && oReq.status === 200) {
+                let imgMetadata = JSON.parse(this.responseText);
+                for (let key in imgMetadata) {
+                    document.querySelector(".carousel-unit").innerHTML += ajaxElementTemplate.replace("{url}", imgMetadata[key]["imgURL"]);
+                }
+            }
+        });
+        oReq.open("GET", "http://localhost:3000/img_src/ajax_imgs/imgMetadata");
+        oReq.send(null);
     }
 
     prepareSlidingEvent() {
