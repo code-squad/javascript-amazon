@@ -4,10 +4,11 @@
   "description": "Copy Amazon site",
   "main": "index.js",
   "scripts": {
-    "compile-sass": "node-sass sass/main.scss css/style.css -w",
+    "compile-sass": "node-sass sass/main.scss src/css/style.css -w",
     "test": "jest",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --config=config/webpack.dev.js",
+    "start": "webpack-dev-server --config=config/webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,10 @@
   "devDependencies": {
     "acorn": "^6.1.0",
     "ajv": "^6.9.1",
+    "css-loader": "^2.1.0",
     "jest": "^24.1.0",
     "node-sass": "^4.11.0",
+    "style-loader": "^0.23.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
