@@ -171,7 +171,7 @@ html {
   margin-top: -2.6rem;
   width: 20.2rem;
   height: 26.2rem;
-  z-index: 999; }
+  z-index: 9; }
   .card__selected .clickable {
     background-size: 1616px auto;
     background-position: 0px -26px;
@@ -600,12 +600,22 @@ html {
       text-decoration: underline; }
 
 .fixed-nav {
-  display: none; }
+  border-bottom: 0.2rem solid #00a8e1;
+  transform: translateY(-100%);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  transition: all .5s ease-in-out; }
+  .fixed-nav__cover {
+    overflow: hidden; }
   .fixed-nav__front {
     position: relative;
     text-align: center;
     height: 7rem;
-    font-size: 0; }
+    font-size: 0;
+    background-color: #232f3e; }
     .fixed-nav__front .submit-box {
       float: right;
       margin-right: 10.3rem;
@@ -644,6 +654,7 @@ html {
     display: inline-block;
     width: 3rem; }
   .fixed-nav__submit {
+    display: none;
     background-color: #fff;
     padding-bottom: 2rem; }
     .fixed-nav__submit .submit-form {

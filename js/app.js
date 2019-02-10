@@ -1,6 +1,6 @@
-import { Plans } from './Plans.js';
+import {Helpers} from './Helpers/Helpers.js';
+import {Plans} from './Plans/Plans.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-    const plans = new Plans('.header__main', '.fixed-nav');
-    // plans.checkScroll();
+    new Plans(new Helpers());
 });

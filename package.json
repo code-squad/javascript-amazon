@@ -4,7 +4,8 @@
   "description": "Copy Amazon site",
   "main": "index.js",
   "scripts": {
-    "compile-sass": "node-sass sass/main.scss css/style.css -w"
+    "compile-sass": "node-sass sass/main.scss css/style.css -w",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/pdvonzoo/javascript-amazon#readme",
   "devDependencies": {
+    "jest": "^24.1.0",
     "node-sass": "^4.11.0"
   }
 }
