@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "compile-sass": "node-sass sass/main.scss css/style.css -w",
-    "test": "jest"
+    "test": "jest",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,12 @@
   },
   "homepage": "https://github.com/pdvonzoo/javascript-amazon#readme",
   "devDependencies": {
+    "acorn": "^6.1.0",
+    "ajv": "^6.9.1",
     "jest": "^24.1.0",
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
   }
 }
