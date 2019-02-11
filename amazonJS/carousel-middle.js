@@ -12,7 +12,7 @@ class Carousel_middle {
     let ajaxDataUrl = this.urlObj.ajaxDataUrl;
     getAjax(this.handler.bind(this), ajaxDataUrl);
     this.checkAuto();
-    setTimeout(this.moveAuto.bind(this), this.optionObj.transitionPart);
+    setTimeout(this.moveAuto.bind(this), this.optionObj.carouselAutoMovingMS);
   }
 
   handler(parsedObj) {
