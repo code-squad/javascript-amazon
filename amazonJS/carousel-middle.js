@@ -2,22 +2,17 @@ import { qs, getAjax } from "./util.js";
 
 class Carousel_middle {
   constructor(elObj, urlObj, optionObj) {
-    this.ajaxDataUrl = urlObj.ajaxDataUrl;
     Object.assign(this, { elObj, urlObj, optionObj });
-    this.carouselSize = optionObj.carouselSize;
-    this.transitionTime = optionObj.transitionTime;
-    this.transitionPart = optionObj.transitionPart;
-    this.carouselAutoMovingMS = optionObj.carouselAutoMovingMS;
     this.bPlay = false;
     this.bMouseOver = false;
     this.init();
   }
 
   init() {
-    console.log(this.urlObj.ajaxDataUrl);
-    getAjax(this.handler.bind(this), this.ajaxDataUrl);
+    let ajaxDataUrl = this.urlObj.ajaxDataUrl;
+    getAjax(this.handler.bind(this), ajaxDataUrl);
     this.checkAuto();
-    setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
+    setTimeout(this.moveAuto.bind(this), this.optionObj.transitionPart);
   }
 
   handler(parsedObj) {
@@ -33,11 +28,11 @@ class Carousel_middle {
 
   moveAuto() {
     if (this.bMouseOver) {
-      setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
+      setTimeout(this.moveAuto.bind(this), this.optionObj.carouselAutoMovingMS);
       return;
     }
     this.moveRight();
-    setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
+    setTimeout(this.moveAuto.bind(this), this.optionObj.carouselAutoMovingMS);
   }
 
   moveRight() {
@@ -47,7 +42,7 @@ class Carousel_middle {
     this.linkUrlArr.push(this.linkUrlArr.shift());
     let nowShowingLink = this.linkUrlArr[1];
     this.initLink(nowShowingLink);
-    this.container.style.transform = `translateX(-${this.carouselSize})`;
+    this.container.style.transform = `translateX(-${this.optionObj.carouselSize})`;
     this.transitionendEvent();
   }
 
@@ -58,7 +53,7 @@ class Carousel_middle {
     this.linkUrlArr.unshift(this.linkUrlArr.pop());
     let nowShowingLink = this.linkUrlArr[1];
     this.initLink(nowShowingLink);
-    this.container.style.transform = `translateX(${this.carouselSize})`;
+    this.container.style.transform = `translateX(${this.optionObj.carouselSize})`;
     this.transitionendEvent();
   }
 
@@ -72,8 +67,8 @@ class Carousel_middle {
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = `${this.transitionPart} ${
-      this.transitionTime
+    this.container.style.transition = `${this.optionObj.transitionPart} ${
+      this.optionObj.transitionTime
     }`;
   }
 
@@ -88,8 +83,9 @@ class Carousel_middle {
   }
 
   checkAuto() {
-    this.container.addEventListener("mouseover", this.mouseOver.bind(this));
-    this.container.addEventListener("mouseout", this.mouseOut.bind(this));
+    this.autoEventStopContainer = qs(this.optionObj.autoEventStopContainer);
+    this.autoEventStopContainer.addEventListener("mouseover", this.mouseOver.bind(this));
+    this.autoEventStopContainer.addEventListener("mouseout", this.mouseOut.bind(this));
   }
 
   mouseOver() {
