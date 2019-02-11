@@ -1,3 +1,9 @@
+.head-arrow-bright {
+  position: $arrow-position;
+  border: $arrow-border;
+  border-top: $arrow-border-top #a7acb2;
+}
+
 .head-nav-container {
   background-color: #24313f;
   display: flex;
@@ -59,12 +65,6 @@
           right: 1em;
           top: 0.8em;
         }
-
-        .head-arrow-bright {
-          position: $arrow-position;
-          border: $arrow-border;
-          border-top: $arrow-border-top #a7acb2;
-        }
       }
     }
 
@@ -85,121 +85,111 @@
 
   .head-nav-right {
     font-family: Arial, sans-serif;
-  }
-
-  .head-nav-right-list {
-    display: flex;
-    justify-content: flex-start;
-    margin-right: 10px;
-  }
-
-  /* nav-right-language */
-
-  .head-nav-right-list-language {
-    padding: 6px 15px 3px 12px;
-    border: var(--hover-border);
-  }
-  .head-nav-right-list-language:hover {
-    border: var(--hover-border-active) #4f5965;
-    border-radius: 4px;
-  }
-
-  .head-nav-right-list-language-user {
-    color: #ccc;
-    font-size: 12px;
-  }
-
-  .head-nav-right-list-language-img {
-    position: relative;
-    margin-left: 1px;
-  }
-
-  .language-arrow {
-    position: absolute;
-    top: 6px;
-    right: -3px;
-  }
-
-  /* line */
-
-  .head-nav-right-linkborder {
-    border-right: 1px solid #555;
-    display: inline-block;
-    height: 27px;
-    margin-top: 6px;
-  }
-
-  /* account */
-
-  .head-nav-right-list-account {
-    padding: 6px 20px 3px 15px;
-    border: var(--hover-border);
-  }
-  .head-nav-right-list-account:hover {
-    border: var(--hover-border-active) #4f5965;
-    border-radius: 4px;
-  }
-
-  .head-nav-right-list-account-msg {
-    color: #ccc;
-    font-size: 12px;
-  }
-
-  .head-nav-right-list-account-user {
-    position: relative;
-    color: var(--color-basic);
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  .account-arrow {
-    position: absolute;
-    top: 7px;
-    right: -6px;
-  }
-
-  /* order */
-
-  .head-nav-right-list-order {
-    margin-top: 11px;
-    padding: 5px 9px;
-    border: var(--hover-border);
-  }
-  .head-nav-right-list-order:hover {
-    border: var(--hover-border-active) #4f5965;
-    border-radius: 4px;
-  }
-
-  .head-nav-right-list-order-word {
-    color: var(--color-basic);
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  /* cart */
-
-  .head-nav-right-list-cart {
-    position: relative;
-    padding: 2px 15px 3px 12px;
-    border: var(--hover-border);
-  }
-  .head-nav-right-list-cart:hover {
-    border: var(--hover-border-active) #4f5965;
-    border-radius: 4px;
-  }
-
-  .head-nav-right-list-cart-num {
-    position: absolute;
-    top: 0px;
-    left: 31.5px;
-    color: #f08804;
-    font-weight: 700;
-  }
-
-  .head-nav-right-list-cart-word {
-    position: relative;
-    right: 3px;
-    color: var(--color-basic);
-    font-weight: 700;
+    .head-nav-right-list {
+      display: flex;
+      justify-content: flex-start;
+      margin-right: 0.62rem;
+      .head-nav-right-list-language {
+        padding: 0.375rem 1rem 0.187rem 1rem;
+        border: $hover-border;
+        &:hover {
+          border: $border-active #4f5965;
+          border-radius: 0.25rem;
+        }
+    
+        .head-nav-right-list-language-user {
+          color: #ccc;
+          font-size: 0.75rem;
+        }
+    
+        .head-nav-right-list-language-img {
+          position: relative;
+          margin-left: 0.07rem;
+        }
+    
+        .language-arrow {
+          position: absolute;
+          top: 0.37rem;
+          right: -0.18rem;
+        }  
+      }
+  
+      .head-nav-right-linkborder {
+        border-right: $border-active #555;
+        display: inline-block;
+        height: 1.7rem;
+        margin-top: 0.37rem;
+      }
+  
+      .head-nav-right-list-account {
+        padding: 0.375rem 1.2rem 0.45rem 1rem;
+        border: $hover-border;
+        &:hover {
+          border: $border-active #4f5965;
+          border-radius: 0.25rem;
+        }
+    
+        .head-nav-right-list-account-msg {
+          color: #ccc;
+          font-size: 0.75rem;
+        }
+    
+        .head-nav-right-list-account-user {
+          position: relative;
+          color: $color-basic;
+          font-size: 0.875rem;
+          font-weight: 700;
+        }
+    
+        .account-arrow {
+          position: absolute;
+          top: 0.4rem;
+          right: -0.3rem;
+        }  
+      }
+      
+      .head-nav-right-list-order {
+        margin-top: 0.75rem;
+        padding: 0.3rem 0.55rem;
+        border: $hover-border;
+        &:hover {
+          border: $border-active #4f5965;
+          border-radius: 0.25rem;
+        }
+    
+        .head-nav-right-list-order-word {
+          color: $color-basic;
+          font-size: 0.825rem;
+          font-weight: 700;
+        }
+      }
+  
+      /* cart */
+  
+      .head-nav-right-list-cart {
+        position: relative;
+        padding: 0.1rem 1rem 0.2rem 1rem;
+        border: $hover-border;
+        &:hover {
+          border: $border-active #4f5965;
+          border-radius: 0.25rem;
+        }
+    
+        .head-nav-right-list-cart-num {
+          position: absolute;
+          top: 0px;
+          left: 2.2rem;
+          color: #f08804;
+          font-weight: 700;
+        }
+    
+        .head-nav-right-list-cart-word {
+          position: relative;
+          right: 0.18rem;
+          color: $color-basic;
+          font-weight: 700;
+        }
+      }
+    }    
   }
 }
