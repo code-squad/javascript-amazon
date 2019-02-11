@@ -8,19 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     hiddenLayer: ".prime-member-container"
   });
   const carousel_middle = new Carousel_middle({
-      container: ".middle-body-carousel-list",
-      rightBtn: ".middle-body-carousel-right-button",
-      leftBtn: ".middle-body-carousel-left-button",
-      anchorEl: ".middle-body-carousel-url"
-    },{
-      ajaxDataUrl: "./jsonData/data.json"
-    },{
-      carouselSize: "230px",
-      carouselAutoMovingMS: 3000,
-      autoEventStopContainer: ".middle-body-carousel",
-      transitionTime: "0.1s",
-      transitionPart: "all",
-      
-    }
-  );
+    container: ".middle-body-carousel-list",
+    rightBtn: ".middle-body-carousel-right-button",
+    leftBtn: ".middle-body-carousel-left-button",
+    anchorEl: ".middle-body-carousel-url"
+  },{
+    ajaxDataUrl: "./jsonData/data.json"
+  },{
+    carouselSize: "230px",
+    carouselAutoMovingMS: 3000,
+    autoEventStopContainer: ".middle-body-carousel",
+    transitionTime: "0.1s",
+    transitionPart: "all",   
+  });
 });
