@@ -2,10 +2,10 @@ import { qs, getAjax } from "./util.js";
 
 class Carousel_middle {
   constructor(elObj, urlObj, optionObj) {
-    this.container = qs(document, elObj.container);
-    this.right = qs(document, elObj.rightBtn);
-    this.left = qs(document, elObj.leftBtn);
-    this.anchorEl = qs(document, elObj.anchorEl);
+    this.container = qs(elObj.container);
+    this.right = qs(elObj.rightBtn);
+    this.left = qs(elObj.leftBtn);
+    this.anchorEl = qs(elObj.anchorEl);
     this.ajaxDataUrl = urlObj.ajaxDataUrl;
     this.carouselSize = optionObj.carouselSize;
     this.transitionTime = optionObj.transitionTime;
@@ -74,7 +74,7 @@ class Carousel_middle {
 
   shuffleArr() {
     this.imgUrlArr.forEach((v, i) => {
-      const part = qs(this.container, `.index${i}`);
+      const part = qs(`.index${i}`, this.container);
       part.style = `background-image:url(${v})`;
     });
     this.container.style.transition = "all 0s";
