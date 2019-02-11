@@ -20,6 +20,7 @@ export default class AutoComplete {
     childDiv.addEventListener("click", (e) => {
       this.layer.inputEle.value = e.target.children[1].value;
       e.target.parentNode.remove(e.target.parentNode);
+      this.layer.dimmedEle.setAttribute("style", "opacity: 0;");
     });
   }
 
@@ -30,11 +31,16 @@ export default class AutoComplete {
     return this.div;
   }
 
+  removeChildNode(inputNode) {
+    inputNode.target.nextElementSibling.remove(inputNode.target.nextElementSibling);
+    this.layer.dimmedEle.setAttribute("style", "opacity: 0;");
+  }
+
 
   eventInput() {
     this.layer.inputEle.addEventListener("input", (inputNode) => {
       let inputWord = inputNode.target.value;
-      if (!inputNode) return false;
+      if (!inputNode || inputWord === "") return this.removeChildNode(inputNode);
       this.closeMatchList(inputWord);
       const addDiv = this.setMatchListEl();
 
@@ -65,7 +71,7 @@ export default class AutoComplete {
   }
 
   eventKeydown() {
-    this.layer.inputEle.addEventListener("keydown", function (e) {
+    this.layer.inputEle.addEventListener("keydown", (e) => {
       const x = document.getElementById("autoComplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode === 40) {
