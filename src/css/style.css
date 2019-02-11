@@ -1,4 +1,4 @@
-/* @keyframes i-width {
+@keyframes i-width {
   0% {
     background-position-x: 0px; }
   100% {
@@ -48,17 +48,17 @@ html {
 
 @font-face {
   font-family: AmazonEmber;
-  src: url(../static/font/AmazonEmber_300.woff) format("woff");
+  src: url(./font/AmazonEmber_300.woff) format("woff");
   font-weight: 300; }
 
 @font-face {
   font-family: AmazonEmber;
-  src: url(../static/font/AmazonEmber_400.woff2) format("woff2");
+  src: url(./font/AmazonEmber_400.woff2) format("woff2");
   font-weight: 400; }
 
 @font-face {
   font-family: AmazonEmber;
-  src: url(../static/font/AmazonEmber_700.woff2) format("woff2");
+  src: url(./font/AmazonEmber_700.woff2) format("woff2");
   font-weight: 700; }
 
 .submit-box {
@@ -263,7 +263,7 @@ html {
   margin-top: .2rem;
   width: 22px;
   height: 22px;
-  background: url(../static/images/nav-sprite-global_icons.png);
+  background: url(./images/nav-sprite-global_icons.png);
   background-size: 350px;
   background-position: -68px -340px; }
 
@@ -367,7 +367,7 @@ html {
       height: 2.1rem;
       text-indent: -5rem;
       color: #fff;
-      background: url(../static/images/nav-sprite-global_icons.png);
+      background: url(./images/nav-sprite-global_icons.png);
       background-position: -10px -290px;
       background-size: 350px; }
     .search__btn:hover {
@@ -396,7 +396,7 @@ html {
     font-size: 1.8rem;
     font-weight: 300; }
   .text-box__link-box .arrow-icon {
-    background-image: url(../static/images/Sprites_icons.png);
+    background-image: url(./images/Sprites_icons.png);
     -moz-background-size: 158px auto;
     background-size: 158px auto;
     background-position: -6px -233px;
@@ -425,7 +425,7 @@ html {
     margin-left: .1rem;
     width: 14px;
     height: 14px;
-    background-image: url(../static/images/International_icon.png);
+    background-image: url(./images/International_icon.png);
     background-size: 142px 120px;
     background-position: -77px -24px; }
   .language .nav-arrow {
@@ -488,7 +488,7 @@ html {
     color: #f08804;
     font-weight: bold; }
   .cart-image {
-    background: url(../static/images/nav-sprite-global_icons.png);
+    background: url(./images/nav-sprite-global_icons.png);
     background-size: 350px;
     background-position: -10px -340px;
     width: 38px;
@@ -513,7 +513,7 @@ html {
     margin: .2rem 0 0 2.7rem;
     width: 9.7rem;
     height: 3rem;
-    background: url(../static/images/nav-sprite-global_icons.png);
+    background: url(./images/nav-sprite-global_icons.png);
     background-size: 350px;
     background-position: -10px -51px; }
     .header__logo__link {
@@ -536,7 +536,7 @@ html {
     padding: 0 0 .3rem 3.5rem; }
 
 .nav-arrow {
-  background: url(../static/images/nav-sprite-global_icons.png);
+  background: url(./images/nav-sprite-global_icons.png);
   background-size: 350px;
   background-position: 0 1000px;
   background-repeat: repeat-x;
@@ -745,7 +745,7 @@ html {
 .prime-about {
   height: 47.4rem;
   padding: 3rem 0 0 7rem;
-  background: url(../../static/images/Prime_about.png);
+  background: url(./images/Prime_about.png);
   background-size: auto 47.6rem;
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -853,7 +853,7 @@ html {
       .prime-detail__container .carousel__item {
         padding-top: 3rem; }
       .prime-detail__container .carousel__ship-1 {
-        background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255, 255, 255, 0) 45px), url(../static/images/Card_ship_01.jpg);
+        background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255, 255, 255, 0) 45px), url(./images/Card_ship_01.jpg);
         background-position: center; }
       .prime-detail__container .carousel .text-box__link-box .arrow-icon {
         background-position: -6px -233px;
@@ -874,7 +874,7 @@ html {
   .prime-more--delivery {
     height: 36rem;
     padding-left: 7rem;
-    background-image: url("../static/images/PrimeDelivery.png");
+    background-image: url(./images/PrimeDelivery.png);
     background-size: auto 360px;
     background-position: top center; }
     .prime-more--delivery .text-box {
@@ -914,7 +914,7 @@ html {
         height: 100%;
         margin: 0 auto; }
       .prime-more--Video .carousel__item {
-        background: url(../static/images/video.jpg);
+        background: url(./images/video.jpg);
         background-size: cover; }
       .prime-more--Video .carousel__arrow-box {
         position: relative; }
@@ -954,4 +954,4 @@ html {
       .prime-more--Video .text-box__link {
         line-height: 1.8rem; }
       .prime-more--Video .text-box__link-box .arrow-icon {
-        margin: 0 0 .3rem .4rem; } */
+        margin: 0 0 .3rem .4rem; }

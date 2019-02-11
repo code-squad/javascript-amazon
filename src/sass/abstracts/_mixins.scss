@@ -5,13 +5,13 @@
 }
 
 @mixin sprite-global-icons($X, $Y) {
-    background: url(../static/images/nav-sprite-global_icons.png);
+    background: url(./images/nav-sprite-global_icons.png);
     background-size: 350px;
     background-position: $X $Y;
 }
 
 @mixin sprite-international-icons($X, $Y) {
-    background-image: url(../static/images/International_icon.png);
+    background-image: url(./images/International_icon.png);
     background-size: 142px 120px;
     background-position: $X $Y;
 }

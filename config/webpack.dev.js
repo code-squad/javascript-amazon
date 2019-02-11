@@ -1,4 +1,7 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== 'production';
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -14,6 +17,14 @@ module.exports = {
         contentBase: "dist",
         overlay: true
     },
+    devtool: 'source-map',
+    mode : devMode ? 'development' : 'production',
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new MiniCssExtractPlugin({
+            filename: devMode ? '[name].css' : '[name].[hash].css'
+        })
+    ],
     module: {
         rules: [
             {
@@ -26,15 +37,12 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.css$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [
-                    {
-                        loader: "style-loader"
-                    },
-                    {
-                        loader: "css-loader"
-                    }
-                ]
+                    MiniCssExtractPlugin.loader,
+                    { loader: 'css-loader', options: { url: false, sourceMap: true } },
+                    { loader: 'sass-loader', options: { sourceMap: true } }
+                ],
             },
             {
                 test: /\.html$/,
@@ -57,13 +65,26 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(jpg|gif|png|svg)$/,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        name: "images/[name].[ext]"
+                test: /\.(gif|png|jpg|svg)$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "images/[name].[ext]"
+                        }
                     }
-                }
+                ]
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                exclude: /images/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'font/'
+                    }
+                }]
             }
         ]
     }

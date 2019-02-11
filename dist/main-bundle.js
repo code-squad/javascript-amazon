@@ -86,48 +86,839 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./src/css/style.css":
-/*!*****************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./src/css/style.css ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"/* @keyframes i-width {\\n  0% {\\n    background-position-x: 0px; }\\n  100% {\\n    background-position-x: -1200px; } }\\n\\n@keyframes i-height {\\n  0% {\\n    background-position-y: 0px; }\\n  100% {\\n    background-position-y: -630px; } }\\n\\n*,\\n*::after,\\n*::before {\\n  margin: 0;\\n  padding: 0;\\n  box-sizing: inherit; }\\n\\nhtml {\\n  box-sizing: border-box;\\n  font-size: 62.5%; }\\n\\nbody {\\n  min-width: 110rem; }\\n\\na {\\n  color: #fff; }\\n\\nhtml {\\n  font-family: arial, sans-serif; }\\n\\n.nav__big-text {\\n  color: #fff;\\n  font-weight: bold;\\n  font-size: 1.4rem; }\\n\\n.nav__small-text {\\n  color: #fff;\\n  font-size: 1.3rem; }\\n\\n.nav__cart-counter {\\n  color: #fff;\\n  font-size: 1.6rem; }\\n\\n[class^=prime--] {\\n  font-family: AmazonEmber; }\\n\\n@font-face {\\n  font-family: AmazonEmber;\\n  src: url(../static/font/AmazonEmber_300.woff) format(\\\"woff\\\");\\n  font-weight: 300; }\\n\\n@font-face {\\n  font-family: AmazonEmber;\\n  src: url(../static/font/AmazonEmber_400.woff2) format(\\\"woff2\\\");\\n  font-weight: 400; }\\n\\n@font-face {\\n  font-family: AmazonEmber;\\n  src: url(../static/font/AmazonEmber_700.woff2) format(\\\"woff2\\\");\\n  font-weight: 700; }\\n\\n.submit-box {\\n  float: right;\\n  height: 5.5rem;\\n  width: 36rem; }\\n  .submit-box__submit {\\n    background-color: #ffa724;\\n    padding-left: .1rem;\\n    padding-bottom: .1rem;\\n    border: 0.1rem solid #ff6138;\\n    border-bottom-width: .2rem;\\n    font-size: 2rem;\\n    font-weight: bold;\\n    font-family: AmazonEmber;\\n    color: #284d40;\\n    border-radius: .2rem;\\n    width: 100%;\\n    height: 100%;\\n    cursor: pointer; }\\n    .submit-box__submit:hover {\\n      background-color: #ffc400; }\\n\\n.submit-btn {\\n  position: absolute;\\n  top: 50.7%;\\n  right: 10.3rem;\\n  transform: translateY(-49%); }\\n  .submit-btn .submit-box__submit {\\n    width: 13.4rem;\\n    height: 4.7rem;\\n    padding-top: .3rem;\\n    padding-right: .1rem;\\n    padding-bottom: .3rem;\\n    font-size: 1.6rem; }\\n\\n.cards {\\n  padding: 2.6rem 0;\\n  display: grid;\\n  grid-template-columns: repeat(5, 15rem);\\n  grid-template-rows: 21rem;\\n  grid-auto-flow: column;\\n  grid-gap: .6rem;\\n  justify-content: center;\\n  list-style: none; }\\n  .cards__card {\\n    position: relative;\\n    height: 100%;\\n    cursor: pointer; }\\n    .cards__card__title {\\n      position: absolute;\\n      left: 0;\\n      bottom: 2.2rem;\\n      width: 100%;\\n      font-family: AmazonEmber;\\n      font-weight: 300;\\n      text-align: center;\\n      font-size: 2rem;\\n      font-weight: 300;\\n      color: #FFF;\\n      pointer-events: none; }\\n    .cards__card--blue {\\n      background-image: linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px); }\\n      .cards__card--blue .clickable {\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png); }\\n    .cards__card--red {\\n      background-image: linear-gradient(30deg, #CC0C39 40%, #FF6138 85%, #FF6138 74px); }\\n      .cards__card--red .clickable {\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png); }\\n    .cards__card--pink {\\n      background-image: linear-gradient(30deg, #A90067 40%, #E31F64 85%, #E31F64 74px); }\\n      .cards__card--pink .clickable {\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png); }\\n    .cards__card--green {\\n      background-image: linear-gradient(30deg, #008577 40%, #36C2B4 85%, #36C2B4 74px); }\\n      .cards__card--green .clickable {\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png); }\\n    .cards__card--orange {\\n      background-image: linear-gradient(30deg, #FF6138 40%, #FFC400 85%, #FFC400 74px); }\\n      .cards__card--orange .clickable {\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png); }\\n    .cards__card .clickable {\\n      position: absolute;\\n      left: 0;\\n      right: 0;\\n      height: 21rem;\\n      background-size: 1200px auto;\\n      background-position: 0px 0px;\\n      background-repeat: no-repeat; }\\n    .cards__card .pagination-box {\\n      display: grid;\\n      grid-template-columns: repeat(4, 1fr);\\n      grid-gap: .5rem;\\n      justify-items: center;\\n      position: absolute;\\n      bottom: 1.4rem;\\n      left: 50%;\\n      transform: translateX(-50%); }\\n      .cards__card .pagination-box .pagination {\\n        width: 1rem;\\n        height: 1rem;\\n        border-radius: 50%;\\n        background-color: #fff;\\n        opacity: .5; }\\n    .cards__card:not(.card__selected):hover .clickable {\\n      animation: i-height 1s steps(3, end) 1, i-width 1s steps(8, end) 1; }\\n\\n.card__selected {\\n  margin-left: -2.6rem;\\n  margin-top: -2.6rem;\\n  width: 20.2rem;\\n  height: 26.2rem;\\n  z-index: 9; }\\n  .card__selected .clickable {\\n    background-size: 1616px auto;\\n    background-position: 0px -26px;\\n    bottom: 26px; }\\n  .card__selected .clickable::after {\\n    content: '';\\n    position: absolute;\\n    top: 0;\\n    right: -.8rem;\\n    height: 100%;\\n    width: .8rem;\\n    background-color: #111;\\n    filter: blur(4px);\\n    opacity: .4; }\\n  .card__selected .pagination-box .pagination__selected {\\n    opacity: 1; }\\n\\n.submit-form__cards {\\n  padding-left: .2rem; }\\n\\n.submit-form__card {\\n  padding: 2.5rem 1.8rem 0 3rem; }\\n  .submit-form__card .heading-3 {\\n    font-family: AmazonEmber;\\n    font-weight: 300;\\n    font-size: 2.66rem;\\n    line-height: 2.7rem; }\\n  .submit-form__card .price {\\n    display: inline-block;\\n    margin-top: -.25rem;\\n    font-size: 2.66rem;\\n    font-family: AmazonEmber;\\n    font-weight: 300;\\n    height: 3.4rem; }\\n    .submit-form__card .price-amount {\\n      font-weight: 700;\\n      vertical-align: sub; }\\n      .submit-form__card .price-amount sup {\\n        font-size: 0.75em; }\\n    .submit-form__card .price .date {\\n      vertical-align: sub; }\\n  .submit-form__card .details {\\n    list-style: none;\\n    padding-top: 5.2rem; }\\n    .submit-form__card .details .info {\\n      padding-bottom: 1.1rem;\\n      font-family: AmazonEmber;\\n      font-weight: 300;\\n      line-height: 1.8rem;\\n      font-size: 1.6rem; }\\n      .submit-form__card .details .info-checked {\\n        vertical-align: middle; }\\n        .submit-form__card .details .info-checked::after {\\n          margin-right: 1.6rem;\\n          margin-left: -.2rem;\\n          margin-bottom: -.1rem;\\n          content: '';\\n          display: inline-block;\\n          width: 1.2rem;\\n          height: 2.2rem;\\n          border: solid #00A8E1;\\n          border-width: 0 .2rem .2rem 0;\\n          transform: rotate(45deg); }\\n      .submit-form__card .details .info-disabled {\\n        padding-top: .5rem;\\n        color: #eee; }\\n\\n.carousel__item {\\n  list-style: none;\\n  height: 100%; }\\n  .carousel__item .text-box {\\n    width: 50%;\\n    max-width: 48rem;\\n    margin-left: 50%;\\n    text-align: left; }\\n\\n.nation-box__link {\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n  text-decoration: none;\\n  padding: .6rem .8rem .6rem .3rem; }\\n  .nation-box__link:hover {\\n    border: .1rem solid #4f5965;\\n    border-radius: .3rem;\\n    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5); }\\n\\n.nation-box__nation-img {\\n  margin-top: .2rem;\\n  width: 22px;\\n  height: 22px;\\n  background: url(../static/images/nav-sprite-global_icons.png);\\n  background-size: 350px;\\n  background-position: -68px -340px; }\\n\\n.nation-box__text-box {\\n  padding-left: .3rem;\\n  color: #fff; }\\n  .nation-box__text-box__desc {\\n    display: block;\\n    font-size: 1.2rem; }\\n  .nation-box__text-box .nav__big-text {\\n    line-height: 1.4rem; }\\n\\n.search {\\n  display: grid;\\n  grid-template-columns: max-content 1fr 4.5rem;\\n  grid-template-rows: 3.5rem; }\\n  .search__select {\\n    position: relative;\\n    overflow: hidden; }\\n    .search__select__view {\\n      padding: .2rem .8rem 0 1.1rem;\\n      border-right: 1px solid #cdcdcd;\\n      border-radius: .4rem 0 0 .4rem;\\n      height: 100%;\\n      background-color: #f3f3f3; }\\n      .search__select__view__text {\\n        padding-top: .2rem;\\n        line-height: 3.3rem;\\n        font-size: 1.2rem;\\n        color: #666; }\\n      .search__select__view .nav-arrow {\\n        margin-left: .2rem; }\\n      .search__select__view__icon {\\n        position: absolute;\\n        top: 1.6rem;\\n        right: .9rem;\\n        border-style: solid;\\n        border-style: dashed;\\n        border-width: .4rem;\\n        border-color: transparent;\\n        border-top: .4rem solid #666;\\n        border-bottom-width: 0;\\n        width: 0;\\n        height: 0;\\n        font-size: 0;\\n        line-height: 0; }\\n    .search__select__list {\\n      position: absolute;\\n      left: 0;\\n      top: 0;\\n      opacity: 0;\\n      height: 100%;\\n      font-size: 1.4rem;\\n      padding-left: 1rem;\\n      border: 0;\\n      border-radius: 0;\\n      outline: 0;\\n      -webkit-appearance: none;\\n      -moz-appearance: none;\\n      appearance: none;\\n      cursor: pointer; }\\n    .search__select__list::-ms-expand {\\n      display: none; }\\n    .search__select:hover .search__select__view {\\n      background-color: #dadada; }\\n  .search__label {\\n    overflow: hidden; }\\n  .search__search {\\n    width: 100%;\\n    height: 100%;\\n    outline: 0;\\n    border: 0;\\n    text-indent: .8rem;\\n    font-size: 1.5rem; }\\n  .search__btn {\\n    position: relative;\\n    border-radius: 0 .4rem .4rem 0;\\n    background-color: #febd69;\\n    cursor: pointer; }\\n    .search__btn__submit {\\n      position: relative;\\n      width: 100%;\\n      height: 100%;\\n      display: block;\\n      font-size: 14px;\\n      padding: 0;\\n      margin: 0;\\n      cursor: pointer;\\n      outline: 0;\\n      color: #fff;\\n      background: 0 0;\\n      border: none;\\n      text-indent: -1000px;\\n      line-height: 1px; }\\n    .search__btn__img {\\n      position: absolute;\\n      top: 50%;\\n      left: 50%;\\n      transform: translate(-52%, -52%);\\n      width: 2.1rem;\\n      height: 2.1rem;\\n      text-indent: -5rem;\\n      color: #fff;\\n      background: url(../static/images/nav-sprite-global_icons.png);\\n      background-position: -10px -290px;\\n      background-size: 350px; }\\n    .search__btn:hover {\\n      background-color: #f3a847; }\\n\\n.text-box {\\n  text-align: left;\\n  height: 100%;\\n  width: 100%;\\n  font-family: AmazonEmber; }\\n  .text-box__guide {\\n    margin-bottom: 2.1rem;\\n    display: inline-block;\\n    color: #fff;\\n    text-transform: uppercase;\\n    padding: .5rem 1rem;\\n    font-size: 1.5rem;\\n    background-color: #00A8E1; }\\n  .text-box__heading {\\n    padding-bottom: 2rem;\\n    font-size: 2.8rem;\\n    font-weight: 300; }\\n  .text-box__paragraph {\\n    margin-bottom: 2rem;\\n    line-height: 2.8rem;\\n    font-size: 1.8rem;\\n    font-weight: 300; }\\n  .text-box__link-box .arrow-icon {\\n    background-image: url(../static/images/Sprites_icons.png);\\n    -moz-background-size: 158px auto;\\n    background-size: 158px auto;\\n    background-position: -6px -233px;\\n    width: 6px;\\n    height: 9px;\\n    display: inline-block;\\n    vertical-align: middle;\\n    margin: 0 6px; }\\n  .text-box__link {\\n    text-decoration: none;\\n    font-size: 1.8rem;\\n    color: #002F36; }\\n    .text-box__link:hover {\\n      text-decoration: underline; }\\n\\n.language {\\n  padding: 1rem .4rem .3rem 1.45rem;\\n  border: 1px solid transparent;\\n  cursor: pointer; }\\n  .language--text {\\n    font-size: 1.2rem;\\n    color: #ccc; }\\n  .language .global-icon {\\n    display: inline-block;\\n    margin-top: .1rem;\\n    margin-left: .1rem;\\n    width: 14px;\\n    height: 14px;\\n    background-image: url(../static/images/International_icon.png);\\n    background-size: 142px 120px;\\n    background-position: -77px -24px; }\\n  .language .nav-arrow {\\n    margin-left: .4rem;\\n    padding-bottom: .3rem;\\n    border-top-color: #a7acb2; }\\n  .language:hover {\\n    border: .1rem solid #4f5965;\\n    border-radius: .3rem;\\n    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5); }\\n\\n.bar {\\n  border-right: 1px solid #555;\\n  display: inline-block;\\n  margin-bottom: .6rem;\\n  width: 1px;\\n  height: 29px; }\\n\\n.sign-in {\\n  padding: .7rem .8rem .6rem 1rem;\\n  border: 1px solid transparent;\\n  cursor: pointer; }\\n  .sign-in--guide {\\n    font-size: 1.2rem;\\n    color: #ccc; }\\n  .sign-in--info {\\n    line-height: 1.4rem;\\n    font-size: 1.4rem;\\n    font-weight: bold;\\n    color: #fff; }\\n  .sign-in .nav-arrow {\\n    margin-left: .2rem;\\n    border-top-color: #a7acb2; }\\n  .sign-in:hover {\\n    border: .1rem solid #4f5965;\\n    border-radius: .3rem;\\n    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5); }\\n\\n.orders {\\n  padding: .4rem .7rem .5rem 1.05rem;\\n  border: 1px solid transparent;\\n  cursor: pointer; }\\n  .orders:hover {\\n    border: .1rem solid #4f5965;\\n    border-radius: .3rem;\\n    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5); }\\n\\n.cart {\\n  position: relative;\\n  display: flex;\\n  align-items: flex-end;\\n  padding: 1.1rem 2.1rem .5rem 1.2rem;\\n  border: 1px solid transparent;\\n  cursor: pointer; }\\n  .cart .nav__cart-counter {\\n    position: absolute;\\n    top: .55rem;\\n    left: .5rem;\\n    padding-left: 2.5rem;\\n    color: #f08804;\\n    font-weight: bold; }\\n  .cart-image {\\n    background: url(../static/images/nav-sprite-global_icons.png);\\n    background-size: 350px;\\n    background-position: -10px -340px;\\n    width: 38px;\\n    height: 26px;\\n    display: block;\\n    overflow: hidden;\\n    margin-bottom: .1rem; }\\n  .cart:hover {\\n    border: .1rem solid #4f5965;\\n    border-radius: .3rem;\\n    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5); }\\n\\n.header {\\n  border-bottom: 0.2rem solid #00a8e1;\\n  background-color: #232f3e; }\\n  .header__main {\\n    display: grid;\\n    padding-top: 1.1rem;\\n    grid-template-rows: 4rem 4.8rem;\\n    grid-template-columns: 19.2rem 1fr 40rem; }\\n  .header__logo {\\n    margin: .2rem 0 0 2.7rem;\\n    width: 9.7rem;\\n    height: 3rem;\\n    background: url(../static/images/nav-sprite-global_icons.png);\\n    background-size: 350px;\\n    background-position: -10px -51px; }\\n    .header__logo__link {\\n      width: 100%;\\n      height: 100%; }\\n  .header__search {\\n    padding-right: 2.5rem; }\\n  .header__banner-box {\\n    margin-top: -.2rem; }\\n  .header__nation-box {\\n    margin: auto;\\n    padding: .2rem 1.8rem 0 .5rem; }\\n  .header__nav {\\n    align-self: end;\\n    padding-bottom: .3rem; }\\n  .header__tools {\\n    display: grid;\\n    grid-template-columns: repeat(5, max-content);\\n    align-items: end;\\n    padding: 0 0 .3rem 3.5rem; }\\n\\n.nav-arrow {\\n  background: url(../static/images/nav-sprite-global_icons.png);\\n  background-size: 350px;\\n  background-position: 0 1000px;\\n  background-repeat: repeat-x;\\n  border-top-color: #a7acb2;\\n  display: inline-block;\\n  border: 4px dashed transparent;\\n  border-top: 4px solid #606060;\\n  border-bottom-width: 0;\\n  width: 0;\\n  height: 0;\\n  font-size: 0;\\n  line-height: 0;\\n  margin: 0 0 2px 5px; }\\n\\n.nav {\\n  overflow: hidden; }\\n  .nav__departments {\\n    display: inline-block;\\n    margin: 0 1.45rem .2rem 0;\\n    padding: .5rem 1rem .5rem 1.4rem;\\n    color: #fff;\\n    font-weight: bold;\\n    font-size: 1.4rem; }\\n    .nav__departments__img {\\n      display: inline-block;\\n      border-style: solid;\\n      border-style: dashed;\\n      border-width: 4px;\\n      border-color: transparent;\\n      border-top: 4px solid #a7acb2;\\n      border-bottom-width: 0;\\n      width: 0;\\n      height: 0;\\n      font-size: 0;\\n      line-height: 0;\\n      margin: 0 0 .2rem .2rem; }\\n    .nav__departments__link {\\n      text-decoration: none; }\\n    .nav__departments:hover {\\n      border: .1rem solid #4f5965;\\n      border-radius: .3rem;\\n      box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5);\\n      padding: .4rem .9rem .4rem 1.3rem; }\\n    .nav__departments .nav-arrow {\\n      margin-left: .2rem;\\n      border-top-color: #a7acb2; }\\n  .nav__list {\\n    display: inline-block;\\n    padding-bottom: .5rem;\\n    vertical-align: bottom;\\n    list-style: none;\\n    white-space: nowrap; }\\n  .nav__item {\\n    display: inline-block;\\n    padding-right: 1.52rem; }\\n  .nav__link {\\n    font-size: 1.3rem;\\n    color: #ccc;\\n    text-decoration: none; }\\n    .nav__link:hover {\\n      text-decoration: underline; }\\n\\n.fixed-nav {\\n  border-bottom: 0.2rem solid #00a8e1;\\n  transform: translateY(-100%);\\n  opacity: 0;\\n  position: fixed;\\n  top: 0;\\n  width: 100%;\\n  z-index: 999;\\n  transition: all .5s ease-in-out; }\\n  .fixed-nav__cover {\\n    overflow: hidden; }\\n  .fixed-nav__front {\\n    position: relative;\\n    text-align: center;\\n    height: 7rem;\\n    font-size: 0;\\n    background-color: #232f3e; }\\n    .fixed-nav__front .submit-box {\\n      float: right;\\n      margin-right: 10.3rem;\\n      margin-top: 1.2rem;\\n      width: 13.4rem;\\n      height: 4.7rem; }\\n      .fixed-nav__front .submit-box__submit {\\n        padding-right: .1rem;\\n        padding-top: .1rem;\\n        font-size: 1.6rem; }\\n  .fixed-nav::after {\\n    content: \\\"\\\";\\n    display: table;\\n    clear: both; }\\n  .fixed-nav .logo-box {\\n    float: left;\\n    height: 100%;\\n    padding-left: 9.5rem; }\\n    .fixed-nav .logo-box img {\\n      height: 100%;\\n      padding: 1rem 0; }\\n  .fixed-nav .scroll-box {\\n    display: inline-block;\\n    text-align: center;\\n    position: absolute;\\n    bottom: 0;\\n    left: 50%;\\n    transform: translateX(-50%); }\\n  .fixed-nav .scroll-text {\\n    font-family: AmazonEmber;\\n    line-height: 1.9rem;\\n    font-size: 1.86rem;\\n    font-weight: 300;\\n    color: #fff; }\\n  .fixed-nav .scroll-btn {\\n    display: inline-block;\\n    width: 3rem; }\\n  .fixed-nav__submit {\\n    display: none;\\n    background-color: #fff;\\n    padding-bottom: 2rem; }\\n    .fixed-nav__submit .submit-form {\\n      width: 96.6rem;\\n      margin: 0 auto; }\\n      .fixed-nav__submit .submit-form__header {\\n        position: relative;\\n        display: flex; }\\n        .fixed-nav__submit .submit-form__header .logo {\\n          margin-top: 5.5rem;\\n          height: 6rem;\\n          width: auto; }\\n        .fixed-nav__submit .submit-form__header .heading-2 {\\n          padding-top: 6.6rem;\\n          text-align: center;\\n          flex: 1;\\n          font-family: AmazonEmber;\\n          font-weight: 300;\\n          font-size: 2.66rem; }\\n        .fixed-nav__submit .submit-form__header .close-btn {\\n          position: absolute;\\n          top: 0;\\n          right: 0;\\n          margin-top: 1.1rem;\\n          font-family: AmazonEmber;\\n          font-size: 1.6rem;\\n          line-height: 2.4rem;\\n          color: #002F36; }\\n          .fixed-nav__submit .submit-form__header .close-btn__icon {\\n            background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);\\n            -moz-background-size: 158px auto;\\n            background-size: 158px auto;\\n            height: 19px;\\n            width: 19px;\\n            display: inline-block;\\n            background-position: -55px -242px;\\n            margin-left: 10px;\\n            vertical-align: middle; }\\n      .fixed-nav__submit .submit-form__container {\\n        position: relative; }\\n        .fixed-nav__submit .submit-form__container .submit-box {\\n          margin-top: 2.65rem;\\n          margin-right: -1.8rem;\\n          text-align: right;\\n          height: auto; }\\n          .fixed-nav__submit .submit-form__container .submit-box__submit {\\n            position: relative;\\n            font-size: 1.6rem;\\n            padding-top: .2rem;\\n            padding-right: .1rem;\\n            width: 32rem;\\n            height: 4.7rem; }\\n            .fixed-nav__submit .submit-form__container .submit-box__submit .scroll-btn {\\n              position: absolute;\\n              bottom: 0;\\n              left: 50%;\\n              transform: tanslateX(-50%); }\\n        .fixed-nav__submit .submit-form__container .anchor-box {\\n          padding-top: 1.4rem;\\n          margin-right: -1.7rem;\\n          white-space: nowrap; }\\n          .fixed-nav__submit .submit-form__container .anchor-box .anchor:visited,\\n          .fixed-nav__submit .submit-form__container .anchor-box .anchor:active,\\n          .fixed-nav__submit .submit-form__container .anchor-box .anchor:link {\\n            font-family: AmazonEmber;\\n            font-size: 1.3rem;\\n            color: #0066c0;\\n            text-decoration: none; }\\n          .fixed-nav__submit .submit-form__container .anchor-box__bar {\\n            display: inline-block;\\n            margin: 0 .15rem;\\n            font-size: 1.3rem;\\n            width: .2rem; }\\n        .fixed-nav__submit .submit-form__container::after {\\n          content: '';\\n          display: table;\\n          clear: both; }\\n      .fixed-nav__submit .submit-form__cards {\\n        display: flex;\\n        justify-content: space-between; }\\n      .fixed-nav__submit .submit-form__card {\\n        border: 1px solid #000;\\n        width: 282px;\\n        height: 360px;\\n        position: relative;\\n        background: #fff; }\\n\\n.prime-about {\\n  height: 47.4rem;\\n  padding: 3rem 0 0 7rem;\\n  background: url(../../static/images/Prime_about.png);\\n  background-size: auto 47.6rem;\\n  background-position: left bottom;\\n  background-repeat: no-repeat;\\n  font-family: AmazonEmber, arial, sans-serif;\\n  color: #fff; }\\n  .prime-about sup {\\n    font-size: 55%; }\\n  .prime-about .story {\\n    width: 50rem; }\\n  .prime-about__logo {\\n    width: 8rem; }\\n  .prime-about__heading-1 {\\n    line-height: 1.2;\\n    font-size: 4.2rem;\\n    margin-bottom: 2.6rem; }\\n  .prime-about__paragraph {\\n    width: 40rem;\\n    margin-bottom: 3.2rem;\\n    font-size: 2.2rem;\\n    line-height: 2.5rem;\\n    font-weight: 300; }\\n  .prime-about__form {\\n    display: inline-block; }\\n  .prime-about--info {\\n    margin-top: .7rem;\\n    font-size: 1.4rem; }\\n  .prime-about__text-box__text {\\n    font-size: 1.4rem; }\\n  .prime-about--more {\\n    display: flex;\\n    align-items: center;\\n    margin-top: .2rem;\\n    margin-bottom: 3.5rem; }\\n    .prime-about--more__text {\\n      font-size: 1.4rem;\\n      text-decoration: underline; }\\n    .prime-about--more__icon {\\n      background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);\\n      -moz-background-size: 158px auto;\\n      background-size: 158px auto;\\n      width: .6rem;\\n      height: .9rem;\\n      display: inline-block;\\n      vertical-align: middle;\\n      background-position: 0 -233px;\\n      margin-top: .4rem;\\n      margin-left: .6rem; }\\n\\n.prime-detail {\\n  position: relative;\\n  top: -9.2rem;\\n  margin-bottom: -9.2rem; }\\n  .prime-detail__heading-text {\\n    margin-bottom: 2rem;\\n    font-size: 2.2rem;\\n    font-weight: 300; }\\n  .prime-detail__container {\\n    text-align: center; }\\n    .prime-detail__container .carousel {\\n      display: grid;\\n      grid-template-columns: 7.2rem 91.1rem 7.2rem;\\n      grid-gap: 1.4rem;\\n      justify-content: center; }\\n      .prime-detail__container .carousel__arrow-box {\\n        position: relative; }\\n        .prime-detail__container .carousel__arrow-box .arrow-icon {\\n          position: absolute;\\n          top: 40%; }\\n      .prime-detail__container .carousel__left .arrow-icon {\\n        left: 0.3rem;\\n        background-color: transparent;\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);\\n        -moz-background-size: 158px auto;\\n        background-size: 158px auto;\\n        border: none !important;\\n        cursor: pointer;\\n        display: block;\\n        overflow: hidden;\\n        text-align: center;\\n        width: 52px;\\n        height: 52px;\\n        display: inline-block;\\n        vertical-align: middle;\\n        background-position: -53px 0px; }\\n      .prime-detail__container .carousel__right .arrow-icon {\\n        right: 0;\\n        background-color: transparent;\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);\\n        -moz-background-size: 158px auto;\\n        background-size: 158px auto;\\n        border: none !important;\\n        cursor: pointer;\\n        display: block;\\n        overflow: hidden;\\n        text-align: center;\\n        width: 52px;\\n        height: 52px;\\n        display: inline-block;\\n        vertical-align: middle;\\n        background-position: -53px -104px; }\\n      .prime-detail__container .carousel__list {\\n        margin: 0 auto;\\n        height: 40rem;\\n        width: 91.3rem; }\\n      .prime-detail__container .carousel__item {\\n        padding-top: 3rem; }\\n      .prime-detail__container .carousel__ship-1 {\\n        background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255, 255, 255, 0) 45px), url(../static/images/Card_ship_01.jpg);\\n        background-position: center; }\\n      .prime-detail__container .carousel .text-box__link-box .arrow-icon {\\n        background-position: -6px -233px;\\n        margin: 0 0 .3rem .4rem; }\\n      .prime-detail__container .carousel .text-box__link {\\n        line-height: 1.8rem; }\\n      .prime-detail__container .carousel .text-box__heading {\\n        line-height: 3.2rem; }\\n\\n.prime-more {\\n  margin-top: 2.3rem; }\\n  .prime-more__heading-2 {\\n    margin-left: 7rem;\\n    margin-bottom: .8rem;\\n    font-family: AmazonEmber;\\n    font-size: 2.8rem;\\n    font-weight: 300; }\\n  .prime-more--delivery {\\n    height: 36rem;\\n    padding-left: 7rem;\\n    background-image: url(\\\"../static/images/PrimeDelivery.png\\\");\\n    background-size: auto 360px;\\n    background-position: top center; }\\n    .prime-more--delivery .text-box {\\n      width: 50rem;\\n      padding-top: 6.5rem; }\\n      .prime-more--delivery .text-box__heading {\\n        line-height: 4.8rem;\\n        font-size: 4.8rem;\\n        font-weight: 300;\\n        color: #fff; }\\n      .prime-more--delivery .text-box__paragraph {\\n        width: 42rem;\\n        line-height: 2.5rem;\\n        font-size: 1.8rem;\\n        color: #fff; }\\n      .prime-more--delivery .text-box__link {\\n        line-height: 1.8rem;\\n        color: #fff; }\\n      .prime-more--delivery .text-box__link-box .arrow-icon {\\n        background-position: 0 -233px;\\n        margin: 0 0 .3rem .4rem; }\\n  .prime-more--Video {\\n    display: grid;\\n    grid-template-columns: 1fr 58rem;\\n    height: 36.8rem;\\n    margin-top: 0rem;\\n    padding: 6rem 7rem 0; }\\n    .prime-more--Video .carousel {\\n      display: grid;\\n      grid-template-columns: 4rem 28rem 4rem;\\n      grid-template-rows: 21rem;\\n      justify-content: center;\\n      padding-top: .8rem;\\n      padding-right: 1.7rem; }\\n      .prime-more--Video .carousel__list {\\n        width: 100%;\\n        height: 100%;\\n        margin: 0 auto; }\\n      .prime-more--Video .carousel__item {\\n        background: url(../static/images/video.jpg);\\n        background-size: cover; }\\n      .prime-more--Video .carousel__arrow-box {\\n        position: relative; }\\n        .prime-more--Video .carousel__arrow-box .arrow-icon {\\n          position: absolute;\\n          top: 40.5%; }\\n      .prime-more--Video .carousel__left .arrow-icon {\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);\\n        background-size: 158px auto;\\n        background-position: -79px -208px;\\n        left: .3rem;\\n        width: 13px;\\n        height: 20px;\\n        display: inline-block;\\n        cursor: pointer; }\\n      .prime-more--Video .carousel__right .arrow-icon {\\n        background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);\\n        background-size: 158px auto;\\n        background-position: -92px -208px;\\n        right: .3rem;\\n        width: 13px;\\n        height: 20px;\\n        display: inline-block;\\n        cursor: pointer; }\\n    .prime-more--Video .text-box {\\n      width: 58rem;\\n      color: #002F36;\\n      font-family: AmazonEmber; }\\n      .prime-more--Video .text-box__heading {\\n        line-height: 4.8rem;\\n        font-size: 4.8rem;\\n        font-weight: 300; }\\n      .prime-more--Video .text-box__paragraph {\\n        width: 50rem;\\n        line-height: 2.5rem;\\n        font-size: 1.8rem; }\\n      .prime-more--Video .text-box__link {\\n        line-height: 1.8rem; }\\n      .prime-more--Video .text-box__link-box .arrow-icon {\\n        margin: 0 0 .3rem .4rem; } */\", \"\"]);\n\n\n\n//# sourceURL=webpack:///./src/css/style.css?./node_modules/css-loader/dist/cjs.js");
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\n/*\n  MIT License http://www.opensource.org/licenses/mit-license.php\n  Author Tobias Koppers @sokra\n*/\n// css base code, injected by the css-loader\nmodule.exports = function (useSourceMap) {\n  var list = []; // return the list of modules as css string\n\n  list.toString = function toString() {\n    return this.map(function (item) {\n      var content = cssWithMappingToString(item, useSourceMap);\n\n      if (item[2]) {\n        return '@media ' + item[2] + '{' + content + '}';\n      } else {\n        return content;\n      }\n    }).join('');\n  }; // import a list of modules into the list\n\n\n  list.i = function (modules, mediaQuery) {\n    if (typeof modules === 'string') {\n      modules = [[null, modules, '']];\n    }\n\n    var alreadyImportedModules = {};\n\n    for (var i = 0; i < this.length; i++) {\n      var id = this[i][0];\n\n      if (id != null) {\n        alreadyImportedModules[id] = true;\n      }\n    }\n\n    for (i = 0; i < modules.length; i++) {\n      var item = modules[i]; // skip already imported module\n      // this implementation is not 100% perfect for weird media query combinations\n      // when a module is imported multiple times with different media queries.\n      // I hope this will never occur (Hey this way we have smaller bundles)\n\n      if (item[0] == null || !alreadyImportedModules[item[0]]) {\n        if (mediaQuery && !item[2]) {\n          item[2] = mediaQuery;\n        } else if (mediaQuery) {\n          item[2] = '(' + item[2] + ') and (' + mediaQuery + ')';\n        }\n\n        list.push(item);\n      }\n    }\n  };\n\n  return list;\n};\n\nfunction cssWithMappingToString(item, useSourceMap) {\n  var content = item[1] || '';\n  var cssMapping = item[3];\n\n  if (!cssMapping) {\n    return content;\n  }\n\n  if (useSourceMap && typeof btoa === 'function') {\n    var sourceMapping = toComment(cssMapping);\n    var sourceURLs = cssMapping.sources.map(function (source) {\n      return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';\n    });\n    return [content].concat(sourceURLs).concat([sourceMapping]).join('\\n');\n  }\n\n  return [content].join('\\n');\n} // Adapted from convert-source-map (MIT)\n\n\nfunction toComment(sourceMap) {\n  // eslint-disable-next-line no-undef\n  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));\n  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;\n  return '/*# ' + data + ' */';\n}\n\n//# sourceURL=webpack:///./node_modules/css-loader/dist/runtime/api.js?");
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/lib/addStyles.js":
-/*!****************************************************!*\
-  !*** ./node_modules/style-loader/lib/addStyles.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAuthor Tobias Koppers @sokra\n*/\n\nvar stylesInDom = {};\n\nvar\tmemoize = function (fn) {\n\tvar memo;\n\n\treturn function () {\n\t\tif (typeof memo === \"undefined\") memo = fn.apply(this, arguments);\n\t\treturn memo;\n\t};\n};\n\nvar isOldIE = memoize(function () {\n\t// Test for IE <= 9 as proposed by Browserhacks\n\t// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805\n\t// Tests for existence of standard globals is to allow style-loader\n\t// to operate correctly into non-standard environments\n\t// @see https://github.com/webpack-contrib/style-loader/issues/177\n\treturn window && document && document.all && !window.atob;\n});\n\nvar getTarget = function (target, parent) {\n  if (parent){\n    return parent.querySelector(target);\n  }\n  return document.querySelector(target);\n};\n\nvar getElement = (function (fn) {\n\tvar memo = {};\n\n\treturn function(target, parent) {\n                // If passing function in options, then use it for resolve \"head\" element.\n                // Useful for Shadow Root style i.e\n                // {\n                //   insertInto: function () { return document.querySelector(\"#foo\").shadowRoot }\n                // }\n                if (typeof target === 'function') {\n                        return target();\n                }\n                if (typeof memo[target] === \"undefined\") {\n\t\t\tvar styleTarget = getTarget.call(this, target, parent);\n\t\t\t// Special case to return head of iframe instead of iframe itself\n\t\t\tif (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {\n\t\t\t\ttry {\n\t\t\t\t\t// This will throw an exception if access to iframe is blocked\n\t\t\t\t\t// due to cross-origin restrictions\n\t\t\t\t\tstyleTarget = styleTarget.contentDocument.head;\n\t\t\t\t} catch(e) {\n\t\t\t\t\tstyleTarget = null;\n\t\t\t\t}\n\t\t\t}\n\t\t\tmemo[target] = styleTarget;\n\t\t}\n\t\treturn memo[target]\n\t};\n})();\n\nvar singleton = null;\nvar\tsingletonCounter = 0;\nvar\tstylesInsertedAtTop = [];\n\nvar\tfixUrls = __webpack_require__(/*! ./urls */ \"./node_modules/style-loader/lib/urls.js\");\n\nmodule.exports = function(list, options) {\n\tif (typeof DEBUG !== \"undefined\" && DEBUG) {\n\t\tif (typeof document !== \"object\") throw new Error(\"The style-loader cannot be used in a non-browser environment\");\n\t}\n\n\toptions = options || {};\n\n\toptions.attrs = typeof options.attrs === \"object\" ? options.attrs : {};\n\n\t// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>\n\t// tags it will allow on a page\n\tif (!options.singleton && typeof options.singleton !== \"boolean\") options.singleton = isOldIE();\n\n\t// By default, add <style> tags to the <head> element\n        if (!options.insertInto) options.insertInto = \"head\";\n\n\t// By default, add <style> tags to the bottom of the target\n\tif (!options.insertAt) options.insertAt = \"bottom\";\n\n\tvar styles = listToStyles(list, options);\n\n\taddStylesToDom(styles, options);\n\n\treturn function update (newList) {\n\t\tvar mayRemove = [];\n\n\t\tfor (var i = 0; i < styles.length; i++) {\n\t\t\tvar item = styles[i];\n\t\t\tvar domStyle = stylesInDom[item.id];\n\n\t\t\tdomStyle.refs--;\n\t\t\tmayRemove.push(domStyle);\n\t\t}\n\n\t\tif(newList) {\n\t\t\tvar newStyles = listToStyles(newList, options);\n\t\t\taddStylesToDom(newStyles, options);\n\t\t}\n\n\t\tfor (var i = 0; i < mayRemove.length; i++) {\n\t\t\tvar domStyle = mayRemove[i];\n\n\t\t\tif(domStyle.refs === 0) {\n\t\t\t\tfor (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();\n\n\t\t\t\tdelete stylesInDom[domStyle.id];\n\t\t\t}\n\t\t}\n\t};\n};\n\nfunction addStylesToDom (styles, options) {\n\tfor (var i = 0; i < styles.length; i++) {\n\t\tvar item = styles[i];\n\t\tvar domStyle = stylesInDom[item.id];\n\n\t\tif(domStyle) {\n\t\t\tdomStyle.refs++;\n\n\t\t\tfor(var j = 0; j < domStyle.parts.length; j++) {\n\t\t\t\tdomStyle.parts[j](item.parts[j]);\n\t\t\t}\n\n\t\t\tfor(; j < item.parts.length; j++) {\n\t\t\t\tdomStyle.parts.push(addStyle(item.parts[j], options));\n\t\t\t}\n\t\t} else {\n\t\t\tvar parts = [];\n\n\t\t\tfor(var j = 0; j < item.parts.length; j++) {\n\t\t\t\tparts.push(addStyle(item.parts[j], options));\n\t\t\t}\n\n\t\t\tstylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};\n\t\t}\n\t}\n}\n\nfunction listToStyles (list, options) {\n\tvar styles = [];\n\tvar newStyles = {};\n\n\tfor (var i = 0; i < list.length; i++) {\n\t\tvar item = list[i];\n\t\tvar id = options.base ? item[0] + options.base : item[0];\n\t\tvar css = item[1];\n\t\tvar media = item[2];\n\t\tvar sourceMap = item[3];\n\t\tvar part = {css: css, media: media, sourceMap: sourceMap};\n\n\t\tif(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});\n\t\telse newStyles[id].parts.push(part);\n\t}\n\n\treturn styles;\n}\n\nfunction insertStyleElement (options, style) {\n\tvar target = getElement(options.insertInto)\n\n\tif (!target) {\n\t\tthrow new Error(\"Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.\");\n\t}\n\n\tvar lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];\n\n\tif (options.insertAt === \"top\") {\n\t\tif (!lastStyleElementInsertedAtTop) {\n\t\t\ttarget.insertBefore(style, target.firstChild);\n\t\t} else if (lastStyleElementInsertedAtTop.nextSibling) {\n\t\t\ttarget.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);\n\t\t} else {\n\t\t\ttarget.appendChild(style);\n\t\t}\n\t\tstylesInsertedAtTop.push(style);\n\t} else if (options.insertAt === \"bottom\") {\n\t\ttarget.appendChild(style);\n\t} else if (typeof options.insertAt === \"object\" && options.insertAt.before) {\n\t\tvar nextSibling = getElement(options.insertAt.before, target);\n\t\ttarget.insertBefore(style, nextSibling);\n\t} else {\n\t\tthrow new Error(\"[Style Loader]\\n\\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\\n Must be 'top', 'bottom', or Object.\\n (https://github.com/webpack-contrib/style-loader#insertat)\\n\");\n\t}\n}\n\nfunction removeStyleElement (style) {\n\tif (style.parentNode === null) return false;\n\tstyle.parentNode.removeChild(style);\n\n\tvar idx = stylesInsertedAtTop.indexOf(style);\n\tif(idx >= 0) {\n\t\tstylesInsertedAtTop.splice(idx, 1);\n\t}\n}\n\nfunction createStyleElement (options) {\n\tvar style = document.createElement(\"style\");\n\n\tif(options.attrs.type === undefined) {\n\t\toptions.attrs.type = \"text/css\";\n\t}\n\n\tif(options.attrs.nonce === undefined) {\n\t\tvar nonce = getNonce();\n\t\tif (nonce) {\n\t\t\toptions.attrs.nonce = nonce;\n\t\t}\n\t}\n\n\taddAttrs(style, options.attrs);\n\tinsertStyleElement(options, style);\n\n\treturn style;\n}\n\nfunction createLinkElement (options) {\n\tvar link = document.createElement(\"link\");\n\n\tif(options.attrs.type === undefined) {\n\t\toptions.attrs.type = \"text/css\";\n\t}\n\toptions.attrs.rel = \"stylesheet\";\n\n\taddAttrs(link, options.attrs);\n\tinsertStyleElement(options, link);\n\n\treturn link;\n}\n\nfunction addAttrs (el, attrs) {\n\tObject.keys(attrs).forEach(function (key) {\n\t\tel.setAttribute(key, attrs[key]);\n\t});\n}\n\nfunction getNonce() {\n\tif (false) {}\n\n\treturn __webpack_require__.nc;\n}\n\nfunction addStyle (obj, options) {\n\tvar style, update, remove, result;\n\n\t// If a transform function was defined, run it on the css\n\tif (options.transform && obj.css) {\n\t    result = typeof options.transform === 'function'\n\t\t ? options.transform(obj.css) \n\t\t : options.transform.default(obj.css);\n\n\t    if (result) {\n\t    \t// If transform returns a value, use that instead of the original css.\n\t    \t// This allows running runtime transformations on the css.\n\t    \tobj.css = result;\n\t    } else {\n\t    \t// If the transform function returns a falsy value, don't add this css.\n\t    \t// This allows conditional loading of css\n\t    \treturn function() {\n\t    \t\t// noop\n\t    \t};\n\t    }\n\t}\n\n\tif (options.singleton) {\n\t\tvar styleIndex = singletonCounter++;\n\n\t\tstyle = singleton || (singleton = createStyleElement(options));\n\n\t\tupdate = applyToSingletonTag.bind(null, style, styleIndex, false);\n\t\tremove = applyToSingletonTag.bind(null, style, styleIndex, true);\n\n\t} else if (\n\t\tobj.sourceMap &&\n\t\ttypeof URL === \"function\" &&\n\t\ttypeof URL.createObjectURL === \"function\" &&\n\t\ttypeof URL.revokeObjectURL === \"function\" &&\n\t\ttypeof Blob === \"function\" &&\n\t\ttypeof btoa === \"function\"\n\t) {\n\t\tstyle = createLinkElement(options);\n\t\tupdate = updateLink.bind(null, style, options);\n\t\tremove = function () {\n\t\t\tremoveStyleElement(style);\n\n\t\t\tif(style.href) URL.revokeObjectURL(style.href);\n\t\t};\n\t} else {\n\t\tstyle = createStyleElement(options);\n\t\tupdate = applyToTag.bind(null, style);\n\t\tremove = function () {\n\t\t\tremoveStyleElement(style);\n\t\t};\n\t}\n\n\tupdate(obj);\n\n\treturn function updateStyle (newObj) {\n\t\tif (newObj) {\n\t\t\tif (\n\t\t\t\tnewObj.css === obj.css &&\n\t\t\t\tnewObj.media === obj.media &&\n\t\t\t\tnewObj.sourceMap === obj.sourceMap\n\t\t\t) {\n\t\t\t\treturn;\n\t\t\t}\n\n\t\t\tupdate(obj = newObj);\n\t\t} else {\n\t\t\tremove();\n\t\t}\n\t};\n}\n\nvar replaceText = (function () {\n\tvar textStore = [];\n\n\treturn function (index, replacement) {\n\t\ttextStore[index] = replacement;\n\n\t\treturn textStore.filter(Boolean).join('\\n');\n\t};\n})();\n\nfunction applyToSingletonTag (style, index, remove, obj) {\n\tvar css = remove ? \"\" : obj.css;\n\n\tif (style.styleSheet) {\n\t\tstyle.styleSheet.cssText = replaceText(index, css);\n\t} else {\n\t\tvar cssNode = document.createTextNode(css);\n\t\tvar childNodes = style.childNodes;\n\n\t\tif (childNodes[index]) style.removeChild(childNodes[index]);\n\n\t\tif (childNodes.length) {\n\t\t\tstyle.insertBefore(cssNode, childNodes[index]);\n\t\t} else {\n\t\t\tstyle.appendChild(cssNode);\n\t\t}\n\t}\n}\n\nfunction applyToTag (style, obj) {\n\tvar css = obj.css;\n\tvar media = obj.media;\n\n\tif(media) {\n\t\tstyle.setAttribute(\"media\", media)\n\t}\n\n\tif(style.styleSheet) {\n\t\tstyle.styleSheet.cssText = css;\n\t} else {\n\t\twhile(style.firstChild) {\n\t\t\tstyle.removeChild(style.firstChild);\n\t\t}\n\n\t\tstyle.appendChild(document.createTextNode(css));\n\t}\n}\n\nfunction updateLink (link, options, obj) {\n\tvar css = obj.css;\n\tvar sourceMap = obj.sourceMap;\n\n\t/*\n\t\tIf convertToAbsoluteUrls isn't defined, but sourcemaps are enabled\n\t\tand there is no publicPath defined then lets turn convertToAbsoluteUrls\n\t\ton by default.  Otherwise default to the convertToAbsoluteUrls option\n\t\tdirectly\n\t*/\n\tvar autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;\n\n\tif (options.convertToAbsoluteUrls || autoFixUrls) {\n\t\tcss = fixUrls(css);\n\t}\n\n\tif (sourceMap) {\n\t\t// http://stackoverflow.com/a/26603875\n\t\tcss += \"\\n/*# sourceMappingURL=data:application/json;base64,\" + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + \" */\";\n\t}\n\n\tvar blob = new Blob([css], { type: \"text/css\" });\n\n\tvar oldSrc = link.href;\n\n\tlink.href = URL.createObjectURL(blob);\n\n\tif(oldSrc) URL.revokeObjectURL(oldSrc);\n}\n\n\n//# sourceURL=webpack:///./node_modules/style-loader/lib/addStyles.js?");
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/lib/urls.js":
-/*!***********************************************!*\
-  !*** ./node_modules/style-loader/lib/urls.js ***!
-  \***********************************************/
+/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element with a data-uri to\n * embed the css on the page. This breaks all relative urls because now they are relative to a\n * bundle instead of the current page.\n *\n * One solution is to only use full urls, but that may be impossible.\n *\n * Instead, this function \"fixes\" the relative urls to be absolute according to the current page location.\n *\n * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.\n *\n */\n\nmodule.exports = function (css) {\n  // get current location\n  var location = typeof window !== \"undefined\" && window.location;\n\n  if (!location) {\n    throw new Error(\"fixUrls requires window.location\");\n  }\n\n\t// blank or null?\n\tif (!css || typeof css !== \"string\") {\n\t  return css;\n  }\n\n  var baseUrl = location.protocol + \"//\" + location.host;\n  var currentDir = baseUrl + location.pathname.replace(/\\/[^\\/]*$/, \"/\");\n\n\t// convert each url(...)\n\t/*\n\tThis regular expression is just a way to recursively match brackets within\n\ta string.\n\n\t /url\\s*\\(  = Match on the word \"url\" with any whitespace after it and then a parens\n\t   (  = Start a capturing group\n\t     (?:  = Start a non-capturing group\n\t         [^)(]  = Match anything that isn't a parentheses\n\t         |  = OR\n\t         \\(  = Match a start parentheses\n\t             (?:  = Start another non-capturing groups\n\t                 [^)(]+  = Match anything that isn't a parentheses\n\t                 |  = OR\n\t                 \\(  = Match a start parentheses\n\t                     [^)(]*  = Match anything that isn't a parentheses\n\t                 \\)  = Match a end parentheses\n\t             )  = End Group\n              *\\) = Match anything and then a close parens\n          )  = Close non-capturing group\n          *  = Match anything\n       )  = Close capturing group\n\t \\)  = Match a close parens\n\n\t /gi  = Get all matches, not the first.  Be case insensitive.\n\t */\n\tvar fixedCss = css.replace(/url\\s*\\(((?:[^)(]|\\((?:[^)(]+|\\([^)(]*\\))*\\))*)\\)/gi, function(fullMatch, origUrl) {\n\t\t// strip quotes (if they exist)\n\t\tvar unquotedOrigUrl = origUrl\n\t\t\t.trim()\n\t\t\t.replace(/^\"(.*)\"$/, function(o, $1){ return $1; })\n\t\t\t.replace(/^'(.*)'$/, function(o, $1){ return $1; });\n\n\t\t// already a full url? no change\n\t\tif (/^(#|data:|http:\\/\\/|https:\\/\\/|file:\\/\\/\\/|\\s*$)/i.test(unquotedOrigUrl)) {\n\t\t  return fullMatch;\n\t\t}\n\n\t\t// convert the url to a full url\n\t\tvar newUrl;\n\n\t\tif (unquotedOrigUrl.indexOf(\"//\") === 0) {\n\t\t  \t//TODO: should we add protocol?\n\t\t\tnewUrl = unquotedOrigUrl;\n\t\t} else if (unquotedOrigUrl.indexOf(\"/\") === 0) {\n\t\t\t// path should be relative to the base url\n\t\t\tnewUrl = baseUrl + unquotedOrigUrl; // already starts with '/'\n\t\t} else {\n\t\t\t// path should be relative to current directory\n\t\t\tnewUrl = currentDir + unquotedOrigUrl.replace(/^\\.\\//, \"\"); // Strip leading './'\n\t\t}\n\n\t\t// send back the fixed url(...)\n\t\treturn \"url(\" + JSON.stringify(newUrl) + \")\";\n\t});\n\n\t// send back the fixed css\n\treturn fixedCss;\n};\n\n\n//# sourceURL=webpack:///./node_modules/style-loader/lib/urls.js?");
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime-module.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime-module.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(/*! ./runtime */ "./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js");
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
+
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/@babel/runtime/node_modules/regenerator-runtime/runtime-module.js");
+
 
 /***/ }),
 
@@ -138,7 +929,117 @@ eval("\n/**\n * When source maps are enabled, `style-loader` uses a link element
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\nvar content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!./style.css */ \"./node_modules/css-loader/dist/cjs.js!./src/css/style.css\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(false) {}\n\n//# sourceURL=webpack:///./src/css/style.css?");
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/font/AmazonEmber_300.woff":
+/*!***************************************!*\
+  !*** ./src/font/AmazonEmber_300.woff ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/AmazonEmber_300.woff";
+
+/***/ }),
+
+/***/ "./src/font/AmazonEmber_400.woff2":
+/*!****************************************!*\
+  !*** ./src/font/AmazonEmber_400.woff2 ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/AmazonEmber_400.woff2";
+
+/***/ }),
+
+/***/ "./src/font/AmazonEmber_700.woff2":
+/*!****************************************!*\
+  !*** ./src/font/AmazonEmber_700.woff2 ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fonts/AmazonEmber_700.woff2";
+
+/***/ }),
+
+/***/ "./src/images/Card_ship_01.jpg":
+/*!*************************************!*\
+  !*** ./src/images/Card_ship_01.jpg ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/Card_ship_01.jpg";
+
+/***/ }),
+
+/***/ "./src/images/International_icon.png":
+/*!*******************************************!*\
+  !*** ./src/images/International_icon.png ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/International_icon.png";
+
+/***/ }),
+
+/***/ "./src/images/PrimeDelivery.png":
+/*!**************************************!*\
+  !*** ./src/images/PrimeDelivery.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/PrimeDelivery.png";
+
+/***/ }),
+
+/***/ "./src/images/Prime_about.png":
+/*!************************************!*\
+  !*** ./src/images/Prime_about.png ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/Prime_about.png";
+
+/***/ }),
+
+/***/ "./src/images/Sprites_icons.png":
+/*!**************************************!*\
+  !*** ./src/images/Sprites_icons.png ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/Sprites_icons.png";
+
+/***/ }),
+
+/***/ "./src/images/nav-sprite-global_icons.png":
+/*!************************************************!*\
+  !*** ./src/images/nav-sprite-global_icons.png ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/nav-sprite-global_icons.png";
+
+/***/ }),
+
+/***/ "./src/images/video.jpg":
+/*!******************************!*\
+  !*** ./src/images/video.jpg ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "images/video.jpg";
 
 /***/ }),
 
@@ -149,7 +1050,196 @@ eval("\nvar content = __webpack_require__(/*! !../../node_modules/css-loader/dis
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"index.html\";\n\n//# sourceURL=webpack:///./src/index.html?");
+module.exports = __webpack_require__.p + "index.html";
+
+/***/ }),
+
+/***/ "./src/js/Helpers/Helpers.js":
+/*!***********************************!*\
+  !*** ./src/js/Helpers/Helpers.js ***!
+  \***********************************/
+/*! exports provided: $, $All, Helpers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$", function() { return $; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "$All", function() { return $All; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Helpers", function() { return Helpers; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var $ = function $(el) {
+  return document.querySelector(el);
+};
+
+var $All = function $All(el) {
+  return document.querySelectorAll(el);
+};
+
+var Helpers =
+/*#__PURE__*/
+function () {
+  function Helpers() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Helpers);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Helpers, [{
+    key: "test",
+    value: function test() {
+      return true;
+    }
+  }, {
+    key: "addClass",
+    value: function addClass(element, className) {
+      if (element && !element.className.match(className)) {
+        element.className += ' ' + className;
+      }
+    }
+  }, {
+    key: "removeClass",
+    value: function removeClass(element, className) {
+      element.className = element.className.replace(className, '').replace('  ', ' ');
+    }
+  }, {
+    key: "on",
+    value: function on(event, els, callback) {
+      if (!els) return;
+      if (els === window) els = [els];
+      if (typeof event !== 'string') throw new Error('Type error: `event` has to be a string');
+      if (typeof callback !== 'function') throw new Error('Type error: `callback` has to be a function');
+
+      for (var i = 0; i < els.length; i++) {
+        if (els[i].addEventListener) {
+          els[i].addEventListener(event, callback, false);
+        }
+      }
+    }
+  }, {
+    key: "isElementVisible",
+    value: function isElementVisible(el) {
+      return !(el.offsetWidth === 0 && el.offsetHeight === 0);
+    }
+  }]);
+
+  return Helpers;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/js/Plans/Plans.js":
+/*!*******************************!*\
+  !*** ./src/js/Plans/Plans.js ***!
+  \*******************************/
+/*! exports provided: Plans */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Plans", function() { return Plans; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Helpers/Helpers.js */ "./src/js/Helpers/Helpers.js");
+
+
+
+
+var Plans =
+/*#__PURE__*/
+function () {
+  function Plans(Helpers) {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Plans);
+
+    this.Helpers = Helpers;
+    this.submitPage = Object(_Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_2__["$"])('.fixed-nav__submit');
+    this.initialPage = Object(_Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_2__["$"])('.fixed-nav__front');
+    this.fixedNav = Object(_Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_2__["$"])('.fixed-nav');
+    this.p_about = Object(_Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_2__["$"])('.prime-about');
+    this.btns = {
+      open: Object(_Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_2__["$All"])('[data-open=fixedNav]'),
+      close: Object(_Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_2__["$All"])('[data-close=fixedNav]')
+    };
+    this.addEvent(this.btns);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Plans, [{
+    key: "addEvent",
+    value: function addEvent(btns) {
+      this.Helpers.on('click', btns.open, this.toggleBtn.bind(this, 'open'));
+      this.Helpers.on('click', btns.close, this.toggleBtn.bind(this, 'close', this.p_about));
+      this.Helpers.on('scroll', window, this.toggleNav.bind(this, this.p_about));
+    }
+  }, {
+    key: "toggleNav",
+    value: function toggleNav(p_about) {
+      if (scrollY > p_about.offsetTop + p_about.offsetHeight / 2) {
+        this.show(this.fixedNav);
+      } else {
+        if (!this.Helpers.isElementVisible(this.submitPage)) {
+          this.hidden(this.fixedNav);
+        }
+      }
+    }
+  }, {
+    key: "toggleBtn",
+    value: function toggleBtn(btns, p_about) {
+      if (btns === 'open') {
+        this.submitPage.style.display = 'block';
+        this.initialPage.style.display = 'none';
+      }
+
+      if (btns === 'close') {
+        this.submitPage.style.display = 'none';
+        this.initialPage.style.display = 'block';
+        if (scrollY < p_about.offsetTop + p_about.offsetHeight / 2) this.fixedNav.style.opacity = '0';
+      }
+    }
+  }, {
+    key: "show",
+    value: function show(el) {
+      el.style.transform = 'translateY(0%)';
+      el.style.opacity = '1';
+    }
+  }, {
+    key: "hidden",
+    value: function hidden(el) {
+      el.style.transform = 'translateY(-200%)';
+      el.style.opacity = '0';
+    }
+  }]);
+
+  return Plans;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/js/app.js":
+/*!***********************!*\
+  !*** ./src/js/app.js ***!
+  \***********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Helpers/Helpers.js */ "./src/js/Helpers/Helpers.js");
+/* harmony import */ var _Plans_Plans_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Plans/Plans.js */ "./src/js/Plans/Plans.js");
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log('hello');
+  new _Plans_Plans_js__WEBPACK_IMPORTED_MODULE_1__["Plans"](new _Helpers_Helpers_js__WEBPACK_IMPORTED_MODULE_0__["Helpers"]());
+});
 
 /***/ }),
 
@@ -157,10 +1247,39 @@ eval("module.exports = __webpack_require__.p + \"index.html\";\n\n//# sourceURL=
 /*!*********************!*\
   !*** ./src/main.js ***!
   \*********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./css/style.css */ \"./src/css/style.css\");\n__webpack_require__(/*! ./index.html */ \"./src/index.html\");\n\n//# sourceURL=webpack:///./src/main.js?");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _js_app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/app.js */ "./src/js/app.js");
+__webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+
+__webpack_require__(/*! ./css/style.css */ "./src/css/style.css");
+
+__webpack_require__(/*! ./index.html */ "./src/index.html");
+
+__webpack_require__(/*! ./images/nav-sprite-global_icons.png */ "./src/images/nav-sprite-global_icons.png");
+
+__webpack_require__(/*! ./images/International_icon.png */ "./src/images/International_icon.png");
+
+__webpack_require__(/*! ./images/Prime_about.png */ "./src/images/Prime_about.png");
+
+__webpack_require__(/*! ./images/Card_ship_01.jpg */ "./src/images/Card_ship_01.jpg");
+
+__webpack_require__(/*! ./images/Sprites_icons.png */ "./src/images/Sprites_icons.png");
+
+__webpack_require__(/*! ./images/PrimeDelivery.png */ "./src/images/PrimeDelivery.png");
+
+__webpack_require__(/*! ./images/video.jpg */ "./src/images/video.jpg");
+
+__webpack_require__(/*! ./font/AmazonEmber_300.woff */ "./src/font/AmazonEmber_300.woff");
+
+__webpack_require__(/*! ./font/AmazonEmber_400.woff2 */ "./src/font/AmazonEmber_400.woff2");
+
+__webpack_require__(/*! ./font/AmazonEmber_700.woff2 */ "./src/font/AmazonEmber_700.woff2");
+
+
 
 /***/ }),
 
@@ -171,8 +1290,10 @@ eval("__webpack_require__(/*! ./css/style.css */ \"./src/css/style.css\");\n__we
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! ./src/main.js */\"./src/main.js\");\n\n\n//# sourceURL=webpack:///multi_./src/main.js?");
+module.exports = __webpack_require__(/*! ./src/main.js */"./src/main.js");
+
 
 /***/ })
 
 /******/ });
+//# sourceMappingURL=main-bundle.js.map
