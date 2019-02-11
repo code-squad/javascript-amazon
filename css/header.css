@@ -101,6 +101,7 @@ header {
   display: inline-block;
   position: absolute;
   min-width: 360px;
+  padding: 0 12px 0 12px;
   width: 90%;
   top: 11px;
   left: 39px;
