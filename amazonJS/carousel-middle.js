@@ -2,11 +2,8 @@ import { qs, getAjax } from "./util.js";
 
 class Carousel_middle {
   constructor(elObj, urlObj, optionObj) {
-    this.container = qs(elObj.container);
-    this.right = qs(elObj.rightBtn);
-    this.left = qs(elObj.leftBtn);
-    this.anchorEl = qs(elObj.anchorEl);
     this.ajaxDataUrl = urlObj.ajaxDataUrl;
+    Object.assign(this, { elObj, urlObj, optionObj });
     this.carouselSize = optionObj.carouselSize;
     this.transitionTime = optionObj.transitionTime;
     this.transitionPart = optionObj.transitionPart;
@@ -17,12 +14,17 @@ class Carousel_middle {
   }
 
   init() {
+    console.log(this.urlObj.ajaxDataUrl);
     getAjax(this.handler.bind(this), this.ajaxDataUrl);
     this.checkAuto();
     setTimeout(this.moveAuto.bind(this), this.carouselAutoMovingMS);
   }
 
   handler(parsedObj) {
+    this.container = qs(this.elObj.container);
+    this.right = qs(this.elObj.rightBtn);
+    this.left = qs(this.elObj.leftBtn);
+    this.anchorEl = qs(this.elObj.anchorEl);
     this.imgUrlArr = parsedObj.backgroundUrl;
     this.linkUrlArr = parsedObj.linkArr;
     this.right.addEventListener("click", this.moveRight.bind(this));
@@ -61,15 +63,18 @@ class Carousel_middle {
   }
 
   initLink(linkArr) {
-    this.anchorEl.href = `${linkArr}`
+    this.anchorEl = qs(this.elObj.anchorEl);
+    this.anchorEl.href = `${linkArr}`;
   }
-  
+
   transitionendEvent() {
     this.container.addEventListener(
       "transitionend",
       this.shuffleArr.bind(this)
     );
-    this.container.style.transition = `${this.transitionPart} ${this.transitionTime}`;
+    this.container.style.transition = `${this.transitionPart} ${
+      this.transitionTime
+    }`;
   }
 
   shuffleArr() {

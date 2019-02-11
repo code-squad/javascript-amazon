@@ -17,8 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
     },{
       carouselSize: "230px",
       carouselAutoMovingMS: 3000,
+      autoEventStopContainer: ".middle-body-carousel",
       transitionTime: "0.1s",
-      transitionPart: "all"
+      transitionPart: "all",
+      
     }
   );
 });
