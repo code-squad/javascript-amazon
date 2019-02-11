@@ -167,38 +167,38 @@ body {
     display: flex;
     justify-content: flex-start;
     font-family: arial, sans-serif;
-    margin-top: 10px;
-    margin-right: 270px; }
-  .head-nav-container .head-nav-list-el-selector {
-    padding: 5px 10px;
-    padding-right: 20px;
-    position: relative;
-    margin-right: 10px;
-    color: var(--color-basic);
-    border: var(--hover-border); }
-  .head-nav-container .head-nav-list-el-selector:hover {
-    border: var(--hover-border-active) #4f5965;
-    border-radius: 4px; }
-  .head-nav-container .head-nav-list-el-selector-word {
-    font-size: 14px;
-    font-weight: 700; }
-  .head-nav-container .head-nav-list-el {
-    margin-top: 7px;
-    margin-bottom: 4px;
-    margin-right: 10px;
-    color: #ccc;
-    font-size: 13px;
-    text-decoration: none; }
-  .head-nav-container .head-nav-list-el:hover {
-    text-decoration: underline; }
-  .head-nav-container .departments-arrow {
-    position: absolute;
-    right: 13px;
-    top: 11px; }
-  .head-nav-container .head-arrow-bright {
-    position: var(--arrow-position);
-    border: var(--arrow-border);
-    border-top: var(--arrow-border-top) #a7acb2; }
+    margin-top: 0.375rem;
+    margin-right: 16rem; }
+    .head-nav-container .head-nav-list .head-nav-list-el-selector {
+      padding: 0.3rem 0.6rem;
+      padding-right: 1.26rem;
+      position: relative;
+      margin-right: 0.6rem;
+      color: #fff;
+      border: 1px solid transparent; }
+      .head-nav-container .head-nav-list .head-nav-list-el-selector:hover {
+        border: 1px solid #4f5965;
+        border-radius: 0.25rem; }
+      .head-nav-container .head-nav-list .head-nav-list-el-selector .head-nav-list-el-selector-word {
+        font-size: 0.875rem;
+        font-weight: 700; }
+        .head-nav-container .head-nav-list .head-nav-list-el-selector .head-nav-list-el-selector-word .departments-arrow {
+          position: absolute;
+          right: 1em;
+          top: 0.8em; }
+        .head-nav-container .head-nav-list .head-nav-list-el-selector .head-nav-list-el-selector-word .head-arrow-bright {
+          position: absolute;
+          border: 0.25rem solid transparent;
+          border-top: 0.25rem solid #a7acb2; }
+    .head-nav-container .head-nav-list .head-nav-list-el {
+      margin-top: 0.5rem;
+      margin-bottom: 0.25rem;
+      margin-right: 0.62rem;
+      color: #ccc;
+      font-size: 0.75rem;
+      text-decoration: none; }
+      .head-nav-container .head-nav-list .head-nav-list-el:hover {
+        text-decoration: underline; }
   .head-nav-container .head-nav-right {
     font-family: Arial, sans-serif; }
   .head-nav-container .head-nav-right-list {
