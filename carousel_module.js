@@ -24,7 +24,6 @@ class Carousel {
     }
 
     callAjax() {
-        let ajaxElementTemplate = document.querySelector(".ajax-element-template").innerHTML;
 
         let oReq = new XMLHttpRequest();
 
@@ -32,7 +31,8 @@ class Carousel {
             if (oReq.readyState === 4 && oReq.status === 200) {
                 let imgMetadata = JSON.parse(this.responseText);
                 for (let key in imgMetadata) {
-                    document.querySelector(".carousel-unit").innerHTML += ajaxElementTemplate.replace("{url}", imgMetadata[key]["imgURL"]);
+                    document.querySelector(".carousel-unit").innerHTML += 
+                        `<li class="carousel-panels"><img src="${imgMetadata[key]["imgURL"]}" alt=""><br></li>`;
                 }
                 carouselModule.prepareSlidingEvent.call(carouselModule);
             }
@@ -42,10 +42,10 @@ class Carousel {
     }
 
     prepareSlidingEvent() {
-        document.addEventListener("DOMContentLoaded", this.arrangeCarouselLis());
-        document.addEventListener("DOMContentLoaded", this.operateClickEvent());
-        document.addEventListener("DOMContentLoaded", this.startAutoSlide());
-        document.addEventListener("DOMContentLoaded", this.triggerResumeAutoSlide());
+        this.arrangeCarouselLis();
+        this.operateClickEvent();
+        this.startAutoSlide();
+        this.triggerResumeAutoSlide();
     }
 
     arrangeCarouselLis() {
