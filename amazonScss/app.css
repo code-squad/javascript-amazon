@@ -63,11 +63,10 @@ body {
   justify-content: space-between;
   background-color: #24313f; }
   .head-search-container .head-search-icon {
-    margin: 10px 30px; }
-
-.head-search-block {
-  padding: 11px;
-  display: inline-flex; }
+    margin: 1rem 2rem; }
+  .head-search-container .head-search-block {
+    padding: 1rem;
+    display: inline-flex; }
 
 .head-search-selector {
   width: 45px;
