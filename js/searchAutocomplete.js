@@ -41,43 +41,62 @@ export default class AutoComplete {
   eventInput() {
     this.layer.inputEle.addEventListener("input", (inputNode) => {
       let inputWord = inputNode.target.value;
-      if (!inputNode || inputWord === "") return this.removeChildNode(inputNode);
-      this.closeMatchList(inputWord);
-      this.currentFocus = -1;
-      const addDiv = this.setMatchListEl();
 
-      for (let key in this.demoData) {
-        const firstWord = this.demoData[key].substr(0, inputWord.length);
-        const matchWord = inputWord.toUpperCase() === firstWord.toUpperCase();
+      fetch(`http://crong.codesquad.kr:8080/amazon/ac/${inputWord}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((json) => {
+          console.log(json)
+          let matchVal = json.suggestions;
+          if (!inputNode || inputWord === "") return this.removeChildNode(inputNode);
+          this.closeMatchList(inputWord);
+          this.currentFocus = -1;
+          const addDivEl = this.setMatchListEl();
 
-        /*
-        TODO:
-        - [] Bookmark if조건문 : 추후 Refactoring시 첫글자 만이 아닌 단어 글자들의 조건으로 변경 필요.
-        */
-        if (matchWord) {
-          let childEl = this.createChildEl({ firstWord, inputWord, key });
-          this.getMatchedClickItem(childEl);
-          addDiv.appendChild(childEl);
-          this.layer.dimmedEle.setAttribute("style", "opacity: 0.6; height: 100%;");
-        }
-      }
+          matchVal.forEach(element => {
+            let matchWords = element.value;
+            const firstWord = matchWords.substr(0, inputWord.length);
+            const checkWord = inputWord.toUpperCase() === firstWord.toUpperCase();
+
+            /* TODO:
+            [] Bookmark if조건문 : 추후 Refactoring시 첫글자 만이 아닌 단어 글자들의 조건으로 변경 필요.
+            */
+            if (checkWord) {
+              let childEl = this.createChildEl({ addDivEl, firstWord, inputWord, matchWords });
+              this.getMatchedClickItem(childEl);
+              this.layer.dimmedEle.setAttribute("style", "opacity: 0.6; height: 100%;");
+            }
+          });
+        })
     });
   }
 
-  createChildEl({ firstWord, inputWord, key }) {
-    const childDiv = document.createElement("li");
-    childDiv.innerHTML = `<strong>${firstWord}</strong>`;
-    childDiv.innerHTML += `${this.demoData[key].substr(inputWord.length)}`;
-    childDiv.innerHTML += `<input type="hidden" value=${this.demoData[key]} class="matched-item"></input>`;
-    return childDiv;
+  createChildEl({ addDivEl, firstWord, inputWord, matchWords }) {
+    addDivEl.innerHTML += `
+    <li>
+    <strong>${firstWord}</strong>${matchWords.substr(inputWord.length)}
+    <input type="hidden" value=${matchWords} class="matched-item"></input>
+    </li>
+    `.trim();
+    return addDivEl;
+  }
+
+  createChildEl2({ addDivEl, firstWord, inputWord, key }) {
+    addDivEl.innerHTML += `
+    <li>
+    <strong>${firstWord}</strong>${this.demoData[key].substr(inputWord.length)}
+    <input type="hidden" value=${this.demoData[key]} class="matched-item"></input>
+    </li>
+    `.trim();
+    return addDivEl;
   }
 
   eventKeydown() {
     this.layer.inputEle.addEventListener("keydown", (e) => {
       let x = document.getElementById("autoComplete-list");
 
-      if (x) x = x.getElementsByTagName("div");
-      console.log(x)
+      console.log(x, e.keyCode)
 
       // if (e.keyCode === 40) {
       //   this.currentFocus++;
@@ -88,7 +107,6 @@ export default class AutoComplete {
       // } else if (e.keyCode === 13) {
       //   e.preventDefault();
       //   if (this.currentFocus > -1) {
-      //     console.log(currentFocus, x)
       //     if (x) x[this.currentFocus].click();
       //   }
       // }
