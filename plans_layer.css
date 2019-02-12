@@ -1,0 +1,134 @@
+/* amazon_step4 css */
+
+/* see more plnas layer */
+
+.see-more-plans-layer {
+    width: 1366px;
+    height: 0px;
+    position: fixed;
+    top:0px;
+    z-index: 300;
+    overflow: hidden;
+    background: white; 
+    transition-property: height;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+}
+
+.close-see-more-plans-layer {
+    color: orangered;
+    font-weight: bold; 
+    font-size: 20px; 
+    text-align: center;
+    cursor: pointer;
+}
+
+.right-text {
+    position: absolute;
+    top: 20px;
+    right: 20px 
+}
+
+.center-text {
+    position: absolute;
+    width:100%;
+    bottom: 10px; 
+}
+
+/* upper plans layer 구성 */
+.upper-plans-layer-line {
+    width: 1366px;
+    height: 2px;
+    background-color: rgb(0, 167, 227);
+    position: absolute;
+    bottom: 0px; 
+    z-index: 200;
+}
+
+.upper-plans-layer {
+    width: 1366px;
+    height: 2px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 0px;
+    z-index: 100;
+    background-color: rgb(34, 46, 62);
+    color: white;
+} 
+
+.upper-plans-layer-panel {
+    width: 1366px;
+    height: 0px;
+    position: absolute;
+    bottom:0px; 
+    overflow: hidden;
+    background-color: rgb(34, 46, 62);
+    font-size: 20px;
+    color: white;
+    transition-property: height; 
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+}
+
+.upper-plans-layer-sub-panel {
+    width: 33%;
+    padding-top:25px;
+    float: left; 
+    text-align: center;
+}
+
+.no-decoration-hover:hover {
+    text-decoration: none; 
+}
+
+.expand-more-plans-layer {
+    cursor: pointer;
+}
+
+/* 스크롤 시 plans 위치, 길이 변화 */
+.position-fixed {
+    position: fixed;
+    top: 0px;
+    transition-property: height; 
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+}
+
+.position-fixed-line {
+    position: fixed;
+    top: 0px; 
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    transition-property: top; 
+}
+
+.height-layer {
+    height: 70px; 
+}
+
+.top-layer-line {
+    top: 68px; 
+    }
+
+.height-layer-panel {
+height: 68px;
+}
+
+/* see more plans 펼치고 접을 시 plans 위치 변화 */
+.position-bottom {
+    transition-property: top;
+    transition-duration: 0.5s;
+}
+
+.position-bottom-line {
+    transition-duration: 0.5s;
+}
+
+.position-bottom-line-keep {
+    transition-duration: 0.5s;
+}
+
+.position-bottom-keep {
+    transition-property: top;
+    transition-duration: 0.5s;
+}

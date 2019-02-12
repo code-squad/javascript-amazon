@@ -1,0 +1,62 @@
+/* amazon step4 
+
+carousel module css */
+
+.carousel-module-box {
+    position: absolute;
+    top: 80px;
+    width: 500px;
+    height: 200px;
+    left: 100px;
+    background: white;
+}
+
+.cover {
+    width: 180px;
+    height: 135px;
+    position: absolute;
+    z-index: 100;
+    background: white;
+}
+
+.carousel-unit {
+    width: 360px;
+    position: relative;
+    left: 0px;
+    height: 150px;
+    overflow: hidden;
+    z-index: 80;
+}
+
+.carousel-panels {
+    left: 0px;
+    list-style: none;
+    display: inline-block;
+    position: absolute;
+}
+
+.carousel-transition {
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+
+.btn-area {
+    width: 500px;
+    position: absolute;
+    top: 60px;
+    z-index:200;
+}
+
+.prev-btn {
+    position: absolute;
+    left: 100px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.next-btn {
+    position: absolute;
+    left: 430px;
+    display: inline-block;
+    cursor: pointer;
+}
