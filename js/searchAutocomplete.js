@@ -32,7 +32,8 @@ export default class AutoComplete {
   }
 
   removeChildNode(inputNode) {
-    inputNode.target.nextElementSibling.remove(inputNode.target.nextElementSibling);
+    let wordListVal = inputNode.target.nextElementSibling;
+    if (wordListVal) wordListVal.remove(wordListVal);
     this.layer.dimmedEle.setAttribute("style", "opacity: 0;");
   }
 
@@ -42,6 +43,7 @@ export default class AutoComplete {
       let inputWord = inputNode.target.value;
       if (!inputNode || inputWord === "") return this.removeChildNode(inputNode);
       this.closeMatchList(inputWord);
+      this.currentFocus = -1;
       const addDiv = this.setMatchListEl();
 
       for (let key in this.demoData) {
@@ -72,25 +74,46 @@ export default class AutoComplete {
 
   eventKeydown() {
     this.layer.inputEle.addEventListener("keydown", (e) => {
-      const x = document.getElementById("autoComplete-list");
+      let x = document.getElementById("autoComplete-list");
+
       if (x) x = x.getElementsByTagName("div");
-      if (e.keyCode === 40) {
-        currentFocus++;
-        addActive(x);
-      } else if (e.keyCode === 38) {
-        currentFocus--;
-        addActive(x);
-      } else if (e.keyCode === 13) {
-        e.preventDefault();
-        if (this.currentFocus > -1) {
-          console.log(currentFocus, x)
-          if (x) x[this.currentFocus].click();
-        }
-      }
+      console.log(x)
+
+      // if (e.keyCode === 40) {
+      //   this.currentFocus++;
+      //   this.addActive(x);
+      // } else if (e.keyCode === 38) {
+      //   this.currentFocus--;
+      //   this.addActive(x);
+      // } else if (e.keyCode === 13) {
+      //   e.preventDefault();
+      //   if (this.currentFocus > -1) {
+      //     console.log(currentFocus, x)
+      //     if (x) x[this.currentFocus].click();
+      //   }
+      // }
     });
+  }
+
+  addActive(x) {
+    if (!x) return false;
+    this.removeActive(x);
+    if (this.currentFocus >= x.length) this.currentFocus = 0;
+    if (this.currentFocus < 0) this.currentFocus = (x.length - 1);
+    /*add class "autocomplete-active":*/
+    x[this.currentFocus].classList.add("autocomplete-active");
+  }
+
+  removeActive(x) {
+    /*a function to remove the "active" class from all autocomplete items:*/
+    console.log(x);
+    for (let i = 0; i < x.length; i++) {
+      x[i].classList.remove("autocomplete-active");
+    }
   }
 
   init() {
     this.eventInput();
+    this.eventKeydown();
   }
 }
