@@ -20,7 +20,8 @@ export default class AutoComplete {
     childDiv.addEventListener("click", (e) => {
       this.layer.inputEle.value = e.target.children[1].value;
       e.target.parentNode.remove(e.target.parentNode);
-      this.layer.dimmedEle.setAttribute("style", "opacity: 0;");
+      this.layer.dimmedEle.classList.remove("nav-dimmed-cover-on");
+      this.layer.dimmedEle.classList.add("nav-dimmed-cover-off");
     });
   }
 
@@ -34,7 +35,8 @@ export default class AutoComplete {
   removeChildNode(inputNode) {
     let wordListVal = inputNode.target.nextElementSibling;
     if (wordListVal) wordListVal.remove(wordListVal);
-    this.layer.dimmedEle.setAttribute("style", "opacity: 0;");
+    this.layer.dimmedEle.classList.remove("nav-dimmed-cover-on");
+    this.layer.dimmedEle.classList.add("nav-dimmed-cover-off");
   }
 
 
@@ -47,8 +49,8 @@ export default class AutoComplete {
           return response.json();
         })
         .then((json) => {
-          console.log(json)
           let matchVal = json.suggestions;
+          if (!matchVal) return;
           if (!inputNode || inputWord === "") return this.removeChildNode(inputNode);
           this.closeMatchList(inputWord);
           this.currentFocus = -1;
@@ -65,7 +67,8 @@ export default class AutoComplete {
             if (checkWord) {
               let childEl = this.createChildEl({ addDivEl, firstWord, inputWord, matchWords });
               this.getMatchedClickItem(childEl);
-              this.layer.dimmedEle.setAttribute("style", "opacity: 0.6; height: 100%;");
+              this.layer.dimmedEle.classList.remove("nav-dimmed-cover-off");
+              this.layer.dimmedEle.classList.add("nav-dimmed-cover-on");
             }
           });
         })
@@ -77,16 +80,6 @@ export default class AutoComplete {
     <li>
     <strong>${firstWord}</strong>${matchWords.substr(inputWord.length)}
     <input type="hidden" value=${matchWords} class="matched-item"></input>
-    </li>
-    `.trim();
-    return addDivEl;
-  }
-
-  createChildEl2({ addDivEl, firstWord, inputWord, key }) {
-    addDivEl.innerHTML += `
-    <li>
-    <strong>${firstWord}</strong>${this.demoData[key].substr(inputWord.length)}
-    <input type="hidden" value=${this.demoData[key]} class="matched-item"></input>
     </li>
     `.trim();
     return addDivEl;
