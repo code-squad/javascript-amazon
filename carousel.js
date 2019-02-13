@@ -13,19 +13,18 @@ class Carousel {
 
   moveCarouselL() {
     this.carouselScrollArrowL.addEventListener('click', () => {
-      if (this.xValue === this.firstItem) this.initialVal = this.lastItem;
-      this.moveVal(this.moveL);
+      this.moveVal(this.moveL, this.firstItem, this.lastItem);
     });
   }
 
   moveCarouselR() {
     this.carouselScrollArrowR.addEventListener('click', () => {
-      if (this.xValue === this.lastItem) this.initialVal = this.firstItem;
-      this.moveVal(this.moveR);
+      this.moveVal(this.moveR, this.lastItem, this.firstItem);
     });
   }
 
-  moveVal(xVal) {
+  moveVal(xVal, startItem, endItem) {
+    if (this.xValue === startItem) this.initialVal = endItem;
     this.xValue += xVal;
     this.carouselUl.style.transition = `all, 93ms`;
     this.carouselUl.style.transform = `translateX(${this.xValue}px)`;
@@ -42,10 +41,17 @@ class Carousel {
     });
   }
 
+  moveAuto() {
+    setInterval(() => {
+      this.moveVal(this.moveR, this.lastItem, this.firstItem);
+    }, 3000);
+  }
+
   init() {
     this.getInfiniteCarousel();
     this.moveCarouselL();
     this.moveCarouselR();
+    this.moveAuto();
   }
 }
 
@@ -55,30 +61,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const carouselScrollArrowL = document.querySelector(".scroll-left");
   const carousel = new Carousel(carouselUl, carouselScrollArrowR, carouselScrollArrowL);
   carousel.init();
+  getAjax();
 });
 
-
-document.addEventListener("DOMContentLoaded", () => {
+function getAjax() {
   let ourRequest = new XMLHttpRequest();
   ourRequest.open('GET', './json.txt');
-  ourRequest.onload = function () {
+  ourRequest.addEventListener("load", () => {
     if (ourRequest.status >= 200 && ourRequest.status < 400) {
       let ourData = JSON.parse(ourRequest.responseText);
       renderHTML(ourData);
     } else {
       console.log("We connected to the server, but it returned an error.");
     }
-
-  };
-  ourRequest.send();
-});
-
-
-function renderHTML(data) {
-  const items = data.map((item) => {
-    return `<li class="carousel-li">
-              <img src="${item.imgurl}">
-            </li>`;
   })
-  document.querySelector(".carousel-ul").innerHTML = items.join("");
-};
+  ourRequest.send();
+
+  function renderHTML(data) {
+    const items = data.map((item) => {
+      return `<li class="carousel-li">
+                <img src="${item.imgurl}">
+              </li>`;
+    })
+    document.querySelector(".carousel-ul").innerHTML = items.join("");
+  };
+}
