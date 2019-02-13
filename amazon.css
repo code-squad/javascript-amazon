@@ -726,22 +726,35 @@ input[type=radio] {}
   background-position: -92px -208px;
 }
 
-.carousel-main-content {
-  float: left;
-}
-
 .carousel-ul {
   overflow: hidden;
-  width: 1120px;
+  width: 1680px;
   padding: 0;
   list-style-type: none;
-  transform: translateX(0px) translateZ(0px);
-  transition: all, 400ms;
+  transform: translateX(-280px);
+  transition: all, 93ms;
 }
 
-.carousel-li {
-  
+/* .carousel-ul.autoPlay{
+  position: relative;
+  animation-duration: 6s;
+  animation-name: myAnimation;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
 }
+
+.pausePlay {
+
+  animation-play-state : paused;
+}
+
+@keyframes myAnimation {
+  0%   {left: 0px;}
+  25%  {left: -280px;}
+  50%  {left: -560px;}
+  75%  {left: -840px;}
+  100% {left: 0px;}
+} */
 
 .carousel-li img {
   height: 210px;
