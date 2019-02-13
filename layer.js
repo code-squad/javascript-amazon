@@ -8,42 +8,27 @@ export default class PlansUI {
         this.plansLayerWrapper = document.querySelector('.plans-wrapper');
         this.header = document.querySelector('.header');
         this.plansExtender = document.querySelector('.plans-extender');
+        this.init();
+    }
+
+    init() {
+        window.addEventListener("scroll", this.controlLayer.bind(this));
+        this.closeExtenderBtn.addEventListener("click", this.controlClosingExtender.bind(this));
+        this.closeExtenderBtn2.addEventListener("click", this.controlClosingExtender.bind(this));
+        this.plansMoreBtn.addEventListener("click", this.showExtender.bind(this));
+
     }
 
     controlLayer() {
         this.isExtenderShown ? this.checkExHeader() : this.controlPlansLayer();
     }
 
-    isScrollToShowPL() {
-        return window.scrollY > 366;
+    checkExHeader() {
+        this.isHeaderShown() ? this.moveExTopToHeader() : this.moveExTopToZero();
     }
 
     isHeaderShown() {
         return window.scrollY < 99;
-    }
-
-    moveTopToZero() {
-        this.header.classList.remove('extended');
-        this.plansLayerWrapper.classList.remove('closing');
-    }
-
-    moveTopToHeader() {
-        this.header.classList.add('extended');
-        this.plansLayerWrapper.classList.add('closing');
-    }
-
-    controlPlansLayer() {
-        if (this.isScrollToShowPL()) this.plansLayer.classList.add('shown');
-        else if (this.isHeaderShown()) this.moveTopToHeader();
-        else this.closePlansLayer();
-    }
-
-    closePlansLayer() {
-        if (this.isHeaderShown()) this.moveTopToHeader();
-        else {
-            this.plansLayer.classList.remove('shown');
-            this.moveTopToZero();
-        }
     }
 
     moveExTopToHeader() {
@@ -56,8 +41,32 @@ export default class PlansUI {
         this.header.classList.remove('extended');
     }
 
-    checkExHeader() {
-        this.isHeaderShown() ? this.moveExTopToHeader() : this.moveExTopToZero();
+    controlPlansLayer() {
+        if (this.isScrollToShowPL()) this.plansLayer.classList.add('shown');
+        else if (this.isHeaderShown()) this.moveTopToHeader();
+        else this.closePlansLayer();
+    }
+
+    isScrollToShowPL() {
+        return window.scrollY > 366;
+    }
+
+    moveTopToZero() {
+        this.header.classList.remove('extended');
+        this.plansLayerWrapper.classList.remove('closing');
+    }
+
+    moveTopToHeader() {
+        this.header.classList.add('extended');
+        this.plansLayerWrapper.classList.add('closing');
+    }
+
+    closePlansLayer() {
+        if (this.isHeaderShown()) this.moveTopToHeader();
+        else {
+            this.plansLayer.classList.remove('shown');
+            this.moveTopToZero();
+        }
     }
 
     showExtender() {
@@ -66,14 +75,14 @@ export default class PlansUI {
         this.isExtenderShown = true;
     }
 
-    isExTopToHeader() {
-        return this.plansExtender.classList.contains("top");
-    }
-
     controlClosingExtender() {
         if (this.isScrollToShowPL()) this.plansLayer.classList.add('shown');
         else if (this.isExTopToHeader()) this.moveTopToHeader();
         this.closeExtender();
+    }
+
+    isExTopToHeader() {
+        return this.plansExtender.classList.contains("top");
     }
 
     closeExtender() {
