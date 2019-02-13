@@ -68,9 +68,9 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 const autoComplete = new SearchAutocomplete({
-  inputEle: $("#inputWord"),
-  autoComplete: $(".nav-search-field"),
-  dimmedEle: $(".nav-dimmed-cover-off"),
+  inputEl: $("#inputWord"),
+  navSearchEl: $(".nav-search-field"),
+  dimmedEl: $(".nav-dimmed-cover-off"),
 }, countries);
 
 layerManager.init();

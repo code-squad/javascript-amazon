@@ -1,9 +1,9 @@
 export default class AutoComplete {
   constructor(layer, data) {
     this.layer = {
-      inputEle: layer.inputEle,
-      autoCompleteEl: layer.autoComplete,
-      dimmedEle: layer.dimmedEle,
+      input: layer.inputEl,
+      navSearch: layer.navSearchEl,
+      dimmed: layer.dimmedEl,
     }
     this.demoData = data;
     this.div = document.createElement("DIV");
@@ -18,30 +18,30 @@ export default class AutoComplete {
 
   getMatchedClickItem(childDiv) {
     childDiv.addEventListener("click", (e) => {
-      this.layer.inputEle.value = e.target.children[1].value;
+      this.layer.input.value = e.target.children[1].value;
       e.target.parentNode.remove(e.target.parentNode);
-      this.layer.dimmedEle.classList.remove("nav-dimmed-cover-on");
-      this.layer.dimmedEle.classList.add("nav-dimmed-cover-off");
+      this.layer.dimmed.classList.remove("nav-dimmed-cover-on");
+      this.layer.dimmed.classList.add("nav-dimmed-cover-off");
     });
   }
 
   setMatchListEl() {
     this.div.setAttribute("id", "autoComplete-list");
     this.div.setAttribute("class", "autocomplete-items");
-    this.layer.autoCompleteEl.appendChild(this.div);
+    this.layer.navSearch.appendChild(this.div);
     return this.div;
   }
 
   removeChildNode(inputNode) {
     let wordListVal = inputNode.target.nextElementSibling;
     if (wordListVal) wordListVal.remove(wordListVal);
-    this.layer.dimmedEle.classList.remove("nav-dimmed-cover-on");
-    this.layer.dimmedEle.classList.add("nav-dimmed-cover-off");
+    this.layer.dimmed.classList.remove("nav-dimmed-cover-on");
+    this.layer.dimmed.classList.add("nav-dimmed-cover-off");
   }
 
 
   eventInput() {
-    this.layer.inputEle.addEventListener("input", (inputNode) => {
+    this.layer.input.addEventListener("input", (inputNode) => {
       let inputWord = inputNode.target.value;
 
       fetch(`http://crong.codesquad.kr:8080/amazon/ac/${inputWord}`)
@@ -67,8 +67,8 @@ export default class AutoComplete {
             if (checkWord) {
               let childEl = this.createChildEl({ addDivEl, firstWord, inputWord, matchWords });
               this.getMatchedClickItem(childEl);
-              this.layer.dimmedEle.classList.remove("nav-dimmed-cover-off");
-              this.layer.dimmedEle.classList.add("nav-dimmed-cover-on");
+              this.layer.dimmed.classList.remove("nav-dimmed-cover-off");
+              this.layer.dimmed.classList.add("nav-dimmed-cover-on");
             }
           });
         })
@@ -86,7 +86,7 @@ export default class AutoComplete {
   }
 
   eventKeydown() {
-    this.layer.inputEle.addEventListener("keydown", (e) => {
+    this.layer.input.addEventListener("keydown", (e) => {
       let x = document.getElementById("autoComplete-list");
 
       console.log(x, e.keyCode)
