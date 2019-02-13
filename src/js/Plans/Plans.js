@@ -1,5 +1,17 @@
-class Plans{
 
+class Plans{
+    constructor(helpers){
+        this.helpers = helpers;
+    }
+    showStickNav(el, target, currentTop){
+        if(currentTop < target) this.helpers.addClass(el);
+    }
+    hideStickyNav(el, target, currentTop){
+        if(currentTop > target) this.helpers.removeClass(el);
+    }
+    setEvent(els, event, callback){
+        document.addEventListener(event, callback);
+    }
 }
 
 
