@@ -291,10 +291,9 @@ departments Layer
 /* --------------------------------
 background dimmed
 -------------------------------- */
-
-#nav-dimmed-cover {
+.nav-dimmed-cover-on {
   position: absolute;
-  opacity: 0;
+  opacity: 0.6;
   top: 0;
   z-index: 3;
   background-color: #000;
@@ -302,6 +301,11 @@ background dimmed
   width: 100%;
   height: 0;
   transition: all 0.3s;
+  height: 100%;
+}
+
+.nav-dimmed-cover-off {
+  opacity: 0;
 }
 
 

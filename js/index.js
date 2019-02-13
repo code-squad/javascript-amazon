@@ -34,7 +34,7 @@ const countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "An
 ];
 
 const layerManager = new LayerManager({
-  dimmedEle: $("#nav-dimmed-cover"),
+  dimmedEle: $(".nav-dimmed-cover-off"),
   titleEle: $(".departments-title-layer"),
   departmentListEle: $(".departments-layer-list"),
   outerEle: $(".outer-layer"),
@@ -70,7 +70,7 @@ window.addEventListener("DOMContentLoaded", () => {
 const autoComplete = new SearchAutocomplete({
   inputEle: $("#inputWord"),
   autoComplete: $(".nav-search-field"),
-  dimmedEle: $("#nav-dimmed-cover"),
+  dimmedEle: $(".nav-dimmed-cover-off"),
 }, countries);
 
 layerManager.init();
