@@ -2,17 +2,18 @@ const $ = el => document.querySelector(el);
 const $All = el => document.querySelectorAll(el);
 
 class Helpers{
-    test(){
-        return true;
-    }
     addClass(element, className){
+        if(!(element instanceof HTMLElement)) throw new Error();
         if (element && !element.className.match(className)) {
             element.className += ' ' + className;
         }
+        return element;
     }
     
     removeClass(element, className){
-        element.className = element.className.replace(className, '').replace('  ', ' ');
+        if(!(element instanceof HTMLElement)) throw new Error();
+        element.classList.remove(className);
+        return element;
     }
 
     on (event, els, callback){

@@ -1,7 +1,7 @@
 .prime-about{
     height: 47.4rem;
     padding: 3rem 0 0 7rem;
-    background: url(./images/Prime_about.png);
+    background: url(../images/Prime_about.png);
     background-size: auto 47.6rem;
     background-position: left bottom;
     background-repeat: no-repeat;
@@ -134,7 +134,7 @@
                 padding-top: 3rem;
             }
             &__ship-1{
-                background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(./images/Card_ship_01.jpg);
+                background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(../images/Card_ship_01.jpg);
                 background-position: center;
             }
             .text-box{
@@ -167,7 +167,7 @@
     &--delivery{
         height: 36rem;
         padding-left: 7rem;
-        background-image: url(./images/PrimeDelivery.png);
+        background-image: url(../images/PrimeDelivery.png);
         background-size: auto 360px;
         background-position: top center;
         .text-box{
@@ -216,7 +216,7 @@
                 margin: 0 auto;
             }
             &__item{
-                background: url(./images/video.jpg);
+                background: url(../images/video.jpg);
                 background-size: cover;
             }
             &__arrow-box{

@@ -7,24 +7,18 @@ module.exports = {
     entry: {
         main: ["./src/main.js"]
     },
-    mode: "development",
     output: {
         filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "../dist"),
         publicPath: "/"
     },
+    mode: "development",
     devServer: {
         contentBase: "dist",
         overlay: true
     },
     devtool: 'source-map',
     mode : devMode ? 'development' : 'production',
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new MiniCssExtractPlugin({
-            filename: devMode ? '[name].css' : '[name].[hash].css'
-        })
-    ],
     module: {
         rules: [
             {
@@ -37,12 +31,25 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(sa|sc|c)ss$/,
+                test: /\.(gif|png|jpg|jpeg|svg)$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
-                    { loader: 'css-loader', options: { url: false, sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } }
-                ],
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "images/[name].[ext]",
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'font/'
+                    }
+                }]
             },
             {
                 test: /\.html$/,
@@ -65,27 +72,19 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(gif|png|jpg|svg)$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [
-                    {
-                        loader: "file-loader",
-                        options: {
-                            name: "images/[name].[ext]"
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(eot|ttf|woff|woff2)$/,
-                exclude: /images/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'font/'
-                    }
-                }]
+                    MiniCssExtractPlugin.loader,
+                    { loader: 'css-loader', options: { url: false, sourceMap: true } },
+                    { loader: 'sass-loader', options: { sourceMap: true } }
+                ],
             }
         ]
-    }
+    },
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new MiniCssExtractPlugin({
+            filename: devMode ? '[name].css' : '[name].[hash].css'
+        })
+    ]
 }

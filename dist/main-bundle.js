@@ -922,17 +922,6 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 
 /***/ }),
 
-/***/ "./src/css/style.css":
-/*!***************************!*\
-  !*** ./src/css/style.css ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "./src/font/AmazonEmber_300.woff":
 /*!***************************************!*\
   !*** ./src/font/AmazonEmber_300.woff ***!
@@ -940,7 +929,7 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/AmazonEmber_300.woff";
+module.exports = __webpack_require__.p + "font/AmazonEmber_300.woff";
 
 /***/ }),
 
@@ -951,7 +940,7 @@ module.exports = __webpack_require__.p + "fonts/AmazonEmber_300.woff";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/AmazonEmber_400.woff2";
+module.exports = __webpack_require__.p + "font/AmazonEmber_400.woff2";
 
 /***/ }),
 
@@ -962,7 +951,7 @@ module.exports = __webpack_require__.p + "fonts/AmazonEmber_400.woff2";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fonts/AmazonEmber_700.woff2";
+module.exports = __webpack_require__.p + "font/AmazonEmber_700.woff2";
 
 /***/ }),
 
@@ -973,7 +962,7 @@ module.exports = __webpack_require__.p + "fonts/AmazonEmber_700.woff2";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/Card_ship_01.jpg";
+module.exports = __webpack_require__.p + "images/Card_ship_01.874a6834002c74955bc936f05dd1756b.jpg";
 
 /***/ }),
 
@@ -984,7 +973,7 @@ module.exports = __webpack_require__.p + "images/Card_ship_01.jpg";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/International_icon.png";
+module.exports = __webpack_require__.p + "images/International_icon.da27e1f288478bbf9f40174ed8bad3a7.png";
 
 /***/ }),
 
@@ -995,7 +984,7 @@ module.exports = __webpack_require__.p + "images/International_icon.png";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/PrimeDelivery.png";
+module.exports = __webpack_require__.p + "images/PrimeDelivery.e76b6abc9929adaa7bcbd693c7b348e4.png";
 
 /***/ }),
 
@@ -1006,7 +995,7 @@ module.exports = __webpack_require__.p + "images/PrimeDelivery.png";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/Prime_about.png";
+module.exports = __webpack_require__.p + "images/Prime_about.e2f141ef21ca68b2a18688fc40b9d54a.png";
 
 /***/ }),
 
@@ -1017,7 +1006,7 @@ module.exports = __webpack_require__.p + "images/Prime_about.png";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/Sprites_icons.png";
+module.exports = __webpack_require__.p + "images/Sprites_icons.76cd359729b405fcde9ce5ac7690e55f.png";
 
 /***/ }),
 
@@ -1028,7 +1017,7 @@ module.exports = __webpack_require__.p + "images/Sprites_icons.png";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/nav-sprite-global_icons.png";
+module.exports = __webpack_require__.p + "images/nav-sprite-global_icons.10ad81944e66f7d60020f4a18a47e145.png";
 
 /***/ }),
 
@@ -1039,7 +1028,7 @@ module.exports = __webpack_require__.p + "images/nav-sprite-global_icons.png";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/video.jpg";
+module.exports = __webpack_require__.p + "images/video.af978f773a147235b2e13dd217da37b8.jpg";
 
 /***/ }),
 
@@ -1089,11 +1078,6 @@ function () {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Helpers, [{
-    key: "test",
-    value: function test() {
-      return true;
-    }
-  }, {
     key: "addClass",
     value: function addClass(element, className) {
       if (element && !element.className.match(className)) {
@@ -1252,34 +1236,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _js_app_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/app.js */ "./src/js/app.js");
-__webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _sass_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sass/main.scss */ "./src/sass/main.scss");
+/* harmony import */ var _sass_main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_sass_main_scss__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.html */ "./src/index.html");
+/* harmony import */ var _index_html__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_html__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _images_nav_sprite_global_icons_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./images/nav-sprite-global_icons.png */ "./src/images/nav-sprite-global_icons.png");
+/* harmony import */ var _images_nav_sprite_global_icons_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_images_nav_sprite_global_icons_png__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _images_International_icon_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./images/International_icon.png */ "./src/images/International_icon.png");
+/* harmony import */ var _images_International_icon_png__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_images_International_icon_png__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _images_Prime_about_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./images/Prime_about.png */ "./src/images/Prime_about.png");
+/* harmony import */ var _images_Prime_about_png__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_images_Prime_about_png__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _images_Card_ship_01_jpg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./images/Card_ship_01.jpg */ "./src/images/Card_ship_01.jpg");
+/* harmony import */ var _images_Card_ship_01_jpg__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_images_Card_ship_01_jpg__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _images_Sprites_icons_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./images/Sprites_icons.png */ "./src/images/Sprites_icons.png");
+/* harmony import */ var _images_Sprites_icons_png__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_images_Sprites_icons_png__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _images_PrimeDelivery_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./images/PrimeDelivery.png */ "./src/images/PrimeDelivery.png");
+/* harmony import */ var _images_PrimeDelivery_png__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_images_PrimeDelivery_png__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _images_video_jpg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./images/video.jpg */ "./src/images/video.jpg");
+/* harmony import */ var _images_video_jpg__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_images_video_jpg__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _font_AmazonEmber_300_woff__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./font/AmazonEmber_300.woff */ "./src/font/AmazonEmber_300.woff");
+/* harmony import */ var _font_AmazonEmber_300_woff__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_font_AmazonEmber_300_woff__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _font_AmazonEmber_400_woff2__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./font/AmazonEmber_400.woff2 */ "./src/font/AmazonEmber_400.woff2");
+/* harmony import */ var _font_AmazonEmber_400_woff2__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_font_AmazonEmber_400_woff2__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _font_AmazonEmber_700_woff2__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./font/AmazonEmber_700.woff2 */ "./src/font/AmazonEmber_700.woff2");
+/* harmony import */ var _font_AmazonEmber_700_woff2__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_font_AmazonEmber_700_woff2__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _js_app_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./js/app.js */ "./src/js/app.js");
 
-__webpack_require__(/*! ./css/style.css */ "./src/css/style.css");
-
-__webpack_require__(/*! ./index.html */ "./src/index.html");
-
-__webpack_require__(/*! ./images/nav-sprite-global_icons.png */ "./src/images/nav-sprite-global_icons.png");
-
-__webpack_require__(/*! ./images/International_icon.png */ "./src/images/International_icon.png");
-
-__webpack_require__(/*! ./images/Prime_about.png */ "./src/images/Prime_about.png");
-
-__webpack_require__(/*! ./images/Card_ship_01.jpg */ "./src/images/Card_ship_01.jpg");
-
-__webpack_require__(/*! ./images/Sprites_icons.png */ "./src/images/Sprites_icons.png");
-
-__webpack_require__(/*! ./images/PrimeDelivery.png */ "./src/images/PrimeDelivery.png");
-
-__webpack_require__(/*! ./images/video.jpg */ "./src/images/video.jpg");
-
-__webpack_require__(/*! ./font/AmazonEmber_300.woff */ "./src/font/AmazonEmber_300.woff");
-
-__webpack_require__(/*! ./font/AmazonEmber_400.woff2 */ "./src/font/AmazonEmber_400.woff2");
-
-__webpack_require__(/*! ./font/AmazonEmber_700.woff2 */ "./src/font/AmazonEmber_700.woff2");
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/sass/main.scss":
+/*!****************************!*\
+  !*** ./src/sass/main.scss ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
