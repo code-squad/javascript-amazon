@@ -1,47 +1,57 @@
 export default class AutoComplete {
   constructor(layer, data) {
-    this.layer = {
+    this.element = {
       input: layer.inputEl,
       navSearch: layer.navSearchEl,
       dimmed: layer.dimmedEl,
     }
     this.demoData = data;
-    this.div = document.createElement("DIV");
+    this.ul = document.createElement("ul");
     this.currentFocus;
   }
 
-  closeMatchList(inputValue, inputNode) {
-    if (inputValue) {
-      console.log(inputValue);
+  closeMatchList() {
+    const test = this.element.navSearch.children[1];
+    console.log(test);
+    // Get input element
+    let inputFiled = this.element.input;
+
+
+    // Get names ul
+    let ul = document.getElementById("autoComplete-list");
+    let allEl = ul.querySelectorAll("li");
+    console.log(ul, allEl);
+
+    for (let val of allEl) {
+      console.log(val);
     }
   }
 
   getMatchedClickItem(childDiv) {
     childDiv.addEventListener("click", (e) => {
-      this.layer.input.value = e.target.children[1].value;
+      this.element.input.value = e.target.children[1].value;
       e.target.parentNode.remove(e.target.parentNode);
-      this.layer.dimmed.classList.remove("nav-dimmed-cover-on");
-      this.layer.dimmed.classList.add("nav-dimmed-cover-off");
+      this.element.dimmed.classList.remove("nav-dimmed-cover-on");
+      this.element.dimmed.classList.add("nav-dimmed-cover-off");
     });
   }
 
   setMatchListEl() {
-    this.div.setAttribute("id", "autoComplete-list");
-    this.div.setAttribute("class", "autocomplete-items");
-    this.layer.navSearch.appendChild(this.div);
-    return this.div;
+    this.ul.setAttribute("id", "autoComplete-list");
+    this.ul.setAttribute("class", "autocomplete-items");
+    this.element.navSearch.appendChild(this.ul);
+    return this.ul;
   }
 
   removeChildNode(inputNode) {
     let wordListVal = inputNode.target.nextElementSibling;
     if (wordListVal) wordListVal.remove(wordListVal);
-    this.layer.dimmed.classList.remove("nav-dimmed-cover-on");
-    this.layer.dimmed.classList.add("nav-dimmed-cover-off");
+    this.element.dimmed.classList.remove("nav-dimmed-cover-on");
+    this.element.dimmed.classList.add("nav-dimmed-cover-off");
   }
 
-
   eventInput() {
-    this.layer.input.addEventListener("input", (inputNode) => {
+    this.element.input.addEventListener("input", (inputNode) => {
       let inputWord = inputNode.target.value;
 
       fetch(`http://crong.codesquad.kr:8080/amazon/ac/${inputWord}`)
@@ -52,14 +62,12 @@ export default class AutoComplete {
           let matchVal = json.suggestions;
           if (!matchVal) return;
           if (!inputNode || inputWord === "") return this.removeChildNode(inputNode);
-          this.closeMatchList(inputWord);
-          this.currentFocus = -1;
           const addDivEl = this.setMatchListEl();
 
           matchVal.forEach(element => {
             let matchWords = element.value;
             const firstWord = matchWords.substr(0, inputWord.length);
-            const checkWord = inputWord.toUpperCase() === firstWord.toUpperCase();
+            const checkWord = inputWord.toLowerCase() === firstWord.toLowerCase();
 
             /* TODO:
             [] Bookmark if조건문 : 추후 Refactoring시 첫글자 만이 아닌 단어 글자들의 조건으로 변경 필요.
@@ -67,10 +75,12 @@ export default class AutoComplete {
             if (checkWord) {
               let childEl = this.createChildEl({ addDivEl, firstWord, inputWord, matchWords });
               this.getMatchedClickItem(childEl);
-              this.layer.dimmed.classList.remove("nav-dimmed-cover-off");
-              this.layer.dimmed.classList.add("nav-dimmed-cover-on");
+              this.element.dimmed.classList.remove("nav-dimmed-cover-off");
+              this.element.dimmed.classList.add("nav-dimmed-cover-on");
             }
           });
+
+          this.closeMatchList();
         })
     });
   }
@@ -86,7 +96,7 @@ export default class AutoComplete {
   }
 
   eventKeydown() {
-    this.layer.input.addEventListener("keydown", (e) => {
+    this.element.input.addEventListener("keydown", (e) => {
       let x = document.getElementById("autoComplete-list");
 
       console.log(x, e.keyCode)
@@ -106,22 +116,6 @@ export default class AutoComplete {
     });
   }
 
-  addActive(x) {
-    if (!x) return false;
-    this.removeActive(x);
-    if (this.currentFocus >= x.length) this.currentFocus = 0;
-    if (this.currentFocus < 0) this.currentFocus = (x.length - 1);
-    /*add class "autocomplete-active":*/
-    x[this.currentFocus].classList.add("autocomplete-active");
-  }
-
-  removeActive(x) {
-    /*a function to remove the "active" class from all autocomplete items:*/
-    console.log(x);
-    for (let i = 0; i < x.length; i++) {
-      x[i].classList.remove("autocomplete-active");
-    }
-  }
 
   init() {
     this.eventInput();
