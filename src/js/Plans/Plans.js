@@ -1,7 +1,9 @@
-
 class Plans{
     constructor(helpers){
         this.helpers = helpers;
+    }
+    init(){
+        this.helpers.on()
     }
     showStickNav(el, target, currentTop){
         if(currentTop < target) this.helpers.addClass(el);
@@ -10,7 +12,7 @@ class Plans{
         if(currentTop > target) this.helpers.removeClass(el);
     }
     setEvent(els, event, callback){
-        document.addEventListener(event, callback);
+        this.helpers.on(els, event, callback);
     }
 }
 

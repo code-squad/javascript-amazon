@@ -4,18 +4,18 @@ import { Helpers } from '../../../src/js/Helpers/Helpers.js';
 describe("Plans", () => {
     'use strict';
     const plans = new Plans(new Helpers());
-
-    it("'new' 키워드로 호출되지 않았으면 예외를 던진다.", () => {
-        expect(() => {
-            Plans()
-        }).toThrow();
+    describe("생성", () => {
+        it("'new' 키워드로 호출되지 않았으면 예외를 던진다.", () => {
+            expect(() => {
+                Plans()
+            }).toThrow();
+        })
+        it("'new' 키워드로 호출되었으면 예외를 던지지 않는다.", () => {
+            expect(
+                new Plans()
+            ).toBeInstanceOf(Plans);
+        })
     })
-    it("'new' 키워드로 호출되었으면 예외를 던지지 않는다.", () => {
-        expect(
-            new Plans()
-        ).toBeInstanceOf(Plans);
-    })
-
     describe("showStickyNav(target)", () => {
         it("조건식을 통과하지 않으면 콜백이 실행되지 않는다.", () => {
             const displayElement = document.createElement("div");
@@ -30,6 +30,7 @@ describe("Plans", () => {
             expect(spy).toHaveBeenCalled();
         })
     })
+
     describe("hideStickyNav(target)", () => {
         it("조건식을 통과하지 않으면 콜백이 실행되지 않는다.", () => {
             const displayElement = document.createElement("div");
@@ -44,7 +45,8 @@ describe("Plans", () => {
             expect(spy).toHaveBeenCalled();
         })
     })
-    describe("setEvent()", () => {
+
+    describe("init()", () => {
         it("element에 스크롤 이벤트를 추가한다.", () => {
             const displayElement = document.createElement("div");
             const mock = jest.fn();
