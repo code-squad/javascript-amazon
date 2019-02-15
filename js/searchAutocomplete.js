@@ -10,7 +10,17 @@ export default class AutoComplete {
     this.currentFocus;
   }
 
-  closeMatchList() {
+  setDisplayOffDimmed() {
+    this.element.dimmed.classList.remove("nav-dimmed-cover-on");
+    this.element.dimmed.classList.add("nav-dimmed-cover-off");
+  }
+
+  setDisplayOnDimmed() {
+    this.element.dimmed.classList.remove("nav-dimmed-cover-off");
+    this.element.dimmed.classList.add("nav-dimmed-cover-on");
+  }
+
+  closeUnmatchedList() {
     const test = this.element.navSearch.children[1];
     console.log(test);
     // Get input element
@@ -31,8 +41,7 @@ export default class AutoComplete {
     childDiv.addEventListener("click", (e) => {
       this.element.input.value = e.target.children[1].value;
       e.target.parentNode.remove(e.target.parentNode);
-      this.element.dimmed.classList.remove("nav-dimmed-cover-on");
-      this.element.dimmed.classList.add("nav-dimmed-cover-off");
+      this.setDisplayOffDimmed();
     });
   }
 
@@ -46,8 +55,7 @@ export default class AutoComplete {
   removeChildNode(inputNode) {
     let wordListVal = inputNode.target.nextElementSibling;
     if (wordListVal) wordListVal.remove(wordListVal);
-    this.element.dimmed.classList.remove("nav-dimmed-cover-on");
-    this.element.dimmed.classList.add("nav-dimmed-cover-off");
+    this.setDisplayOffDimmed();
   }
 
   eventInput() {
@@ -75,12 +83,11 @@ export default class AutoComplete {
             if (checkWord) {
               let childEl = this.createChildEl({ addDivEl, firstWord, inputWord, matchWords });
               this.getMatchedClickItem(childEl);
-              this.element.dimmed.classList.remove("nav-dimmed-cover-off");
-              this.element.dimmed.classList.add("nav-dimmed-cover-on");
+              this.setDisplayOnDimmed();
             }
           });
 
-          this.closeMatchList();
+          this.closeUnmatchedList();
         })
     });
   }
