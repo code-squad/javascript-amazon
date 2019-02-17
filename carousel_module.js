@@ -1,4 +1,4 @@
-//amazon step5 carousel module js 
+//amazon step5 carousel module js
 
 // 슬라이드 시간 설정
 const SLIDE_TIME = {
@@ -6,21 +6,23 @@ const SLIDE_TIME = {
     RESTART: 2000
 }
 
+// 패널 너비 설정
 const CAROUSEL_PANEL_WIDTH = {
     WIDTH: 180
 }
 
-const AJAX_REQUEST_URL = {
+// fetch API request URL
+const REQUEST_URL = {
     URL: "http://localhost:3000/img_src/ajax_imgs/imgMetadata"
 }
 
 // Carousel 클래스
 class Carousel {
-    constructor(SLIDE_TIME, CAROUSEL_PANEL_WIDTH, AJAX_REQUEST_URL) {
+    constructor(SLIDE_TIME, CAROUSEL_PANEL_WIDTH, REQUEST_URL) {
         this.setSlideTime(SLIDE_TIME);
         this.WIDTH = CAROUSEL_PANEL_WIDTH.WIDTH;
-        this.URL = AJAX_REQUEST_URL.URL;
-        this.callAjax(this.URL);
+        this.URL = REQUEST_URL.URL;
+        this.fetchData(this.URL);
         this.carouselModuleBox = document.querySelector(".carousel-module-box");
         this.carouselUnit = document.querySelector(".carousel-unit");
         this.distance = 0;
@@ -31,20 +33,26 @@ class Carousel {
         this.RESTART = SLIDE_TIME.RESTART;
     }
 
-    callAjax(REQUEST_URL) {
-        let oReq = new XMLHttpRequest();
-        oReq.addEventListener("readystatechange", function () {
-            if (oReq.readyState === 4 && oReq.status === 200) {
-                let imgMetadata = JSON.parse(this.responseText);
-                for (let key in imgMetadata) {
-                    document.querySelector(".carousel-unit").innerHTML +=
-                        `<li class="carousel-panels"><img src="${imgMetadata[key]["imgURL"]}" alt=""><br></li>`;
-                }
-                carouselModule.prepareSlidingEvent.call(carouselModule);
-            }
-        });
-        oReq.open("GET", REQUEST_URL);
-        oReq.send(null);
+
+    fetchData(REQUEST_URL) {
+        fetch(REQUEST_URL, { mode: "same-origin" })
+            .then(this.checkFetchStatus.bind(this))
+            .then(this.addLiImgElemnt.bind(this));
+    }
+
+    checkFetchStatus(response) {
+        if (response.status >= 200 && response.status < 300) {
+            return Promise.resolve(response.json());
+        }
+    }
+
+    addLiImgElemnt(responseJSON) {
+        let imgMetadata = responseJSON;
+        for (let key in imgMetadata) {
+            document.querySelector(".carousel-unit").innerHTML +=
+                `<li class="carousel-panels"><img src="${imgMetadata[key]["imgURL"]}" alt=""><br></li>`;
+        }
+        this.prepareSlidingEvent();
     }
 
     prepareSlidingEvent() {
@@ -52,7 +60,7 @@ class Carousel {
         this.operateClickEvent();
         this.startAutoSlide();
         this.triggerResumeAutoSlide();
-    }
+    } 
 
     arrangeCarouselLis() {
         this.carouselPanels = document.querySelectorAll(".carousel-panels");
@@ -131,5 +139,4 @@ class Carousel {
 
 }
 
-const carouselModule = new Carousel(SLIDE_TIME, CAROUSEL_PANEL_WIDTH, AJAX_REQUEST_URL);
-
+const carouselModule = new Carousel(SLIDE_TIME, CAROUSEL_PANEL_WIDTH, REQUEST_URL);
