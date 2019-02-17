@@ -93,4 +93,9 @@ describe("Aop", () => {
             instance.method();
         })
     })
+    describe("invoke(targetObj)", () => {
+        it("targetObj의 method를 실행한다.",() => {
+            
+        })
+    })
 });

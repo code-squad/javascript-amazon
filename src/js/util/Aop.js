@@ -5,6 +5,9 @@ class Aop{
             advice.call(this, {fn:originalFn, args: arguments})
         };
     }
+    invoke(targetObj){
+        
+    }
 }
 
 export { Aop };
