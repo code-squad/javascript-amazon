@@ -1,25 +1,33 @@
 class Carousel {
-  constructor(carouselUl, carouselScrollArrowR, carouselScrollArrowL) {
-    this.carouselUl = carouselUl;
-    this.carouselScrollArrowR = carouselScrollArrowR;
-    this.carouselScrollArrowL = carouselScrollArrowL;
+  constructor() {
+    this.carouselUl = document.querySelector(".carousel-ul");
+    this.carouselScrollArrowR = document.querySelector(".scroll-right");
+    this.carouselScrollArrowL = document.querySelector(".scroll-left");
     this.lastItem = -1120;
     this.firstItem = -280;
     this.xValue = this.firstItem;
     this.moveR = -280;
     this.moveL = 280;
     this.initialVal = 0;
+    this.autoMove;
+    this.pause = 1;
+    this.replay = 0;
+    this.isPause = 0;
   }
 
   moveCarouselL() {
     this.carouselScrollArrowL.addEventListener('click', () => {
       this.moveVal(this.moveL, this.firstItem, this.lastItem);
+      this.isPause++;
+      this.stopInterval();
     });
   }
 
   moveCarouselR() {
     this.carouselScrollArrowR.addEventListener('click', () => {
       this.moveVal(this.moveR, this.lastItem, this.firstItem);
+      this.isPause++;
+      this.stopInterval();
     });
   }
 
@@ -42,9 +50,19 @@ class Carousel {
   }
 
   moveAuto() {
-    setInterval(() => {
+    this.autoMove = setInterval(() => {
       this.moveVal(this.moveR, this.lastItem, this.firstItem);
     }, 3000);
+  }
+
+  stopInterval() {
+    clearInterval(this.autoMove);
+    if (this.isPause === this.pause) {
+      setTimeout(() => {
+        this.isPause = this.replay;
+        this.moveAuto();
+      }, 3000);
+    }
   }
 
   init() {
@@ -56,10 +74,10 @@ class Carousel {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const carouselUl = document.querySelector(".carousel-ul");
-  const carouselScrollArrowR = document.querySelector(".scroll-right");
-  const carouselScrollArrowL = document.querySelector(".scroll-left");
-  const carousel = new Carousel(carouselUl, carouselScrollArrowR, carouselScrollArrowL);
+  const carousel = new Carousel({
+    timeout : 3000,
+    baseel : document.querySelector(".base-element")
+  });
   carousel.init();
   getAjax();
 });
