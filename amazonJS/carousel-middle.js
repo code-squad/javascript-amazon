@@ -1,4 +1,4 @@
-import { qs, getAjax } from "./util.js";
+import { qs } from "./util.js";
 
 class Carousel_middle {
   constructor(elObj, urlObj, optionObj) {
@@ -10,7 +10,12 @@ class Carousel_middle {
 
   init() {
     let ajaxDataUrl = this.urlObj.ajaxDataUrl;
-    getAjax(this.handler.bind(this), ajaxDataUrl);
+    // getAjax(this.handler.bind(this), ajaxDataUrl);
+    fetch(ajaxDataUrl).then(res => {
+      res.json().then(jsonData => {
+        this.handler(jsonData)
+      })
+    })
     this.checkAuto();
     setTimeout(this.moveAuto.bind(this), this.optionObj.carouselAutoMovingMS);
   }
