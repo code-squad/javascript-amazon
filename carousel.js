@@ -8,6 +8,8 @@ class Carousel {
 
         this.prevBtn = this.carousel.querySelector(".prev-btn");
         this.nextBtn = this.carousel.querySelector(".next-btn");
+        this.isBtnClicked = false;
+        this.btnClickedTime = 0;
 
         this.currentItem = 1;
         this.carouselWidth = 0;
@@ -20,6 +22,7 @@ class Carousel {
 
         this.nextBtn.addEventListener("click", () => this.moveRight());
         this.prevBtn.addEventListener("click", () => this.moveLeft());
+        this.moveCarouselAuto();
     }
 
     getData() {
@@ -39,6 +42,7 @@ class Carousel {
     }
 
     moveRight() {
+        this.recordBtnTime();
         if (this.checkLength() === 'last') this.makeInfinite(this.checkLength());
         else {
             this.currentItem++;
@@ -48,6 +52,7 @@ class Carousel {
     }
 
     moveLeft() {
+        this.recordBtnTime();
         if (this.checkLength() === 'first') this.makeInfinite(this.checkLength());
         else {
             this.currentItem--;
@@ -73,6 +78,25 @@ class Carousel {
             this.container.style.transform = `translateX(${this.carouselWidth}px)`;
         }
     }
+
+    moveCarouselAuto() {
+        let timer = setTimeout(function moveAuto() {
+            carousel.moveRight();
+            timer = setTimeout(moveAuto, 2000); 
+        }, 2000);
+    }
+
+    recordBtnTime() {
+        this.isBtnClicked = true;
+        this.btnClickedTime = new Date();
+        console.log(this.btnClickedTime)
+    }
+
+    /*
+    checkAutoCarousel() {
+        if (new Date() - this.btnClickedTime > 몇 초) 오토무빙 실행
+    }
+    */
 }
 
 const carousel = new Carousel();
