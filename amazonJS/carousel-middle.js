@@ -10,7 +10,6 @@ class Carousel_middle {
 
   init() {
     let ajaxDataUrl = this.urlObj.ajaxDataUrl;
-    // getAjax(this.handler.bind(this), ajaxDataUrl);
     fetch(ajaxDataUrl).then(res => {
       res.json().then(jsonData => {
         this.handler(jsonData)
