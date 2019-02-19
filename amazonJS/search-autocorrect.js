@@ -5,6 +5,9 @@ class Search_autocorrect {
     Object.assign(this, {elObj, formObj})
   }
 
+  init() {
+    //이벤트리스너 등록 등 여러가지
+  }
   addList() {
     // 검색어를 입력하면 자동완성결과가 노출된다. 
     // 입력창의 내용을 백스페이스로 삭제해도 일치하는 자동완성결과가 노출된다. 

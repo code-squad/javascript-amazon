@@ -1,5 +1,6 @@
 import { ScrollEvent_sticky } from "./scrollEvent-Sticky.js";
 import { Carousel_middle } from "./carousel-middle.js";
+import { Search_autocorrect } from "./search-autocorrect.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const scrollEvent_sticky = new ScrollEvent_sticky({
@@ -21,4 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
     transitionTime: "0.1s",
     transitionPart: "all",   
   });
+  const search_autocorrect = new Search_autocorrect({
+    searchWindow: '.head-search-blank',
+    autocorrectWindow: '.head-search-autocorrect-container'
+  }, {
+    formId: '#input-form'
+  })
 });
