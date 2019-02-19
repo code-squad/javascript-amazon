@@ -26,13 +26,17 @@
             <div class="head-arrow-container">
               <span class="head-arrow"></span>
             </div>
-            <div class='head-search-input-container'>
-              <input class="head-search-blank" type="text" />
-              <ul class='head-search-autocorrect-container'>
-                <li class='head-search-autocorrect-list'><span>dummy</span></li>
-                <li class='head-search-autocorrect-list'><span>dummy</span></li>
-              </ul>
-            </div>
+            <form
+              id="input-form"
+              action="http://crong.codesquad.kr:8080/amazon/ac/"
+              method="POST"
+            >
+              <div class="head-search-input-container">
+                <input class="head-search-blank" type="text" />
+                <ul class="head-search-autocorrect-container">            
+                </ul>
+              </div>
+            </form>
             <button class="head-search-button">
               <div class="search-icon"></div>
             </button>
@@ -360,12 +364,15 @@
               </div>
               <div class="carousel-hider left"></div>
               <div class="middle-body-carousel-list-container">
-                <a class="middle-body-carousel-url" href="https://www.imdb.com/title/tt5057054/episodes?season=2https://www.imdb.com/title/tt5057054/episodes?season=2">
-                <ul class="middle-body-carousel-list">
-                  <li class="middle-body-carousel-list-el index0"></li>
-                  <li class="middle-body-carousel-list-el index1"></li>
-                  <li class="middle-body-carousel-list-el index2"></li>
-                </ul>
+                <a
+                  class="middle-body-carousel-url"
+                  href="https://www.imdb.com/title/tt5057054/episodes?season=2https://www.imdb.com/title/tt5057054/episodes?season=2"
+                >
+                  <ul class="middle-body-carousel-list">
+                    <li class="middle-body-carousel-list-el index0"></li>
+                    <li class="middle-body-carousel-list-el index1"></li>
+                    <li class="middle-body-carousel-list-el index2"></li>
+                  </ul>
                 </a>
               </div>
               <div class="carousel-hider right"></div>
@@ -396,5 +403,6 @@
     </div>
     <script src="amazonJS/intersection-observer.js"></script>
     <script src="amazonJS/app.js" type="module"></script>
+    <script src="amazonJS/search-autocorrect.js" type="module"></script>
   </body>
 </html>

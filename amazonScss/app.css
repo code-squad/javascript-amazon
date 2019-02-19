@@ -297,7 +297,7 @@ body {
   width: 1440px;
   z-index: 998;
   transition: height 1s, padding 1s;
-  top: 98px; }
+  top: 6.8rem; }
 
 .top-layer-active {
   position: fixed;
