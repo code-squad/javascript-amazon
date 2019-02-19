@@ -1,17 +1,19 @@
 class Carousel {
-  constructor() {
-    this.carouselUl = document.querySelector(".carousel-ul");
-    this.carouselScrollArrowR = document.querySelector(".scroll-right");
-    this.carouselScrollArrowL = document.querySelector(".scroll-left");
-    this.lastItem = -1120;
-    this.firstItem = -280;
+  constructor(carouselArgs) {
+    this.carouselSpeed = carouselArgs['carouselSpeed'];
+    this.carouselUl = carouselArgs['carouselUl'];
+    this.carouselScrollArrowR = carouselArgs['carouselScrollArrowR'];
+    this.carouselScrollArrowL = carouselArgs['carouselScrollArrowL'];
+    this.timeout = carouselArgs['timeout'];
+    this.lastItem = carouselArgs['lastItem'];
+    this.firstItem = carouselArgs['firstItem'];
     this.xValue = this.firstItem;
-    this.moveR = -280;
-    this.moveL = 280;
-    this.initialVal = 0;
+    this.moveR = carouselArgs['moveR'];
+    this.moveL = carouselArgs['moveL'];
+    this.initialVal = carouselArgs['initialVal'];
     this.autoMove;
-    this.pause = 1;
-    this.replay = 0;
+    this.true = 1;
+    this.false = 0;
     this.isPause = 0;
   }
 
@@ -34,7 +36,7 @@ class Carousel {
   moveVal(xVal, startItem, endItem) {
     if (this.xValue === startItem) this.initialVal = endItem;
     this.xValue += xVal;
-    this.carouselUl.style.transition = `all, 93ms`;
+    this.carouselUl.style.transition = `all, ${this.carouselSpeed}ms`;
     this.carouselUl.style.transform = `translateX(${this.xValue}px)`;
   }
 
@@ -52,16 +54,16 @@ class Carousel {
   moveAuto() {
     this.autoMove = setInterval(() => {
       this.moveVal(this.moveR, this.lastItem, this.firstItem);
-    }, 3000);
+    }, this.timeout);
   }
 
   stopInterval() {
     clearInterval(this.autoMove);
-    if (this.isPause === this.pause) {
+    if (this.isPause === this.true) {
       setTimeout(() => {
-        this.isPause = this.replay;
+        this.isPause = this.false;
         this.moveAuto();
-      }, 3000);
+      }, this.timeout);
     }
   }
 
@@ -75,8 +77,16 @@ class Carousel {
 
 document.addEventListener("DOMContentLoaded", () => {
   const carousel = new Carousel({
+    carouselSpeed: 93,
     timeout : 3000,
-    baseel : document.querySelector(".base-element")
+    lastItem : -1120,
+    firstItem : -280,
+    moveR : -280,
+    moveL : 280,
+    initialVal: 0,
+    carouselUl : document.querySelector(".carousel-ul"),
+    carouselScrollArrowR : document.querySelector(".scroll-right"),
+    carouselScrollArrowL : document.querySelector(".scroll-left"),
   });
   carousel.init();
   getAjax();
