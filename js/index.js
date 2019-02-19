@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 const autoComplete = new SearchAutocomplete({
   inputEl: $("#inputWord"),
-  navSearchEl: $(".nav-search-field"),
+  navSearchEl: $(".nav-input-field"),
   dimmedEl: $(".nav-dimmed-cover-off"),
 });
 
