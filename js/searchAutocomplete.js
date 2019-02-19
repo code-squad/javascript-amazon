@@ -6,7 +6,6 @@ export default class AutoComplete {
       dimmed: layer.dimmedEl,
     }
     this.demoData = data;
-    this.ul = document.createElement("ul");
     this.currentFocus;
   }
 
@@ -20,7 +19,42 @@ export default class AutoComplete {
     this.element.dimmed.classList.add("nav-dimmed-cover-on");
   }
 
-  closeUnmatchedList() {
+  getMatchedClickItem(childDiv) {
+    childDiv.addEventListener("click", (e) => {
+      this.element.input.value = e.target.children[1].value;
+      e.target.parentNode.remove(e.target.parentNode);
+      this.setDisplayOffDimmed();
+    });
+  }
+
+  eventKeydown() {
+    this.element.input.addEventListener("keydown", (e) => {
+      let x = document.getElementById("autoComplete-list");
+
+      console.log(x, e.keyCode)
+
+      // if (e.keyCode === 40) {
+      //   this.currentFocus++;
+      //   this.addActive(x);
+      // } else if (e.keyCode === 38) {
+      //   this.currentFocus--;
+      //   this.addActive(x);
+      // } else if (e.keyCode === 13) {
+      //   e.preventDefault();
+      //   if (this.currentFocus > -1) {
+      //     if (x) x[this.currentFocus].click();
+      //   }
+      // }
+    });
+  }
+
+  removeChildNode(inputNode) {
+    let wordListVal = inputNode.target.nextElementSibling;
+    if (wordListVal) wordListVal.remove(wordListVal);
+    this.setDisplayOffDimmed();
+  }
+
+  closeUnmatchedList(inputWord) {
     const test = this.element.navSearch.children[1];
     console.log(test);
     // Get input element
@@ -33,29 +67,22 @@ export default class AutoComplete {
     console.log(ul, allEl);
 
     for (let val of allEl) {
-      console.log(val);
+      console.log(val.childNodes[3].value, inputWord);
+      if (val.childNodes[3].value.indexOf(inputWord) > -1) {
+        val.style.display = '';
+      } else {
+        val.style.display = 'none';
+      }
     }
   }
 
-  getMatchedClickItem(childDiv) {
-    childDiv.addEventListener("click", (e) => {
-      this.element.input.value = e.target.children[1].value;
-      e.target.parentNode.remove(e.target.parentNode);
-      this.setDisplayOffDimmed();
-    });
-  }
-
   setMatchListEl() {
-    this.ul.setAttribute("id", "autoComplete-list");
-    this.ul.setAttribute("class", "autocomplete-items");
-    this.element.navSearch.appendChild(this.ul);
-    return this.ul;
-  }
-
-  removeChildNode(inputNode) {
-    let wordListVal = inputNode.target.nextElementSibling;
-    if (wordListVal) wordListVal.remove(wordListVal);
-    this.setDisplayOffDimmed();
+    // []Method에서 자체 ul 생성 \ this.ul (X)
+    const ul = document.createElement("ul");
+    ul.setAttribute("id", "autoComplete-list");
+    ul.setAttribute("class", "autocomplete-items");
+    this.element.navSearch.appendChild(ul);
+    return ul;
   }
 
   eventInput() {
@@ -85,9 +112,9 @@ export default class AutoComplete {
               this.getMatchedClickItem(childEl);
               this.setDisplayOnDimmed();
             }
+            this.closeUnmatchedList(inputWord);
           });
 
-          this.closeUnmatchedList();
         })
     });
   }
@@ -102,30 +129,8 @@ export default class AutoComplete {
     return addDivEl;
   }
 
-  eventKeydown() {
-    this.element.input.addEventListener("keydown", (e) => {
-      let x = document.getElementById("autoComplete-list");
-
-      console.log(x, e.keyCode)
-
-      // if (e.keyCode === 40) {
-      //   this.currentFocus++;
-      //   this.addActive(x);
-      // } else if (e.keyCode === 38) {
-      //   this.currentFocus--;
-      //   this.addActive(x);
-      // } else if (e.keyCode === 13) {
-      //   e.preventDefault();
-      //   if (this.currentFocus > -1) {
-      //     if (x) x[this.currentFocus].click();
-      //   }
-      // }
-    });
-  }
-
-
   init() {
     this.eventInput();
-    this.eventKeydown();
+    // this.eventKeydown();
   }
 }

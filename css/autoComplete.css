@@ -40,6 +40,11 @@ input[type=submit] {
   cursor: pointer;
 }
 
+.autocomplete-field {
+  top: 45px;
+  position: relative;
+}
+
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -70,4 +75,8 @@ input[type=submit] {
 .autocomplete-active {
   background-color: DodgerBlue !important;
   color: #ffffff;
+}
+
+.unmatched-word {
+  display: none;
 }
