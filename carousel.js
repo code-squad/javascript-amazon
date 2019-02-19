@@ -4,6 +4,7 @@ class Carousel {
         this.carousel = document.querySelector(".carousel");
         this.container = this.carousel.querySelector(".carousel-container");
         this.item = this.carousel.querySelector(".carousel-item");
+        this.items = this.carousel.querySelectorAll(".carousel-item");
 
         this.prevBtn = this.carousel.querySelector(".prev-btn");
         this.nextBtn = this.carousel.querySelector(".next-btn");
@@ -38,19 +39,40 @@ class Carousel {
     }
 
     moveRight() {
-        this.currentItem++;
-        this.carouselWidth -= 180;
-        this.container.style.transform = `translateX(${this.carouselWidth}px)`;
-        
+        if (this.checkLength() === 'last') this.makeInfinite(this.checkLength());
+        else {
+            this.currentItem++;
+            this.carouselWidth -= 180;
+            this.container.style.transform = `translateX(${this.carouselWidth}px)`;
+        }
     }
 
     moveLeft() {
-        this.currentItem--;
-        this.carouselWidth += 180;
-        this.container.style.transform = `translateX(${this.carouselWidth}px)`;
-        
+        if (this.checkLength() === 'first') this.makeInfinite(this.checkLength());
+        else {
+            this.currentItem--;
+            this.carouselWidth += 180;
+            this.container.style.transform = `translateX(${this.carouselWidth}px)`;
+        }
     }
 
+    checkLength() {
+        if (this.currentItem === 1) return 'first'
+        else if (this.currentItem === this.items.length) return 'last'
+    }
+
+    makeInfinite(val) {
+        if (val === 'first') {
+            this.currentItem = this.items.length;
+            this.carouselWidth = -(180 * (this.items.length - 1));
+            console.log(this.currentItem, this.carouselWidth)
+            this.container.style.transform = `translateX(${this.carouselWidth}px)`;
+        } else if (val === 'last') {
+            this.currentItem = 1
+            this.carouselWidth = 0
+            this.container.style.transform = `translateX(${this.carouselWidth}px)`;
+        }
+    }
 }
 
 const carousel = new Carousel();
