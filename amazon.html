@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="amazon.css">
+  <link rel="stylesheet" href="carousel.css">
+
 </head>
 
 <body>
@@ -132,7 +134,6 @@
         </div>
       </div>
     </div>
-
     <div class="plan-card .plan-card-open">
       <div class="card-container" id="card-container-top">
         <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/Prime/LPS/Logo_Prime._CB503588967_.png" class="plan-bars-logo"
@@ -247,34 +248,31 @@
     <div id="prime-guide-message">
       Here's a little more about Prime that we think you'll love:
     </div>
-    <div id="prime-delivery-service">
-      <div>
-        <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeDelivery_01._CB513143338_.png"
-          alt="fast, free delivery on over 100 million items">
-      </div>
-      <div>
-        <h1>Fast, free delivery on over 100 million items</h1>
-      </div>
-      <div>
-        Super-fast shipping, tens of millions of items, and
-        <br>flexible delivery options to fit your life.
-      </div>
-      <div>
-        <a href="https://www.amazon.com/b?node=15247183011">Explore Prime Delivery</a>
-      </div>
-    </div>
-    <div id="prime-video-service">
-      <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/81FZmUh4rcL._CB481469638_.jpg"
-        alt="prime originals, exclusively on prime video">
-      <span>
-        <h2>Prime Originals, exclusively on Prime Video</h2>
-        <p>Prime Video is the only place where you can watch Prime Original series like "Jack Ryan", "Man in the High Castle",
-          "Marvelous Mrs. Maisel", and "The Romanoffs".</p>
-        <div>
-          <a href="https://www.amazon.com/gp/video/storefront/ref=dvm_us_aq_np_dhb_be_optorigt1?ie=UTF8&merchId=originals1">Explore Prime Video</a>
+    <div class="carousel-outContainer">
+      <div class="carousel-inContainer">
+        <div class="carousel-left">
+          <div class="carousel-scroll scroll-left">
+          </div>
+          <div class="carousel-viewPart">
+            <ul class="carousel-ul">
+            </ul>
+          </div>
+          <div class="carousel-scroll scroll-right">
+          </div>
         </div>
-      </span>
+        <div class="carousel-right">
+          <h2 class="carousel-text-title">Prime Originals, exclusively on Prime Video</h2>
+          <p class="carousel-text-body">Prime Video is the only place where you can watch Prime Original series like "Jack Ryan", "Man in the High Castle",
+            "Marvelous Mrs. Maisel", and "The Romanoffs".</p>
+          <div>
+            <a class="carousel-text-link" href="https://www.amazon.com/gp/video/storefront/ref=dvm_us_aq_np_dhb_be_optorigt1?ie=UTF8&merchId=originals1">Explore Prime Video</a>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+
     <div id="prime-reading-service">
       <div>
         <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeReading_01._CB513286005_.png"
@@ -490,5 +488,6 @@
   </footer>
 </body>
 <script src="./amazon.js"></script>
+<script src="./carousel.js"></script>
 
 </html>

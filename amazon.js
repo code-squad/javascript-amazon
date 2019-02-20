@@ -29,7 +29,7 @@ class PlanCardClickEvent {
     this.closeBtn.addEventListener("click", function () {
       this.planCard.classList.remove("plan-card-open");
     }.bind(this));
-    
+
     this.closeArrow.addEventListener("click", function () {
       this.planCard.classList.remove("plan-card-open");
     }.bind(this));
@@ -45,8 +45,13 @@ const closeArrow = document.querySelector(".arrow-img");
 const planBarScrollEvent = new PlanBarScrollEvent(planBar);
 const planCardClickEvent = new PlanCardClickEvent(planCard, logoArrow, closeBtn, closeArrow);
 
-planBarScrollEvent.showPlanBar();
-planCardClickEvent.openPlanCard();
-planCardClickEvent.closePlanCard();
+
+document.addEventListener("DOMContentLoaded", () => {
+  planBarScrollEvent.showPlanBar();
+  planCardClickEvent.openPlanCard();
+  planCardClickEvent.closePlanCard();
+  console.log("loaded!!");
+});
+
 
 

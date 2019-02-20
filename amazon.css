@@ -530,8 +530,7 @@ body {
   margin-left: 100px;
 }
 
-input[type=radio] {
-}
+input[type=radio] {}
 
 .card-header {
   font-weight: 300;
@@ -571,7 +570,7 @@ input[type=radio] {
   padding: 0 10px;
 }
 
-.card-closeBtn-container>div{
+.card-closeBtn-container>div {
   margin: 0 auto;
   width: 15px;
 }
