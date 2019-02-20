@@ -148,7 +148,10 @@ body {
       font-size: 1rem;
       padding: 0.6rem; }
       .head-search-input-container .head-search-autocorrect-container .head-search-autocorrect-list:hover {
-        background-color: #f8f8f8; }
+        background-color: #f8f8f8;
+        cursor: pointer; }
+      .head-search-input-container .head-search-autocorrect-container .head-search-autocorrect-list .bold {
+        color: #f3a847; }
 
 .cloaking {
   opacity: 0.5; }

@@ -13,11 +13,21 @@ class Search_autocorrect {
     this.searchWindow = qs(this.elObj.searchWindow);
     this.autocorrectWindow = qs(this.elObj.autocorrectWindow);
     this.cloakEl = qs(this.elObj.cloakElement);
+    this.cloakEl.style.transition = `opacity ${this.optionObj.hiddenWindowSec}`;
     this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
     // 이벤트리스너 등록 등 여러가지
   }
 
-  addList() {
+  addList(data) {
+    let nowData = "";
+    data.suggestions.forEach(suggestion => {
+      nowData += `<li class="head-search-autocorrect-list"><span class='bold'>${
+        data.prefix
+      }</span><span>${
+        this.highlightData(data.prefix.length, suggestion.value)
+      }</span></li>`;
+    });
+    this.autocorrectWindow.innerHTML = nowData;
     // 검색어를 입력하면 자동완성결과가 노출된다.
     // 입력창의 내용을 백스페이스로 삭제해도 일치하는 자동완성결과가 노출된다.
     // -입력이후 1초 뒤에 ajax데이터를 가져오는 방식으로 구현해보기.
@@ -25,23 +35,14 @@ class Search_autocorrect {
 
   getSearchData() {
     const inputValue = this.searchWindow.value;
-    this.autocorrectWindow.innerHTML = this.beforeData;
+    if (inputValue === "") {
+      this.revealBody();
+      this.autocorrectWindow.innerHTML = null;
+      return;
+    }
     fetch(this.formUrl + inputValue).then(res => {
       res.json().then(jsonData => {
-        let nowData = "";
-        if (jsonData.suggestions === undefined) {
-          this.revealBody();
-          this.autocorrectWindow.innerHTML = null;
-          this.beforeData = null;
-          return;
-        }
-        jsonData.suggestions.forEach(suggestion => {
-          nowData += `<li class="head-search-autocorrect-list">${
-            suggestion.value
-          }</li>`;
-        });
-        this.beforeData = nowData;
-        this.autocorrectWindow.innerHTML = nowData;
+        this.addList(jsonData);
         this.cloakBody();
       });
     });
@@ -54,10 +55,11 @@ class Search_autocorrect {
   }
 
   revealBody() {
-    this.cloakEl.classList.remove('cloaking')
+    this.cloakEl.classList.remove("cloaking");
   }
 
-  highlightData() {
+  highlightData(highlightLength, sugValue) {
+    return sugValue.slice(highlightLength);
     // 노출된 데이터 중 검색어와 일치하는 단어는 색깔이 하이라이트 되여 보여진다.
     // -검색어와 일치하는 단어 => ajax데이터의 json데이터의 .prefix
   }

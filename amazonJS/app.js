@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     stickyLayer: ".top-layer-container",
     hiddenLayer: ".prime-member-container"
   });
+
   const carousel_middle = new Carousel_middle({
     container: ".middle-body-carousel-list",
     rightBtn: ".middle-body-carousel-right-button",
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     transitionTime: "0.1s",
     transitionPart: "all",   
   });
+
   const search_autocorrect = new Search_autocorrect({
     searchWindow: '.head-search-blank',
     autocorrectWindow: '.head-search-autocorrect-container',
@@ -29,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, {
     formId: '#input-form'
   }, {
-    hiddenWindowSec: 0.5,
+    hiddenWindowSec: '0.3s',
 
   })
 });
