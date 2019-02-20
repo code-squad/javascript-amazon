@@ -26,7 +26,6 @@ class Search_autocorrect {
   getSearchData() {
     const inputValue = this.searchWindow.value;
     this.autocorrectWindow.innerHTML = this.beforeData;
-    console.log(this.beforeData);
     fetch(this.formUrl + inputValue).then(res => {
       res.json().then(jsonData => {
         let nowData = ''

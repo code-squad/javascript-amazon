@@ -24,8 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const search_autocorrect = new Search_autocorrect({
     searchWindow: '.head-search-blank',
-    autocorrectWindow: '.head-search-autocorrect-container'
+    autocorrectWindow: '.head-search-autocorrect-container',
+    hiddenWindow: '.wholeBodyContainer'
   }, {
     formId: '#input-form'
+  }, {
+    hiddenWindowSec: 0.5,
+    
   })
 });
