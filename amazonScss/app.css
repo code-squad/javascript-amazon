@@ -150,6 +150,9 @@ body {
       .head-search-input-container .head-search-autocorrect-container .head-search-autocorrect-list:hover {
         background-color: #f8f8f8; }
 
+.cloaking {
+  opacity: 0.5; }
+
 .head-arrow-bright {
   position: absolute;
   border: 0.25rem solid transparent;

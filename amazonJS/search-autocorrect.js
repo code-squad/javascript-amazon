@@ -1,8 +1,8 @@
 import { qs } from "./util.js";
 
 class Search_autocorrect {
-  constructor(elObj, formObj) {
-    Object.assign(this, { elObj, formObj });
+  constructor(elObj, formObj, optionObj) {
+    Object.assign(this, { elObj, formObj, optionObj });
     this.init();
   }
 
@@ -12,12 +12,12 @@ class Search_autocorrect {
     this.formUrl = this.formObj.action;
     this.searchWindow = qs(this.elObj.searchWindow);
     this.autocorrectWindow = qs(this.elObj.autocorrectWindow);
-    this.searchWindow.addEventListener('keyup', this.getSearchData.bind(this));
-    //이벤트리스너 등록 등 여러가지
+    this.cloakEl = qs(this.elObj.cloakElement);
+    this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
+    // 이벤트리스너 등록 등 여러가지
   }
 
   addList() {
-    
     // 검색어를 입력하면 자동완성결과가 노출된다.
     // 입력창의 내용을 백스페이스로 삭제해도 일치하는 자동완성결과가 노출된다.
     // -입력이후 1초 뒤에 ajax데이터를 가져오는 방식으로 구현해보기.
@@ -28,21 +28,33 @@ class Search_autocorrect {
     this.autocorrectWindow.innerHTML = this.beforeData;
     fetch(this.formUrl + inputValue).then(res => {
       res.json().then(jsonData => {
-        let nowData = ''
-        if(jsonData.suggestions === undefined) {
+        let nowData = "";
+        if (jsonData.suggestions === undefined) {
+          this.revealBody();
           this.autocorrectWindow.innerHTML = null;
           this.beforeData = null;
           return;
         }
         jsonData.suggestions.forEach(suggestion => {
-          nowData += `<li class="head-search-autocorrect-list">${suggestion.value}</li>`
-        })
+          nowData += `<li class="head-search-autocorrect-list">${
+            suggestion.value
+          }</li>`;
+        });
         this.beforeData = nowData;
         this.autocorrectWindow.innerHTML = nowData;
-      })
+        this.cloakBody();
+      });
     });
     // Ajax를 통해서 데이터를 가져온다. 하지만 연속된키보드
-    //입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
+    // 입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
+  }
+
+  cloakBody() {
+    this.cloakEl.classList.add("cloaking");
+  }
+
+  revealBody() {
+    this.cloakEl.classList.remove('cloaking')
   }
 
   highlightData() {
