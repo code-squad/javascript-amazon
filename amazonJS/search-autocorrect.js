@@ -7,38 +7,18 @@ class Search_autocorrect {
   }
 
   init() {
-    this.beforeData = null;
     this.formObj = qs(this.formObj.formId);
     this.formUrl = this.formObj.action;
     this.searchWindow = qs(this.elObj.searchWindow);
     this.autocorrectWindow = qs(this.elObj.autocorrectWindow);
-    this.cloakEl = qs(this.elObj.cloakElement);
-    this.cloakEl.style.transition = `opacity ${this.optionObj.hiddenWindowSec}`;
+    this.toBeCloakedEl = qs(this.elObj.toBeCloakedElement);
+    this.toBeCloakedEl.style.transition = `opacity ${this.optionObj.cloakingTransitionTime}`;
+
     this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
-    this.autocorrectWindow.addEventListener("click", this.addUrl.bind(this));
+    this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
     // 이벤트리스너 등록 등 여러가지
   }
-
-  addList(jsonData) {
-    let nowData = "";
-    if (jsonData.suggestions === undefined) return;
-    jsonData.suggestions.forEach(suggestion => {
-      nowData += `<li data-value="${suggestion.value}"
-      data-reftag="${suggestion.refTag}"
-      data-prefix="${jsonData.prefix}"
-      class="head-search-autocorrect-list"><span class='bold'>${
-        jsonData.prefix
-      }</span><span>${this.highlightData(
-        jsonData.prefix.length,
-        suggestion.value
-      )}</span></li>`;
-    });
-    this.autocorrectWindow.innerHTML = nowData;
-    // 검색어를 입력하면 자동완성결과가 노출된다.
-    // 입력창의 내용을 백스페이스로 삭제해도 일치하는 자동완성결과가 노출된다.
-    // -입력이후 1초 뒤에 ajax데이터를 가져오는 방식으로 구현해보기.
-  }
-
+  
   getSearchData() {
     const inputValue = this.searchWindow.value;
     if (inputValue === "") {
@@ -55,13 +35,31 @@ class Search_autocorrect {
     // Ajax를 통해서 데이터를 가져온다. 하지만 연속된키보드
     // 입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
   }
-
-  cloakBody() {
-    this.cloakEl.classList.add("cloaking");
+  addList(jsonData) {
+    let nowData = "";
+    if (jsonData.suggestions === undefined) return;
+    jsonData.suggestions.forEach(suggestion => {
+      nowData += `<li
+      data-value="${suggestion.value}"
+      data-reftag="${suggestion.refTag}"
+      data-prefix="${jsonData.prefix}"
+      class="head-search-autocorrect-list">
+      <span class='bold'>${jsonData.prefix}</span><span>${this.highlightData(
+        jsonData.prefix.length,
+        suggestion.value
+      )}</span></li>`;
+    });
+    this.autocorrectWindow.innerHTML = nowData;
+    // 검색어를 입력하면 자동완성결과가 노출된다.
+    // 입력창의 내용을 백스페이스로 삭제해도 일치하는 자동완성결과가 노출된다.
+    // -입력이후 1초 뒤에 ajax데이터를 가져오는 방식으로 구현해보기.
   }
 
+  cloakBody() {
+    this.toBeCloakedEl.classList.add("cloaking");
+  }
   revealBody() {
-    this.cloakEl.classList.remove("cloaking");
+    this.toBeCloakedEl.classList.remove("cloaking");
   }
 
   highlightData(highlightLength, sugValue) {
@@ -70,7 +68,7 @@ class Search_autocorrect {
     // -검색어와 일치하는 단어 => ajax데이터의 json데이터의 .prefix
   }
 
-  goAddress(e) {
+  addUrl(e) {
     const parentTargetData = e.target.parentNode.dataset;
     const targetData = e.target.dataset;
     if (e.target.tagName === "SPAN") {
@@ -87,10 +85,11 @@ class Search_autocorrect {
       `amazon-search?ref=${refTag}&field-keywords=${keywords}&prefix=${prefix}`
     );
   }
-  addUrl(e) {
-    this.formObj.action = this.goAddress(e);
+  goAddress(e) {
+    this.formObj.action = this.addUrl(e);
     this.formObj.submit();
     // 자동완성 결과는 고유한 URL구조를 가진다.
+    // 클릭이 될때 url을 만들고 이동하도록 구현
   }
   makeKeywords(data) {
     const urlData = data

@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const search_autocorrect = new Search_autocorrect({
     searchWindow: '.head-search-blank',
     autocorrectWindow: '.head-search-autocorrect-container',
-    cloakElement: '.wholeBodyContainer'
+    toBeCloakedElement: '.wholeBodyContainer'
   }, {
     formId: '#input-form'
   }, {
-    hiddenWindowSec: '0.3s',
+    cloakingTransitionTime: '0.3s',
   })
 });
