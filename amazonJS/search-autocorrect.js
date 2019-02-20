@@ -15,7 +15,7 @@ class Search_autocorrect {
     this.cloakEl = qs(this.elObj.cloakElement);
     this.cloakEl.style.transition = `opacity ${this.optionObj.hiddenWindowSec}`;
     this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
-    this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
+    this.autocorrectWindow.addEventListener("click", this.addUrl.bind(this));
     // 이벤트리스너 등록 등 여러가지
   }
 
@@ -24,7 +24,7 @@ class Search_autocorrect {
     if (jsonData.suggestions === undefined) return;
     jsonData.suggestions.forEach(suggestion => {
       nowData += `<li data-value="${suggestion.value}"
-      data-refTag="${suggestion.refTag}"
+      data-reftag="${suggestion.refTag}"
       data-prefix="${jsonData.prefix}"
       class="head-search-autocorrect-list"><span class='bold'>${
         jsonData.prefix
@@ -71,19 +71,28 @@ class Search_autocorrect {
   }
 
   goAddress(e) {
-    const parentTarget = e.target.parentNode.dataset
-    const target = e.target.dataset
+    const parentTargetData = e.target.parentNode.dataset;
+    const targetData = e.target.dataset;
     if (e.target.tagName === "SPAN") {
-      const url = this.makeUrlData(parentTarget.value);
-      
-      return;
+      return this.makeUrl(parentTargetData);
     }
-    
+    return this.makeUrl(targetData);
   }
-  addUrl() {
+  makeUrl(target) {
+    const keywords = this.makeKeywords(target.value);
+    const refTag = target.reftag;
+    const prefix = target.prefix;
+    return (
+      this.formUrl +
+      `amazon-search?ref=${refTag}&field-keywords=${keywords}&prefix=${prefix}`
+    );
+  }
+  addUrl(e) {
+    this.formObj.action = this.goAddress(e);
+    this.formObj.submit();
     // 자동완성 결과는 고유한 URL구조를 가진다.
   }
-  makeUrlData(data) {
+  makeKeywords(data) {
     const urlData = data
       .split("")
       .map(letter => {
