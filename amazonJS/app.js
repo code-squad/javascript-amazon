@@ -32,6 +32,5 @@ document.addEventListener("DOMContentLoaded", () => {
     formId: '#input-form'
   }, {
     hiddenWindowSec: '0.3s',
-
   })
 });

@@ -15,17 +15,23 @@ class Search_autocorrect {
     this.cloakEl = qs(this.elObj.cloakElement);
     this.cloakEl.style.transition = `opacity ${this.optionObj.hiddenWindowSec}`;
     this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
+    this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
     // 이벤트리스너 등록 등 여러가지
   }
 
-  addList(data) {
+  addList(jsonData) {
     let nowData = "";
-    data.suggestions.forEach(suggestion => {
-      nowData += `<li class="head-search-autocorrect-list"><span class='bold'>${
-        data.prefix
-      }</span><span>${
-        this.highlightData(data.prefix.length, suggestion.value)
-      }</span></li>`;
+    if (jsonData.suggestions === undefined) return;
+    jsonData.suggestions.forEach(suggestion => {
+      nowData += `<li data-value="${suggestion.value}"
+      data-refTag="${suggestion.refTag}"
+      data-prefix="${jsonData.prefix}"
+      class="head-search-autocorrect-list"><span class='bold'>${
+        jsonData.prefix
+      }</span><span>${this.highlightData(
+        jsonData.prefix.length,
+        suggestion.value
+      )}</span></li>`;
     });
     this.autocorrectWindow.innerHTML = nowData;
     // 검색어를 입력하면 자동완성결과가 노출된다.
@@ -40,7 +46,7 @@ class Search_autocorrect {
       this.autocorrectWindow.innerHTML = null;
       return;
     }
-    fetch(this.formUrl + inputValue).then(res => {
+    fetch(this.formUrl + "amazon/ac/" + inputValue).then(res => {
       res.json().then(jsonData => {
         this.addList(jsonData);
         this.cloakBody();
@@ -64,8 +70,30 @@ class Search_autocorrect {
     // -검색어와 일치하는 단어 => ajax데이터의 json데이터의 .prefix
   }
 
+  goAddress(e) {
+    const parentTarget = e.target.parentNode.dataset
+    const target = e.target.dataset
+    if (e.target.tagName === "SPAN") {
+      const url = this.makeUrlData(parentTarget.value);
+      
+      return;
+    }
+    
+  }
   addUrl() {
     // 자동완성 결과는 고유한 URL구조를 가진다.
+  }
+  makeUrlData(data) {
+    const urlData = data
+      .split("")
+      .map(letter => {
+        if (letter === " ") {
+          return "+";
+        }
+        return letter;
+      })
+      .join("");
+    return urlData;
   }
 
   moveListUpDown() {

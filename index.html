@@ -16,6 +16,11 @@
         </div>
         <div class="head-search">
           <div class="head-search-block">
+            <form
+              id="input-form"
+              action="http://crong.codesquad.kr:8080"
+              method="POST"
+            >
             <select class="head-search-selector" name="" id="">
               <option value="">All</option>
               <option value="">arts & craft</option>
@@ -26,20 +31,15 @@
             <div class="head-arrow-container">
               <span class="head-arrow"></span>
             </div>
-            <form
-              id="input-form"
-              action="http://crong.codesquad.kr:8080/amazon/ac/"
-              method="POST"
-            >
               <div class="head-search-input-container">
                 <input class="head-search-blank" type="text" />
                 <ul class="head-search-autocorrect-container">            
                 </ul>
               </div>
-            </form>
             <button class="head-search-button">
               <div class="search-icon"></div>
             </button>
+            </form>
           </div>
         </div>
         <div class="head-search-right">

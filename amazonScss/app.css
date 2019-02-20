@@ -132,6 +132,9 @@ body {
 .head-search-right {
   margin-top: 1rem; }
 
+#input-form {
+  display: flex; }
+
 .head-search-input-container {
   position: relative; }
   .head-search-input-container .head-search-autocorrect-container {
