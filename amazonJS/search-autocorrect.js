@@ -3,6 +3,7 @@ import { qs } from "./util.js";
 class Search_autocorrect {
   constructor(elObj, formObj, optionObj) {
     Object.assign(this, { elObj, formObj, optionObj });
+    this.autocorrectListIndex = -1
     this.init();
   }
 
@@ -14,7 +15,7 @@ class Search_autocorrect {
     this.toBeCloakedEl = qs(this.elObj.toBeCloakedElement);
     this.toBeCloakedEl.style.transition = `opacity ${
       this.optionObj.cloakingTransitionTime
-    }`;
+    }`; 
 
     this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
     this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
@@ -24,6 +25,7 @@ class Search_autocorrect {
   getSearchData(e) {
     if (this.isUpDownArrowOrEnter(e.key)) return this.moveListUpDown(e);
     this.autocorrectLists = this.autocorrectWindow.getElementsByClassName(this.elObj.autocorrectLists);
+    this.autocorrectListIndex = -1
     const inputValue = this.searchWindow.value;
     if (inputValue === "") {
       this.revealBody();
@@ -40,6 +42,7 @@ class Search_autocorrect {
     // 입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
   }
   isUpDownArrowOrEnter(eventKey) {
+    //keycode찾기
     const determinKey = ['ArrowUp', 'ArrowDown', 'Enter'];
     const ret = determinKey.some(v => v === eventKey);
     return ret
@@ -113,12 +116,25 @@ class Search_autocorrect {
 
   moveListUpDown(e) {
     if(e.key === 'ArrowUp') {
-      console.log('hi!')
+      if(this.autocorrectListIndex < 0) return;
+      this.autocorrectListIndex--;
+      if(this.autocorrectListIndex === -1) {
+        this.autocorrectLists[this.autocorrectListIndex+1].style = 'background-color:#fff;';
+        return
+      }
+      this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
+      this.autocorrectLists[this.autocorrectListIndex+1].style = 'background-color:#fff;';
     } else if(e.key === 'ArrowDown') {
-
+      this.autocorrectListIndex++;
+      if(this.autocorrectListIndex === 0) {
+        this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
+        return;
+      }
+      this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
+      this.autocorrectLists[this.autocorrectListIndex-1].style = 'background-color:#fff;';
     } else {
-      this.formObj.action = this.addUrl(e);
-      this.formObj.submit();
+      console.log(this.autocorrectLists[this.autocorrectListIndex].dataset.keywords);
+      
     }
   }
   changeListBackgourndColor() {
