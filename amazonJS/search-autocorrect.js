@@ -125,6 +125,7 @@ class Search_autocorrect {
       this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
       this.autocorrectLists[this.autocorrectListIndex+1].style = 'background-color:#fff;';
     } else if(e.key === 'ArrowDown') {
+      if(this.autocorrectListIndex > this.autocorrectLists.length-2) return;
       this.autocorrectListIndex++;
       if(this.autocorrectListIndex === 0) {
         this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
@@ -133,12 +134,17 @@ class Search_autocorrect {
       this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
       this.autocorrectLists[this.autocorrectListIndex-1].style = 'background-color:#fff;';
     } else {
-      console.log(this.autocorrectLists[this.autocorrectListIndex].dataset.keywords);
-      
+      this.searchWindow.value = this.autocorrectLists[this.autocorrectListIndex].dataset.value;
+      this.revealBody();
+      this.autocorrectWindow.innerHTML = null;
+      return;
     }
   }
-  changeListBackgourndColor() {
+  changeListBackgourndColorUp() {
     // 자동완성 결과를 키보드 방향키로 이동시에 선택부분의 배경색은 변경된다.
+  }
+  changeListBackgourndColorDown() {
+    
   }
   addInputValue() {
     // 선택된 상태에서 엔터키를 입력하면 해당검색어가 위쪽 검색input창에 추가된다.  동시에 검색결과창은 사라진다.
