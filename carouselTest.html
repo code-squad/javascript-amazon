@@ -15,10 +15,16 @@
         height: 135px;
         overflow: hidden;
         float: left;
+        opacity: 0;
     }
 
     .carousel-container {
         display: flex;
+        /* transition: all 0.5s ease-out; */
+    }
+
+    .carousel-container.cloned {
+        transition: all 0.5s ease-out;
     }
 
     .carousel-txt {
@@ -52,7 +58,6 @@
         margin: 10px;
         text-align: left;
     }
-
 </style>
 
 <body>
@@ -88,7 +93,7 @@
             <h2 class = "carousel-title">Prime Originals, exclusively on Prime Video</h2>
             <div class = "carousel-txt1">Prime Video is the only place where you can watch Prime Original series like </div>
             <div class = "carousel-txt2">"The Marvelous Mrs. Maisel", "Tom Clancy's Jack Ryan", "Homecoming", and "The Man in the High Castle".</div>
-            <div class="carousel-txt-link">Explore Prime Video</div>
+            <div class="carousel-txt-link"> <a href="#">Explore Prime Video</a></div>
         </div>
     </div>
 <script src="./carousel.js"></script>

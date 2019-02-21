@@ -18,33 +18,48 @@ class Carousel {
     }
 
     init() {
-        this.getData();
-
-        this.nextBtn.addEventListener("click", () => this.moveRight());
-        this.prevBtn.addEventListener("click", () => this.moveLeft());
-        this.moveCarouselAuto();
-    }
-
-    getData() {
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", function () {
-            const obj = JSON.parse(this.responseText);
-            carousel.pushData(obj.src);
+        // this.getData();
+        this.nextBtn.addEventListener("click", () => {
+            this.isBtnClicked = true;
+            this.recordBtnTime();
+            this.moveRight();
         });
-        oReq.open("GET", "./carousel_data.json");
-        oReq.send();
+
+        this.prevBtn.addEventListener("click", () => {
+            this.isBtnClicked = true;
+            this.recordBtnTime();
+            this.moveLeft()
+        });
+
+        this.makeClone();
+
+        this.container.style.transform = `translateX(-180px)`;
+        this.carousel.style.opacity = 1;
+
+        this.container.addEventListener("transitionend", this.moveCarouselAuto());
+        this.checkAutoCarousel();
     }
 
-    pushData(arr) {
-        for (let i = 0; i < arr.length; i++) {
-            this.dataList.push(arr[i]);
-        }
-    }
+    // getData() {
+    //     var oReq = new XMLHttpRequest();
+    //     oReq.addEventListener("load", function () {
+    //         const obj = JSON.parse(this.responseText);
+    //         this.pushData(obj.src).bind(this);
+    //     });
+    //     oReq.open("GET", "./carousel_data.json");
+    //     oReq.send();
+    // }
+
+    // pushData(arr) {
+    //     for (let i = 0; i < arr.length; i++) {
+    //         this.dataList.push(arr[i]);
+    //     }
+    // }
 
     moveRight() {
-        this.recordBtnTime();
-        if (this.checkLength() === 'last') this.makeInfinite(this.checkLength());
-        else {
+        if (this.checkLength() === 'last') {
+            this.makeInfinite(this.checkLength())
+        } else {
             this.currentItem++;
             this.carouselWidth -= 180;
             this.container.style.transform = `translateX(${this.carouselWidth}px)`;
@@ -52,111 +67,117 @@ class Carousel {
     }
 
     moveLeft() {
-        this.recordBtnTime();
         if (this.checkLength() === 'first') this.makeInfinite(this.checkLength());
         else {
             this.currentItem--;
             this.carouselWidth += 180;
             this.container.style.transform = `translateX(${this.carouselWidth}px)`;
+            }
+        }
+
+        checkLength() {
+            if (this.currentItem === 1) return 'first'
+            else if (this.currentItem === 6) return 'last'
+        }
+
+        makeInfinite(val) {
+            if (val === 'first') {
+                this.currentItem = this.items.length+1;
+                this.carouselWidth = -(180 * (this.items.length));
+                this.container.style.transform = `translateX(${this.carouselWidth}px)`;
+            } else if (val === 'last') {
+                this.currentItem = 1;
+                this.carouselWidth = -180
+                this.container.style.transform = `translateX(${this.carouselWidth}px)`;
+            }
+        }
+
+        makeClone() {
+            const first = this.container.firstElementChild.cloneNode(true)
+            const last = this.container.lastElementChild.cloneNode(true);
+            this.container.appendChild(first);
+            this.container.insertBefore(last, this.container.firstChild);
+        }
+
+        moveCarouselAuto() {
+            if (!this.container.classList.contains("cloned")) this.container.classList.add("cloned");
+            let timer = setTimeout(function moveAuto() {
+                if (!this.isBtnClicked) this.moveRight();
+                timer = setTimeout(moveAuto.bind(this), 2000);
+            }.bind(this), 2000);
+        }
+
+        recordBtnTime() {
+            this.btnClickedTime = new Date();
+            console.log(this.btnClickedTime)
+        }
+
+        checkAutoCarousel() {
+            let timer = setTimeout(function checkTime() {
+                if (new Date() - this.btnClickedTime > 5000) this.isBtnClicked = false;
+                timer = setTimeout(checkTime.bind(this), 500);
+            }.bind(this), 500);
         }
     }
 
-    checkLength() {
-        if (this.currentItem === 1) return 'first'
-        else if (this.currentItem === this.items.length) return 'last'
-    }
-
-    makeInfinite(val) {
-        if (val === 'first') {
-            this.currentItem = this.items.length;
-            this.carouselWidth = -(180 * (this.items.length - 1));
-            console.log(this.currentItem, this.carouselWidth)
-            this.container.style.transform = `translateX(${this.carouselWidth}px)`;
-        } else if (val === 'last') {
-            this.currentItem = 1
-            this.carouselWidth = 0
-            this.container.style.transform = `translateX(${this.carouselWidth}px)`;
-        }
-    }
-
-    moveCarouselAuto() {
-        let timer = setTimeout(function moveAuto() {
-            carousel.moveRight();
-            timer = setTimeout(moveAuto, 2000); 
-        }, 2000);
-    }
-
-    recordBtnTime() {
-        this.isBtnClicked = true;
-        this.btnClickedTime = new Date();
-        console.log(this.btnClickedTime)
-    }
+    const carousel = new Carousel();
 
     /*
-    checkAutoCarousel() {
-        if (new Date() - this.btnClickedTime > 몇 초) 오토무빙 실행
+    export default class Carousel {
+        constructor() {
+            오토무빙 = true;
+            btnClickedTime = 0;
+        }
+
+        getData() {
+            - ajax로 이미지 URL, text가 포함된 데이터를 가져온다. 
+        }
+
+        showFirstData() {
+            - ajax로 데이터를 받았는지 확인한다.
+            - 첫번째 데이터를 HTML에 주입한다.
+        }
+
+        moveToRight() {
+            - checkLength()
+            - 데이터를 오른쪽으로 한 칸 바꿔준다.
+        }
+
+        moveToLeft() {
+            - checkLength()
+            - 데이터를 왼쪽으로 한 칸 바꿔준다.
+        }
+
+        checkLength() {
+            - 첫번째 데이터면 마지막 데이터로, 마지막 데이터면 첫번째 데이터로 바꿔준다. 
+        }
+
+        autoMove() {
+            - 오토 무빙 = true;
+            - 3초 간격으로 moveToRight()를 실행한다.
+        }
+
+        clickRightBtn() {
+            - moveToRight()
+            - 오토 무빙 = false;
+            - saveClickedTime();
+        }
+
+        clickLeftBtn() {
+            - moveToLeft()
+            - 오토 무빙 = false;
+            - saveClicekdTime();
+        }
+
+        saveClickedTime() {
+            - 현재 시간을 기록한다 (btnClickedTime)
+        }
+
+        runAutoMove() {
+            - var now = 현재시간
+            - if(now - btnClickedTime > 5초) autoMove();
+        }
+        window.addEventListener('load', () => setInterval(runAutoMove, 500))
     }
+    ```
     */
-}
-
-const carousel = new Carousel();
-
-/*
-export default class Carousel {
-    constructor() {
-        오토무빙 = true;
-        btnClickedTime = 0;
-    }
-
-    getData() {
-        - ajax로 이미지 URL, text가 포함된 데이터를 가져온다. 
-    }
-
-    showFirstData() {
-        - ajax로 데이터를 받았는지 확인한다.
-        - 첫번째 데이터를 HTML에 주입한다.
-    }
-
-    moveToRight() {
-        - checkLength()
-        - 데이터를 오른쪽으로 한 칸 바꿔준다.
-    }
-
-    moveToLeft() {
-        - checkLength()
-        - 데이터를 왼쪽으로 한 칸 바꿔준다.
-    }
-
-    checkLength() {
-        - 첫번째 데이터면 마지막 데이터로, 마지막 데이터면 첫번째 데이터로 바꿔준다. 
-    }
-
-    autoMove() {
-        - 오토 무빙 = true;
-        - 3초 간격으로 moveToRight()를 실행한다.
-    }
-
-    clickRightBtn() {
-        - moveToRight()
-        - 오토 무빙 = false;
-        - saveClickedTime();
-    }
-
-    clickLeftBtn() {
-        - moveToLeft()
-        - 오토 무빙 = false;
-        - saveClicekdTime();
-    }
-
-    saveClickedTime() {
-        - 현재 시간을 기록한다 (btnClickedTime)
-    }
-
-    runAutoMove() {
-        - var now = 현재시간
-        - if(now - btnClickedTime > 5초) autoMove();
-    }
-    window.addEventListener('load', () => setInterval(runAutoMove, 500))
-}
-```
-*/
