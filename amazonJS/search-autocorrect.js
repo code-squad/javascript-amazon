@@ -12,14 +12,18 @@ class Search_autocorrect {
     this.searchWindow = qs(this.elObj.searchWindow);
     this.autocorrectWindow = qs(this.elObj.autocorrectWindow);
     this.toBeCloakedEl = qs(this.elObj.toBeCloakedElement);
-    this.toBeCloakedEl.style.transition = `opacity ${this.optionObj.cloakingTransitionTime}`;
+    this.toBeCloakedEl.style.transition = `opacity ${
+      this.optionObj.cloakingTransitionTime
+    }`;
 
     this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
     this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
     // 이벤트리스너 등록 등 여러가지
   }
-  
-  getSearchData() {
+
+  getSearchData(e) {
+    if (this.isUpDownArrowOrEnter(e.key)) return this.moveListUpDown(e);
+    this.autocorrectLists = this.autocorrectWindow.getElementsByClassName(this.elObj.autocorrectLists);
     const inputValue = this.searchWindow.value;
     if (inputValue === "") {
       this.revealBody();
@@ -34,6 +38,11 @@ class Search_autocorrect {
     });
     // Ajax를 통해서 데이터를 가져온다. 하지만 연속된키보드
     // 입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
+  }
+  isUpDownArrowOrEnter(eventKey) {
+    const determinKey = ['ArrowUp', 'ArrowDown', 'Enter'];
+    const ret = determinKey.some(v => v === eventKey);
+    return ret
   }
   addList(jsonData) {
     let nowData = "";
@@ -95,18 +104,22 @@ class Search_autocorrect {
     const urlData = data
       .split("")
       .map(letter => {
-        if (letter === " ") {
-          return "+";
-        }
+        if (letter === " ") return "+";
         return letter;
       })
       .join("");
     return urlData;
   }
 
-  moveListUpDown() {
-    // 자동완성 결과는 키보드 위/아래키로 이동할수 있다.
-    // 위 아래의 charCode를 얻어서 구현하면 될듯
+  moveListUpDown(e) {
+    if(e.key === 'ArrowUp') {
+      console.log('hi!')
+    } else if(e.key === 'ArrowDown') {
+
+    } else {
+      this.formObj.action = this.addUrl(e);
+      this.formObj.submit();
+    }
   }
   changeListBackgourndColor() {
     // 자동완성 결과를 키보드 방향키로 이동시에 선택부분의 배경색은 변경된다.

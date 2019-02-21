@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const search_autocorrect = new Search_autocorrect({
     searchWindow: '.head-search-blank',
     autocorrectWindow: '.head-search-autocorrect-container',
+    autocorrectLists: 'head-search-autocorrect-list',//not class
     toBeCloakedElement: '.wholeBodyContainer'
   }, {
     formId: '#input-form'
