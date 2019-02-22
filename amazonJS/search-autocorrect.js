@@ -29,10 +29,7 @@ class Search_autocorrect {
   }
   getSearchData(e) {
     if (this.isUpDownArrowOrEnter(e.key)) return this.operateCertainKeyEvent(e);
-    this.autocorrectLists = this.autocorrectWindow.getElementsByClassName(
-      this.elObj.autocorrectLists
-    );
-    this.autocorrectListIndex = -1;
+    this.resetAutocorrectLists.call(this);
     const inputValue = this.searchWindow.value;
     if(this.isInputBlank.call(this, inputValue)) return
     fetch(this.formUrl + "amazon/ac/" + inputValue).then(res => {
@@ -43,6 +40,12 @@ class Search_autocorrect {
     });
     // Ajax를 통해서 데이터를 가져온다. 하지만 연속된키보드
     // 입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
+  }
+  resetAutocorrectLists() {
+    this.autocorrectLists = this.autocorrectWindow.getElementsByClassName(
+      this.elObj.autocorrectLists
+    );
+    this.autocorrectListIndex = -1;
   }
   isInputBlank(input) {
     if(input === "") {
