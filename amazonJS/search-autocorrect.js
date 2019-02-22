@@ -18,15 +18,24 @@ class Search_autocorrect {
       this.optionObj.cloakingTransitionTime
     }`;
 
-    this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
+    this.searchWindow.addEventListener('keydown', this.clearBounce.bind(this))
+    this.searchWindow.addEventListener("keyup", this.debounce.bind(this));
     this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
     this.searchBtn.addEventListener("click", this.submitFormData.bind(this));
   }
 
+  debounce(e) {
+    if (this.isUpDownArrowOrEnter(e.key)) return this.getSearchData(e);
+    this.debounce = setTimeout(this.getSearchData.bind(this, e), 1000);
+  }
+  clearBounce() {
+    clearTimeout(this.debounce);
+  } 
   closeAutoCorrectWindow() {
     this.revealBody();
     this.autocorrectWindow.innerHTML = null;
   }
+
   getSearchData(e) {
     if (this.isUpDownArrowOrEnter(e.key)) return this.operateCertainKeyEvent(e);
     this.resetAutocorrectLists.call(this);
@@ -38,8 +47,6 @@ class Search_autocorrect {
         this.cloakBody();
       });
     });
-    // Ajax를 통해서 데이터를 가져온다. 하지만 연속된키보드
-    // 입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
   }
   isUpDownArrowOrEnter(eventKey) {
     const determinKey = ["ArrowUp", "ArrowDown", "Enter"];
