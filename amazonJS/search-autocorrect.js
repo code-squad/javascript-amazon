@@ -31,7 +31,7 @@ class Search_autocorrect {
     if (this.isUpDownArrowOrEnter(e.key)) return this.operateCertainKeyEvent(e);
     this.resetAutocorrectLists.call(this);
     const inputValue = this.searchWindow.value;
-    if(this.isInputBlank.call(this, inputValue)) return
+    if (this.isInputBlank.call(this, inputValue)) return;
     fetch(this.formUrl + "amazon/ac/" + inputValue).then(res => {
       res.json().then(jsonData => {
         this.addList(jsonData);
@@ -41,6 +41,11 @@ class Search_autocorrect {
     // Ajax를 통해서 데이터를 가져온다. 하지만 연속된키보드
     // 입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
   }
+  isUpDownArrowOrEnter(eventKey) {
+    const determinKey = ["ArrowUp", "ArrowDown", "Enter"];
+    const ret = determinKey.some(v => v === eventKey);
+    return ret;
+  }
   resetAutocorrectLists() {
     this.autocorrectLists = this.autocorrectWindow.getElementsByClassName(
       this.elObj.autocorrectLists
@@ -48,17 +53,12 @@ class Search_autocorrect {
     this.autocorrectListIndex = -1;
   }
   isInputBlank(input) {
-    if(input === "") {
+    if (input === "") {
       this.closeAutoCorrectWindow();
       return true;
     }
   }
-  isUpDownArrowOrEnter(eventKey) {
-    //keycode찾기
-    const determinKey = ["ArrowUp", "ArrowDown", "Enter"];
-    const ret = determinKey.some(v => v === eventKey);
-    return ret;
-  }
+
   addList(jsonData) {
     let nowData = "";
     if (jsonData.suggestions === undefined) return;
@@ -75,16 +75,15 @@ class Search_autocorrect {
     });
     this.autocorrectWindow.innerHTML = nowData;
   }
+  cutData(highlightLength, sugValue) {
+    return sugValue.slice(highlightLength);
+  }
 
   cloakBody() {
     this.toBeCloakedEl.classList.add("cloaking");
   }
   revealBody() {
     this.toBeCloakedEl.classList.remove("cloaking");
-  }
-
-  cutData(highlightLength, sugValue) {
-    return sugValue.slice(highlightLength);
   }
 
   addUrl(e) {
@@ -107,8 +106,6 @@ class Search_autocorrect {
   goAddress(e) {
     this.formObj.action = this.addUrl(e);
     this.formObj.submit();
-    // 자동완성 결과는 고유한 URL구조를 가진다.
-    // 클릭이 될때 url을 만들고 이동하도록 구현
   }
   makeUrlKeywords(data) {
     const urlData = data
@@ -167,7 +164,6 @@ class Search_autocorrect {
   submitFormData(e) {
     if (e.x === 0) return;
     this.closeAutoCorrectWindow();
-    // 실제 검색버튼을 눌러도 검색이 이뤄지진 않으며, 자동완성 결과 창은 닫힌다.
   }
 }
 
