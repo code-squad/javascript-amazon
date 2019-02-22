@@ -28,7 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     searchWindow: '.head-search-blank',
     autocorrectWindow: '.head-search-autocorrect-container',
     autocorrectLists: 'head-search-autocorrect-list',//not class
-    toBeCloakedElement: '.wholeBodyContainer'
+    toBeCloakedElement: '.wholeBodyContainer',
+    searchButtonElement: '.head-search-button'
   }, {
     formId: '#input-form'
   }, {

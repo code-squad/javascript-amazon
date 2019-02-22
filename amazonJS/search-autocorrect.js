@@ -3,7 +3,7 @@ import { qs } from "./util.js";
 class Search_autocorrect {
   constructor(elObj, formObj, optionObj) {
     Object.assign(this, { elObj, formObj, optionObj });
-    this.autocorrectListIndex = -1
+    this.autocorrectListIndex = -1;
     this.init();
   }
 
@@ -13,23 +13,30 @@ class Search_autocorrect {
     this.searchWindow = qs(this.elObj.searchWindow);
     this.autocorrectWindow = qs(this.elObj.autocorrectWindow);
     this.toBeCloakedEl = qs(this.elObj.toBeCloakedElement);
+    this.searchBtn = qs(this.elObj.searchButtonElement);
     this.toBeCloakedEl.style.transition = `opacity ${
       this.optionObj.cloakingTransitionTime
-    }`; 
+    }`;
 
     this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
     this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
+    this.searchBtn.addEventListener("click", this.submitFormData.bind(this));
     // 이벤트리스너 등록 등 여러가지
   }
 
+  closeAutoCorrectWindow() {
+    this.revealBody();
+    this.autocorrectWindow.innerHTML = null;
+  }
   getSearchData(e) {
-    if (this.isUpDownArrowOrEnter(e.key)) return this.moveListUpDown(e);
-    this.autocorrectLists = this.autocorrectWindow.getElementsByClassName(this.elObj.autocorrectLists);
-    this.autocorrectListIndex = -1
+    if (this.isUpDownArrowOrEnter(e.key)) return this.operateCertainKeyEvent(e);
+    this.autocorrectLists = this.autocorrectWindow.getElementsByClassName(
+      this.elObj.autocorrectLists
+    );
+    this.autocorrectListIndex = -1;
     const inputValue = this.searchWindow.value;
     if (inputValue === "") {
-      this.revealBody();
-      this.autocorrectWindow.innerHTML = null;
+      this.closeAutoCorrectWindow();
       return;
     }
     fetch(this.formUrl + "amazon/ac/" + inputValue).then(res => {
@@ -43,9 +50,9 @@ class Search_autocorrect {
   }
   isUpDownArrowOrEnter(eventKey) {
     //keycode찾기
-    const determinKey = ['ArrowUp', 'ArrowDown', 'Enter'];
+    const determinKey = ["ArrowUp", "ArrowDown", "Enter"];
     const ret = determinKey.some(v => v === eventKey);
-    return ret
+    return ret;
   }
   addList(jsonData) {
     let nowData = "";
@@ -114,43 +121,47 @@ class Search_autocorrect {
     return urlData;
   }
 
-  moveListUpDown(e) {
-    if(e.key === 'ArrowUp') {
-      if(this.autocorrectListIndex < 0) return;
-      this.autocorrectListIndex--;
-      if(this.autocorrectListIndex === -1) {
-        this.autocorrectLists[this.autocorrectListIndex+1].style = 'background-color:#fff;';
-        return
-      }
-      this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
-      this.autocorrectLists[this.autocorrectListIndex+1].style = 'background-color:#fff;';
-    } else if(e.key === 'ArrowDown') {
-      if(this.autocorrectListIndex > this.autocorrectLists.length-2) return;
-      this.autocorrectListIndex++;
-      if(this.autocorrectListIndex === 0) {
-        this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
-        return;
-      }
-      this.autocorrectLists[this.autocorrectListIndex].style = 'background-color:#f8f8f8;';
-      this.autocorrectLists[this.autocorrectListIndex-1].style = 'background-color:#fff;';
+  operateCertainKeyEvent(e) {
+    if (e.key === "ArrowUp") {
+      this.changeListBackgourndColorUp(this.autocorrectLists);
+    } else if (e.key === "ArrowDown") {
+      this.changeListBackgourndColorDown(this.autocorrectLists);
     } else {
-      this.searchWindow.value = this.autocorrectLists[this.autocorrectListIndex].dataset.value;
-      this.revealBody();
-      this.autocorrectWindow.innerHTML = null;
-      return;
+      this.addInputValue();
     }
   }
-  changeListBackgourndColorUp() {
+  changeListBackgourndColorUp(list) {
+    if (this.autocorrectListIndex < 0) return;
+    this.autocorrectListIndex--;
+    if (this.autocorrectListIndex === -1) {
+      list[this.autocorrectListIndex + 1].style = "background-color:#fff;";
+      return;
+    }
+    list[this.autocorrectListIndex].style = "background-color:#f8f8f8;";
+    list[this.autocorrectListIndex + 1].style = "background-color:#fff;";
     // 자동완성 결과를 키보드 방향키로 이동시에 선택부분의 배경색은 변경된다.
   }
-  changeListBackgourndColorDown() {
-    
+  changeListBackgourndColorDown(list) {
+    if (this.autocorrectListIndex > list.length - 2) return;
+    this.autocorrectListIndex++;
+    if (this.autocorrectListIndex === 0) {
+      list[this.autocorrectListIndex].style = "background-color:#f8f8f8;";
+      return;
+    }
+    list[this.autocorrectListIndex].style = "background-color:#f8f8f8;";
+    list[this.autocorrectListIndex - 1].style = "background-color:#fff;";
   }
+
   addInputValue() {
+    this.searchWindow.value = this.autocorrectLists[this.autocorrectListIndex].dataset.value;
+    this.closeAutoCorrectWindow();
+    return;
     // 선택된 상태에서 엔터키를 입력하면 해당검색어가 위쪽 검색input창에 추가된다.  동시에 검색결과창은 사라진다.
   }
 
-  submitFormData() {
+  submitFormData(e) {
+    if(e.x === 0) return;
+    this.closeAutoCorrectWindow();
     // 실제 검색버튼을 눌러도 검색이 이뤄지진 않으며, 자동완성 결과 창은 닫힌다.
   }
 }
