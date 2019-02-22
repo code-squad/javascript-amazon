@@ -21,7 +21,6 @@ class Search_autocorrect {
     this.searchWindow.addEventListener("keyup", this.getSearchData.bind(this));
     this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
     this.searchBtn.addEventListener("click", this.submitFormData.bind(this));
-    // 이벤트리스너 등록 등 여러가지
   }
 
   closeAutoCorrectWindow() {
@@ -35,10 +34,7 @@ class Search_autocorrect {
     );
     this.autocorrectListIndex = -1;
     const inputValue = this.searchWindow.value;
-    if (inputValue === "") {
-      this.closeAutoCorrectWindow();
-      return;
-    }
+    if(this.isInputBlank.call(this, inputValue)) return
     fetch(this.formUrl + "amazon/ac/" + inputValue).then(res => {
       res.json().then(jsonData => {
         this.addList(jsonData);
@@ -47,6 +43,12 @@ class Search_autocorrect {
     });
     // Ajax를 통해서 데이터를 가져온다. 하지만 연속된키보드
     // 입력에 모두 request하지 않고, 1.0 초동안 입력내용이 없을때 서버로 요청한다.
+  }
+  isInputBlank(input) {
+    if(input === "") {
+      this.closeAutoCorrectWindow();
+      return true;
+    }
   }
   isUpDownArrowOrEnter(eventKey) {
     //keycode찾기
@@ -63,15 +65,12 @@ class Search_autocorrect {
       data-reftag="${suggestion.refTag}"
       data-prefix="${jsonData.prefix}"
       class="head-search-autocorrect-list">
-      <span class='bold'>${jsonData.prefix}</span><span>${this.highlightData(
+      <span class='bold'>${jsonData.prefix}</span><span>${this.cutData(
         jsonData.prefix.length,
         suggestion.value
       )}</span></li>`;
     });
     this.autocorrectWindow.innerHTML = nowData;
-    // 검색어를 입력하면 자동완성결과가 노출된다.
-    // 입력창의 내용을 백스페이스로 삭제해도 일치하는 자동완성결과가 노출된다.
-    // -입력이후 1초 뒤에 ajax데이터를 가져오는 방식으로 구현해보기.
   }
 
   cloakBody() {
@@ -81,10 +80,8 @@ class Search_autocorrect {
     this.toBeCloakedEl.classList.remove("cloaking");
   }
 
-  highlightData(highlightLength, sugValue) {
+  cutData(highlightLength, sugValue) {
     return sugValue.slice(highlightLength);
-    // 노출된 데이터 중 검색어와 일치하는 단어는 색깔이 하이라이트 되여 보여진다.
-    // -검색어와 일치하는 단어 => ajax데이터의 json데이터의 .prefix
   }
 
   addUrl(e) {
@@ -96,7 +93,7 @@ class Search_autocorrect {
     return this.makeUrl(targetData);
   }
   makeUrl(target) {
-    const keywords = this.makeKeywords(target.value);
+    const keywords = this.makeUrlKeywords(target.value);
     const refTag = target.reftag;
     const prefix = target.prefix;
     return (
@@ -110,7 +107,7 @@ class Search_autocorrect {
     // 자동완성 결과는 고유한 URL구조를 가진다.
     // 클릭이 될때 url을 만들고 이동하도록 구현
   }
-  makeKeywords(data) {
+  makeUrlKeywords(data) {
     const urlData = data
       .split("")
       .map(letter => {
@@ -131,18 +128,21 @@ class Search_autocorrect {
     }
   }
   changeListBackgourndColorUp(list) {
-    if (this.autocorrectListIndex < 0) return;
+    const bAlreadyFirst = this.autocorrectListIndex < 0;
+    if (bAlreadyFirst) return;
     this.autocorrectListIndex--;
-    if (this.autocorrectListIndex === -1) {
+    const bFirstData = this.autocorrectListIndex === -1;
+    if (bFirstData) {
       list[this.autocorrectListIndex + 1].style = "background-color:#fff;";
       return;
     }
     list[this.autocorrectListIndex].style = "background-color:#f8f8f8;";
     list[this.autocorrectListIndex + 1].style = "background-color:#fff;";
-    // 자동완성 결과를 키보드 방향키로 이동시에 선택부분의 배경색은 변경된다.
   }
   changeListBackgourndColorDown(list) {
-    if (this.autocorrectListIndex > list.length - 2) return;
+    const biggestIndex = list.length - 2;
+    const bLastData = this.autocorrectListIndex > biggestIndex;
+    if (bLastData) return;
     this.autocorrectListIndex++;
     if (this.autocorrectListIndex === 0) {
       list[this.autocorrectListIndex].style = "background-color:#f8f8f8;";
@@ -153,14 +153,16 @@ class Search_autocorrect {
   }
 
   addInputValue() {
-    this.searchWindow.value = this.autocorrectLists[this.autocorrectListIndex].dataset.value;
+    this.searchWindow.value = this.autocorrectLists[
+      this.autocorrectListIndex
+    ].dataset.value;
     this.closeAutoCorrectWindow();
     return;
     // 선택된 상태에서 엔터키를 입력하면 해당검색어가 위쪽 검색input창에 추가된다.  동시에 검색결과창은 사라진다.
   }
 
   submitFormData(e) {
-    if(e.x === 0) return;
+    if (e.x === 0) return;
     this.closeAutoCorrectWindow();
     // 실제 검색버튼을 눌러도 검색이 이뤄지진 않으며, 자동완성 결과 창은 닫힌다.
   }
