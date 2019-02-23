@@ -55,8 +55,7 @@ table {
     margin: 0 auto;
     position: relative;
     background-color: rgb(34, 46, 62);
-    overflow: hidden;
-    color: white;
+    overflow: visible;
 }
 
 #logo-image {
@@ -97,6 +96,7 @@ table {
 }
 
 #search-field {
+    position: relative;
     width: 70%;
     height: 32px;
     margin: 10px 0;
@@ -132,6 +132,7 @@ table {
     overflow: hidden;
     color: white;
     position: relative; 
+    top: -9px;
 }
 
 #location-panel {

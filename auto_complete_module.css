@@ -1,0 +1,69 @@
+/* keywords AutoComplete Module.css step5 */
+
+/* 검색어 입력창 */
+.input-search-field {
+    width: 100%;
+    height: 82%;
+    display: block;
+    font-size: 16px; 
+    text-indent: 7px; 
+}
+
+/* 검색어 하이라이트 비활성화 */
+.input-search-field:focus {
+    outline: none; 
+}
+
+/* 자동완성 결과창(기본값 숨김) */
+.auto-complete-result-window {
+    width: 100%;
+    position: absolute;
+    z-index: 700;
+    display: none;
+    background:white;
+    text-align: left;
+    text-indent: 10px; 
+}
+
+/* 자동완성 결과창 보이기 토글 */
+.window-display-block {
+    display: block;
+}
+
+/* ul */
+.suggestion-items-style {
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+/* li */
+.suggestion-item {
+    width: 100% ;
+    font-weight: bold;
+    color: black; 
+    cursor: pointer;
+}
+
+.toggle-window:hover {
+    border-color: rgb(1, 0, 0);
+}
+
+.highlight-background {
+    background: rgb(193, 193, 193);
+}
+
+.highlighted-keywords {
+    color: darkorange;
+    font-weight: normal;
+}
+
+.link-style:visited {
+    text-decoration: none;
+    color: black; 
+}
+
+.link-style:link {
+    text-decoration: none;
+    color: black;
+}

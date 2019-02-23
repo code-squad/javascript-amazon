@@ -15,7 +15,7 @@ carousel module css */
     width: 180px;
     height: 135px;
     position: absolute;
-    z-index: 100;
+    z-index: 90;
     background: white;
 }
 
