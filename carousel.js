@@ -32,7 +32,7 @@ export default class Carousel {
             this.showImage();
             this.startAutoCarousel();
         });
-        oReq.open("GET", "./carousel_data.json");
+        oReq.open("GET", "./carouselData.json");
         oReq.send();
     }
 
