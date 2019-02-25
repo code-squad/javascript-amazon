@@ -406,6 +406,7 @@ li {
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 999;
 }
 
 .plans-wrapper.closing{
@@ -689,6 +690,10 @@ li {
     overflow: hidden;
     float: left;
     opacity: 0;
+}
+
+.carousel.view {
+    opacity: 1;
 }
 
 .carousel-container {

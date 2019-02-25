@@ -8,7 +8,6 @@ export default class PlansUI {
         this.plansLayerWrapper = document.querySelector('.plans-wrapper');
         this.header = document.querySelector('.header');
         this.plansExtender = document.querySelector('.plans-extender');
-        this.init();
     }
 
     init() {

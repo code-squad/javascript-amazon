@@ -12,14 +12,11 @@ export default class Carousel {
         this.carouselPosition = 0;
         this.itemWidth = itemWidth;
         this.carouselPosition = 0;
-        // this.transitioning = false;
+        this.transitioning = false;
         
         this.carouselDuration = 2000;
         this.carouselCheckingDuration = 500;
         this.timeGapToRestartCarousel = 5000;
-        
-        this.timerId = 0;
-        // this.init();
     }
 
     init() {
@@ -58,7 +55,7 @@ export default class Carousel {
     showImage() {
         this.makeClone();
         this.moveToFirstItem();
-        this.carousel.style.opacity = 1; // this.carousel.classList.add(view) : .view { opacity: 1;}
+        this.carousel.classList.add("view");
     }
 
     makeClone() {
@@ -77,9 +74,6 @@ export default class Carousel {
     moveCarouselAuto(duration) {
         let timer = setTimeout(function moveAuto() {
             if (!this.btnClicked) this.moveRight();
-            // else if (this.btnClicked) {
-            //     clearTimeout(this.timerId);
-            // }
             timer = setTimeout(moveAuto.bind(this), duration);
         }.bind(this), duration);
     }
@@ -98,10 +92,7 @@ export default class Carousel {
         prevBtn.addEventListener("click", () => this.btnMoveLeft());
         nextBtn.addEventListener("click", () => this.btnMoveRight());
 
-        this.container.addEventListener('transitionend', () => {
-            this.transitioning = false;
-            console.log(this.transitioning)
-        });
+        this.container.addEventListener('transitionend', () => this.transitioning = false);
     }
 
     btnMoveRight() {
@@ -127,7 +118,7 @@ export default class Carousel {
     moveRight() {
         if (this.transitioning) return;
         if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
-        if (this.checkLength() === this.items.length-1) this.makeInfinite(this.checkLength())
+        if (this.currentItem === this.items.length-1) this.makeInfinite("last");
         else {
             this.currentItem++;
             this.carouselPosition -= this.itemWidth;
@@ -139,7 +130,7 @@ export default class Carousel {
     moveLeft() {
         if (this.transitioning) return;
         if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
-        if (this.checkLength() === 0) this.makeInfinite(this.checkLength());
+        if (this.currentItem === 0) this.makeInfinite("first");
         else {
             this.currentItem--;
             this.carouselPosition += this.itemWidth;
@@ -148,25 +139,15 @@ export default class Carousel {
         }
     }
 
-    checkLength() {
-        return this.currentItem;
-    }
-
     makeInfinite(val) {
-        if (val === 0) {
-            this.currentItem = this.items.length-2
-            this.carouselPosition = -(this.itemWidth * this.currentItem)
+        if (val === "first") {
+            this.currentItem = this.items.length-2;
+            this.carouselPosition = -(this.itemWidth * this.currentItem);
             this.container.classList.remove("transition");
-            this.transitioning = true;
             this.container.style.transform = `translateX(${this.carouselPosition}px)`;
-        } else if (val === this.items.length-1) {
+        } else if (val === "last") {
             this.container.classList.remove("transition");
             this.moveToFirstItem();
-
-            // this.currentItem = 1;
-            // this.carouselPosition = -this.itemWidth;
-            // // this.transitioning = true;
-            // this.container.style.transform = `translateX(${this.carouselPosition}px)`;
         }
     }
 }

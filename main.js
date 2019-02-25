@@ -4,4 +4,7 @@ import Carousel from './carousel.js';
 const plansUI = new PlansUI();
 const carousel = new Carousel(180);
 
-document.addEventListener('DOMContentLoaded', () => carousel.init());
+document.addEventListener('DOMContentLoaded', () => {
+    plansUI.init();
+    carousel.init();
+});
