@@ -433,6 +433,7 @@ li {
     height: 631px;
     max-height: 631px;
     border-bottom: 1px solid #00a8e1;
+    /* z-index: 999; */
 }
 
 .plans-extender.shown.top{
@@ -662,6 +663,7 @@ li {
 /* feature-cards */
 .feat-cards {
     text-align: center;
+    margin-top: 3rem;
 }
 
 .feat-cards ul li div {
@@ -671,18 +673,84 @@ li {
 }
 
 
-/* carousel-card */
-.carousel-card {
-    width: 1048px;
-    height: 400px;
-    background-color: grey;
+/* carousel */
+
+.carousel-cnt {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 20rem;
 }
 
-/* banner-middle */
-.mid-banner ul li div {
-    width: 1048px;
-    height: 360px;
-    background-color: black;
+.carousel {
+    position: relative;
+    width: 180px;
+    height: 135px;
+    overflow: hidden;
+    float: left;
+    opacity: 0;
+}
+
+.carousel-container {
+    display: flex;
+}
+
+.carousel-container.transition {
+    transition: all 0.5s ease-out;
+}
+
+.carousel-txt {
+    width: 60%;
+    float: left;
+    padding-left: 2em;
+    text-align: left;
+}
+
+.carousel-title {
+    font-size: 20pt;
+    font-weight: 500;
+    margin-left: 1rem;
+}
+
+.carousel-txt div {
+    line-height: 20px;
+    margin-left: 1rem;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.carousel-txt-link {
+    margin-left: 1rem;
+    color: #002F36;
+    text-decoration: none;
+    font-size: 18px
+}
+
+.btn-control {
+    position: absolute;
+    color:beige;
+    font-size: 14px;
+    font-weight: bold;
+    top: 0;
+    display: flex;
+}
+
+.prev-btn {
+    margin-top: 60px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.next-btn{
+    margin-top: 60px;
+    margin-left: 140px;
+    cursor: pointer;
+}
+
+.carousel-title {
+    margin: 10px;
+    text-align: left;
 }
 
 /* footer */

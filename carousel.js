@@ -1,183 +1,172 @@
-class Carousel {
-    constructor() {
+export default class Carousel {
+    constructor(itemWidth) {
         this.dataList = [];
         this.carousel = document.querySelector(".carousel");
         this.container = this.carousel.querySelector(".carousel-container");
-        this.item = this.carousel.querySelector(".carousel-item");
-        this.items = this.carousel.querySelectorAll(".carousel-item");
 
-        this.prevBtn = this.carousel.querySelector(".prev-btn");
-        this.nextBtn = this.carousel.querySelector(".next-btn");
-        this.isBtnClicked = false;
+        this.btnClicked = false;
         this.btnClickedTime = 0;
-
-        this.currentItem = 1;
-        this.carouselWidth = 0;
-
-        this.init()
+        
+        this.items = 0
+        this.currentItem = 0;
+        this.carouselPosition = 0;
+        this.itemWidth = itemWidth;
+        this.carouselPosition = 0;
+        // this.transitioning = false;
+        
+        this.carouselDuration = 2000;
+        this.carouselCheckingDuration = 500;
+        this.timeGapToRestartCarousel = 5000;
+        
+        this.timerId = 0;
+        // this.init();
     }
 
     init() {
-        // this.getData();
-        this.nextBtn.addEventListener("click", () => {
-            this.isBtnClicked = true;
-            this.recordBtnTime();
-            this.moveRight();
-        });
-
-        this.prevBtn.addEventListener("click", () => {
-            this.isBtnClicked = true;
-            this.recordBtnTime();
-            this.moveLeft()
-        });
-
-        this.makeClone();
-
-        this.container.style.transform = `translateX(-180px)`;
-        this.carousel.style.opacity = 1;
-
-        this.container.addEventListener("transitionend", this.moveCarouselAuto());
-        this.checkAutoCarousel();
+        this.getData();
+        this.addEvent();
     }
 
-    // getData() {
-    //     var oReq = new XMLHttpRequest();
-    //     oReq.addEventListener("load", function () {
-    //         const obj = JSON.parse(this.responseText);
-    //         this.pushData(obj.src).bind(this);
-    //     });
-    //     oReq.open("GET", "./carousel_data.json");
-    //     oReq.send();
-    // }
+    getData() {
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", () => {
+            const obj = JSON.parse(oReq.responseText);
+            this.pushData(obj.src);
+            this.showImage();
+            this.startAutoCarousel();
+        });
+        oReq.open("GET", "./carousel_data.json");
+        oReq.send();
+    }
 
-    // pushData(arr) {
-    //     for (let i = 0; i < arr.length; i++) {
-    //         this.dataList.push(arr[i]);
-    //     }
-    // }
+    pushData(arr) {
+        arr.forEach((data) => this.dataList.push(data));
+        this.carouselTemplate();
+    }
+
+    carouselTemplate(arr) {
+        const items = this.carousel.querySelectorAll(".carousel-item");
+        items.forEach((item, i) => items[i].firstElementChild.src = this.dataList[i])
+    }
+
+    moveToFirstItem() {
+        this.carouselPosition = -this.itemWidth;
+        this.container.style.transform = `translateX(${this.carouselPosition}px)`;
+        this.currentItem = 1;
+    }
+
+    showImage() {
+        this.makeClone();
+        this.moveToFirstItem();
+        this.carousel.style.opacity = 1; // this.carousel.classList.add(view) : .view { opacity: 1;}
+    }
+
+    makeClone() {
+        const first = this.container.firstElementChild.cloneNode(true);
+        const last = this.container.lastElementChild.cloneNode(true);
+        this.container.appendChild(first);
+        this.container.insertBefore(last, this.container.firstChild);
+        this.items = this.carousel.querySelectorAll(".carousel-item");
+    }
+
+    startAutoCarousel() {
+        this.moveCarouselAuto(this.carouselDuration);
+        this.checkAutoCarousel(this.timeGapToRestartCarousel, this.carouselCheckingDuration);
+    }
+    
+    moveCarouselAuto(duration) {
+        let timer = setTimeout(function moveAuto() {
+            if (!this.btnClicked) this.moveRight();
+            // else if (this.btnClicked) {
+            //     clearTimeout(this.timerId);
+            // }
+            timer = setTimeout(moveAuto.bind(this), duration);
+        }.bind(this), duration);
+    }
+
+    checkAutoCarousel(timeGap, duration) {
+        let timer = setTimeout(function checkTime() {
+            if (new Date() - this.btnClickedTime > timeGap) this.btnClicked = false;
+            timer = setTimeout(checkTime.bind(this), duration);
+        }.bind(this), duration);
+    }
+
+    addEvent() {
+        const prevBtn = this.carousel.querySelector(".prev-btn");
+        const nextBtn = this.carousel.querySelector(".next-btn");
+
+        prevBtn.addEventListener("click", () => this.btnMoveLeft());
+        nextBtn.addEventListener("click", () => this.btnMoveRight());
+
+        this.container.addEventListener('transitionend', () => {
+            this.transitioning = false;
+            console.log(this.transitioning)
+        });
+    }
+
+    btnMoveRight() {
+        this.isBtnClicked();
+        this.recordBtnTime();
+        this.moveRight();
+    }
+
+    btnMoveLeft() {
+        this.isBtnClicked();
+        this.recordBtnTime();
+        this.moveLeft();
+    }
+
+    isBtnClicked() {
+        this.btnClicked = !this.btnClicked;
+    }
+
+    recordBtnTime() {
+        this.btnClickedTime = new Date();
+    }
 
     moveRight() {
-        if (this.checkLength() === 'last') {
-            this.makeInfinite(this.checkLength())
-        } else {
+        if (this.transitioning) return;
+        if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
+        if (this.checkLength() === this.items.length-1) this.makeInfinite(this.checkLength())
+        else {
             this.currentItem++;
-            this.carouselWidth -= 180;
-            this.container.style.transform = `translateX(${this.carouselWidth}px)`;
+            this.carouselPosition -= this.itemWidth;
+            this.transitioning = true;
+            this.container.style.transform = `translateX(${this.carouselPosition}px)`;
         }
     }
 
     moveLeft() {
-        if (this.checkLength() === 'first') this.makeInfinite(this.checkLength());
+        if (this.transitioning) return;
+        if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
+        if (this.checkLength() === 0) this.makeInfinite(this.checkLength());
         else {
             this.currentItem--;
-            this.carouselWidth += 180;
-            this.container.style.transform = `translateX(${this.carouselWidth}px)`;
-            }
-        }
-
-        checkLength() {
-            if (this.currentItem === 1) return 'first'
-            else if (this.currentItem === 6) return 'last'
-        }
-
-        makeInfinite(val) {
-            if (val === 'first') {
-                this.currentItem = this.items.length+1;
-                this.carouselWidth = -(180 * (this.items.length));
-                this.container.style.transform = `translateX(${this.carouselWidth}px)`;
-            } else if (val === 'last') {
-                this.currentItem = 1;
-                this.carouselWidth = -180
-                this.container.style.transform = `translateX(${this.carouselWidth}px)`;
-            }
-        }
-
-        makeClone() {
-            const first = this.container.firstElementChild.cloneNode(true)
-            const last = this.container.lastElementChild.cloneNode(true);
-            this.container.appendChild(first);
-            this.container.insertBefore(last, this.container.firstChild);
-        }
-
-        moveCarouselAuto() {
-            if (!this.container.classList.contains("cloned")) this.container.classList.add("cloned");
-            let timer = setTimeout(function moveAuto() {
-                if (!this.isBtnClicked) this.moveRight();
-                timer = setTimeout(moveAuto.bind(this), 2000);
-            }.bind(this), 2000);
-        }
-
-        recordBtnTime() {
-            this.btnClickedTime = new Date();
-            console.log(this.btnClickedTime)
-        }
-
-        checkAutoCarousel() {
-            let timer = setTimeout(function checkTime() {
-                if (new Date() - this.btnClickedTime > 5000) this.isBtnClicked = false;
-                timer = setTimeout(checkTime.bind(this), 500);
-            }.bind(this), 500);
+            this.carouselPosition += this.itemWidth;
+            this.transitioning = true;
+            this.container.style.transform = `translateX(${this.carouselPosition}px)`;
         }
     }
 
-    const carousel = new Carousel();
-
-    /*
-    export default class Carousel {
-        constructor() {
-            오토무빙 = true;
-            btnClickedTime = 0;
-        }
-
-        getData() {
-            - ajax로 이미지 URL, text가 포함된 데이터를 가져온다. 
-        }
-
-        showFirstData() {
-            - ajax로 데이터를 받았는지 확인한다.
-            - 첫번째 데이터를 HTML에 주입한다.
-        }
-
-        moveToRight() {
-            - checkLength()
-            - 데이터를 오른쪽으로 한 칸 바꿔준다.
-        }
-
-        moveToLeft() {
-            - checkLength()
-            - 데이터를 왼쪽으로 한 칸 바꿔준다.
-        }
-
-        checkLength() {
-            - 첫번째 데이터면 마지막 데이터로, 마지막 데이터면 첫번째 데이터로 바꿔준다. 
-        }
-
-        autoMove() {
-            - 오토 무빙 = true;
-            - 3초 간격으로 moveToRight()를 실행한다.
-        }
-
-        clickRightBtn() {
-            - moveToRight()
-            - 오토 무빙 = false;
-            - saveClickedTime();
-        }
-
-        clickLeftBtn() {
-            - moveToLeft()
-            - 오토 무빙 = false;
-            - saveClicekdTime();
-        }
-
-        saveClickedTime() {
-            - 현재 시간을 기록한다 (btnClickedTime)
-        }
-
-        runAutoMove() {
-            - var now = 현재시간
-            - if(now - btnClickedTime > 5초) autoMove();
-        }
-        window.addEventListener('load', () => setInterval(runAutoMove, 500))
+    checkLength() {
+        return this.currentItem;
     }
-    ```
-    */
+
+    makeInfinite(val) {
+        if (val === 0) {
+            this.currentItem = this.items.length-2
+            this.carouselPosition = -(this.itemWidth * this.currentItem)
+            this.container.classList.remove("transition");
+            this.transitioning = true;
+            this.container.style.transform = `translateX(${this.carouselPosition}px)`;
+        } else if (val === this.items.length-1) {
+            this.container.classList.remove("transition");
+            this.moveToFirstItem();
+
+            // this.currentItem = 1;
+            // this.carouselPosition = -this.itemWidth;
+            // // this.transitioning = true;
+            // this.container.style.transform = `translateX(${this.carouselPosition}px)`;
+        }
+    }
+}
