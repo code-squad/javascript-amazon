@@ -1,22 +1,22 @@
 export default class Carousel {
-    constructor(itemWidth) {
+    constructor({carouselSelector, btnSelector, options}) {
         this.dataList = [];
-        this.carousel = document.querySelector(".carousel");
-        this.container = this.carousel.querySelector(".carousel-container");
+        this.carousel = document.querySelector(carouselSelector.carousel);
+        this.container = document.querySelector(carouselSelector.container);
 
         this.btnClicked = false;
         this.btnClickedTime = 0;
+        this.transitioning = false;
         
         this.items = 0
         this.currentItem = 0;
         this.carouselPosition = 0;
-        this.itemWidth = itemWidth;
-        this.carouselPosition = 0;
-        this.transitioning = false;
-        
-        this.carouselDuration = 2000;
-        this.carouselCheckingDuration = 500;
-        this.timeGapToRestartCarousel = 5000;
+
+        this.itemWidth = options.itemWidth;
+        this.carouselDuration = options.carouselDuration;
+        this.carouselCheckingDuration = options.carouselCheckingDuration;
+        this.timeGapToRestartCarousel = options.timeGapToRestartCarousel;
+        this.btnSelector = btnSelector;
     }
 
     init() {
@@ -41,7 +41,7 @@ export default class Carousel {
         this.carouselTemplate();
     }
 
-    carouselTemplate(arr) {
+    carouselTemplate() {
         const items = this.carousel.querySelectorAll(".carousel-item");
         items.forEach((item, i) => items[i].firstElementChild.src = this.dataList[i])
     }
@@ -86,8 +86,8 @@ export default class Carousel {
     }
 
     addEvent() {
-        const prevBtn = this.carousel.querySelector(".prev-btn");
-        const nextBtn = this.carousel.querySelector(".next-btn");
+        const prevBtn = this.carousel.querySelector(this.btnSelector.prevBtn);
+        const nextBtn = this.carousel.querySelector(this.btnSelector.nextBtn);
 
         prevBtn.addEventListener("click", () => this.btnMoveLeft());
         nextBtn.addEventListener("click", () => this.btnMoveRight());
