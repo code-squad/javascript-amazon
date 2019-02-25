@@ -92,7 +92,10 @@ export default class Carousel {
         prevBtn.addEventListener("click", () => this.btnMoveLeft());
         nextBtn.addEventListener("click", () => this.btnMoveRight());
 
-        this.container.addEventListener('transitionend', () => this.transitioning = false);
+        this.container.addEventListener("transitionend", () => {
+            this.transitioning = false;
+            this.makeInfinite(this.currentItem);
+        });
     }
 
     btnMoveRight() {
@@ -118,7 +121,6 @@ export default class Carousel {
     moveRight() {
         if (this.transitioning) return;
         if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
-        if (this.currentItem === this.items.length-1) this.makeInfinite("last");
         else {
             this.currentItem++;
             this.carouselPosition -= this.itemWidth;
@@ -130,7 +132,6 @@ export default class Carousel {
     moveLeft() {
         if (this.transitioning) return;
         if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
-        if (this.currentItem === 0) this.makeInfinite("first");
         else {
             this.currentItem--;
             this.carouselPosition += this.itemWidth;
@@ -140,14 +141,17 @@ export default class Carousel {
     }
 
     makeInfinite(val) {
-        if (val === "first") {
+        const first = 0;
+        const last = this.items.length-1;
+        if (val === first) {
             this.currentItem = this.items.length-2;
             this.carouselPosition = -(this.itemWidth * this.currentItem);
             this.container.classList.remove("transition");
             this.container.style.transform = `translateX(${this.carouselPosition}px)`;
-        } else if (val === "last") {
+        } else if (val === last) {
             this.container.classList.remove("transition");
             this.moveToFirstItem();
+            this.container.style.transition = "";
         }
     }
 }
