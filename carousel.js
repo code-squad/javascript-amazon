@@ -46,12 +46,6 @@ export default class Carousel {
         items.forEach((item, i) => items[i].firstElementChild.src = this.dataList[i])
     }
 
-    moveToFirstItem() {
-        this.carouselPosition = -this.itemWidth;
-        this.container.style.transform = `translateX(${this.carouselPosition}px)`;
-        this.currentItem = 1;
-    }
-
     showImage() {
         this.makeClone();
         this.moveToFirstItem();
@@ -64,6 +58,12 @@ export default class Carousel {
         this.container.appendChild(first);
         this.container.insertBefore(last, this.container.firstChild);
         this.items = this.carousel.querySelectorAll(".carousel-item");
+    }
+    
+    moveToFirstItem() {
+        this.carouselPosition = -this.itemWidth;
+        this.container.style.transform = `translateX(${this.carouselPosition}px)`;
+        this.currentItem = 1;
     }
 
     startAutoCarousel() {
@@ -151,7 +151,6 @@ export default class Carousel {
         } else if (val === last) {
             this.container.classList.remove("transition");
             this.moveToFirstItem();
-            this.container.style.transition = "";
         }
     }
 }
