@@ -87,10 +87,10 @@ class Search_autocorrect {
   }
 
   cloakBody() {
-    this.toBeCloakedEl.classList.add("cloaking");
+    this.toBeCloakedEl.classList.add(this.optionObj.cloakingBackgroundClass);
   }
   revealBody() {
-    this.toBeCloakedEl.classList.remove("cloaking");
+    this.toBeCloakedEl.classList.remove(this.optionObj.cloakingBackgroundClass);
   }
 
   addUrl(eventTarget) {
@@ -140,11 +140,11 @@ class Search_autocorrect {
     this.autocorrectListIndex--;
     const bFirstData = this.autocorrectListIndex === -1;
     if (bFirstData) {
-      list[this.autocorrectListIndex + 1].style = "background-color:#fff;";
+      list[this.autocorrectListIndex + 1].classList.remove(this.optionObj.shadingAutocorrectClass)
       return;
     }
-    list[this.autocorrectListIndex].style = "background-color:#f8f8f8;";
-    list[this.autocorrectListIndex + 1].style = "background-color:#fff;";
+    list[this.autocorrectListIndex].classList.add(this.optionObj.shadingAutocorrectClass);
+    list[this.autocorrectListIndex + 1].classList.remove(this.optionObj.shadingAutocorrectClass)
   }
   changeListBackgourndColorDown(list) {
     const biggestIndex = list.length - 2;
@@ -152,11 +152,11 @@ class Search_autocorrect {
     if (bLastData) return;
     this.autocorrectListIndex++;
     if (this.autocorrectListIndex === 0) {
-      list[this.autocorrectListIndex].style = "background-color:#f8f8f8;";
+      list[this.autocorrectListIndex].classList.add(this.optionObj.shadingAutocorrectClass);
       return;
     }
-    list[this.autocorrectListIndex].style = "background-color:#f8f8f8;";
-    list[this.autocorrectListIndex - 1].style = "background-color:#fff;";
+    list[this.autocorrectListIndex].classList.add(this.optionObj.shadingAutocorrectClass);
+    list[this.autocorrectListIndex - 1].classList.remove(this.optionObj.shadingAutocorrectClass)
   }
 
   addInputValue() {

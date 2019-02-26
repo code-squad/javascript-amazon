@@ -40,5 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     formId: '#input-form'
   }, {
     cloakingTransitionTime: '0.3s',
+    shadingAutocorrectClass: 'shade',
+    cloakingBackgroundClass: 'cloak'
   })
 });
