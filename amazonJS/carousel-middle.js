@@ -1,6 +1,6 @@
 import { qs } from "./util.js";
 
-class Carousel_middle {
+class CarouselMiddle {
   constructor(elObj, urlObj, optionObj) {
     Object.assign(this, { elObj, urlObj, optionObj });
     this.bPlay = false;
@@ -105,4 +105,4 @@ class Carousel_middle {
   }
 }
 
-export { Carousel_middle };
+export { CarouselMiddle };

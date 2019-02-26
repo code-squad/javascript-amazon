@@ -1,6 +1,6 @@
 import { qs } from "./util.js";
 
-class ScrollEvent_sticky {
+class ScrollEventSticky {
   constructor(elObj) {
     Object.assign(this, { elObj });
     this.init();
@@ -46,4 +46,4 @@ class ScrollEvent_sticky {
   }
 }
 
-export { ScrollEvent_sticky };
+export { ScrollEventSticky };

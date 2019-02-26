@@ -1,6 +1,6 @@
 import { qs } from "./util.js";
 
-class Search_autocorrect {
+class SearchAutocorrect {
   constructor(elObj, formObj, optionObj) {
     Object.assign(this, { elObj, formObj, optionObj });
     this.autocorrectListIndex = -1;
@@ -173,4 +173,4 @@ class Search_autocorrect {
   }
 }
 
-export { Search_autocorrect };
+export { SearchAutocorrect };
