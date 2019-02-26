@@ -7,10 +7,7 @@ class ScrollEvent_sticky {
   }
 
   init() {
-    const hiddenLayer = qs(this.elObj.hiddenLayer);
-    const stickyLayer = qs(this.elObj.stickyLayer);
-
-    this.makeIO(qs(this.elObj.header), hiddenLayer, stickyLayer);
+    this.makeIO();
     this.regBtnEvent()
   }
 
@@ -24,7 +21,10 @@ class ScrollEvent_sticky {
     openArrowBtn.addEventListener("click", () => this.showHiddenLayer());
   }
 
-  makeIO(root, hiddenLayer, stickyLayer) {
+  makeIO() {
+    const root = qs(this.elObj.header);
+    const hiddenLayer = qs(this.elObj.hiddenLayer);
+    const stickyLayer = qs(this.elObj.stickyLayer);
     const io = new IntersectionObserver(entries => {
       if (!entries[0].isIntersecting) {
         stickyLayer.classList.add(this.elObj.topLayerActiveClass);
