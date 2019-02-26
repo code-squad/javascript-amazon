@@ -4,6 +4,8 @@ import { Search_autocorrect } from "./search-autocorrect.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const scrollEvent_sticky = new ScrollEvent_sticky({
+    //닫는 버튼의 클래스 명은 ".close-button" ".close-button-foot" 이어야 합니다.
+    //여는 버튼의 클래스 명은 ".top-layer-trigger-button" 이어야 합니다.
     header: "header",
     stickyLayer: ".top-layer-container",
     hiddenLayer: ".prime-member-container"
