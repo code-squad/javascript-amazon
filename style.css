@@ -11,7 +11,7 @@ body {
     background-color: #232f3e;
 }
 
-.header.extended{
+.header.extended {
     position: relative;
 }
 
@@ -29,7 +29,6 @@ body {
 .top-header {
     width: 100%;
     height: 46px;
-    /* text-align: center; */
 }
 
 li {
@@ -39,7 +38,6 @@ li {
 /* left - amazon-logo */
 
 .top-header-left {
-    /* width: 192px; */
     height: 38px;
     float: left;
 }
@@ -57,13 +55,7 @@ li {
 .top-header-middle {
     margin-left: 30px;
     width: 700px;
-    /* margin: 10px auto; */
     font-size: 0;
-    /* vertical-align: middle;
-    text-align: center; */
-    /* position: relative; */
-    /* float: left; */
-    /* display: inline-block; */
     text-align: left;
     padding-top: 10px;
 }
@@ -73,28 +65,17 @@ li {
     height: 35px;
     border: 1px solid #f3f3f3;
     border-radius: 10px 0px 0px 10px;
-    /* float: left; */
 }
 
 .leftContainer {
     position: relative;
-    /* float: left; */
 }
 
 .select-container {
     position: relative;
-    /* width: 100%; */
-    /* height: 100%; */
     display: inline-block;
-    /* vertical-align: top; */
     padding-left: 3px;
 }
-
-/* .leftContainer::after{
-    content: '';
-    clear: both;
-    display: table;
-} */
 
 .arrow {
     border: 3.5px solid transparent;
@@ -111,7 +92,6 @@ li {
 .sch-input-box {
     height: 35px;
     width: 610px;
-    /* float: left; */
     margin: auto;
     vertical-align: middle;
     display: inline-block;
@@ -124,7 +104,6 @@ li {
     background-color: #f5bc68;
     border-left: 1px solid grey;
     border-radius: 0px 10px 10px 0px;
-    /* float: left; */
     cursor: pointer;
     display: inline-block;
     vertical-align: top;
@@ -154,9 +133,8 @@ li {
     background-repeat: no-repeat;
 }
 
-/* var() */
-
 /* header-bottom */
+
 .btm-header {
     width: 100%;
     height: 46px;
@@ -167,7 +145,6 @@ li {
 /* left - location  */
 
 .btm-header-left {
-    /* width: 192px; */
     height: 38px;
     float: left;
     cursor: pointer;
@@ -208,17 +185,10 @@ li {
 
 /*  middle  */
 .btm-header-middle {
-    /* margin: 10px auto; */
-    /* font-size: 0; */
-    /* text-align: left; */
-    /* float: left; */
-    /* width: 700px; */
     margin-left: 30px;
-    /* display: inline-block; */
 }
 
 .departments {
-    /* float: left; */
     cursor: pointer;
     position: relative;
     width: 106px;
@@ -240,9 +210,7 @@ li {
 }
 
 .header-mid-links {
-    /* margin-left: 20px; */
     font-size: 12px;
-    /* padding-right: 20px; */
     display: inline-block;
     width: 500px;
 }
@@ -271,7 +239,6 @@ li {
 /*  right  */
 
 .btm-header-right {
-    /* width: 400px; */
     height: 43px;
     float: right;
     vertical-align: bottom;
@@ -402,13 +369,14 @@ li {
 
 /* header - plans-layer-wrapper */
 
-.plans-wrapper{
+.plans-wrapper {
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 999;
 }
 
-.plans-wrapper.closing{
+.plans-wrapper.closing {
     position: absolute;
     top: 6.5rem;
     transition: none;
@@ -435,13 +403,13 @@ li {
     border-bottom: 1px solid #00a8e1;
 }
 
-.plans-extender.shown.top{
+.plans-extender.shown.top {
     position: absolute;
     top: 6.5rem;
     transition: none;
 }
 
-.plans-extender-closeBtn{
+.plans-extender-closeBtn {
     width: 100%;
     display: flex;
     margin-left: 73%;
@@ -449,14 +417,14 @@ li {
     cursor: pointer;
 }
 
-.plans-extender-closeBtn > span{
+.plans-extender-closeBtn span {
     color: #002F36;
     font-size: 16px;
     margin-right: 0.5rem;
     line-height: 19px;
 }
 
-.plans-extender-closeBtnIcon{
+.plans-extender-closeBtnIcon {
     background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png');
     height: 19px;
     width: 19px;
@@ -464,35 +432,35 @@ li {
     background-size: 158px auto;
 }
 
-.plans-extender-top{
+.plans-extender-top {
     display: flex;
     justify-content: center;
     margin-right: 10rem;
 }
 
-.plans-extender-top > .plans-logo{
+.plans-extender-top>.plans-logo {
     margin: 3rem 0 0 10rem;
 }
 
-.plans-extender-txt{
+.plans-extender-txt {
     font-size: 20pt;
     font-weight: 300;
     margin: 3.5rem 0 0 7rem;
 }
 
-.plans-extender-icon{
+.plans-extender-icon {
     width: 282px;
     height: 165px;
     background-image: url("https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/GBB_Illustration_01._CB514227929_.png");
 }
 
-.plans-extender-btn{
+.plans-extender-btn {
     position: relative;
     margin-top: 1rem;
     margin-left: 29%;
 }
 
-.plans-extender-arrow{
+.plans-extender-arrow {
     width: 15px;
     height: 12px;
     background-image: url('https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIIcon-sprite_1x-6c462f5dc3bc3e40d0788502814fa7043355712a._V2_.png');
@@ -501,16 +469,17 @@ li {
     vertical-align: top;
 }
 
-.plans-extender-table{
+.plans-extender-table {
     display: flex;
     justify-content: center;
 }
 
-.plans-extender-table > div{
+.plans-extender-table>div {
     width: 282px;
     height: 360px;
     border: 1px solid slategray;
-    margin: 5px;;
+    margin: 5px;
+    ;
 }
 
 /* header - plans-layer */
@@ -596,12 +565,17 @@ li {
     background-position: center top;
 }
 
+.top-banner-txt {
+    display: flex;
+    flex-flow: column;
+    margin-left: 3rem;
+}
+
 .top-banner h3 {
     font-size: 42px;
     font-weight: 700;
     color: #fff;
     width: 500px;
-    margin-left: 300px;
     padding-top: 40px;
     line-height: 50px;
     text-align: left;
@@ -611,78 +585,260 @@ li {
     font-size: 22px;
     width: 400px;
     color: #fff;
-    /* font-weight: ; */
-    margin-left: 300px;
     padding-top: 40px;
     text-align: left;
 }
 
 .top-banner-btn {
-    width: 400px;
-    background: #f0c14b;
-    border: #a88734;
-    margin-left: 300px;
-    padding-top: 40px;
+    width: 350px;
+    background: #ffa724;
+    border: 1px solid #ff6138;
+    text-align: center;
+    margin-top: 1rem;
+    vertical-align: middle;
+}
+
+.top-banner-btn:hover {
+    background-color: #ffc400;
 }
 
 .top-banner-btn button {
     width: 100%;
     height: 100%;
-    color: #0079b4;
     background: #f0c14b;
+    color: #284d40;
+    line-height: 52px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .top-banner-cancel {
-    display: block;
     text-align: left;
-    margin-left: 300px;
     padding-top: 40px;
     font-size: 14px;
     color: #fff;
+    text-align: left;
 }
 
-.top-banner span a {
+.top-banner span {
     color: #fff;
     font-size: 14px;
     cursor: pointer;
-    display: block;
+    text-decoration: underline;
     text-align: left;
-    margin-left: 300px;
 }
 
 .prime-logo {
     width: 80px;
     height: 50px;
     background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_White._CB515573990_.svg');
-    margin-left: 300px;
     margin-top: 20px;
+    text-align: left;
 }
 
 
 /* feature-cards */
 .feat-cards {
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-.feat-cards ul li div {
+.cards-items {
     width: 150px;
     height: 210px;
-    background-color: slategray;
+    background-color: red;
+    margin-right: 1rem;
+    position: relative;
 }
 
-
-/* carousel-card */
-.carousel-card {
-    width: 1048px;
-    height: 400px;
-    background-color: grey;
+.cards-items span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+    bottom: 24px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 200;
 }
 
-/* banner-middle */
-.mid-banner ul li div {
-    width: 1048px;
-    height: 360px;
-    background-color: black;
+.cards-btns-container {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    margin-top: 190px;
+    position: relative;
+}
+
+.cards-dtn {
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
+    background-size: 158px auto;
+    background-position: -22px -232px;
+    width: 10px;
+    height: 10px;
+    margin: 0 2.5px;
+    cursor: pointer;
+}
+
+.ship-icon {
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png), linear-gradient(30deg, #2C88AE 40%, #00A8E1 90%, #00A8E1 48px);
+    background-size: 1200px auto, 100% 100%;
+    background-position: 0px 0px, 0px 0px;
+    background-repeat: no-repeat, repeat;
+    width: 100%;
+    height: 210px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.stream-icon {
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png),
+        linear-gradient(30deg, #CC0C39 40%, #FF6138 90%, #FF6138 48px);
+    background-size: 1200px auto, 100% 100%;
+    background-position: 0px 0px, 0px 0px;
+    background-repeat: no-repeat, repeat;
+    width: 100%;
+    height: 210px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.shop-icon {
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png), linear-gradient(30deg, #A90067 40%, #E31F64 90%, #E31F64 48px);
+    background-size: 1200px auto, 100% 100%;
+    background-position: 0px 0px, 0px 0px;
+    background-repeat: no-repeat, repeat;
+    width: 100%;
+    height: 210px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.read-icon {
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png), linear-gradient(30deg, #008577 40%, #36C2B4 90%, #36C2B4 48px);
+    background-size: 1200px auto, 100% 100%;
+    background-position: 0px 0px, 0px 0px;
+    background-repeat: no-repeat, repeat;
+    width: 100%;
+    height: 210px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.more-icon {
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png), linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px);
+    background-size: 1200px auto, 100% 100%;
+    background-position: 0px 0px, 0px 0px;
+    background-repeat: no-repeat, repeat;
+    width: 100%;
+    height: 210px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.cards-items.selected {
+    transform: scale(1.3);
+    z-index: 2;
+    overflow: visible;
+    transition: transform 0.25s ease;
+}
+
+/* carousel */
+
+.carousel-cnt {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 20rem;
+}
+
+.carousel {
+    position: relative;
+    width: 180px;
+    height: 135px;
+    overflow: hidden;
+    float: left;
+    opacity: 0;
+}
+
+.carousel.view {
+    opacity: 1;
+}
+
+.carousel-container {
+    display: flex;
+}
+
+.carousel-container.transition {
+    transition: all 0.5s ease-out;
+}
+
+.carousel-txt {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: column;
+    width: 50%;
+    text-align: left;
+    margin-left: 1rem
+
+}
+
+.carousel-title {
+    font-size: 30px;
+    font-weight: 500;
+    color: #002F36;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.carousel-txt div {
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.carousel-txt-link {
+    color: #002F36;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.btn-control {
+    position: absolute;
+    color: beige;
+    font-size: 14px;
+    font-weight: bold;
+    top: 0;
+    display: flex;
+}
+
+.prev-btn {
+    margin-top: 60px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.next-btn {
+    margin-top: 60px;
+    margin-left: 140px;
+    cursor: pointer;
 }
 
 /* footer */

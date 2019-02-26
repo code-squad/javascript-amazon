@@ -1,4 +1,4 @@
-class PlansUI {
+export default class PlansUI {
     constructor() {
         this.isExtenderShown = false;
         this.closeExtenderBtn = document.querySelector('.plans-extender-btn');
@@ -8,70 +8,85 @@ class PlansUI {
         this.plansLayerWrapper = document.querySelector('.plans-wrapper');
         this.header = document.querySelector('.header');
         this.plansExtender = document.querySelector('.plans-extender');
-        this.layerPosition = 366;
-        this.headerPosition = 99;
     }
 
-    showLayer() {
-        this.isExtenderShown ? this.checkExtender() : this.showPlansLayer();
-    };
+    init() {
+        window.addEventListener("scroll", this.controlLayer.bind(this));
+        this.closeExtenderBtn.addEventListener("click", this.controlClosingExtender.bind(this));
+        this.closeExtenderBtn2.addEventListener("click", this.controlClosingExtender.bind(this));
+        this.plansMoreBtn.addEventListener("click", this.showExtender.bind(this));
 
-    showPlansLayer() {
-        if (window.scrollY > this.layerPosition) {
-            this.plansLayer.classList.add('shown');
-            this.header.classList.remove('extended');
-            this.plansLayerWrapper.classList.remove('closing');
-        }
+    }
 
+    controlLayer() {
+        this.isExtenderShown ? this.checkExHeader() : this.controlPlansLayer();
+    }
+
+    checkExHeader() {
+        this.isHeaderShown() ? this.moveExTopToHeader() : this.moveExTopToZero();
+    }
+
+    isHeaderShown() {
+        return window.scrollY < 99;
+    }
+
+    moveExTopToHeader() {
+        this.plansExtender.classList.add('top');
+        this.header.classList.add('extended');
+    }
+
+    moveExTopToZero() {
+        this.plansExtender.classList.remove('top');
+        this.header.classList.remove('extended');
+    }
+
+    controlPlansLayer() {
+        if (this.isScrollToShowPL()) this.plansLayer.classList.add('shown');
+        else if (this.isHeaderShown()) this.moveTopToHeader();
         else this.closePlansLayer();
-    };
+    }
 
-    closePlansLayer(){
-        if (window.scrollY < this.headerPosition) {
-            this.plansLayerWrapper.classList.add('closing');
-            this.header.classList.add('extended');
-        }
+    isScrollToShowPL() {
+        return window.scrollY > 366;
+    }
+
+    moveTopToZero() {
+        this.header.classList.remove('extended');
+        this.plansLayerWrapper.classList.remove('closing');
+    }
+
+    moveTopToHeader() {
+        this.header.classList.add('extended');
+        this.plansLayerWrapper.classList.add('closing');
+    }
+
+    closePlansLayer() {
+        if (this.isHeaderShown()) this.moveTopToHeader();
         else {
             this.plansLayer.classList.remove('shown');
-            this.header.classList.remove('extended');
-            this.plansLayerWrapper.classList.remove('closing');
+            this.moveTopToZero();
         }
     }
-
-    checkExtender() {
-        if (window.scrollY < this.headerPosition) {
-            this.plansExtender.classList.add('top');
-            this.header.classList.add('extended');
-        } else {
-            this.plansExtender.classList.remove('top');
-            this.header.classList.remove('extended');
-        }
-    };
 
     showExtender() {
         this.plansLayer.classList.remove('shown');
         this.plansExtender.classList.add('shown');
         this.isExtenderShown = true;
-    };
+    }
+
+    controlClosingExtender() {
+        if (this.isScrollToShowPL()) this.plansLayer.classList.add('shown');
+        else if (this.isExTopToHeader()) this.moveTopToHeader();
+        this.closeExtender();
+    }
+
+    isExTopToHeader() {
+        return this.plansExtender.classList.contains("top");
+    }
 
     closeExtender() {
-        if (window.scrollY > this.layerPosition) {
-            this.plansExtender.classList.remove('shown');
-            this.plansLayer.classList.add('shown');
-            this.plansExtender.classList.remove('top');
-            this.isExtenderShown = false;
-        } else {
-            this.plansExtender.classList.remove('shown');
-            this.plansExtender.classList.remove('top');
-            this.isExtenderShown = false;
-        }
+        this.plansExtender.classList.remove('shown');
+        this.plansExtender.classList.remove('top');
+        this.isExtenderShown = false;
     }
 }
-
-const plansUI = new PlansUI();
-
-document.addEventListener("scroll", plansUI.showLayer.bind(plansUI));
-document.addEventListener("scroll", plansUI.checkExtender.bind(plansUI));
-plansUI.closeExtenderBtn.addEventListener("click", plansUI.closeExtender.bind(plansUI));
-plansUI.closeExtenderBtn2.addEventListener("click", plansUI.closeExtender.bind(plansUI));
-plansUI.plansMoreBtn.addEventListener("click", plansUI.showExtender.bind(plansUI));
