@@ -19,10 +19,10 @@ class Search_autocorrect {
     }`;
 
     this.formSubmitPrevent(this.formObj);
-    this.searchWindow.addEventListener('keydown', this.clearBounce.bind(this))
-    this.searchWindow.addEventListener("keyup", this.debounce.bind(this));
+    this.searchWindow.addEventListener('keydown', (e) => this.clearBounce(e));
+    this.searchWindow.addEventListener("keyup", (e) => this.debouncing(e));
     this.autocorrectWindow.addEventListener("click", (e) => this.goAddress(e.target));
-    this.searchBtn.addEventListener("click", this.submitFormData.bind(this));
+    this.searchBtn.addEventListener("click", (e) => this.submitFormData(e));
   }
 
   formSubmitPrevent(form) {
@@ -30,9 +30,9 @@ class Search_autocorrect {
       e.preventDefault();
     })
   }  
-  debounce(e) {
+  debouncing(e) {
     if (this.isUpDownArrowOrEnter(e.key)) return this.getSearchData(e);
-    this.debounce = setTimeout(this.getSearchData.bind(this, e), 1000);
+    this.debounce = setTimeout(() => this.getSearchData(e), 1000);
   }
   clearBounce() {
     clearTimeout(this.debounce);
