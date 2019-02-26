@@ -17,7 +17,7 @@ class Search_autocorrect {
     this.toBeCloakedEl.style.transition = `opacity ${
       this.optionObj.cloakingTransitionTime
     }`;
-    
+
     this.formSubmitPrevent(this.formObj);
     this.searchWindow.addEventListener('keydown', this.clearBounce.bind(this))
     this.searchWindow.addEventListener("keyup", this.debounce.bind(this));
@@ -46,7 +46,7 @@ class Search_autocorrect {
     if (this.isUpDownArrowOrEnter(e.key)) return this.operateCertainKeyEvent(e);
     this.resetAutocorrectLists.call(this);
     const inputValue = this.searchWindow.value;
-    if (this.isInputBlank.call(this, inputValue)) return;
+    if (inputValue === '') return this.closeAutoCorrectWindow();
     fetch(this.formUrl + "amazon/ac/" + inputValue).then(res => {
       res.json().then(jsonData => {
         this.addList(jsonData);
@@ -64,12 +64,6 @@ class Search_autocorrect {
       this.elObj.autocorrectLists
     );
     this.autocorrectListIndex = -1;
-  }
-  isInputBlank(input) {
-    if (input === "") {
-      this.closeAutoCorrectWindow();
-      return true;
-    }
   }
 
   addList(jsonData) {
