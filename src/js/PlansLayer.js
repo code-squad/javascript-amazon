@@ -5,7 +5,6 @@ export default class PlansLayer {
     this.io = new IntersectionObserver(this.handleIntersect.bind(this));
   }
   init() {
-    // const primeBtn = helper.qs('.main__btn');
     this.io.observe(this.observeEl);
     this.setClickEvent();
   }
@@ -33,6 +32,10 @@ export default class PlansLayer {
     } else return;
   }
   showPlans() {
+    const plans = helper.qs('.plans');
+    this.io.unobserve(this.observeEl);
+    helper.removeClass(plans, 'plans--scroll');
+    helper.addClass(plans, 'plans--open');
   }
   closePlans() {
   }
