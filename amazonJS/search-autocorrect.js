@@ -165,7 +165,6 @@ class Search_autocorrect {
     ].dataset.value;
     this.closeAutoCorrectWindow();
     return;
-    // 선택된 상태에서 엔터키를 입력하면 해당검색어가 위쪽 검색input창에 추가된다.  동시에 검색결과창은 사라진다.
   }
 
   submitFormData(e) {
