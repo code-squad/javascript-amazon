@@ -114,4 +114,19 @@ describe ("Plans layer", () => {
       expect(plans.classList.contains('plans--open')).toBeTruthy();
     })
   })
+
+  describe ("closePlans 함수를 실행하면", () => {
+    let plans;
+    beforeEach(() => {
+      plans = document.querySelector('.plans');
+      layer.init();
+      layer.closePlans();
+    })
+    it ("'plans--open' 클래스를 제거한다.", () => {
+      expect(plans.classList.contains('plans--open')).toBeFalsy();
+    })
+    it ("IntersectionObserver객체 io의 관찰을 시작한다.", () => {
+      expect(layer.io.observe).toHaveBeenCalled();
+    })
+  })
 })

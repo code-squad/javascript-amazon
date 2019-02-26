@@ -38,5 +38,8 @@ export default class PlansLayer {
     helper.addClass(plans, 'plans--open');
   }
   closePlans() {
+    const plans = helper.qs('.plans');
+    helper.removeClass(plans, 'plans--open');
+    this.io.observe(this.observeEl);
   }
 }
