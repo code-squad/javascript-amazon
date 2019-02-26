@@ -92,8 +92,8 @@ class Carousel_middle {
 
   checkAuto() {
     this.autoEventStopContainer = qs(this.optionObj.autoEventStopContainer);
-    this.autoEventStopContainer.addEventListener("mouseover", this.mouseOver.bind(this));
-    this.autoEventStopContainer.addEventListener("mouseout", this.mouseOut.bind(this));
+    this.autoEventStopContainer.addEventListener("mouseover", () => this.mouseOver());
+    this.autoEventStopContainer.addEventListener("mouseout", () => this.mouseOut());
   }
 
   mouseOver() {
