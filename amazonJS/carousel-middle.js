@@ -10,13 +10,17 @@ class Carousel_middle {
 
   init() {
     let ajaxDataUrl = this.urlObj.ajaxDataUrl;
-    fetch(ajaxDataUrl).then(res => {
-      res.json().then(jsonData => {
-        this.handler(jsonData)
-      })
-    })
+    this.getData(ajaxDataUrl);
     this.checkAuto();
     setTimeout(this.moveAuto.bind(this), this.optionObj.carouselAutoMovingMS);
+  }
+
+  getData(dataUrl) {
+    fetch(dataUrl).then(res => {
+      return res.json()
+    }).then(jsonData => {
+      this.handler(jsonData)
+    })
   }
 
   handler(parsedObj) {
