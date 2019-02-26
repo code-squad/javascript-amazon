@@ -22,7 +22,7 @@ const carouselSetting = {
 window.addEventListener('DOMContentLoaded', () => {
     const plansUI = new PlansUI();
     const carousel = new Carousel(carouselSetting);
-    const cardsUI = new CardsUI(".cards-items")
+    const cardsUI = new CardsUI(".cards-items", "selected")
 
     plansUI.init();
     carousel.init();
