@@ -61,7 +61,7 @@ class SearchAutocorrect {
   }
   resetAutocorrectLists() {
     this.autocorrectLists = this.autocorrectWindow.getElementsByClassName(
-      this.elObj.autocorrectLists
+      this.elObj.autocorrectListsClass
     );
     this.autocorrectListIndex = -1;
   }

@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchAutocorrect = new SearchAutocorrect({
     searchWindow: '.head-search-blank',
     autocorrectWindow: '.head-search-autocorrect-container',
-    autocorrectLists: 'head-search-autocorrect-list',//not class
+    autocorrectListsClass: 'head-search-autocorrect-list',//not class
     toBeCloakedElement: '.wholeBodyContainer',
     searchButtonElement: '.head-search-button'
   }, {
