@@ -663,20 +663,9 @@ li {
 
 
 /* feature-cards */
-li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    box-sizing: border-box;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    border: 0;
-}
-
-.feat-cards ul {
+.feat-cards {
     display: flex;
+    justify-content: center;
 }
 
 .cards-items {
