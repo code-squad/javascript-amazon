@@ -14,7 +14,10 @@ class ScrollEvent_sticky {
     const openArrowBtn = qs(".top-layer-trigger-button", stickyLayer);
 
     this.makeIO(qs(this.elObj.header), hiddenLayer, stickyLayer);
+    this.regBtnEvent(closeBtn, closeArrowBtn, openArrowBtn)
+  }
 
+  regBtnEvent(closeBtn, closeArrowBtn, openArrowBtn) {
     closeBtn.addEventListener("click", () => this.hideLayer());
     closeArrowBtn.addEventListener("click", () => this.hideLayer());
     openArrowBtn.addEventListener("click", () => this.showHiddenLayer());
