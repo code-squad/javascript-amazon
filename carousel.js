@@ -123,7 +123,7 @@ export default class Carousel {
 
     moveRight() {
         if (this.transitioning) return;
-        if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
+        if (!this.container.classList.contains("transiting")) this.container.classList.add("transiting");
         else {
             this.currentItem++;
             this.carouselPosition -= this.itemWidth;
@@ -134,7 +134,7 @@ export default class Carousel {
 
     moveLeft() {
         if (this.transitioning) return;
-        if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
+        if (!this.container.classList.contains("transiting")) this.container.classList.add("transiting");
         else {
             this.currentItem--;
             this.carouselPosition += this.itemWidth;
@@ -149,10 +149,10 @@ export default class Carousel {
         if (val === first) {
             this.currentItem = this.items.length-2;
             this.carouselPosition = -(this.itemWidth * this.currentItem);
-            this.container.classList.remove("transition");
+            this.container.classList.remove("transiting");
             this.container.style.transform = `translateX(${this.carouselPosition}px)`;
         } else if (val === last) {
-            this.container.classList.remove("transition");
+            this.container.classList.remove("transiting");
             this.moveToFirstItem();
         }
     }
