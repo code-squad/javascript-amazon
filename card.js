@@ -9,7 +9,8 @@ export default class CardsUI {
     }
 
     addEvent() {
-        document.addEventListener("click", ((event) => {
+        const cardsArea = document.querySelector(".feat-cards")
+        cardsArea.addEventListener("click", ((event) => {
             const target = event.target.parentElement;
             this.removeSelected();
             if (target.matches('.cards-items')) target.classList.add(this.selectedClass);
