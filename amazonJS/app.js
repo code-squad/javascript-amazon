@@ -41,6 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }, {
     cloakingTransitionTime: '0.3s',
     shadingAutocorrectClass: 'shade',
-    cloakingBackgroundClass: 'cloak'
+    cloakingBackgroundClass: 'cloaking'
   })
 });
