@@ -29,7 +29,6 @@ body {
 .top-header {
     width: 100%;
     height: 46px;
-    /* text-align: center; */
 }
 
 li {
@@ -39,7 +38,6 @@ li {
 /* left - amazon-logo */
 
 .top-header-left {
-    /* width: 192px; */
     height: 38px;
     float: left;
 }
@@ -57,13 +55,7 @@ li {
 .top-header-middle {
     margin-left: 30px;
     width: 700px;
-    /* margin: 10px auto; */
     font-size: 0;
-    /* vertical-align: middle;
-    text-align: center; */
-    /* position: relative; */
-    /* float: left; */
-    /* display: inline-block; */
     text-align: left;
     padding-top: 10px;
 }
@@ -73,28 +65,17 @@ li {
     height: 35px;
     border: 1px solid #f3f3f3;
     border-radius: 10px 0px 0px 10px;
-    /* float: left; */
 }
 
 .leftContainer {
     position: relative;
-    /* float: left; */
 }
 
 .select-container {
     position: relative;
-    /* width: 100%; */
-    /* height: 100%; */
     display: inline-block;
-    /* vertical-align: top; */
     padding-left: 3px;
 }
-
-/* .leftContainer::after{
-    content: '';
-    clear: both;
-    display: table;
-} */
 
 .arrow {
     border: 3.5px solid transparent;
@@ -111,7 +92,6 @@ li {
 .sch-input-box {
     height: 35px;
     width: 610px;
-    /* float: left; */
     margin: auto;
     vertical-align: middle;
     display: inline-block;
@@ -124,7 +104,6 @@ li {
     background-color: #f5bc68;
     border-left: 1px solid grey;
     border-radius: 0px 10px 10px 0px;
-    /* float: left; */
     cursor: pointer;
     display: inline-block;
     vertical-align: top;
@@ -154,9 +133,8 @@ li {
     background-repeat: no-repeat;
 }
 
-/* var() */
-
 /* header-bottom */
+
 .btm-header {
     width: 100%;
     height: 46px;
@@ -167,7 +145,6 @@ li {
 /* left - location  */
 
 .btm-header-left {
-    /* width: 192px; */
     height: 38px;
     float: left;
     cursor: pointer;
@@ -208,17 +185,10 @@ li {
 
 /*  middle  */
 .btm-header-middle {
-    /* margin: 10px auto; */
-    /* font-size: 0; */
-    /* text-align: left; */
-    /* float: left; */
-    /* width: 700px; */
     margin-left: 30px;
-    /* display: inline-block; */
 }
 
 .departments {
-    /* float: left; */
     cursor: pointer;
     position: relative;
     width: 106px;
@@ -240,9 +210,7 @@ li {
 }
 
 .header-mid-links {
-    /* margin-left: 20px; */
     font-size: 12px;
-    /* padding-right: 20px; */
     display: inline-block;
     width: 500px;
 }
@@ -271,7 +239,6 @@ li {
 /*  right  */
 
 .btm-header-right {
-    /* width: 400px; */
     height: 43px;
     float: right;
     vertical-align: bottom;
@@ -434,7 +401,6 @@ li {
     height: 631px;
     max-height: 631px;
     border-bottom: 1px solid #00a8e1;
-    /* z-index: 999; */
 }
 
 .plans-extender.shown.top {
@@ -451,7 +417,7 @@ li {
     cursor: pointer;
 }
 
-.plans-extender-closeBtn>span {
+.plans-extender-closeBtn span {
     color: #002F36;
     font-size: 16px;
     margin-right: 0.5rem;
@@ -599,12 +565,17 @@ li {
     background-position: center top;
 }
 
+.top-banner-txt {
+    display: flex;
+    flex-flow: column;
+    margin-left: 3rem;
+}
+
 .top-banner h3 {
     font-size: 42px;
     font-weight: 700;
     color: #fff;
     width: 500px;
-    margin-left: 300px;
     padding-top: 40px;
     line-height: 50px;
     text-align: left;
@@ -614,51 +585,58 @@ li {
     font-size: 22px;
     width: 400px;
     color: #fff;
-    /* font-weight: ; */
-    margin-left: 300px;
     padding-top: 40px;
     text-align: left;
 }
 
 .top-banner-btn {
-    width: 400px;
-    background: #f0c14b;
-    border: #a88734;
-    margin-left: 300px;
-    padding-top: 40px;
+    width: 350px;
+    background: #ffa724;
+    border: 1px solid #ff6138;
+    text-align: center;
+    margin-top: 1rem;
+    vertical-align: middle;
+}
+
+.top-banner-btn:hover {
+    background-color: #ffc400;
 }
 
 .top-banner-btn button {
     width: 100%;
     height: 100%;
-    color: #0079b4;
     background: #f0c14b;
+    color: #284d40;
+    line-height: 52px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .top-banner-cancel {
-    display: block;
     text-align: left;
-    margin-left: 300px;
     padding-top: 40px;
     font-size: 14px;
     color: #fff;
+    text-align: left;
 }
 
-.top-banner span a {
+.top-banner span {
     color: #fff;
     font-size: 14px;
     cursor: pointer;
-    display: block;
+    text-decoration: underline;
     text-align: left;
-    margin-left: 300px;
 }
 
 .prime-logo {
     width: 80px;
     height: 50px;
     background-image: url('https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_White._CB515573990_.svg');
-    margin-left: 300px;
     margin-top: 20px;
+    text-align: left;
 }
 
 
@@ -684,8 +662,8 @@ li {
     margin: auto;
     bottom: 24px;
     color: #fff;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: 200;
 }
 
 .cards-btns-container {
