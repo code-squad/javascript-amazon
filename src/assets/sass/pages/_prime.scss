@@ -59,7 +59,6 @@
 .plans {
   width: 100%;
   position: absolute;
-  // display: none;
   border-bottom: 2px solid #00a8e1;
   top: 0;
   z-index: 99;
@@ -71,24 +70,26 @@
     top: 0;
     left: 0;
     right: 0;
-    // bottom: 0;
     max-height: 652px;
     z-index: 9999;
   }
   &--scroll {
     height: 7.2rem;
     transform: translateY(0);
-    transition: all 0.3s ease-in-out;
-    & .plans-header {
-      display: flex;
-      // opacity: 1;
-      // transition: all 0.3s ease-in-out;
-    }
+    transition: all 0.6s ease-in-out;
   }
   &--open {
     height: auto;
+    border-bottom: none;
     & .plans-content {
-      display: block;
+      height: 633px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #00a8e1;
+      transform: translateY(70px);
+      transition: all 0.6s ease-in-out;
+    }
+    & .plans-header {
+      opacity: 0;
     }
   }
   &-header {
@@ -96,10 +97,8 @@
     justify-content: space-around;
     align-items: center;
     height: 7rem;
+    opacity: 1;
     background: $primary_dark;
-    // opacity: 0;
-    transition: all 0.5s ease-in-out;
-    // display: none;
     &-logo {
       height: 7rem;
       &__img {
@@ -132,13 +131,16 @@
   }
   &-content {
     margin: 0 auto;
-    padding: 0 6% 2rem 6%;
+    padding: 0 6% 0 6%;
     width: 100%;
-    height: 100%;
+    height: 0px;
     position: relative;
+    z-index: 99;
+    overflow: hidden;
     background: $white no-repeat url(../images/GBB_Illustration_01.png);
     background-position: calc(100% - 6%) 0;
-    display: none;
+    transform: translateY(0);
+    transition: all 0.6s ease-in-out;
     & form {
       margin: 0 auto;
       max-width: 80rem;
@@ -187,7 +189,7 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 0;
+        bottom: 4px;
         background: transparent;
         border: none;
         .icon-arrow--up {
