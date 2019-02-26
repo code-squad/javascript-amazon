@@ -9,9 +9,9 @@ class ScrollEvent_sticky {
   init() {
     const hiddenLayer = qs(this.elObj.hiddenLayer);
     const stickyLayer = qs(this.elObj.stickyLayer);
-    const closeBtn = qs(".close-button", hiddenLayer);
-    const closeArrowBtn = qs(".close-button-foot", hiddenLayer);
-    const openArrowBtn = qs(".top-layer-trigger-button", stickyLayer);
+    const closeBtn = qs(this.elObj.closeBtn, hiddenLayer);
+    const closeArrowBtn = qs(this.elObj.closeArrowBtn, hiddenLayer);
+    const openArrowBtn = qs(this.elObj.openArrowBtn, stickyLayer);
 
     this.makeIO(qs(this.elObj.header), hiddenLayer, stickyLayer);
     this.regBtnEvent(closeBtn, closeArrowBtn, openArrowBtn)
@@ -26,22 +26,22 @@ class ScrollEvent_sticky {
   makeIO(root, hiddenLayer, stickyLayer) {
     const io = new IntersectionObserver(entries => {
       if (!entries[0].isIntersecting) {
-        stickyLayer.classList.add("top-layer-active");
-        hiddenLayer.classList.add("prime-member-container-scroll-active");
+        stickyLayer.classList.add(this.elObj.topLayerActiveClass);
+        hiddenLayer.classList.add(this.elObj.scrollActiveClass);
       } else {
-        stickyLayer.classList.remove("top-layer-active");
-        hiddenLayer.classList.remove("prime-member-container-scroll-active");
+        stickyLayer.classList.remove(this.elObj.topLayerActiveClass);
+        hiddenLayer.classList.remove(this.elObj.scrollActiveClass);
       }
     });
     return io.observe(root);
   }
 
   showHiddenLayer() {
-    qs(this.elObj.hiddenLayer).classList.add("prime-member-container-active");
+    qs(this.elObj.hiddenLayer).classList.add(this.elObj.btnActiveClass);
   }
 
   hideLayer() {
-    qs(this.elObj.hiddenLayer).classList.remove("prime-member-container-active");
+    qs(this.elObj.hiddenLayer).classList.remove(this.elObj.btnActiveClass);
   }
 }
 

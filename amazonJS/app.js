@@ -8,7 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
     //여는 버튼의 클래스 명은 ".top-layer-trigger-button" 이어야 합니다.
     header: "header",
     stickyLayer: ".top-layer-container",
-    hiddenLayer: ".prime-member-container"
+    hiddenLayer: ".prime-member-container",
+    closeBtn: ".close-button",
+    closeArrowBtn: ".close-button-foot",
+    openArrowBtn: ".top-layer-trigger-button",
+    topLayerActiveClass: "top-layer-active",
+    scrollActiveClass: "prime-member-container-scroll-active",
+    btnActiveClass: "prime-member-container-active"
   });
 
   const carousel_middle = new Carousel_middle({
