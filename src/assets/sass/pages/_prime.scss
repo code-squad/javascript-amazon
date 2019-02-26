@@ -63,19 +63,26 @@
   border-bottom: 2px solid #00a8e1;
   top: 0;
   z-index: 99;
+  transform: translateY(-70px);
+  transition: all 0.3s ease-in-out;
   &--scroll,
   &--open {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    // bottom: 0;
+    max-height: 652px;
     z-index: 9999;
   }
   &--scroll {
     height: 7.2rem;
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
     & .plans-header {
       display: flex;
+      // opacity: 1;
+      // transition: all 0.3s ease-in-out;
     }
   }
   &--open {
@@ -90,7 +97,9 @@
     align-items: center;
     height: 7rem;
     background: $primary_dark;
-    display: none;
+    // opacity: 0;
+    transition: all 0.5s ease-in-out;
+    // display: none;
     &-logo {
       height: 7rem;
       &__img {
