@@ -12,11 +12,9 @@ describe ("Plans layer", () => {
   const windowIntersectionObserver = window.IntersectionObserver;
 
   beforeEach(() => {
-    document.documentElement.innerHTML = html.toString();
-  })
-
-  afterEach(() => {
     jest.resetModules();
+    document.documentElement.innerHTML = html.toString();
+    layer = new PlansLayer();
   })
 
   beforeAll(() => {
@@ -26,7 +24,6 @@ describe ("Plans layer", () => {
       this.observe = jest.fn()
       this.unobserve = jest.fn()
     })
-    layer = new PlansLayer();
   });
 
   describe ("layer는", () => {
@@ -68,6 +65,9 @@ describe ("Plans layer", () => {
     it ("setClickEvent 함수가 실행된다.", () => {
       expect(layer.setClickEvent).toHaveBeenCalled();
     })
+    afterEach(() => {
+      jest.clearAllMocks()
+    })
   })
 
   describe ("클릭 이벤트", () => {
@@ -82,27 +82,36 @@ describe ("Plans layer", () => {
       layer.callClickEvent(evt);
       expect(layer.showPlans).toHaveBeenCalled();
     })
-
     it ("plans-content__btn--close 클래스를 가진 버튼을 클릭하면, closePlans 함수를 호출한다.", () => {
       evt.target = document.querySelector('.plans-content__btn--close');
       layer.callClickEvent(evt);
       expect(layer.closePlans).toHaveBeenCalled();
     })
-
     it ("plans-content__btn--close-icon 클래스를 가진 버튼을 클릭하면, closePlans 함수를 호출한다.", () => {
       evt.target = document.querySelector('.plans-content__btn--close-icon');
       layer.callClickEvent(evt);
       expect(layer.closePlans).toHaveBeenCalled();
     })
+    afterAll(() => {
+      jest.restoreAllMocks()
+    })
   })
 
   describe ("showPlans 함수를 실행하면", () => {
+    let plans;
     beforeEach(() => {
+      plans = document.querySelector('.plans');
       layer.init();
       layer.showPlans();
     })
     it ("IntersectionObserver객체 io의 관찰을 멈춘다.", () => {
       expect(layer.io.unobserve).toHaveBeenCalled();
+    })
+    it ("'plans--scroll' 클래스를 제거한다.", () => {
+      expect(plans.classList.contains('plans--scroll')).toBeFalsy();
+    })
+    it ("'plans--open' 클래스를 추가한다.", () => {
+      expect(plans.classList.contains('plans--open')).toBeTruthy();
     })
   })
 })
