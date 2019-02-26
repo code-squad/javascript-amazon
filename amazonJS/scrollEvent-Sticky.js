@@ -2,17 +2,17 @@ import { qs } from "./util.js";
 
 class ScrollEvent_sticky {
   constructor(elObj) {
-    Object.assign(this, { elObj })
+    Object.assign(this, { elObj });
     this.init();
   }
-  
+
   init() {
     const hiddenLayer = qs(this.elObj.hiddenLayer);
     const stickyLayer = qs(this.elObj.stickyLayer);
     const closeBtn = qs(".close-button", hiddenLayer);
     const closeArrowBtn = qs(".close-button-foot", hiddenLayer);
     const openArrowBtn = qs(".top-layer-trigger-button", stickyLayer);
-    
+
     this.makeIO(qs(this.elObj.header), hiddenLayer, stickyLayer);
 
     closeBtn.addEventListener("click", () => this.hideLayer());
