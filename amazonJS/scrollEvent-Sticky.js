@@ -15,9 +15,9 @@ class ScrollEvent_sticky {
     
     this.makeIO(qs(this.elObj.header), hiddenLayer, stickyLayer);
 
-    closeBtn.addEventListener("click", this.hideLayer.bind(this));
-    closeArrowBtn.addEventListener("click", this.hideLayer.bind(this));
-    openArrowBtn.addEventListener("click", this.showHiddenLayer.bind(this));
+    closeBtn.addEventListener("click", () => this.hideLayer());
+    closeArrowBtn.addEventListener("click", () => this.hideLayer());
+    openArrowBtn.addEventListener("click", () => this.showHiddenLayer());
   }
 
   makeIO(root, hiddenLayer, stickyLayer) {
