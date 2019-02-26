@@ -15,7 +15,11 @@ const carouselSetting = {
         itemWidth: 180,
         carouselDuration: 2000,
         carouselCheckingDuration: 500,
-        timeGapToRestartCarousel: 5000,
+        timeGapToRestartCarousel: 5000
+    },
+    data: {
+        method: "GET",
+        url: "./carouselData.json"
     }
 }
 

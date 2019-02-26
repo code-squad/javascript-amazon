@@ -1,5 +1,5 @@
 export default class Carousel {
-    constructor({carouselSelector, btnSelector, options}) {
+    constructor({carouselSelector, btnSelector, options, data}) {
         this.dataList = [];
         this.carousel = document.querySelector(carouselSelector.carousel);
         this.container = document.querySelector(carouselSelector.container);
@@ -17,6 +17,7 @@ export default class Carousel {
         this.carouselCheckingDuration = options.carouselCheckingDuration;
         this.timeGapToRestartCarousel = options.timeGapToRestartCarousel;
         this.btnSelector = btnSelector;
+        this.dataObj = data;
     }
 
     init() {
@@ -25,14 +26,14 @@ export default class Carousel {
     }
 
     getData() {
-        var oReq = new XMLHttpRequest();
+        const oReq = new XMLHttpRequest();
         oReq.addEventListener("load", () => {
             const obj = JSON.parse(oReq.responseText);
             this.pushData(obj.src);
             this.showImage();
             this.startAutoCarousel();
         });
-        oReq.open("GET", "./carouselData.json");
+        oReq.open(this.dataObj.method, this.dataObj.url);
         oReq.send();
     }
 
@@ -72,17 +73,19 @@ export default class Carousel {
     }
     
     moveCarouselAuto(duration) {
-        let timer = setTimeout(function moveAuto() {
-            if (!this.btnClicked) this.moveRight();
-            timer = setTimeout(moveAuto.bind(this), duration);
-        }.bind(this), duration);
+        const moveAuto = () => {
+            if(!this.btnClicked) this.moveRight();
+            let timer = setTimeout(moveAuto, duration);
+        }
+        moveAuto();
     }
 
     checkAutoCarousel(timeGap, duration) {
-        let timer = setTimeout(function checkTime() {
-            if (new Date() - this.btnClickedTime > timeGap) this.btnClicked = false;
-            timer = setTimeout(checkTime.bind(this), duration);
-        }.bind(this), duration);
+        const checkWhenBtnClicked = () => {
+            if(new Date() - this.btnClickedTime > timeGap) this.btnClicked = false;
+            let timer = setTimeout(checkWhenBtnClicked, duration);
+        } 
+        checkWhenBtnClicked();
     }
 
     addEvent() {
