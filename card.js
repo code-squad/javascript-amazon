@@ -1,21 +1,24 @@
 export default class CardsUI {
-    constructor(cardsItemSelector) {
+    constructor(cardsItemSelector, selectedCardClass) {
         this.cardsItems = document.querySelectorAll(cardsItemSelector);
+        this.selectedClass = selectedCardClass;
     }
 
     init() {
-        document.addEventListener("click", function (event) {
+        this.addEvent();
+    }
+
+    addEvent() {
+        document.addEventListener("click", ((event) => {
             const target = event.target.parentElement;
             this.removeSelected();
-            if (target.matches('.cards-items')) {
-                target.classList.add("selected")
-            }
-        }.bind(this), false);
+            if (target.matches('.cards-items')) target.classList.add(this.selectedClass);
+        }), false);
     }
 
     removeSelected() {
-        this.cardsItems.forEach(function (card) {
-            if (card.classList.contains("selected")) card.classList.remove("selected")
-        })
+        this.cardsItems.forEach((card) => {
+            if (card.classList.contains(this.selectedClass)) card.classList.remove(this.selectedClass);
+        });
     }
 }
