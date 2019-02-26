@@ -159,6 +159,9 @@ body {
 .cloaking {
   opacity: 0.5; }
 
+.shade {
+  background-color: #f8f8f8; }
+
 .head-arrow-bright {
   position: absolute;
   border: 0.25rem solid transparent;
