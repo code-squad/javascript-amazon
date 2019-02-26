@@ -1,10 +1,5 @@
 export default class Carousel {
-    constructor({
-        carouselSelector,
-        btnSelector,
-        options,
-        data
-    }) {
+    constructor({carouselSelector, btnSelector, options, data}) {
         this.dataList = [];
         this.carousel = document.querySelector(carouselSelector.carousel);
         this.container = document.querySelector(carouselSelector.container);
@@ -34,7 +29,7 @@ export default class Carousel {
         const oReq = new XMLHttpRequest();
         oReq.addEventListener("load", () => {
             const obj = JSON.parse(oReq.responseText);
-            this.pushData(obj.src);
+            this.addDataTags(obj.src);
             this.showImage();
             this.startAutoCarousel();
         });
@@ -42,14 +37,18 @@ export default class Carousel {
         oReq.send();
     }
 
-    pushData(arr) {
-        arr.forEach((data) => this.dataList.push(data));
-        this.carouselTemplate();
+    addDataTags(srcArr) {
+        let tagContainer = "";
+        srcArr.forEach((data, i) => tagContainer += this.templateData(data, i));
+        this.container.innerHTML = tagContainer;
     }
 
-    carouselTemplate() {
-        const items = this.carousel.querySelectorAll(".carousel-item");
-        items.forEach((item, i) => items[i].firstElementChild.src = this.dataList[i])
+    templateData(src, i) {
+        return `
+        <div class="carousel-item">
+        <img src="${src}" alt="img${i}">
+        </div>
+        `
     }
 
     showImage() {
