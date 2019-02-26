@@ -9,15 +9,16 @@ class ScrollEvent_sticky {
   init() {
     const hiddenLayer = qs(this.elObj.hiddenLayer);
     const stickyLayer = qs(this.elObj.stickyLayer);
-    const closeBtn = qs(this.elObj.closeBtn, hiddenLayer);
-    const closeArrowBtn = qs(this.elObj.closeArrowBtn, hiddenLayer);
-    const openArrowBtn = qs(this.elObj.openArrowBtn, stickyLayer);
 
     this.makeIO(qs(this.elObj.header), hiddenLayer, stickyLayer);
     this.regBtnEvent(closeBtn, closeArrowBtn, openArrowBtn)
   }
 
-  regBtnEvent(closeBtn, closeArrowBtn, openArrowBtn) {
+  regBtnEvent() {
+    const closeBtn = qs(this.elObj.closeBtn, hiddenLayer);
+    const closeArrowBtn = qs(this.elObj.closeArrowBtn, hiddenLayer);
+    const openArrowBtn = qs(this.elObj.openArrowBtn, stickyLayer);
+    
     closeBtn.addEventListener("click", () => this.hideLayer());
     closeArrowBtn.addEventListener("click", () => this.hideLayer());
     openArrowBtn.addEventListener("click", () => this.showHiddenLayer());
