@@ -21,7 +21,7 @@ class Search_autocorrect {
     this.formSubmitPrevent(this.formObj);
     this.searchWindow.addEventListener('keydown', this.clearBounce.bind(this))
     this.searchWindow.addEventListener("keyup", this.debounce.bind(this));
-    this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
+    this.autocorrectWindow.addEventListener("click", (e) => this.goAddress(e.target));
     this.searchBtn.addEventListener("click", this.submitFormData.bind(this));
   }
 
@@ -93,10 +93,10 @@ class Search_autocorrect {
     this.toBeCloakedEl.classList.remove("cloaking");
   }
 
-  addUrl(e) {
-    const parentTargetData = e.target.parentNode.dataset;
-    const targetData = e.target.dataset;
-    if (e.target.tagName === "SPAN") {
+  addUrl(eventTarget) {
+    const parentTargetData = eventTarget.parentNode.dataset;
+    const targetData = eventTarget.dataset;
+    if (eventTarget.tagName === "SPAN") {
       return this.makeUrl(parentTargetData);
     }
     return this.makeUrl(targetData);
@@ -110,8 +110,8 @@ class Search_autocorrect {
       `amazon-search?ref=${refTag}&field-keywords=${keywords}&prefix=${prefix}`
     );
   }
-  goAddress(e) {
-    this.formObj.action = this.addUrl(e);
+  goAddress(eventTarget) {
+    this.formObj.action = this.addUrl(eventTarget);
     this.formObj.submit();
   }
   makeUrlKeywords(data) {
