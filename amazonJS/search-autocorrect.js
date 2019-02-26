@@ -17,13 +17,19 @@ class Search_autocorrect {
     this.toBeCloakedEl.style.transition = `opacity ${
       this.optionObj.cloakingTransitionTime
     }`;
-
+    
+    this.formSubmitPrevent(this.formObj);
     this.searchWindow.addEventListener('keydown', this.clearBounce.bind(this))
     this.searchWindow.addEventListener("keyup", this.debounce.bind(this));
     this.autocorrectWindow.addEventListener("click", this.goAddress.bind(this));
     this.searchBtn.addEventListener("click", this.submitFormData.bind(this));
   }
 
+  formSubmitPrevent(form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    })
+  }  
   debounce(e) {
     if (this.isUpDownArrowOrEnter(e.key)) return this.getSearchData(e);
     this.debounce = setTimeout(this.getSearchData.bind(this, e), 1000);
