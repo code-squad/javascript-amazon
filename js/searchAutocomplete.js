@@ -1,3 +1,6 @@
+import { throttle, debounce } from './setThrottleDebounce.js';
+import { $, $All } from "./docSelector.js";
+
 export default class AutoComplete {
   constructor(layer, data) {
     this.element = {
@@ -6,7 +9,12 @@ export default class AutoComplete {
       dimmed: layer.dimmedEl,
     }
     this.demoData = data;
-    this.currentFocus;
+    this.KEYCODE = {
+      UPKEY: 38,
+      DOWNKEY: 40,
+      ENTERKEY: 13,
+    }
+    this.currentFocus = -1;
   }
 
   setDisplayOffDimmed() {
@@ -21,7 +29,7 @@ export default class AutoComplete {
 
   getMatchedClickItem(childDiv) {
     childDiv.addEventListener("click", (e) => {
-      this.element.input.value = e.target.children[1].value;
+      this.element.input.value = e.target.children[1].textContent;
       e.target.parentNode.remove(e.target.parentNode);
       this.setDisplayOffDimmed();
     });
@@ -29,46 +37,76 @@ export default class AutoComplete {
 
   eventKeydown() {
     this.element.input.addEventListener("keydown", (e) => {
-      let x = document.getElementById("autoComplete-list");
 
-      console.log(x, e.keyCode)
+      // Exception Handling
+      if (!e) return e.preventDefault();
 
-      // if (e.keyCode === 40) {
-      //   this.currentFocus++;
-      //   this.addActive(x);
-      // } else if (e.keyCode === 38) {
-      //   this.currentFocus--;
-      //   this.addActive(x);
-      // } else if (e.keyCode === 13) {
-      //   e.preventDefault();
-      //   if (this.currentFocus > -1) {
-      //     if (x) x[this.currentFocus].click();
-      //   }
-      // }
+
+      let matchWordList = e.target.nextElementSibling.childNodes;
+      if (!matchWordList) return false;
+
+      // 전체 list중 하나의 element만 탐색되게 해야함.
+      if (this.KEYCODE.UPKEY === e.keyCode) {
+        // 화살표 아래: 이전 dimmed 제거 및 현재 dimmed 설정  
+        this.currentFocus--;
+        this.setMaxOrMinIndex(matchWordList);
+        this.delDimmedTextOfUpKey(matchWordList);
+        this.addDimmedText(matchWordList);
+        this.element.input.value = matchWordList[this.currentFocus].innerText;
+
+      } else if (this.KEYCODE.DOWNKEY === e.keyCode) {
+        // 화살표 위 : 이전 dimmed 제거 및 현재 dimmed 설정  
+        this.currentFocus++;
+        this.setMaxOrMinIndex(matchWordList);
+        this.delDimmedTextOfDownKey(matchWordList);
+        this.addTextDimmedText(matchWordList);
+        this.element.input.value = matchWordList[this.currentFocus].innerText;
+
+      } else if (this.KEYCODE.ENTERKEY === e.keyCode) {
+        // enter시 해당 링크로 전송 (실제로는 전송되지 X refresh Page)
+        // autocomplete El 삭제
+        const autoCompleteList = e.target.parentNode.children[1];
+        e.preventDefault();
+        autoCompleteList.remove(autoCompleteList);
+        // autoCompleteList.setAttribute("class", "autoCompleteList-noneDisplay");
+        // TODO: [] remove Method => Display setAttribute none으로 변경? 
+        this.setDisplayOffDimmed();
+      }
     });
   }
 
-  removeChildNode(inputNode) {
+  addTextDimmedText(matchWordList) {
+    matchWordList[this.currentFocus].classList.add("dimmed-active");
+  }
+
+  delDownKeyOfDimmedText(matchWordList) {
+    if (this.currentFocus === 0) return matchWordList[matchWordList.length - 1].classList.remove("dimmed-active");
+    matchWordList[this.currentFocus].previousElementSibling.classList.remove("dimmed-active");
+  }
+
+  delUpKeyOfDimmedText(matchWordList) {
+    if (this.currentFocus === matchWordList.length - 1) return matchWordList[0].classList.remove("dimmed-active");
+    matchWordList[this.currentFocus].nextElementSibling.classList.remove("dimmed-active");
+  }
+
+  setMaxOrMinIndex(matchWordList) {
+    if (this.currentFocus >= matchWordList.length) this.currentFocus = 0;
+    if (this.currentFocus < 0) this.currentFocus = matchWordList.length - 1;
+  }
+
+  removeAutofillListEl(inputNode) {
     let wordListVal = inputNode.target.nextElementSibling;
     if (wordListVal) wordListVal.remove(wordListVal);
     this.setDisplayOffDimmed();
   }
 
   closeUnmatchedList(inputWord) {
-    const test = this.element.navSearch.children[1];
-    console.log(test);
-    // Get input element
-    let inputFiled = this.element.input;
-
-
-    // Get names ul
-    let ul = document.getElementById("autoComplete-list");
+    let ul = $("#autoComplete-list");
     let allEl = ul.querySelectorAll("li");
-    console.log(ul, allEl);
 
     for (let val of allEl) {
-      console.log(val.childNodes[3].value, inputWord);
-      if (val.childNodes[3].value.indexOf(inputWord) > -1) {
+      let searchWord = val.children[1].textContent;
+      if (searchWord.indexOf(inputWord) > -1) {
         val.style.display = '';
       } else {
         val.style.display = 'none';
@@ -76,8 +114,10 @@ export default class AutoComplete {
     }
   }
 
-  setMatchListEl() {
-    // []Method에서 자체 ul 생성 \ this.ul (X)
+  setListEl(inputNode) {
+    const haveList = $("#autoComplete-list");
+    if (haveList) this.removeAutofillListEl(inputNode)
+
     const ul = document.createElement("ul");
     ul.setAttribute("id", "autoComplete-list");
     ul.setAttribute("class", "autocomplete-items");
@@ -85,52 +125,54 @@ export default class AutoComplete {
     return ul;
   }
 
-  eventInput() {
-    this.element.input.addEventListener("input", (inputNode) => {
-      let inputWord = inputNode.target.value;
+  async setInputWord(inputNode) {
+    let inputWord = inputNode.target.value;
+    if (!inputNode || inputWord === "") return this.removeAutofillListEl(inputNode);
 
-      fetch(`http://crong.codesquad.kr:8080/amazon/ac/${inputWord}`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((json) => {
-          let matchVal = json.suggestions;
-          if (!matchVal) return;
-          if (!inputNode || inputWord === "") return this.removeChildNode(inputNode);
-          const addDivEl = this.setMatchListEl();
+    let URL = `http://crong.codesquad.kr:8080/amazon/ac/${inputWord}`;
 
-          matchVal.forEach(element => {
-            let matchWords = element.value;
-            const firstWord = matchWords.substr(0, inputWord.length);
-            const checkWord = inputWord.toLowerCase() === firstWord.toLowerCase();
+    await fetch(URL)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        let matchVal = json.suggestions;
+        if (!matchVal) return;
 
-            /* TODO:
-            [] Bookmark if조건문 : 추후 Refactoring시 첫글자 만이 아닌 단어 글자들의 조건으로 변경 필요.
-            */
-            if (checkWord) {
-              let childEl = this.createChildEl({ addDivEl, firstWord, inputWord, matchWords });
-              this.getMatchedClickItem(childEl);
-              this.setDisplayOnDimmed();
-            }
-            this.closeUnmatchedList(inputWord);
-          });
+        const parentList = this.setListEl(inputNode);
+        this.setMatchingWord({ parentList, matchVal, inputWord });
+        this.eventKeydown();
+      })
+      .catch(err => console.error(err));
+  }
 
-        })
+  setMatchingWord({ parentList, matchVal, inputWord }) {
+    matchVal.forEach(element => {
+      let matchWord = element.value;
+      const firstWord = matchWord.substr(0, inputWord.length);
+      const checkWord = inputWord.toLowerCase() === firstWord.toLowerCase();
+
+      this.closeUnmatchedList(inputWord);
+      if (checkWord) {
+        let childEl = this.createChildEl({ parentList, firstWord, inputWord, matchWord });
+        this.getMatchedClickItem(childEl);
+        this.setDisplayOnDimmed();
+      }
     });
   }
 
-  createChildEl({ addDivEl, firstWord, inputWord, matchWords }) {
-    addDivEl.innerHTML += `
+  createChildEl({ parentList, firstWord, inputWord, matchWord }) {
+    parentList.innerHTML += `
     <li>
-    <strong>${firstWord}</strong>${matchWords.substr(inputWord.length)}
-    <input type="hidden" value=${matchWords} class="matched-item"></input>
+    <span class="autocomplete-matched">${firstWord}</span>${matchWord.substr(inputWord.length)}
+    <span style="display: none;">${matchWord}</span>
     </li>
     `.trim();
-    return addDivEl;
+    return parentList;
   }
 
   init() {
-    this.eventInput();
-    // this.eventKeydown();
+    this.element.input.addEventListener("input", debounce((inputNode) => this.setInputWord(inputNode), 1000));
+
   }
 }
