@@ -13,7 +13,7 @@ const CAROUSEL_PANEL_WIDTH = {
 
 // fetch API request URL
 const REQUEST_URL = {
-    URL: "http://localhost:3000/img_src/ajax_imgs/imgMetadata"
+    URL: "http://localhost:8080/img_src/ajax_imgs/imgMetadata"
 }
 
 // Carousel 클래스

@@ -1,27 +1,13 @@
 // keywords AutoComplete Module.js step5
 
-const SETTINGVALUES = {
-    FETCHURL: "http://crong.codesquad.kr:8080/amazon/ac/",
-    KEYWORDSLIMIT: 10,
-    INPUTPREVENTIONKEYS: [
-        { key: "Shift", keyCode: 16 },
-        { key: "Control", keyCode: 17 },
-        { key: "Alt", keyCode: 18 },
-        { key: "Meta", keyCode: 91 },
-        { key: "Meta", keyCode: 93 },
-        { key: "ArrowUp", keyCode: 38 },
-        { key: "ArrowDown", keyCode: 40 },
-        { key: "ArrowLeft", keyCode: 37 },
-        { key: "ArrowRight", keyCode: 39 },
-        { key: "Enter", keyCode: 13 }
-    ]
-}
+import { SETTING_VALUES } from "./setting_values.js";
 
 class KeywordsAutoCompleteModule {
-    constructor({ FETCHURL, KEYWORDSLIMIT, INPUTPREVENTIONKEYS }) {
-        this.URL = FETCHURL;
-        this.LIMIT = KEYWORDSLIMIT;
-        this.KEYS = INPUTPREVENTIONKEYS;
+    constructor({ FETCH_REQUEST_URL_FOR_KEYWORDS, KEYWORDS_LIST_LIMIT, FETCH_REQUEST_TIMER, INPUT_PREVENTION_KEYS }) {
+        this.URL = FETCH_REQUEST_URL_FOR_KEYWORDS;
+        this.LIMIT = KEYWORDS_LIST_LIMIT;
+        this.TIMER = FETCH_REQUEST_TIMER;
+        this.KEYS = INPUT_PREVENTION_KEYS;
         this.inputTextField = document.querySelector(".input-search-field"); // 검색창 엘리먼트 
         this.resultWindow = document.querySelector(".auto-complete-result-window"); // 자동완성결과 엘리먼트
         this.triggerTimeout = "";
@@ -29,7 +15,6 @@ class KeywordsAutoCompleteModule {
     }
 
     initEventListener() {
-        this.inputTextField.addEventListener("keyup", this.cancelFetch.bind(this));
         this.inputTextField.addEventListener("keyup", this.triggerFetch.bind(this));
         this.inputTextField.addEventListener("keyup", this.moveUpDown.bind(this));
         this.inputTextField.addEventListener("keyup", this.enterGoToLink.bind(this));
@@ -41,18 +26,15 @@ class KeywordsAutoCompleteModule {
         this.resultWindow.addEventListener("click", this.clickGoToLink.bind(this));
     }
 
-    cancelFetch(evt) {
-        clearTimeout(this.triggerTimeout);
-    }
-
     triggerFetch(evt) {
+        if(this.triggerTimeout) clearTimeout(this.triggerTimeout);
         if (this.inputTextField.value === "" && (evt.keyCode === 8 || evt.keyCode === 38 || evt.keyCode === 40)) return;
         if (this.checkIsUtilityKey(evt)) return;
         this.initialInputText = this.inputTextField.value;
         this.triggerTimeout = setTimeout(() => {
             let composedURL = this.composeFetchURL();
             this.operateFetch(composedURL);
-        }, 1000);
+        }, this.TIMER);
     }
 
     checkIsUtilityKey(evt) {
@@ -207,4 +189,5 @@ class KeywordsAutoCompleteModule {
     }
 }
 
-const keywordsAutoCompleteModule = new KeywordsAutoCompleteModule(SETTINGVALUES);
+const keywordsAutoCompleteModule = new KeywordsAutoCompleteModule(SETTING_VALUES);
+
