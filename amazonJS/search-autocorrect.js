@@ -67,19 +67,19 @@ class Search_autocorrect {
   }
 
   addList(jsonData) {
-    let nowData = "";
     if (jsonData.suggestions === undefined) return;
-    jsonData.suggestions.forEach(suggestion => {
-      nowData += `<li
-      data-value="${suggestion.value}"
-      data-reftag="${suggestion.refTag}"
+    let nowData = jsonData.suggestions.reduce((bef, cur) => {
+      bef += `<li
+      data-value="${cur.value}"
+      data-reftag="${cur.refTag}"
       data-prefix="${jsonData.prefix}"
       class="head-search-autocorrect-list">
       <span class='bold'>${jsonData.prefix}</span><span>${this.cutData(
         jsonData.prefix.length,
-        suggestion.value
+        cur.value
       )}</span></li>`;
-    });
+      return bef
+    }, '')
     this.autocorrectWindow.innerHTML = nowData;
   }
   cutData(highlightLength, sugValue) {
