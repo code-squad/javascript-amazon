@@ -36,11 +36,11 @@ class Carousel_middle {
 
   moveAuto() {
     if (this.bMouseOver) {
-      setTimeout(this.moveAuto.bind(this), this.optionObj.carouselAutoMovingMS);
+      setTimeout(() => this.moveAuto(), this.optionObj.carouselAutoMovingMS);
       return;
     }
     this.moveRight();
-    setTimeout(this.moveAuto.bind(this), this.optionObj.carouselAutoMovingMS);
+    setTimeout(() => this.moveAuto(), this.optionObj.carouselAutoMovingMS);
   }
 
   moveRight() {
