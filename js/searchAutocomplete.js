@@ -2,13 +2,12 @@ import { throttle, debounce } from './setThrottleDebounce.js';
 import { $, $All } from "./docSelector.js";
 
 export default class AutoComplete {
-  constructor(layer, data) {
+  constructor(layer) {
     this.element = {
       input: layer.inputEl,
       navSearch: layer.navSearchEl,
       dimmed: layer.dimmedEl,
     }
-    this.demoData = data;
     this.KEYCODE = {
       UPKEY: 38,
       DOWNKEY: 40,
@@ -37,54 +36,60 @@ export default class AutoComplete {
 
   eventKeydown() {
     this.element.input.addEventListener("keydown", (e) => {
-
       // Exception Handling
       if (!e) return e.preventDefault();
-
 
       let matchWordList = e.target.nextElementSibling.childNodes;
       if (!matchWordList) return false;
 
-      // 전체 list중 하나의 element만 탐색되게 해야함.
       if (this.KEYCODE.UPKEY === e.keyCode) {
-        // 화살표 아래: 이전 dimmed 제거 및 현재 dimmed 설정  
-        this.currentFocus--;
-        this.setMaxOrMinIndex(matchWordList);
-        this.delDimmedTextOfUpKey(matchWordList);
-        this.addDimmedText(matchWordList);
-        this.element.input.value = matchWordList[this.currentFocus].innerText;
-
+        this.setUpKeyEvent(matchWordList);
       } else if (this.KEYCODE.DOWNKEY === e.keyCode) {
-        // 화살표 위 : 이전 dimmed 제거 및 현재 dimmed 설정  
-        this.currentFocus++;
-        this.setMaxOrMinIndex(matchWordList);
-        this.delDimmedTextOfDownKey(matchWordList);
-        this.addTextDimmedText(matchWordList);
-        this.element.input.value = matchWordList[this.currentFocus].innerText;
-
+        this.setDownKeyEvent(matchWordList);
       } else if (this.KEYCODE.ENTERKEY === e.keyCode) {
-        // enter시 해당 링크로 전송 (실제로는 전송되지 X refresh Page)
-        // autocomplete El 삭제
-        const autoCompleteList = e.target.parentNode.children[1];
-        e.preventDefault();
-        autoCompleteList.remove(autoCompleteList);
-        // autoCompleteList.setAttribute("class", "autoCompleteList-noneDisplay");
-        // TODO: [] remove Method => Display setAttribute none으로 변경? 
-        this.setDisplayOffDimmed();
+        this.setEnterKeyEvent(e);
       }
     });
   }
 
-  addTextDimmedText(matchWordList) {
+  setEnterKeyEvent(event) {
+    const autoCompleteList = event.target.parentNode.children[1];
+    event.preventDefault();
+    autoCompleteList.remove(autoCompleteList);
+    this.setDisplayOffDimmed();
+  }
+
+
+  setUpKeyEvent(matchWordList) {
+    this.currentFocus--;
+    this.setMaxOrMinIndex(matchWordList);
+    this.delDimmedTextOfUpKey(matchWordList);
+    this.addTextDimmed(matchWordList);
+    this.setInputWord(matchWordList);
+  }
+
+  setDownKeyEvent(matchWordList) {
+    this.currentFocus++;
+    this.setMaxOrMinIndex(matchWordList);
+    this.delTextDimmedOfDownKey(matchWordList);
+    this.addTextDimmed(matchWordList);
+    this.setInputWord(matchWordList);
+  }
+
+  setInputWord(matchWordList) {
+    this.element.input.value = matchWordList[this.currentFocus].innerText;
+  }
+
+  addTextDimmed(matchWordList) {
     matchWordList[this.currentFocus].classList.add("dimmed-active");
   }
 
-  delDownKeyOfDimmedText(matchWordList) {
+  delTextDimmedOfDownKey(matchWordList) {
     if (this.currentFocus === 0) return matchWordList[matchWordList.length - 1].classList.remove("dimmed-active");
     matchWordList[this.currentFocus].previousElementSibling.classList.remove("dimmed-active");
   }
 
-  delUpKeyOfDimmedText(matchWordList) {
+  delDimmedTextOfUpKey(matchWordList) {
     if (this.currentFocus === matchWordList.length - 1) return matchWordList[0].classList.remove("dimmed-active");
     matchWordList[this.currentFocus].nextElementSibling.classList.remove("dimmed-active");
   }
@@ -114,7 +119,7 @@ export default class AutoComplete {
     }
   }
 
-  setListEl(inputNode) {
+  setMatchListEl(inputNode) {
     const haveList = $("#autoComplete-list");
     if (haveList) this.removeAutofillListEl(inputNode)
 
@@ -125,13 +130,13 @@ export default class AutoComplete {
     return ul;
   }
 
-  async setInputWord(inputNode) {
+  setInputEvent(inputNode) {
     let inputWord = inputNode.target.value;
     if (!inputNode || inputWord === "") return this.removeAutofillListEl(inputNode);
 
     let URL = `http://crong.codesquad.kr:8080/amazon/ac/${inputWord}`;
 
-    await fetch(URL)
+    fetch(URL)
       .then((response) => {
         return response.json();
       })
@@ -139,7 +144,7 @@ export default class AutoComplete {
         let matchVal = json.suggestions;
         if (!matchVal) return;
 
-        const parentList = this.setListEl(inputNode);
+        const parentList = this.setMatchListEl(inputNode);
         this.setMatchingWord({ parentList, matchVal, inputWord });
         this.eventKeydown();
       })
@@ -152,7 +157,8 @@ export default class AutoComplete {
       const firstWord = matchWord.substr(0, inputWord.length);
       const checkWord = inputWord.toLowerCase() === firstWord.toLowerCase();
 
-      this.closeUnmatchedList(inputWord);
+      // TODO: 검색 창이 열렸을때 input의 값과 unmatch 된 건 Display None으로 설정하는 Method Refactoring 진행
+      // this.closeUnmatchedList(inputWord);
       if (checkWord) {
         let childEl = this.createChildEl({ parentList, firstWord, inputWord, matchWord });
         this.getMatchedClickItem(childEl);
@@ -172,7 +178,6 @@ export default class AutoComplete {
   }
 
   init() {
-    this.element.input.addEventListener("input", debounce((inputNode) => this.setInputWord(inputNode), 1000));
-
+    this.element.input.addEventListener("input", debounce((inputNode) => this.setInputEvent(inputNode), 1000));
   }
 }
