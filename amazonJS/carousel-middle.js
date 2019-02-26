@@ -30,8 +30,8 @@ class Carousel_middle {
     this.anchorEl = qs(this.elObj.anchorEl);
     this.imgUrlArr = parsedObj.backgroundUrl;
     this.linkUrlArr = parsedObj.linkArr;
-    this.right.addEventListener("click", this.moveRight.bind(this));
-    this.left.addEventListener("click", this.moveLeft.bind(this));
+    this.right.addEventListener("click", (e) => {this.moveRight()});
+    this.left.addEventListener("click", (e) => {this.moveLeft()});
   }
 
   moveAuto() {
