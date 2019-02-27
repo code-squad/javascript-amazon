@@ -33,15 +33,18 @@ class Plans{
         helpers.on(els.close, 'click', _ => {
             helpers.removeClass(eachCoverEls, className.clicked);
         })
+        return this;
     }
     setScrollEvent(els, currentTop, className, target){
         this.controllStickyNav([...els.stickyNavCover, els.stickyNav], target.fixPoint, currentTop, className);
         this.controllStickyNav(els.stickyNavCover, target.fixPoint, currentTop, className);
         this.controllStickyNav(els.stickyNav, target.headerBottom, currentTop, className);
+        return this;
     }
     controllStickyNav(el, target, currentTop, className){
         (currentTop > target)? 
         this.helpers.addClass(el, className):this.helpers.removeClass(el, className);
+        return this;
     }
 }
 

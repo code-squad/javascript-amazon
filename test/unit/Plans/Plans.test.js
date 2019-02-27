@@ -64,6 +64,14 @@ describe("Plans", () => {
             plans.setEvent(helpers, els, className, target, eachCoverEls);
             expect(spy).toHaveBeenCalled();
         })
+        it('컨텍스트를 반환한다.', () => {
+            expect(plans.setEvent(helpers, els, className, target, eachCoverEls)).toBeInstanceOf(Plans);
+        })
+    })
+    describe("setEvent", () => {
+        it("메소드 체이닝이 가능하다.", () => {
+            expect(plans.setEvent(helpers, els, className, target, eachCoverEls)).toBeInstanceOf(Plans);
+        })
     })
     describe("controllStickyNav", () => {
         let target, currentTop;
@@ -80,6 +88,9 @@ describe("Plans", () => {
             spy = jest.spyOn(helpers, 'removeClass');
             plans.controllStickyNav(el, target, currentTop, 'test')
             expect(spy).toHaveBeenCalled();
+        })
+        it("메소드 체이닝이 가능하다.", () => {
+            expect(plans.controllStickyNav(el, 0, 0, 'test')).toBeInstanceOf(Plans);
         })
     })
 })

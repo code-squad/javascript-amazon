@@ -19,8 +19,9 @@ class Helpers{
         return els;
     }
     on (els, event, callback){
+        
         if (!els) throw new Error();
-        if (toString.call(els) !== '[object Array]'||
+        if (toString.call(els) !== '[object Array]'&&
             toString.call(els) !== '[object NodeList]') els = [els];
         if (toString.call(event) !== '[object String]') 
             throw new Error('Type error: `event` has to be a string');

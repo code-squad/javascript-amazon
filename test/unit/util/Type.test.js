@@ -49,6 +49,10 @@ describe("TypeChecker", () => {
             type.addDefinition([{name:"string", target:"test"}]);
             expect(spy).toHaveBeenCalled();
         })
+        it("현재 컨텍스트를 반환한다.", () => {
+            value = {name: 'string', evaluator: () => {}};
+            expect(type.addDefinition(value)).toBeInstanceOf(Type);
+        })
     })
     describe("checkArgs(targetObj, targetFn, typeNames)", () => {
         it("targetObj 타입이 오브젝트가 아닐 경우 예외를 던진다.", () => {
@@ -67,6 +71,10 @@ describe("TypeChecker", () => {
         it("각 인자의 타입이 올바르면 에러가 발생하지 않는다.", () => {
             expect(() => type.checkArgs(targetObj, 'targetFn', []))
                 .not.toThrow();
+        })
+        it("현재 컨텍스트를 반환한다.", () => {
+            expect(type.checkArgs(targetObj, 'targetFn', []))
+                .toBeInstanceOf(Type);
         })
         describe("애스팩트 기능", () => {
             it("validateMultiple 메소드가 실행된다.", () => {
@@ -106,6 +114,10 @@ describe("TypeChecker", () => {
         it("각 인자의 타입이 올바르면 에러가 발생하지 않는다.", () => {
             expect(() => type.checkResult(targetObj, 'targetFn', 'string'))
                 .not.toThrow();
+        })
+        it("현재 컨텍스트를 반환한다.", () => {
+            expect(type.checkResult(targetObj, 'targetFn', 'string'))
+                .toBeInstanceOf(Type);
         })
         describe("애스팩트 기능", () => {
             it("타겟의 메소드를 실행하면 타입 체크를 위한 validate 메소드가 실행된다.", () => {
