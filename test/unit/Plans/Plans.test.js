@@ -1,9 +1,12 @@
-import { Plans } from '../../../src/js/Plans/Plans.js';
-import { Helpers } from '../../../src/js/Helpers/Helpers.js';
-
+import { Plans } from '../../../src/js/components/Plans/Plans.js';
+import { Helpers } from '../../../src/js/util/Helpers.js';
+import { render } from '../testHelpers';
 describe("Plans", () => {
     'use strict';
-    const plans = new Plans(new Helpers());
+    const helpers = new Helpers();
+    const plans = new Plans(helpers);
+    let spy, dom, els, el, target, eachCoverEls, className;
+    
     describe("생성", () => {
         it("'new' 키워드로 호출되지 않았으면 예외를 던진다.", () => {
             expect(() => {
@@ -16,44 +19,67 @@ describe("Plans", () => {
             ).toBeInstanceOf(Plans);
         })
     })
-    describe("showStickyNav(target)", () => {
-        it("조건식을 통과하지 않으면 콜백이 실행되지 않는다.", () => {
-            const displayElement = document.createElement("div");
-            const spy = jest.spyOn(plans.helpers, 'addClass');
-            plans.showStickNav(displayElement, -1, 0);
-            expect(spy).not.toHaveBeenCalled();
+    beforeAll(() => {
+        dom = render(`
+            <nav data-testid="nav">
+                <div data-testid="nav-cover">
+                    <div data-testid="nav-front">
+                        <div data-testid="open"></div>
+                    </div>
+                </div>
+                <div data-testid="nav-cover">
+                    <div data-testid="nav-submit">
+                        <div data-testid="close"></div>
+                        <div data-testid="close"></div>
+                    </div>
+                </div>
+            </nav>
+            <div data-testid="about"></div>
+            <div data-testid="test"></div>
+        `);
+        els ={
+            stickyNav: dom.$getTestEl('nav'),
+            stickyNavCover: dom.$getTestElAll('nav-cover'),
+            open: dom.$getTestEl("open"),
+            close: dom.$getTestElAll("close"),
+        }
+        el = dom.$getTestEl("test");
+        className = {
+            active: 'active', clicked: 'clicked'
+        }
+    })
+    afterAll(()=>{
+        render(``);
+    })
+    describe("setEvent", () => {
+        beforeEach(()=>{
+            target = {
+                headerBottom: 0,
+                fixPoint: 0
+            }
+            eachCoverEls = [ els.submitCover, els.frontCover ];
         })
-        it("조건식을 통과해야 콜백 함수가 실행된다.", () => {
-            const displayElement = document.createElement("div");
-            const spy = jest.spyOn(plans.helpers, 'addClass');
-            plans.showStickNav(displayElement, 1, 0);
+        it('이벤트 핸들러를 추가하는 helpers 인스턴스의 on 메소드가 실행된다.', ()=>{
+            spy = jest.spyOn(helpers, "on");
+            plans.setEvent(helpers, els, className, target, eachCoverEls);
             expect(spy).toHaveBeenCalled();
         })
     })
-
-    describe("hideStickyNav(target)", () => {
-        it("조건식을 통과하지 않으면 콜백이 실행되지 않는다.", () => {
-            const displayElement = document.createElement("div");
-            const spy = jest.spyOn(plans.helpers, 'removeClass');
-            plans.hideStickyNav(displayElement, 1, 0);
-            expect(spy).not.toHaveBeenCalled();
-        })
-        it("조건식을 통과해야 콜백 함수가 실행된다.", () => {
-            const displayElement = document.createElement("div");
-            const spy = jest.spyOn(plans.helpers, 'removeClass');
-            plans.hideStickyNav(displayElement, -1, 0);
+    describe("controllStickyNav", () => {
+        let target, currentTop;
+        it('currentTop이 target보다 값이 더 크면 helpers 인스턴스의 addClass 메서드가 실행된다.', () => {
+            target = 5;
+            currentTop = 10;
+            spy = jest.spyOn(helpers, 'addClass');
+            plans.controllStickyNav(el, target, currentTop, 'test')
             expect(spy).toHaveBeenCalled();
         })
-    })
-
-    describe("init()", () => {
-        it("element에 스크롤 이벤트를 추가한다.", () => {
-            const displayElement = document.createElement("div");
-            const mock = jest.fn();
-            const setEvent = plans.setEvent("scroll", displayElement, mock);
-            const check = getEventListeners(displayElement);
-            expect(getEventListeners(setEvent)).toBe(check)
-
+        it('currentTop이 target보다 값이 더 작으면 helpers 인스턴스의 remove 메서드가 실행된다.', () => {
+            target = 10;
+            currentTop = 5;
+            spy = jest.spyOn(helpers, 'removeClass');
+            plans.controllStickyNav(el, target, currentTop, 'test')
+            expect(spy).toHaveBeenCalled();
         })
     })
 })

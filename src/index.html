@@ -100,25 +100,9 @@
                 </div>
             </div>
         </header>
-        <main>
+        <main class="main">
             <nav class="fixed-nav">
-                <div class="fixed-nav__cover">
-                    <div class="fixed-nav__front">
-                        <div class="logo-box">
-                            <img src="./images/PrimeLogo_Blue.svg" alt="prime logo">
-                        </div>
-                        <div class="scroll-box" data-open="fixedNav">
-                            <p class="scroll-text">See more plans</p>
-                            <div class="scroll-btn">
-                                <img src="./images/DownArrow.svg" alt="Button for viewing more plans">
-                            </div>
-                        </div>
-                        <div class="submit-box">
-                            <input class="submit-box__submit" type="submit" value="TRY PRIME">
-                        </div>
-                    </div>
-                </div>
-                <div class="fixed-nav__cover">
+                <div class="fixed-nav__cover fixed-nav__cover--submit">
                     <div class="fixed-nav__submit">
                         <form class="submit-form">
                             <div class="submit-form__header">
@@ -234,8 +218,24 @@
                                 
                             </div>
                         </form>
-                        <div class="scroll-btn" data-close="fixedNav">
-                            <img src="./images/DownArrow.svg" alt="scroll button">
+                        <div class="scroll-btn__wrapper" data-close="fixedNav">
+                            <div class="scroll-btn"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fixed-nav__cover fixed-nav__cover--front">
+                    <div class="fixed-nav__front">
+                        <div class="logo-box">
+                            <img src="./images/PrimeLogo_Blue.svg" alt="prime logo">
+                        </div>
+                        <div class="scroll-box" data-open="fixedNav">
+                            <p class="scroll-text">See more plans</p>
+                            <div class="scroll-btn">
+                                <img src="./images/DownArrow.svg" alt="Button for viewing more plans">
+                            </div>
+                        </div>
+                        <div class="submit-box">
+                            <input class="submit-box__submit" type="submit" value="TRY PRIME">
                         </div>
                     </div>
                 </div>

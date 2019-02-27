@@ -3,7 +3,7 @@ import { Aop } from '../../../src/js/util/Aop.js';
 describe("Aop", () => {
     'use strict';
     const aop = new Aop();
-    let obj, data;
+    let targetObj, Obj, instance, evaluator, advice, args, spy, spyF;
     describe("생성", () => {
         it("'new' 키워드로 호출되지 않았으면 예외를 던진다.", function(){
             expect(() => {
@@ -17,85 +17,140 @@ describe("Aop", () => {
         });
     });
     beforeEach(() => {
-        obj = {
-            fn: () => {
-                data.push('Run originFn');
-                return '123';
+        evaluator = '';
+        targetObj = {
+            fn: function(){
+                evaluator += 'originFn';
+                args = arguments;
+                return 'returned value';
             }
         };
-        data = [];
-
-    })
-    describe("inject(obj, method, advice)", () => {
-        it("object의 method 호출시 코드 조각(advice)이 실행된다.", () => {
-            const advice = jest.fn();
-            aop.inject(obj, 'fn', advice);
-            obj['fn']();
+    });
+    describe("inject(targetObj, method, advice)", () => {
+        it("targetObject의 method 호출시 코드 조각(advice)이 실행된다.", () => {
+            advice = jest.fn();
+            aop.inject(targetObj, 'fn', advice);
+            targetObj.fn();
             expect(advice).toHaveBeenCalled();
         })
         it("method의 기능을 유지한 채 새로운 advice 기능을 추가한다.", () => {
-            const advice = (target) => {
-                data.push('Add function');
+            advice = function(target){
+                evaluator += 'advice and ';
                 target.fn();
             };
-            aop.inject(obj, 'fn', advice);
-            obj['fn']();
-            expect(data).toEqual(['Add function', 'Run originFn']);
+            aop.inject(targetObj, 'fn', advice);
+            targetObj.fn();
+            expect(evaluator).toEqual('advice and originFn');
         })
         it("이전 기능을 유지한 채 새로운 기능 추가할 수 있다..", () => {
-            const advice = (target) => {
-                data.push('Add function');
-                target.fn();
+            advice = (target) => {
+                evaluator += 'advice and ';
+                target.fn.apply(this);
             };
-            aop.inject(obj, 'fn', advice);
-            aop.inject(obj, 'fn', advice);
-            obj.fn();
-            expect(data).toEqual(['Add function', 'Add function', 'Run originFn']);
+            aop.inject(targetObj, 'fn', advice);
+            aop.inject(targetObj, 'fn', advice);
+            targetObj.fn();
+            expect(evaluator).toEqual('advice and advice and originFn');
         })
-        it("advice에서 타깃 객체로 파라미터를 넘길 수 있다.", () => {
-            let argsToTarget;
-            const obj = {
-                fn: function() {
-                    argsToTarget = [...arguments];
-                }
+        it("타겟 메소드의 인자를 체크할 수 있다.", () => {
+            advice = function(target) {
+                target.fn.apply(this, target.args);
+                return target.args;
             };
-            const advice = function(target) {
-                target.fn.apply(this, target.args)
-            };
-            aop.inject(obj, 'fn', advice);
-            obj.fn('a','b');
-            expect(argsToTarget).toEqual(['a','b']);
+            aop.inject(targetObj, 'fn', advice);
+            expect(targetObj.fn('a','b')).toEqual(args);
         })
-        it("타깃 함수가 해당 타겟 오브젝트의 컨텍스트에서 실행된다.", () => {
-            const Obj = function() {
+        it("타겟 메소드의 반환값을 체크할 수 있다.", () => {
+            advice = function(target) {
+                return target.fn.apply(this, target.args);
+            };
+            aop.inject(targetObj, 'fn', advice);
+            expect(targetObj.fn()).toBe('returned value');
+        })
+        it("타깃 함수가 해당 생성자 함수의 컨텍스트에서 실행된다.", () => {
+            Obj = function() {
                 this.method = function(){
                     expect(this).toBeInstanceOf(Obj);
                 }
             }
-            const advice = function(target) {
+            advice = function(target) {
                 target.fn.apply(this, target.args)
             };
-            const instance = new Obj();
-            aop.inject(instance, 'fn', advice);
-            const spy = jest.spyOn(instance, 'method');
+            instance = new Obj();
+
+            aop.inject(instance, 'method', advice);
+            spy = jest.spyOn(instance, 'method');
             instance.method();
             expect(spy).toHaveBeenCalled();
         });
         it('advice은 타겟 오브젝트의 컨텍스트에서 실행된다.', () => {
-            const Obj = function() {
+            spyF = jest.fn();
+            Obj = function() {
                 this.method = function(){}
             }
-            const advice = function() {
+            advice = function() {
+                spyF();
                 expect(this).toBeInstanceOf(Obj);
             };
-            const instance = new Obj();
-            aop.inject(instance, 'fn', advice);
+            instance = new Obj();
+
+            aop.inject(instance, 'method', advice);
             instance.method();
+            expect(spy).toHaveBeenCalled();
         })
     })
     describe("invoke(targetObj)", () => {
-        it("targetObj의 method를 실행한다.",() => {
-            
+        beforeEach(() => {
+            spyF = jest.fn();
+            advice = function(target) {
+                spyF();
+                return aop.invoke.call(this, target);
+            };
+            aop.inject(targetObj, 'fn', advice);
+        })
+        it('advice 함수가 정상적으로 바인딩 된다.', () => {
+            aop.inject(instance, 'method', advice);
+            instance.method();
+            expect(spy).toHaveBeenCalled();
+        })
+        it("aop에 의해 targetObject가 바인딩 된 코드 조각(advice)와 함께 실행된다.", () => {
+            expect(aop.invoke(targetObj)).toBe('returned value');
+            advice = function(){
+                return 'advice';
+            }
+            aop.inject(targetObj, 'fn', advice);
+            expect(aop.invoke(targetObj)).toBe('advice');
+        })
+        it('타겟 메소드의 인자를 체크할 수 있다.', () => {
+            Obj= {
+                method: function(){
+                    args = [...arguments];
+                }
+            }
+            aop.inject(Obj, 'method', advice);
+            Obj.method(1,2);
+            expect(args).toEqual([1,2]);
+        })
+        it('타겟 메소드의 반환값을 체크할 수 있다.', () => {
+            Obj= {
+                method: function(){
+                    return args = arguments;
+                }
+            }
+            aop.inject(Obj, 'method', advice);
+            expect(Obj.method('a','b')).toEqual(args);
+        })
+
+        it('주어진 코드는 타겟 오브젝트의 컨택스트에서 실행된다.', () => {
+            Obj = function() {
+                this.method = function(){
+                    expect(this).toBeInstanceOf(Obj);
+                }
+            }
+            instance = new Obj();
+
+            aop.inject(instance, 'method', advice);
+            instance.method();
         })
     })
 });

@@ -55,23 +55,43 @@
 }
 
 .fixed-nav{
-    border-bottom: .2rem solid $color-border-blue;
-    transform: translateY(-100%);
-    opacity: 0;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     z-index: 999;
-    transition: all .5s ease-in-out;  
+    overflow: hidden;
+    @include clearfix;
+    &.active{
+        position: fixed;
+    }
     &__cover{  
+        transition: all .5s ease-in-out; 
         overflow: hidden;
+        &--front{
+            height: 0;
+            &.active{
+                height: 7.2rem;
+            }
+            &.clicked{
+                height: 0;
+                
+            }
+        }
+        &--submit{
+            height: 0;
+            &.clicked{
+                height: 66.3rem;
+            }
+        }
     }
     &__front{
         position: relative;
         text-align: center;
-        height: 7rem;
+        height: 7.2rem;
         font-size: 0;
         background-color: $color-primary;
+        border-bottom: .2rem solid $color-border-blue; 
+        display: block;
         .submit-box{
             float: right;
             margin-right: 10.3rem;
@@ -106,6 +126,7 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
+        cursor: pointer;
     }
     .scroll-text{
         font-family: AmazonEmber;
@@ -120,9 +141,9 @@
     }
     
     &__submit{
-        display: none;
         background-color: $color-text-white;
         padding-bottom: 2rem;
+        border-bottom: .2rem solid $color-border-blue; 
         .submit-form{
             width: 96.6rem;
             margin: 0 auto;
@@ -151,6 +172,7 @@
                     font-size: 1.6rem;
                     line-height: 2.4rem;
                     color: #002F36;
+                    cursor: pointer;
                     &__icon{
                         background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Sprites_2x._CB493761273_.png);
                         -moz-background-size: 158px auto;
@@ -221,6 +243,28 @@
                 height: 360px;
                 position: relative;
                 background: #fff;
+            }
+        }
+        .scroll-btn__wrapper{
+            display: block;
+            text-align: center;
+            width: auto;
+            cursor: pointer;
+            .scroll-btn{
+                background-image: url(https://m.media-amazon.com/images/G/01/AUIClients/AmazonUIIcon-sprite_2x-13acd72bb22e0c502de00d0afe21c494871da686._V2_.png);
+                background-position: -.5rem -8.2rem;
+                width: 1.5rem;
+                height: 1.2rem;
+                opacity: .64;
+                background-size: 400px 900px;
+                background-repeat: no-repeat;
+                display: inline-block;
+                vertical-align: top;
+            }
+            img{
+                display: inline-block;
+                margin: 0 auto;
+                width: 3rem;
             }
         }
     }
