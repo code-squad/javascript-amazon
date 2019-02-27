@@ -9,6 +9,8 @@
   font-family: arial,sans-serif;
   background: $primary_dark;
   position: relative;
+  z-index: 9999;
+  min-width: 100rem;
   &--top,
   &--bottom {
     min-width: 10rem;
@@ -22,6 +24,7 @@
     &__link {
       display: inline-block;
       @include nav-sprite(97, 30, -10, -51);
+      color: transparent;
     }
   }
   &--top {
@@ -136,6 +139,7 @@
       max-width: 100%;
       flex-wrap: wrap;
       height: 2.6rem;
+      overflow: hidden;
       &__item {
         padding-top: 0.3rem;
         & > a {

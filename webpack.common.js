@@ -4,13 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: path.resolve(__dirname, 'src/main.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',
     publicPath: '/',
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -32,7 +33,7 @@ module.exports = {
         test: /\.(ico|png|jpg|jpeg|gif|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'url-loader',
         options: {
-          name: '[name].[ext]',
+          name: '[name].[hash].[ext]',
           limit: 10000,
           outputPath: 'images/',
         }
