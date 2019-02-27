@@ -20,7 +20,8 @@ const SETTING_VALUES = {
         { key: "ArrowDown", keyCode: 40 },
         { key: "ArrowLeft", keyCode: 37 },
         { key: "ArrowRight", keyCode: 39 },
-        { key: "Enter", keyCode: 13 }
+        { key: "Enter", keyCode: 13 },
+        { key: "Escape", keyCode: 27 }
     ],
 
     RESULT_LI_ELEMENTS_TEMPLET: `<li class="suggestion-item"><a class="link-style" href="{{}}">{{}}</a></li>`,
