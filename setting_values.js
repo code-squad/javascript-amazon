@@ -8,7 +8,7 @@ const SETTING_VALUES = {
 
     KEYWORDS_LIST_LIMIT: 10,
 
-    FETCH_REQUEST_TIMER: 1000,
+    FETCH_REQUEST_TIMER: 100,
 
     INPUT_PREVENTION_KEYS: [
         { key: "Shift", keyCode: 16 },
@@ -21,5 +21,11 @@ const SETTING_VALUES = {
         { key: "ArrowLeft", keyCode: 37 },
         { key: "ArrowRight", keyCode: 39 },
         { key: "Enter", keyCode: 13 }
-    ]
+    ],
+
+    RESULT_LI_ELEMENTS_TEMPLET: `<li class="suggestion-item"><a class="link-style" href="{{}}">{{}}</a></li>`,
+
+    ITEM_LINK_URL_TEMPLET:`http://crong.codesquad.kr:8080/amazon-search?ref={{}}&field-keywords={{}}&prefix={{}}`,
+
+    HIGHLIGHT_SPAN_TEMPLET: `<span class="highlighted-keywords">{{}}</span>`
 }

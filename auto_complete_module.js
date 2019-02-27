@@ -3,11 +3,22 @@
 import { SETTING_VALUES } from "./setting_values.js";
 
 class KeywordsAutoCompleteModule {
-    constructor({ FETCH_REQUEST_URL_FOR_KEYWORDS, KEYWORDS_LIST_LIMIT, FETCH_REQUEST_TIMER, INPUT_PREVENTION_KEYS }) {
+    constructor({
+        FETCH_REQUEST_URL_FOR_KEYWORDS,
+        KEYWORDS_LIST_LIMIT,
+        FETCH_REQUEST_TIMER,
+        INPUT_PREVENTION_KEYS,
+        RESULT_LI_ELEMENTS_TEMPLET,
+        ITEM_LINK_URL_TEMPLET,
+        HIGHLIGHT_SPAN_TEMPLET
+    }) {
         this.URL = FETCH_REQUEST_URL_FOR_KEYWORDS;
         this.LIMIT = KEYWORDS_LIST_LIMIT;
         this.TIMER = FETCH_REQUEST_TIMER;
         this.KEYS = INPUT_PREVENTION_KEYS;
+        this.LI_TEMPLET = RESULT_LI_ELEMENTS_TEMPLET;
+        this.URL_TEMPLET = ITEM_LINK_URL_TEMPLET;
+        this.SPAN_TEMPLET = HIGHLIGHT_SPAN_TEMPLET;
         this.inputTextField = document.querySelector(".input-search-field"); // 검색창 엘리먼트 
         this.resultWindow = document.querySelector(".auto-complete-result-window"); // 자동완성결과 엘리먼트
         this.triggerTimeout = "";
@@ -27,14 +38,20 @@ class KeywordsAutoCompleteModule {
     }
 
     triggerFetch(evt) {
-        if(this.triggerTimeout) clearTimeout(this.triggerTimeout);
-        if (this.inputTextField.value === "" && (evt.keyCode === 8 || evt.keyCode === 38 || evt.keyCode === 40)) return;
+        if (this.triggerTimeout) clearTimeout(this.triggerTimeout);
+        if (this.checkIsEmptyField(evt)) return;
         if (this.checkIsUtilityKey(evt)) return;
         this.initialInputText = this.inputTextField.value;
         this.triggerTimeout = setTimeout(() => {
-            let composedURL = this.composeFetchURL();
+            let composedURL = this.composeFetchRequestURL();
             this.operateFetch(composedURL);
         }, this.TIMER);
+    }
+
+    checkIsEmptyField(evt) {
+        if (this.inputTextField.value === ""
+            && (evt.keyCode === 8 || evt.keyCode === 38 || evt.keyCode === 40))
+            return true;
     }
 
     checkIsUtilityKey(evt) {
@@ -44,7 +61,7 @@ class KeywordsAutoCompleteModule {
         return result;
     }
 
-    composeFetchURL() {
+    composeFetchRequestURL() {
         let composedURL = this.URL + this.inputTextField.value.toLowerCase();
         return composedURL;
     }
@@ -73,27 +90,37 @@ class KeywordsAutoCompleteModule {
 
     // 자동완성결과 DOM 추가
     addItemLiElement(itemsInfoList) {
-        let inputText = this.inputTextField.value.toLowerCase();
+        let inputText = this.inputTextField.value.toLowerCase(); // 입력한 값은 모두 소문자로 처리해서 inputText로 넘긴다. 
         let itemLiElement = "";
-        itemsInfoList.forEach(value => {
-            let fieldKeywords = value['value'].replace(/\s/g, "+");
-            let highlightedKeywords = value['value'].replace(inputText, `<span class="highlighted-keywords">${inputText}</span>`);
-            let itemLink = `http://crong.codesquad.kr:8080/amazon-search?ref=${value['refTag']}&field-keywords=${fieldKeywords}&prefix=${inputText}`;
-            itemLiElement += `<li class="suggestion-item"><a class="link-style" href="${itemLink}">${highlightedKeywords}</a></li>`;
+        itemsInfoList.reduce((acc, value) => {
+            let eachItemLiElement = this.composeLiElement(value, inputText);
+            return itemLiElement += eachItemLiElement;
         });
         this.UpDownCount = 0;
         this.resultWindow.firstElementChild.innerHTML = itemLiElement;
         this.suggestionItems = document.querySelectorAll(".suggestion-item");
         this.resultWindow.classList.add("window-display-block");
-        return itemLiElement;
+    }
+
+    // URL, li 엘리먼트 구성
+    composeLiElement(value, inputText) {
+        let regExp = new RegExp('\{\{\}\}');
+        let fieldKeywords = value['value'].replace(/\s/g, "+");
+        let highlightedSpan = this.SPAN_TEMPLET.replace(regExp, inputText);
+        let highlightedKeywords = value['value'].replace(inputText, highlightedSpan);
+        let itemLink = this.URL_TEMPLET.replace(regExp, value['refTag'])
+            .replace(regExp, fieldKeywords)
+            .replace(regExp, inputText);
+        return this.LI_TEMPLET.replace(regExp, itemLink)
+            .replace(regExp, highlightedKeywords);
     }
 
     // 키보드 조작
     moveUpDown(evt) {
-        if (this.suggestionItems === undefined) return; // 리스트가 완성되지 않았다면 작동하지 않는다. 
-        else if (this.suggestionItems.length === this.LIMIT && evt.keyCode === 40) {
+        if (this.suggestionItems === undefined) return;
+        else if (evt.keyCode === 40) {
             this.moveDown(this.initialInputText);
-        } else if (this.suggestionItems.length === this.LIMIT && evt.keyCode === 38) {
+        } else if (evt.keyCode === 38) {
             this.moveUp(this.initialInputText);
         }
     }
