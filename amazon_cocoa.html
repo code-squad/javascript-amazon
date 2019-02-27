@@ -5,18 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>amazon step4</title>
+    <title>amazon step5</title>
     <link rel="stylesheet" type="text/css" href="amazon_cocoa.css">
     <link rel="stylesheet" type="text/css" href="plans_layer.css">
     <link rel="stylesheet" type="text/css" href="carousel_module.css">
-
+    <link rel="stylesheet" type="text/css" href="auto_complete_module.css">
 </head>
 
 <body>
     <header id="header-bar">
         <div class="search-bar">
             <div id="logo-area">
-                <a href="https://www.amazon.com/amazonprime?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0" target="_self">
+                <a href="https://www.amazon.com/amazonprime?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0"
+                    target="_self">
                     <img id="logo-image" src="img_src/amazon_logo.png" alt="">
                 </a>
             </div>
@@ -24,7 +25,13 @@
                 <div id="department-view"><span>All</span>
                     <img class="ico-down-arrow" src="img_src/down_arrow.png" alt="">
                 </div>
-                <div id="search-field"></div>
+                <!-- 검색창 -->
+                <div id="search-field">
+                    <input type="text" class="input-search-field">
+                    <div class="auto-complete-result-window toggle-window">
+                        <ul class="result-list-area suggestion-items-style"></ul>
+                    </div>
+                </div>
                 <div id="search-button">
                     <img id="ico-magnifier" src="img_src/magnifier.png" alt="">
                 </div>
@@ -62,35 +69,40 @@
                     </li>
                     <li class="nav-menu-list">
                         <div class="nav-menu-name">
-                            <a href="https://www.amazon.com/international-sales-offers/b/?ie=UTF8&node=15529609011&ref=nav_navm_intl_deal_btn">
+                            <a
+                                href="https://www.amazon.com/international-sales-offers/b/?ie=UTF8&node=15529609011&ref=nav_navm_intl_deal_btn">
                                 Today's Deals
                             </a>
                         </div>
                     </li>
                     <li class="nav-menu-list">
                         <div class="nav-menu-name">
-                            <a href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
+                            <a
+                                href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
                                 Gift Cards
                             </a>
                         </div>
                     </li>
                     <li class="nav-menu-list">
                         <div class="nav-menu-name">
-                            <a href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
+                            <a
+                                href="https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards">
                                 Registry
                             </a>
                         </div>
                     </li>
                     <li class="nav-menu-list">
                         <div class="nav-menu-name">
-                            <a href="https://www.amazon.com/b/?_encoding=UTF8&ld=AZUSSOA-sell&node=12766669011&ref=nav_cs_sell">
+                            <a
+                                href="https://www.amazon.com/b/?_encoding=UTF8&ld=AZUSSOA-sell&node=12766669011&ref=nav_cs_sell">
                                 Sell
                             </a>
                         </div>
                     </li>
                     <li class="nav-menu-list">
                         <div class="nav-menu-name">
-                            <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=508510&ref=nav_cs_help">
+                            <a
+                                href="https://www.amazon.com/gp/help/customer/display.html?nodeId=508510&ref=nav_cs_help">
                                 Help
                             </a>
                         </div>
@@ -107,7 +119,8 @@
                     </a>
                 </div>
 
-                <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l">
+                <a
+                    href="https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l">
                     <div id="account-panel">
                         <span id="sign-in-text">Hello, Sign in</span><br>
                         <span class="account-lists-orders-text">Account & Lists</span>
@@ -151,7 +164,8 @@
                 <div class="section-main-text" id="section-main-text-2">
                     Check out what's included with your Prime membership.
                 </div>
-                <a class="link-style" href="https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l">
+                <a class="link-style"
+                    href="https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l">
                     <div id="try-prime-button">
                         TRY PRIME
                     </div>
@@ -159,7 +173,8 @@
                 <p class="section-main-text" id="section-main-text-3">
                     $12.99/month. Cancel anytime.<br>
                     See more plans<br>
-                    <a id="text-underlined" href="https://www.amazon.com/b?ie=UTF8&node=10184390011&ref=dex_hdm_pap_desktop">
+                    <a id="text-underlined"
+                        href="https://www.amazon.com/b?ie=UTF8&node=10184390011&ref=dex_hdm_pap_desktop">
                         Holiday Delivery Calendar
                     </a>
                 </p>
@@ -253,7 +268,8 @@
                 <div id="sections-D-text-2">Prime Video is the only place where you can watch Prime Original series
                     like "The Marvelous Mrs. Maisel", "Tom Clancy's Jack Ryan", "Homecoming", and "The Man in the High
                     Castle".</div>
-                <a id="sections-D-text-3" href="https://www.amazon.com/s/ref=atv_?_encoding=UTF8&bbn=16549083011&field-is_prime_benefit=2470955011&node=2858778011%2C%213147522011%2C%213147524011%2C16549083011&pf_rd_i=home&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3212395302&pf_rd_r=0XXGE6FJ019S290BRE2H&pf_rd_s=center-8&pf_rd_t=12401&search-alias=instant-video">
+                <a id="sections-D-text-3"
+                    href="https://www.amazon.com/s/ref=atv_?_encoding=UTF8&bbn=16549083011&field-is_prime_benefit=2470955011&node=2858778011%2C%213147522011%2C%213147524011%2C16549083011&pf_rd_i=home&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3212395302&pf_rd_r=0XXGE6FJ019S290BRE2H&pf_rd_s=center-8&pf_rd_t=12401&search-alias=instant-video">
                     Explore Prime Video
                 </a>
             </div>
@@ -294,7 +310,8 @@
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/amazon-devices/b/ref=footer_devices?ie=UTF8&node=2102313011">
+                                    <a
+                                        href="https://www.amazon.com/amazon-devices/b/ref=footer_devices?ie=UTF8&node=2102313011">
                                         Amazon Devices
                                     </a>
                                 </li>
@@ -307,12 +324,14 @@
                         <li class="footer-sitemap-main-entries"><span>Make Money with Us</span>
                             <ul class="footer-sitemap-sub-entry-area">
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/gp/redirect.html/ref=footer_soa?_encoding=UTF8&location=https%3A%2F%2Fservices.amazon.com%2Fcontent%2Fsell-on-amazon.htm%2Fref%3Dfooter_soa%3Fld%3DAZFSSOA&source=standards&token=6D14D9F0E8CC2831C68BA56C95FCDC34988C3979">
+                                    <a
+                                        href="https://www.amazon.com/gp/redirect.html/ref=footer_soa?_encoding=UTF8&location=https%3A%2F%2Fservices.amazon.com%2Fcontent%2Fsell-on-amazon.htm%2Fref%3Dfooter_soa%3Fld%3DAZFSSOA&source=standards&token=6D14D9F0E8CC2831C68BA56C95FCDC34988C3979">
                                         Sell on Amazon
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/gp/redirect.html/ref=footer_sell_svcs?_encoding=UTF8&location=https%3A%2F%2Fservices.amazon.com%2Fselling-services%2Fbenefits.htm%3Fld%3DAZUSVAS-globalfooter&source=standards&token=C11D6CD96DB34C590F5368F18106AAC385ECAAC6">
+                                    <a
+                                        href="https://www.amazon.com/gp/redirect.html/ref=footer_sell_svcs?_encoding=UTF8&location=https%3A%2F%2Fservices.amazon.com%2Fselling-services%2Fbenefits.htm%3Fld%3DAZUSVAS-globalfooter&source=standards&token=C11D6CD96DB34C590F5368F18106AAC385ECAAC6">
                                         Sell Your Services on Amazon
                                     </a>
                                 </li>
@@ -337,12 +356,14 @@
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/gp/seller-account/mm-summary-page.html/ref=footer_publishing?ie=UTF8&ld=AZFooterSelfPublish&topic=200260520">
+                                    <a
+                                        href="https://www.amazon.com/gp/seller-account/mm-summary-page.html/ref=footer_publishing?ie=UTF8&ld=AZFooterSelfPublish&topic=200260520">
                                         Self-Publish with Us
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/b/ref=footer_seeall?_encoding=UTF8&ld=AZUSSOA-seeall&node=13605942011">
+                                    <a
+                                        href="https://www.amazon.com/b/ref=footer_seeall?_encoding=UTF8&ld=AZUSSOA-seeall&node=13605942011">
                                         See all
                                     </a>
                                 </li>
@@ -355,7 +376,8 @@
                         <li class="footer-sitemap-main-entries"><span>Amazon Payment Products</span>
                             <ul class="footer-sitemap-sub-entry-area">
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/dp/B07984JN3L?_encoding=UTF8&ie=UTF-8&plattr=ACOMFO">
+                                    <a
+                                        href="https://www.amazon.com/dp/B07984JN3L?_encoding=UTF8&ie=UTF-8&plattr=ACOMFO">
                                         Amazon Business Card
                                     </a>
                                 </li>
@@ -365,12 +387,14 @@
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/Reload-Your-Gift-Card-Balance/b/ref=footer_reload_us?ie=UTF8&node=10232440011">
+                                    <a
+                                        href="https://www.amazon.com/Reload-Your-Gift-Card-Balance/b/ref=footer_reload_us?ie=UTF8&node=10232440011">
                                         Reload Your Balance
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/Currency-Converter/b/ref=footer_tfx?ie=UTF8&node=388305011">
+                                    <a
+                                        href="https://www.amazon.com/Currency-Converter/b/ref=footer_tfx?ie=UTF8&node=388305011">
                                         Amazon Currency Converter
                                     </a>
                                 </li>
@@ -388,32 +412,38 @@
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26ref_%3Dfooter_yo&pageId=webcs-yourorder&showRmrMe=1">
+                                    <a
+                                        href="https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26ref_%3Dfooter_yo&pageId=webcs-yourorder&showRmrMe=1">
                                         Your Orders
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/gp/help/customer/display.html/ref=footer_shiprates?ie=UTF8&nodeId=468520">
+                                    <a
+                                        href="https://www.amazon.com/gp/help/customer/display.html/ref=footer_shiprates?ie=UTF8&nodeId=468520">
                                         Shipping Rates & Policies
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/gp/orc/returns/homepage.html/ref=orc_surl_ret_hp?fg=1">
+                                    <a
+                                        href="https://www.amazon.com/gp/orc/returns/homepage.html/ref=orc_surl_ret_hp?fg=1">
                                         Returns & Replacements
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/ap/signin?openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fmn%2Fdcw%2Fmyx.html%2Fref%3Dkinw_myk_redirect&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&&accountStatusPolicy=P1">
+                                    <a
+                                        href="https://www.amazon.com/ap/signin?openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fmn%2Fdcw%2Fmyx.html%2Fref%3Dkinw_myk_redirect&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&&accountStatusPolicy=P1">
                                         Manage Your Content and Devices
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/gp/BIT/ref=footer_bit_v2_us_A0029?bitCampaignCode=A0029">
+                                    <a
+                                        href="https://www.amazon.com/gp/BIT/ref=footer_bit_v2_us_A0029?bitCampaignCode=A0029">
                                         Amazon Assistant
                                     </a>
                                 </li>
                                 <li class="footer-sub-entries">
-                                    <a href="https://www.amazon.com/gp/help/customer/display.html/ref=footer_gw_m_b_he?ie=UTF8&nodeId=508510">
+                                    <a
+                                        href="https://www.amazon.com/gp/help/customer/display.html/ref=footer_gw_m_b_he?ie=UTF8&nodeId=508510">
                                         Help
                                     </a>
                                 </li>
@@ -425,11 +455,11 @@
         </div>
     </footer>
 
+    <script type="text/javascript" src="plans_layer.js"></script>
+    <script type="text/javascript" src="carousel_module.js"></script>
+    <script type="module" src="auto_complete_module.js"></script>
+    <!-- <script type="text/javascript" src="underscore.js"></script> -->
 
 </body>
-
-<script type="text/javascript" src="plans_layer.js"></script>
-<script type="text/javascript" src="carousel_module.js"></script>
-
 
 </html>

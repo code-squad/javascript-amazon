@@ -2,22 +2,22 @@
     "0" : {
         "imgID" : 1,
         "fileName" : "img1.jpg",
-        "imgURL" : "http://localhost:3000/img_src/ajax_imgs/img1.jpg"
+        "imgURL" : "http://localhost:8080/img_src/ajax_imgs/img1.jpg"
     },
     "1" : {
         "imgID" : 2,
         "fileName" : "img2.jpg",
-        "imgURL" : "http://localhost:3000/img_src/ajax_imgs/img2.jpg"
+        "imgURL" : "http://localhost:8080/img_src/ajax_imgs/img2.jpg"
     },
     "2" : {
         "imgID" : 3,
         "fileName" : "img3.jpg",
-        "imgURL" : "http://localhost:3000/img_src/ajax_imgs/img3.jpg"
+        "imgURL" : "http://localhost:8080/img_src/ajax_imgs/img3.jpg"
     },
     "3" : {
         "imgID" : 4,
         "fileName" : "img4.jpg",
-        "imgURL" : "http://localhost:3000/img_src/ajax_imgs/img4.jpg"
+        "imgURL" : "http://localhost:8080/img_src/ajax_imgs/img4.jpg"
     }
 }
 
