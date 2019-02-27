@@ -1,44 +1,49 @@
 import { qs } from "./util.js";
 
-class ScrollEvent_sticky {
+class ScrollEventSticky {
   constructor(elObj) {
-    this.header = qs(document, elObj.header);
-    this.stickyLayer = qs(document, elObj.stickyLayer);
-    this.hiddenLayer = qs(document, elObj.hiddenLayer);
-    this.makeIO(this.header);
+    Object.assign(this, { elObj });
     this.init();
   }
-  
-  init() {
-    const closeBtn = qs(this.hiddenLayer, ".close-button");
-    const closeArrowBtn = qs(this.hiddenLayer, ".close-button-foot");
-    const openArrowBtn = qs(this.stickyLayer, ".top-layer-trigger-button");
 
-    closeBtn.addEventListener("click", this.hideLayer.bind(this));
-    closeArrowBtn.addEventListener("click", this.hideLayer.bind(this));
-    openArrowBtn.addEventListener("click", this.showHiddenLayer.bind(this));
+  init() {
+    this.makeIO();
+    this.regBtnEvent()
   }
 
-  makeIO(root) {
+  regBtnEvent() {
+    const closeBtn = qs(this.elObj.closeBtn, qs(this.elObj.hiddenLayer));
+    const closeArrowBtn = qs(this.elObj.closeArrowBtn, qs(this.elObj.hiddenLayer));
+    const openArrowBtn = qs(this.elObj.openArrowBtn, qs(this.elObj.stickyLayer));
+
+    closeBtn.addEventListener("click", () => this.hideLayer());
+    closeArrowBtn.addEventListener("click", () => this.hideLayer());
+    openArrowBtn.addEventListener("click", () => this.showHiddenLayer());
+  }
+
+  makeIO() {
+    const root = qs(this.elObj.header);
+    const hiddenLayer = qs(this.elObj.hiddenLayer);
+    const stickyLayer = qs(this.elObj.stickyLayer);
     const io = new IntersectionObserver(entries => {
       if (!entries[0].isIntersecting) {
-        this.stickyLayer.classList.add("top-layer-active");
-        this.hiddenLayer.classList.add("prime-member-container-scroll-active");
+        stickyLayer.classList.add(this.elObj.topLayerActiveClass);
+        hiddenLayer.classList.add(this.elObj.scrollActiveClass);
       } else {
-        this.stickyLayer.classList.remove("top-layer-active");
-        this.hiddenLayer.classList.remove("prime-member-container-scroll-active");
+        stickyLayer.classList.remove(this.elObj.topLayerActiveClass);
+        hiddenLayer.classList.remove(this.elObj.scrollActiveClass);
       }
     });
     return io.observe(root);
   }
 
   showHiddenLayer() {
-    this.hiddenLayer.classList.add("prime-member-container-active");
+    qs(this.elObj.hiddenLayer).classList.add(this.elObj.btnActiveClass);
   }
 
   hideLayer() {
-    this.hiddenLayer.classList.remove("prime-member-container-active");
+    qs(this.elObj.hiddenLayer).classList.remove(this.elObj.btnActiveClass);
   }
 }
 
-export { ScrollEvent_sticky };
+export { ScrollEventSticky };

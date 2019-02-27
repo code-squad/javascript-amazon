@@ -16,6 +16,11 @@
         </div>
         <div class="head-search">
           <div class="head-search-block">
+            <form
+              id="input-form"
+              action="http://crong.codesquad.kr:8080"
+              method="POST"
+            >
             <select class="head-search-selector" name="" id="">
               <option value="">All</option>
               <option value="">arts & craft</option>
@@ -26,10 +31,15 @@
             <div class="head-arrow-container">
               <span class="head-arrow"></span>
             </div>
-            <input class="head-search-blank" type="text" />
+              <div class="head-search-input-container">
+                <input class="head-search-blank" type="text" />
+                <ul class="head-search-autocorrect-container">            
+                </ul>
+              </div>
             <button class="head-search-button">
               <div class="search-icon"></div>
             </button>
+            </form>
           </div>
         </div>
         <div class="head-search-right">
@@ -142,6 +152,7 @@
         </div>
       </div>
     </header>
+    
     <div class="wholeBodyContainer">
       <div class="prime-member-container">
         <div class="prime-member">
@@ -354,12 +365,15 @@
               </div>
               <div class="carousel-hider left"></div>
               <div class="middle-body-carousel-list-container">
-                <a class="middle-body-carousel-url" href="https://www.imdb.com/title/tt5057054/episodes?season=2https://www.imdb.com/title/tt5057054/episodes?season=2">
-                <ul class="middle-body-carousel-list">
-                  <li class="middle-body-carousel-list-el index0"></li>
-                  <li class="middle-body-carousel-list-el index1"></li>
-                  <li class="middle-body-carousel-list-el index2"></li>
-                </ul>
+                <a
+                  class="middle-body-carousel-url"
+                  href="https://www.imdb.com/title/tt5057054/episodes?season=2https://www.imdb.com/title/tt5057054/episodes?season=2"
+                >
+                  <ul class="middle-body-carousel-list">
+                    <li class="middle-body-carousel-list-el index0"></li>
+                    <li class="middle-body-carousel-list-el index1"></li>
+                    <li class="middle-body-carousel-list-el index2"></li>
+                  </ul>
                 </a>
               </div>
               <div class="carousel-hider right"></div>
@@ -388,7 +402,7 @@
         </div>
       </div>
     </div>
-    <script src="amazonJS/intersectionObserver.js"></script>
+    <script src="amazonJS/intersection-observer.js"></script>
     <script src="amazonJS/app.js" type="module"></script>
   </body>
 </html>
