@@ -1,6 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px Arial;
+}
+
 #prime-main-contents {
-  position: relative;
-  top: 100px;
+  position: absolute;
+  top: 155px;
 }
 
 .fas {
@@ -14,7 +22,7 @@
 
 .prime-detail-page {
   display: block;
-  margin: 0 auto;
+  margin: 0 252.5px;
   max-width: 1400px;
   min-width: 1000px;
   font-family: Tahoma, Arial, sans-serif;

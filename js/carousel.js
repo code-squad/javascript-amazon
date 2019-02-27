@@ -15,14 +15,14 @@ export default class Carousel {
     this.reactAuto;
 
     // set Timer(React / Auto act)
-    this.setAutoActTimer = 3000;
-    this.setReactTimer = 3500;
+    this.setAutoActTimer = layer.autoActTime;
+    this.setReactTimer = layer.reactTime;
 
     // Auto Act Method On/ Off
-    this.autoAct = true;
+    this.autoAct = layer.switchAutoMove;
 
     // click Pause AutoAct Method On/ Off
-    this.pauseAct = true;
+    this.pauseAct = layer.switchPause;
   }
 
   init() {
@@ -35,11 +35,11 @@ export default class Carousel {
   }
 
   clickEvent() {
-    this.carousel.prev.addEventListener('click', () => {
+    this.carousel.prev.addEventListener("click", () => {
       this.moveToLeft();
       if (this.pauseAct) this.pauseAutoSlide();
     });
-    this.carousel.next.addEventListener('click', () => {
+    this.carousel.next.addEventListener("click", () => {
       this.moveToRight();
       if (this.pauseAct) this.pauseAutoSlide();
     });
@@ -83,13 +83,13 @@ export default class Carousel {
       }
     });
 
-    xhr.open('GET', regURL);
+    xhr.open("GET", regURL);
     xhr.send();
   }
 
   setUlLayerWidth() {
     const width = this.carousel.ulLayer.offsetWidth * this.carousel.ulLayer.children.length;
-    this.carousel.ulLayer.style.setProperty('width', `${width}px`);
+    this.carousel.ulLayer.style.setProperty("width", `${width}px`);
   }
 
   createHTMLTemplate({ src, alt, id }) {

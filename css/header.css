@@ -1,9 +1,21 @@
 header {
-  display: block;
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 155px;
   font-family: Arial, sans-serif;
+}
+
+.top-head-link * {
+  display: block;
+  width: 100%;
+  height: 55px;
+  background-position: top left;
+  background-repeat: no-repeat;
+  min-width: 1905px;
+  margin: 0;
+  padding: 0;
 }
 
 .fa-caret-down {
@@ -14,6 +26,7 @@ header {
   background-color: #232f3e;
   position: absolute;
   display: block;
+  min-width: 1905px;
   width: 100%;
   height: 100px;
   top: 55px;
@@ -23,23 +36,24 @@ header {
   display: none;
 }
 
-.top-head-link a {
+.top-head-link {
   display: block;
   width: 100%;
-  height: 100%;
-  outline: 0;
-  background-position: top left;
   height: 55px;
+  background-position: top left;
   background-repeat: no-repeat;
-  min-width: 1000px;
+  min-width: 1400px;
 }
 
 .top-head-img {
-  width: 1905px;
+  height: 100%;
 }
 
 /* header 상단 */
 .nav-top {
+  position: relative;
+  min-width: 1400px;
+  width: 100%;
   height: 47px;
 }
 
@@ -55,8 +69,8 @@ header {
 
 .amazon-icon-img {
   position: absolute;
-  top: 10px;
-  left: 15px;
+  top: 12px;
+  left: 20px;
 }
 
 .nav-prime-link {
@@ -76,7 +90,6 @@ header {
   height: 46px;
   left: 200px;
   top: 0;
-  overflow: hidden;
   margin-top: 0;
   padding-top: 11px;
   padding-right: 25px;
@@ -100,6 +113,7 @@ header {
   display: inline-block;
   position: absolute;
   min-width: 360px;
+  padding: 0 12px 0 12px;
   width: 90%;
   top: 11px;
   left: 39px;
@@ -249,7 +263,7 @@ header {
 }
 
 .nav-container {
-  width: 1050px;
+  width: 585px;
   margin: 28px 0 0;
   height: 28px;
   float: left;
@@ -289,10 +303,9 @@ departments Layer
 /* --------------------------------
 background dimmed
 -------------------------------- */
-
-#nav-dimmed-cover {
+.nav-dimmed-cover-on {
   position: absolute;
-  opacity: 0;
+  opacity: 0.6;
   top: 0;
   z-index: 3;
   background-color: #000;
@@ -300,12 +313,17 @@ background dimmed
   width: 100%;
   height: 0;
   transition: all 0.3s;
+  height: 100%;
+}
+
+.nav-dimmed-cover-off {
+  opacity: 0;
 }
 
 
 /* 하단 우측 */
 .nav-bottom-right {
-  width: 500px;
+  width: auto;
   height: 53px;
   padding: 0 20px 3px 0;
   float: right;

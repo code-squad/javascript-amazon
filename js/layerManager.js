@@ -53,12 +53,14 @@ export default class LayerManager {
 
   setDisplayBlock() {
     this.layer.listEle.setAttribute("style", "display: block;");
-    this.layer.dimmedEle.setAttribute("style", "opacity: 0.6; height: 100%;");
+    this.layer.dimmedEle.classList.remove("nav-dimmed-cover-off");
+    this.layer.dimmedEle.classList.add("nav-dimmed-cover-on");
   }
 
   setDisplayNone() {
     this.layer.listEle.removeAttribute("style");
-    this.layer.dimmedEle.setAttribute("style", "opacity: 0;");
+    this.layer.dimmedEle.classList.remove("nav-dimmed-cover-on");
+    this.layer.dimmedEle.classList.add("nav-dimmed-cover-off");
   }
 
   // check Mouse Position in Triangle

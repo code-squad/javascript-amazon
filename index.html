@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/body.css">
   <link rel="stylesheet" href="./css/layerManager.css">
   <link rel="stylesheet" href="./css/hidden-header-plans.css">
+  <link rel="stylesheet" href="./css/autoComplete.css">
   <link rel="stylesheet" href="./css/carousel.css">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
@@ -23,256 +24,77 @@
           alt="link-shop" class="top-head-img">
       </a>
     </div>
-    <div class="hidden-plans trans-hidden">
-      <div class="hidden-inner-contents">
-        <div class="plan-comparison-card">
-          <div class="comparison-card-header">
-            <div class="prime-logo">
-              <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/Prime/LPS/Logo_Prime._CB503588967_.png">
-            </div>
-            <span class="comparison-card-header-title">There's something for everyone</span>
-            <div class="plan-img">
-              <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/GBB_Illustration_01._CB514227929_.png">
-            </div>
-            <div class="close-button">
-              <span class="close-button-text">CLOSE</span>
-              <i class="fas fa-times"></i>
-            </div>
-          </div>
-          <div class="comparison-card-container">
-            <div class="radio-container card-video">
-              <input type="radio" id="PrimeVideoMonthlyFreeTrial-radio" name="plan-selector" value="0" class="radio-button">
-              <label for="PrimeVideoMonthlyFreeTrial-radio">
-                <div class="plan-card">
-                  <div class="plan-card-bg">
-                    <span class="plan-card-header">
-                      Prime Video
-                      <div class="plan-card-price">
-                        <span class="plan-card-price-amount">$8<sup class="sup-text">99</sup></span>
-                        /month
-                      </div>
-                      <div class="benefit-list">
-                        <div class="benefit">
-                          <i class="fas fa-check"></i>
-                          Prime Video
-                        </div>
-                        <div class="benefit blind-text">
-                          <i class="fas fa-check"></i>
-                          FREE Two-Day shipping</div>
-                        <div class="benefit blind-text">
-                          <i class="fas fa-check"></i>
-                          Unlimited music streaming</div>
-                        <div class="benefit blind-text">
-                          <i class="fas fa-check"></i>
-                          Unlimited photo storage</div>
-                        <div class="benefit blind-text">
-                          <i class="fas fa-check"></i>
-                          Unlimited reading</div>
-                        <div class="benefit blind-text">
-                          <i class="fas fa-check"></i>
-                          FREE Same-Day Delivery</div>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </label>
-              <div class="plan-card-radio-button"></div>
-            </div>
-
-            <div class="radio-container card-monthly">
-              <input type="radio" id="PrimePureMonthlyFreeTrial-radio" name="plan-selector" value="1" class="radio-button">
-              <label for="PrimePureMonthlyFreeTrial-radio">
-                <div class="plan-card">
-                  <div class="plan-card-bg">
-                    <span class="plan-card-header">
-                      Prime monthly
-                      <div class="plan-card-price">
-                        <span class="plan-card-price-amount">$12<sup class="sup-text">99</sup> </span>
-                        /month
-                      </div>
-                      <div class="benefit-list">
-                        <div class="benefit">
-                          <i class="fas fa-check"></i>
-                          Prime Video
-                        </div>
-                        <div class="benefit">
-                          <i class="fas fa-check"></i>
-                          FREE Two-Day shipping</div>
-                        <div class="benefit">
-                          <i class="fas fa-check"></i>
-                          Unlimited music streaming</div>
-                        <div class="benefit">
-                          <i class="fas fa-check"></i>
-                          Unlimited photo storage</div>
-                        <div class="benefit">
-                          <i class="fas fa-check"></i>
-                          Unlimited reading</div>
-                        <div class="benefit">
-                          <i class="fas fa-check"></i>
-                          FREE Same-Day Delivery</div>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </label>
-              <div class="plan-card-radio-button"></div>
-            </div>
-
-            <div class="radio-container card-best">
-              <div class="best-container-contents">
-                <input type="radio" id="PrimeFreeTrial-radio" name="plan-selector" value="1" class="radio-button">
-                <label for="PrimeFreeTrial-radio">
-                  <div class="plan-card">
-                    <div class="plan-card-bg">
-                      <span class="plan-card-header">
-                        Prime annual
-                        <div class="plan-card-price">
-                          <span class="plan-card-price-amount">$119</span>
-                          /year
-                        </div>
-                        <div class="plan-card-savings-ribbon">
-                          <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/GBB_SavingsRibbon_01._CB513120049_.svg">
-                          <span id="plan-card-savings-text">BEST VALUE</span>
-                        </div>
-                        <div class="benefit-list">
-                          <div class="benefit">
-                            <i class="fas fa-check"></i>
-                            Prime Video
-                          </div>
-                          <div class="benefit">
-                            <i class="fas fa-check"></i>
-                            FREE Two-Day shipping</div>
-                          <div class="benefit">
-                            <i class="fas fa-check"></i>
-                            Unlimited music streaming</div>
-                          <div class="benefit">
-                            <i class="fas fa-check"></i>
-                            Unlimited photo storage</div>
-                          <div class="benefit">
-                            <i class="fas fa-check"></i>
-                            Unlimited reading</div>
-                          <div class="benefit">
-                            <i class="fas fa-check"></i>
-                            FREE Same-Day Delivery</div>
-                        </div>
-                      </span>
-                    </div>
-                  </div>
-                </label>
-                <div class="plan-card-radio-button"></div>
-              </div>
-
-              <div class="comparison-card-cta">
-                <div class="hidden-button-inner">
-                  <input type="submit" input="Try Prime" class="hidden-button-input">
-                  <span class="hidden-button-text">Try Prime</span>
-                </div>
-                <div class="after-button-redirects">
-                  <a title="Are you a Student?" href="#" class="after-button-text">Are you a Student?</a>
-                  <span>|</span>
-                  <a title="Do you have a valid EBT/Medicaid card?" href="#" class="after-button-text">Do you have a
-                    valid EBT/Medicaid card?</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="comparison-close-button">
-              <i class="fas fa-angle-up"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="plans-nav-header">
-        <div class="sticky-nav-prime">
-          <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_Blue._CB515489499_.svg"
-            class="sticky-nav-prime-logo">
-        </div>
-        <div class="expand-membership-layer">
-          <div class="expand-membership-card">
-            <span class="expand-text">See more plans</span>
-            <div class="plan-expander-icon">
-              <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StickyNav_02_DownArrow_50x30._CB515489498_.svg"
-                alt="" class="expand-plan-icon">
-            </div>
-          </div>
-        </div>
-        <div class="membership-plan-button">
-          <div class="plan-button">
-            <input type="button" value="Try Prime" class="tryPrime-button">
-            <span class="tryprime-button-text">TRY PRIME</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="nav-main">
       <div class="nav-top">
         <div class="nav-amazon-icon">
           <a href="#">
-            <img src="./image/nav-sprite-global_bluebeacon-V3-1x_optimized.png" alt="" class="amazon-icon-img">
+            <img src="./image/brand_logo.png" alt="" class="amazon-icon-img">
             <span class="guide-text">Main Amazon</span>
           </a>
           <a href="#" class="nav-prime-link">Try Prime</a>
         </div>
         <div class="nav-search">
-          <form action="" method="get" class="nav-search-bar">
-            <select class="select-dropdown-menu">
-              <option value="">All Departments</option>
-              <option value="">Amazon Devices</option>
-              <option value="">Amazon Warehouse</option>
-              <option value="">Appliances</option>
-              <option value="">Apps & Games</option>
-              <option value="">Arts, Crafts & Sewing</option>
-              <option value="">Automotive Parts & Accessories</option>
-              <option value="">Baby</option>
-              <option value="">Beauty & Personal Care</option>
-              <option value="">Books</option>
-              <option value="">CDs & Vinyl</option>
-              <option value="">Cell Phones & Accessories</option>
-              <option value="">Clothing, Shoes & Jewelry</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Women</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Men</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Girls</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Boys</option>
-              <option value="">&nbsp;&nbsp;&nbsp;Baby</option>
-              <option value="">Collectibles & Fine Art</option>
-              <option value="">Computers</option>
-              <option value="">Courses</option>
-              <option value="">Credit and Payment Cards</option>
-              <option value="">Digital Music</option>
-              <option value="">Electronics</option>
-              <option value="">Garden & Outdoor</option>
-              <option value="">Gift Cards</option>
-              <option value="">Grocery & Gourmet Food</option>
-              <option value="">Handmade</option>
-              <option value="">Health, Household & Baby Care</option>
-              <option value="">Home & Business Services</option>
-              <option value="">Home & Kitchen</option>
-              <option value="">Industrial & Scientific</option>
-              <option value="">Kindle Store</option>
-              <option value="">Luggage & Travel Gear</option>
-              <option value="">Luxury Beauty</option>
-              <option value="">Magazine Subscriptions</option>
-              <option value="">Movies & TV</option>
-              <option value="">Musical Instruments</option>
-              <option value="">Office Products</option>
-              <option value="">Pet Supplies</option>
-              <option value="">Prime Exclusive Savings</option>
-              <option value="">Prime Pantry</option>
-              <option value="">Prime Video</option>
-              <option value="">Software</option>
-              <option value="">Sports & Outdoors</option>
-              <option value="">Tools & Home Improvement</option>
-              <option value="">Toys & Games</option>
-              <option value="">Vehicles</option>
-              <option value="">Video Games</option>
-            </select>
-            <div class="nav-search-field">
-              <input type="text" class="input-search-field">
+          <form autocomplete="off" action="#" method="get" class="nav-search-bar">
+            <div class="nav-select-dropdown-menu">
+              <select class="select-dropdown-menu">
+                <option value="">All Departments</option>
+                <option value="">Amazon Devices</option>
+                <option value="">Amazon Warehouse</option>
+                <option value="">Appliances</option>
+                <option value="">Apps & Games</option>
+                <option value="">Arts, Crafts & Sewing</option>
+                <option value="">Automotive Parts & Accessories</option>
+                <option value="">Baby</option>
+                <option value="">Beauty & Personal Care</option>
+                <option value="">Books</option>
+                <option value="">CDs & Vinyl</option>
+                <option value="">Cell Phones & Accessories</option>
+                <option value="">Clothing, Shoes & Jewelry</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Women</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Men</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Girls</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Boys</option>
+                <option value="">&nbsp;&nbsp;&nbsp;Baby</option>
+                <option value="">Collectibles & Fine Art</option>
+                <option value="">Computers</option>
+                <option value="">Courses</option>
+                <option value="">Credit and Payment Cards</option>
+                <option value="">Digital Music</option>
+                <option value="">Electronics</option>
+                <option value="">Garden & Outdoor</option>
+                <option value="">Gift Cards</option>
+                <option value="">Grocery & Gourmet Food</option>
+                <option value="">Handmade</option>
+                <option value="">Health, Household & Baby Care</option>
+                <option value="">Home & Business Services</option>
+                <option value="">Home & Kitchen</option>
+                <option value="">Industrial & Scientific</option>
+                <option value="">Kindle Store</option>
+                <option value="">Luggage & Travel Gear</option>
+                <option value="">Luxury Beauty</option>
+                <option value="">Magazine Subscriptions</option>
+                <option value="">Movies & TV</option>
+                <option value="">Musical Instruments</option>
+                <option value="">Office Products</option>
+                <option value="">Pet Supplies</option>
+                <option value="">Prime Exclusive Savings</option>
+                <option value="">Prime Pantry</option>
+                <option value="">Prime Video</option>
+                <option value="">Software</option>
+                <option value="">Sports & Outdoors</option>
+                <option value="">Tools & Home Improvement</option>
+                <option value="">Toys & Games</option>
+                <option value="">Vehicles</option>
+                <option value="">Video Games</option>
+              </select>
+            </div>
+            <div class="nav-input-field">
+              <input type="text" class="input-search-field" id="inputWord">
             </div>
             <div class="nav-submit-button">
               <span class="guide-text">Go</span>
-              <input type="button" value="Go" class="nav-search-submit">
+              <input type="submit" value="Go" class="nav-search-submit">
               <i class="fas fa-search"></i>
             </div>
           </form>
@@ -527,6 +349,198 @@
         </div>
       </div>
     </div>
+
+    <div class="hidden-plans trans-hidden">
+      <div class="hidden-inner-contents">
+        <div class="plan-comparison-card">
+          <div class="comparison-card-header">
+            <div class="prime-logo">
+              <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/Prime/LPS/Logo_Prime._CB503588967_.png">
+            </div>
+            <span class="comparison-card-header-title">There's something for everyone</span>
+            <div class="plan-img">
+              <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/GBB_Illustration_01._CB514227929_.png">
+            </div>
+            <div class="close-button">
+              <span class="close-button-text">CLOSE</span>
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+          <div class="comparison-card-container">
+            <div class="radio-container card-video">
+              <input type="radio" id="PrimeVideoMonthlyFreeTrial-radio" name="plan-selector" value="0" class="radio-button">
+              <label for="PrimeVideoMonthlyFreeTrial-radio">
+                <div class="plan-card">
+                  <div class="plan-card-bg">
+                    <span class="plan-card-header">
+                      Prime Video
+                      <div class="plan-card-price">
+                        <span class="plan-card-price-amount">$8<sup class="sup-text">99</sup></span>
+                        /month
+                      </div>
+                      <div class="benefit-list">
+                        <div class="benefit">
+                          <i class="fas fa-check"></i>
+                          Prime Video
+                        </div>
+                        <div class="benefit blind-text">
+                          <i class="fas fa-check"></i>
+                          FREE Two-Day shipping
+                        </div>
+                        <div class="benefit blind-text">
+                          <i class="fas fa-check"></i>
+                          Unlimited music streaming
+                        </div>
+                        <div class="benefit blind-text">
+                          <i class="fas fa-check"></i>
+                          Unlimited photo storage
+                        </div>
+                        <div class="benefit blind-text">
+                          <i class="fas fa-check"></i>
+                          Unlimited reading
+                        </div>
+                        <div class="benefit blind-text">
+                          <i class="fas fa-check"></i>
+                          FREE Same-Day Delivery
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </label>
+              <div class="plan-card-radio-button"></div>
+            </div>
+
+            <div class="radio-container card-monthly">
+              <input type="radio" id="PrimePureMonthlyFreeTrial-radio" name="plan-selector" value="1" class="radio-button">
+              <label for="PrimePureMonthlyFreeTrial-radio">
+                <div class="plan-card">
+                  <div class="plan-card-bg">
+                    <span class="plan-card-header">
+                      Prime monthly
+                      <div class="plan-card-price">
+                        <span class="plan-card-price-amount">$12<sup class="sup-text">99</sup> </span>
+                        /month
+                      </div>
+                      <div class="benefit-list">
+                        <div class="benefit">
+                          <i class="fas fa-check"></i>
+                          Prime Video
+                        </div>
+                        <div class="benefit">
+                          <i class="fas fa-check"></i>
+                          FREE Two-Day shipping
+                        </div>
+                        <div class="benefit">
+                          <i class="fas fa-check"></i>
+                          Unlimited music streaming
+                        </div>
+                        <div class="benefit">
+                          <i class="fas fa-check"></i>
+                          Unlimited photo storage
+                        </div>
+                        <div class="benefit">
+                          <i class="fas fa-check"></i>
+                          Unlimited reading
+                        </div>
+                        <div class="benefit">
+                          <i class="fas fa-check"></i>
+                          FREE Same-Day Delivery
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+              </label>
+              <div class="plan-card-radio-button"></div>
+            </div>
+
+            <div class="radio-container card-best">
+              <div class="best-container-contents">
+                <input type="radio" id="PrimeFreeTrial-radio" name="plan-selector" value="1" class="radio-button">
+                <label for="PrimeFreeTrial-radio">
+                  <div class="plan-card">
+                    <div class="plan-card-bg">
+                      <span class="plan-card-header">
+                        Prime annual
+                        <div class="plan-card-price">
+                          <span class="plan-card-price-amount">$119</span>
+                          /year
+                        </div>
+                        <div class="plan-card-savings-ribbon">
+                          <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/GBB_SavingsRibbon_01._CB513120049_.svg">
+                          <span id="plan-card-savings-text">BEST VALUE</span>
+                        </div>
+                        <div class="benefit-list">
+                          <div class="benefit">
+                            <i class="fas fa-check"></i>
+                            Prime Video
+                          </div>
+                          <div class="benefit">
+                            <i class="fas fa-check"></i>
+                            FREE Two-Day shipping</div>
+                          <div class="benefit">
+                            <i class="fas fa-check"></i>
+                            Unlimited music streaming</div>
+                          <div class="benefit">
+                            <i class="fas fa-check"></i>
+                            Unlimited photo storage</div>
+                          <div class="benefit">
+                            <i class="fas fa-check"></i>
+                            Unlimited reading</div>
+                          <div class="benefit">
+                            <i class="fas fa-check"></i>
+                            FREE Same-Day Delivery</div>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </label>
+                <div class="plan-card-radio-button"></div>
+              </div>
+
+              <div class="comparison-card-cta">
+                <div class="hidden-button-inner">
+                  <input type="submit" input="Try Prime" class="hidden-button-input">
+                  <span class="hidden-button-text">Try Prime</span>
+                </div>
+                <div class="after-button-redirects">
+                  <a title="Are you a Student?" href="#" class="after-button-text">Are you a Student?</a>
+                  <span>|</span>
+                  <a title="Do you have a valid EBT/Medicaid card?" href="#" class="after-button-text">Do you have a
+                    valid EBT/Medicaid card?</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="comparison-close-button">
+              <i class="fas fa-angle-up"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="plans-nav-header">
+        <div class="sticky-nav-prime">
+          <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/PrimeLogo_Blue._CB515489499_.svg"
+            class="sticky-nav-prime-logo">
+        </div>
+        <div class="expand-membership-layer">
+          <div class="expand-membership-card">
+            <span class="expand-text">See more plans</span>
+            <div class="plan-expander-icon">
+              <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StickyNav_02_DownArrow_50x30._CB515489498_.svg"
+                alt="" class="expand-plan-icon">
+            </div>
+          </div>
+        </div>
+        <div class="membership-plan-button">
+          <div class="plan-button">
+            <input type="button" value="Try Prime" class="tryPrime-button">
+            <span class="tryprime-button-text">TRY PRIME</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main id="prime-main-contents">
@@ -695,7 +709,6 @@
                 <div class="a-carousel-center">
                   <div class="a-carousel-viewport">
                     <ul class="a-carousel">
-
                     </ul>
                   </div>
                 </div>
@@ -725,7 +738,7 @@
       </div>
     </div>
 
-    <div id="nav-dimmed-cover"></div>
+    <div class="nav-dimmed-cover-off"></div>
   </main>
 
 

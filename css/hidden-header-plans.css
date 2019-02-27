@@ -20,7 +20,6 @@
   height: 70px;
   top: 0;
   color: #fff;
-  min-width: 1920px;
 }
 
 /* Left: Prime-Icon */
@@ -61,7 +60,7 @@
   font-weight: lighter;
   text-align: center;
   cursor: pointer;
-  margin: 29px 604px 0 604px;
+  margin: 25px 604px 0 604px;
 }
 
 .expand-text {
@@ -124,13 +123,10 @@
   position: relative;
   z-index: 0;
   top: 0;
-  width: 100%;
-  min-width: 1920px;
   height: 0;
   background-color: #eee;
   transition: all 0.5s;
   overflow: hidden;
-  border-bottom: 2px solid #00a8e1;
 }
 
 .plan-comparison-card {
@@ -138,6 +134,7 @@
   width: 100%;
   height: 100%;
   background: white;
+  border-bottom: 2px solid #00a8e1;
 }
 
 /* hidden-inner-contents Header */
@@ -406,6 +403,9 @@
 }
 
 .trans-show-outerContents {
+
+  width: 100%;
+  min-width: 1905px;
   height: 70px;
   overflow: visible;
 }
