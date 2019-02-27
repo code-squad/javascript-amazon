@@ -5,25 +5,28 @@ import { SETTING_VALUES } from "./setting_values.js";
 class KeywordsAutoCompleteModule {
     constructor({
         FETCH_REQUEST_URL_FOR_KEYWORDS,
-        KEYWORDS_LIST_LIMIT,
+        KEYWORDS_LIST_MAX_LIMIT,
+        KEYWORDS_LIST_MIN_LIMIT,
         FETCH_REQUEST_TIMER,
         INPUT_PREVENTION_KEYS,
         RESULT_LI_ELEMENTS_TEMPLET,
         ITEM_LINK_URL_TEMPLET,
-        HIGHLIGHT_SPAN_TEMPLET
+        HIGHLIGHT_SPAN_TEMPLET,
+        NOT_FOUND_KEYWORD_MSG
     }) {
         this.URL = FETCH_REQUEST_URL_FOR_KEYWORDS;
-        this.LIMIT = KEYWORDS_LIST_LIMIT;
+        this.MAX_LIMIT = KEYWORDS_LIST_MAX_LIMIT;
+        this.MIN_LIMIT = KEYWORDS_LIST_MIN_LIMIT;
         this.TIMER = FETCH_REQUEST_TIMER;
         this.KEYS = INPUT_PREVENTION_KEYS;
         this.LI_TEMPLET = RESULT_LI_ELEMENTS_TEMPLET;
         this.URL_TEMPLET = ITEM_LINK_URL_TEMPLET;
         this.SPAN_TEMPLET = HIGHLIGHT_SPAN_TEMPLET;
+        this.NOT_FOUND_MSG = NOT_FOUND_KEYWORD_MSG;
         this.inputTextField = document.querySelector(".input-search-field"); // 검색창 엘리먼트 
         this.resultWindow = document.querySelector(".auto-complete-result-window"); // 자동완성결과 div 엘리먼트
+        this.resultWindow.dataset.cursorOn = false;
         this.resultListArea = document.querySelector(".result-list-area"); // 자동완성결과 ul 리스트
-
-
         this.triggerTimeout = "";
         this.initEventListener();
     }
@@ -43,8 +46,8 @@ class KeywordsAutoCompleteModule {
 
     triggerFetch({ keyCode }) {
         if (this.triggerTimeout) clearTimeout(this.triggerTimeout);
-        if (this.checkIsEmptyField({ keyCode })) return;
-        if (this.checkIsUtilityKey({ keyCode })) return;
+        if (this.disableDelKeyOnEmptyField({ keyCode })) return;
+        if (this.disableUtilKey({ keyCode })) return;
         this.initialInputText = this.inputTextField.value;
         this.triggerTimeout = setTimeout(() => {
             let composedURL = this.composeFetchRequestURL();
@@ -52,24 +55,27 @@ class KeywordsAutoCompleteModule {
         }, this.TIMER);
     }
 
-    checkIsEmptyField({ keyCode }) {
-        if (this.inputTextField.value === ""
-            && (keyCode === 8 || keyCode === 38 || keyCode === 40))
+    // 검색창이 비어있는 상태에서 백스페이스 입력 금지(fetch 요청 금지)
+    disableDelKeyOnEmptyField({ keyCode }) {
+        if (this.inputTextField.value === "" && keyCode === 8)
             return true;
     }
 
-    checkIsUtilityKey({ keyCode }) {
-        let result = this.KEYS.some(keys =>
+    // 기타 유틸리키 입력 금지(fetch 요청 금지)
+    disableUtilKey({ keyCode }) {
+        let matchResult = this.KEYS.some(keys =>
             keyCode === keys["keyCode"]
         );
-        return result;
+        return matchResult;
     }
 
+    // fetch 요청 url 구성
     composeFetchRequestURL() {
         let composedURL = this.URL + this.inputTextField.value.toLowerCase();
         return composedURL;
     }
 
+    // fetch api 호출
     async operateFetch(URL) {
         try {
             const keywordsListText = await fetch(URL, { mode: "cors" });
@@ -77,12 +83,14 @@ class KeywordsAutoCompleteModule {
             const itemsInfoList = this.generateItemsInfoList(keywordsListObj);
             return this.addItemLiElement(itemsInfoList);
         } catch (err) {
-            this.resultListArea.innerHTML = `<li>추천 검색어가 없습니다.</li>`
+            this.suggestionItems = "";
+            this.resultListArea.innerHTML = this.NOT_FOUND_MSG;
             this.resultWindow.classList.add("window-display-block");
             return;
         }
     }
 
+    // 항목 정보 배열 생성
     generateItemsInfoList(jsonData) {
         let itemsInfoList = jsonData.suggestions.reduce(function (list, value) {
             return [...list, { value: value['value'], refTag: value['refTag'] }];
@@ -118,13 +126,20 @@ class KeywordsAutoCompleteModule {
 
     // 키보드 조작
     moveUpDown({ keyCode }) {
-        if (this.checkIsEmptyField({ keyCode })) return;
+        if (this.disableDelKeyOnEmptyField({ keyCode })) return;
+        if (this.disableUpDownKey()) return;
         if (this.suggestionItems === undefined) return;
         else if (keyCode === 40) {
             this.moveDown();
         } else if (keyCode === 38) {
             this.moveUp();
         }
+    }
+
+    // 키보드 상하키 입력 금지
+    disableUpDownKey() {
+        if (this.resultListArea.innerHTML === this.NOT_FOUND_MSG || this.resultListArea.innerHTML === "")
+            return true;
     }
 
     // 키보드 아래로 이동
@@ -141,8 +156,8 @@ class KeywordsAutoCompleteModule {
 
     // 선택 부분이 리스트의 끝까지 도달했을 때 설정 초기화
     initUpDownCountOnEnd() {
-        if (this.UpDownCount >= this.LIMIT) {
-            this.suggestionItems[this.LIMIT - 1].classList.remove("highlight-background");
+        if (this.UpDownCount >= this.MAX_LIMIT) {
+            this.suggestionItems[this.MAX_LIMIT - 1].classList.remove("highlight-background");
             this.UpDownCount = 0;
             this.inputTextField.value = this.initialInputText;
             return true;
@@ -163,8 +178,8 @@ class KeywordsAutoCompleteModule {
 
     // 선택 부분이 리스트의 처음 도달했을 때 설정 초기화
     initUpDownCountOnBegin() {
-        if (this.UpDownCount <= 1) {
-            this.UpDownCount = this.LIMIT + 1;
+        if (this.UpDownCount <= this.MIN_LIMIT) {
+            this.UpDownCount = this.MAX_LIMIT + 1;
             this.suggestionItems[0].classList.remove("highlight-background");
             this.inputTextField.value = this.initialInputText;
             return true;
@@ -184,11 +199,11 @@ class KeywordsAutoCompleteModule {
 
     // 포커스가 벗어났을 때 검색창 닫기
     closeWindowOnBlur() {
-        let div = document.querySelector(".auto-complete-result-window");
-        if (window.getComputedStyle(div).borderColor === "rgb(1, 0, 0)") {
+        if (this.resultWindow.dataset.cursorOn === "true") {
             return;
         }
         this.removeItems();
+        this.resultWindow.dataset.cursorOn = false;
     }
 
     // 백스페이스로 모든 텍스트를 삭제했을 때 결과창 닫기
@@ -201,24 +216,27 @@ class KeywordsAutoCompleteModule {
         if (keyCode === 27) this.removeItems();
     }
 
+    // 결과창 초기화
     removeItems() {
         this.resultWindow.classList.remove("window-display-block");
         this.suggestionItems = "";
         this.resultListArea.innerHTML = "";
     }
 
-    //  마우스 커서를 대면 하이라이트 토글 켜기
+    // 마우스 커서를 대면 하이라이트 토글 켜기
     turnOnHighlight({ target }) {
         if (target.tagName === "LI" || target.tagName === "A") {
             target.closest("li").classList.toggle("highlight-background");
         }
+        this.resultWindow.dataset.cursorOn = true;
     }
 
-    //  마우스 커서가 벗어나면 하이라이트 토글 끄기
+    // 마우스 커서가 벗어나면 하이라이트 토글 끄기
     turnOffHighlight({ target }) {
         if (target.tagName === "LI" || target.tagName === "A") {
             target.closest("li").classList.toggle("highlight-background");
         }
+        this.resultWindow.dataset.cursorOn = false;
     }
 
     // 검색결과 클릭 시 해당 링크 이동
@@ -226,8 +244,7 @@ class KeywordsAutoCompleteModule {
         evt.preventDefault();
         if (evt.target.tagName === "LI" || evt.target.tagName === "A") {
             window.open(evt.target.closest("li").firstElementChild.href, "_self");
-            this.resultWindow.classList.remove("window-display-block");
-            this.suggestionItems = "";
+            this.removeItems();
         }
     }
 }

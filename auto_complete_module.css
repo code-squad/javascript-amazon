@@ -45,10 +45,6 @@
     cursor: pointer;
 }
 
-.toggle-window:hover {
-    border-color: rgb(1, 0, 0);
-}
-
 .highlight-background {
     background: rgb(193, 193, 193);
 }
