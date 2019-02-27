@@ -40,7 +40,7 @@ class Carousel {
         - 첫번째 데이터를 HTML에 주입한다.
     }
 
-    moveToRight() {
+    moveToRight() {ㄴ
         - checkLength()
         - 데이터를 오른쪽으로 한 칸 바꿔준다.
     }
@@ -101,3 +101,17 @@ class Carousel {
     </div>
 </div>
 ```
+
+
+### 함수 흐름 정리
+
+![kakaotalk_photo_2019-02-26-21-23-07](https://user-images.githubusercontent.com/40848630/53412447-bf005780-3a0c-11e9-89ac-95923967ae7e.jpeg)
+
+### - 전체 구조
+
+![kakaotalk_photo_2019-02-26-21-45-08](https://user-images.githubusercontent.com/40848630/53413632-ce34d480-3a0f-11e9-9994-9f36671c7329.jpeg)
+
+### - 함수 grouping
+
+함수 흐름 별로 필요한 변수를 모아봄
+![image](https://user-images.githubusercontent.com/40848630/53414695-a3984b00-3a12-11e9-9cc9-0ecc017f9a00.png)
