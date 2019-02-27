@@ -12,10 +12,8 @@ export default class Carousel {
         this.currentItem = 0;
         this.carouselPosition = 0;
 
+        this.options = options;
         this.itemWidth = options.itemWidth;
-        this.carouselDuration = options.carouselDuration;
-        this.carouselCheckingDuration = options.carouselCheckingDuration;
-        this.timeGapToRestartCarousel = options.timeGapToRestartCarousel;
         this.btnSelector = btnSelector;
         this.dataObj = data;
     }
@@ -72,8 +70,12 @@ export default class Carousel {
     }
 
     startAutoCarousel() {
-        this.moveCarouselAuto(this.carouselDuration);
-        this.checkAutoCarousel(this.timeGapToRestartCarousel, this.carouselCheckingDuration);
+        const carouselDuration = this.options.carouselDuration;
+        const carouselCheckingDuration = this.options.carouselCheckingDuration;
+        const timeGapToRestartCarousel = this.options.timeGapToRestartCarousel;
+
+        this.moveCarouselAuto(carouselDuration);
+        this.checkAutoCarousel(timeGapToRestartCarousel, carouselCheckingDuration);
     }
 
     moveCarouselAuto(duration) {
