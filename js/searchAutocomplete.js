@@ -27,9 +27,9 @@ export default class AutoComplete {
   }
 
   getMatchedClickItem(childDiv) {
-    childDiv.addEventListener("click", (e) => {
-      this.element.input.value = e.target.children[1].textContent;
-      e.target.parentNode.remove(e.target.parentNode);
+    childDiv.addEventListener("click", ({ target }) => {
+      this.element.input.value = target.children[1].textContent;
+      target.parentNode.remove(target.parentNode);
       this.setDisplayOffDimmed();
     });
   }
