@@ -14,6 +14,7 @@ export default class AutoComplete {
       ENTERKEY: 13,
     }
     this.currentFocus = -1;
+    this.setAPI = `http://crong.codesquad.kr:8080/amazon/ac/`;
   }
 
   setDisplayOffDimmed() {
@@ -39,11 +40,11 @@ export default class AutoComplete {
       let matchWordList = e.target.nextElementSibling.childNodes;
       if (!matchWordList) return false;
 
-      if (this.KEYCODE.UPKEY === e.keyCode) {
+      if (e.keyCode === this.KEYCODE.UPKEY) {
         this.setUpKeyEvent(matchWordList);
-      } else if (this.KEYCODE.DOWNKEY === e.keyCode) {
+      } else if (e.keyCode === this.KEYCODE.DOWNKEY) {
         this.setDownKeyEvent(matchWordList);
-      } else if (this.KEYCODE.ENTERKEY === e.keyCode) {
+      } else if (e.keyCode === this.KEYCODE.ENTERKEY) {
         this.setEnterKeyEvent(e);
       }
     });
@@ -131,12 +132,10 @@ export default class AutoComplete {
     let inputWord = inputNode.target.value;
     if (!inputNode || inputWord === "") return this.removeAutofillListEl(inputNode);
 
-    let URL = `http://crong.codesquad.kr:8080/amazon/ac/${inputWord}`;
+    let URL = `${this.setAPI}${inputWord}`;
 
     fetch(URL)
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((json) => {
         let matchVal = json.suggestions;
         if (!matchVal) return;
