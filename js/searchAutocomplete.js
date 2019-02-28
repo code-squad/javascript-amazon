@@ -35,19 +35,17 @@ export default class AutoComplete {
     });
   }
 
-  eventKeydown() {
-    this.element.input.addEventListener("keydown", (e) => {
-      let matchWordList = e.target.nextElementSibling.childNodes;
-      if (!matchWordList) return false;
+  eventKeydown(e) {
+    if (!e.target.nextElementSibling.childNodes) return false;
+    let matchWordList = e.target.nextElementSibling.childNodes;
 
-      if (e.keyCode === this.KEYCODE.UPKEY) {
-        this.setUpKeyEvent(matchWordList);
-      } else if (e.keyCode === this.KEYCODE.DOWNKEY) {
-        this.setDownKeyEvent(matchWordList);
-      } else if (e.keyCode === this.KEYCODE.ENTERKEY) {
-        this.setEnterKeyEvent(e);
-      }
-    });
+    if (e.keyCode === this.KEYCODE.UPKEY) {
+      this.setUpKeyEvent(matchWordList);
+    } else if (e.keyCode === this.KEYCODE.DOWNKEY) {
+      this.setDownKeyEvent(matchWordList);
+    } else if (e.keyCode === this.KEYCODE.ENTERKEY) {
+      this.setEnterKeyEvent(e);
+    }
   }
 
   setEnterKeyEvent(event) {
@@ -56,7 +54,6 @@ export default class AutoComplete {
     autoCompleteList.remove(autoCompleteList);
     this.setDisplayOffDimmed();
   }
-
 
   setUpKeyEvent(matchWordList) {
     this.currentFocus--;
@@ -142,7 +139,6 @@ export default class AutoComplete {
 
         const parentList = this.setMatchListEl(inputNode);
         this.setMatchingWord({ parentList, matchVal, inputWord });
-        this.eventKeydown();
       })
       .catch(err => console.error(err));
   }
@@ -164,6 +160,7 @@ export default class AutoComplete {
   }
 
   createChildEl({ parentList, firstWord, inputWord, matchWord }) {
+    if (!parentList) return;
     parentList.innerHTML += `
     <li>
     <span class="autocomplete-matched">${firstWord}</span>${matchWord.substr(inputWord.length)}
@@ -175,5 +172,6 @@ export default class AutoComplete {
 
   init() {
     this.element.input.addEventListener("input", debounce((inputNode) => this.setInputEvent(inputNode), 1000));
+    this.element.input.addEventListener("keydown", (e) => this.eventKeydown(e));
   }
 }
