@@ -36,6 +36,9 @@ export default class AutoComplete {
   }
 
   eventKeydown(event) {
+    const isHaveList = event.target.nextElementSibling === null || event.target.nextElementSibling === undefined;
+    if (isHaveList) return;
+
     let matchWordList = event.target.nextElementSibling.childNodes;
 
     if (event.keyCode === this.KEYCODE.UPKEY) {
