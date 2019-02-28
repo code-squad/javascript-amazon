@@ -31,7 +31,6 @@ export default class HiddenTopMenu {
   clickOpenMenuHandler() {
     this.ele.expandEle.addEventListener("click", () => {
       this.ele.hiddenInnerContentsEle.classList.add("trans-show-inner-content");
-      // 부모 Element의 height 값을 class list에 추가
       this.ele.hiddenAllContentsEle.classList.add("trans-height-show-innerContents");
     });
     this.ele.otherCloseButtonEle.addEventListener("click", this.clickCloseMenuHandler.bind(this));
