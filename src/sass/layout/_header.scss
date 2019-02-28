@@ -28,6 +28,8 @@
         padding: .2rem 1.8rem 0 .5rem;
     }
     &__nav{
+        overflow: hidden;
+        white-space: nowrap;
         align-self: end;
         padding-bottom: .3rem;
     }

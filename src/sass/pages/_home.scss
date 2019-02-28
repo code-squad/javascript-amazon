@@ -83,6 +83,12 @@
             grid-template-columns: 7.2rem 91.1rem 7.2rem;
             grid-gap: 1.4rem;
             justify-content: center;
+            @media only screen and(max-width: 1200px) {
+                width: 96rem;
+                grid-gap: 3rem;
+                grid-template-columns: 7.2fr 91.1fr 7.2fr;
+                margin: 0 auto;
+            }
             &__arrow-box{
                 position: relative;
                 .arrow-icon{
@@ -106,6 +112,10 @@
                     height: 52px;
                     display: inline-block;
                     background-position: -53px 0px;
+                    @media only screen and(max-width: 1200px) {
+                        right: 0;
+                        left: auto;
+                    }
                 }
             }
             &__right{
@@ -124,15 +134,22 @@
                     height: 52px;
                     display: inline-block;
                     background-position: -53px -104px;
+                    @media only screen and(max-width: 1200px) {
+                        right: auto;
+                        left: .2rem;
+                    }
                 }
             }
             &__list{
                 margin: 0 auto;
                 height: 40rem;
-                width: 91.3rem;
+                width: 100%;
             }
             &__item{
                 padding-top: 3rem;
+                @media only screen and(max-width: 1200px) {
+                    width: 77.4rem;
+                }
             }
             &__ship-1{
                 background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(../images/Card_ship_01.jpg);
@@ -204,6 +221,10 @@
         height: 36.8rem;
         margin-top: 0rem;
         padding: 6rem 7rem 0;
+        @media only screen and(max-width: 1200px) {
+            grid-template-columns: 1fr 58.9rem;
+            padding: 6rem 0rem 4.8rem .5rem;
+        }
         .carousel{
             display: grid;
             grid-template-columns: 4rem 28rem 4rem;
@@ -211,6 +232,9 @@
             justify-content: center;
             padding-top: .8rem;
             padding-right: 1.7rem;
+            @media only screen and(max-width: 1200px) {
+                padding-right: .9rem;
+            }
             &__list{
                 width: 100%;
                 height: 100%;

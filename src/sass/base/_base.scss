@@ -11,8 +11,10 @@ html{
     font-size: 62.5%;
 }
 
-body{
-    min-width: 110rem;
+.contents-wrapper{
+    min-width: 100rem;
+    max-width: 140rem;
+    margin: 0 auto;
 }
 
 a{
