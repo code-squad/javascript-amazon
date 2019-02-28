@@ -2,11 +2,11 @@ import { throttle, debounce } from './setThrottleDebounce.js';
 import { $, $All } from "./docSelector.js";
 
 export default class AutoComplete {
-  constructor(layer) {
+  constructor(state) {
     this.element = {
-      input: layer.inputEl,
-      navSearch: layer.navSearchEl,
-      dimmed: layer.dimmedEl,
+      input: state.inputEl,
+      navSearch: state.navSearchEl,
+      dimmed: state.dimmedEl,
     }
     this.KEYCODE = {
       UPKEY: 38,
