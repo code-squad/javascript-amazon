@@ -36,9 +36,6 @@ export default class AutoComplete {
 
   eventKeydown() {
     this.element.input.addEventListener("keydown", (e) => {
-      // Exception Handling
-      if (!e) return e.preventDefault();
-
       let matchWordList = e.target.nextElementSibling.childNodes;
       if (!matchWordList) return false;
 
