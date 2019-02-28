@@ -828,7 +828,6 @@ html {
         width: 52px;
         height: 52px;
         display: inline-block;
-        vertical-align: middle;
         background-position: -53px 0px; }
       .prime-detail__container .carousel__right .arrow-icon {
         right: 0;
@@ -844,7 +843,6 @@ html {
         width: 52px;
         height: 52px;
         display: inline-block;
-        vertical-align: middle;
         background-position: -53px -104px; }
       .prime-detail__container .carousel__list {
         margin: 0 auto;
