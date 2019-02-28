@@ -35,16 +35,15 @@ export default class AutoComplete {
     });
   }
 
-  eventKeydown(e) {
-    if (!e.target.nextElementSibling.childNodes) return false;
-    let matchWordList = e.target.nextElementSibling.childNodes;
+  eventKeydown(event) {
+    let matchWordList = event.target.nextElementSibling.childNodes;
 
-    if (e.keyCode === this.KEYCODE.UPKEY) {
+    if (event.keyCode === this.KEYCODE.UPKEY) {
       this.setUpKeyEvent(matchWordList);
-    } else if (e.keyCode === this.KEYCODE.DOWNKEY) {
+    } else if (event.keyCode === this.KEYCODE.DOWNKEY) {
       this.setDownKeyEvent(matchWordList);
-    } else if (e.keyCode === this.KEYCODE.ENTERKEY) {
-      this.setEnterKeyEvent(e);
+    } else if (event.keyCode === this.KEYCODE.ENTERKEY) {
+      this.setEnterKeyEvent(event);
     }
   }
 
@@ -107,7 +106,7 @@ export default class AutoComplete {
     for (let val of allEl) {
       let searchWord = val.children[1].textContent;
       if (searchWord.indexOf(inputWord) > -1) {
-        val.style.display = '';
+        val.style.display = "";
       } else {
         val.style.display = 'none';
       }
@@ -137,6 +136,7 @@ export default class AutoComplete {
         let matchVal = json.suggestions;
         if (!matchVal) return;
 
+        this.currentFocus = -1; // 새로운 AutoComplete 생성시 검색된 결과 index 초기화
         const parentList = this.setMatchListEl(inputNode);
         this.setMatchingWord({ parentList, matchVal, inputWord });
       })
@@ -160,7 +160,6 @@ export default class AutoComplete {
   }
 
   createChildEl({ parentList, firstWord, inputWord, matchWord }) {
-    if (!parentList) return;
     parentList.innerHTML += `
     <li>
     <span class="autocomplete-matched">${firstWord}</span>${matchWord.substr(inputWord.length)}
