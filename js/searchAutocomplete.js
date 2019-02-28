@@ -14,7 +14,7 @@ export default class AutoComplete {
       ENTERKEY: 13,
     }
     this.currentFocus = -1;
-    this.setAPI = `http://crong.codesquad.kr:8080/amazon/ac/`;
+    this.setAPI = `https://crong.codesquad.kr:8080/amazon/ac/`;
   }
 
   setDisplayOffDimmed() {
