@@ -1,0 +1,25 @@
+@mixin style-link-hover{
+    border: .1rem solid #4f5965;
+    border-radius: .3rem;
+    box-shadow: 0 1px 0 0 rgba(255,255,255,.5);
+}
+
+@mixin sprite-global-icons($X, $Y) {
+    background: url(../images/nav-sprite-global_icons.png);
+    background-size: 350px;
+    background-position: $X $Y;
+}
+
+@mixin sprite-international-icons($X, $Y) {
+    background-image: url(../images/International_icon.png);
+    background-size: 142px 120px;
+    background-position: $X $Y;
+}
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

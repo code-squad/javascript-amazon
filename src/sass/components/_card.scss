@@ -1,0 +1,183 @@
+.cards{
+    padding: 2.6rem 0;
+    display: grid;
+    grid-template-columns: repeat(5, 15rem);
+    grid-template-rows: 21rem;
+    grid-auto-flow: column;
+    grid-gap: .6rem;
+    justify-content: center;
+    list-style: none;
+    &__card{
+        position: relative;
+        height: 100%;
+        cursor: pointer;
+        &__title{
+            position: absolute;
+            left: 0;
+            bottom: 2.2rem;
+            width: 100%;
+            font-family: AmazonEmber;
+            font-weight: 300;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #FFF;
+            pointer-events: none;
+        }
+        &--blue{
+            background-image: linear-gradient(30deg, #2C88AE 40%, #00A8E1 85%, #00A8E1 74px);
+            .clickable{
+                background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png);
+            }
+        }
+        &--red{
+            background-image: linear-gradient(30deg, #CC0C39 40%, #FF6138 85%, #FF6138 74px);
+            .clickable{
+                background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png);
+            }
+        }
+        &--pink{
+            background-image: linear-gradient(30deg, #A90067 40%, #E31F64 85%, #E31F64 74px);
+            .clickable{
+                background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png);
+            }
+        }
+        &--green{
+            background-image: linear-gradient(30deg, #008577 40%, #36C2B4 85%, #36C2B4 74px);
+            .clickable{
+                background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png);
+            }
+        }
+        &--orange{
+            background-image: linear-gradient(30deg, #FF6138 40%, #FFC400 85%, #FFC400 74px);
+            .clickable{
+                background-image: url(https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png);
+            }
+        }
+        .clickable{
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 21rem;
+            background-size: 1200px auto;
+            background-position: 0px 0px;
+            background-repeat: no-repeat;
+            
+        }
+        .pagination-box{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: .5rem;
+            justify-items: center;
+            position: absolute;
+            bottom: 1.4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            .pagination{
+                width: 1rem;
+                height: 1rem;
+                border-radius: 50%;
+                background-color: #fff;
+                opacity: .5;
+            }
+        }
+        &:not(.card__selected):hover{
+            .clickable{
+                animation: i-height 1s steps(3, end) 1, i-width 1s steps(8, end) 1;
+            }
+        }
+    }
+}
+
+.card__selected{
+    margin-left: -2.6rem;
+    margin-top: -2.6rem;
+    width: 20.2rem;
+    height: 26.2rem;
+    z-index: 9;
+    .clickable{
+        background-size: 1616px auto;
+        background-position: 0px -26px;
+        bottom: 26px;
+    }
+    .clickable::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -.8rem;
+        height: 100%;
+        width: .8rem;
+        background-color: $color-text-black;
+        filter: blur(4px);
+        opacity: .4;
+    }
+    .pagination-box{
+        .pagination__selected{
+            opacity: 1;
+        }
+    }
+}
+
+.submit-form{
+    &__cards{
+        padding-left: .2rem;
+    }
+    &__card{
+        padding: 2.5rem 1.8rem 0 3rem;
+        .heading-3{
+            font-family: AmazonEmber;
+            font-weight: 300;
+            font-size: 2.66rem;
+            line-height: 2.7rem;
+        }
+        .price{
+            display: inline-block;;
+            margin-top: -.25rem;
+            font-size: 2.66rem;
+            font-family: AmazonEmber;
+            font-weight: 300;
+            height: 3.4rem;
+            &-amount{
+                font-weight: 700;
+                vertical-align: sub;
+                sup{
+                    font-size: 0.75em;
+                }
+            }
+            .date{
+                vertical-align: sub;
+            }
+        }
+        .details{
+            list-style: none;
+            padding-top: 5.2rem;
+            .info{
+                padding-bottom: 1.1rem;
+                font-family: AmazonEmber;
+                font-weight: 300;
+                line-height: 1.8rem;
+                font-size: 1.6rem;
+                &-checked{
+                    vertical-align: middle;
+                    &::after{
+                        margin-right: 1.6rem;
+                        margin-left: -.2rem;
+                        margin-bottom: -.1rem;
+                        content: '';
+                        display: inline-block;
+                        width: 1.2rem;
+                        height: 2.2rem;
+                        border: solid #00A8E1;
+                        border-width: 0 .2rem .2rem 0;
+                        transform: rotate(45deg);
+                    }
+                }
+                &-disabled{
+                    padding-top: .5rem;
+                    color: #eee;
+                }
+            }
+            
+        }
+    }
+}

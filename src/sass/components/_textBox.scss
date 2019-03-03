@@ -1,0 +1,47 @@
+.text-box{
+    text-align: left;
+    height: 100%;
+    width: 100%;
+    font-family: AmazonEmber;
+    &__guide{
+        margin-bottom: 2.1rem;
+        display: inline-block;
+        color: #fff;
+        text-transform: uppercase;
+        padding: .5rem 1rem;
+        font-size: 1.5rem;
+        background-color: #00A8E1;
+    }
+    &__heading{
+        padding-bottom: 2rem;
+        font-size: 2.8rem;
+        font-weight: 300;
+    }
+    &__paragraph{
+        margin-bottom: 2rem;
+        line-height: 2.8rem;
+        font-size: 1.8rem;
+        font-weight: 300;
+    }
+    &__link-box{
+        .arrow-icon{
+            background-image: url(../images/Sprites_icons.png);
+            -moz-background-size: 158px auto;
+            background-size: 158px auto;
+            background-position: -6px -233px;
+            width: 6px;
+            height: 9px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 6px;
+        }
+    }
+    &__link{
+        text-decoration: none;
+        font-size: 1.8rem;
+        color: #002F36;
+        &:hover{
+            text-decoration: underline;
+        } 
+    }
+}
