@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="./style.css">
 
     <!--    favicon      -->
-    <link rel="icon" type="image/png" href="https://vignette.wikia.nocookie.net/logopedia/images/f/fc/Amazon.com_Favicon_2.svg/revision/latest?cb=20160808095346">
+    <link rel="icon" type="image/png"
+        href="https://vignette.wikia.nocookie.net/logopedia/images/f/fc/Amazon.com_Favicon_2.svg/revision/latest?cb=20160808095346">
 </head>
 
 <body>
@@ -62,10 +63,14 @@
                         </select>
                         <div class="arrow"></div>
                     </div>
-                    <input type="text" class="sch-input-box">
+                    <form action="/" class="sch-input-wrapper">
+                        <input type="text" class="sch-input">
+                    </form>
                     <div class="sch-btn-container">
                         <div class="sch-btn"></div>
                     </div>
+                    <ul class="searched-result">
+                    </ul>
                 </li>
 
                 <!--   right - event-logo      -->
@@ -302,8 +307,9 @@
                 <div class="carousel-container"> </div>
 
                 <div class="btn-control">
-                    <div class="prev-btn"> << </div> 
-                    <div class="next-btn"> >> </div>
+                    <div class="prev-btn">
+                        << </div> <div class="next-btn"> >>
+                    </div>
                 </div>
 
             </div>
