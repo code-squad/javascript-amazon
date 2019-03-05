@@ -1,4 +1,4 @@
-// setting_values.js step5
+// setting_values.js step6
 
 export { SETTING_VALUES };
 
@@ -26,11 +26,11 @@ const SETTING_VALUES = {
         { key: "Escape", keyCode: 27 }
     ],
 
-    RESULT_LI_ELEMENTS_TEMPLET: `<li class="suggestion-item"><a class="link-style" href="{{}}">{{}}</a></li>`,
+    resultLiElement_TEMPLATE: `<li class="suggestion-item"><a class="link-style" href="{{}}">{{}}</a></li>`,
 
-    ITEM_LINK_URL_TEMPLET:`http://crong.codesquad.kr:8080/amazon-search?ref={{}}&field-keywords={{}}&prefix={{}}`,
+    itemLink_URL_TEMPLATE:`http://crong.codesquad.kr:8080/amazon-search?ref={{}}&field-keywords={{}}&prefix={{}}`,
 
-    HIGHLIGHT_SPAN_TEMPLET: `<span class="highlighted-keywords">{{}}</span>`,
+    highlight_span_TEMPLATE: `<span class="highlighted-keywords">{{}}</span>`,
 
-    NOT_FOUND_KEYWORD_MSG: `<li>추천 검색어가 없습니다.</li>`
+    notFoundKeyword_MSG: `<li>추천 검색어가 없습니다.</li>`
 }

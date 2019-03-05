@@ -1,4 +1,4 @@
-// keywords AutoComplete Module.js step5
+// keywords AutoComplete Module.js step6
 
 import { SETTING_VALUES } from "./setting_values.js";
 
@@ -9,20 +9,21 @@ class KeywordsAutoCompleteModule {
         KEYWORDS_LIST_MIN_LIMIT,
         FETCH_REQUEST_TIMER,
         INPUT_PREVENTION_KEYS,
-        RESULT_LI_ELEMENTS_TEMPLET,
-        ITEM_LINK_URL_TEMPLET,
-        HIGHLIGHT_SPAN_TEMPLET,
-        NOT_FOUND_KEYWORD_MSG
+        resultLiElement_TEMPLATE,
+        itemLink_URL_TEMPLATE,
+        highlight_span_TEMPLATE,
+        notFoundKeyword_MSG
     }) {
         this.URL = FETCH_REQUEST_URL_FOR_KEYWORDS;
         this.MAX_LIMIT = KEYWORDS_LIST_MAX_LIMIT;
         this.MIN_LIMIT = KEYWORDS_LIST_MIN_LIMIT;
         this.TIMER = FETCH_REQUEST_TIMER;
         this.KEYS = INPUT_PREVENTION_KEYS;
-        this.LI_TEMPLET = RESULT_LI_ELEMENTS_TEMPLET;
-        this.URL_TEMPLET = ITEM_LINK_URL_TEMPLET;
-        this.SPAN_TEMPLET = HIGHLIGHT_SPAN_TEMPLET;
-        this.NOT_FOUND_MSG = NOT_FOUND_KEYWORD_MSG;
+        this.li_TEMPLATE = resultLiElement_TEMPLATE;
+        this.url_TEMPLATE = itemLink_URL_TEMPLATE;
+        this.span_TEMPLATE = highlight_span_TEMPLATE;
+        this.notFound_MSG = notFoundKeyword_MSG;
+        
         this.inputTextField = document.querySelector(".input-search-field"); // 검색창 엘리먼트 
         this.resultWindow = document.querySelector(".auto-complete-result-window"); // 자동완성결과 div 엘리먼트
         this.resultWindow.dataset.cursorOn = false;
@@ -84,7 +85,7 @@ class KeywordsAutoCompleteModule {
             return this.addItemLiElement(itemsInfoList);
         } catch (err) {
             this.suggestionItems = "";
-            this.resultListArea.innerHTML = this.NOT_FOUND_MSG;
+            this.resultListArea.innerHTML = this.notFound_MSG;
             this.resultWindow.classList.add("window-display-block");
             return;
         }
@@ -92,10 +93,9 @@ class KeywordsAutoCompleteModule {
 
     // 항목 정보 배열 생성
     generateItemsInfoList(jsonData) {
-        let itemsInfoList = jsonData.suggestions.reduce(function (list, value) {
+        return jsonData.suggestions.reduce((list, value) => {
             return [...list, { value: value['value'], refTag: value['refTag'] }];
         }, []);
-        return itemsInfoList;
     }
 
     // 자동완성결과 DOM 추가
@@ -115,12 +115,12 @@ class KeywordsAutoCompleteModule {
     composeLiElement(value, inputText) {
         let regExp = new RegExp('\{\{\}\}');
         let fieldKeywords = value['value'].replace(/\s/g, "+");
-        let highlightedSpan = this.SPAN_TEMPLET.replace(regExp, inputText);
+        let highlightedSpan = this.span_TEMPLATE.replace(regExp, inputText);
         let highlightedKeywords = value['value'].replace(inputText, highlightedSpan);
-        let itemLink = this.URL_TEMPLET.replace(regExp, value['refTag'])
+        let itemLink = this.url_TEMPLATE.replace(regExp, value['refTag'])
             .replace(regExp, fieldKeywords)
             .replace(regExp, inputText);
-        return this.LI_TEMPLET.replace(regExp, itemLink)
+        return this.li_TEMPLATE.replace(regExp, itemLink)
             .replace(regExp, highlightedKeywords);
     }
 
@@ -138,7 +138,7 @@ class KeywordsAutoCompleteModule {
 
     // 키보드 상하키 입력 금지
     disableUpDownKey() {
-        if (this.resultListArea.innerHTML === this.NOT_FOUND_MSG || this.resultListArea.innerHTML === "")
+        if (this.resultListArea.innerHTML === this.notFound_MSG || this.resultListArea.innerHTML === "")
             return true;
     }
 
@@ -225,18 +225,21 @@ class KeywordsAutoCompleteModule {
 
     // 마우스 커서를 대면 하이라이트 토글 켜기
     turnOnHighlight({ target }) {
-        if (target.tagName === "LI" || target.tagName === "A") {
-            target.closest("li").classList.toggle("highlight-background");
-        }
+        this.toggleHighlight({ target });
         this.resultWindow.dataset.cursorOn = true;
     }
 
     // 마우스 커서가 벗어나면 하이라이트 토글 끄기
     turnOffHighlight({ target }) {
+        this.toggleHighlight({ target });
+        this.resultWindow.dataset.cursorOn = false;
+    }
+
+    // 하이라이트 토글 기능
+    toggleHighlight({ target }) {
         if (target.tagName === "LI" || target.tagName === "A") {
             target.closest("li").classList.toggle("highlight-background");
         }
-        this.resultWindow.dataset.cursorOn = false;
     }
 
     // 검색결과 클릭 시 해당 링크 이동
@@ -250,4 +253,3 @@ class KeywordsAutoCompleteModule {
 }
 
 const keywordsAutoCompleteModule = new KeywordsAutoCompleteModule(SETTING_VALUES);
-
