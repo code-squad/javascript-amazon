@@ -1,6 +1,7 @@
 import PlansUI from './layer.js';
 import Carousel from './carousel.js';
 import CardsUI from './card.js'
+import AutoComplete from './autoComplete.js'
 
 const carouselSetting = {
     carouselSelector: {
@@ -26,9 +27,11 @@ const carouselSetting = {
 window.addEventListener('DOMContentLoaded', () => {
     const plansUI = new PlansUI();
     const carousel = new Carousel(carouselSetting);
-    const cardsUI = new CardsUI(".cards-items", "selected")
+    const cardsUI = new CardsUI(".cards-items", "selected");
+    const autoComplete = new AutoComplete();
 
     plansUI.init();
     carousel.init();
     cardsUI.init();
+    autoComplete.init();
 });
