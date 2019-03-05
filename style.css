@@ -96,7 +96,7 @@ li {
     margin: auto;
     display: inline-block;
     vertical-align: top;
-    box-sizing: content-box; 
+    box-sizing: content-box;
 }
 
 .sch-input {
@@ -121,10 +121,14 @@ li {
     line-height: 20px;
 }
 
+.searched-item.selected {
+    background-color:hsla(36, 84%, 75%, 0.931);
+}
+
 .sch-btn-container {
     width: 45px;
     height: 35px;
-    background-color: #f5bc68;
+    background-color: hsl(36, 88%, 68%);
     border-left: 1px solid grey;
     border-radius: 0px 10px 10px 0px;
     cursor: pointer;
@@ -817,7 +821,6 @@ li {
     width: 50%;
     text-align: left;
     margin-left: 1rem
-
 }
 
 .carousel-title {

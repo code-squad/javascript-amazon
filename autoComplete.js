@@ -1,7 +1,6 @@
 export default class AutoComplete {
     constructor() {
         this.currentItem = 0;
-        this.keyHasDown = false;
     }
 
     init() {
@@ -35,30 +34,32 @@ export default class AutoComplete {
     }
 
     checkKeyCode(e, schInput, searchedResult) {
-        console.log(e.keyCode)
         const searchedItems = document.querySelectorAll(".searched-item");
         const itemLength = searchedItems.length;
-        if (this.currentItem < 0) this.currentItem = 0;
-        else if (e.keyCode === 38 && this.keyHasDown && this.currentItem === 0) {
-            this.keyHasDown = false;
-            return;
-        } else if (this.keyHasDown && this.currentItem === itemLength) {
-            this.currentItem = itemLength - 1;
-            return;
+        console.log(this.currentItem)
+        if (e.keyCode === 40 && this.currentItem === itemLength) {
+            this.removeSelected(searchedItems);
+            this.currentItem = 0;
         } else if (e.keyCode === 40) {
-            searchedItems[this.currentItem].style.backgroundColor = 'slateblue';
+            this.removeSelected(searchedItems);
+            searchedItems[this.currentItem].classList.add("selected");
             this.currentItem++;
-            this.keyHasDown = true;
+        } else if (e.keyCode === 38 && this.currentItem === 0) {
+            this.removeSelected(searchedItems);
+            this.currentItem = itemLength;
         } else if (e.keyCode === 38) {
-            searchedItems[this.currentItem].style.backgroundColor = 'white';
+            this.removeSelected(searchedItems);
+            searchedItems[this.currentItem-1].classList.add("selected");
             this.currentItem--;
-            this.keyHasDown = true;
         } else if (e.keyCode === 13) {
             schInput.value = searchedItems[this.currentItem - 1].innerText;
+            this.removeSelected(searchedItems);
             searchedResult.style.display = 'none';
             this.currentItem = 0;
-            this.keyHasDown = false;
         }
-        return;
+    }
+
+    removeSelected(searchedItems) {
+        searchedItems.forEach(item => item.classList.remove("selected"));
     }
 }
