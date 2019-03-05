@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production';
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -78,6 +79,19 @@ module.exports = {
                     { loader: 'css-loader', options: { url: false, sourceMap: true } },
                     { loader: 'sass-loader', options: { sourceMap: true } }
                 ],
+            },
+            {
+                test: /\.json$/,
+                type: 'javascript/auto',
+                use: [
+                    { 
+                        loader: 'json-loader',
+                        options: {
+                            name: "data/[name].json"
+                        }
+                    }
+                ]
+                
             }
         ]
     },
@@ -85,6 +99,11 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         new MiniCssExtractPlugin({
             filename: devMode ? '[name].css' : '[name].[hash].css'
-        })
+        }),
+        new CopyPlugin([{
+            from:'./src/data/data.json',
+            to:'data',
+            flatten:true
+        }]),
     ]
 }

@@ -4,6 +4,7 @@ import { Plans } from './components/Plans/Plans';
 import { Aop } from './util/Aop';
 import { Type } from './util/Type';
 import { defaultTypes } from './util/typeCollection/defaultTypes';
+import { Carousel } from './components/Carousel/Carousel';
 
 document.addEventListener("DOMContentLoaded", () => {
     const aop = new Aop();
@@ -13,4 +14,5 @@ document.addEventListener("DOMContentLoaded", () => {
     type.addDefinition(defaultTypes);
     new PlansTypes(plans, type);
     plans.init();
+    const carousel = new Carousel();
 });
