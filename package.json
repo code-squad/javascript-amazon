@@ -1,0 +1,24 @@
+{
+  "name": "javascript-amazon",
+  "version": "1.0.0",
+  "description": "레벨3",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developersoom/javascript-amazon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/developersoom/javascript-amazon/issues"
+  },
+  "homepage": "https://github.com/developersoom/javascript-amazon#readme",
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-google": "^0.12.0"
+  }
+}
