@@ -1,7 +1,14 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const router = require('./route/dataRoute');
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use(express.static('public'));
+app.use(router);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+const dataRouter = require('./route/dataRoute');
+
+app.use('/*******', dataRouter);
+
+app.listen(8000, () => {
+    console.log("Start server on port 8000!!");
+});
