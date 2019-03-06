@@ -2,6 +2,7 @@ export default class AutoComplete {
     constructor() {
         this.currentItem = 0;
         this.inputTime = 0;
+        this.resultShown = false;
     }
 
     init() {
@@ -21,15 +22,17 @@ export default class AutoComplete {
             this.inputTime = new Date();
         });
         schInput.addEventListener("keydown", (e) => this.checkKeyCode(e, schInput, searchedResult));
-        schInput.addEventListener("keyup", () => setTimeout(() => this.showResult(url, value, searchedResult), 1000));
-    }
-
-    isInputOneSecondAgo() {
-        return new Date() - this.inputTime > 1000;
+        schInput.addEventListener("keyup", () => {
+            if(!this.resultShown) setTimeout(() => this.showResult(url, value, searchedResult), 1000);
+        });
     }
 
     showResult(url, value, searchedResult) {
         if(this.isInputOneSecondAgo()) this.getData(url, value, searchedResult);
+    }
+
+    isInputOneSecondAgo() {
+        return new Date() - this.inputTime > 1000;
     }
 
     getData(url, value, searchedResult) {
@@ -39,6 +42,7 @@ export default class AutoComplete {
                 const dataList = data.suggestions;
                 const prefix = data.prefix;                
                 searchedResult.innerHTML = this.template(dataList, prefix);
+                this.resultShown = true;
             })
             .catch(err => console.log(err));
     }
@@ -76,6 +80,7 @@ export default class AutoComplete {
             schInput.value = searchedItems[this.currentItem - 1].innerText;
             this.removeSelected(searchedItems);
             searchedResult.style.display = 'none';
+            this.resultShown = false;
             this.currentItem = 0;
         }
     }
