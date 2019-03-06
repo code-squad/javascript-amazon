@@ -1,3 +1,4 @@
+
 /*
   검색 자동 완성 기능
 
@@ -17,8 +18,7 @@
   3. 관련 용어를 검색창 하단에 노출시킨다.
 */
 
-
-class AutoSearching {
+export default class Model {
   constructor(optionObj) {
     this.optionObj = optionObj;
   }
@@ -34,7 +34,7 @@ class AutoSearching {
   getFetchData(event) {
     const inputVal = event.target.value;
     const responseUrl = `https://completion.amazon.com/api/2017/suggestions?session-id=146-2216035-3218645&customer-id=&request-id=DV2W3G68C9YMG9FR19CF&page-type=PrimeLandingPageHorizonte&lop=en_US&site-variant=desktop&client-info=amazon-search-ui&mid=ATVPDKIKX0DER&alias=aps&b2b=0&fresh=0&ks=73&prefix=${inputVal}&event=onKeyPress&limit=11&fb=1&suggestion-type=KEYWORD&_=1551712792496`
-    
+
     // const responseUrl = `http://crong.codesquad.kr:8080/amazon/ac/${inputVal}`;
     this.fetchData(responseUrl);
   }
@@ -53,10 +53,4 @@ class AutoSearching {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const autoSearching = new AutoSearching({
-    span: document.querySelector('#nav-searchbar'),
-    search: document.querySelector(".search-tab")
-  })
-  autoSearching.init();
-})
+

@@ -8,6 +8,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="amazon.css">
   <link rel="stylesheet" href="carousel.css">
+  <link rel="stylesheet" href="./searchUI_script/style/autocomplete.css">
 
 </head>
 
@@ -23,7 +24,9 @@
       </div>
       <div id="header-top-mid">
         <div id="header-searching-tag">
-          <form accept-charset="utf-8" action="/s/ref=nb_sb_noss" id="nav-searchbar" method="GET" name="site-search" role="search">
+
+
+          <form accept-charset="utf-8" action="/s/ref=nb_sb_noss" id="searchbar_form" method="GET" role="search" autocomplete="off">
             <div id="header-searching-title">
               <select name="" id="">
                 <option value="all" selected>All</option>
@@ -34,13 +37,20 @@
               </select>
             </div>
             <div id="searching-tab">
-              <input type="text" name="input" value="Type here" class="search-tab">
+              <input type="text" name="input" class="search-tab">
+              <div class="search-autocomplete">
+                <ul class="autocomplete-ul">
+                  <li>i</li>
+                </ul>
+              </div>
             </div>
             <div id="submit-tab">
               <input type="submit" value="Submit">
               <span id="searchBar"></span>
             </div>
           </form>
+
+
         </div>
       </div>
       <div id="header-top-right">
@@ -272,7 +282,6 @@
     </div>
 
 
-
     <div id="prime-reading-service">
       <div>
         <img src="https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/StaticBlade_PrimeReading_01._CB513286005_.png"
@@ -489,6 +498,7 @@
 </body>
 <script src="./amazon.js"></script>
 <script src="./carousel.js"></script>
-<script src="./search.js"></script>
+<script src="./searchUI_script/searchUI_app.js" type="module"></script>
+
 
 </html>
