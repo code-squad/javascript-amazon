@@ -20,14 +20,6 @@ body {
     text-align: center;
 }
 
-.dimmed {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(128, 128, 128);
-    opacity: 0.8;
-    display: none;
-}
-
 .footer {
     width: 100%;
 }
@@ -127,6 +119,13 @@ li {
     color: black;
     font-size: 15px;
     line-height: 20px;
+    padding-left: 10px;
+}
+
+.searched-item a {
+    text-decoration: none;
+    color: rgba(128, 128, 128, 0.795);
+    font-weight: 100;
 }
 
 .searched-item.selected {

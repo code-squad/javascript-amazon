@@ -13,15 +13,17 @@ export default class AutoComplete {
         const schInput = document.querySelector(".sch-input");
         const searchedResult = document.querySelector(".searched-result");
         const searchBtn = document.querySelector(".sch-btn");
-        const url = "http://crong.codesquad.kr:8080/amazon/ac/";
+        // const url = "http://crong.codesquad.kr:8080/amazon/ac/";
+        const url = "http://codesquadapi.herokuapp.com/ac/";
         let value;
 
         searchBtn.addEventListener("click", (e) => e.preventDefault);
-        schInput.addEventListener("input", () => {
+        schInput.addEventListener("input", (e) => {
             value = schInput.value;
             this.inputTime = new Date();
+            if (!value) this.resultShown = false;
         });
-        schInput.addEventListener("keydown", (e) => this.checkKeyCode(e, schInput, searchedResult));
+        schInput.addEventListener("keydown", (e) => {this.checkKeyCode(e, schInput, searchedResult)});
         schInput.addEventListener("keyup", () => {
             if(!this.resultShown) setTimeout(() => this.showResult(url, value, searchedResult), 1000);
         });
@@ -37,8 +39,11 @@ export default class AutoComplete {
 
     getData(url, value, searchedResult) {
         fetch(url + value)
-            .then(response => response.json())
+            .then(response => {
+                if (response.status === 200) return response.json();
+            })
             .then(data => {
+                if(data.result === "no data") return;
                 const dataList = data.suggestions;
                 const prefix = data.prefix;                
                 searchedResult.innerHTML = this.template(dataList, prefix);
