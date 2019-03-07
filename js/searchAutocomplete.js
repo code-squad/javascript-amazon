@@ -118,7 +118,7 @@ export default class AutoComplete {
 
   setMatchListEl(inputNode) {
     const haveList = $("#autoComplete-list");
-    if (haveList) this.removeAutofillListEl(inputNode)
+    if (haveList) this.removeAutofillListEl(inputNode);
 
     const ul = document.createElement("ul");
     ul.setAttribute("id", "autoComplete-list");
