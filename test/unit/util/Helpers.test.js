@@ -3,7 +3,7 @@ import { render } from '../testHelpers';
 describe("helpers", ()=>{
     'use strict';
     const helpers = new Helpers();
-    let dom, el;
+    let dom, el, parent, tagName, className;
     describe("생성", () => {
         it("'new' 키워드로 호출되지 않았으면 예외를 던진다.", function(){
             expect(() => {
@@ -75,6 +75,18 @@ describe("helpers", ()=>{
             helpers.on(el, 'click', fnc);
             el.click();
             expect(fnc).toHaveBeenCalled();
+        })
+    })
+    describe("createEl(parent, tagName, className)", () => {
+        beforeEach(() => {
+            parent = el;
+            tagName = 'div';
+            className = 'test1';
+        })
+        it("parent 엘리먼트 내에 새로운 엘리먼트를 추가한다.", () => {
+            helpers.createEl(parent, tagName, className);
+            expect(el.firstElementChild.tagName).toBe('DIV');
+            expect(el.firstElementChild.classList.contains(className)).toBe(true);
         })
     })
 });
