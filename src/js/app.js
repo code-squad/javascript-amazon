@@ -49,8 +49,12 @@ class App{
             prevBtn: $('#exploreVideoPrev'),
             slides: $('#exploreVideo').children
         }
-        carousel.render()
-                .runAutoMove(els.slides)
+        const httpMethod = "get", url = "./data/data.json";
+        const parent = $('#exploreVideo');
+        const tagName = 'li';
+        const className = "carousel__item transition";
+        carousel.render({httpMethod, url, parent, tagName, className});
+        carousel.runAutoMove(els.slides)
                 .setEvent(els);
     }
 }

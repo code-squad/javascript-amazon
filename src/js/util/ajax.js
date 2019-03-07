@@ -1,4 +1,4 @@
-function ajax(httpMethod, url) {
+function ajax({httpMethod, url}) {
     const successReadyState=4;
     const successStatus=200;
 

@@ -1,4 +1,4 @@
-import { $, Helpers } from '../../util/Helpers';
+import { Helpers } from '../../util/Helpers';
 import { ajax } from '../../util/ajax';
 
 class Carousel{
@@ -44,12 +44,8 @@ class Carousel{
         this.pNum = pNum;
         return this;
     }
-    render(){
-        const httpMethod = "get", url = "./data/data.json";
-        const parent = $('#exploreVideo');
-        const tagName = 'li';
-        const className = "carousel__item transition";
-        ajax(httpMethod, url).then(res => {
+    render({httpMethod, url, parent, tagName, className}){
+        return ajax({httpMethod, url}).then(res => {
             res.forEach((data, i) => {
                 const el = this.H.createEl(parent, tagName, className);
                 el.style.backgroundImage = `url(${data.imgurl})`;
@@ -57,7 +53,6 @@ class Carousel{
             });
             return parent;
         })
-        return this;
     }
 }
 
