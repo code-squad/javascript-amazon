@@ -112,6 +112,11 @@ li {
     background-color: #fff;
     position: absolute;
     z-index: 999;
+    display: none;
+}
+
+.searched-result.shown {
+    display: block;
 }
 
 .searched-item {

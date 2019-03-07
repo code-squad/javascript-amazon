@@ -21,7 +21,10 @@ export default class AutoComplete {
         schInput.addEventListener("input", (e) => {
             value = schInput.value;
             this.inputTime = new Date();
-            if (!value) this.resultShown = false;
+            if (!value) {
+                searchedResult.classList.remove("shown");
+                this.resultShown = false;
+            }
         });
         schInput.addEventListener("keydown", (e) => {this.checkKeyCode(e, schInput, searchedResult)});
         schInput.addEventListener("keyup", () => {
@@ -40,7 +43,7 @@ export default class AutoComplete {
     getData(url, value, searchedResult) {
         fetch(url + value)
             .then(response => {
-                if (response.status === 200) return response.json();
+                if(response.status === 200) return response.json();
             })
             .then(data => {
                 if(data.result === "no data") return;
@@ -48,6 +51,7 @@ export default class AutoComplete {
                 const prefix = data.prefix;                
                 searchedResult.innerHTML = this.template(dataList, prefix);
                 this.resultShown = true;
+                searchedResult.classList.add("shown");
             })
             .catch(err => console.log(err));
     }
