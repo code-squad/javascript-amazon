@@ -1,37 +1,23 @@
-import { $, $All } from '../../util/Helpers';
-
+import { Helpers } from '../../util/Helpers';
 class Plans{
-    constructor(helpers){
-        this.helpers = helpers;
+    constructor(){
+        this.helpers = new Helpers();
     }
-    init(){
-        const els = {
-            stickyNav: $('.fixed-nav'),
-            stickyNavCover: $All('.fixed-nav__cover'),
-            frontCover: $(".fixed-nav__cover--front"),
-            submitCover: $(".fixed-nav__cover--submit"),
-            open: $All("[data-open=fixedNav]"),
-            close: $All("[data-close=fixedNav]"),
-            header: $(".header"),
-            aboutBtn: $(".submit-box__submit")
-        }
+    setEvent(els){
         const className = { active: 'active', clicked: 'clicked' }
+        const coverEls = [ els.submitCover, els.frontCover ];
         const target = {
             headerBottom: els.header.offsetHeight,
             fixPoint: els.aboutBtn.offsetTop + els.aboutBtn.offsetHeight
         }
-        const eachCoverEls = [ els.submitCover, els.frontCover ];
-        this.setEvent(this.helpers, els, className, target, eachCoverEls);
-    }
-    setEvent(helpers, els, className, target, eachCoverEls){
-        helpers.on(window, 'scroll', _ =>{
+        this.helpers.on(window, 'scroll', _ =>{
             this.setScrollEvent(els, window.scrollY, className.active, target)
         })
-        helpers.on(els.open, 'click', _ => {
-            helpers.addClass(eachCoverEls, className.clicked);
+        this.helpers.on(els.open, 'click', _ => {
+            this.helpers.addClass(coverEls, className.clicked);
         })
-        helpers.on(els.close, 'click', _ => {
-            helpers.removeClass(eachCoverEls, className.clicked);
+        this.helpers.on(els.close, 'click', _ => {
+            this.helpers.removeClass(coverEls, className.clicked);
         })
         return this;
     }

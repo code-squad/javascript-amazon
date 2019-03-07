@@ -1,10 +1,11 @@
 import { Registry } from './Registry.js';
+import { Aop } from './Aop';
 
 class Type extends Registry {
-    constructor(aop){
+    constructor(){
         super();
         this.definition = {};
-        this.aop = aop;
+        this.aop = new Aop();
     }
     addDefinition(validator){
         let type = toString.call(validator);

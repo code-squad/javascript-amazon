@@ -19,7 +19,6 @@ class Helpers{
         return els;
     }
     on (els, event, callback){
-        
         if (!els) throw new Error();
         if (toString.call(els) !== '[object Array]'&&
             toString.call(els) !== '[object NodeList]') els = [els];
@@ -33,6 +32,12 @@ class Helpers{
             }
         }
         return els;
+    }
+    createEl(parent, tagName, className){
+        const el = document.createElement(tagName);
+        this.addClass(el, className);
+        parent.appendChild(el);
+        return el;
     }
 }
 
