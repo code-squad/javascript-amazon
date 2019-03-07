@@ -59,18 +59,31 @@
 }
 
 .search-autocomplete {
-  display: block;
+  display: none;
   position: relative;
   z-index: 1;
-  border: 1px solid;
   background: white;
+}
+
+.search-autocomplete-show {
+  display: block;
+  border: 1px solid;
 }
 
 .autocomplete-ul {
   list-style: none;
-  font-size: 13px;
-  font-family: arial,sans-serif;
-  line-height: normal;
+  padding-left: 1.3rem;
+}
+
+.suggestion {
+  padding: 8px 0;
+  font-size: 16px;
+  font-family: "Amazon Ember";
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background: #eee;
 }
 
 #searchBar {
