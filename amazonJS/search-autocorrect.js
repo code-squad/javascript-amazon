@@ -47,7 +47,7 @@ class SearchAutocorrect {
     this.resetAutocorrectLists.call(this);
     const inputValue = this.searchWindow.value;
     if (inputValue === '') return this.closeAutoCorrectWindow();
-    fetch(this.formUrl + "amazon/ac/" + inputValue).then(res => {
+    fetch(this.formUrl + inputValue).then(res => {
       res.json().then(jsonData => {
         this.addList(jsonData);
         this.cloakBody();
