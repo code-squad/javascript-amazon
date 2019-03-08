@@ -4,6 +4,7 @@ export default class AutoComplete {
         this.inputTime = 0;
         this.resultShown = false;
         this.timerId;
+        this.value;
     }
 
     init() {
@@ -16,35 +17,33 @@ export default class AutoComplete {
         const searchBtn = document.querySelector(".sch-btn");
         const url = "http://crong.codesquad.kr:8080/amazon/ac/";
         // const url = "http://codesquadapi.herokuapp.com/ac/";
-        let value;
+        const keySet = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Enter"];
 
-        searchBtn.addEventListener("click", (e) => e.preventDefault);
-        schInput.addEventListener("keydown", (e) => {
-            this.checkKeyCode(e, schInput, searchedResult);
-            if (e.keyCode === 8) this.showResult(url, value, searchedResult);
-        });
-
-        schInput.addEventListener("keyup", (e) => {
-            if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Enter") return;
-            value = schInput.value;
-            this.inputTime = new Date();
-            this.showResult(url, value, searchedResult);
-        });
+        searchBtn.addEventListener("click", (e) => e.preventDefault());
+        schInput.addEventListener("keydown", (e) => this.executeKeyAction(e, schInput, searchedResult));
+        schInput.addEventListener("keyup", (e) => this.checkKeyUp(keySet, e.key, url, searchedResult, schInput));
     }
 
-    showResult(url, value, searchedResult) {
-        if (!value) {
+    checkKeyUp(keySet, key, url, searchedResult, schInput) {
+        if (keySet.includes(key)) return;
+        this.value = schInput.value;
+        this.inputTime = new Date();
+        this.showResult(url, searchedResult);
+        if (key === "Backspace") this.showResult(url, searchedResult);
+    }
+
+    showResult(url, searchedResult) {
+        if (!this.value) {
             searchedResult.classList.remove("shown");
             this.resultShown = false;
         }
-
         clearTimeout(this.timerId);
-        this.timerId = setTimeout(() => this.getData(url, value, searchedResult), 1000);
+        this.timerId = setTimeout(() => this.getData(url, searchedResult), 1000);
     }
 
-    getData(url, value, searchedResult) {
-        if (!value) return;
-        fetch(url + value)
+    getData(url, searchedResult) {
+        if (!this.value) return;
+        fetch(url + this.value)
             .then(response => {
                 if (response.status === 200) return response.json();
             })
@@ -57,7 +56,7 @@ export default class AutoComplete {
                 searchedResult.classList.add("shown");
             })
             .catch(err => console.log(err));
-            this.currentItem = -1;
+        this.currentItem = -1;
     }
 
     template(dataList, prefix) {
@@ -76,35 +75,48 @@ export default class AutoComplete {
         return itemName;
     }
 
-    checkKeyCode(e, schInput, searchedResult) {
+    executeKeyAction(e, schInput, searchedResult) {
         const searchedItems = document.querySelectorAll(".searched-item");
         const itemLength = searchedItems.length;
-        
-        // 여전히 한번 멈추는 데 어떻게 해결하쥐... -> 함수로.. keycode => key로 
-        if (e.keyCode === 38 || e.keyCode === 40) e.preventDefault();
-        if (e.keyCode === 40 && this.currentItem === itemLength-1) {
+        const keyPressed = e.key;
+        if (keyPressed === "ArrowDown") this.arrowDownFunc(e, searchedResult, searchedItems, itemLength);
+        else if (keyPressed === "ArrowUp") this.arrowUpFunc(e, searchedItems, itemLength);
+        else if (keyPressed === "Enter") this.enterFunc(e, searchedResult, searchedItems, schInput);
+
+    }
+
+    arrowDownFunc(e, searchedResult, searchedItems, itemLength) {
+        e.preventDefault();
+        if (this.currentItem === itemLength-1) {
             this.removeSelected(searchedItems);
             this.currentItem = -1;
-        } else if (e.keyCode === 40) {
+        } else {
             searchedResult.classList.add("shown");
             this.removeSelected(searchedItems);
             this.currentItem++;
             searchedItems[this.currentItem].classList.add("selected");
-        } else if (e.keyCode === 38 && this.currentItem === 0) {
+        }
+    }
+
+    arrowUpFunc(e, searchedItems, itemLength) {
+        e.preventDefault();
+        if (this.currentItem === 0 || this.currentItem === -1) {
             this.removeSelected(searchedItems);
             this.currentItem = itemLength;
-        } else if (e.keyCode === 38) {
+        } else {
             this.removeSelected(searchedItems);
             this.currentItem--;
             searchedItems[this.currentItem].classList.add("selected");
-        } else if (e.keyCode === 13) {
-            e.preventDefault();
-            if (this.currentItem !== -1) schInput.value = searchedItems[this.currentItem].innerText;
-            this.removeSelected(searchedItems);
-            searchedResult.classList.remove("shown");
-            this.resultShown = false;
-            this.currentItem = -1;
-        } 
+        }
+    }
+
+    enterFunc(e, searchedResult, searchedItems, schInput) {
+        e.preventDefault();
+        if (this.currentItem !== -1) schInput.value = searchedItems[this.currentItem].innerText;
+        this.removeSelected(searchedItems);
+        searchedResult.classList.remove("shown");
+        this.resultShown = false;
+        this.currentItem = -1;
     }
 
     removeSelected(searchedItems) {
