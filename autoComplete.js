@@ -26,14 +26,16 @@ export default class AutoComplete {
                 this.resultShown = false;
             }
         });
-        schInput.addEventListener("keydown", (e) => {this.checkKeyCode(e, schInput, searchedResult)});
+        schInput.addEventListener("keydown", (e) => {
+            this.checkKeyCode(e, schInput, searchedResult)
+        });
         schInput.addEventListener("keyup", () => {
-            if(!this.resultShown) setTimeout(() => this.showResult(url, value, searchedResult), 1000);
+            if (!this.resultShown) setTimeout(() => this.showResult(url, value, searchedResult), 1000);
         });
     }
 
     showResult(url, value, searchedResult) {
-        if(this.isInputOneSecondAgo()) this.getData(url, value, searchedResult);
+        if (this.isInputOneSecondAgo()) this.getData(url, value, searchedResult);
     }
 
     isInputOneSecondAgo() {
@@ -43,12 +45,12 @@ export default class AutoComplete {
     getData(url, value, searchedResult) {
         fetch(url + value)
             .then(response => {
-                if(response.status === 200) return response.json();
+                if (response.status === 200) return response.json();
             })
             .then(data => {
-                if(data.result === "no data") return;
+                if (data.result === "no data") return;
                 const dataList = data.suggestions;
-                const prefix = data.prefix;                
+                const prefix = data.prefix;
                 searchedResult.innerHTML = this.template(dataList, prefix);
                 this.resultShown = true;
                 searchedResult.classList.add("shown");
@@ -58,13 +60,18 @@ export default class AutoComplete {
 
     template(dataList, prefix) {
         const url = "http://crong.codesquad.kr:8080/amazon-search"
-        return dataList.map(v => { 
-            const itemName = v.value;
-            v.value = v.value.replace(/\s/g, "+");
-            return `<li class="searched-item"><a href="${url}?ref=${v.refTag}&field-keywords=${v.value}&prefix=${prefix}">
-            ${itemName}
+        return dataList.map(data => {
+            let itemName = data.value;
+            data.value = data.value.replace(/\s/g, "+");
+            return `<li class="searched-item"><a href="${url}?ref=${data.refTag}&field-keywords=${data.value}&prefix=${prefix}">
+            ${this.templateHighlighting(itemName, prefix)}
             </a></li>`
         }).join('');
+    }
+
+    templateHighlighting(itemName, prefix) {
+        itemName = itemName.replace(prefix, (prefix) => `<span class="prefix">${prefix}</span>`)
+        return itemName;
     }
 
     checkKeyCode(e, schInput, searchedResult) {
@@ -82,7 +89,7 @@ export default class AutoComplete {
             this.currentItem = itemLength;
         } else if (e.keyCode === 38) {
             this.removeSelected(searchedItems);
-            searchedItems[this.currentItem-1].classList.add("selected");
+            searchedItems[this.currentItem - 1].classList.add("selected");
             this.currentItem--;
         } else if (e.keyCode === 13) {
             e.preventDefault();
