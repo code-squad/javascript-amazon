@@ -1,8 +1,9 @@
 export default class AutoComplete {
     constructor() {
-        this.currentItem = 0;
+        this.currentItem = -1;
         this.inputTime = 0;
         this.resultShown = false;
+        this.timerId;
     }
 
     init() {
@@ -16,46 +17,30 @@ export default class AutoComplete {
         const url = "http://crong.codesquad.kr:8080/amazon/ac/";
         // const url = "http://codesquadapi.herokuapp.com/ac/";
         let value;
-        let timeId;
 
         searchBtn.addEventListener("click", (e) => e.preventDefault);
         schInput.addEventListener("keydown", (e) => {
             this.checkKeyCode(e, schInput, searchedResult);
-            //keyCode 를 key로 바꾸기 
-            if (e.keyCode === 8) {
-                // 인풋 벨류 알파벳 하나씩 딜레이 되는 거 확인
-                // !value 일때 처리 
-                if (!value) {
-                    searchedResult.classList.remove("shown");
-                    this.resultShown = false;
-                }
-    
-                clearTimeout(timeId);
-                timeId = setTimeout(() => this.getData(url, value, searchedResult), 1000)
-            }});
+            if (e.keyCode === 8) this.showResult(url, value, searchedResult);
+        });
 
         schInput.addEventListener("keyup", (e) => {
-            if (e.key === "ArrowUp" || e.key === "ArrowDown") return;
+            if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Enter") return;
             value = schInput.value;
             this.inputTime = new Date();
-            if (!value) {
-                searchedResult.classList.remove("shown");
-                this.resultShown = false;
-            }
-
-            clearTimeout(timeId);
-            // if (!this.resultShown) setTimeout(() => this.showResult(url, value, searchedResult), 1000);
-            timeId = setTimeout(() => this.getData(url, value, searchedResult), 1000);
+            this.showResult(url, value, searchedResult);
         });
     }
 
-    // showResult(url, value, searchedResult) {
-    //     if (this.isInputOneSecondAgo()) this.getData(url, value, searchedResult);
-    // }
+    showResult(url, value, searchedResult) {
+        if (!value) {
+            searchedResult.classList.remove("shown");
+            this.resultShown = false;
+        }
 
-    // isInputOneSecondAgo() {
-    //     return new Date() - this.inputTime > 1000;
-    // }
+        clearTimeout(this.timerId);
+        this.timerId = setTimeout(() => this.getData(url, value, searchedResult), 1000);
+    }
 
     getData(url, value, searchedResult) {
         if (!value) return;
@@ -72,6 +57,7 @@ export default class AutoComplete {
                 searchedResult.classList.add("shown");
             })
             .catch(err => console.log(err));
+            this.currentItem = -1;
     }
 
     template(dataList, prefix) {
@@ -96,27 +82,28 @@ export default class AutoComplete {
         
         // 여전히 한번 멈추는 데 어떻게 해결하쥐... -> 함수로.. keycode => key로 
         if (e.keyCode === 38 || e.keyCode === 40) e.preventDefault();
-        if (e.keyCode === 40 && this.currentItem === itemLength) {
+        if (e.keyCode === 40 && this.currentItem === itemLength-1) {
             this.removeSelected(searchedItems);
-            this.currentItem = 0;
+            this.currentItem = -1;
         } else if (e.keyCode === 40) {
+            searchedResult.classList.add("shown");
             this.removeSelected(searchedItems);
-            searchedItems[this.currentItem].classList.add("selected");
             this.currentItem++;
+            searchedItems[this.currentItem].classList.add("selected");
         } else if (e.keyCode === 38 && this.currentItem === 0) {
             this.removeSelected(searchedItems);
             this.currentItem = itemLength;
         } else if (e.keyCode === 38) {
             this.removeSelected(searchedItems);
-            searchedItems[this.currentItem - 1].classList.add("selected");
             this.currentItem--;
+            searchedItems[this.currentItem].classList.add("selected");
         } else if (e.keyCode === 13) {
             e.preventDefault();
-            schInput.value = searchedItems[this.currentItem - 1].innerText;
+            if (this.currentItem !== -1) schInput.value = searchedItems[this.currentItem].innerText;
             this.removeSelected(searchedItems);
-            searchedResult.style.display = 'none';
+            searchedResult.classList.remove("shown");
             this.resultShown = false;
-            this.currentItem = 0;
+            this.currentItem = -1;
         } 
     }
 
