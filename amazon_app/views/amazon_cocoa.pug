@@ -1,0 +1,275 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  title amazon step6
+  link(rel='stylesheet', type='text/css', href='stylesheets/amazon_cocoa.css')
+  link(rel='stylesheet', type='text/css', href='stylesheets/plans_layer.css')
+  link(rel='stylesheet', type='text/css', href='stylesheets/carousel_module.css')
+  link(rel='stylesheet', type='text/css', href='stylesheets/auto_complete_module.css')
+header#header-bar
+  .search-bar
+    #logo-area
+      a(href='https://www.amazon.com/amazonprime?_encoding=UTF8&%2AVersion%2A=1&%2Aentries%2A=0', target='_self')
+        img#logo-image(src='images/amazon_logo.png', alt='')
+    #search-panel
+      #department-view
+        span All
+        img.ico-down-arrow(src='images/down_arrow.png', alt='')
+      // 검색창
+      #search-field
+        input.input-search-field(type='text')
+        .auto-complete-result-window.toggle-window
+          ul.result-list-area.suggestion-items-style
+      #search-button
+        img#ico-magnifier(src='images/magnifier.png', alt='')
+    #header-banner-area
+      img(src='images/banner.jpg', alt='')
+  nav#nav-bar
+    #location-panel
+      #ico-location
+        img(src='images/loc_icon.png', alt='')
+      #location-text
+        span#deliver-to-text Deliver to
+        br
+        span#deliver-to-location-text Korea, Republic of
+    #nav-menu-area
+      ul
+        li.nav-menu-list
+          .nav-menu-name.nav-departments-name
+            span Departments
+            img.ico-down-arrow(src='images/down_arrow.png', alt='')
+        li.nav-menu-list
+          .nav-menu-name
+            a(href='https://www.amazon.com/gp/yourstore/home?ref=nav_cs_ys')
+              | Your Amazon.com
+        li.nav-menu-list
+          .nav-menu-name
+            a(href='https://www.amazon.com/international-sales-offers/b/?ie=UTF8&node=15529609011&ref=nav_navm_intl_deal_btn')
+              | Today&apos;s Deals
+        li.nav-menu-list
+          .nav-menu-name
+            a(href='https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards')
+              | Gift Cards
+        li.nav-menu-list
+          .nav-menu-name
+            a(href='https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref=nav_cs_gift_cards')
+              | Registry
+        li.nav-menu-list
+          .nav-menu-name
+            a(href='https://www.amazon.com/b/?_encoding=UTF8&ld=AZUSSOA-sell&node=12766669011&ref=nav_cs_sell')
+              | Sell
+        li.nav-menu-list
+          .nav-menu-name
+            a(href='https://www.amazon.com/gp/help/customer/display.html?nodeId=508510&ref=nav_cs_help')
+              | Help
+    #user-panel
+      #cart-to-checkout-panel
+        a(href='https://www.amazon.com/gp/cart/view.html?ref=nav_cart')
+          img#ico-cart(src='images/cart.png', alt='')
+          #number-to-checkout 0
+          #cart-text Cart
+      a(href='https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l')
+        #account-panel
+          span#sign-in-text Hello, Sign in
+          br
+          span.account-lists-orders-text Account &amp; Lists
+          span
+            img.ico-down-arrow(src='images/down_arrow.png', alt='')
+          span#orders-text.account-lists-orders-text Orders
+      #lang-selection-panel
+        #lang-sign EN
+        #ico-globe-area
+          img#ico-globe(src='images/globe.png', alt='')
+    .see-more-plans-layer
+      p.close-see-more-plans-layer.center-text close
+      p.close-see-more-plans-layer.right-text close
+    .upper-plans-layer-line
+    .upper-plans-layer
+      .upper-plans-layer-panel
+        .upper-plans-layer-sub-panel prime logo area
+        .upper-plans-layer-sub-panel
+          p.expand-more-plans-layer.no-decoration-hover See more plans
+        .upper-plans-layer-sub-panel try prime button area
+section
+  h3.section-name section-main
+  #sections-area-main.sections-area
+    #sections-image-main.sections-images
+      #section-main-text-1.section-main-text
+        | There&apos;s something for everyone with Prime!
+      #section-main-text-2.section-main-text
+        | Check out what&apos;s included with your Prime membership.
+      a.link-style(href='https://www.amazon.com/ap/signin?_encoding=UTF8&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=1&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fprime%2Fpipeline%2Fmembersignup%3Fie%3DUTF8%26amuPrimeIngress%3D1%26benefitOptimizationId%3Dprime_reading_room%26cancelRedirectURL%3DLw%26locationID%3Dprime_confirm%26ms3_c%3D405815dd0dff35f5c6fd324bf4278a20%26offerToken%3D3~2~PQf64zFzRRspZ1X2V0DWhxRar8blEbHaIW9OvnY474U~AVMAAAAEanNvbkkAAAAnY29tLmFtYXpvbi5QcmltZUFjcXVpc2l0aW9uQ29tbW9uI09mZmVyUAAABKV7ImFjY291bnRpbmdWYWx1ZSI6bnVsbCwiYWN0aW9uU2VsZWN0b3JLZXkiOiJDQU1TREtjZmNvcUVWeCtLdFNPUnR4cGl0Q3ljdG0vdEVuUHZtT2ZwZlBQeEF1ZEM0TlZ0aDFKSE1DZCtFZiswWFk0aThYMzYycXIxYVExZDczenNpY2RyWlVKajlmNHV1ZzRWRDlwVlNDK00zT1FZcXR1SVhjb3NaRFlOdWk2SDdVRVRUc2tuVFRaY3JBT2ZqTHNKRjNqREx0UT0iLCJjcmVhdGlvblRpbWUiOiIyMDE4LTEyLTE4VDAyOjM4OjMxWiIsImN1c3RvbWVySUQiOm51bGwsImRldmljZVR5cGVJRCI6IkRlc2t0b3BCcm93c2VyIiwiZW5jcnlwdGVkTWFya2V0cGxhY2VJRCI6IkFUVlBES0lLWDBERVIiLCJleHBpcmF0aW9uVGltZSI6IjIwMTgtMTItMTlUMDI6Mzg6MzFaIiwiZXh0ZW5zaW9uQ2hhcmdlc0xpc3QiOltdLCJoYXNBVk9EVHNBbmRDcyI6ZmFsc2UsImxlZ2FsRW50aXR5SWQiOm51bGwsIm9mZmVyRW50aXRpZXMiOm51bGwsIm9mZmVySUQiOiIwUDkzMTA1NjY4IiwicGF5bWVudEluc3RydW1lbnRJRCI6bnVsbCwicHJpbWVNZW1iZXJzaGlwU291cmNlRGF0YSI6bnVsbCwicHJpbWVNZXRhZGF0YSI6eyJPZmZlcklEXzIwMTgxMjE4IjoiMFA5MzEwNTY2OCIsIlBBX2NsaWVudElEXzIwMTgxMjE4IjoiTVMzQWNxdWlzaXRpb25UZW5hbnRTZXJ2aWNlLUR5bmFtaWNFbnRpdGllcyIsIlBBX2xvY2F0aW9uSURfMjAxODEyMTgiOiJTbGFzaFByaW1lIiwiY29udGFpbmVyUmVxdWVzdElkXzIwMTgxMjE4IjoiNDEwNzUwNzYtMTdmNC00ZTM3LWIzNzgtY2MwZTU3YTBiY2ZkIiwicHJpbWVEZXZpY2VUeXBlSWRfMjAxODEyMTgiOiJEZXNrdG9wQnJvd3NlciIsInNlc3Npb25JZCI6IjEzMC04NDY4MzU2LTQ2NjE1MjYifSwicHJpbWVPZmZlcklkIjoiUHJpbWVQdXJlTW9udGhseUZyZWVUcmlhbCIsInByb2dyYW0iOm51bGwsInByb21vdGlvbklEIjpudWxsLCJyZWZ1bmQiOm51bGwsInJlZnVuZExpc3QiOm51bGwsInJlZ2lvbkxpc3QiOlt7ImlkIjoiVVMiLCJ0eXBlIjoiQ09VTlRSWV9DT0RFIn1dLCJzYWxlc0NoYW5uZWwiOm51bGwsInNjaGVkdWxlIjpudWxsLCJzaWdudXBDaGFyZ2VzTGlzdCI6W10sInNvdXJjZUlEIjpudWxsLCJzb3VyY2VUeXBlIjpudWxsLCJ2YWxpZGl0eUR1cmF0aW9uSW5EYXlzIjpudWxsLCJ2aW9sYXRlZE9mZmVyQ29uc3RyYWludHMiOiJbXCJJc0N1c3RvbWVyUmVjb2duaXplZFwiXSJ9%26primeCampaignId%3D%26redirectURL%3DL2dwL3ByaW1l')
+        #try-prime-button
+          | TRY PRIME
+      p#section-main-text-3.section-main-text
+        | $12.99/month. Cancel anytime.
+        br
+        |                     See more plans
+        br
+        a#text-underlined(href='https://www.amazon.com/b?ie=UTF8&node=10184390011&ref=dex_hdm_pap_desktop')
+          | Holiday Delivery Calendar
+      #prime-logo-area
+        img#prime-logo(src='images/prime_logo.svg', alt='')
+      .section-cards-area
+        #section-cards-1.section-cards
+          img#section-cards-images-1.section-cards-images(src='images/card-1.png', alt='')
+          .section-cards-titles Ship
+        #section-cards-2.section-cards
+          img#section-cards-images-2.section-cards-images(src='images/card-2.png', alt='')
+          .section-cards-titles Stream
+        #section-cards-3.section-cards
+          img#section-cards-images-3.section-cards-images(src='images/card-3.png', alt='')
+          .section-cards-titles Shop
+        #section-cards-4.section-cards
+          img#section-cards-images-4.section-cards-images(src='images/card-4.png', alt='')
+          .section-cards-titles Read
+        #section-cards-5.section-cards
+          img#section-cards-images-5.section-cards-images(src='images/card-5.png', alt='')
+          .section-cards-titles More
+  h3.section-name section-B
+  #sections-area-B.sections-area
+    #sections-image-B.sections-images
+      #sections-B-text-box
+        #sections-B-text-1
+          | TWO-DAY SHIPPING
+        #sections-B-text-2
+          | Fast, free delivery on over 100 million items
+        #sections-B-text-3
+          | Super-fast shipping, tens of millions of items, and flexible delivery options to fit your life.
+        div
+          a#sections-B-text-4(href='https://www.amazon.com/b?node=15247183011')
+            | Explore Prime Delivery
+    #sections-B-text-5
+      | Here&apos;s a little more about Prime that we think you&apos;ll love:
+  h3.section-name section-C
+  #sections-area-C.sections-area
+    #sections-image-C.sections-images
+      #sections-C-text-box
+        #sections-C-text-1 Fast, free delivery on over 100 million items
+        #sections-C-text-2
+          | Super-fast shipping, tens of millions of items, and flexible delivery
+          | options to fit your life.
+        a#sections-C-text-3(href='https://www.amazon.com/b?node=15247183011')
+          | Explore Prime Delivery
+  h3.section-name section-D
+  #sections-area-D.sections-area
+    .carousel-module-box
+      .cover
+      .carousel-unit
+        // ajax li 엘리먼트 및 img url 데이터 갱신 부분
+      .btn-area
+        .prev-btn
+          img.prev-btn-image(src='./images/prev_btn.png', alt='')
+        .next-btn
+          img.next-btn-image(src='./images/next_btn.png', alt='')
+    #sections-D-text-box
+      #sections-D-text-1 Prime Originals, exclusively on Prime Video
+      #sections-D-text-2
+        | Prime Video is the only place where you can watch Prime Original series
+        | like &quot;The Marvelous Mrs. Maisel&quot;, &quot;Tom Clancy&apos;s Jack Ryan&quot;, &quot;Homecoming&quot;, and &quot;The Man in the High
+        | Castle&quot;.
+      a#sections-D-text-3(href='https://www.amazon.com/s/ref=atv_?_encoding=UTF8&bbn=16549083011&field-is_prime_benefit=2470955011&node=2858778011%2C%213147522011%2C%213147524011%2C16549083011&pf_rd_i=home&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3212395302&pf_rd_r=0XXGE6FJ019S290BRE2H&pf_rd_s=center-8&pf_rd_t=12401&search-alias=instant-video')
+        | Explore Prime Video
+footer
+  a.link-style(href='#logo-area')
+    #footer-back-to-top
+      | back to top
+  #prime-sitemap
+    #footer-prime-sitemap-area
+      .footer-prime-sitemap-sections
+        ul
+          li.footer-sitemap-main-entries
+            span Get to Know Us
+            ul.footer-sitemap-sub-entry-area
+              li.footer-sub-entries
+                a(href='https://www.amazon.jobs/')
+                  | Careers
+              li.footer-sub-entries
+                a(href='https://blog.aboutamazon.com/?utm_source=gateway&utm_medium=footer')
+                  | Blog
+              li.footer-sub-entries
+                a(href='https://www.aboutamazon.com/?utm_source=gateway&utm_medium=footer')
+                  | About Amazon
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/ir')
+                  | Investor Relations
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/amazon-devices/b/ref=footer_devices?ie=UTF8&node=2102313011')
+                  | Amazon Devices
+      .footer-prime-sitemap-sections
+        ul
+          li.footer-sitemap-main-entries
+            span Make Money with Us
+            ul.footer-sitemap-sub-entry-area
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/gp/redirect.html/ref=footer_soa?_encoding=UTF8&location=https%3A%2F%2Fservices.amazon.com%2Fcontent%2Fsell-on-amazon.htm%2Fref%3Dfooter_soa%3Fld%3DAZFSSOA&source=standards&token=6D14D9F0E8CC2831C68BA56C95FCDC34988C3979')
+                  | Sell on Amazon
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/gp/redirect.html/ref=footer_sell_svcs?_encoding=UTF8&location=https%3A%2F%2Fservices.amazon.com%2Fselling-services%2Fbenefits.htm%3Fld%3DAZUSVAS-globalfooter&source=standards&token=C11D6CD96DB34C590F5368F18106AAC385ECAAC6')
+                  | Sell Your Services on Amazon
+              li.footer-sub-entries
+                a(href='https://services.amazon.com/amazon-business.html?ld=usb2bunifooter')
+                  | Sell on Amazon Business
+              li.footer-sub-entries
+                a(href='https://developer.amazon.com/')
+                  | Sell Your Apps on Amazon
+              li.footer-sub-entries
+                a(href='https://affiliate-program.amazon.com/')
+                  | Become an Affiliate
+              li.footer-sub-entries
+                a(href='https://advertising.amazon.com/?ref=ext_amzn_ftr')
+                  | Advertise Your Products
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/gp/seller-account/mm-summary-page.html/ref=footer_publishing?ie=UTF8&ld=AZFooterSelfPublish&topic=200260520')
+                  | Self-Publish with Us
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/b/ref=footer_seeall?_encoding=UTF8&ld=AZUSSOA-seeall&node=13605942011')
+                  | See all
+      .footer-prime-sitemap-sections
+        ul
+          li.footer-sitemap-main-entries
+            span Amazon Payment Products
+            ul.footer-sitemap-sub-entry-area
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/dp/B07984JN3L?_encoding=UTF8&ie=UTF-8&plattr=ACOMFO')
+                  | Amazon Business Card
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/b/ref=footer_swp?ie=UTF8&node=16218619011')
+                  | Shop with Points
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/Reload-Your-Gift-Card-Balance/b/ref=footer_reload_us?ie=UTF8&node=10232440011')
+                  | Reload Your Balance
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/Currency-Converter/b/ref=footer_tfx?ie=UTF8&node=388305011')
+                  | Amazon Currency Converter
+      .footer-prime-sitemap-sections
+        ul
+          li.footer-sitemap-main-entries
+            span Let Us Help You
+            ul.footer-sitemap-sub-entry-area
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/gp/css/homepage.html/ref=footer_ya')
+                  | Your Account
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26ref_%3Dfooter_yo&pageId=webcs-yourorder&showRmrMe=1')
+                  | Your Orders
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/gp/help/customer/display.html/ref=footer_shiprates?ie=UTF8&nodeId=468520')
+                  | Shipping Rates &amp; Policies
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/gp/orc/returns/homepage.html/ref=orc_surl_ret_hp?fg=1')
+                  | Returns &amp; Replacements
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/ap/signin?openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fmn%2Fdcw%2Fmyx.html%2Fref%3Dkinw_myk_redirect&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&&accountStatusPolicy=P1')
+                  | Manage Your Content and Devices
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/gp/BIT/ref=footer_bit_v2_us_A0029?bitCampaignCode=A0029')
+                  | Amazon Assistant
+              li.footer-sub-entries
+                a(href='https://www.amazon.com/gp/help/customer/display.html/ref=footer_gw_m_b_he?ie=UTF8&nodeId=508510')
+                  | Help
+script(type='text/javascript', src='javascripts/plans_layer.js')
+script(type='text/javascript', src='javascripts/carousel_module.js')
+script(type='module', src='javascripts/auto_complete_module.js')

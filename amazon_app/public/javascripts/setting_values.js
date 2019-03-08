@@ -4,13 +4,13 @@ export { SETTING_VALUES };
 
 const SETTING_VALUES = {
 
-    FETCH_REQUEST_URL_FOR_KEYWORDS: "http://crong.codesquad.kr:8080/amazon/ac/",
+    FETCH_REQUEST_URL_FOR_KEYWORDS: "http://localhost:3000/request-auto-keywords/",
 
     KEYWORDS_LIST_MAX_LIMIT: 10,
 
     KEYWORDS_LIST_MIN_LIMIT: 1,
 
-    FETCH_REQUEST_TIMER: 1000,
+    FETCH_REQUEST_TIMER: 500,
 
     INPUT_PREVENTION_KEYS: [
         { key: "Shift", keyCode: 16 },
@@ -28,7 +28,7 @@ const SETTING_VALUES = {
 
     resultLiElement_TEMPLATE: `<li class="suggestion-item"><a class="link-style" href="{{}}">{{}}</a></li>`,
 
-    itemLink_URL_TEMPLATE:`http://crong.codesquad.kr:8080/amazon-search?ref={{}}&field-keywords={{}}&prefix={{}}`,
+    itemLink_URL_TEMPLATE:`http://localhost:3000/amazon-search?ref={{}}&field-keywords={{}}&prefix={{}}`,
 
     highlight_span_TEMPLATE: `<span class="highlighted-keywords">{{}}</span>`,
 

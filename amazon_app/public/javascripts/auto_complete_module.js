@@ -23,7 +23,7 @@ class KeywordsAutoCompleteModule {
         this.url_TEMPLATE = itemLink_URL_TEMPLATE;
         this.span_TEMPLATE = highlight_span_TEMPLATE;
         this.notFound_MSG = notFoundKeyword_MSG;
-        
+
         this.inputTextField = document.querySelector(".input-search-field"); // 검색창 엘리먼트 
         this.resultWindow = document.querySelector(".auto-complete-result-window"); // 자동완성결과 div 엘리먼트
         this.resultWindow.dataset.cursorOn = false;
@@ -79,8 +79,8 @@ class KeywordsAutoCompleteModule {
     // fetch api 호출
     async operateFetch(URL) {
         try {
-            const keywordsListText = await fetch(URL, { mode: "cors" });
-            const keywordsListObj = await keywordsListText.json();
+            const response = await fetch(URL, { mode: "cors" }); // express 라우터에서 키워드에 해당하는 리스트를 찾고 res객체와 함께 반환
+            const keywordsListObj = await response.json();
             const itemsInfoList = this.generateItemsInfoList(keywordsListObj);
             return this.addItemLiElement(itemsInfoList);
         } catch (err) {
@@ -253,3 +253,6 @@ class KeywordsAutoCompleteModule {
 }
 
 const keywordsAutoCompleteModule = new KeywordsAutoCompleteModule(SETTING_VALUES);
+
+// 이렇게 하면 되는 건가?
+// export { keywordsAutoCompleteModule };
