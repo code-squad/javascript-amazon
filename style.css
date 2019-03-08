@@ -127,6 +127,10 @@ li {
     padding-left: 10px;
 }
 
+.prefix {
+    color: red;
+}
+
 .searched-item a {
     text-decoration: none;
     color: rgba(128, 128, 128, 0.795);
