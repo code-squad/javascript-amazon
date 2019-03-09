@@ -18,6 +18,6 @@ export default class Controller {
   }
 
   showSuggestionVal(suggestionArr) {
-    this.view.isSuggestionVal(suggestionArr);
+    this.view.isSuggestionVal(suggestionArr)
   }
 }

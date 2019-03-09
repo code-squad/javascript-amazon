@@ -11,7 +11,7 @@ export default class View {
     if (suggestionValArr.length === noSuggestion) {
       this.removeSuggestion()
     } else {
-      this.renderSuggestion(suggestionValArr)
+      this.renderSuggestion(suggestionValArr);
     }
   }
 

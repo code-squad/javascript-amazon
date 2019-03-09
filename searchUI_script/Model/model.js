@@ -6,7 +6,7 @@ export default class Model {
     const fetchVal = fetch(responseUrl)
       .then(res => res.json())
       .then(data => {
-        return data.suggestions
+        return data.suggestions;
       })
     return fetchVal;
   }
