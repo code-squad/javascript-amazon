@@ -11,14 +11,10 @@ export default class Model {
     return fetchVal;
   }
 
-
   getSuggestionVal(suggestionArr) {
     const suggestionValArr = suggestionArr.map(suggestion => {
       return suggestion.value;
     });
     return suggestionValArr;
-
   }
-
-
 }

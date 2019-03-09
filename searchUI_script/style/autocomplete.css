@@ -87,6 +87,11 @@
   background: #eee;
 }
 
+.suggestionLink {
+  text-decoration: none;
+  color: #111;
+}
+
 #searchBar {
   left: 12px;
   top: 7px;

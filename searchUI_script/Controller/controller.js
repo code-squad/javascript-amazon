@@ -18,7 +18,6 @@ export default class Controller {
   }
 
   showSuggestionVal(suggestionArr) {
-    const suggestionValArr = this.model.getSuggestionVal(suggestionArr)
-    this.view.isSuggestion(suggestionValArr);
+    this.view.isSuggestionVal(suggestionArr);
   }
 }

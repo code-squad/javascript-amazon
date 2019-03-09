@@ -5,13 +5,13 @@ export default class View {
     this.showSuggestion = '';
   }
 
-  isSuggestion(suggestionsArr) {
+  isSuggestionVal(suggestionValArr) {
     this.showSuggestion = '';
     const noSuggestion = 0;
-    if (suggestionsArr.length === noSuggestion) {
+    if (suggestionValArr.length === noSuggestion) {
       this.removeSuggestion()
     } else {
-      this.renderSuggestion(suggestionsArr)
+      this.renderSuggestion(suggestionValArr)
     }
   }
 
@@ -19,13 +19,18 @@ export default class View {
     this.autocomplete.classList.remove('search-autocomplete-show');
   }
 
-  renderSuggestion(suggestionsArr) {
-    suggestionsArr.forEach(suggestion => {
+  renderSuggestion(suggestionArr) {
+    suggestionArr.forEach(suggestion => {
+      let splitKeyword = suggestion.value.split(' ');
+      let joinKeyword = splitKeyword.join('+');
       this.showSuggestion += `
-      <li class = "suggestion"> 
-        ${suggestion}
+      <li class = "suggestion">
+        <a class = "suggestionLink" href = "https://www.amazon.com/s?k=${joinKeyword}&prefix=?&ref=${suggestion.refTag}">  
+         ${suggestion.value}
+        </a>
       </li>`
     });
+
     this.autocompleteUl.innerHTML = this.showSuggestion;
     this.autocomplete.classList.add('search-autocomplete-show');
   }
