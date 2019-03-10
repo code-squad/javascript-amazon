@@ -24,7 +24,7 @@ describe("TypeChecker", () => {
     beforeEach(() => {
         type.definition = {};
         type.define({name: 'string', evaluator: target => toString.call(target)})
-        type.defineMultiple(defaultTypes);
+        type.defineMultiple([...defaultTypes]);
 
         targetObj = {
             "targetFn": function(){

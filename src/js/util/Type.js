@@ -1,24 +1,25 @@
 import { Registry } from './Registry.js';
 import { Aop } from './Aop';
+import { Helpers } from './Helpers';
 
 class Type extends Registry {
     constructor(){
         super();
         this.definition = {};
         this.aop = new Aop();
+        this.H = new Helpers();
     }
     addDefinition(validator){
         let type = toString.call(validator);
-        if(type !== '[object Object]' || type !== '[object Array]') new Error();
-        if(type === '[object Object]')
-            validator = [validator];
-        this.defineMultiple(validator);
+        if(!this.H.checkType('object', type) || !this.H.checkType('array', type)) new Error();
+        if(this.H.checkType('object', type)) validator = [validator];
+        this.defineMultiple([...validator]);
         return this;
     }
     checkArgsTypes(targetObj, targetFn, checkNames){
-        if(toString.call(targetObj) !== "[object Object]") throw new Error();
-        if(toString.call(targetFn) !== "[object String]") throw new Error();
-        if(toString.call(checkNames) !== "[object Array]") throw new Error();
+        if(!this.H.checkType('object', targetObj)) throw new Error();
+        if(!this.H.checkType('string', targetFn)) throw new Error();
+        if(this.H.checkType('object', checkNames)) throw new Error();
         const self = this;
         this.aop.inject(targetObj, targetFn, function(target) {
             let values = self.makeValues(checkNames, target);
@@ -32,9 +33,9 @@ class Type extends Registry {
         return values;
     }
     checkReturnedValueType(targetObj, targetFn, checkName){
-        if(toString.call(targetObj) !== "[object Object]") throw new Error();
-        if(toString.call(targetFn) !== "[object String]") throw new Error();
-        if(toString.call(checkName) !== "[object String]") throw new Error();
+        if(this.H.checkType('object', targetObj)) throw new Error();
+        if(!this.H.checkType('string', targetFn)) throw new Error();
+        if(this.H.checkType('object', checkName)) throw new Error();
         const self = this;
         this.aop.inject(targetObj, targetFn, function(target) {
             let result = target.fn.apply(this, target.args);

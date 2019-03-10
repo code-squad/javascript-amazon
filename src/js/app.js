@@ -21,7 +21,7 @@ class App{
             .initCarousel(carousel);
     }
     addDefinition(type){
-        type.addDefinition(defaultTypes);
+        type.addDefinition([...defaultTypes]);
         return this;
     }
     checkType(plans, carousel,type){
