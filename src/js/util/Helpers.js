@@ -1,3 +1,5 @@
+import { defaultTypes } from './typeCollection/defaultTypes';
+
 const $ = (selector, context) => (context || document).querySelector(selector);
 const $All = (selector, context) => (context || document).querySelectorAll(selector);
 
@@ -38,6 +40,11 @@ class Helpers{
         this.addClass(el, className);
         parent.appendChild(el);
         return el;
+    }
+    checkType(name, target){
+        const types = defaultTypes;
+        const validator = types.filter(v => v.name = name)[0];
+        return validator.evaluator(target);
     }
 }
 

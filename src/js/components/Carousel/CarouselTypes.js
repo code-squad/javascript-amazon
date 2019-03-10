@@ -6,10 +6,10 @@ class CarouselTypes {
     }
     define(targetObj){
         if(toString.call(targetObj) !== "[object Object]") throw new Error();
-        this.type.checkArgs(targetObj, 'setEvent', ['object']);
-        this.type.checkArgs(targetObj, 'runAutoMove', ['HTMLCollection']);
-        this.type.checkArgs(targetObj, 'controlSlides', ['HTMLCollection', ['string', 'undefined'], ['number', 'undefined']]);
-        this.type.checkArgs(targetObj, 'setPageNumber', ['HTMLCollection', 'string']);
+        this.type.checkArgsTypes(targetObj, 'setEvent', ['object']);
+        this.type.checkArgsTypes(targetObj, 'runAutoMove', ['HTMLCollection']);
+        this.type.checkArgsTypes(targetObj, 'controlSlides', ['HTMLCollection', ['string', 'undefined'], ['number', 'undefined']]);
+        this.type.checkArgsTypes(targetObj, 'setPageNumber', ['HTMLCollection', 'string']);
         return this;
     }
 }

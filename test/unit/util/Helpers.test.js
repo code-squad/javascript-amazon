@@ -89,4 +89,12 @@ describe("helpers", ()=>{
             expect(el.firstElementChild.classList.contains(className)).toBe(true);
         })
     })
+    describe("checkType(name, target)", () => {
+        it("타입과 target이 같으면 true를 반환한다.", () => {
+            expect(helpers.checkType('string', 'test')).toBeTruthy();
+        })
+        it("타입과 target이 다르면 false를 반환한다.",() => {
+            expect(helpers.checkType('string', 1)).toBeFalsy();
+        })
+    })
 });
