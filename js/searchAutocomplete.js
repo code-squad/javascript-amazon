@@ -15,6 +15,7 @@ export default class AutoComplete {
     }
     this.currentFocus = -1;
     this.setURL = state.setURL;
+    this.setDelayTime = state.delayTime;
   }
 
   setDisplayOffDimmed() {
@@ -173,7 +174,7 @@ export default class AutoComplete {
   }
 
   init() {
-    this.element.input.addEventListener("input", debounce((inputNode) => this.setInputEvent(inputNode), 1000));
+    this.element.input.addEventListener("input", debounce((inputNode) => this.setInputEvent(inputNode), this.setDelayTime));
     this.element.input.addEventListener("keydown", (e) => this.eventKeydown(e));
   }
 }
