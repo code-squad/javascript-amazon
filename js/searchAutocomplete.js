@@ -14,7 +14,7 @@ export default class AutoComplete {
       ENTERKEY: 13,
     }
     this.currentFocus = -1;
-    this.setAPI = `http://crong.codesquad.kr:8080/amazon/ac/`;
+    this.setURL = state.setURL;
   }
 
   setDisplayOffDimmed() {
@@ -131,7 +131,7 @@ export default class AutoComplete {
     let inputWord = inputNode.target.value;
     if (!inputNode || inputWord === "") return this.removeAutofillListEl(inputNode);
 
-    let URL = `${this.setAPI}${inputWord}`;
+    let URL = `${this.setURL}${inputWord}`;
 
     fetch(URL)
       .then((response) => response.json())
