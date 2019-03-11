@@ -134,7 +134,14 @@ export default class AutoComplete {
 
     let URL = `${this.setURL}${inputWord}`;
 
-    fetch(URL)
+    const init = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+    };
+    const request = new Request(URL, init);
+
+    fetch(request)
       .then((response) => response.json())
       .then((json) => {
         let matchVal = json.suggestions;
