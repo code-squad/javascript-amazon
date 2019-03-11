@@ -1,5 +1,5 @@
 export default class Carousel {
-    constructor({carouselSelector, btnSelector, options}) {
+    constructor({carouselSelector, btnSelector, options, data}) {
         this.dataList = [];
         this.carousel = document.querySelector(carouselSelector.carousel);
         this.container = document.querySelector(carouselSelector.container);
@@ -7,16 +7,15 @@ export default class Carousel {
         this.btnClicked = false;
         this.btnClickedTime = 0;
         this.transitioning = false;
-        
+
         this.items = 0
         this.currentItem = 0;
         this.carouselPosition = 0;
 
+        this.options = options;
         this.itemWidth = options.itemWidth;
-        this.carouselDuration = options.carouselDuration;
-        this.carouselCheckingDuration = options.carouselCheckingDuration;
-        this.timeGapToRestartCarousel = options.timeGapToRestartCarousel;
         this.btnSelector = btnSelector;
+        this.dataObj = data;
     }
 
     init() {
@@ -25,25 +24,29 @@ export default class Carousel {
     }
 
     getData() {
-        var oReq = new XMLHttpRequest();
+        const oReq = new XMLHttpRequest();
         oReq.addEventListener("load", () => {
             const obj = JSON.parse(oReq.responseText);
-            this.pushData(obj.src);
+            this.addDataTags(obj.src);
             this.showImage();
             this.startAutoCarousel();
         });
-        oReq.open("GET", "./carouselData.json");
+        oReq.open(this.dataObj.method, this.dataObj.url);
         oReq.send();
     }
 
-    pushData(arr) {
-        arr.forEach((data) => this.dataList.push(data));
-        this.carouselTemplate();
+    addDataTags(srcArr) {
+        let tagContainer = "";
+        srcArr.forEach((data, i) => tagContainer += this.templateData(data, i));
+        this.container.innerHTML = tagContainer;
     }
 
-    carouselTemplate() {
-        const items = this.carousel.querySelectorAll(".carousel-item");
-        items.forEach((item, i) => items[i].firstElementChild.src = this.dataList[i])
+    templateData(src, i) {
+        return `
+        <div class="carousel-item">
+        <img src="${src}" alt="img${i}">
+        </div>
+        `
     }
 
     showImage() {
@@ -59,7 +62,7 @@ export default class Carousel {
         this.container.insertBefore(last, this.container.firstChild);
         this.items = this.carousel.querySelectorAll(".carousel-item");
     }
-    
+
     moveToFirstItem() {
         this.carouselPosition = -this.itemWidth;
         this.container.style.transform = `translateX(${this.carouselPosition}px)`;
@@ -67,30 +70,36 @@ export default class Carousel {
     }
 
     startAutoCarousel() {
-        this.moveCarouselAuto(this.carouselDuration);
-        this.checkAutoCarousel(this.timeGapToRestartCarousel, this.carouselCheckingDuration);
+        const carouselDuration = this.options.carouselDuration;
+        const carouselCheckingDuration = this.options.carouselCheckingDuration;
+        const timeGapToRestartCarousel = this.options.timeGapToRestartCarousel;
+
+        this.moveCarouselAuto(carouselDuration);
+        this.checkAutoCarousel(timeGapToRestartCarousel, carouselCheckingDuration);
     }
-    
+
     moveCarouselAuto(duration) {
-        let timer = setTimeout(function moveAuto() {
+        const moveAuto = () => {
             if (!this.btnClicked) this.moveRight();
-            timer = setTimeout(moveAuto.bind(this), duration);
-        }.bind(this), duration);
+            let timer = setTimeout(moveAuto, duration);
+        }
+        moveAuto();
     }
 
     checkAutoCarousel(timeGap, duration) {
-        let timer = setTimeout(function checkTime() {
+        const checkWhenBtnClicked = () => {
             if (new Date() - this.btnClickedTime > timeGap) this.btnClicked = false;
-            timer = setTimeout(checkTime.bind(this), duration);
-        }.bind(this), duration);
+            let timer = setTimeout(checkWhenBtnClicked, duration);
+        }
+        checkWhenBtnClicked();
     }
 
     addEvent() {
-        const prevBtn = this.carousel.querySelector(this.btnSelector.prevBtn);
-        const nextBtn = this.carousel.querySelector(this.btnSelector.nextBtn);
-
-        prevBtn.addEventListener("click", () => this.btnMoveLeft());
-        nextBtn.addEventListener("click", () => this.btnMoveRight());
+        this.carousel.addEventListener("click", ((event) => {
+            const target = event.target;
+            if(target.matches(".prev-btn")) this.btnMoveLeft();
+            else if (target.matches(".next-btn")) this.btnMoveRight();
+        }), false);
 
         this.container.addEventListener("transitionend", () => {
             this.transitioning = false;
@@ -120,7 +129,7 @@ export default class Carousel {
 
     moveRight() {
         if (this.transitioning) return;
-        if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
+        if (!this.container.classList.contains("transiting")) this.container.classList.add("transiting");
         else {
             this.currentItem++;
             this.carouselPosition -= this.itemWidth;
@@ -131,7 +140,7 @@ export default class Carousel {
 
     moveLeft() {
         if (this.transitioning) return;
-        if (!this.container.classList.contains("transition")) this.container.classList.add("transition");
+        if (!this.container.classList.contains("transiting")) this.container.classList.add("transiting");
         else {
             this.currentItem--;
             this.carouselPosition += this.itemWidth;
@@ -142,14 +151,14 @@ export default class Carousel {
 
     makeInfinite(val) {
         const first = 0;
-        const last = this.items.length-1;
+        const last = this.items.length - 1;
         if (val === first) {
-            this.currentItem = this.items.length-2;
+            this.currentItem = this.items.length - 2;
             this.carouselPosition = -(this.itemWidth * this.currentItem);
-            this.container.classList.remove("transition");
+            this.container.classList.remove("transiting");
             this.container.style.transform = `translateX(${this.carouselPosition}px)`;
         } else if (val === last) {
-            this.container.classList.remove("transition");
+            this.container.classList.remove("transiting");
             this.moveToFirstItem();
         }
     }
