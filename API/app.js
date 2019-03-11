@@ -1,19 +1,12 @@
 const express = require("express");
-// node Modules Path method
-const path = require("path");
-
 const app = express();
+const router = require("./router/index.js");
 
-// PUG(View) Setting 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
+app.use(express.static('public'));
+app.use(router);
 
+const port = process.env.PORT ? process.env.PORT : 5000;
 
-app.get("/", (request, response) => {
-  response.send("home");
+app.listen(port, function () {
+  console.log(`Server is listening on ${port}`);
 });
-
-app.listen(3000, function () {
-  console.log("Server is listening on 3000");
-});
-
