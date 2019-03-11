@@ -5,6 +5,7 @@ const dbAPI = require("../response.json")
 
 // node Modules Path method
 const path = require('path');
+const fs = require("fs");
 
 // Set URL
 const setURL = "crong.codesquad.kr:8080/amazon/ac/";
@@ -24,10 +25,18 @@ router.get("/:inputWord", (request, response) => {
   response.setHeader('Access-Control-Allow-Methods', 'GET, HEAD');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  const responseData = response.json(dbAPI[inputData]);
   // 파싱한 데이터를 JS파일로 보내거나 활용 
-  // response.end(JSON.stringify(dbAPI[inputData]));
-  response.send(responseData);
+  // console.log(JSON.stringify(dbAPI[inputData]), responseData)
+  return fs.readFile("../../js/searchAutocomplete.js", (err, data) => {
+    const responseData = response.json(dbAPI[inputData]);
+    if (err) {
+      console.log(data, responseData)
+      throw new Error("RESPONSE DATA FAIL");
+    } else {
+      response.end(responseData);
+    }
+  });
+  // response.send(responseData);
 });
 
 // 무언가 데이터를 송신시 암호화 과정을 거친뒤 POST로 송신
