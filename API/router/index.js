@@ -25,6 +25,8 @@ router.get("/:inputWord", (request, response) => {
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   const responseData = response.json(dbAPI[inputData]);
+  // 파싱한 데이터를 JS파일로 보내거나 활용 
+  // response.end(JSON.stringify(dbAPI[inputData]));
   response.send(responseData);
 });
 
