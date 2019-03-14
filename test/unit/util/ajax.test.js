@@ -1,7 +1,7 @@
 import { ajax } from '../../../src/js/util/ajax.js';
 
 describe("ajax", () => {
-    let mockXHR;
+    let mockXHR, httpMethod, url;
     const oldXMLHttpRequest = window.XMLHttpRequest;
     const createMockXHR = (responseJSON) => {
         const mockXHR = {
@@ -18,6 +18,8 @@ describe("ajax", () => {
     beforeEach(() => {
         mockXHR = createMockXHR();
         window.XMLHttpRequest = jest.fn(() => mockXHR);
+        httpMethod = 'get';
+        url = '';
     });
     afterEach(() => {
         mockXHR = null;
@@ -25,7 +27,7 @@ describe("ajax", () => {
     });    
     describe("HTTP", () => {
         it("요청이 성공하면 json 데이터가 담긴 프라미스를 반환한다.", () => {
-            const reqPromise = ajax();
+            const reqPromise = ajax({httpMethod, url});
             mockXHR.responseText = JSON.stringify([
                     { name: 'Kim' },
                     { name: 'Lee' }
@@ -38,7 +40,7 @@ describe("ajax", () => {
             });
         })
         it("요청이 실패하면 오류 메세지를 반환한다.", () => {
-            const reqPromise = ajax();
+            const reqPromise = ajax({httpMethod, url});
             mockXHR.responseText = JSON.stringify({
                 error: 'Failed to GET posts'
             });

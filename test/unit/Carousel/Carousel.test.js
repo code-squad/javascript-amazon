@@ -17,7 +17,7 @@ describe("Carousel", ()=>{
     })
     const carousel = new Carousel({delay:3000});
     const oldXMLHttpRequest = window.XMLHttpRequest;
-    let spy, dom, container, childs, slides, mockXHR;
+    let spy, dom, container, els, mockXHR, data;
     const createMockXHR = (responseJSON) => {
         const mockXHR = {
             open: jest.fn(),
@@ -38,15 +38,25 @@ describe("Carousel", ()=>{
                 <li data-testid="test"></li>
                 <li data-testid="test"></li>
             </ul>
+            <div data-testid="text-box">
+                <h1 data-testid="heading"></h1>
+                <p data-testid="paragraph"></p>
+            </div>
         `);
-        container = dom.$getTestEl("exploreVideo");
-        childs = dom.$getTestElAll("test");
+        els = {
+            container : dom.$getTestEl("exploreVideo"),
+            slides : dom.$getTestElAll("test"),
+            heading : dom.$getTestEl("heading"),
+            paragraph : dom.$getTestEl("paragraph"),
+        }
+        data = [{heading: ''},{heading: ''},{heading: ''}];
+        
     });
     describe("runAutoMove(slides)", () => {
         jest.useFakeTimers();
         beforeEach(()=>{
-            slides = [container];
-            carousel.runAutoMove(slides);
+            
+            carousel.runAutoMove(data, els);
         })
         it("재귀적으로 호출된다.", () => {
             expect(setTimeout).toHaveBeenCalledTimes(1);
@@ -54,7 +64,7 @@ describe("Carousel", ()=>{
         })
         it("controlSlides 콜백 메소드가 호출된다.", () => {
             spy = jest.spyOn(carousel, "controlSlides");
-            carousel.runAutoMove(slides);
+            carousel.runAutoMove(data, els);
             expect(spy).toHaveBeenCalled();
         })
     })
@@ -62,37 +72,40 @@ describe("Carousel", ()=>{
         jest.useFakeTimers(3000);
         it("next, previous 버튼 이벤트 실행시 이전에 요청된 setTimeout 콜백 함수 실행이 중지된다.", () => {
             spy = jest.spyOn(window, 'clearTimeout');
-            slides = [container];
-            carousel.runAutoMove(slides);
+            carousel.runAutoMove(data, els);
             expect(spy).toHaveBeenCalled();
         })
         it("인자로 들어온 값들의 스타일에 transform이 추가된다.", () => {
-            carousel.controlSlides(slides);
-            for(let slide of slides){
-                expect(slide.style.transform).toBe("translateX(0%) translateY(0%)");
+            carousel.controlSlides(data, els);
+            for(let slide of els.slides){
+                expect(slide.style).toContain('transform');;
             }
         });
     })
     describe("setPageNumber(slides, direction)", () => {
+        beforeEach(() => {
+            carousel.pNum = 0;
+        })
         it("direction이 next일때 페이지 넘버는 1씩 증가한다.", () => {
             let pNum = carousel.pNum;
-            carousel.setPageNumber(childs, "next");
+            carousel.setPageNumber(els, "next");
             expect(carousel.pNum).toBe(pNum + 1);
         })
-        it("direction이 previous일때 페이지 넘버는 1씩 감소한다.", () => {
-            let pNum = carousel.pNum;
-            carousel.setPageNumber(childs, "previous");
-            expect(carousel.pNum).toBe(pNum - 1);
-        })
-        it("맨 마지막 슬라이드에서 next가 실행되면 페이지 넘버는 0이 된다.", () => {
-            carousel.pNum = 2;
-            carousel.setPageNumber(childs, "next");
+        it("direction이 next일때 페이지 넘버가 마지막 슬라이드를 가리키면 page는 첫번째 슬라이드를 가리킨다.", () => {
+            carousel.pNum = els.slides.length - 1;
+            carousel.setPageNumber(els, "next");
             expect(carousel.pNum).toBe(0);
         })
-        it("맨 첫 슬라이드에서 previous가 실행되면 페이지 넘버는 슬라이드의 마지막번째 숫자가 된다.", () => {
-            carousel.pNum = 0;
-            carousel.setPageNumber(childs, "previous");
-            expect(carousel.pNum).toBe(childs.length - 1);
+        it("page number가 0이 아닐시 direction이 previous일때 페이지 넘버는 1씩 감소한다.", () => {
+            carousel.pNum = 1;
+            let pNum = carousel.pNum;
+            carousel.setPageNumber(els, "previous");
+            expect(carousel.pNum).toBe(pNum - 1);
+        })
+        it("direction이 previous일때 page number가 0이면 page는 마지막 슬라이드를 가리킨다.", () => {
+            let slideLen = els.slides.length;
+            carousel.setPageNumber(els, "previous");
+            expect(carousel.pNum).toBe(slideLen - 1);
         })
     })
     describe("render()", () => {

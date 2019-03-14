@@ -15,7 +15,7 @@ class Helpers{
     removeClass(els, className){
         if(this.checkType("DOMElement", els)) els = [els];
         for(let el of els){
-            if(!this.checkType("DOMElement", els)) throw new Error();
+            if(!this.checkType("DOMElement", el)) throw new Error();
             el.classList.remove(className);
         }
         return els;

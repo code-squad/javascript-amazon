@@ -1,12 +1,9 @@
 import { Type } from '../../../src/js/util/Type';
 import { defaultTypes } from '../../../src/js/util/typeCollection/defaultTypes';
-import { Aop } from '../../../src/js/util/Aop';
-
 
 describe("TypeChecker", () => {
     'use strict';
-    const aop = new Aop();
-    const type = new Type(aop);
+    const type = new Type();
     let validator, value, targetObj, spy, checkNames;
     describe("생성", () => {
         it("'new' 키워드로 호출되지 않았으면 예외를 던진다.", () => {
@@ -23,9 +20,6 @@ describe("TypeChecker", () => {
 
     beforeEach(() => {
         type.definition = {};
-        type.define({name: 'string', evaluator: target => toString.call(target)})
-        type.defineMultiple([...defaultTypes]);
-
         targetObj = {
             "targetFn": function(){
                 return [...arguments];
@@ -34,19 +28,21 @@ describe("TypeChecker", () => {
     })
     describe("addDefinition(validator)", () => {
         it("validator가 객체, 배열 타입이 아닐시 예외를 던진다.", () => {
+            type.define([...defaultTypes]);
             value = 'string';
             expect(() => type.addDefinition(value)).toThrow();
         })
-        it("validator가 객체 타입일 시 배열 타입으로 변환한다.", () => {
-            value = {name: 'string', evaluator: () => {}};
-            expect(() => type.addDefinition(value)).not.toThrow();
-        })
-        it("상속된 Registry의 defineMultiple 메소드가 실행된다.", () => {
-            validator = {name: 'number', evaluator: type => 
-                toString.call(type) === "[object Number]"};
+        it("상속된 Registry의 define 메소드가 실행된다.", () => {
+            validator = {name: 'number', evaluator: t => 
+                toString.call(t) === "[object Number]"};
             type.addDefinition(validator);
-            spy = spyOn(type, "defineMultiple");
+            spy = jest.spyOn(type, "define");
             type.addDefinition([{name:"string", target:"test"}]);
+            expect(spy).toHaveBeenCalled();
+        })
+        it("helpers의 type check 기능이 실행된다.", () => {
+            spy = jest.spyOn(type.H, "checkType");
+            type.addDefinition([]);
             expect(spy).toHaveBeenCalled();
         })
         it("현재 컨텍스트를 반환한다.", () => {
@@ -77,8 +73,8 @@ describe("TypeChecker", () => {
                 .toBeInstanceOf(Type);
         })
         describe("애스팩트 기능", () => {
-            it("validateMultiple 메소드가 실행된다.", () => {
-                spy = jest.spyOn(type, "validateMultiple");
+            it("validate 메소드가 실행된다.", () => {
+                spy = jest.spyOn(type, "validate");
                 type.checkArgsTypes(targetObj, 'targetFn', []);
                 targetObj.targetFn();
                 expect(spy).toHaveBeenCalled();
@@ -90,7 +86,8 @@ describe("TypeChecker", () => {
                 expect(spy).toHaveBeenCalled();
             })
             it("타겟 함수는 정상 실행 및 반환된다.", () => {
-                spy = jest.spyOn(type, "validateMultiple");
+                type.define([...defaultTypes]);
+                spy = jest.spyOn(type, "validate");
                 checkNames = ['string'];
                 type.checkArgsTypes(targetObj, 'targetFn', checkNames);
                 expect(targetObj.targetFn('test')).toEqual(['test']);
@@ -120,15 +117,18 @@ describe("TypeChecker", () => {
                 .toBeInstanceOf(Type);
         })
         describe("애스팩트 기능", () => {
+            beforeEach(()=>{
+                type.define([...defaultTypes]);
+            })
             it("타겟의 메소드를 실행하면 타입 체크를 위한 validate 메소드가 실행된다.", () => {
                 spy = jest.spyOn(type, "validate");
-                type.checkReturnedValueType(targetObj, 'targetFn', 'string');
+                type.checkReturnedValueType(targetObj, 'targetFn', 'array');
                 targetObj.targetFn();
                 expect(spy).toHaveBeenCalled();
             })
             it("타겟 메소드는 정상 실행 및 반환된다.", () => {
                 spy = jest.spyOn(type, "validate");
-                type.checkReturnedValueType(targetObj, 'targetFn', 'string');
+                type.checkReturnedValueType(targetObj, 'targetFn', 'array');
                 expect(targetObj.targetFn('test')).toEqual(['test']);
             })
         })

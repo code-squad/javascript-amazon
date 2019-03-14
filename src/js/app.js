@@ -40,21 +40,22 @@ class App{
             header: $(".header"),
             aboutBtn: $(".submit-box__submit")
         }
-        plans.setEvent(plansEls);
+        const target = {
+            headerBottom: plansEls.header.offsetHeight,
+            fixPoint: plansEls.aboutBtn.offsetTop + plansEls.aboutBtn.offsetHeight
+        }
+        plans.setEvent(plansEls, target);
         return this;
     }
     initCarousel(carousel){
         const els = {
             nextBtn: $('#exploreVideoNext'),
             prevBtn: $('#exploreVideoPrev'),
-            slides: $('#exploreVideo').children
+            slides: $('#exploreVideo').children,
+            heading: $('#c-heading'),
+            paragraph: $('#c-paragraph'),
         }
         const httpMethod = "get", url = "./data/data.json";
-        const parent = $('#exploreVideo');
-        const tagName = 'li';
-        const className = "carousel__item transition";
-        carousel.render({httpMethod, url, parent, tagName, className});
-        carousel.runAutoMove(els.slides)
-                .setEvent(els);
+        carousel.render({httpMethod, url, els});
     }
 }
