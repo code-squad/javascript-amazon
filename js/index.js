@@ -42,6 +42,8 @@ const autoComplete = new SearchAutocomplete({
   inputEl: $("#inputWord"),
   navSearchEl: $(".nav-input-field"),
   dimmedEl: $(".nav-dimmed-cover-off"),
+  setURL: "http://crong.codesquad.kr:8080/amazon/ac/",
+  delayTime: 1000,
 });
 
 layerManager.init();

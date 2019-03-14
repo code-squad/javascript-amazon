@@ -24,10 +24,10 @@
 
 /* Left: Prime-Icon */
 .sticky-nav-prime {
-  position: absolute;
   display: inline-block;
   width: 15%;
   height: 70px;
+  vertical-align: middle;
 }
 
 .sticky-nav-prime-logo {
@@ -44,10 +44,10 @@
 
 /* Middle: Expand Membership Card  */
 .expand-membership-layer {
-  position: absolute;
   display: inline-block;
-  width: 70%;
+  width: 1333.5px;
   height: 70px;
+  vertical-align: middle;
   left: 15%;
 }
 
@@ -76,21 +76,21 @@
 
 /* Right: Membership Plan Button */
 .membership-plan-button {
-  position: absolute;
-  width: 15%;
+  width: 245px;
   height: 70px;
+  display: inline-block;
   right: 0;
+  vertical-align: middle;
 }
 
 .plan-button {
-  position: absolute;
   border: 1px solid #ff6138;
   border-radius: 3px;
   background: #ffa724;
   height: 46px;
   width: 135px;
   text-align: center;
-  margin: 12px 278px 12px 10px;
+  margin: 12px 270px 12px 10px;
 }
 
 .tryPrime-button {
@@ -100,9 +100,6 @@
   border: 0;
   cursor: pointer;
   height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
 }
 
 .tryprime-button-text {
@@ -403,11 +400,10 @@
 }
 
 .trans-show-outerContents {
-
   width: 100%;
-  min-width: 1905px;
+  /* min-width: 1905px; */
   height: 70px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .trans-hidden-outerContents {
@@ -420,4 +416,8 @@
 .trans-show-inner-content {
   height: 650px;
   z-index: 11;
+}
+
+.trans-height-show-innerContents {
+  height: 650px;
 }
