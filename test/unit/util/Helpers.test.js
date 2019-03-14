@@ -22,10 +22,6 @@ describe("helpers", ()=>{
         `);
         el = dom.$getTestEl('test');
     })
-    beforeAll(() => {
-        dom = render(`
-        `);
-    })
     describe('addClass(element, classname)', () => {
         let length;
         beforeEach(()=>{
