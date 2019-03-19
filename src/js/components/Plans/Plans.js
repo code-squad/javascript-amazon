@@ -1,41 +1,23 @@
-import { $, $All } from '../../util/Helpers';
-
+import { Helpers } from '../../util/Helpers';
 class Plans{
-    constructor(helpers){
-        this.helpers = helpers;
+    constructor(){
+        this.H = new Helpers();
     }
-    init(){
-        const els = {
-            stickyNav: $('.fixed-nav'),
-            stickyNavCover: $All('.fixed-nav__cover'),
-            frontCover: $(".fixed-nav__cover--front"),
-            submitCover: $(".fixed-nav__cover--submit"),
-            open: $All("[data-open=fixedNav]"),
-            close: $All("[data-close=fixedNav]"),
-            header: $(".header"),
-            aboutBtn: $(".submit-box__submit")
-        }
+    setEvent(els, target){
         const className = { active: 'active', clicked: 'clicked' }
-        const target = {
-            headerBottom: els.header.offsetHeight,
-            fixPoint: els.aboutBtn.offsetTop + els.aboutBtn.offsetHeight
-        }
-        const eachCoverEls = [ els.submitCover, els.frontCover ];
-        this.setEvent(this.helpers, els, className, target, eachCoverEls);
-    }
-    setEvent(helpers, els, className, target, eachCoverEls){
-        helpers.on(window, 'scroll', _ =>{
-            this.setScrollEvent(els, window.scrollY, className.active, target)
+        const coverEls = [ els.submitCover, els.frontCover ];
+        this.H.on(window, 'scroll', _ =>{
+            this.setScrollEvt(els, window.scrollY, className.active, target)
         })
-        helpers.on(els.open, 'click', _ => {
-            helpers.addClass(eachCoverEls, className.clicked);
+        this.H.on(els.open, 'click', _ => {
+            this.H.addClass(coverEls, className.clicked);
         })
-        helpers.on(els.close, 'click', _ => {
-            helpers.removeClass(eachCoverEls, className.clicked);
+        this.H.on(els.close, 'click', _ => {
+            this.H.removeClass(coverEls, className.clicked);
         })
         return this;
     }
-    setScrollEvent(els, currentTop, className, target){
+    setScrollEvt(els, currentTop, className, target){
         this.controllStickyNav([...els.stickyNavCover, els.stickyNav], target.fixPoint, currentTop, className);
         this.controllStickyNav(els.stickyNavCover, target.fixPoint, currentTop, className);
         this.controllStickyNav(els.stickyNav, target.headerBottom, currentTop, className);
@@ -43,7 +25,7 @@ class Plans{
     }
     controllStickyNav(el, target, currentTop, className){
         (currentTop > target)? 
-        this.helpers.addClass(el, className):this.helpers.removeClass(el, className);
+        this.H.addClass(el, className):this.H.removeClass(el, className);
         return this;
     }
 }

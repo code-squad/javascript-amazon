@@ -1,0 +1,30 @@
+[
+    {
+        "id" : 1,
+        "imgurl" : "../images/video.jpg",
+        "heading" : "Prime Originals, exclusively on Prime Video",
+        "paragraph": "Prime Video is the only place where you can watch Prime Original series like \"The Marvelous Mrs. Maisel\", \"Tom Clancy's Jack Ryan\", \"Homecoming\", and \"The Man in the High Castle\".",
+        "anchor": "Explore Prime Video"
+    },
+    {
+        "id" : 2,
+        "imgurl" : "../images/video1.jpg",
+        "heading" : "Stay on top of the hottest music",
+        "paragraph": "These songs and artists are the cream of this month's crop of new music. Check out the latest from Taylor Swift, Old Dominion, Kesha, and Brett Young..",
+        "anchor": "Explore Prime Music"
+    },
+    {
+        "id" : 3,
+        "imgurl" : "../images/video2.jpg",
+        "heading" : "Prime Originals, exclusively on Prime Video",
+        "paragraph": "Prime Video is the only place where you can watch Prime Original series like \"The Marvelous Mrs. Maisel\", \"Tom Clancy's Jack Ryan\", \"Homecoming\", and \"The Man in the High Castle\".",
+        "anchor": "Explore Prime Video"
+    },
+    {
+        "id" : 4,
+        "imgurl" : "../images/video3.jpg",
+        "heading" : "Stay on top of the hottest music",
+        "paragraph": "These songs and artists are the cream of this month's crop of new music. Check out the latest from Taylor Swift, Old Dominion, Kesha, and Brett Young..",
+        "anchor": "Explore Prime Music"
+    }
+]

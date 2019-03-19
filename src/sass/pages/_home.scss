@@ -239,10 +239,14 @@
                 width: 100%;
                 height: 100%;
                 margin: 0 auto;
+                overflow: hidden;
             }
             &__item{
                 background: url(../images/video.jpg);
                 background-size: cover;
+                &.transition{
+                    transition: all .2s;
+                }
             }
             &__arrow-box{
                 position: relative;

@@ -5,7 +5,7 @@ describe("Plans", () => {
     'use strict';
     const helpers = new Helpers();
     const plans = new Plans(helpers);
-    let spy, dom, els, el, target, eachCoverEls, className;
+    let spy, dom, els, el, target, eachCoverEls, currentTop, className;
     
     describe("생성", () => {
         it("'new' 키워드로 호출되지 않았으면 예외를 던진다.", () => {
@@ -38,6 +38,7 @@ describe("Plans", () => {
             <div data-testid="test"></div>
         `);
         els ={
+            header: dom.$getTestEl('header'),
             stickyNav: dom.$getTestEl('nav'),
             stickyNavCover: dom.$getTestElAll('nav-cover'),
             open: dom.$getTestEl("open"),
@@ -60,37 +61,48 @@ describe("Plans", () => {
             eachCoverEls = [ els.submitCover, els.frontCover ];
         })
         it('이벤트 핸들러를 추가하는 helpers 인스턴스의 on 메소드가 실행된다.', ()=>{
-            spy = jest.spyOn(helpers, "on");
-            plans.setEvent(helpers, els, className, target, eachCoverEls);
+            spy = jest.spyOn(plans.H, "on");
+            plans.setEvent(els, target);
             expect(spy).toHaveBeenCalled();
         })
-        it('컨텍스트를 반환한다.', () => {
-            expect(plans.setEvent(helpers, els, className, target, eachCoverEls)).toBeInstanceOf(Plans);
-        })
-    })
-    describe("setEvent", () => {
         it("메소드 체이닝이 가능하다.", () => {
-            expect(plans.setEvent(helpers, els, className, target, eachCoverEls)).toBeInstanceOf(Plans);
+            expect(plans.setEvent(els, target)).toBeInstanceOf(Plans);
         })
     })
     describe("controllStickyNav", () => {
-        let target, currentTop;
         it('currentTop이 target보다 값이 더 크면 helpers 인스턴스의 addClass 메서드가 실행된다.', () => {
             target = 5;
             currentTop = 10;
-            spy = jest.spyOn(helpers, 'addClass');
+            spy = jest.spyOn(plans.H, 'addClass');
             plans.controllStickyNav(el, target, currentTop, 'test')
             expect(spy).toHaveBeenCalled();
         })
         it('currentTop이 target보다 값이 더 작으면 helpers 인스턴스의 remove 메서드가 실행된다.', () => {
             target = 10;
             currentTop = 5;
-            spy = jest.spyOn(helpers, 'removeClass');
+            spy = jest.spyOn(plans.H, 'removeClass');
             plans.controllStickyNav(el, target, currentTop, 'test')
             expect(spy).toHaveBeenCalled();
         })
         it("메소드 체이닝이 가능하다.", () => {
             expect(plans.controllStickyNav(el, 0, 0, 'test')).toBeInstanceOf(Plans);
+        })
+    })
+    describe("DOM", () => {
+        it("currentTop이 target보다 크면 class가 추가된다.",() => {
+            currentTop = 10;
+            target = 5;
+            className = 'test'
+            plans.controllStickyNav(el, target, currentTop, className);
+            expect(el.classList.contains('test')).toBeTruthy();
+        })
+        it("currentTop이 target보다 작으면 class가 제거된다.",() => {
+            currentTop = 5;
+            target = 10;
+            className = 'test'
+            expect(el.classList.contains('test')).toBeTruthy();
+            plans.controllStickyNav(el, target, currentTop, className);
+            expect(el.classList.contains('test')).toBeFalsy();
         })
     })
 })
