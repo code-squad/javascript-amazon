@@ -1,0 +1,98 @@
+@import "flex";
+
+$font-size: 16px;
+
+@function calcRem($size) {
+  @return #{$size / $font-size}rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: calcRem(1024px);
+}
+
+.nav {
+  height: calcRem(100px);
+  padding: calcRem(20px) 0;
+
+  @include flexbox();
+  @include justify-content(center);
+}
+
+.steelblue {
+  background-color: #2392c0;
+}
+.purple {
+  background-color: #a90067;
+}
+.darkgreen {
+  background-color: #018577;
+}
+.orange {
+  background-color: #e65d17;
+}
+
+.nav-item {
+  width: calcRem(100px);
+  margin: 0 calcRem(3px);
+  color: #fff;
+
+  @include flexbox();
+  @include justify-content(center);
+  @include align-items(center);
+}
+
+.card-wrapper {
+  position: relative;
+  padding: calcRem(20px) 0;
+}
+
+.card {
+  @include flexbox();
+}
+
+.thumb {
+  @include flexbox();
+  @include justify-content(center);
+  @include align-items(center);
+  @include flex(1);
+}
+
+.content {
+  @include flex(1);
+}
+
+.card-control {
+  position: absolute;
+  font-size: calcRem(22px);
+  top: 50%;
+  width: calcRem(50px);
+  height: calcRem(50px);
+  border-radius: calcRem(25px);
+  background-color: #a9b7b8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.card-control:focus {
+  outline: none;
+}
+
+.card-control:active {
+  background-color: #495057;
+  border: none;
+}
+
+.prev {
+  left: calcRem(10px);
+}
+
+.next {
+  right: calcRem(10px);
+}
