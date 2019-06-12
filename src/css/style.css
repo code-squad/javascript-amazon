@@ -7,7 +7,6 @@
     position: relative;
     box-sizing: border-box;
     width: 960px;
-    height: 300px;
     margin: 0 auto;
     padding-top: 30px;
 }
@@ -16,6 +15,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center; 
+    height: 80px;
 }
 
 .carousel__header--item {
@@ -25,10 +26,16 @@
     width: 150px;
     height: 50px;
     color: white;
-    margin: 0 5px;
+    margin: 0 2px;
+}
+
+.carousel__header--item:hover {
+    transform: scale(1.1);
 }
 
 .carousel__header--item p {
+    font-size: 0.8em;
+    padding: 0 7px;
     text-align: center;
 }
 
@@ -88,11 +95,11 @@
     background-image: url('/src/images/down-arrow_50x30.svg');
     background-size: 3em;
     border-radius: 30px;
+    top: 60%;
 }
 
 .right {
     position: absolute;
-    top: 50%;
     right: 5%;
     transform:rotate(270deg);
     background-position: center;
@@ -100,7 +107,6 @@
 
 .left {
     position: absolute;
-    top: 50%;
     left: 5%;
     transform:rotate(90deg);
     background-position: center;
