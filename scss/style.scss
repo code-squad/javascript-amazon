@@ -50,6 +50,12 @@ $font-size: 16px;
 .card-wrapper {
   position: relative;
   padding: calcRem(20px) 0;
+  border: 1px dotted red;
+  height: auto;
+}
+
+.card-slider {
+  @include flexbox();
 }
 
 .card {
