@@ -39,6 +39,11 @@ class Carousel {
     this.el.style.width = this.itemWidth;
     this.el.style.height = this.itemHeight;
   }
+  
+  setItemSize() { 
+    this.itemWidth = this.item.offsetWidth;
+    this.itemHeight = this.item.offsetHeight;
+  }
 
   addCarouselClass() {
     this.cover.classList.add("carousel-cover");
@@ -52,6 +57,31 @@ class Carousel {
   
   btnEventHandler(direction) {
     (direction == "prev") ? this.movePrev() : this.moveNext();
+  }
+
+  movePrev() {
+    if (this.current <= 0) return;
+    this.current--;
+    this.setItemSize();
+    this.setCarouselSize();
+
+    this.offset += this.itemWidth;
+    this.move();
+  }
+
+  moveNext() {
+    if (this.current >= this.items.length - 1) return;
+    this.current++;
+    this.setItemSize();
+    this.setCarouselSize();
+
+    this.offset -= this.itemWidth;
+    this.move();
+  }
+
+  move() {
+    this.cover.style.transition = `transform ${this.option.duration}ms ${this.option.easing}`;
+    this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 }
 
