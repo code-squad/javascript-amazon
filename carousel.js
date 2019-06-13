@@ -8,17 +8,12 @@ class Carousel {
     this.card = this.cardSlider.querySelector(".card");
     this.prevButton = this.cardWrapper.querySelector(".prev");
     this.nextButton = this.cardWrapper.querySelector(".next");
-
-    this.attachEvent();
+    this.itemWidth = this.card.offsetWidth;
   }
 
-  attachEvent() {
-    window.addEventListener("load", () => {
-      this.cardWrapper.style.width = `${this.card.offsetWidth}px`;
-    });
+  init() {
+    this.cardWrapper.style.width = `${this.itemWidth}px`;
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const carousel = new Carousel();
-});
+export default Carousel;

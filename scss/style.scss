@@ -12,6 +12,10 @@ $font-size: 16px;
   box-sizing: border-box;
 }
 
+li {
+  list-style: none;
+}
+
 .container {
   max-width: calcRem(1024px);
 }
@@ -60,17 +64,18 @@ $font-size: 16px;
 
 .card {
   @include flexbox();
+  @include flex(1 0 auto);
 }
 
 .thumb {
   @include flexbox();
   @include justify-content(center);
   @include align-items(center);
-  @include flex(1);
+  @include flex(1 1 auto);
 }
 
 .content {
-  @include flex(1);
+  @include flex(1 1 auto);
 }
 
 .card-control {

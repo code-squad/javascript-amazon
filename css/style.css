@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box; }
 
+li {
+  list-style: none; }
+
 .container {
   max-width: 64rem; }
 
@@ -69,7 +72,12 @@
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
-  display: flex; }
+  display: flex;
+  -webkit-box-flex: 1 0 auto;
+  -moz-box-flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto; }
 
 .thumb {
   display: -webkit-box;
@@ -86,18 +94,18 @@
   -moz-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1; }
+  -webkit-box-flex: 1 1 auto;
+  -moz-box-flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto; }
 
 .content {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1; }
+  -webkit-box-flex: 1 1 auto;
+  -moz-box-flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto; }
 
 .card-control {
   position: absolute;
