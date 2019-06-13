@@ -9,6 +9,7 @@ class Carousel {
     this.nextBtn = document.querySelector(this.option.nextBtn);
     this.itemWidth = this.item.offsetWidth;
     this.itemHeight = this.item.offsetHeight;
+    this.itemLength = this.items.length;
     this.offset = 0;
     this.current = 0;
 
@@ -32,7 +33,22 @@ class Carousel {
     this.setCarouselSize();
     this.addCarouselClass();
 
+    if (this.option.infinite) {
+      this.offset -= this.addCloneItem();
+      this.moveWithoutAnimation();
+      this.current++;
+    }
+
     this.attachBtnEvent();
+  }
+
+  addCloneItem() {
+    let firstItem = this.items[0];
+    let lastItem = this.items[this.itemLength - 1];
+    this.cover.insertBefore(lastItem.cloneNode(true), this.cover.firstChild);
+    this.cover.appendChild(firstItem.cloneNode(true));
+
+    return lastItem.offsetWidth;
   }
 
   setCarouselSize() {
@@ -70,7 +86,7 @@ class Carousel {
   }
 
   moveNext() {
-    if (this.current >= this.items.length - 1) return;
+    if (this.current >= this.itemLength - 1) return;
     this.current++;
     this.setItemSize();
     this.setCarouselSize();
@@ -83,10 +99,15 @@ class Carousel {
     this.cover.style.transition = `transform ${this.option.duration}ms ${this.option.easing}`;
     this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
+
+  moveWithoutAnimation() {
+    this.cover.style.transition = 'none';
+    this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+  }
 }
 
 const carousel = new Carousel(".benefit-content", {
-  infinite: false,
+  infinite: true,
   prevBtn: ".arrow-left",
   nextBtn: ".arrow-right"
 });
