@@ -97,8 +97,6 @@ html, body {
   box-shadow: 0 0 10px #a8b7b8;
 }
 
-
-
 .arrow.arrow-left {
   left: -80px;
   background-image: url("./image/left-chevron.svg");
@@ -107,6 +105,11 @@ html, body {
 .arrow.arrow-right {
   right: -80px;
   background-image: url("./image/right-chevron.svg");
+}
+
+.arrow.arrow-disable {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .card-wrapper {

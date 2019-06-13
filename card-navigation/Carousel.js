@@ -40,6 +40,7 @@ class Carousel {
     }
 
     this.attachBtnEvent();
+    this.checkMovable();
   }
 
   addCloneItem() {
@@ -50,6 +51,7 @@ class Carousel {
 
     return lastItem.offsetWidth;
   }
+
 
   setCarouselSize() {
     this.el.style.width = this.itemWidth;
@@ -76,23 +78,36 @@ class Carousel {
   }
 
   movePrev() {
-    if (this.current <= 0) return;
     this.current--;
     this.setItemSize();
     this.setCarouselSize();
-
+    
     this.offset += this.itemWidth;
     this.move();
+    if (this.option.infinite) {
+      if (this.isCloneItem()) {
+
+      }
+    } else {
+      this.checkMovable();
+    } 
   }
 
   moveNext() {
-    if (this.current >= this.itemLength - 1) return;
     this.current++;
     this.setItemSize();
     this.setCarouselSize();
 
     this.offset -= this.itemWidth;
     this.move();
+
+    if (this.option.infinite) {
+      if (this.isCloneItem()) {
+
+      }
+    } else {
+      this.checkMovable();
+    } 
   }
 
   move() {
@@ -104,10 +119,21 @@ class Carousel {
     this.cover.style.transition = 'none';
     this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
+
+  checkMovable() {
+    if (this.current == 0) {
+      this.prevBtn.classList.add("arrow-disable");
+    } else if (this.current == this.itemLength - 1) {
+      this.nextBtn.classList.add("arrow-disable");
+    } else {
+      this.prevBtn.classList.remove("arrow-disable");
+      this.nextBtn.classList.remove("arrow-disable");
+    }
+  }
 }
 
 const carousel = new Carousel(".benefit-content", {
-  infinite: true,
+  // infinite: true,
   prevBtn: ".arrow-left",
   nextBtn: ".arrow-right"
 });
