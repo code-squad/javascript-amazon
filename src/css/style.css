@@ -52,15 +52,26 @@
     background-color: #DF6F35;
 }
 
+.carousel__content {
+    /* overflow: hidden; */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel__container {
+    display: flex;
+}
+
 .carousel__item {
     margin-top: 10px;
-    display: none;
+    display: flex;
+    justify-content: center;
+    /* display: none; */
 }
-.active {
+/* .active {
    display: flex;
    justify-content: center;
-  
-}
+} */
 
 .carousel__item--image img {
     width: 200px;
@@ -98,14 +109,14 @@
     top: 60%;
 }
 
-.right {
+.next {
     position: absolute;
     right: 5%;
     transform:rotate(270deg);
     background-position: center;
 }
 
-.left {
+.prev {
     position: absolute;
     left: 5%;
     transform:rotate(90deg);
