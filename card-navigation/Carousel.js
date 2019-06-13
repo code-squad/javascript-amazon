@@ -29,7 +29,29 @@ class Carousel {
   }
 
   init() {
-    
+    this.setCarouselSize();
+    this.addCarouselClass();
+
+    this.attachBtnEvent();
+  }
+
+  setCarouselSize() {
+    this.el.style.width = this.itemWidth;
+    this.el.style.height = this.itemHeight;
+  }
+
+  addCarouselClass() {
+    this.cover.classList.add("carousel-cover");
+    Array.from(this.items).map(el => el.classList.add("carousel-item"));
+  }
+
+  attachBtnEvent() {
+    this.prevBtn.addEventListener("click", () => this.btnEventHandler("prev"));
+    this.nextBtn.addEventListener("click", () => this.btnEventHandler("next"));
+  }
+  
+  btnEventHandler(direction) {
+    (direction == "prev") ? this.movePrev() : this.moveNext();
   }
 }
 
