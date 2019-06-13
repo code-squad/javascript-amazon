@@ -3,12 +3,13 @@ class Carousel {
     //DOM
     this.container = document.querySelector(".container");
     this.nav = this.container.querySelector(".nav");
+    this.navItems = this.container.querySelectorAll(".nav-item");
     this.cardWrapper = this.container.querySelector(".card-wrapper");
     this.cardSlider = this.container.querySelector(".card-slider");
     this.card = this.cardSlider.querySelector(".card");
     this.prevButton = this.container.querySelector(".prev");
     this.nextButton = this.container.querySelector(".next");
-    this.itemWidth = this.card.offsetWidth;
+    this.itemWidth = this.card.getBoundingClientRect().width;
     this.offset = 0;
     this.currentItem = 1;
     this.itemLength = this.cardSlider.querySelectorAll(".card").length;
@@ -24,6 +25,9 @@ class Carousel {
   attatchEvent() {
     this.prevButton.addEventListener("click", this.moveToPrev.bind(this));
     this.nextButton.addEventListener("click", this.moveToNext.bind(this));
+    [...this.navItems].map((item, index) => {
+      item.addEventListener("click", () => this.setCurrentItem(index + 1));
+    });
   }
 
   moveToPrev() {
@@ -46,10 +50,15 @@ class Carousel {
       this.currentItem === this.itemLength ? true : false;
   }
 
+  setCurrentItem(id) {
+    this.currentItem = id;
+    this.offset = -((id - 1) * this.itemWidth);
+    this.isMovable();
+    this.move();
+  }
+
   move() {
     this.cardSlider.style.transform = `translateX(${this.offset}px)`;
-
-    // debugger;
   }
 }
 
