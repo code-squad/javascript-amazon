@@ -1,6 +1,7 @@
 @import "flex";
 
 $font-size: 16px;
+$card-control-position: 10px;
 
 @function calcRem($size) {
   @return #{$size / $font-size}rem;
@@ -18,6 +19,9 @@ li {
 
 .container {
   max-width: calcRem(1024px);
+  opacity: 0;
+  margin: 0 auto;
+  position: relative;
 }
 
 .nav {
@@ -53,9 +57,11 @@ li {
 
 .card-wrapper {
   position: relative;
+  margin: 0 auto;
   padding: calcRem(20px) 0;
   border: 1px dotted red;
   height: auto;
+  overflow: hidden;
 }
 
 .card-slider {
@@ -101,9 +107,9 @@ li {
 }
 
 .prev {
-  left: calcRem(10px);
+  left: calcRem($card-control-position);
 }
 
 .next {
-  right: calcRem(10px);
+  right: calcRem($card-control-position);
 }

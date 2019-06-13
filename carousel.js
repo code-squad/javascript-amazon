@@ -13,6 +13,7 @@ class Carousel {
 
   init() {
     this.cardWrapper.style.width = `${this.itemWidth}px`;
+    this.container.style.opacity = 1;
   }
 }
 
