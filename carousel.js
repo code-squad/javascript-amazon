@@ -9,21 +9,26 @@ class Carousel {
     this.card = this.cardSlider.querySelector(".card");
     this.prevButton = this.container.querySelector(".prev");
     this.nextButton = this.container.querySelector(".next");
+
+    // values
+    this.initIndex = 0;
     this.itemWidth = this.card.getBoundingClientRect().width;
     this.offset = 0;
     this.currentItem = 1;
     this.itemLength = this.cardSlider.querySelectorAll(".card").length;
     this.infiinite = true;
-
     this.nextObj = {
       start: 1,
       end: this.itemLength,
-      getNextItem: () => this.currentItem + 1
+      getId: () => this.currentItem + 1
     };
     this.prevObj = {
       start: this.itemLength,
       end: 1,
-      getNextItem: () => this.currentItem - 1
+      getId: () => this.currentItem - 1
+    };
+    this.selectObj = {
+      getId: index => index + 1
     };
   }
 
@@ -32,7 +37,9 @@ class Carousel {
     this.attatchEvent();
     if (this.infiinite) {
       this.cloneVirtualCard();
-      this.setCurrentItem(1);
+      this.move({
+        getId: () => this.initIndex + 1
+      });
     } else {
       this.isMovable();
     }
@@ -49,20 +56,19 @@ class Carousel {
   attatchEvent() {
     this.prevButton.addEventListener(
       "click",
-      this.moveTo.bind(this, this.prevObj)
+      this.move.bind(this, this.prevObj)
     );
     this.nextButton.addEventListener(
       "click",
-      this.moveTo.bind(this, this.nextObj)
+      this.move.bind(this, this.nextObj)
     );
     [...this.navItems].map((item, index) => {
-      item.addEventListener("click", () => this.setCurrentItem(index + 1));
+      item.addEventListener("click", () =>
+        this.move({
+          getId: () => index + 1
+        })
+      );
     });
-  }
-
-  moveTo({ start, end, getNextItem }) {
-    if (this.infiinite && this.currentItem === end) this.setCurrentItem(start);
-    else this.setCurrentItem(getNextItem());
   }
 
   isMovable() {
@@ -72,16 +78,13 @@ class Carousel {
       this.currentItem === this.itemLength ? true : false;
   }
 
-  setCurrentItem(id) {
+  move({ start, end, getId }) {
+    const id = this.infiinite && this.currentItem === end ? start : getId();
     this.offset = this.infiinite
       ? -(this.itemWidth * id)
       : -(this.itemWidth * (id - 1));
     this.currentItem = id;
     this.isMovable();
-    this.move();
-  }
-
-  move() {
     this.cardSlider.style.transform = `translateX(${this.offset}px)`;
   }
 }
