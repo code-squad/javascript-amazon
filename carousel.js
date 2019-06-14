@@ -24,7 +24,6 @@ class Carousel {
   }
 
   mergeConfig(config) {
-    // debugger;
     return Object.assign(this.defaultConfig, config);
   }
 
@@ -64,7 +63,7 @@ class Carousel {
         getId: () => this.currentItem + 1
       })
     );
-    [...this.navItems].map((item, index) => {
+    this.navItems.forEach((item, index) => {
       item.addEventListener("click", () =>
         this.move({
           getId: () => index + 1
@@ -100,7 +99,7 @@ class Carousel {
   }
 
   selectNav() {
-    [...this.navItems].map((item, index) => {
+    this.navItems.forEach((item, index) => {
       if (index + 1 === this.currentItem) item.classList.add("selected");
       else item.classList.remove("selected");
     });
