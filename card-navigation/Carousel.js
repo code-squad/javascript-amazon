@@ -7,6 +7,7 @@ class Carousel {
     this.option = Carousel.mergeOption(option);
     this.prevBtn = document.querySelector(this.option.prevBtn);
     this.nextBtn = document.querySelector(this.option.nextBtn);
+    this.stepList = document.querySelector(this.option.stepList).children
     this.coverWidth = this.cover.scrollWidth;
     this.itemWidth = this.item.offsetWidth;
     this.itemHeight = this.item.offsetHeight;
@@ -23,6 +24,7 @@ class Carousel {
       gap: 10,
       prevBtn: ".btn_prev",
       nextBtn: ".btn_next",
+      step: ".step-list",
       animate: true,
       easing: "ease-in-out",
       duration: "500",
@@ -40,7 +42,6 @@ class Carousel {
       this.moveWithoutAnimation();
       this.current++;
     }
-
     this.attachBtnEvent();
     this.checkMovable();
   }
@@ -78,6 +79,11 @@ class Carousel {
     this.nextBtn.addEventListener("click", () => this.btnEventHandler("next"));
 
     this.cover.addEventListener("transitionend", () => this.isTransiting = false)
+
+    Array.from(this.stepList).forEach((el, i) => {
+      el.dataset.id = (this.option.infinite) ? i+1 : i;
+      el.addEventListener("click", this.stepEventHandler.bind(this));
+    })
   }
   
   btnEventHandler(direction) {
@@ -102,6 +108,7 @@ class Carousel {
     } else {
       this.checkMovable();
     } 
+    this.toggleStepClass();
   }
 
   moveNext() {
@@ -122,7 +129,8 @@ class Carousel {
       }
     } else {
       this.checkMovable();
-    } 
+    }
+    this.toggleStepClass()
   }
 
   move() {
@@ -137,6 +145,29 @@ class Carousel {
     this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 
+  stepEventHandler(evt) {
+    let curId = evt.target.dataset.id;
+    let totalOffset = 0
+    while(curId != this.current) {
+      if (curId < this.current) {
+        totalOffset += this.items[curId].offsetWidth;
+        curId++;
+      }
+      else {
+        totalOffset -= this.items[curId].offsetWidth
+        curId--;
+      }
+    }
+    this.offset = this.offset + totalOffset;
+    this.current = evt.target.dataset.id;
+    this.move();
+    
+    if (!this.option.infinite) {
+      this.checkMovable();
+    }
+    this.toggleStepClass()
+  }
+
   checkMovable() {
     if (this.current == 0) {
       this.prevBtn.classList.add("arrow-disable");
@@ -147,10 +178,18 @@ class Carousel {
       this.nextBtn.classList.remove("arrow-disable");
     }
   }
+
+  toggleStepClass() {
+    Array.from(this.stepList).forEach(el => {
+      el.classList.remove("active");
+    })
+    this.stepList[(this.option.infinite) ? this.current - 1: this.current].classList.add("active")
+  }
 }
 
 const carousel = new Carousel(".benefit-content", {
   infinite: true,
   prevBtn: ".arrow-left",
-  nextBtn: ".arrow-right"
+  nextBtn: ".arrow-right",
+  stepList: ".benefit-list"
 });

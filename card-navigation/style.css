@@ -47,11 +47,11 @@ html, body {
 }
 
 .benefit-list .benefit-li.active {
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
-  transform: scale(1.2);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .benefit-li#benefit1 {
@@ -123,11 +123,23 @@ html, body {
   height: 100%;
   width: 860px;
   display: flex;
+  background-size: cover;
 }
 
 .benefit-card#card1 {
   background-image: url("./image/Card_A01.png");
-  background-size: cover;
+}
+
+.benefit-card#card2 {
+  background-image: url("./image/Card_B01.png");
+}
+
+.benefit-card#card3 {
+  background-image: url("./image/Card_C01.png");
+}
+
+.benefit-card#card4 {
+  background-image: url("./image/Card_D01.png");
 }
 
 .benefit-desc {
