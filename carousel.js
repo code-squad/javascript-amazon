@@ -1,5 +1,5 @@
 class Carousel {
-  constructor() {
+  constructor(config) {
     //DOM
     this.container = document.querySelector(".container");
     this.navItems = this.container.querySelectorAll(".nav-item");
@@ -13,15 +13,25 @@ class Carousel {
     this.initIndex = 0;
     this.itemWidth = this.card.getBoundingClientRect().width;
     this.offset = 0;
-    this.currentItem = 1;
+    this.currentItem = this.initIndex + 1;
     this.itemLength = this.cardSlider.querySelectorAll(".card").length;
-    this.infinite = true;
+
+    this.defaultConfig = {
+      infinite: true
+    };
+
+    this.config = this.mergeConfig(config);
+  }
+
+  mergeConfig(config) {
+    // debugger;
+    return Object.assign(this.defaultConfig, config);
   }
 
   init() {
     this.cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
-    if (this.infinite) {
+    if (this.config.infinite) {
       this.cloneVirtualCard();
       this.move({
         getId: () => this.initIndex + 1
@@ -64,7 +74,7 @@ class Carousel {
   }
 
   isMovable() {
-    if (this.infinite) return;
+    if (this.config.infinite) return;
     this.prevButton.disabled = this.currentItem === 1 ? true : false;
     this.nextButton.disabled =
       this.currentItem === this.itemLength ? true : false;
@@ -72,7 +82,7 @@ class Carousel {
 
   move({ to, from, getId }) {
     const id = this.isEndOfCards(from) ? to : getId();
-    this.offset = this.infinite
+    this.offset = this.config.infinite
       ? -(this.itemWidth * id)
       : -(this.itemWidth * (id - 1));
     this.currentItem = id;
@@ -85,7 +95,7 @@ class Carousel {
   }
 
   isEndOfCards(from) {
-    return this.infinite && this.currentItem === from;
+    return this.config.infinite && this.currentItem === from;
   }
 }
 
