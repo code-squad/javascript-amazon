@@ -13,46 +13,70 @@ class Carousel {
     this.offset = 0;
     this.currentItem = 1;
     this.itemLength = this.cardSlider.querySelectorAll(".card").length;
+    this.infiinite = true;
+
+    this.nextObj = {
+      start: 1,
+      end: this.itemLength,
+      getNextItem: () => this.currentItem + 1
+    };
+    this.prevObj = {
+      start: this.itemLength,
+      end: 1,
+      getNextItem: () => this.currentItem - 1
+    };
   }
 
   init() {
     this.cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
-    this.isMovable();
+    if (this.infiinite) {
+      this.cloneVirtualCard();
+      this.setCurrentItem(1);
+    } else {
+      this.isMovable();
+    }
     this.container.style.opacity = 1;
   }
 
+  cloneVirtualCard() {
+    const firstCard = this.cardSlider.firstElementChild.cloneNode(true);
+    const lastCard = this.cardSlider.lastElementChild.cloneNode(true);
+    this.cardSlider.insertAdjacentElement("afterbegin", lastCard);
+    this.cardSlider.insertAdjacentElement("beforeend", firstCard);
+  }
+
   attatchEvent() {
-    this.prevButton.addEventListener("click", this.moveToPrev.bind(this));
-    this.nextButton.addEventListener("click", this.moveToNext.bind(this));
+    this.prevButton.addEventListener(
+      "click",
+      this.moveTo.bind(this, this.prevObj)
+    );
+    this.nextButton.addEventListener(
+      "click",
+      this.moveTo.bind(this, this.nextObj)
+    );
     [...this.navItems].map((item, index) => {
       item.addEventListener("click", () => this.setCurrentItem(index + 1));
     });
   }
 
-  moveToPrev() {
-    this.offset += this.itemWidth;
-    this.currentItem -= 1;
-    this.isMovable();
-    this.move();
-  }
-
-  moveToNext() {
-    this.offset -= this.itemWidth;
-    this.currentItem += 1;
-    this.isMovable();
-    this.move();
+  moveTo({ start, end, getNextItem }) {
+    if (this.infiinite && this.currentItem === end) this.setCurrentItem(start);
+    else this.setCurrentItem(getNextItem());
   }
 
   isMovable() {
+    if (this.infiinite) return;
     this.prevButton.disabled = this.currentItem === 1 ? true : false;
     this.nextButton.disabled =
       this.currentItem === this.itemLength ? true : false;
   }
 
   setCurrentItem(id) {
+    this.offset = this.infiinite
+      ? -(this.itemWidth * id)
+      : -(this.itemWidth * (id - 1));
     this.currentItem = id;
-    this.offset = -((id - 1) * this.itemWidth);
     this.isMovable();
     this.move();
   }

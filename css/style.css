@@ -63,8 +63,7 @@ li {
   margin: 0 auto;
   padding: 1.25rem 0;
   border: 1px dotted red;
-  height: auto;
-  overflow: hidden; }
+  height: auto; }
 
 .card-slider {
   display: -webkit-box;
