@@ -71,7 +71,7 @@ class Carousel {
 
   addCarouselClass() {
     this.cover.classList.add("carousel-cover");
-    Array.from(this.items).map(el => el.classList.add("carousel-item"));
+    Array.from(this.items).forEach(el => el.classList.add("carousel-item"));
   }
 
   attachBtnEvent() {
@@ -141,8 +141,11 @@ class Carousel {
   }
 
   moveWithoutAnimation() {
+    this.isTransiting = false
+    
     this.cover.style.transition = 'none';
     this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+
   }
 
   stepEventHandler(evt) {
