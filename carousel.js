@@ -16,26 +16,13 @@ class Carousel {
     this.offset = 0;
     this.currentItem = 1;
     this.itemLength = this.cardSlider.querySelectorAll(".card").length;
-    this.infiinite = true;
-    this.nextObj = {
-      start: 1,
-      end: this.itemLength,
-      getId: () => this.currentItem + 1
-    };
-    this.prevObj = {
-      start: this.itemLength,
-      end: 1,
-      getId: () => this.currentItem - 1
-    };
-    this.selectObj = {
-      getId: index => index + 1
-    };
+    this.infinite = true;
   }
 
   init() {
     this.cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
-    if (this.infiinite) {
+    if (this.infinite) {
       this.cloneVirtualCard();
       this.move({
         getId: () => this.initIndex + 1
@@ -54,13 +41,19 @@ class Carousel {
   }
 
   attatchEvent() {
-    this.prevButton.addEventListener(
-      "click",
-      this.move.bind(this, this.prevObj)
+    this.prevButton.addEventListener("click", () =>
+      this.move({
+        to: this.itemLength,
+        from: 1,
+        getId: () => this.currentItem - 1
+      })
     );
-    this.nextButton.addEventListener(
-      "click",
-      this.move.bind(this, this.nextObj)
+    this.nextButton.addEventListener("click", () =>
+      this.move({
+        to: 1,
+        from: this.itemLength,
+        getId: () => this.currentItem + 1
+      })
     );
     [...this.navItems].map((item, index) => {
       item.addEventListener("click", () =>
@@ -72,20 +65,28 @@ class Carousel {
   }
 
   isMovable() {
-    if (this.infiinite) return;
+    if (this.infinite) return;
     this.prevButton.disabled = this.currentItem === 1 ? true : false;
     this.nextButton.disabled =
       this.currentItem === this.itemLength ? true : false;
   }
 
-  move({ start, end, getId }) {
-    const id = this.infiinite && this.currentItem === end ? start : getId();
-    this.offset = this.infiinite
+  move({ to, from, getId }) {
+    const id = this.isEndOfCards(from) ? to : getId();
+    this.offset = this.infinite
       ? -(this.itemWidth * id)
       : -(this.itemWidth * (id - 1));
     this.currentItem = id;
     this.isMovable();
+    this.moveSlider();
+  }
+
+  moveSlider() {
     this.cardSlider.style.transform = `translateX(${this.offset}px)`;
+  }
+
+  isEndOfCards(from) {
+    return this.infinite && this.currentItem === from;
   }
 }
 
