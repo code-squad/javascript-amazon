@@ -46,8 +46,10 @@ li {
 }
 
 .nav-item {
-  width: calcRem(100px);
+  width: calcRem(200px);
+  height: calcRem(75px);
   margin: 0 calcRem(3px);
+  padding: calcRem(20px);
   color: #fff;
 
   @include flexbox();
@@ -61,9 +63,8 @@ li {
   position: relative;
   margin: 0 auto;
   padding: calcRem(20px) 0;
-  border: 1px dotted red;
   height: auto;
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 .card-slider {
@@ -73,6 +74,8 @@ li {
 .card {
   @include flexbox();
   @include flex(1 0 auto);
+  overflow: hidden;
+  width: calcRem(700px);
 }
 
 .thumb {
@@ -80,6 +83,12 @@ li {
   @include justify-content(center);
   @include align-items(center);
   @include flex(1 1 auto);
+  img {
+    padding: calcRem(20px);
+    width: calcRem(250px);
+    height: calcRem(250px);
+    object-fit: contain;
+  }
 }
 
 .content {

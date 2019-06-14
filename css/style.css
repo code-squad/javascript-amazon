@@ -39,8 +39,10 @@ li {
   background-color: #e65d17; }
 
 .nav-item {
-  width: 6.25rem;
+  width: 12.5rem;
+  height: 4.6875rem;
   margin: 0 0.1875rem;
+  padding: 1.25rem;
   color: #fff;
   display: -webkit-box;
   display: -moz-box;
@@ -62,8 +64,8 @@ li {
   position: relative;
   margin: 0 auto;
   padding: 1.25rem 0;
-  border: 1px dotted red;
-  height: auto; }
+  height: auto;
+  overflow: hidden; }
 
 .card-slider {
   display: -webkit-box;
@@ -82,7 +84,9 @@ li {
   -moz-box-flex: 1 0 auto;
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
-  flex: 1 0 auto; }
+  flex: 1 0 auto;
+  overflow: hidden;
+  width: 43.75rem; }
 
 .thumb {
   display: -webkit-box;
@@ -104,6 +108,11 @@ li {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto; }
+  .thumb img {
+    padding: 1.25rem;
+    width: 15.625rem;
+    height: 15.625rem;
+    object-fit: contain; }
 
 .content {
   -webkit-box-flex: 1 1 auto;

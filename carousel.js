@@ -2,7 +2,6 @@ class Carousel {
   constructor() {
     //DOM
     this.container = document.querySelector(".container");
-    this.nav = this.container.querySelector(".nav");
     this.navItems = this.container.querySelectorAll(".nav-item");
     this.cardWrapper = this.container.querySelector(".card-wrapper");
     this.cardSlider = this.container.querySelector(".card-slider");
