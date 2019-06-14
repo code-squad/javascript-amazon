@@ -3,6 +3,11 @@ import helper from './helper.js';
 
 class Carousel {
   constructor(){
+    // header
+    this.header = document.querySelector('.carousel__header');
+    this.cards = [...this.header.querySelectorAll('.carousel__header--item')]
+
+    // carousel__content
     this.carousel = document.querySelector('.carousel__content');
     this.container = this.carousel.querySelector('.carousel__container');
     this.item = this.carousel.querySelector('.carousel__item');
@@ -12,6 +17,7 @@ class Carousel {
     this.itemWidth = this.item.offsetWidth;
     this.offset = 0;
     this.currentItem = 1;
+    this.itemsLength = this.items.length;
     // 설정 정보
     this.config = {
       duration: 200,
@@ -35,6 +41,7 @@ class Carousel {
   attachEvent() {
     this.prev.addEventListener('click', this.moveToPrev.bind(this));
     this.next.addEventListener('click', this.moveToNext.bind(this));
+    this.cards.forEach(card => card.addEventListener('click', this.cardClick.bind(this)))
   }
   moveToNext() {
     // carousel-container 요소를 왼쪽으로 이동시키기 위해 이동거리를 캐러셀 아이템의 너비만큼 감소시킨다.
@@ -45,6 +52,7 @@ class Carousel {
     this.currentItem++;
     // prev, next 버튼 활성화/비활성화 결정
     // this.checkMovable();
+    if(this.isClone()) this.fakeMove();
   }
   moveToPrev() {
     // carousel-container 요소를 오른쪽으로 이동시키기 위해 이동거리를 캐러셀 아이템의 너비만큼 증시킨다.
@@ -55,6 +63,7 @@ class Carousel {
     this.currentItem--;
     // prev, next 버튼 활성화/비활성화 결정
     // this.checkMovable();
+    if(this.isClone()) this.fakeMove();
   }
   move() {
     this.container.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
@@ -76,6 +85,31 @@ class Carousel {
     this.container.style.transition = 'none';
     this.container.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
+
+  fakeMove() {
+    if(this.currentItem === 0) {
+      this.offset -= this.itemsLength * this.itemWidth;
+      this.currentItem = this.currentItem + this.itemsLength;
+    } else {
+      this.offset += this.itemsLength * this.itemWidth;
+      this.currentItem = this.currentItem - this.itemsLength;
+    }
+    setTimeout(() => this.moveWithoutAnimation(), this.config.duration);
+  }
+
+  cardClick(e) {
+    const clickedIndex = this.getCardIndex(e.target.closest(".carousel__header--item"));
+    this.offset = this.itemWidth * (this.currentItem - (clickedIndex+2));
+    this.header.querySelector(".active").classList.remove("active")
+    this.cards[clickedIndex].classList.add("active")
+    this.move();
+    this.currentItem = clickedIndex + 1;
+  } 
+  
+  getCardIndex(element) {
+    return this.cards.indexOf(element)
+  }
+ 
 }
 
 const carousel = new Carousel();

@@ -29,7 +29,7 @@
     margin: 0 2px;
 }
 
-.carousel__header--item:hover {
+.active {
     transform: scale(1.1);
 }
 
@@ -69,10 +69,7 @@
     justify-content: center;
     /* display: none; */
 }
-/* .active {
-   display: flex;
-   justify-content: center;
-} */
+
 
 .carousel__item--image img {
     width: 200px;
