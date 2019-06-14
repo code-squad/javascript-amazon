@@ -2,6 +2,24 @@ let carousel = document.querySelector(".carousel");
 let carouselWidth = carousel.offsetWidth;
 let carouselInitCnt = carousel.children.length;
 
+// 네비게이션
+let navigation = document.querySelector(".navigation-list");
+let navigationCnt = navigation.children.length;
+
+for (let i = 0; i < navigationCnt; i++) {
+  navigation.children[i].setAttribute("nav-index", i + 1);
+}
+
+navigation.addEventListener("click", function(e) {
+  let navIndex = e.target.getAttribute("nav-index");
+  let navPointer = -(carouselWidth * navIndex);
+  let currentItem = carousel.querySelector(".active");
+  currentItem.classList.remove("active");
+  carousel.children[navIndex].classList.add("active");
+  carousel.style.left = `${navPointer}px`;
+  currentPointer = navPointer;
+});
+
 let carouselFullWidth = carouselWidth * carouselInitCnt;
 carousel.style.width = `${carouselFullWidth}px`;
 carousel.classList.add("flex");

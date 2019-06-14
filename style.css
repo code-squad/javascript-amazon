@@ -27,6 +27,7 @@
   text-align: center;
   color: #fff;
   padding: 5px 30px;
+  cursor: pointer;
 }
 
 .card-wrap .navigation-list > li.item1 {
