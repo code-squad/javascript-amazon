@@ -57,6 +57,10 @@ li {
   @include align-items(center);
 
   cursor: pointer;
+
+  &.selected {
+    transform: scale(1.1);
+  }
 }
 
 .card-wrapper {

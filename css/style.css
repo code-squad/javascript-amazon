@@ -59,6 +59,8 @@ li {
   -ms-align-items: center;
   align-items: center;
   cursor: pointer; }
+  .nav-item.selected {
+    transform: scale(1.1); }
 
 .card-wrapper {
   position: relative;

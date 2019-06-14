@@ -87,6 +87,7 @@ class Carousel {
       : -(this.itemWidth * (id - 1));
     this.currentItem = id;
     this.isMovable();
+    this.selectNav();
     this.moveSlider();
   }
 
@@ -96,6 +97,13 @@ class Carousel {
 
   isEndOfCards(from) {
     return this.config.infinite && this.currentItem === from;
+  }
+
+  selectNav() {
+    [...this.navItems].map((item, index) => {
+      if (index + 1 === this.currentItem) item.classList.add("selected");
+      else item.classList.remove("selected");
+    });
   }
 }
 
