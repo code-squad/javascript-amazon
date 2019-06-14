@@ -93,6 +93,9 @@ li {
 
 .content {
   @include flex(1 1 auto);
+  h2 {
+    margin-bottom: calcRem(10px);
+  }
 }
 
 .card-control {
@@ -112,6 +115,9 @@ li {
   outline: none;
 }
 
+.card-control:hover {
+  background-color: #808386;
+}
 .card-control:active {
   background-color: #495057;
   border: none;

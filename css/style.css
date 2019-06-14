@@ -120,6 +120,8 @@ li {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto; }
+  .content h2 {
+    margin-bottom: 0.625rem; }
 
 .card-control {
   position: absolute;
@@ -135,6 +137,9 @@ li {
 
 .card-control:focus {
   outline: none; }
+
+.card-control:hover {
+  background-color: #808386; }
 
 .card-control:active {
   background-color: #495057;
