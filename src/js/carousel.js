@@ -6,8 +6,9 @@ class Carousel {
     this.carousel = document.querySelector('.carousel__content');
     this.container = this.carousel.querySelector('.carousel__container');
     this.item = this.carousel.querySelector('.carousel__item');
+    this.items = this.carousel.querySelectorAll('.carousel__item');
     this.prev = document.querySelector('.prev');
-    this.next = document.querySelector('.next');
+    this.next = document.querySelector('.next');   
     this.itemWidth = this.item.offsetWidth;
     this.offset = 0;
     this.currentItem = 1;
@@ -26,6 +27,10 @@ class Carousel {
     this.carousel.style.width = this.item.offsetWidth + 'px';
     this.carousel.style.height = this.item.offsetHeight + 'px';
     this.attachEvent();
+    this.insertClone();
+    this.offset = -this.itemWidth;
+    this.moveWithoutAnimation();
+    this.carousel.style.opacity = 1;
   }
   attachEvent() {
     this.prev.addEventListener('click', this.moveToPrev.bind(this));
@@ -53,6 +58,22 @@ class Carousel {
   }
   move() {
     this.container.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
+    this.container.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+  }
+  insertClone() {
+    const firstItem = this.items[0];
+    const lastItem = this.items[this.items.length-1];
+
+    this.container.insertBefore(lastItem.cloneNode(true), this.container.firstChild);
+    this.container.appendChild(firstItem.cloneNode(true));
+  }
+
+  isClone() {
+      return this.currentItem === 0 || this.currentItem === this.itemLength + 1;
+  }
+
+  moveWithoutAnimation() {
+    this.container.style.transition = 'none';
     this.container.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
 }
