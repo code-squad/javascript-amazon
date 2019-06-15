@@ -27,7 +27,12 @@
     height: 50px;
     color: white;
     margin: 0 2px;
+    cursor: pointer;
 }
+
+/* .carousel__header--item:hover {
+    transform: scale(1.1);
+} */
 
 .active {
     transform: scale(1.1);
@@ -69,7 +74,6 @@
     justify-content: center;
     /* display: none; */
 }
-
 
 .carousel__item--image img {
     width: 200px;

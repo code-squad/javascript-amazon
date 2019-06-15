@@ -53,6 +53,8 @@ class Carousel {
     // prev, next 버튼 활성화/비활성화 결정
     // this.checkMovable();
     if(this.isClone()) this.fakeMove();
+    // ** added by Q
+    this.movePopUp(this.currentItem-1);
   }
   moveToPrev() {
     // carousel-container 요소를 오른쪽으로 이동시키기 위해 이동거리를 캐러셀 아이템의 너비만큼 증시킨다.
@@ -64,6 +66,8 @@ class Carousel {
     // prev, next 버튼 활성화/비활성화 결정
     // this.checkMovable();
     if(this.isClone()) this.fakeMove();
+    // ** added by Q
+    this.movePopUp(this.currentItem-1);
   }
   move() {
     this.container.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
@@ -78,7 +82,7 @@ class Carousel {
   }
 
   isClone() {
-      return this.currentItem === 0 || this.currentItem === this.itemLength + 1;
+      return this.currentItem === 0 || this.currentItem === this.itemsLength + 1;
   }
 
   moveWithoutAnimation() {
@@ -99,17 +103,25 @@ class Carousel {
 
   cardClick(e) {
     const clickedIndex = this.getCardIndex(e.target.closest(".carousel__header--item"));
-    this.offset = this.itemWidth * (this.currentItem - (clickedIndex+2));
-    this.header.querySelector(".active").classList.remove("active")
-    this.cards[clickedIndex].classList.add("active")
+    // ** added by Q
+    const currentIndex = this.currentItem - 1;
+    this.offset += this.itemWidth * (currentIndex - clickedIndex);
+    this.movePopUp(clickedIndex);
+    // **
     this.move();
     this.currentItem = clickedIndex + 1;
   } 
+  // ** added by Q
+  movePopUp(clickedIndex) {
+    this.header.querySelector(".active").classList.remove("active");
+    this.cards[clickedIndex].classList.add("active");
+  }
   
   getCardIndex(element) {
     return this.cards.indexOf(element)
   }
- 
+
+
 }
 
 const carousel = new Carousel();
