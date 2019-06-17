@@ -3,14 +3,11 @@ class Carousel {
     this.el = document.querySelector(el);
     this.cover = this.el.firstElementChild;
     this.items = this.cover.children;
-    this.item = this.items[0];
     this.option = Carousel.mergeOption(option);
     this.prevBtn = document.querySelector(this.option.prevBtn);
     this.nextBtn = document.querySelector(this.option.nextBtn);
     this.stepList = document.querySelector(this.option.stepList).children
-    this.coverWidth = this.cover.scrollWidth;
-    this.itemWidth = this.item.offsetWidth;
-    this.itemHeight = this.item.offsetHeight;
+    this.itemWidth = this.items[0].offsetWidth;
     this.itemLength = this.items.length;
     this.isTransiting = false;
     this.offset = 0;
@@ -18,10 +15,9 @@ class Carousel {
 
     this.init();
   }
-  
+
   static mergeOption(option) {
     const default_option = {
-      gap: 10,
       prevBtn: ".btn_prev",
       nextBtn: ".btn_next",
       step: ".step-list",
@@ -30,16 +26,19 @@ class Carousel {
       duration: "500",
       infinite: false
     };
-    return { ...default_option, ...option };
+    return {
+      ...default_option,
+      ...option
+    };
   }
 
   init() {
-    this.setCarouselSize();
-    this.addCarouselClass();
+    // this.addCarouselClass(); 좀 더 라이브러리화 할때 변경 예정
 
     if (this.option.infinite) {
-      this.offset -= this.addCloneItem();
-      this.moveWithoutAnimation();
+      this.addCloneItem();
+      this.offset -= this.itemWidth;
+      this.animateMove(false);
       this.current++;
     }
     this.attachBtnEvent();
@@ -51,28 +50,17 @@ class Carousel {
     let lastItem = this.items[this.itemLength - 1];
     this.cover.insertBefore(lastItem.cloneNode(true), this.cover.firstChild);
     this.cover.appendChild(firstItem.cloneNode(true));
-
-    return lastItem.offsetWidth;
   }
 
   isCloneItem() {
     return this.current === 0 || this.current === this.items.length - 1
   }
-
-  setCarouselSize() {
-    this.el.style.width = this.itemWidth;
-    this.el.style.height = this.itemHeight;
-  }
-  
-  setItemSize() { 
-    this.itemWidth = this.item.offsetWidth;
-    this.itemHeight = this.item.offsetHeight;
-  }
-
+  /*
   addCarouselClass() {
     this.cover.classList.add("carousel-cover");
     Array.from(this.items).forEach(el => el.classList.add("carousel-item"));
   }
+  */
 
   attachBtnEvent() {
     this.prevBtn.addEventListener("click", () => this.btnEventHandler("prev"));
@@ -81,90 +69,44 @@ class Carousel {
     this.cover.addEventListener("transitionend", () => this.isTransiting = false)
 
     Array.from(this.stepList).forEach((el, i) => {
-      el.dataset.id = (this.option.infinite) ? i+1 : i;
+      el.dataset.id = (this.option.infinite) ? i + 1 : i;
       el.addEventListener("click", this.stepEventHandler.bind(this));
     })
   }
-  
+
   btnEventHandler(direction) {
-    (direction == "prev") ? this.movePrev() : this.moveNext();
-  }
+    direction = direction === "prev" ? -1 : 1;
+    if (this.isTransiting) return;
 
-  movePrev() {
-    if(this.isTransiting) return;
+    this.current += direction;
 
-    this.current--;
-    this.setItemSize();
-    this.setCarouselSize();
-    
-    this.offset += this.itemWidth;
-    this.move();
+    this.offset -= this.itemWidth * direction;
+    this.animateMove(true);
     if (this.option.infinite) {
       if (this.isCloneItem()) {
-        this.offset -= this.coverWidth;
-        setTimeout(() => this.moveWithoutAnimation(), 500)
-        this.current += this.itemLength;
+        this.offset += this.itemWidth * this.itemLength * direction;
+        setTimeout(() => this.animateMove(false), this.option.duration);
+        this.current -= this.itemLength * direction;
       }
     } else {
       this.checkMovable();
-    } 
+    }
     this.toggleStepClass();
   }
 
-  moveNext() {
-    if(this.isTransiting) return;
-
-    this.current++;
-    this.setItemSize();
-    this.setCarouselSize();
-
-    this.offset -= this.itemWidth;
-    this.move();
-
-    if (this.option.infinite) {
-      if (this.isCloneItem()) {
-        this.offset += this.coverWidth;
-        setTimeout(() => this.moveWithoutAnimation(), 500)
-        this.current -= this.itemLength;
-      }
-    } else {
-      this.checkMovable();
-    }
-    this.toggleStepClass()
-  }
-
-  move() {
-    this.isTransiting = true;
-
-    this.cover.style.transition = `transform ${this.option.duration}ms ${this.option.easing}`;
+  animateMove(animate) {
+    this.isTransiting = animate;
     this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
-  }
-
-  moveWithoutAnimation() {
-    this.isTransiting = false
-    
-    this.cover.style.transition = 'none';
-    this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
-
+    this.cover.style.transition = (animate) ? `transform ${this.option.duration}ms ${this.option.easing}` : 'none';
   }
 
   stepEventHandler(evt) {
-    let curId = evt.target.dataset.id;
-    let totalOffset = 0
-    while(curId != this.current) {
-      if (curId < this.current) {
-        totalOffset += this.items[curId].offsetWidth;
-        curId++;
-      }
-      else {
-        totalOffset -= this.items[curId].offsetWidth
-        curId--;
-      }
-    }
-    this.offset = this.offset + totalOffset;
-    this.current = evt.target.dataset.id;
-    this.move();
-    
+    let curId = Number(evt.target.dataset.id);
+
+    this.offset = this.offset - (this.itemWidth * (curId - this.current));
+    this.current = curId;
+    this.animateMove(true);
+
     if (!this.option.infinite) {
       this.checkMovable();
     }
@@ -186,13 +128,8 @@ class Carousel {
     Array.from(this.stepList).forEach(el => {
       el.classList.remove("active");
     })
-    this.stepList[(this.option.infinite) ? this.current - 1: this.current].classList.add("active")
+    this.stepList[(this.option.infinite) ? this.current - 1 : this.current].classList.add("active")
+
   }
 }
 
-const carousel = new Carousel(".benefit-content", {
-  infinite: true,
-  prevBtn: ".arrow-left",
-  nextBtn: ".arrow-right",
-  stepList: ".benefit-list"
-});
