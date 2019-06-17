@@ -1,5 +1,3 @@
-// const helper = require('./helper');
-import helper from './helper.js';
 
 class Carousel {
   constructor(){
