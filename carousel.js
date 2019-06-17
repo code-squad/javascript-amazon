@@ -77,9 +77,8 @@ class Carousel {
 
   isMovable() {
     if (this.config.infinite) return;
-    this.prevButton.disabled = this.currentItem === 1 ? true : false;
-    this.nextButton.disabled =
-      this.currentItem === this.itemLength ? true : false;
+    this.prevButton.disabled = !!this.currentItem;
+    this.nextButton.disabled = !!(this.currentItem === this.itemLength)
   }
 
   move({ to, from, getId }) {
