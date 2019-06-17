@@ -1,0 +1,19 @@
+{
+  "name": "javascript-amazon",
+  "version": "1.0.0",
+  "description": "레벨3",
+  "main": "index.js",
+  "scripts": {
+    "scss": "sass --watch scss:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fed-gren/javascript-amazon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fed-gren/javascript-amazon/issues"
+  }
+}
