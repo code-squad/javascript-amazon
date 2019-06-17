@@ -1,26 +1,34 @@
-
 class Carousel {
-  constructor(){
+  constructor({
+      header,
+      headerItems,
+      carousel,
+      container,
+      item,
+      items,
+      prev,
+      next,
+      config = {duration:200, easing:"ease-out"},
+      offset = 0,
+      currentItem = 1,
+    }){
     // header
-    this.header = document.querySelector('.carousel__header');
-    this.cards = [...this.header.querySelectorAll('.carousel__header--item')]
+    this.header = document.querySelector(header);
+    this.headerItems = [...this.header.querySelectorAll(headerItems)]
 
-    // carousel__content
-    this.carousel = document.querySelector('.carousel__content');
-    this.container = this.carousel.querySelector('.carousel__container');
-    this.item = this.carousel.querySelector('.carousel__item');
-    this.items = this.carousel.querySelectorAll('.carousel__item');
-    this.prev = document.querySelector('.prev');
-    this.next = document.querySelector('.next');   
+    // carousel__main
+    this.carousel = document.querySelector(carousel);
+    this.container = this.carousel.querySelector(container);
+    this.item = this.carousel.querySelector(item);
+    this.items = this.carousel.querySelectorAll(items);
+    this.prev = document.querySelector(prev);
+    this.next = document.querySelector(next);   
     this.itemWidth = this.item.offsetWidth;
-    this.offset = 0;
-    this.currentItem = 1;
+    this.offset = offset;
+    this.currentItem = currentItem;
     this.itemsLength = this.items.length;
     // 설정 정보
-    this.config = {
-      duration: 200,
-      easing: 'ease-out'
-    };
+    this.config = config
   }
   init() {
     /*
@@ -39,35 +47,35 @@ class Carousel {
   attachEvent() {
     this.prev.addEventListener('click', this.moveToPrev.bind(this));
     this.next.addEventListener('click', this.moveToNext.bind(this));
-    this.cards.forEach(card => card.addEventListener('click', this.cardClick.bind(this)))
+    this.headerItems.forEach(card => card.addEventListener('click', this.cardClick.bind(this)))
   }
   moveToNext() {
     // carousel-container 요소를 왼쪽으로 이동시키기 위해 이동거리를 캐러셀 아이템의 너비만큼 감소시킨다.
     this.offset -= this.itemWidth;
     // 다음 슬라이더로 이동하기 위해 carousel-container 요소를 왼쪽으로 이동시킨다.
-    this.move();
+    this.moveMain();
     // 현재 표시 중인 캐러셀 아이템 인덱스(1~4)
     this.currentItem++;
     // prev, next 버튼 활성화/비활성화 결정
     // this.checkMovable();
     if(this.isClone()) this.fakeMove();
     // ** added by Q
-    this.movePopUp(this.currentItem-1);
+    this.moveHeader(this.currentItem-1);
   }
   moveToPrev() {
     // carousel-container 요소를 오른쪽으로 이동시키기 위해 이동거리를 캐러셀 아이템의 너비만큼 증시킨다.
     this.offset += this.itemWidth;
     // 이전 슬라이더로 이동하기 위해 carousel-container 요소를 오른쪽으로 이동시킨다.
-    this.move();
+    this.moveMain();
     // 현재 표시 중인 캐러셀 아이템 인덱스(1~4)
     this.currentItem--;
     // prev, next 버튼 활성화/비활성화 결정
     // this.checkMovable();
     if(this.isClone()) this.fakeMove();
     // ** added by Q
-    this.movePopUp(this.currentItem-1);
+    this.moveHeader(this.currentItem-1);
   }
-  move() {
+  moveMain() {
     this.container.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
     this.container.style.transform = `translate3D(${this.offset}px, 0, 0)`;
   }
@@ -104,24 +112,22 @@ class Carousel {
     // ** added by Q
     const currentIndex = this.currentItem - 1;
     this.offset += this.itemWidth * (currentIndex - clickedIndex);
-    this.movePopUp(clickedIndex);
+    this.moveHeader(clickedIndex);
     // **
-    this.move();
+    this.moveMain();
     this.currentItem = clickedIndex + 1;
   } 
   // ** added by Q
-  movePopUp(clickedIndex) {
+  moveHeader(clickedIndex) {
     this.header.querySelector(".active").classList.remove("active");
-    this.cards[clickedIndex].classList.add("active");
+    this.headerItems[clickedIndex].classList.add("active");
   }
   
   getCardIndex(element) {
-    return this.cards.indexOf(element)
+    return this.headerItems.indexOf(element)
   }
 
 
 }
 
-const carousel = new Carousel();
-carousel.init()
-
+export default Carousel;
