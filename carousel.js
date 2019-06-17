@@ -25,6 +25,10 @@ class Carousel {
     return Object.assign(this.defaultConfig, config);
   }
 
+  setOpacity(el, val) {
+    el.style.opacity = val;
+  }
+
   init() {
     const cardWrapper = this.container.querySelector(".card-wrapper");
     cardWrapper.style.width = `${this.itemWidth}px`;
@@ -37,7 +41,7 @@ class Carousel {
     } else {
       this.isMovable();
     }
-    this.container.style.opacity = 1;
+    this.setOpacity(this.container, 1);
   }
 
   cloneVirtualCard() {
