@@ -1,18 +1,20 @@
+import className from "./carouselClassName.js";
+
 class Carousel {
   constructor(config) {
     //DOM
-    this.container = document.querySelector(".container");
-    this.navItems = this.container.querySelectorAll(".nav-item");
-    this.cardSlider = this.container.querySelector(".card-slider");
-    this.prevButton = this.container.querySelector(".prev");
-    this.nextButton = this.container.querySelector(".next");
+    this.container = document.querySelector(className.container);
+    this.navItems = this.container.querySelectorAll(className.navItem);
+    this.cardSlider = this.container.querySelector(className.cardSlider);
+    this.prevButton = this.container.querySelector(className.prev);
+    this.nextButton = this.container.querySelector(className.next);
 
     // values
     this.initIndex = 0;
     this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
     this.offset = 0;
     this.currentItem = this.initIndex + 1;
-    this.itemLength = this.cardSlider.querySelectorAll(".card").length;
+    this.itemLength = this.cardSlider.children.length;
 
     this.defaultConfig = {
       infinite: true
@@ -30,7 +32,8 @@ class Carousel {
   }
 
   init() {
-    const cardWrapper = this.container.querySelector(".card-wrapper");
+    const cardWrapper = this.container.querySelector(className.cardWrapper);
+
     cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
     if (this.config.infinite) {
@@ -47,6 +50,7 @@ class Carousel {
   cloneVirtualCard() {
     const firstCard = this.cardSlider.firstElementChild.cloneNode(true);
     const lastCard = this.cardSlider.lastElementChild.cloneNode(true);
+
     this.cardSlider.insertAdjacentElement("afterbegin", lastCard);
     this.cardSlider.insertAdjacentElement("beforeend", firstCard);
   }
@@ -77,23 +81,25 @@ class Carousel {
 
   isMovable() {
     if (this.config.infinite) return;
+
     this.prevButton.disabled = !!this.currentItem;
     this.nextButton.disabled = !!(this.currentItem === this.itemLength)
   }
 
   move({ to, from, getId }) {
     const id = this.isEndOfCards(from) ? to : getId();
-    this.offset = this.config.infinite
-      ? -(this.itemWidth * id)
-      : -(this.itemWidth * (id - 1));
+    const dist = this.config.infinite
+    ? -(this.itemWidth * id)
+    : -(this.itemWidth * (id - 1));
+
     this.currentItem = id;
     this.isMovable();
     this.selectNav();
-    this.moveSlider();
+    this.moveSlider(dist);
   }
 
-  moveSlider() {
-    this.cardSlider.style.transform = `translateX(${this.offset}px)`;
+  moveSlider(dist) {
+    this.cardSlider.style.transform = `translateX(${dist}px)`;
   }
 
   isEndOfCards(from) {
@@ -102,8 +108,8 @@ class Carousel {
 
   selectNav() {
     this.navItems.forEach((item, index) => {
-      if (index + 1 === this.currentItem) item.classList.add("selected");
-      else item.classList.remove("selected");
+      if (index + 1 === this.currentItem) item.classList.add(className.selected);
+      else item.classList.remove(className.selected);
     });
   }
 }
