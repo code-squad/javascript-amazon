@@ -30,10 +30,6 @@
     cursor: pointer;
 }
 
-/* .carousel__header--item:hover {
-    transform: scale(1.1);
-} */
-
 .active {
     transform: scale(1.1);
 }
@@ -72,7 +68,6 @@
     margin-top: 10px;
     display: flex;
     justify-content: center;
-    /* display: none; */
 }
 
 .carousel__item--image img {
