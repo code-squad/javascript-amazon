@@ -3,15 +3,13 @@ class Carousel {
     //DOM
     this.container = document.querySelector(".container");
     this.navItems = this.container.querySelectorAll(".nav-item");
-    this.cardWrapper = this.container.querySelector(".card-wrapper");
     this.cardSlider = this.container.querySelector(".card-slider");
-    this.card = this.cardSlider.querySelector(".card");
     this.prevButton = this.container.querySelector(".prev");
     this.nextButton = this.container.querySelector(".next");
 
     // values
     this.initIndex = 0;
-    this.itemWidth = this.card.getBoundingClientRect().width;
+    this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
     this.offset = 0;
     this.currentItem = this.initIndex + 1;
     this.itemLength = this.cardSlider.querySelectorAll(".card").length;
@@ -28,7 +26,8 @@ class Carousel {
   }
 
   init() {
-    this.cardWrapper.style.width = `${this.itemWidth}px`;
+    const cardWrapper = this.container.querySelector(".card-wrapper");
+    cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
     if (this.config.infinite) {
       this.cloneVirtualCard();
