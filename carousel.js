@@ -15,6 +15,7 @@ class Carousel {
     this.offset = 0;
     this.currentItem = this.initIndex + 1;
     this.itemLength = this.cardSlider.children.length;
+    this.isMoving = false;
 
     this.defaultConfig = {
       infinite: true,
@@ -70,6 +71,7 @@ class Carousel {
     });
 
     this.cardSlider.addEventListener("transitionend", () => {
+      this.isMoving = false
       if (this.isEndOfCards()) {
         this.moveWithoutTransition()
       }
@@ -84,6 +86,9 @@ class Carousel {
   }
 
   move({ getId }) {
+    if (this.isMoving) return;
+
+    this.isMoving = true
     const id = getId();
     const dist = this.config.infinite
       ? -(this.itemWidth * id)
@@ -101,6 +106,7 @@ class Carousel {
       getId: () => (this.currentItem === 0 ? this.itemLength : 1)
     });
     setTimeout(() => {
+      this.isMoving = false;
       this.setTransition(this.cardSlider, true);
     }, 0);
   }
@@ -110,7 +116,6 @@ class Carousel {
   }
 
   isEndOfCards() {
-    // debugger;
     return (
       this.config.infinite &&
       (this.currentItem === 0 || this.currentItem === this.itemLength + 1)
