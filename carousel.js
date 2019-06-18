@@ -41,7 +41,7 @@ class Carousel {
 
     if (this.config.infinite) {
       this.cloneVirtualCard();
-      this.moveWithoutTransition()
+      this.moveWithoutTransition();
     } else {
       this.isMovable();
     }
@@ -71,9 +71,9 @@ class Carousel {
     });
 
     this.cardSlider.addEventListener("transitionend", () => {
-      this.isMoving = false
+      this.isMoving = false;
       if (this.isEndOfCards()) {
-        this.moveWithoutTransition()
+        this.moveWithoutTransition();
       }
     });
   }
@@ -87,14 +87,14 @@ class Carousel {
 
   move({ getId }) {
     if (this.isMoving) return;
+    this.isMoving = true;
 
-    this.isMoving = true
     const id = getId();
     const dist = this.config.infinite
       ? -(this.itemWidth * id)
       : -(this.itemWidth * (id - 1));
-
     this.currentItem = id;
+
     this.isMovable();
     this.selectNav();
     this.moveSlider(dist);
@@ -116,10 +116,15 @@ class Carousel {
   }
 
   isEndOfCards() {
-    return (
-      this.config.infinite &&
-      (this.currentItem === 0 || this.currentItem === this.itemLength + 1)
-    );
+    return this.isFirst() || this.isLast();
+  }
+
+  isFirst() {
+    return this.currentItem === 0;
+  }
+
+  isLast() {
+    return this.currentItem === this.itemLength + 1;
   }
 
   setTransition(el, val) {
@@ -132,16 +137,20 @@ class Carousel {
     this.navItems.forEach((item, index, array) => {
       if (index + 1 === this.currentItem) {
         item.classList.add(className.selected);
-      } else if (this.currentItem === 0) {
-        array[this.currentItem].classList.remove(className.selected);
-        array[this.itemLength - 1].classList.add(className.selected);
-      } else if (this.currentItem === this.itemLength + 1) {
-        array[this.itemLength - 1].classList.remove(className.selected);
-        array[0].classList.add(className.selected);
+      } else if (this.isEndOfCards()) {
+        const { addIndex, removeIndex } = this.getChangingIndex();
+        array[removeIndex].classList.remove(className.selected);
+        array[addIndex].classList.add(className.selected);
       } else {
         item.classList.remove(className.selected);
       }
     });
+  }
+
+  getChangingIndex() {
+    return this.isFirst()
+      ? { addIndex: this.itemLength - 1, removeIndex: this.currentItem }
+      : { addIndex: 0, removeIndex: this.itemLength - 1 };
   }
 }
 
