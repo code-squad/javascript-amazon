@@ -17,7 +17,8 @@ class Carousel {
     this.itemLength = this.cardSlider.children.length;
 
     this.defaultConfig = {
-      infinite: true
+      infinite: true,
+      duration: 500
     };
 
     this.config = this.mergeConfig(config);
@@ -36,14 +37,14 @@ class Carousel {
 
     cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
+
     if (this.config.infinite) {
       this.cloneVirtualCard();
-      this.move({
-        getId: () => this.initIndex + 1
-      });
+      this.moveWithoutTransition()
     } else {
       this.isMovable();
     }
+
     this.setOpacity(this.container, 1);
   }
 
@@ -57,25 +58,21 @@ class Carousel {
 
   attatchEvent() {
     this.prevButton.addEventListener("click", () =>
-      this.move({
-        to: this.itemLength,
-        from: 1,
-        getId: () => this.currentItem - 1
-      })
+      this.move({ getId: () => this.currentItem - 1 })
     );
     this.nextButton.addEventListener("click", () =>
-      this.move({
-        to: 1,
-        from: this.itemLength,
-        getId: () => this.currentItem + 1
-      })
+      this.move({ getId: () => this.currentItem + 1 })
     );
     this.navItems.forEach((item, index) => {
       item.addEventListener("click", () =>
-        this.move({
-          getId: () => index + 1
-        })
+        this.move({ getId: () => index + 1 })
       );
+    });
+
+    this.cardSlider.addEventListener("transitionend", () => {
+      if (this.isEndOfCards()) {
+        this.moveWithoutTransition()
+      }
     });
   }
 
@@ -83,14 +80,14 @@ class Carousel {
     if (this.config.infinite) return;
 
     this.prevButton.disabled = !!this.currentItem;
-    this.nextButton.disabled = !!(this.currentItem === this.itemLength)
+    this.nextButton.disabled = !!(this.currentItem === this.itemLength);
   }
 
-  move({ to, from, getId }) {
-    const id = this.isEndOfCards(from) ? to : getId();
+  move({ getId }) {
+    const id = getId();
     const dist = this.config.infinite
-    ? -(this.itemWidth * id)
-    : -(this.itemWidth * (id - 1));
+      ? -(this.itemWidth * id)
+      : -(this.itemWidth * (id - 1));
 
     this.currentItem = id;
     this.isMovable();
@@ -98,18 +95,47 @@ class Carousel {
     this.moveSlider(dist);
   }
 
+  moveWithoutTransition() {
+    this.setTransition(this.cardSlider, false);
+    this.move({
+      getId: () => (this.currentItem === 0 ? this.itemLength : 1)
+    });
+    setTimeout(() => {
+      this.setTransition(this.cardSlider, true);
+    }, 0);
+  }
+
   moveSlider(dist) {
     this.cardSlider.style.transform = `translateX(${dist}px)`;
   }
 
-  isEndOfCards(from) {
-    return this.config.infinite && this.currentItem === from;
+  isEndOfCards() {
+    // debugger;
+    return (
+      this.config.infinite &&
+      (this.currentItem === 0 || this.currentItem === this.itemLength + 1)
+    );
+  }
+
+  setTransition(el, val) {
+    val
+      ? (el.style.transition = `transform ${this.config.duration}ms`)
+      : (el.style.transition = `none`);
   }
 
   selectNav() {
-    this.navItems.forEach((item, index) => {
-      if (index + 1 === this.currentItem) item.classList.add(className.selected);
-      else item.classList.remove(className.selected);
+    this.navItems.forEach((item, index, array) => {
+      if (index + 1 === this.currentItem) {
+        item.classList.add(className.selected);
+      } else if (this.currentItem === 0) {
+        array[this.currentItem].classList.remove(className.selected);
+        array[this.itemLength - 1].classList.add(className.selected);
+      } else if (this.currentItem === this.itemLength + 1) {
+        array[this.itemLength - 1].classList.remove(className.selected);
+        array[0].classList.add(className.selected);
+      } else {
+        item.classList.remove(className.selected);
+      }
     });
   }
 }
