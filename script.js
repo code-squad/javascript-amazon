@@ -1,94 +1,183 @@
-let carousel = document.querySelector(".carousel");
-let carouselWidth = carousel.offsetWidth;
-let carouselInitCnt = carousel.children.length;
+class Pagination {
+  constructor(carousel) {
+    this.carousel = carousel;
+    this.navigation = document.querySelector(".navigation-list");
+    this.navigationItems = this.navigation.children;
+    this.navigationCnt = this.navigation.children.length;
+  }
 
-// 네비게이션
-let navigation = document.querySelector(".navigation-list");
-let navigationCnt = navigation.children.length;
+  init() {
+    let navoption = true;
+    this.carousel.setAttrToElement(
+      this.navigationItems,
+      "nav-index",
+      navoption
+    );
 
-for (let i = 0; i < navigationCnt; i++) {
-  navigation.children[i].setAttribute("nav-index", i + 1);
+    this.attachEventToPagination();
+  }
+
+  attachEventToPagination() {
+    this.navigation.addEventListener("click", e => {
+      let navIndex = e.target.getAttribute("nav-index");
+      let navPointer = -(this.carousel.carouselWidth * navIndex);
+      let currentactiveIndex = this.carousel.getActiveItem();
+
+      this.carousel.updateActiveItem(currentactiveIndex, navIndex, true);
+      navPointer = -(this.carousel.carouselWidth * navIndex);
+      this.carousel.moveCarousel(navPointer, true);
+    });
+  }
 }
 
-navigation.addEventListener("click", function(e) {
-  let navIndex = e.target.getAttribute("nav-index");
-  let navPointer = -(carouselWidth * navIndex);
-  let currentItem = carousel.querySelector(".active");
-  currentItem.classList.remove("active");
-  carousel.children[navIndex].classList.add("active");
-  carousel.style.left = `${navPointer}px`;
-  currentPointer = navPointer;
-});
+class Carousel {
+  constructor(input, option) {
+    this.carousel = document.querySelector(input);
+    this.carouselWrap = this.carousel.parentNode;
+    this.carouselItems = this.carousel.children;
+    this.carouselWidth = this.carousel.offsetWidth;
+    this.carouselItemsInitCnt = this.carouselItems.length;
+    this.carouselItemsCnt = this.carouselItems.length;
+    this.currentPointer = -this.carouselWidth;
+    this.option = option;
 
-let carouselFullWidth = carouselWidth * carouselInitCnt;
-carousel.style.width = `${carouselFullWidth}px`;
-carousel.classList.add("flex");
+    this.prevBtn = document.querySelector(".btn-prev");
+    this.nextBtn = document.querySelector(".btn-next");
+  }
 
-for (let i = 0; i < carouselInitCnt; i += 1) {
-  carousel.children[i].setAttribute("data-index", i + 1);
+  test() {
+    console.log("pageniation!!!!");
+  }
+
+  init() {
+    if (this.option.infinite) {
+      this.appendCloneItem(
+        this.carousel,
+        this.carouselItems[0],
+        this.carouselItems[this.carouselItemsCnt - 1]
+      );
+      this.carouselItemsCnt = this.carouselItems.length;
+    }
+    let carouselFullWidth = this.calcCarouselFullWidth();
+    this.setCarouselFullWidth(carouselFullWidth);
+    this.setAttrToElement(this.carouselItems, "data-index");
+
+    if (this.option.infinite) {
+      this.carousel.style.left = `-${this.carouselWidth}px`;
+      this.carouselItems[1].classList.add("active");
+    } else {
+      this.carouselItems[0].classList.add("active");
+    }
+
+    this.attchEventToBtn();
+  }
+
+  appendCloneItem(parentNode, firstItem, lastItem) {
+    let firstCloneItem = firstItem.cloneNode(true);
+    let lastCloneItem = lastItem.cloneNode(true);
+
+    parentNode.prepend(lastCloneItem);
+    parentNode.appendChild(firstCloneItem);
+
+    this.addElementToClass(firstCloneItem, "clone");
+    this.addElementToClass(lastCloneItem, "clone");
+  }
+
+  addElementToClass(elementName, className) {
+    elementName.classList.add(className);
+  }
+
+  calcCarouselFullWidth() {
+    return this.carouselWidth * this.carouselItemsCnt;
+  }
+
+  setCarouselFullWidth(input) {
+    this.carousel.style.width = `${input}px`;
+    this.addElementToClass(this.carousel, "flex");
+  }
+
+  setAttrToElement(elementName, attrName, navoption = false) {
+    let cnt = elementName.length;
+    for (let i = 0; i < cnt; i += 1) {
+      if (this.option.infinite && navoption === false) {
+        elementName[i].setAttribute(attrName, i);
+      } else {
+        elementName[i].setAttribute(attrName, i + 1);
+      }
+    }
+  }
+
+  getActiveItem() {
+    let active = document.querySelector(".active");
+    return active.getAttribute("data-index");
+  }
+
+  updateActiveItem(activeIndex, moveValue, navoption = false) {
+    this.carouselItems[activeIndex].classList.remove("active");
+    if (navoption === true) {
+      this.carouselItems[moveValue].classList.add("active");
+    } else {
+      this.carouselItems[Number(activeIndex) + moveValue].classList.add(
+        "active"
+      );
+    }
+    let newActiveItem = document.querySelector(".active");
+    return newActiveItem;
+  }
+
+  updateCloneActiveItem(newActiveItem, value) {
+    newActiveItem.classList.remove("active");
+    this.carouselItems[value].classList.add("active");
+  }
+
+  moveCarousel(moveValue, navoption) {
+    if (navoption === true) {
+      this.currentPointer = moveValue;
+    } else {
+      this.currentPointer += moveValue * this.carouselWidth;
+    }
+    this.carousel.style.left = `${this.currentPointer}px`;
+  }
+
+  moveCloneCarousel(newPointerValue) {
+    this.carousel.style.left = `-${newPointerValue}px`;
+    this.currentPointer = -newPointerValue;
+  }
+
+  attchEventToBtn() {
+    this.prevBtn.addEventListener("click", () => {
+      let activeIndex = this.getActiveItem();
+      let newActiveItem = this.updateActiveItem(activeIndex, -1);
+      this.moveCarousel(1);
+
+      if (this.option.infinite) {
+        if (newActiveItem.classList.contains("clone")) {
+          this.updateCloneActiveItem(newActiveItem, this.carouselItemsInitCnt);
+          let newPointerValue = this.carouselWidth * this.carouselItemsInitCnt;
+          this.moveCloneCarousel(newPointerValue);
+        }
+      }
+    });
+    this.nextBtn.addEventListener("click", () => {
+      let activeIndex = this.getActiveItem();
+      let newActiveItem = this.updateActiveItem(activeIndex, 1);
+      this.moveCarousel(-1);
+
+      if (this.option.infinite) {
+        if (newActiveItem.classList.contains("clone")) {
+          this.updateCloneActiveItem(newActiveItem, 1);
+          let newPointerValue = this.carouselWidth;
+          this.moveCloneCarousel(newPointerValue);
+        }
+      }
+    });
+  }
 }
 
-let firstItem = carousel.children[0];
-let lastItem = carousel.children[carouselInitCnt - 1];
-
-let firstCloneItem = firstItem.cloneNode(true);
-let lastCloneItem = lastItem.cloneNode(true);
-
-carousel.prepend(lastCloneItem);
-carousel.appendChild(firstCloneItem);
-carousel.children[1].classList.add("active");
-
-//carousel.children[1].setAttribute("data-active", true);
-
-firstCloneItem.classList.add("clone");
-lastCloneItem.classList.add("clone");
-
-let carouselCnt = carousel.children.length;
-carouselFullWidth = carouselWidth * carouselCnt;
-carousel.style.width = `${carouselFullWidth}px`;
-
-lastCloneItem.setAttribute("data-index", 0);
-firstCloneItem.setAttribute("data-index", carouselCnt - 1);
-
-carousel.style.left = `-${carouselWidth}px`;
-
-let prevBtn = document.querySelector(".btn-prev");
-let nextBtn = document.querySelector(".btn-next");
-
-let currentPointer = -carouselWidth;
-prevBtn.addEventListener("click", function() {
-  let active = document.querySelector(".active");
-  let activeIndex = active.getAttribute("data-index");
-  carousel.children[Number(activeIndex) - 1].classList.add("active");
-  currentPointer += carouselWidth;
-  carousel.style.left = `${currentPointer}px`;
-
-  carousel.children[activeIndex].classList.remove("active");
-  let newActive = carousel.children[Number(activeIndex) - 1];
-  if (newActive.classList.contains("clone")) {
-    carousel.style.left = `-${carouselWidth * carouselInitCnt}px`;
-    newActive.classList.remove("active");
-    carousel.children[carouselInitCnt].classList.add("active");
-    currentPointer = -(carouselWidth * carouselInitCnt);
-  }
+const carousel = new Carousel(".carousel", {
+  infinite: true
 });
 
-nextBtn.addEventListener("click", function() {
-  let active = document.querySelector(".active");
-  let activeIndex = active.getAttribute("data-index");
-
-  carousel.children[Number(activeIndex) + 1].classList.add("active");
-
-  let newActive = carousel.children[Number(activeIndex) + 1];
-  currentPointer -= carouselWidth;
-  carousel.style.left = `${currentPointer}px`;
-
-  carousel.children[activeIndex].classList.remove("active");
-
-  if (newActive.classList.contains("clone")) {
-    carousel.style.left = `-${carouselWidth}px`;
-    newActive.classList.remove("active");
-    carousel.children[1].classList.add("active");
-    currentPointer = -carouselWidth;
-  }
-});
+const pagination = new Pagination(carousel);
+carousel.init();
+pagination.init();
