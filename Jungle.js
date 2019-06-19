@@ -1,4 +1,4 @@
-import Carousel from "./carousel.js";
+import Carousel from "./components/Carousel.js";
 
 class Jungle {
   Carousel(classes, options) {

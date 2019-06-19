@@ -1,12 +1,13 @@
 import className from "./carouselClassName.js";
+import Navigation from "./Navigation.js";
 
 class Carousel {
-  constructor({container, slider}, config) {
+  constructor({container, slider, nav}, config) {
     //DOM
     this.container = document.querySelector(container);
     this.cardSlider = this.container.querySelector(slider);
 
-    this.navItems = this.container.querySelectorAll(className.navItem);
+    this.makeNav(nav);
     this.prevButton = this.container.querySelector(className.prev);
     this.nextButton = this.container.querySelector(className.next);
 
@@ -24,6 +25,11 @@ class Carousel {
     };
 
     this.config = this.mergeConfig(config);
+  }
+
+  makeNav(className) {
+    if(!className) return;
+    return new Navigation(className);
   }
 
   mergeConfig(config) {
@@ -65,11 +71,6 @@ class Carousel {
     this.nextButton.addEventListener("click", () =>
       this.move({ getId: () => this.currentItem + 1 })
     );
-    this.navItems.forEach((item, index) => {
-      item.addEventListener("click", () =>
-        this.move({ getId: () => index + 1 })
-      );
-    });
 
     this.cardSlider.addEventListener("transitionend", () => {
       this.isMoving = false;
@@ -97,7 +98,6 @@ class Carousel {
     this.currentItem = id;
 
     this.isMovable();
-    this.selectNav();
     this.moveSlider(dist);
   }
 
@@ -132,20 +132,6 @@ class Carousel {
     val
       ? (el.style.transition = `transform ${this.config.duration}ms cubic-bezier(0.240, -0.010, 0.400, 1.650)`)
       : (el.style.transition = `none`);
-  }
-
-  selectNav() {
-    this.navItems.forEach((item, index, array) => {
-      if (index + 1 === this.currentItem) {
-        item.classList.add(className.selected);
-      } else if (this.isEndOfCards()) {
-        const { addIndex, removeIndex } = this.getChangingIndex();
-        array[removeIndex].classList.remove(className.selected);
-        array[addIndex].classList.add(className.selected);
-      } else {
-        item.classList.remove(className.selected);
-      }
-    });
   }
 
   getChangingIndex() {
