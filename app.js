@@ -1,6 +1,7 @@
-import Carousel from "./carousel.js";
+import Jungle from "./Jungle.js";
+
+const jungle = new Jungle();
 
 window.onload = () => {
-  const carousel = new Carousel();
-  carousel.init();
+  const carousel = jungle.Carousel({container : ".container", slider: ".card-slider"});
 };

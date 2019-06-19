@@ -1,11 +1,12 @@
 import className from "./carouselClassName.js";
 
 class Carousel {
-  constructor(config) {
+  constructor({container, slider}, config) {
     //DOM
-    this.container = document.querySelector(className.container);
+    this.container = document.querySelector(container);
+    this.cardSlider = this.container.querySelector(slider);
+
     this.navItems = this.container.querySelectorAll(className.navItem);
-    this.cardSlider = this.container.querySelector(className.cardSlider);
     this.prevButton = this.container.querySelector(className.prev);
     this.nextButton = this.container.querySelector(className.next);
 
@@ -19,7 +20,7 @@ class Carousel {
 
     this.defaultConfig = {
       infinite: true,
-      duration: 500
+      duration: 300
     };
 
     this.config = this.mergeConfig(config);
@@ -129,7 +130,7 @@ class Carousel {
 
   setTransition(el, val) {
     val
-      ? (el.style.transition = `transform ${this.config.duration}ms`)
+      ? (el.style.transition = `transform ${this.config.duration}ms cubic-bezier(0.240, -0.010, 0.400, 1.650)`)
       : (el.style.transition = `none`);
   }
 
