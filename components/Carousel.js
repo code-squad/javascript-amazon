@@ -1,13 +1,12 @@
 import className from "./carouselClassName.js";
-import Navigation from "./Navigation.js";
+import controller from "./controller.js";
 
 class Carousel {
-  constructor({container, slider, nav}, config) {
+  constructor({container, slider}, config) {
     //DOM
     this.container = document.querySelector(container);
     this.cardSlider = this.container.querySelector(slider);
 
-    this.makeNav(nav);
     this.prevButton = this.container.querySelector(className.prev);
     this.nextButton = this.container.querySelector(className.next);
 
@@ -25,11 +24,6 @@ class Carousel {
     };
 
     this.config = this.mergeConfig(config);
-  }
-
-  makeNav(className) {
-    if(!className) return;
-    return new Navigation(className);
   }
 
   mergeConfig(config) {
@@ -53,6 +47,8 @@ class Carousel {
       this.isMovable();
     }
 
+    controller.carousel.regist(this.move.bind(this));
+
     this.setOpacity(this.container, 1);
   }
 
@@ -65,12 +61,17 @@ class Carousel {
   }
 
   attatchEvent() {
-    this.prevButton.addEventListener("click", () =>
-      this.move({ getId: () => this.currentItem - 1 })
+    this.prevButton.addEventListener("click", () => {
+      this.move({ getId: () => this.currentItem - 1 });
+      const id = this.isFirst() ? this.itemLength : this.currentItem;
+      controller.carousel.sendId(id);
+    }
     );
-    this.nextButton.addEventListener("click", () =>
-      this.move({ getId: () => this.currentItem + 1 })
-    );
+    this.nextButton.addEventListener("click", () => {
+      this.move({ getId: () => this.currentItem + 1 });
+      const id = this.isLast() ? 1 : this.currentItem;
+      controller.carousel.sendId(id);
+    });
 
     this.cardSlider.addEventListener("transitionend", () => {
       this.isMoving = false;

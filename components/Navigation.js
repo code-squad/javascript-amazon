@@ -1,44 +1,39 @@
+import controller from "./controller.js";
+
 class Navigation {
-  constructor(className) {
-    this.navItems = document.querySelectorAll(className);
+  constructor({ nav }) {
+    this.navItems = document.querySelectorAll(nav);
 
     this.itemLength = this.navItems.length;
-    this.selectedId = 0;
+    this.selectedId = 1;
   }
 
   init() {
     this.attatchEvent();
+    this.setItem(this.selectedId);
+    controller.navigation.regist(this.setItem.bind(this));
   }
 
   attatchEvent() {
     this.navItems.forEach((item, index) => {
-      item.addEventListener("click", () =>
-        this.move({ getId: () => index + 1 })
-      );
+      item.addEventListener("click", () => {
+        const id = index + 1;
+        this.setItem(id);
+        controller.navigation.sendId(id);
+      });
     });
   }
 
   setItem(id) {
     this.selectedId = id;
-    selectNav();
+    this.selectNav();
   }
 
   selectNav() {
-    // this.navItems.forEach((item, index, array) => {
-    //   if (index + 1 === this.selectedId) {
-    //     item.classList.add(className.selected);
-    //   } else if (this.isEndOfCards()) {
-    //     const { addIndex, removeIndex } = this.getChangingIndex();
-    //     array[removeIndex].classList.remove(className.selected);
-    //     array[addIndex].classList.add(className.selected);
-    //   } else {
-    //     item.classList.remove(className.selected);
-    //   }
-    // });
-    this.navItems.forEach((item) => {
+    this.navItems.forEach(item => {
       item.classList.remove("selected");
     });
-    this.navItems[this.selectedId-1].classList.add("selected");
+    this.navItems[this.selectedId - 1].classList.add("selected");
   }
 }
 
