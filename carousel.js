@@ -18,26 +18,37 @@ class Carousel {
     };
   }
 
-  init() {
-    let itemsCount;
-    if (this.option.infinite) {
-      this.appendCloneItem(
-        this.carousel,
-        this.items[0],
-        this.items[this.itemsInitCount - 1]
-      );
-      itemsCount = this.items.length;
-    }
-    let carouselFullWidth = this.calcCarouselFullWidth(itemsCount);
-    this.setCarouselFullWidth(carouselFullWidth);
-    this.setAttrToElement(this.items, "data-index");
+  isInfinite() {
+    return this.option.infinite;
+  }
 
+  setCarouselItem() {
+    this.appendCloneItem(
+      this.carousel,
+      this.items[0],
+      this.items[this.itemsInitCount - 1]
+    );
+    return this.items.length;
+  }
+
+  setCarouselPosition() {
     if (this.option.infinite) {
       this.carousel.style.left = `-${this.width}px`;
       this.items[1].classList.add(this.config.active);
     } else {
       this.items[0].classList.add(this.config.active);
     }
+  }
+
+  init() {
+    let itemsCount = this.items.length;
+    if (this.option.infinite) {
+      itemsCount = this.setCarouselItem();
+    }
+
+    this.setCarouselFullWidth(itemsCount);
+    this.setAttrToElement(this.items, "data-index");
+    this.setCarouselPosition();
 
     this.attchEventToBtn();
   }
@@ -57,12 +68,9 @@ class Carousel {
     elementName.classList.add(className);
   }
 
-  calcCarouselFullWidth(itemsCount) {
-    return this.width * itemsCount;
-  }
-
-  setCarouselFullWidth(input) {
-    this.carousel.style.width = `${input}px`;
+  setCarouselFullWidth(itemsCount) {
+    let fullWidth = this.width * itemsCount;
+    this.carousel.style.width = `${fullWidth}px`;
     this.addElementToClass(this.carousel, "flex");
   }
 
