@@ -1,0 +1,20 @@
+{
+  "name": "javascript-amazon",
+  "version": "1.0.0",
+  "description": "레벨3",
+  "main": "app.js",
+  "scripts": {
+    "scss": "node-sass --watch src/scss --output src/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/park78951/javascript-amazon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/park78951/javascript-amazon/issues"
+  },
+  "homepage": "https://github.com/park78951/javascript-amazon#readme"
+}
