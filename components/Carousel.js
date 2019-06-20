@@ -1,4 +1,3 @@
-import className from "./carouselClassName.js";
 import controller from "./controller.js";
 
 class Carousel {
@@ -7,8 +6,8 @@ class Carousel {
     this.container = document.querySelector(container);
     this.cardSlider = this.container.querySelector(slider);
 
-    this.prevButton = this.container.querySelector(className.prev);
-    this.nextButton = this.container.querySelector(className.next);
+    this.prevButton = this.container.querySelector(".prev");
+    this.nextButton = this.container.querySelector(".next");
 
     // values
     this.initIndex = 0;
@@ -20,7 +19,8 @@ class Carousel {
 
     this.defaultConfig = {
       infinite: true,
-      duration: 300
+      duration: 300,
+      animation: 'cubic-bezier(0.240, -0.010, 0.400, 1.650)'
     };
 
     this.config = this.mergeConfig(config);
@@ -35,7 +35,7 @@ class Carousel {
   }
 
   init() {
-    const cardWrapper = this.container.querySelector(className.cardWrapper);
+    const cardWrapper = this.container.querySelector(".card-wrapper");
 
     cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
@@ -131,7 +131,7 @@ class Carousel {
 
   setTransition(el, val) {
     val
-      ? (el.style.transition = `transform ${this.config.duration}ms cubic-bezier(0.240, -0.010, 0.400, 1.650)`)
+      ? (el.style.transition = `transform ${this.config.duration}ms ${this.config.animation}`)
       : (el.style.transition = `none`);
   }
 
