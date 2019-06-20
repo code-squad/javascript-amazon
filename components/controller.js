@@ -1,16 +1,19 @@
 const controller = {
+  regist(fn) {
+    if (fn === undefined) return;
+    this.handler = fn;
+  },
+
   navigation: {
     handler: null,
     regist(fn) {
-      if(fn === undefined) return;
-      this.handler = fn;
+      controller.regist.call(this, fn);
     },
     sendId(id) {
-      console.log(id);
       controller.carousel.receiveId(id);
     },
     receiveId(id) {
-      if(this.handler === null) return;
+      if (this.handler === null) return;
       this.handler(id);
     }
   },
@@ -18,18 +21,16 @@ const controller = {
   carousel: {
     handler: null,
     regist(fn) {
-      if(fn === undefined) return;
-      this.handler = fn;
+      controller.regist.call(this, fn);
     },
     sendId(id) {
-      console.log(id);
       controller.navigation.receiveId(id);
     },
     receiveId(id) {
-      if(this.handler === null) return;
-      this.handler({getId:() => id});
+      if (this.handler === null) return;
+      this.handler({ getId: () => id });
     }
   }
-}
+};
 
 export default controller;
