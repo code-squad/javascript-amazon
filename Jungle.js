@@ -2,7 +2,7 @@ import Carousel from "./components/Carousel.js";
 import Navigation from "./components/Navigation.js";
 
 class Jungle {
-  Carousel(classes, options) {
+  createCarousel(classes, options) {
     const carousel = new Carousel(classes, options);
     carousel.init();
     return carousel;
