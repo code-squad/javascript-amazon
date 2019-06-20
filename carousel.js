@@ -75,7 +75,7 @@ class Carousel {
 
   getActiveItem() {
     let active = document.querySelector(".active");
-    return active.getAttribute("data-index");
+    return active.dataset.index;
   }
 
   updateActiveItem(activeIndex, moveValue, navoption = false) {

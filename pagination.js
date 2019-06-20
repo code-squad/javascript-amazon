@@ -12,7 +12,7 @@ class Pagination {
     let navoption = true;
     this.carousel.setAttrToElement(
       this.navigationItems,
-      "nav-index",
+      "data-nav-index",
       navoption
     );
 
@@ -21,7 +21,7 @@ class Pagination {
 
   attachEventToPagination() {
     this.navigation.addEventListener("click", e => {
-      let navIndex = e.target.getAttribute("nav-index");
+      let navIndex = e.target.dataset.navIndex;
       let navPointer = -(this.carousel.carouselWidth * navIndex);
       let currentactiveIndex = this.carousel.getActiveItem();
 
