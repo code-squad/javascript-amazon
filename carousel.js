@@ -1,34 +1,4 @@
-class Pagination {
-  constructor(carousel) {
-    this.carousel = carousel;
-    this.navigation = document.querySelector(".navigation-list");
-    this.navigationItems = this.navigation.children;
-    this.navigationCnt = this.navigation.children.length;
-  }
-
-  init() {
-    let navoption = true;
-    this.carousel.setAttrToElement(
-      this.navigationItems,
-      "nav-index",
-      navoption
-    );
-
-    this.attachEventToPagination();
-  }
-
-  attachEventToPagination() {
-    this.navigation.addEventListener("click", e => {
-      let navIndex = e.target.getAttribute("nav-index");
-      let navPointer = -(this.carousel.carouselWidth * navIndex);
-      let currentactiveIndex = this.carousel.getActiveItem();
-
-      this.carousel.updateActiveItem(currentactiveIndex, navIndex, true);
-      navPointer = -(this.carousel.carouselWidth * navIndex);
-      this.carousel.moveCarousel(navPointer, true);
-    });
-  }
-}
+"use strict";
 
 class Carousel {
   constructor(input, option) {
@@ -43,10 +13,6 @@ class Carousel {
 
     this.prevBtn = document.querySelector(".btn-prev");
     this.nextBtn = document.querySelector(".btn-next");
-  }
-
-  test() {
-    console.log("pageniation!!!!");
   }
 
   init() {
@@ -174,10 +140,4 @@ class Carousel {
   }
 }
 
-const carousel = new Carousel(".carousel", {
-  infinite: true
-});
-
-const pagination = new Pagination(carousel);
-carousel.init();
-pagination.init();
+export default Carousel;
