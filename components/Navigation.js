@@ -2,7 +2,7 @@ import controller from "./controller.js";
 
 class Navigation {
   constructor({ nav }) {
-    this.navItems = document.querySelectorAll(nav);
+    this.navItems = [...document.querySelector(nav).children];
 
     this.itemLength = this.navItems.length;
     this.selectedId = 1;
