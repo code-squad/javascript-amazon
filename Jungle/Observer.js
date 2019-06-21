@@ -3,19 +3,22 @@ class Observer {
     this.handlers = {};
   }
 
+  hasEvent(name) {
+    return (name in this.handlers);
+  }
+
   register(eventName, handler, context) {
-    let handlerArray = this.handlers[eventName];
-    if (handlerArray === undefined) {
-      handlerArray = this.handlers[eventName] = [];
-    }
-    handlerArray.push({ handler, context });
+    if (!this.hasEvent(eventName)) this.handlers[eventName] = [];
+
+    this.handlers[eventName].push({ handler, context });
   }
 
   unregister(eventName, handler, context) {
+    if (!this.hasEvent(eventName)) return;
+
     const isEqual = (a, b) => a === b;
-    let handlerArray = this.handlers[eventName];
-    if (handlerArray === undefined) return;
-    handleArray = handlerArray.filter(
+
+    this.handlers[eventName] = this.handlers[eventName].filter(
       currentHandler =>
         !(
           isEqual(currentHandler.handler, handler) &&
@@ -25,10 +28,9 @@ class Observer {
   }
 
   notify(eventName, data) {
-    let handlerArray = this.handlers[eventName];
-    if (undefined === handlerArray) return;
+    if (!this.hasEvent(eventName)) return;
 
-    handlerArray.forEach(currentHandler =>
+    this.handlers[eventName].forEach(currentHandler =>
       currentHandler.handler.call(currentHandler.context, data)
     );
   }
