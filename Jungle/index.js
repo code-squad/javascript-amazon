@@ -3,31 +3,26 @@ import Navigation from "./components/Navigation.js";
 import Observer from "./Observer.js";
 
 class Jungle {
-  createCarousel(classes, options, observer) {
-    if (observer === undefined) {
-      observer = new Observer();
-    }
-
-    const carousel = new Carousel(classes, observer, options);
+  createCarousel({ elClassNameObj, options, observer = new Observer() }) {
+    const carousel = new Carousel(elClassNameObj, observer, options);
     carousel.init();
 
-    if("nav" in classes) {
-      const nav = this.createNavigation({nav: classes.nav}, {}, observer);
-      observer.register("carouselMove", nav.setItem, nav);
+    if ("nav" in elClassNameObj) {
+      const nav = this.createNavigation({
+        elClassNameObj: { nav: elClassNameObj.nav },
+        observer
+      });
+      observer.register("moveCarousel", nav.setItem, nav);
       observer.register("selectNav", carousel.move, carousel);
     }
 
     return carousel;
-
   }
 
-  createNavigation(classes, options, observer) {
-    if (observer === undefined) {
-      observer = new Observer();
-    }
-
-    const navigation = new Navigation(classes, options, observer);
+  createNavigation({ elClassNameObj, options, observer = new Observer() }) {
+    const navigation = new Navigation(elClassNameObj, options, observer);
     navigation.init();
+
     return navigation;
   }
 }

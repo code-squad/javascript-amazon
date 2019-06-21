@@ -1,5 +1,5 @@
 class Carousel {
-  constructor({container, slider}, observer, config) {
+  constructor({ container, slider }, observer, config) {
     //DOM
     this.container = document.querySelector(container);
     this.cardSlider = this.container.querySelector(slider);
@@ -19,7 +19,7 @@ class Carousel {
     this.defaultConfig = {
       infinite: true,
       duration: 300,
-      animation: 'cubic-bezier(0.240, -0.010, 0.400, 1.650)'
+      animation: "cubic-bezier(0.240, -0.010, 0.400, 1.650)"
     };
 
     this.config = this.mergeConfig(config);
@@ -43,6 +43,7 @@ class Carousel {
       this.cloneVirtualCard();
       this.moveWithoutTransition();
     } else {
+      this.setTransition(this.cardSlider, true);
       this.isMovable();
     }
 
@@ -57,28 +58,36 @@ class Carousel {
     this.cardSlider.insertAdjacentElement("beforeend", firstCard);
   }
 
-  attatchEvent() {
-    this.prevButton.addEventListener("click", () => {
-      this.move({ getId: () => this.currentItem - 1 });
+  transitionEndHandler() {
+    this.isMoving = false;
+    if (this.isEndOfCards()) {
+      if (this.config.infinite) this.moveWithoutTransition();
     }
-    );
-    this.nextButton.addEventListener("click", () => {
-      this.move({ getId: () => this.currentItem + 1 });
-    });
+  }
 
-    this.cardSlider.addEventListener("transitionend", () => {
-      this.isMoving = false;
-      if (this.isEndOfCards()) {
-        this.moveWithoutTransition();
-      }
-    });
+  prevHandler() {
+    this.move({ getId: () => this.currentItem - 1 });
+  }
+
+  nextHandler() {
+    this.move({ getId: () => this.currentItem + 1 });
+  }
+
+  attatchEvent() {
+    this.prevButton.addEventListener("click", () => this.prevHandler());
+    this.nextButton.addEventListener("click", () => this.nextHandler());
+
+    this.cardSlider.addEventListener(
+      "transitionend",
+      () => this.transitionEndHandler()
+    );
   }
 
   isMovable() {
     if (this.config.infinite) return;
 
-    this.prevButton.disabled = !!this.currentItem;
-    this.nextButton.disabled = !!(this.currentItem === this.itemLength);
+    this.prevButton.disabled = this.isFirst();
+    this.nextButton.disabled = this.isLast();
   }
 
   move({ getId }) {
@@ -91,18 +100,21 @@ class Carousel {
       : -(this.itemWidth * (id - 1));
     this.currentItem = id;
 
+    this.observer.notify("moveCarousel", this.makeSendId());
+    this.isMovable();
+    this.moveSlider(dist);
+  }
+
+  makeSendId() {
     let sendId;
-    if (this.isFirst()) {
+    if(this.config.infinite && this.isFirst()) {
       sendId = this.itemLength;
-    } else if (this.isLast()) {
+    } else if(this.config.infinite && this.isLast()) {
       sendId = 1;
     } else {
       sendId = this.currentItem;
     }
-
-    this.observer.notify('carouselMove', sendId)
-    this.isMovable();
-    this.moveSlider(dist);
+    return sendId;
   }
 
   moveWithoutTransition() {
@@ -125,16 +137,22 @@ class Carousel {
   }
 
   isFirst() {
-    return this.currentItem === 0;
+    return this.config.infinite
+      ? this.currentItem === 0
+      : this.currentItem === 1;
   }
 
   isLast() {
-    return this.currentItem === this.itemLength + 1;
+    return this.config.infinite
+      ? this.currentItem === this.itemLength + 1
+      : this.currentItem === this.itemLength;
   }
 
   setTransition(el, val) {
     val
-      ? (el.style.transition = `transform ${this.config.duration}ms ${this.config.animation}`)
+      ? (el.style.transition = `transform ${this.config.duration}ms ${
+          this.config.animation
+        }`)
       : (el.style.transition = `none`);
   }
 
