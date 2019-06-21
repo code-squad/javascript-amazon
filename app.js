@@ -8,5 +8,5 @@ const carousel = new Carousel(".carousel", {
 });
 
 const pagination = new Pagination(carousel);
-carousel.init();
+carousel.init(pagination);
 pagination.init();
