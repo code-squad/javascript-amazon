@@ -153,4 +153,31 @@ li {
 .next {
   right: 0.625rem; }
 
+.container2 {
+  max-width: 64rem;
+  opacity: 0;
+  margin: 0 auto;
+  position: relative; }
+
+.card-slider2 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+.nav2 {
+  height: 6.25rem;
+  padding: 1.25rem 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center; }
+
 /*# sourceMappingURL=style.css.map */

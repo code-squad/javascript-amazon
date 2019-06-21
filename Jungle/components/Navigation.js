@@ -1,9 +1,8 @@
-import controller from "./controller.js";
-
 class Navigation {
-  constructor({ nav }) {
+  constructor({ nav }, options, observer) {
     this.navItems = [...document.querySelector(nav).children];
 
+    this.observer = observer;
     this.itemLength = this.navItems.length;
     this.selectedId = 1;
   }
@@ -11,7 +10,6 @@ class Navigation {
   init() {
     this.attatchEvent();
     this.setItem(this.selectedId);
-    controller.navigation.regist(this.setItem.bind(this));
   }
 
   attatchEvent() {
@@ -19,13 +17,13 @@ class Navigation {
       item.addEventListener("click", () => {
         const id = index + 1;
         this.setItem(id);
-        controller.navigation.sendId(id);
       });
     });
   }
 
   setItem(id) {
     this.selectedId = id;
+    this.observer.notify('selectNav', {getId: () => this.selectedId});
     this.selectNav();
   }
 

@@ -1,7 +1,5 @@
-import controller from "./controller.js";
-
 class Carousel {
-  constructor({container, slider}, config) {
+  constructor({container, slider}, observer, config) {
     //DOM
     this.container = document.querySelector(container);
     this.cardSlider = this.container.querySelector(slider);
@@ -10,6 +8,7 @@ class Carousel {
     this.nextButton = this.container.querySelector(".next");
 
     // values
+    this.observer = observer;
     this.initIndex = 0;
     this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
     this.offset = 0;
@@ -47,8 +46,6 @@ class Carousel {
       this.isMovable();
     }
 
-    controller.carousel.regist(this.move.bind(this));
-
     this.setOpacity(this.container, 1);
   }
 
@@ -63,14 +60,10 @@ class Carousel {
   attatchEvent() {
     this.prevButton.addEventListener("click", () => {
       this.move({ getId: () => this.currentItem - 1 });
-      const id = this.isFirst() ? this.itemLength : this.currentItem;
-      controller.carousel.sendId(id);
     }
     );
     this.nextButton.addEventListener("click", () => {
       this.move({ getId: () => this.currentItem + 1 });
-      const id = this.isLast() ? 1 : this.currentItem;
-      controller.carousel.sendId(id);
     });
 
     this.cardSlider.addEventListener("transitionend", () => {
@@ -98,6 +91,16 @@ class Carousel {
       : -(this.itemWidth * (id - 1));
     this.currentItem = id;
 
+    let sendId;
+    if (this.isFirst()) {
+      sendId = this.itemLength;
+    } else if (this.isLast()) {
+      sendId = 1;
+    } else {
+      sendId = this.currentItem;
+    }
+
+    this.observer.notify('carouselMove', sendId)
     this.isMovable();
     this.moveSlider(dist);
   }
