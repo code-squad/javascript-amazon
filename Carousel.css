@@ -1,0 +1,147 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.carousel {
+  height: 600px;
+}
+
+.carousel__contents {
+  margin: 0 auto;
+}
+
+.curser {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.title {
+  height: 20%;
+}
+
+.title > ol {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.title__card {
+  font-size: 0.875rem;
+  color: #fff;
+  text-align: center;
+  width: 180px;
+  height: 60px;
+  padding: 10px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 3px;
+}
+
+.title__card_blue {
+  background-color: #2392c0;
+}
+
+.title__card_pink {
+  background-color: #aa0068;
+}
+
+.title__card_cyan {
+  background-color: #018577;
+}
+
+.title__card_orange {
+  background-color: #e65d18;
+}
+
+.contents {
+  height: 250px;
+  position: relative;
+  max-width: 860px;
+  overflow: hidden;
+}
+
+.contents > ol {
+  height: 100%;
+  overflow: hidden;
+}
+
+.contents .item {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 720px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contents .item__img-container > img {
+  width: 240px;
+}
+
+.contents .item__desc {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-left: 1.5rem;
+}
+
+.contents .item .desc__title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contents .item .desc__text {
+  font-size: 1rem;
+  list-style: disc;
+  padding-left: 0.75rem;
+}
+
+.contents .item .desc__text > li {
+  margin-bottom: 0.625rem;
+}
+
+.contents__button {
+  display: inline-block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  top: 50%;
+}
+
+.contents__button_left {
+  left: 16px;
+  background-image: url("./images/left-chervron.svg");
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.contents__button_right {
+  right: 16px;
+  background-image: url("./images/left-chervron.svg");
+  -webkit-transform: rotate(180deg) translateY(50%);
+          transform: rotate(180deg) translateY(50%);
+}
+/*# sourceMappingURL=Carousel.css.map */
