@@ -134,3 +134,22 @@ li {
 .next {
   right: calcRem($card-control-position);
 }
+
+.container2 {
+  max-width: calcRem(1024px);
+  opacity: 0;
+  margin: 0 auto;
+  position: relative;
+}
+
+.card-slider2 {
+  @include flexbox();
+}
+
+.nav2 {
+  height: calcRem(100px);
+  padding: calcRem(20px) 0;
+
+  @include flexbox();
+  @include justify-content(center);
+}
