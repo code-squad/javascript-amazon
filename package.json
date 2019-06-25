@@ -4,7 +4,8 @@
   "description": "레벨3",
   "main": "index.js",
   "scripts": {
-    "scss": "sass --watch scss:css"
+    "scss": "sass --watch scss:css",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fed-gren/javascript-amazon/issues"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   }
 }
