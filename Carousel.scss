@@ -1,0 +1,130 @@
+$color-white: #fff;
+$color-blue: #2392c0;
+$color-pink: #aa0068;
+$color-cyan: #018577;
+$color-orange: #e65d18;
+$color-grey: #a8b7b8;
+
+@function calcRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+$font-size-menu: calcRem(14px);
+$font-size-basic: 1rem;
+$font-size-title: calcRem(24px);
+
+$left-arrow-icon-path: "./images/left-chervron.svg";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.carousel {
+  height: 600px;
+  &__contents {
+    margin: 0 auto;
+  }
+}
+
+.curser{
+  transform: scale(1.1);
+  transition: all .2s
+}
+
+.title {
+  height: 20%;
+  > ol {
+    display: flex;
+    justify-content: center;
+  }
+  &__card {
+    font-size: $font-size-menu;
+    color: $color-white;
+    text-align: center;
+    width: 180px;
+    height: 60px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 3px;
+    &_blue {
+      background-color: $color-blue;
+    }
+    &_pink {
+      background-color: $color-pink;
+    }
+    &_cyan {
+      background-color: $color-cyan;
+    }
+    &_orange {
+      background-color: $color-orange;
+    }
+  }
+}
+
+.contents {
+  height: 250px;
+  position: relative;
+  max-width: 860px;
+  overflow: hidden;
+  > ol {
+    height: 100%;
+    overflow: hidden;
+  }
+  .item {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 720px;
+    display: flex;
+    align-items: center;
+    // opacity: 0;
+
+    &__img-container > img {
+      width: 240px;
+    }
+
+    &__desc {
+      flex: 1;
+      margin-left: calcRem(24px);
+    }
+    .desc {
+      &__title {
+        font-size: $font-size-title;
+        margin-bottom: calcRem(24px);
+      }
+      &__text {
+        font-size: $font-size-basic;
+        list-style: disc;
+        padding-left: calcRem(12px);
+        > li {
+          margin-bottom: calcRem(10px);
+        }
+      }
+    }
+  }
+  &__button {
+    display: inline-block;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    top: 50%;
+    &_left {
+      left: 16px;
+      background-image: url($left-arrow-icon-path);
+      transform: translateY(-50%);
+    }
+    &_right {
+      right: 16px;
+      background-image: url($left-arrow-icon-path);
+      transform: rotate(180deg) translateY(50%);
+    }
+  }
+}
