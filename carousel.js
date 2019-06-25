@@ -122,7 +122,6 @@ class Carousel {
     }
     this.carousel.style.transition = `all 1s`;
     this.carousel.style.transform = `translateX(${this.currentPointer}px)`;
-    console.log(this.carousel.style.transition);
   }
 
   moveCloneCarousel(newPointerValue) {
