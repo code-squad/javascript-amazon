@@ -1,10 +1,7 @@
-const scheduler = require('./scheduler');
+const queue = require('./queue');
 
 class MyPromise {
   constructor(exe) {
-    this.state = 'pending';
-    this.value = '';
-
     try {
       exe(MyPromise.resolve.bind(this), MyPromise.reject.bind(this));
     } catch (e) {
@@ -13,23 +10,20 @@ class MyPromise {
   }
 
   static resolve(value) {
-    if (scheduler.getQueueLength() !== 0) {
-      const { onFulfilled, onRejected, nextPromise } = scheduler.getNext();
-      nextPromise.state = 'fulfilled';
+    if (queue.getQueueLength() !== 0) {
+      const { onFulfilled, onRejected } = queue.getNext();
 
       try {
-        nextPromise.value = onFulfilled(value);
-        MyPromise.resolve.call(this, nextPromise.value);
+        MyPromise.resolve.call(this, onFulfilled(value));
       } catch (e) {
-        nextPromise.value = onRejected(e);
-        MyPromise.reject.call(this, nextPromise.value);
+        MyPromise.reject.call(this, onRejected(e));
       }
     }
   }
 
   static reject(reason) {
-    if (scheduler.getQueueLength() !== 0) {
-      const onRejected = scheduler.getNext().onRejected;
+    if (queue.getQueueLength() !== 0) {
+      const onRejected = queue.getNext().onRejected;
       MyPromise.reject.call(this, onRejected(reason));
     }
   }
@@ -44,14 +38,14 @@ class MyPromise {
     }
 
     return new MyPromise((resolve, reject) => {
-      scheduler.push({ onFulfilled, onRejected, nextPromise: this });
+      queue.push({ onFulfilled, onRejected });
     });
   }
 
   catch(onRejected) {
     const onFulfilled = v => v;
     return new MyPromise((resolve, reject) => {
-      scheduler.push({ onFulfilled, onRejected, nextPromise: this });
+      queue.push({ onFulfilled, onRejected });
     });
   }
 }

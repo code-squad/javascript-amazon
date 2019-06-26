@@ -16,11 +16,11 @@ myFirstPromise
   .catch(error => console.log(`oops, this is ${error}`));
 
 // error test code
-// myFirstPromise
-//   .then(successMessage => {
-//     successMessage.hello();
-//   })
-//   .then(data => {
-//     console.log(`data is ${data}`);
-//   })
-//   .catch(error => console.log(`oops, I found error! error: [${error}]`));
+myFirstPromise
+  .then(successMessage => {
+    successMessage.hello();
+  })
+  .then(data => {
+    console.log(`data is ${data}`);
+  })
+  .catch(error => console.log(`oops, I found error! error: [${error}]`));
