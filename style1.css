@@ -36,9 +36,8 @@ body {
     align-items: center;
 }
 
-.navigation-bar > div:hover {
-    width: 240px;
-    height: 100px;
+.scale {
+    transform: scale(1.1, 1.2);
 }
 
 .header-section div > p {
@@ -48,10 +47,6 @@ body {
     color: white;
 }
 
-.content-wrapper{
-    display:flex;
-    width:900px;
-}
 .main-section {
     display: flex;
     justify-content: space-around;
@@ -65,7 +60,7 @@ body {
 }
 .content-wrapper{
     display:flex;
-    transition:400ms ease-out;
+    width:900px;
 }
 .main-content {
     width: 900px;
