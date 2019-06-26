@@ -1,9 +1,9 @@
 const queue = require('./queue');
 
 class MyPromise {
-  constructor(exe) {
+  constructor(executor) {
     try {
-      exe(MyPromise.resolve.bind(this), MyPromise.reject.bind(this));
+      executor(MyPromise.resolve.bind(this), MyPromise.reject.bind(this));
     } catch (e) {
       MyPromise.reject(e);
     }
