@@ -91,3 +91,5 @@ myFirstPromise
   .then(data => {
     console.log(`data is ${data}`);
   });
+
+module.exports = MyPromise;
