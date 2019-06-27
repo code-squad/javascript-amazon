@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "First card",
+    "desc": [
+      "This is a First card."
+    ],
+    "imgUrl": "./images/Card_A01.png"
+  },
+  {
+    "id": 2,
+    "title": "Second card",
+    "desc": [
+      "This is a Second card."
+    ],
+    "imgUrl": "./images/Card_B01.png"
+  },
+  {
+    "id": 3,
+    "title": "Third card",
+    "desc": [
+      "This is a Third card."
+    ],
+    "imgUrl": "./images/Card_C01.png"
+  },
+  {
+    "id": 4,
+    "title": "Fourth card",
+    "desc": [
+      "This is a Fourth card."
+    ],
+    "imgUrl": "./images/Card_D01.png"
+  }
+]
