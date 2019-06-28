@@ -1,12 +1,31 @@
+/**
+ * name: noDataProc
+ * parameters: strings, imgUrl, title, desc
+ * desc: 데이터가 없을 때, 자연스럽게 표현해주도록 처리.
+ */
+const noDataProc = (strings, ...values) => {
+  let newStrings = strings
+    .map((string, index, arr) => {
+      values[index] =
+        !values[index] && index !== arr.length - 1
+          ? `해당 데이터를 가져올 수 없습니다.`
+          : values[index];
+      return values[index] ? string + values[index] : string;
+    })
+    .join("");
+
+  return newStrings;
+};
+
 const generateDescList = descriptions =>
   descriptions
     .map(description => {
       return `<li>${description}</li>`;
     })
-    .join("");
+    .join(``);
 
 const generateCardHtml = ({ title, desc, imgUrl }) =>
-  `<div class="card">
+  noDataProc`<div class="card">
   <div class="thumb">
     <img src=".${imgUrl}" alt="card-thumbnail" />
   </div>
@@ -46,17 +65,3 @@ const renderCard = () => {
 };
 
 document.addEventListener(`DOMContentLoaded`, renderCard);
-
-
-document.addEventListener(`DOMContentLoaded`, () => {
-  var data = {  title : "hello",
-  content : "lorem dkfief",
-  price : 2000
-};
-
-html = html.replace("{title}", data.title)
-.replace("{content}", data.content)
-.replace("{price}", data.price);
-
-console.log(html);
-});
