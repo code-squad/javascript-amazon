@@ -19,10 +19,21 @@ const MyPromise = class {
     }
   }
 
+  reject(value) {
+    this.state = 'rejected';
+    this.value = value;
+  }
+
   then(callback) {
     if (this.state === 'resolved')
       return new MyPromise((resolve, reject) => resolve(callback(this.value)));
-    this.callbackQue.push(callback);
+    if (this.state === 'pedning') this.callbackQue.push(callback);
+    return this;
+  }
+
+  catch(callback) {
+    if (this.state === 'rejected')
+      return new MyPromise((resolve, reject) => resolve(callback(this.value)));
     return this;
   }
 };
