@@ -1,8 +1,13 @@
 const state = require("./constants/PromiseState");
 const type = require("./constants/TypesString");
+const errMsg = require("./constants/ErrorMessages");
 
 class MyPromise {
   constructor(action) {
+    if(typeof action === type.FUNCTION) {
+      throw new TypeError(errMsg.RESOLVER_TYPE);
+    }
+
     this.state = state.PENDING;
     this.value = undefined;
 
