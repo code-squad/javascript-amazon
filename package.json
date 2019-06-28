@@ -4,7 +4,8 @@
   "description": "레벨3",
   "main": "app.js",
   "scripts": {
-    "scss": "node-sass --watch src/scss --output src/css"
+    "scss": "node-sass --watch src/scss --output src/css",
+    "promise": "node ./src/mypromise/promise.js"
   },
   "repository": {
     "type": "git",
