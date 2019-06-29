@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>이벤트 버블링, 캡쳐링</h1>
+
+  <div onclick="alert('The handler!')">
+    <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+  </div>
+
+  <h2>이벤트 버블링 예시</h2>
+  <p>아래 태그들을 각각 클릭해보세요</p>
+  <style>
+    form, form * {
+      margin: 10px;
+      border: 1px solid blue;
+    }
+  </style>
+
+  <form onclick="alert('form')">FORM
+    <div onclick="alert('div')">DIV
+      <p onclick="alert('p')">P</p>
+    </div>
+  </form>
+</body>
+</html>
