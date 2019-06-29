@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "scss": "node-sass --watch src/scss --output src/css",
-    "promise": "node ./src/mypromise/promise.js"
+    "promise": "node ./mypromise/mypromise.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/park78951/javascript-amazon/issues"
   },
-  "homepage": "https://github.com/park78951/javascript-amazon#readme"
+  "homepage": "https://github.com/park78951/javascript-amazon#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
 }
