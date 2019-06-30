@@ -11,11 +11,20 @@ const MyPromise = class {
   }
 
   resolve(value) {
-    this.state = 'resolved';
-    this.value = value;
-    let callback;
-    while ((callback = this.callbackQue.shift())) {
-      this.value = callback(this.value);
+    if (value instanceof MyPromise) {
+      value.then(value => {
+        this.status = 'resolved';
+        this.value = value;
+        for (const callback of this.callbackQue) {
+          callback();
+        }
+      });
+    } else {
+      this.state = 'resolved';
+      this.value = value;
+      for (const callback of this.callbackQue) {
+        callback();
+      }
     }
   }
 
@@ -27,7 +36,11 @@ const MyPromise = class {
   then(callback) {
     if (this.state === 'resolved')
       return new MyPromise((resolve, reject) => resolve(callback(this.value)));
-    if (this.state === 'pedning') this.callbackQue.push(callback);
+
+    if (this.state === 'pending')
+      return new MyPromise(resolve => {
+        this.callbackQue.push(() => resolve(callback(this.value)));
+      });
     return this;
   }
 
@@ -38,16 +51,4 @@ const MyPromise = class {
   }
 };
 
-let myFirstPromise = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve({ name: 'Success!', id: 123123 });
-  }, 1000);
-});
-
-myFirstPromise
-  .then(successMessage => {
-    return successMessage.name;
-  })
-  .then(data => {
-    console.log(`data is ${data}`);
-  });
+module.exports = MyPromise;
