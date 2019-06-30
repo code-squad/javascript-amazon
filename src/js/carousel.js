@@ -1,71 +1,86 @@
 class Carousel {
   constructor({
+    carousel,
     header,
     headerItems,
-    carousel,
+    carouselMain,
     container,
     item,
     items,
-    prev,
-    next,
     config = {
       duration: 200,
       easing: "ease-out"
     },
     currentItem = 1,
   }) {
+    this.carousel = document.querySelector(carousel);
     // header
-    this.header = document.querySelector(header);
+    this.header = this.carousel.querySelector(header);
     this.headerItems = [...this.header.querySelectorAll(headerItems)]
 
     // carousel__main
-    this.carousel = document.querySelector(carousel);
+    this.carouselMain = this.carousel.querySelector(carouselMain);
     this.container = this.carousel.querySelector(container);
     this.item = this.carousel.querySelector(item);
     this.items = this.carousel.querySelectorAll(items);
-    this.prev = document.querySelector(prev);
-    this.next = document.querySelector(next);
     this.itemWidth = this.item.offsetWidth;
     this.offset = -this.itemWidth;
     this.currentItem = currentItem;
     this.itemsLength = this.items.length;
-    this.config = config
+    this.config = config;
+    this.isTransitioning = false;
   }
 
   init() {
-    this.carousel.style.width = this.item.offsetWidth + 'px';
-    this.carousel.style.height = this.item.offsetHeight + 'px';
+    this.setCarouselSize();
     this.attachEvent();
     this.insertClone();
     this.moveWithoutAnimation();
-    this.carousel.style.opacity = 1;
+    this.carouselMain.style.opacity = 1;
+  }
+
+  setCarouselSize() {
+    this.carouselMain.style.width = this.item.offsetWidth + 'px';
+    this.carouselMain.style.height = this.item.offsetHeight + 'px';
   }
 
   attachEvent() {
-    this.prev.addEventListener('click', this.moveToPrev.bind(this));
-    this.next.addEventListener('click', this.moveToNext.bind(this));
-    this.headerItems.forEach(card => card.addEventListener('click', this.clickHeaderItem.bind(this)))
+    const prev = this.carousel.querySelector('.prev');
+    const next = this.carousel.querySelector('.next');
+    prev.addEventListener('click', () => this.moveToPrev());
+    next.addEventListener('click', () => this.moveToNext());
+    this.headerItems.forEach(card => card.addEventListener('click', (e) => this.clickHeaderItem(e)));
+    this.container.addEventListener('transitionend', () => this.transitionStatsToggle());
   }
 
   moveToNext() {
-    this.offset -= this.itemWidth;
-    this.moveMain();
-    this.currentItem++;
-    if (this.isClone()) this.fakeMove();
-    this.moveHeader(this.currentItem - 1);
+    if(!this.isTransitioning) {
+      this.offset -= this.itemWidth;
+      this.moveMain();
+      this.currentItem++;
+      if (this.isClone()) this.fakeMove();
+      this.moveHeader(this.currentItem - 1);
+    }
   }
 
   moveToPrev() {
-    this.offset += this.itemWidth;
-    this.moveMain();
-    this.currentItem--;
-    if (this.isClone()) this.fakeMove();
-    this.moveHeader(this.currentItem - 1);
+    if(!this.isTransitioning) {
+      this.offset += this.itemWidth;
+      this.moveMain();
+      this.currentItem--;
+      if (this.isClone()) this.fakeMove();
+      this.moveHeader(this.currentItem - 1);
+    }
   }
 
   moveMain() {
+    this.transitionStatsToggle();
     this.container.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
     this.container.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+  }
+
+  transitionStatsToggle() {
+    this.isTransitioning = this.isTransitioning ? false : true;
   }
 
   insertClone() {
