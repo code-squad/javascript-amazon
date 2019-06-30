@@ -2,6 +2,7 @@ const MyPromise = class {
   constructor(executor) {
     this.state = 'pending';
     this.callbackQue = [];
+    this.decidePromiseByMethod.bind(this);
     this.applyChangedState.bind(this);
 
     try {
@@ -10,35 +11,25 @@ const MyPromise = class {
       this.reject(error);
     }
   }
+
   applyChangedState(value, state) {
     if (value instanceof MyPromise) {
-      value.then(value => {
-        this.value = value;
+      value.then(innerPromiseValue => {
+        this.value = innerPromiseValue;
         this.status = state;
-        for (const callback of this.callbackQue) {
-          callback();
-        }
+        this.callbackQue.forEach(callback => callback());
       });
     } else {
       this.value = value;
       this.state = state;
-      for (const callback of this.callbackQue) {
-        callback();
-      }
+      this.callbackQue.forEach(callback => callback());
     }
   }
 
-  resolve(value) {
-    this.applyChangedState(value, 'resolved');
-  }
-
-  reject(value) {
-    this.applyChangedState(value, 'resolved');
-  }
-
-  then(callback) {
-    if (this.state === 'resolved')
-      return new MyPromise((resolve, reject) => resolve(callback(this.value)));
+  decidePromiseByMethod(method, callback) {
+    const state = method === 'then' ? 'resolved' : 'rejected';
+    if (this.state === state)
+      return new MyPromise(resolve => resolve(callback(this.value)));
 
     if (this.state === 'pending')
       return new MyPromise(resolve => {
@@ -47,11 +38,20 @@ const MyPromise = class {
     return this;
   }
 
+  resolve(value) {
+    this.applyChangedState(value, 'resolved');
+  }
+
+  reject(value) {
+    this.applyChangedState(value, 'rejected');
+  }
+
+  then(callback) {
+    return this.decidePromiseByMethod('then', callback);
+  }
+
   catch(callback) {
-    if (this.state === 'rejected')
-      return new MyPromise((resolve, reject) => resolve(callback(this.value)));
-    return this;
+    return this.decidePromiseByMethod('catch', callback);
   }
 };
-
 module.exports = MyPromise;
