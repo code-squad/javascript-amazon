@@ -2,6 +2,7 @@ const MyPromise = class {
   constructor(executor) {
     this.state = 'pending';
     this.callbackQue = [];
+    this.applyChangedState.bind(this);
 
     try {
       executor(this.resolve.bind(this), this.reject.bind(this));
@@ -9,28 +10,30 @@ const MyPromise = class {
       this.reject(error);
     }
   }
-
-  resolve(value) {
+  applyChangedState(value, state) {
     if (value instanceof MyPromise) {
       value.then(value => {
-        this.status = 'resolved';
         this.value = value;
+        this.status = state;
         for (const callback of this.callbackQue) {
           callback();
         }
       });
     } else {
-      this.state = 'resolved';
       this.value = value;
+      this.state = state;
       for (const callback of this.callbackQue) {
         callback();
       }
     }
   }
 
+  resolve(value) {
+    this.applyChangedState(value, 'resolved');
+  }
+
   reject(value) {
-    this.state = 'rejected';
-    this.value = value;
+    this.applyChangedState(value, 'resolved');
   }
 
   then(callback) {
