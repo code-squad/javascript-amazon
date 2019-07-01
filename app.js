@@ -8,7 +8,7 @@ const addCardsToDOM = cards => {
   const cardElements = makeElements(cards, 'card');
   const navItemElements = makeElements(cards, 'navItem');
 
-  document.querySelector('.card-slider').insertAdjacentHTML('afterbegin', cardElements);
+  document.querySelector('.container').insertAdjacentHTML('afterbegin', cardElements);
   document.querySelector('.nav').insertAdjacentHTML('afterbegin', navItemElements);
 };
 

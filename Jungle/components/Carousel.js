@@ -1,19 +1,16 @@
 class Carousel {
-  constructor({ container, slider }, observer, config) {
+  constructor({ container }, observer, config) {
     //DOM
     this.container = document.querySelector(container);
-    this.cardSlider = this.container.querySelector(slider);
-
-    this.prevButton = this.container.querySelector('.prev');
-    this.nextButton = this.container.querySelector('.next');
+    this.cardSlider;
 
     // values
+    this.itemWidth;
+    this.itemLength;
     this.observer = observer;
     this.initIndex = 0;
-    this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
     this.offset = 0;
     this.currentItem = this.initIndex + 1;
-    this.itemLength = this.cardSlider.children.length;
     this.isMoving = false;
 
     this.defaultConfig = {
@@ -34,7 +31,19 @@ class Carousel {
   }
 
   init() {
-    const cardWrapper = this.container.querySelector('.card-wrapper');
+    const cards = [...this.container.children];
+    cards.forEach(card => this.container.removeChild(card));
+
+    const cardWrapper = this.appendWrapper();
+    this.cardSlider = this.appendSlider(cardWrapper);
+
+    cards.forEach(card => {
+      this.cardSlider.insertAdjacentElement('beforeend', card);
+    });
+
+    this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
+    this.itemLength = this.cardSlider.children.length;
+    this.appendButton();
 
     cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
@@ -48,6 +57,44 @@ class Carousel {
     }
 
     this.setOpacity(this.container, 1);
+  }
+
+  appendWrapper() {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('card-wrapper');
+
+    this.container.insertAdjacentElement('afterbegin', wrapper);
+
+    return wrapper;
+  }
+
+  appendSlider(wrapper) {
+    const slider = document.createElement('div');
+    slider.classList.add('card-slider');
+
+    wrapper.insertAdjacentElement('afterbegin', slider);
+    return slider;
+  }
+
+  appendButton() {
+    [this.prevButton, this.nextButton] = this.makeButtons();
+
+    this.container.insertAdjacentElement('beforeend', this.prevButton);
+    this.container.insertAdjacentElement('beforeend', this.nextButton);
+  }
+
+  makeButtons() {
+    return [document.createElement('button'), document.createElement('button')].map((button, i) => {
+      button.classList.add('card-control');
+      if (i === 0) {
+        button.classList.add('prev');
+        button.innerText = '<';
+      } else if (i === 1) {
+        button.classList.add('next');
+        button.innerText = '>';
+      }
+      return button;
+    });
   }
 
   cloneVirtualCard() {
