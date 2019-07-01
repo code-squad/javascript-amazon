@@ -17,7 +17,6 @@ const makeCarousel = () => {
   return jungle.createCarousel({
     elClassNameObj: {
       container: '.container',
-      slider: '.card-slider',
       nav: '.nav'
     }
   });

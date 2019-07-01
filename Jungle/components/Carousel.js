@@ -31,39 +31,30 @@ class Carousel {
   }
 
   init() {
-    const cards = [...this.container.children];
-    cards.forEach(card => this.container.removeChild(card));
-
-    const cardWrapper = this.appendWrapper();
-    this.cardSlider = this.appendSlider(cardWrapper);
-
-    cards.forEach(card => {
-      this.cardSlider.insertAdjacentElement('beforeend', card);
-    });
-
-    this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
-    this.itemLength = this.cardSlider.children.length;
-    this.appendButton();
-
-    cardWrapper.style.width = `${this.itemWidth}px`;
+    this.manipulateDOM();
     this.attatchEvent();
-
-    if (this.config.infinite) {
-      this.cloneVirtualCard();
-      this.moveWithoutTransition();
-    } else {
-      this.setTransition(this.cardSlider, true);
-      this.isMovable();
-    }
-
+    this.setInitialUI();
     this.setOpacity(this.container, 1);
   }
 
-  appendWrapper() {
+  manipulateDOM() {
+    // dom작업
+    const cards = [...this.container.children];
+    const cardWrapper = this.makeWrapper();
+    this.cardSlider = this.appendSlider(cardWrapper);
+    this.changeCardParentNode(cards); // 메서드 이름 변경 필요
+    this.container.insertAdjacentElement('afterbegin', cardWrapper);
+    this.appendButton();
+
+    // 속성 초기화
+    this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
+    this.itemLength = this.cardSlider.children.length;
+    cardWrapper.style.width = `${this.itemWidth}px`;
+  }
+
+  makeWrapper() {
     const wrapper = document.createElement('div');
     wrapper.classList.add('card-wrapper');
-
-    this.container.insertAdjacentElement('afterbegin', wrapper);
 
     return wrapper;
   }
@@ -76,11 +67,11 @@ class Carousel {
     return slider;
   }
 
-  appendButton() {
-    [this.prevButton, this.nextButton] = this.makeButtons();
-
-    this.container.insertAdjacentElement('beforeend', this.prevButton);
-    this.container.insertAdjacentElement('beforeend', this.nextButton);
+  changeCardParentNode(cards) {
+    cards.forEach(card => {
+      this.container.removeChild(card); // 이러면 돔 파싱이 다시 일어나지 않을까?
+      this.cardSlider.insertAdjacentElement('beforeend', card);
+    });
   }
 
   makeButtons() {
@@ -95,6 +86,30 @@ class Carousel {
       }
       return button;
     });
+  }
+
+  appendButton() {
+    [this.prevButton, this.nextButton] = this.makeButtons();
+
+    this.container.insertAdjacentElement('beforeend', this.prevButton);
+    this.container.insertAdjacentElement('beforeend', this.nextButton);
+  }
+
+  attatchEvent() {
+    this.prevButton.addEventListener('click', () => this.prevHandler());
+    this.nextButton.addEventListener('click', () => this.nextHandler());
+
+    this.cardSlider.addEventListener('transitionend', () => this.transitionEndHandler());
+  }
+
+  setInitialUI() {
+    if (this.config.infinite) {
+      this.cloneVirtualCard();
+      this.moveWithoutTransition();
+    } else {
+      this.setTransition(this.cardSlider, true);
+      this.isMovable();
+    }
   }
 
   cloneVirtualCard() {
@@ -118,13 +133,6 @@ class Carousel {
 
   nextHandler() {
     this.move({ getId: () => this.currentItem + 1 });
-  }
-
-  attatchEvent() {
-    this.prevButton.addEventListener('click', () => this.prevHandler());
-    this.nextButton.addEventListener('click', () => this.nextHandler());
-
-    this.cardSlider.addEventListener('transitionend', () => this.transitionEndHandler());
   }
 
   isMovable() {
