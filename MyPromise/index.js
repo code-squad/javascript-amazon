@@ -4,7 +4,7 @@ import errMsg from "./constants/ErrorMessages.js" ;
 
 class MyPromise {
   constructor(action) {
-    if(typeof action === type.FUNCTION) {
+    if(typeof action !== type.FUNCTION) {
       throw new TypeError(errMsg.RESOLVER_TYPE);
     }
 
