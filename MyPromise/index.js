@@ -1,6 +1,6 @@
-const state = require("./constants/PromiseState");
-const type = require("./constants/TypesString");
-const errMsg = require("./constants/ErrorMessages");
+import state from "./constants/PromiseState.js";
+import type from "./constants/TypesString.js" ;
+import errMsg from "./constants/ErrorMessages.js" ;
 
 class MyPromise {
   constructor(action) {
@@ -83,18 +83,4 @@ class MyPromise {
   }
 }
 
-let myFirstPromise = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve({ name: "Success!", id: 123123 });
-  }, 1000);
-});
-
-myFirstPromise
-  .then(successMessage => {
-    return successMessage.name;
-  })
-  .then(data => {
-    console.log(`data is ${data}`);
-  });
-
-module.exports = MyPromise;
+export default MyPromise;

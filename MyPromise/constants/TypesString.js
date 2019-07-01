@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   FUNCTION: "function",
   NUMBER: "number",
   OBJECT: "object",
