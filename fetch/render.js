@@ -12,7 +12,7 @@ const makeCardDiv = cardsArr => {
 
 const body = document.querySelector('body');
 
-const carouselURL = 'http://127.0.0.1:5500/local.json';
+const carouselURL = 'http://127.0.0.1:5500/fetch/local.json';
 fetch(carouselURL)
   .then(response => response.json())
   .then(carouselData => makeCardDiv(carouselData[0].list))
