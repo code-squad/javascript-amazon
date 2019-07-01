@@ -1,7 +1,7 @@
 const MyPromise = class {
   constructor(executor) {
     this.state = 'pending';
-    this.callbackQue = [];
+    this.laterCalls = [];
     this.decidePromiseByMethod.bind(this);
     this.applyChangedState.bind(this);
 
@@ -17,12 +17,12 @@ const MyPromise = class {
       value.then(innerPromiseValue => {
         this.value = innerPromiseValue;
         this.status = state;
-        this.callbackQue.forEach(callback => callback());
+        this.laterCalls.forEach(latercall => latercall());
       });
     } else {
       this.value = value;
       this.state = state;
-      this.callbackQue.forEach(callback => callback());
+      this.laterCalls.forEach(latercall => latercall());
     }
   }
 
@@ -33,7 +33,7 @@ const MyPromise = class {
 
     if (this.state === 'pending')
       return new MyPromise(resolve => {
-        this.callbackQue.push(() => resolve(callback(this.value)));
+        this.laterCalls.push(() => resolve(callback(this.value)));
       });
     return this;
   }
