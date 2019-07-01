@@ -18,6 +18,15 @@ class MyPromise {
     this.exec(1, "rejected", argument);
   }
 
+  then(thenfirstCB, thensecondCB) {
+    this.callbackQueue.push([thenfirstCB, thensecondCB]);
+    return this;
+  }
+
+  catch(func) {
+    this.catchFunc = func;
+  }
+
   exec(val, str, argument) {
     let arg, targetFunc, result;
     this.argumentQueue.push(argument);
@@ -36,49 +45,6 @@ class MyPromise {
       }
     }
   }
-
-  then(thenfirstCB, thensecondCB) {
-    this.callbackQueue.push([thenfirstCB, thensecondCB]);
-    return this;
-  }
-
-  catch(func) {
-    this.catchFunc = func;
-  }
 }
 
-// 비동기 코드가 정상적으로 실행 되었을 경우
-// let myFirstPromise = new MyPromise((resolve, reject) => {
-//   setTimeout(() => {
-//     resolve({ name: "Success!", id: 123123 });
-//   }, 2000);
-// });
-
-// myFirstPromise
-//   .then(successMessage => {
-//     return successMessage.name;
-//   })
-//   .then(data => {
-//     console.log(`data is ${data}`);
-//   });
-
-// 비동기 코드가 정상적으로 실행 되지 않았을 경우
-let myFirstPromise2 = new MyPromise((resolve, reject) => {
-  setTimeout(() => {
-    let data = { name: "michelle", id: 7067 };
-    if (data.name === "michelleeee") resolve("Right!");
-    else reject("Error!");
-  }, 2000);
-});
-
-myFirstPromise2
-  .then(
-    successMessage => {
-      return successMessage;
-    },
-    error => {
-      return error;
-    }
-  )
-  .then(result => console.log(`본인 인증 성공 ${result}`))
-  .catch(result => console.log(`본인 인증 실패 ${result}`));
+module.exports = MyPromise;
