@@ -13,6 +13,7 @@ const MyPromise = class {
   }
 
   applyChangedState(value, state) {
+    if (!(this.state === 'pending')) return;
     if (value instanceof MyPromise) {
       value.then(innerPromiseValue => {
         this.value = innerPromiseValue;

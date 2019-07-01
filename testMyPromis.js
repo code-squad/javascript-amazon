@@ -1,5 +1,5 @@
 const MyPromise = require('./myPromise');
-/* eslint ignore:start*/
+/*eslint-disable */
 
 const test1 = new MyPromise((resolve, reject) => {
   setTimeout(() => {
@@ -73,5 +73,3 @@ const test3 = new Promise((resolve, reject) => {
   .catch(err => {
     console.error(err);
   });
-
-/* eslint ignore:end */
