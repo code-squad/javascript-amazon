@@ -91,6 +91,7 @@ class Carousel {
   }
 
   move({ getId }) {
+    if(this.currentItem === getId()) return;
     if (this.isMoving) return;
     this.isMoving = true;
 
