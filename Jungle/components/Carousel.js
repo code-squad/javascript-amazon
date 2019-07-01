@@ -38,15 +38,25 @@ class Carousel {
   }
 
   manipulateDOM() {
-    // dom작업
-    const cards = [...this.container.children];
+    /*
+      container
+        card...
+      구조에서
+
+      container
+        wrapper
+          slider
+            card...
+        button prev
+        button next
+      구조로 DOM을 변경
+    */
     const cardWrapper = this.makeWrapper();
     this.cardSlider = this.appendSlider(cardWrapper);
-    this.changeCardParentNode(cards); // 메서드 이름 변경 필요
+    this.moveCardsNode();
     this.container.insertAdjacentElement('afterbegin', cardWrapper);
-    this.appendButton();
+    this.appendButtons();
 
-    // 속성 초기화
     this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
     this.itemLength = this.cardSlider.children.length;
     cardWrapper.style.width = `${this.itemWidth}px`;
@@ -63,14 +73,17 @@ class Carousel {
     const slider = document.createElement('div');
     slider.classList.add('card-slider');
 
-    wrapper.insertAdjacentElement('afterbegin', slider);
+    wrapper.appendChild(slider);
     return slider;
   }
 
-  changeCardParentNode(cards) {
-    cards.forEach(card => {
-      this.container.removeChild(card); // 이러면 돔 파싱이 다시 일어나지 않을까?
-      this.cardSlider.insertAdjacentElement('beforeend', card);
+  moveCardsNode() {
+    [...this.container.children].forEach(card => {
+      // remove를 사용했다.
+      // 이러면 돔 파싱이 다시 일어나지 않을까?
+      // 하위 노드 삭제라 괜찮으려나
+      this.container.removeChild(card);
+      this.cardSlider.appendChild(card);
     });
   }
 
@@ -88,7 +101,7 @@ class Carousel {
     });
   }
 
-  appendButton() {
+  appendButtons() {
     [this.prevButton, this.nextButton] = this.makeButtons();
 
     this.container.insertAdjacentElement('beforeend', this.prevButton);
