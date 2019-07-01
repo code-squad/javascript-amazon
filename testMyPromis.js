@@ -8,7 +8,7 @@ const test1 = new MyPromise((resolve, reject) => {
 })
   .then(successMessage => {
     return successMessage.name;
-  }, 1000)
+  })
   .then(data => {
     console.log(`data is ${data}`);
   });
