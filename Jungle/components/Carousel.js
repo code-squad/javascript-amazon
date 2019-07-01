@@ -1,3 +1,5 @@
+import myFetch from "../../MyFetch/index.js";
+
 class Carousel {
   constructor({ container, slider }, observer, config) {
     //DOM
@@ -23,6 +25,49 @@ class Carousel {
     };
 
     this.config = this.mergeConfig(config);
+
+    // datas
+    this.cardData = [];
+    this.fetchData("../../data/localData.json");
+  }
+
+  fetchData(url) {
+    myFetch(url)
+      .then(data => {
+        return this.makeCardHtml(data);
+      })
+      .then(cardHtml => {
+        console.log(cardHtml);
+      })
+      .catch(err => console.log(err));
+  }
+
+  makeCardHtml(data) {
+    return `
+        ${data.reduce(
+          (html, item) => `
+          ${html}
+        <div class="card">
+        <div class="thumb">
+          <img src="${item.imgUrl}" alt="card-thumbnail" />
+        </div>
+        <div class="content">
+          <h2>${item.title}</h2>
+          <ul>
+            ${item.desc.reduce(
+              (html, item) => `
+              ${html}
+              <li>${item}</li>
+            `,
+              ``
+            )}
+          </ul>
+        </div>
+      </div>
+        `,
+          ``
+        )}
+        `;
   }
 
   mergeConfig(config) {
@@ -77,9 +122,8 @@ class Carousel {
     this.prevButton.addEventListener("click", () => this.prevHandler());
     this.nextButton.addEventListener("click", () => this.nextHandler());
 
-    this.cardSlider.addEventListener(
-      "transitionend",
-      () => this.transitionEndHandler()
+    this.cardSlider.addEventListener("transitionend", () =>
+      this.transitionEndHandler()
     );
   }
 
@@ -91,7 +135,7 @@ class Carousel {
   }
 
   move({ getId }) {
-    if(this.currentItem === getId()) return;
+    if (this.currentItem === getId()) return;
     if (this.isMoving) return;
     this.isMoving = true;
 
@@ -108,9 +152,9 @@ class Carousel {
 
   makeSendId() {
     let sendId;
-    if(this.config.infinite && this.isFirst()) {
+    if (this.config.infinite && this.isFirst()) {
       sendId = this.itemLength;
-    } else if(this.config.infinite && this.isLast()) {
+    } else if (this.config.infinite && this.isLast()) {
       sendId = 1;
     } else {
       sendId = this.currentItem;
