@@ -17,11 +17,10 @@ export default class Carousel extends Subscriber {
 
   mergeOption(option) {
     const default_option = {
-      disabledBtnClass: 'arrow-disable',
       prevBtn: ".btn_prev",
       nextBtn: ".btn_next",
-      easing: "ease-in-out",
-      duration: "500",
+      // easing: "ease-in-out",
+      // duration: "500",
       infinite: false
     };
     return { ...default_option, ...option };
@@ -35,7 +34,14 @@ export default class Carousel extends Subscriber {
       setTimeout(() => this.toggleAnimate('on'), 0);
     }
     else this.checkMovable(0);
+    this.addCarouselClass();
     this.attachBtnEvent();
+  }
+
+  addCarouselClass() {
+    this.viewport.classList.add("viewport");
+    this.camera.classList.add("camera");
+    Array.from(this.panels).forEach(el => el.classList.add('panel'));
   }
 
   addClone() {
@@ -52,23 +58,6 @@ export default class Carousel extends Subscriber {
 
   eventHandler(direction) {
     this.publisher.setState({ direction })
-    // direction = direction === "prev" ? -1 : 1;
-    // if (this.isTransiting) return;
-
-    // currentIdx += direction;
-
-    // this.offset -= this.itemWidth * direction;
-    // this.animateMove(true);
-    // if (this.option.infinite) {
-    //   if (this.isCloneItem()) {
-    //     this.offset += this.itemWidth * this.maxIdx * direction;
-    //     setTimeout(() => this.animateMove(false), this.option.duration);
-    //     currentIdx -= this.maxIdx * direction;
-    //   }
-    // } else {
-    //   this.checkMovable(idx);
-    // }
-    // this.toggleStepClass();
   }
 
   async move({ targetIdx }) {
@@ -88,12 +77,12 @@ export default class Carousel extends Subscriber {
   }
 
   setInitialOffset() {
-    this.camera.style.cssText = `position:relative; left:-100%`;
+    this.camera.classList.add('infinite-camera');
   }
 
   setTransform(idx) {
     idx = idx < -1 ? this.maxIdx - 1 : idx;
-    this.camera.style.cssText = `transform:translateX(${-100 * idx}%); transition:transform ${this.option.duration}ms ${this.option.easing}`;
+    this.camera.style.transform = `translateX(${-100 * idx}%`;
   }
 
   toggleAnimate(onoff) {
@@ -105,20 +94,14 @@ export default class Carousel extends Subscriber {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  // animateMove(animate) {
-  //   this.isTransiting = animate;
-  //   this.camera.style.transform = `translate3D(${this.offset}px, 0, 0)`;
-  //   this.camera.style.transition = (animate) ? `transform ${this.option.duration}ms ${this.option.easing}` : 'none';
-  // }
-
   checkMovable(idx) {
     if (idx == 0)
-      this.prevBtn.classList.add(this.option.disabledBtnClass);
+      this.prevBtn.classList.add('arrow-disable');
     else if (idx == this.maxIdx - 1)
-      this.nextBtn.classList.add(this.option.disabledBtnClass);
+      this.nextBtn.classList.add('arrow-disable');
     else {
-      this.prevBtn.classList.remove(this.option.disabledBtnClass);
-      this.nextBtn.classList.remove(this.option.disabledBtnClass);
+      this.prevBtn.classList.remove('arrow-disable');
+      this.nextBtn.classList.remove('arrow-disable');
     }
   }
 
