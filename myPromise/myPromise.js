@@ -20,10 +20,9 @@ class MyPromise {
     then(cb) {
         let extraParam = this.value;
         this.thensCallback = cb;
-        if (this.value !== undefined) {
-            const thensPromise = cb(extraParam);
-            return thensPromise
-        }
+        // console.log('여기는 다 실행됨',this.value);
+        if (this.value === undefined) return 
+        const fetchedValue = cb(extraParam);
     }
 
 
@@ -37,6 +36,7 @@ let mySecondPromise = new MyPromise((MyResolve, MyReject) => {
 
 
 mySecondPromise.then((successMessage) => {
+    // console.log("여기는 Promise의 상태가 변해야만 실행됨",successMessage)
     return successMessage.name;
 })
 
