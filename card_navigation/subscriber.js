@@ -1,7 +1,7 @@
 export default class Subscriber {
-  subscribe(publisher) {
+  subscribe(name, publisher) {
     this.publisher = publisher;
-    this.publisher.add(this);
+    this.publisher.add(name, this);
   }
   render(state) {
     console.log(state);

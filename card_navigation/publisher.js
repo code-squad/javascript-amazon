@@ -1,21 +1,19 @@
 export default class Publisher {
   constructor() {
-    this.subscribers = [];
+    this.subscribers = {};
     this.state = {}
   }
 
-  add(subscriber) {
-    this.subscribers.push(subscriber);
+  add(name, obj) {
+    this.subscribers[name] = obj;
   }
 
-  notify(state) {
-    this.subscribers.forEach(el => {
-      el.render(state);
-    })
+  notify(name, state) {
+    this.subscribers[name].render(state);
   }
 
   setState(state) {
     this.state = { ...this.state, ...state }
-    this.notify(this.state);
+    this.notify(name, this.state);
   }
 }
