@@ -4,6 +4,7 @@ export default {
   },
 
   fetch : {
-    DATA_TYPE: `Data type must be Object.`
+    DATA_TYPE: `Data type must be Object.`,
+    NO_URL: `URL is neccessary.`
   }
 }
