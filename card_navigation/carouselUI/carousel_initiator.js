@@ -4,9 +4,10 @@ import Pagination from './pagination.js'
 
 const startIdx = 0;
 const quantityToSlide = 1;
-const panelQuantity = 4;
 
-const initCarousel = () => {
+const initCarousel = (data) => {
+  const panelQuantity = data.length;
+
   const stateManager = new StateManager({ startIdx, quantityToSlide, panelQuantity });
   const pagination = new Pagination(stateManager, ".benefit-list");
   const carousel = new Carousel(stateManager, ".benefit-content", {

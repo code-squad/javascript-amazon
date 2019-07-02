@@ -1,5 +1,5 @@
 import $ from './carouselUI/allenibrary.js'
-import initCarousel from './carouselUI/carousel_initiator.js/index.js.js'
+import initCarousel from './carouselUI/carousel_initiator.js'
 
 const getDescLists = (descLists) => {
   return descLists.reduce((acc, curr) => acc + `<li>${curr}</li>`, '')
@@ -20,6 +20,7 @@ const insertCards = (data) => {
 
   const cardWrapper = $('.card-wrapper');
   cardWrapper.insertAdjacentHTML('beforeend', tpl);
+  return data;
 }
 
 const getJsonData = url => fetch(url).then(res => res.json());
@@ -28,7 +29,7 @@ const init = _ => {
   const data = getJsonData('localData.json');
   data
     .then(data => insertCards(data))
-    .then(() => initCarousel())
+    .then(data => initCarousel(data))
 };
 
 window.addEventListener("DOMContentLoaded", _ => init());
