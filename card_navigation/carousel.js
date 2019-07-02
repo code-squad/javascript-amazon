@@ -1,14 +1,16 @@
-class Carousel {
-  constructor(el, option) {
-    this.el = document.querySelector(el);
-    this.cover = this.el.firstElementChild;
-    this.items = this.cover.children;
-    this.option = Carousel.mergeOption(option);
-    this.prevBtn = document.querySelector(this.option.prevBtn);
-    this.nextBtn = document.querySelector(this.option.nextBtn);
-    this.stepList = document.querySelector(this.option.stepList).children
-    this.itemWidth = this.items[0].offsetWidth;
-    this.itemLength = this.items.length;
+import $ from './allenibrary.js'
+
+export default class Carousel {
+  constructor(viewportSelector, option) {
+    this.viewport = $(viewportSelector);
+    this.camera = this.viewport.firstElementChild;
+    this.panels = this.camera.children;
+    this.option = this.mergeOption(option);
+    this.prevBtn = $(this.option.prevBtn);
+    this.nextBtn = $(this.option.nextBtn);
+    this.pagenation = $(this.option.pagenation).children
+    this.itemWidth = this.panels[0].offsetWidth;
+    this.itemLength = this.panels.length;
     this.isTransiting = false;
     this.offset = 0;
     this.current = 0;
@@ -16,8 +18,9 @@ class Carousel {
     this.init();
   }
 
-  static mergeOption(option) {
+  mergeOption(option) {
     const default_option = {
+      disabledBtnClass: 'arrow-disable',
       prevBtn: ".btn_prev",
       nextBtn: ".btn_next",
       step: ".step-list",
@@ -26,15 +29,10 @@ class Carousel {
       duration: "500",
       infinite: false
     };
-    return {
-      ...default_option,
-      ...option
-    };
+    return { ...default_option, ...option };
   }
 
   init() {
-    // this.addCarouselClass(); 좀 더 라이브러리화 할때 변경 예정
-
     if (this.option.infinite) {
       this.addCloneItem();
       this.offset -= this.itemWidth;
@@ -46,19 +44,19 @@ class Carousel {
   }
 
   addCloneItem() {
-    let firstItem = this.items[0];
-    let lastItem = this.items[this.itemLength - 1];
-    this.cover.insertBefore(lastItem.cloneNode(true), this.cover.firstChild);
-    this.cover.appendChild(firstItem.cloneNode(true));
+    let firstItem = this.panels[0];
+    let lastItem = this.panels[this.itemLength - 1];
+    this.camera.insertBefore(lastItem.cloneNode(true), this.camera.firstChild);
+    this.camera.appendChild(firstItem.cloneNode(true));
   }
 
   isCloneItem() {
-    return this.current === 0 || this.current === this.items.length - 1
+    return this.current === 0 || this.current === this.panels.length - 1
   }
   /*
   addCarouselClass() {
-    this.cover.classList.add("carousel-cover");
-    Array.from(this.items).forEach(el => el.classList.add("carousel-item"));
+    this.camera.classList.add("carousel-camera");
+    Array.from(this.panels).forEach(el => el.classList.add("carousel-item"));
   }
   */
 
@@ -66,9 +64,9 @@ class Carousel {
     this.prevBtn.addEventListener("click", () => this.btnEventHandler("prev"));
     this.nextBtn.addEventListener("click", () => this.btnEventHandler("next"));
 
-    this.cover.addEventListener("transitionend", () => this.isTransiting = false)
+    this.camera.addEventListener("transitionend", () => this.isTransiting = false)
 
-    Array.from(this.stepList).forEach((el, i) => {
+    Array.from(this.pagenation).forEach((el, i) => {
       el.dataset.id = (this.option.infinite) ? i + 1 : i;
       el.addEventListener("click", this.stepEventHandler.bind(this));
     })
@@ -96,8 +94,8 @@ class Carousel {
 
   animateMove(animate) {
     this.isTransiting = animate;
-    this.cover.style.transform = `translate3D(${this.offset}px, 0, 0)`;
-    this.cover.style.transition = (animate) ? `transform ${this.option.duration}ms ${this.option.easing}` : 'none';
+    this.camera.style.transform = `translate3D(${this.offset}px, 0, 0)`;
+    this.camera.style.transition = (animate) ? `transform ${this.option.duration}ms ${this.option.easing}` : 'none';
   }
 
   stepEventHandler(evt) {
@@ -115,20 +113,19 @@ class Carousel {
 
   checkMovable() {
     if (this.current == 0) {
-      this.prevBtn.classList.add("arrow-disable");
+      this.prevBtn.classList.add(this.option.disabledBtnClass);
     } else if (this.current == this.itemLength - 1) {
-      this.nextBtn.classList.add("arrow-disable");
+      this.nextBtn.classList.add(this.option.disabledBtnClass);
     } else {
-      this.prevBtn.classList.remove("arrow-disable");
-      this.nextBtn.classList.remove("arrow-disable");
+      this.prevBtn.classList.remove(this.option.disabledBtnClass);
+      this.nextBtn.classList.remove(this.option.disabledBtnClass);
     }
   }
 
   toggleStepClass() {
-    Array.from(this.stepList).forEach(el => {
+    Array.from(this.pagenation).forEach(el => {
       el.classList.remove("active");
     })
-    this.stepList[(this.option.infinite) ? this.current - 1 : this.current].classList.add("active")
-
+    this.pagenation[(this.option.infinite) ? this.current - 1 : this.current].classList.add("active")
   }
 }

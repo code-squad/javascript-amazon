@@ -29,7 +29,7 @@ const initCarousel = () => {
     infinite: true,
     prevBtn: ".arrow-left",
     nextBtn: ".arrow-right",
-    stepList: ".benefit-list"
+    pagenation: ".benefit-list"
   });
 }
 
