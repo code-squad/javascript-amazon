@@ -31,6 +31,7 @@ const initCarousel = () => {
   const quantityToSlide = 1;
   const panelQuantity = 4;
   const stateManager = new StateManager({ startIdx, quantityToSlide, panelQuantity });
+  const pagination = new Pagination(stateManager, ".benefit-list");
   const carousel = new Carousel(stateManager, ".benefit-content", {
     infinite: true,
     prevBtn: ".arrow-left",
