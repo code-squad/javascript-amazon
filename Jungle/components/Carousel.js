@@ -148,10 +148,16 @@ class Carousel {
   }
 
   move({ getId }) {
-    if (this.isMoving) return;
+    // 2019.07.02 bugfix
+    // nav에서 currentItem 눌렀을 때에 (id === this.currentItem)
+    // UI 변경이 없어 transition이 일어나지않고 transitionEndHandler가 실행되지 않음.
+    // 따라서 isMoving의 값이 변경되지 않아 버그 발생.
+    // carousel 혼자서 동작한다면 필요하지 않은 코드임.
+    // model을 분리한다면 상태를 관리하는 곳으로 옮겨야하는 코드
+    const id = getId();
+    if (this.isMoving || id === this.currentItem) return;
     this.isMoving = true;
 
-    const id = getId();
     const dist = this.config.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
     this.currentItem = id;
 
