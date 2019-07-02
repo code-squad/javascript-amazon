@@ -50,9 +50,6 @@ export default class Carousel {
     this.camera.appendChild(firstItem.cloneNode(true));
   }
 
-  isCloneItem() {
-    return this.current === 0 || this.current === this.panels.length - 1
-  }
   /*
   addCarouselClass() {
     this.camera.classList.add("carousel-camera");
@@ -90,6 +87,28 @@ export default class Carousel {
       this.checkMovable();
     }
     this.toggleStepClass();
+  }
+
+  isCloneItem() {
+    return this.current === 0 || this.current === this.panels.length - 1
+  }
+
+  setInitialOffset() {
+    this.camera.style.cssText = `position:relative; left:-100%`;
+  }
+
+  setTransform(idx) {
+    idx = idx < -1 ? this.len - 1 : idx;
+    this.camera.style.transform = `translateX(${-100 * idx}%)`;
+  }
+
+  toggleAnimate(onoff) {
+    const action = onoff === 'on' ? 'remove' : 'add';
+    this.camera.classList[action]('no-animation');
+  }
+
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   animateMove(animate) {
