@@ -8,7 +8,7 @@ const defaultOptions = {
 
 function MyFetch(url, options) {
   if(!url) new Error(errMsg.fetch.NO_URL);
-  const mergedOption = {...defaultOptions, options};
+  const mergedOption = {...defaultOptions, ...options};
 
   return new MyPromise((resolve, reject) => {
     const req = new XMLHttpRequest();
