@@ -1,5 +1,3 @@
-import myFetch from "../../MyFetch/index.js";
-
 class Carousel {
   constructor({ container, slider }, observer, config) {
     //DOM
@@ -11,10 +9,9 @@ class Carousel {
 
     // values
     this.observer = observer;
-    this.initIndex = 0;
     this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
     this.offset = 0;
-    this.currentItem = this.initIndex + 1;
+    this.currentItem = 1;
     this.itemLength = this.cardSlider.children.length;
     this.isMoving = false;
 
@@ -25,21 +22,6 @@ class Carousel {
     };
 
     this.config = this.mergeConfig(config);
-
-    // datas
-    this.cardData = [];
-    this.fetchData("../../data/localData.json");
-  }
-
-  fetchData(url) {
-    myFetch(url)
-      .then(data => {
-        return this.makeCardHtml(data);
-      })
-      .then(cardHtml => {
-        console.log(cardHtml);
-      })
-      .catch(err => console.log(err));
   }
 
   makeCardHtml(data) {
@@ -86,6 +68,7 @@ class Carousel {
 
     if (this.config.infinite) {
       this.cloneVirtualCard();
+      this.cardSlider.style.transform = `translateX(-${this.itemWidth}px)`;
       this.moveWithoutTransition();
     } else {
       this.setTransition(this.cardSlider, true);
@@ -164,9 +147,11 @@ class Carousel {
 
   moveWithoutTransition() {
     this.setTransition(this.cardSlider, false);
+
     this.move({
       getId: () => (this.currentItem === 0 ? this.itemLength : 1)
     });
+
     setTimeout(() => {
       this.isMoving = false;
       this.setTransition(this.cardSlider, true);
