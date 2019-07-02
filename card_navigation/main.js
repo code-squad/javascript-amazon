@@ -1,5 +1,7 @@
 import $ from './allenibrary.js'
 import Carousel from './carousel.js'
+import StateManager from './state_manager.js'
+import Pagination from './pagination.js'
 
 const getDescLists = (descLists) => {
   return descLists.reduce((acc, curr) => acc + `<li>${curr}</li>`, '')
@@ -25,11 +27,14 @@ const insertCards = (data) => {
 const getJsonData = url => fetch(url).then(res => res.json());
 
 const initCarousel = () => {
-  const carousel = new Carousel(".benefit-content", {
+  const startIdx = 0;
+  const quantityToSlide = 1;
+  const panelQuantity = 4;
+  const stateManager = new StateManager({ startIdx, quantityToSlide, panelQuantity });
+  const carousel = new Carousel(stateManager, ".benefit-content", {
     infinite: true,
     prevBtn: ".arrow-left",
     nextBtn: ".arrow-right",
-    pagenation: ".benefit-list"
   });
 }
 
