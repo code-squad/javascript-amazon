@@ -8,7 +8,8 @@
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
     ],
-    "imgURL": "./images/Card_A01.png"
+    "imgURL": "./resources/images/Card_A01.png",
+    "color": "steelblue"
   },
   {
     "_id": "2",
@@ -19,7 +20,8 @@
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
     ],
-    "imgURL": "./images/Card_B01.png"
+    "imgURL": "./resources/images/Card_B01.png",
+    "color": "purple"
   },
   {
     "_id": "3",
@@ -30,7 +32,8 @@
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
     ],
-    "imgURL": "./images/Card_C01.png"
+    "imgURL": "./resources/images/Card_C01.png",
+    "color": "darkgreen"
   },
   {
     "_id": "4",
@@ -41,6 +44,7 @@
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
     ],
-    "imgURL": "./images/Card_D01.png"
+    "imgURL": "./resources/images/Card_D01.png",
+    "color": "orange"
   }
 ]
