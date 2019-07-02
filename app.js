@@ -31,6 +31,14 @@ const makeCardHtml = data => {
       `;
 };
 
+const makeCarouselHtml = ({ className, data }) => {
+  const cardSlider_div = document.querySelector(className);
+  const cardHtml = makeCardHtml(data);
+
+  cardSlider_div.innerHTML = cardHtml;
+  sessionStorage.setItem(`cardData`, cardHtml);
+};
+
 window.onload = () => {
   const cardSlider1_div = document.querySelector(`.card-slider`);
   const cardSlider2_div = document.querySelector(`.card-slider2`);
@@ -59,20 +67,14 @@ window.onload = () => {
   const cardDataInSession = sessionStorage.getItem(`cardData`);
 
   if (cardDataInSession) {
-    cardSlider1_div.innerHTML = cardDataInSession;
+    cardSlider1_div.innerHTML = cardSlider2_div.innerHTML = cardDataInSession;
     jungle.createCarousel(slider1ParamObj);
-
-    cardSlider2_div.innerHTML = cardDataInSession;
     jungle.createCarousel(slider2ParamObj);
 
   } else {
     myFetch(dataPath)
       .then(data => {
-        const cardSlider1_div = document.querySelector(".card-slider");
-        const cardHtml = makeCardHtml(data);
-
-        cardSlider1_div.innerHTML = cardHtml;
-        sessionStorage.setItem(`cardData`, cardHtml);
+        makeCarouselHtml({ className: ".card-slider", data });
       })
       .then(_ => {
         jungle.createCarousel(slider1ParamObj);
@@ -81,11 +83,7 @@ window.onload = () => {
 
     myFetch(dataPath)
       .then(data => {
-        const cardSlider2_div = document.querySelector(".card-slider2");
-        const cardHtml = makeCardHtml(data);
-
-        cardSlider2_div.innerHTML = cardHtml;
-        sessionStorage.setItem(`cardData`, cardHtml);
+        makeCarouselHtml({ className: ".card-slider2", data });
       })
       .then(_ => {
         jungle.createCarousel(slider2ParamObj);
