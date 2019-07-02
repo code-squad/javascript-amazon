@@ -1,3 +1,5 @@
+import { mergeConfig, setCSS } from '../utils/index.js';
+
 class Carousel {
   constructor({ container }, observer, config) {
     //DOM
@@ -19,26 +21,19 @@ class Carousel {
       animation: 'cubic-bezier(0.240, -0.010, 0.400, 1.650)'
     };
 
-    this.config = this.mergeConfig(config);
-  }
-
-  mergeConfig(config) {
-    return Object.assign(this.defaultConfig, config);
-  }
-
-  setOpacity(el, val) {
-    el.style.opacity = val;
+    this.config = mergeConfig(this.defaultConfig, config);
   }
 
   init() {
     this.manipulateDOM();
     this.attatchEvent();
     this.setInitialUI();
-    this.setOpacity(this.container, 1);
+    setCSS(this.container, 'opacity', 1);
   }
 
   manipulateDOM() {
     /*
+      사용자가 입력한
       container
         card...
       구조에서
@@ -49,7 +44,7 @@ class Carousel {
             card...
         button prev
         button next
-      구조로 DOM을 변경
+      구조로 DOM을 변경하는 메서드
     */
     const cardWrapper = this.makeWrapper();
     this.cardSlider = this.appendSlider(cardWrapper);
@@ -79,9 +74,6 @@ class Carousel {
 
   moveCardsNode() {
     [...this.container.children].forEach(card => {
-      // remove를 사용했다.
-      // 이러면 돔 파싱이 다시 일어나지 않을까?
-      // 하위 노드 삭제라 괜찮으려나
       this.container.removeChild(card);
       this.cardSlider.appendChild(card);
     });
@@ -135,8 +127,8 @@ class Carousel {
 
   transitionEndHandler() {
     this.isMoving = false;
-    if (this.isEndOfCards()) {
-      if (this.config.infinite) this.moveWithoutTransition();
+    if (this.isEndOfCards() && this.config.infinite) {
+      this.moveWithoutTransition();
     }
   }
 
@@ -211,8 +203,8 @@ class Carousel {
 
   setTransition(el, val) {
     val
-      ? (el.style.transition = `transform ${this.config.duration}ms ${this.config.animation}`)
-      : (el.style.transition = `none`);
+      ? setCSS(el, 'transition', `transform ${this.config.duration}ms ${this.config.animation}`)
+      : setCSS(el, 'transition', 'none');
   }
 
   getChangingIndex() {
