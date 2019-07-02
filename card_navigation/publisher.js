@@ -8,14 +8,14 @@ export default class Publisher {
     this.subscribers.push(subscriber);
   }
 
-  notify() {
+  notify(state) {
     this.subscribers.forEach(el => {
-      el.run();
+      el.render(state);
     })
   }
 
   setState(state) {
     this.state = { ...this.state, ...state }
-    this.notify();
+    this.notify(this.state);
   }
 }
