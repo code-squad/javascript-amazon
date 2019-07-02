@@ -21,7 +21,10 @@ export default class StateManager extends Publisher {
       this.updateCurrentIdx(this.state);
       //TODO: pagination추가되면 함수이름에 따라 notify 시점을 달리해줘야할듯
       //(캐러셀 - sync하기 전, pagination - sync한 이후 notify)
-      console.log(this.state.targetIdx)
+      this.notify(this.state);
+    }
+    else {
+      this.updateCurrentIdx(this.state);
       this.notify(this.state);
     }
   }
@@ -42,5 +45,9 @@ export default class StateManager extends Publisher {
     state.currentIdx = targetIdx < 0 || targetIdx > panelQuantity - 1
       ? panelQuantity - Math.abs(targetIdx)
       : targetIdx;
+  }
+
+  syncronizeIdx(state) {
+    state.targetIdx = state.currentIdx;
   }
 }
