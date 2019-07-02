@@ -8,7 +8,7 @@ class Carousel {
     item,
     items,
     config = {
-      duration: 200,
+      duration: 300,
       easing: "ease-out"
     },
     currentItem = 1,
