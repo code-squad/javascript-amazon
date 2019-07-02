@@ -49,6 +49,7 @@ myFirstPromise.then((successMessage) => {
   })
 
 mySecondPromise.then((successMessage) => {
+    // console.log("여기는 Promise의 상태가 변해야만 실행됨",successMessage)
     return successMessage.name;
 })
 
