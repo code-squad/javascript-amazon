@@ -2,6 +2,7 @@ class MyPromise {
     constructor(cb) {
         this.state = 'pending';
         this.value = undefined;
+<<<<<<< HEAD
         this.thensCallbackQueue = [];
         cb(this.resolve.bind(this), this.reject.bind(this));
     }
@@ -14,6 +15,14 @@ class MyPromise {
             const currentCallback = this.thensCallbackQueue[0];
             this.excuteThensCallback(currentCallback);
         }
+=======
+        cb(this.resolve.bind(this), this.reject.bind(this));
+    }
+
+    resolve(value){
+        this.value = value;
+        this.state = 'fulfilled';
+>>>>>>> feat: then 의 콜백함수의 인자처리 구현
     }
 
     reject(value) {}
@@ -48,5 +57,8 @@ myFirstPromise.then((successMessage) => {
       console.log(`data3 is ${data3}`);
   })
 
+mySecondPromise.then((successMessage)=>{
+    return successMessage.name;
+})
 
 
