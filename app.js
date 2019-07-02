@@ -3,7 +3,7 @@ import myFetch from "./MyFetch/index.js";
 
 const jungle = new Jungle();
 
-const makeCardHtml = (data) => {
+const makeCardHtml = data => {
   return `
       ${data.reduce(
         (html, item) => `
@@ -29,44 +29,69 @@ const makeCardHtml = (data) => {
         ``
       )}
       `;
-}
+};
 
 window.onload = () => {
-  myFetch("./data/localData.json")
-    .then(data => {
-      const cardSlider_div = document.querySelector(".card-slider");
-      cardSlider_div.innerHTML = makeCardHtml(data);
-    })
-    .then(_ => {
-      jungle.createCarousel({
-        elClassNameObj: {
-          container: ".container",
-          slider: ".card-slider",
-          nav: ".nav"
-        }
-      });
-    })
-    .catch(err => console.log(err));
+  const cardSlider1_div = document.querySelector(`.card-slider`);
+  const cardSlider2_div = document.querySelector(`.card-slider2`);
 
-  myFetch("./data/localData.json")
-    .then(data => {
-      const cardSlider_div = document.querySelector(".card-slider2");
-      cardSlider_div.innerHTML = makeCardHtml(data);
-    })
-    .then(_ => {
-      jungle.createCarousel({
-        elClassNameObj: {
-          container: ".container2",
-          slider: ".card-slider2",
-        },
-        options: {
-          duration: 100,
-          animation: "ease-in",
-          infinite: false
-        }
-      });
-    })
-    .catch(err => console.log(err));
+  const dataPath = `./data/localData.json`;
+  const slider1ParamObj = {
+    elClassNameObj: {
+      container: ".container",
+      slider: ".card-slider",
+      nav: ".nav"
+    }
+  };
+
+  const slider2ParamObj = {
+    elClassNameObj: {
+      container: ".container2",
+      slider: ".card-slider2"
+    },
+    options: {
+      duration: 100,
+      animation: "ease-in",
+      infinite: false
+    }
+  };
+
+  const cardDataInSession = sessionStorage.getItem(`cardData`);
+
+  if (cardDataInSession) {
+    cardSlider1_div.innerHTML = cardDataInSession;
+    jungle.createCarousel(slider1ParamObj);
+
+    cardSlider2_div.innerHTML = cardDataInSession;
+    jungle.createCarousel(slider2ParamObj);
+
+  } else {
+    myFetch(dataPath)
+      .then(data => {
+        const cardSlider1_div = document.querySelector(".card-slider");
+        const cardHtml = makeCardHtml(data);
+
+        cardSlider1_div.innerHTML = cardHtml;
+        sessionStorage.setItem(`cardData`, cardHtml);
+      })
+      .then(_ => {
+        jungle.createCarousel(slider1ParamObj);
+      })
+      .catch(err => console.log(err));
+
+    myFetch(dataPath)
+      .then(data => {
+        const cardSlider2_div = document.querySelector(".card-slider2");
+        const cardHtml = makeCardHtml(data);
+
+        cardSlider2_div.innerHTML = cardHtml;
+        sessionStorage.setItem(`cardData`, cardHtml);
+      })
+      .then(_ => {
+        jungle.createCarousel(slider2ParamObj);
+      })
+      .catch(err => console.log(err));
+  }
 
   jungle.createNavigation({ elClassNameObj: { nav: ".nav2" } });
 };
