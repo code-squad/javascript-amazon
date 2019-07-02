@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fetch test</title>
+</head>
+<body>
+    <h1>Fetch Test</h1>
+    <div class="fetchBox"></div>
+    <script>
+        const fetchBox = document.querySelector(".fetchBox")
+        let myRequest = new Request('http://127.0.0.1:5500/localData.json');
+        
+        fetch(myRequest) 
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                for(let i = 0; i < data.length; i++) {
+                    let listItem = document.createElement('div');
+                    let subject = document.createElement('div');
+                    let description = document.createElement('div');
+                    let image = document.createElement('div');
+
+                    subject.innerHTML = 
+                        '<div>' + data[i].title + '</div>';
+                    description.innerHTML = 
+                        '<div>' + data[i].desc + '</div>';
+                    image.innerHTML = 
+                        `<img src="${data[i].imgURL}">`;                                                
+
+                    listItem.appendChild(subject);
+                    listItem.appendChild(description);
+                    listItem.appendChild(image);
+                    fetchBox.appendChild(listItem);
+                    
+                }
+            }) 
+    </script>
+</body>
+</html>
