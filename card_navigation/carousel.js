@@ -12,7 +12,7 @@ export default class Carousel extends Subscriber {
     this.prevBtn = $(this.option.prevBtn);
     this.nextBtn = $(this.option.nextBtn);
     this.init();
-    this.subscribe(publisher)
+    this.subscribe('carousel', publisher)
   }
 
   mergeOption(option) {
@@ -63,10 +63,11 @@ export default class Carousel extends Subscriber {
   async move({ targetIdx }) {
     this.setTransform(targetIdx);
     if (this.isCloneItem(targetIdx) && this.option.infinite) {
-      await this.sleep(200);
+      //TODO: duration을 옵션으로 받으면서 sleep의 매직넘버없애기
+      await this.sleep(250);
       this.toggleAnimate('off');
       this.setTransform(targetIdx - this.maxIdx);
-      await this.sleep(200);
+      await this.sleep(250);
       this.toggleAnimate('on');
     }
     if (!this.option.infinite) this.checkMovable(targetIdx);

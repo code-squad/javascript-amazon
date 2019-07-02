@@ -6,7 +6,7 @@ export default class Pagination extends Subscriber {
     super();
     this.paginations = $(paginationSelector).children;
     this.init();
-    this.subscribe(publisher);
+    this.subscribe('pagination', publisher);
   }
 
   init() {

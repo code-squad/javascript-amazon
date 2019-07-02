@@ -19,13 +19,14 @@ export default class StateManager extends Publisher {
       this.updateTargetIdx(this.state);
       this.updateDirection(this.state);
       this.updateCurrentIdx(this.state);
-      //TODO: pagination추가되면 함수이름에 따라 notify 시점을 달리해줘야할듯
-      //(캐러셀 - sync하기 전, pagination - sync한 이후 notify)
-      this.notify(this.state);
+      this.notify('carousel', this.state);
+      this.syncronizeIdx(this.state);
+      this.notify('pagination', this.state);
     }
     else {
       this.updateCurrentIdx(this.state);
-      this.notify(this.state);
+      this.notify('carousel', this.state);
+      this.notify('pagination', this.state);
     }
   }
 
