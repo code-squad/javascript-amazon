@@ -7,7 +7,7 @@ const headerViewer = new Viewer(config.header, template.getHeaderTemplate);
 const mainViewer = new Viewer(config.container, template.getMainTempalte);
 
 const getData = async () => 
-  await fetch('./src/json/localData.json').then(data => data.json());
+  await fetch('./src/JSON/localData.json').then(data => data.json());
 
 window.addEventListener('DOMContentLoaded', () => {
   const localData = getData();
