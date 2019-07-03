@@ -9,10 +9,9 @@ class Carousel {
 
     // values
     this.observer = observer;
-    this.initIndex = 0;
     this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
     this.offset = 0;
-    this.currentItem = this.initIndex + 1;
+    this.currentItem = 1;
     this.itemLength = this.cardSlider.children.length;
     this.isMoving = false;
 
@@ -23,6 +22,34 @@ class Carousel {
     };
 
     this.config = this.mergeConfig(config);
+  }
+
+  makeCardHtml(data) {
+    return `
+        ${data.reduce(
+          (html, item) => `
+          ${html}
+        <div class="card">
+        <div class="thumb">
+          <img src="${item.imgUrl}" alt="card-thumbnail" />
+        </div>
+        <div class="content">
+          <h2>${item.title}</h2>
+          <ul>
+            ${item.desc.reduce(
+              (html, item) => `
+              ${html}
+              <li>${item}</li>
+            `,
+              ``
+            )}
+          </ul>
+        </div>
+      </div>
+        `,
+          ``
+        )}
+        `;
   }
 
   mergeConfig(config) {
@@ -41,6 +68,7 @@ class Carousel {
 
     if (this.config.infinite) {
       this.cloneVirtualCard();
+      this.cardSlider.style.transform = `translateX(-${this.itemWidth}px)`;
       this.moveWithoutTransition();
     } else {
       this.setTransition(this.cardSlider, true);
@@ -77,9 +105,8 @@ class Carousel {
     this.prevButton.addEventListener("click", () => this.prevHandler());
     this.nextButton.addEventListener("click", () => this.nextHandler());
 
-    this.cardSlider.addEventListener(
-      "transitionend",
-      () => this.transitionEndHandler()
+    this.cardSlider.addEventListener("transitionend", () =>
+      this.transitionEndHandler()
     );
   }
 
@@ -91,6 +118,7 @@ class Carousel {
   }
 
   move({ getId }) {
+    if (this.currentItem === getId()) return;
     if (this.isMoving) return;
     this.isMoving = true;
 
@@ -107,9 +135,9 @@ class Carousel {
 
   makeSendId() {
     let sendId;
-    if(this.config.infinite && this.isFirst()) {
+    if (this.config.infinite && this.isFirst()) {
       sendId = this.itemLength;
-    } else if(this.config.infinite && this.isLast()) {
+    } else if (this.config.infinite && this.isLast()) {
       sendId = 1;
     } else {
       sendId = this.currentItem;
@@ -119,9 +147,11 @@ class Carousel {
 
   moveWithoutTransition() {
     this.setTransition(this.cardSlider, false);
+
     this.move({
       getId: () => (this.currentItem === 0 ? this.itemLength : 1)
     });
+
     setTimeout(() => {
       this.isMoving = false;
       this.setTransition(this.cardSlider, true);
