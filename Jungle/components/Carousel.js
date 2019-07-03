@@ -1,4 +1,4 @@
-import { mergeConfig, setCSS, removeNodes } from '../utils/index.js';
+import { mergeConfig, setCSS, removeNodes, isContainClass } from '../utils/index.js';
 import { makeHTMLString } from '../template/index.js';
 
 class Carousel {
@@ -49,9 +49,7 @@ class Carousel {
   }
 
   attatchEvent() {
-    // this.prevButton.addEventListener('click', () => this.prevHandler());
-    // this.nextButton.addEventListener('click', () => this.nextHandler());
-
+    this.container.addEventListener('click', e => this.buttonClickHanlder(e));
     this.slider.addEventListener('transitionend', () => this.transitionEndHandler());
   }
 
@@ -76,19 +74,16 @@ class Carousel {
     this.slider.insertAdjacentElement('beforeend', firstCard);
   }
 
+  buttonClickHanlder(evt) {
+    const id = isContainClass(evt.target, 'prev') ? this.currentItem - 1 : this.currentItem + 1;
+    this.move(id);
+  }
+
   transitionEndHandler() {
     this.isMoving = false;
     if (this.isEndOfCards() && this.config.infinite) {
       this.moveWithoutTransition();
     }
-  }
-
-  prevHandler() {
-    this.move({ getId: () => this.currentItem - 1 });
-  }
-
-  nextHandler() {
-    this.move({ getId: () => this.currentItem + 1 });
   }
 
   isMovable() {
@@ -98,14 +93,13 @@ class Carousel {
     this.nextButton.disabled = this.isLast();
   }
 
-  move({ getId }) {
+  move(id) {
     // 2019.07.02 bugfix
     // nav에서 currentItem 눌렀을 때에 (id === this.currentItem)
     // UI 변경이 없어 transition이 일어나지않고 transitionEndHandler가 실행되지 않음.
     // 따라서 isMoving의 값이 변경되지 않아 버그 발생.
     // carousel 혼자서 동작한다면 필요하지 않은 코드임.
     // model을 분리한다면 상태를 관리하는 곳으로 옮겨야하는 코드
-    const id = getId();
     if (this.isMoving || id === this.currentItem) return;
     this.isMoving = true;
 
@@ -131,9 +125,7 @@ class Carousel {
 
   moveWithoutTransition() {
     this.setTransition(this.slider, false);
-    this.move({
-      getId: () => (this.currentItem === 0 ? this.itemLength : 1)
-    });
+    this.move(this.currentItem === 0 ? this.itemLength : 1);
     setTimeout(() => {
       this.isMoving = false;
       this.setTransition(this.slider, true);

@@ -1,5 +1,6 @@
 class Navigation {
   constructor({ nav }, options, observer) {
+    this.nav = document.querySelector(nav);
     this.navItems = [...document.querySelector(nav).children];
 
     this.observer = observer;
@@ -13,6 +14,7 @@ class Navigation {
   }
 
   attatchEvent() {
+    // this.nav.addEventListener('click', event => this.clickHandler(event));
     this.navItems.forEach((item, index) => {
       item.addEventListener('click', () => {
         const id = index + 1;
@@ -21,9 +23,13 @@ class Navigation {
     });
   }
 
+  clickHandler(event) {
+    console.log(event.target);
+  }
+
   setItem(id) {
     this.selectedId = id;
-    this.observer.notify('selectNav', { getId: () => this.selectedId });
+    this.observer.notify('selectNav', this.selectedId);
     this.selectNav();
   }
 

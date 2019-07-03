@@ -8,8 +8,8 @@ const templates = {
           }, '')}
         </div>
       </div>
-      <button class="card-control prev"></button>
-      <button class="card-control next"></button>
+      <button class="card-control prev"><</button>
+      <button class="card-control next">></button>
     `;
   }
 };
