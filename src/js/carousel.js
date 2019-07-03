@@ -36,6 +36,7 @@ class Carousel {
     this.attachEvent();
     this.insertClone();
     this.moveWithoutAnimation();
+    this.headerItems[0].classList.add('active');
     this.carouselMain.style.opacity = 1;
   }
 

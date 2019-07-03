@@ -1,16 +1,23 @@
-import config from './src/js/config.js';
-import Carousel from './src/js/carousel.js'
+import config from './src/js/helper/config.js';
+import template from './src/js/helper/template.js';
 import Viewer from './src/js/viewer.js';
+import Carousel from './src/js/carousel.js'
 
-const viewer = new Viewer(config);
+const headerViewer = new Viewer(config.header, template.getHeaderTemplate);
+const mainViewer = new Viewer(config.container, template.getMainTempalte);
+
 const getData = async () => 
-  await fetch('./src/js/localData.json').then(data => data.json());
+  await fetch('./src/json/localData.json').then(data => data.json());
 
 window.addEventListener('DOMContentLoaded', () => {
   const localData = getData();
 
     localData
-      .then(json => viewer.rendering(json))
+      .then(json => {
+        headerViewer.rendering(json.header);
+        return json;
+      })
+      .then(json => mainViewer.rendering(json.main))
       .then( () => {
         const carousel = new Carousel(config);
         carousel.init();
