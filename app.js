@@ -3,10 +3,13 @@ import template from './src/js/helper/template.js';
 import RenderTemplate from './src/js/renderTemplate.js';
 import Carousel from './src/js/carousel.js'
 import Viewer from './src/js/viewer.js';
+import Carousel from './src/js/carousel.js'
 
-const viewer = new Viewer(config);
+const headerViewer = new Viewer(config.header, template.getHeaderTemplate);
+const mainViewer = new Viewer(config.container, template.getMainTempalte);
+
 const getData = async () => 
-  await fetch('./src/js/localData.json').then(data => data.json());
+  await fetch('./src/json/localData.json').then(data => data.json());
 
 const headerViewer = new RenderTemplate(config.header, template.getHeaderTemplate);
 const mainViewer = new RenderTemplate(config.container, template.getMainTempalte);
