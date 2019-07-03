@@ -12,14 +12,14 @@ const getData = async () =>
 window.addEventListener('DOMContentLoaded', () => {
   const localData = getData();
 
-    localData
-      .then(json => {
-        headerViewer.rendering(json.header);
-        return json;
-      })
-      .then(json => mainViewer.rendering(json.main))
-      .then( () => {
-        const carousel = new Carousel(config);
-        carousel.init();
-      });
+  localData
+    .then(json => {
+      headerViewer.rendering(json.header);
+      return json;
+    })
+    .then(json => mainViewer.rendering(json.main))
+    .then( () => {
+      const carousel = new Carousel(config);
+      carousel.init();
+    });
 });
