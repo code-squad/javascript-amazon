@@ -16,6 +16,7 @@ class Carousel {
     this.offset = 0;
     this.currentItem = this.initIndex + 1;
     this.isMoving = false;
+    this.initStatus = true;
 
     this.defaultConfig = {
       infinite: true,
@@ -31,6 +32,7 @@ class Carousel {
     this.attatchEvent();
     this.setInitialUI();
     setCSS(this.container, 'opacity', 1);
+    this.initStatus = false;
   }
 
   manipulateDOM() {
@@ -75,8 +77,15 @@ class Carousel {
   }
 
   buttonClickHanlder(evt) {
-    const id = isContainClass(evt.target, 'prev') ? this.currentItem - 1 : this.currentItem + 1;
-    this.move(id);
+    if (isContainClass(evt.target, 'prev')) {
+      this.move(this.currentItem - 1);
+      return;
+    }
+
+    if (isContainClass(evt.target, 'next')) {
+      this.move(this.currentItem + 1);
+      return;
+    }
   }
 
   transitionEndHandler() {
@@ -94,13 +103,7 @@ class Carousel {
   }
 
   move(id) {
-    // 2019.07.02 bugfix
-    // nav에서 currentItem 눌렀을 때에 (id === this.currentItem)
-    // UI 변경이 없어 transition이 일어나지않고 transitionEndHandler가 실행되지 않음.
-    // 따라서 isMoving의 값이 변경되지 않아 버그 발생.
-    // carousel 혼자서 동작한다면 필요하지 않은 코드임.
-    // model을 분리한다면 상태를 관리하는 곳으로 옮겨야하는 코드
-    if (this.isMoving || id === this.currentItem) return;
+    if (this.isMoving || (!this.initStatus && this.currentItem === id)) return;
     this.isMoving = true;
 
     const dist = this.config.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
