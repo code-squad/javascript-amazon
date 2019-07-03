@@ -5,7 +5,8 @@ class Carousel {
   constructor({ container }, observer, config) {
     //DOM
     this.container = document.querySelector(container);
-    this.cardSlider;
+    this.wrapper;
+    this.slider;
 
     // values
     this.itemWidth;
@@ -34,55 +35,45 @@ class Carousel {
 
   manipulateDOM() {
     const cards = [...this.container.children];
-    const carousel = makeHTMLString({ data: cards, type: 'carousel' });
-    removeNodes(cards);
-    this.container.insertAdjacentHTML('afterbegin', carousel);
+    this.setInitialDOM(cards);
 
-    const cardWrapper = this.container.firstElementChild;
-    this.cardSlider = cardWrapper.querySelector('.card-slider');
-
-    this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
-    this.itemLength = this.cardSlider.children.length;
-    cardWrapper.style.width = `${this.itemWidth}px`;
+    this.wrapper = this.container.firstElementChild;
+    this.slider = this.wrapper.firstElementChild;
+    this.itemLength = this.slider.children.length;
   }
 
-  makeButtons() {
-    return [document.createElement('button'), document.createElement('button')].map((button, i) => {
-      button.classList.add('card-control');
-      if (i === 0) {
-        button.classList.add('prev');
-        button.innerText = '<';
-      } else if (i === 1) {
-        button.classList.add('next');
-        button.innerText = '>';
-      }
-      return button;
-    });
+  setInitialDOM(cards) {
+    removeNodes(cards);
+    const carousel = makeHTMLString({ data: cards, type: 'carousel' });
+    this.container.insertAdjacentHTML('afterbegin', carousel);
   }
 
   attatchEvent() {
     // this.prevButton.addEventListener('click', () => this.prevHandler());
     // this.nextButton.addEventListener('click', () => this.nextHandler());
 
-    this.cardSlider.addEventListener('transitionend', () => this.transitionEndHandler());
+    this.slider.addEventListener('transitionend', () => this.transitionEndHandler());
   }
 
   setInitialUI() {
+    this.itemWidth = this.slider.firstElementChild.getBoundingClientRect().width;
+    this.wrapper.style.width = `${this.itemWidth}px`;
+
     if (this.config.infinite) {
       this.cloneVirtualCard();
       this.moveWithoutTransition();
     } else {
-      this.setTransition(this.cardSlider, true);
+      this.setTransition(this.slider, true);
       this.isMovable();
     }
   }
 
   cloneVirtualCard() {
-    const firstCard = this.cardSlider.firstElementChild.cloneNode(true);
-    const lastCard = this.cardSlider.lastElementChild.cloneNode(true);
+    const firstCard = this.slider.firstElementChild.cloneNode(true);
+    const lastCard = this.slider.lastElementChild.cloneNode(true);
 
-    this.cardSlider.insertAdjacentElement('afterbegin', lastCard);
-    this.cardSlider.insertAdjacentElement('beforeend', firstCard);
+    this.slider.insertAdjacentElement('afterbegin', lastCard);
+    this.slider.insertAdjacentElement('beforeend', firstCard);
   }
 
   transitionEndHandler() {
@@ -139,18 +130,18 @@ class Carousel {
   }
 
   moveWithoutTransition() {
-    this.setTransition(this.cardSlider, false);
+    this.setTransition(this.slider, false);
     this.move({
       getId: () => (this.currentItem === 0 ? this.itemLength : 1)
     });
     setTimeout(() => {
       this.isMoving = false;
-      this.setTransition(this.cardSlider, true);
+      this.setTransition(this.slider, true);
     }, 0);
   }
 
   moveSlider(dist) {
-    this.cardSlider.style.transform = `translateX(${dist}px)`;
+    this.slider.style.transform = `translateX(${dist}px)`;
   }
 
   isEndOfCards() {
