@@ -1,4 +1,5 @@
-import { mergeConfig, setCSS } from '../utils/index.js';
+import { mergeConfig, setCSS, removeNodes } from '../utils/index.js';
+import { makeHTMLString } from '../template/index.js';
 
 class Carousel {
   constructor({ container }, observer, config) {
@@ -32,51 +33,17 @@ class Carousel {
   }
 
   manipulateDOM() {
-    /*
-      사용자가 입력한
-      container
-        card...
-      구조에서
+    const cards = [...this.container.children];
+    const carousel = makeHTMLString({ data: cards, type: 'carousel' });
+    removeNodes(cards);
+    this.container.insertAdjacentHTML('afterbegin', carousel);
 
-      container
-        wrapper
-          slider
-            card...
-        button prev
-        button next
-      구조로 DOM을 변경하는 메서드
-    */
-    const cardWrapper = this.makeWrapper();
-    this.cardSlider = this.appendSlider(cardWrapper);
-    this.moveCardsNode();
-    this.container.insertAdjacentElement('afterbegin', cardWrapper);
-    this.appendButtons();
+    const cardWrapper = this.container.firstElementChild;
+    this.cardSlider = cardWrapper.querySelector('.card-slider');
 
     this.itemWidth = this.cardSlider.firstElementChild.getBoundingClientRect().width;
     this.itemLength = this.cardSlider.children.length;
     cardWrapper.style.width = `${this.itemWidth}px`;
-  }
-
-  makeWrapper() {
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('card-wrapper');
-
-    return wrapper;
-  }
-
-  appendSlider(wrapper) {
-    const slider = document.createElement('div');
-    slider.classList.add('card-slider');
-
-    wrapper.appendChild(slider);
-    return slider;
-  }
-
-  moveCardsNode() {
-    [...this.container.children].forEach(card => {
-      this.container.removeChild(card);
-      this.cardSlider.appendChild(card);
-    });
   }
 
   makeButtons() {
@@ -93,16 +60,9 @@ class Carousel {
     });
   }
 
-  appendButtons() {
-    [this.prevButton, this.nextButton] = this.makeButtons();
-
-    this.container.insertAdjacentElement('beforeend', this.prevButton);
-    this.container.insertAdjacentElement('beforeend', this.nextButton);
-  }
-
   attatchEvent() {
-    this.prevButton.addEventListener('click', () => this.prevHandler());
-    this.nextButton.addEventListener('click', () => this.nextHandler());
+    // this.prevButton.addEventListener('click', () => this.prevHandler());
+    // this.nextButton.addEventListener('click', () => this.nextHandler());
 
     this.cardSlider.addEventListener('transitionend', () => this.transitionEndHandler());
   }
