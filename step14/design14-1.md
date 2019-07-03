@@ -1,6 +1,6 @@
 ## Templating 설계
 
-### template literal 활용과 함수로직 분리 
+### 1. template literal 활용과 함수로직 분리 
 
 - react 에서 component 처럼 분리해 보면 어떨까?
 
@@ -15,7 +15,7 @@
 
 ### Sudo code
 
-#### 1. 컴포넌트 
+#### 1-1. 컴포넌트 
 
 ```js
 // carouselHeader 
@@ -54,9 +54,45 @@ export default carousel;
 
 ```
 
-#### 2. 템플릿을 만드는 함수
+#### 1-2. 템플릿을 만드는 함수
 
 ```js
 const makeDataToHtml = (data, templateFunc) => templateFunc(data);
 ```
 
+### 2. 데이터 캐쉬
+
+- [localstorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)를 이용하자
+- 먼저 localStorage 를 조회하여 data가 있는지 점검하자 
+- 없다면 fetch를 해와서 쓰자(여기서 분기를 줄때 catch 메소드를 쓰면되겠다)
+- fetch를 하고나서 localstroage에 다시 저장해두자 
+- 그런데 업데이트나 변화가  있으면 새로 받아와야 하니까 버전정보도 함께 저장하자  
+- [Frontend caching strategies](https://medium.com/@brockreece/frontend-caching-strategies-38c57f59e254) 참고
+
+#### sudo
+
+```js
+  const currentVersion = 1
+  let data = localStorage.getItem('data')
+  let version = localStorage.getItem('version')
+  const carouselURL = 'http://127.0.0.1:5500/data.json';
+  if (!version || version < currentVersion) {
+    fetch(carouselURL).then((response) => {
+      data = response;
+      localStorage.setItem('data', data)
+      localStorage.setItem('version', currentVersion)
+    })
+  }
+```
+
+
+
+### 2. 앱 실행시킬 때 초기화는 어떻게 하는게 좋을까?
+
+- 데이터를 받아와 
+
+- 렌더링(templating)과 carousel(조작)객체는 무관해야 하니까 분리해야 한다.
+
+  
+
+### 
