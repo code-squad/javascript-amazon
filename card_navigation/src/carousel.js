@@ -17,8 +17,7 @@ export default class Carousel extends Subscriber {
   mergeOption(option) {
     const default_option = {
       btnWrapper: '.btn-wrapper',
-      // easing: "ease-in-out",
-      // duration: "200",
+      duration: "200",
       infinite: false
     };
     return { ...default_option, ...option };
@@ -64,12 +63,8 @@ export default class Carousel extends Subscriber {
   async move({ targetIdx }) {
     this.setTransform(targetIdx);
     if (this.isCloneItem(targetIdx) && this.option.infinite) {
-      //TODO: duration을 옵션으로 받으면서 sleep의 매직넘버없애기
-      await this.sleep(250);
-      this.toggleAnimate('off');
-      this.setTransform(targetIdx - this.maxIdx);
-      await this.sleep(250);
-      this.toggleAnimate('on');
+      await this.sleep(this.option.duration - 50);
+      this.setNoAnimateTransform(targetIdx - this.maxIdx);
     }
     if (!this.option.infinite) this.checkMovable(targetIdx);
   }
@@ -84,7 +79,12 @@ export default class Carousel extends Subscriber {
 
   setTransform(idx) {
     idx = idx < -1 ? this.maxIdx - 1 : idx;
-    this.camera.style.transform = `translateX(${-100 * idx}%`;
+    this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: transform ${this.option.duration}ms`
+  }
+
+  setNoAnimateTransform(idx) {
+    idx = idx < -1 ? this.maxIdx - 1 : idx;
+    this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: none`
   }
 
   toggleAnimate(onoff) {
