@@ -52,11 +52,11 @@ export default class Carousel extends Subscriber {
   }
 
   attachBtnEvent() {
-    this.prevBtn.addEventListener("click", () => this.eventHandler("prev"));
-    this.nextBtn.addEventListener("click", () => this.eventHandler("next"));
+    this.prevBtn.addEventListener("click", () => this.handleBtnClick("prev"));
+    this.nextBtn.addEventListener("click", () => this.handleBtnClick("next"));
   }
 
-  eventHandler(direction) {
+  handleBtnClick(direction) {
     this.publisher.setState({ direction })
   }
 

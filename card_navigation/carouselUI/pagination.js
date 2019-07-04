@@ -14,15 +14,15 @@ export default class Pagination extends Subscriber {
     this.toggleActive(0, this.paginations);
   }
 
-  eventHandler(evt) {
-    const targetIdx = Number(evt.target.dataset.idx);
+  handleClick({ target }) {
+    const targetIdx = Number(target.dataset.idx);
     this.publisher.setState({ targetIdx });;
   }
 
   addPaginationEvent(paginations) {
     Array.from(paginations).forEach((el, i) => {
       el.dataset.idx = i;
-      el.addEventListener("click", this.eventHandler.bind(this));
+      el.addEventListener("click", this.handleClick.bind(this));
     })
   }
 
