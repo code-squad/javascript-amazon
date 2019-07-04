@@ -66,7 +66,7 @@ const makeDataToHtml = (data, templateFunc) => templateFunc(data);
 - 먼저 localStorage 를 조회하여 data가 있는지 점검하자 
 - 없다면 fetch를 해와서 쓰자(여기서 분기를 줄때 catch 메소드를 쓰면되겠다)
 - fetch를 하고나서 localstroage에 다시 저장해두자 
-- 그런데 업데이트나 변화가  있으면 새로 받아와야 하니까 버전정보도 함께 저장하자  
+- 그런데 업데이트나 변화가  있으면 새로 받아와야 하니까 버전정보도 함께 저장하자  
 - [Frontend caching strategies](https://medium.com/@brockreece/frontend-caching-strategies-38c57f59e254) 참고
 
 #### sudo
@@ -85,14 +85,14 @@ const makeDataToHtml = (data, templateFunc) => templateFunc(data);
   }
 ```
 
-
-
 ### 2. 앱 실행시킬 때 초기화는 어떻게 하는게 좋을까?
 
-- 데이터를 받아와 
+- 데이터를 받아와서 렌더링하기 전까지 carousel 인스턴스가 초기화되면 안된다. 렌더링 이후로 init의 순서가 보장되어야 한다. 
 
 - 렌더링(templating)과 carousel(조작)객체는 무관해야 하니까 분리해야 한다.
 
-  
+- app.js 는 entry point 이므로 복잡도를 높이지 말자. 렌더링과 관련된 로직을 따로 분리하여 캐시 전략의 의도를 분명히 할 수도 있다. 
 
-### 
+   
+  
+  
