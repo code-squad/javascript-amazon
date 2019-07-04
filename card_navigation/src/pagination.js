@@ -1,4 +1,4 @@
-import { $, delegate } from './allenibrary.js'
+import { $, delegate } from '../utils/allenibrary.js'
 import Subscriber from './subscriber.js'
 
 export default class Pagination extends Subscriber {

@@ -1,4 +1,4 @@
-import { $, delegate } from './allenibrary.js'
+import { $, delegate } from '../utils/allenibrary.js'
 import Subscriber from './subscriber.js'
 
 export default class Carousel extends Subscriber {
@@ -18,7 +18,7 @@ export default class Carousel extends Subscriber {
     const default_option = {
       btnWrapper: '.btn-wrapper',
       // easing: "ease-in-out",
-      // duration: "500",
+      // duration: "200",
       infinite: false
     };
     return { ...default_option, ...option };
