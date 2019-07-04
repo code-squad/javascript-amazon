@@ -11,14 +11,14 @@ export default class Carousel extends Subscriber {
     this.option = this.mergeOption(option);
     this.btnWrapper = $(this.option.btnWrapper);
     this.init();
-    this.subscribe('carousel', publisher)
+    this.subscribe('carousel', publisher);
   }
 
   mergeOption(option) {
     const default_option = {
-      btnWrapper: '.btn-wrapper',
       duration: "200",
-      infinite: false
+      infinite: false,
+      startIdx: 0
     };
     return { ...default_option, ...option };
   }
@@ -30,9 +30,20 @@ export default class Carousel extends Subscriber {
       this.setInitialOffset();
       setTimeout(() => this.toggleAnimate('on'), 0);
     }
-    else this.checkMovable(0);
+    else {
+      this.getBtns(this.option.prevBtn, this.option.nextBtn);
+      this.checkMovable(this.option.startIdx);
+    }
     this.addCarouselClass();
+    this.setNoAnimateTransform(this.option.startIdx)
     this.delegateBtnEvt(this.option.prevBtn, this.option.nextBtn);
+  }
+
+  getBtns(prevBtn, nextBtn) {
+    Array.from(this.btnWrapper.children).forEach(el => {
+      if (el.classList.contains(prevBtn)) this.prevBtn = el;
+      if (el.classList.contains(nextBtn)) this.nextBtn = el;
+    })
   }
 
   delegateBtnEvt(prevBtn, nextBtn) {
@@ -50,14 +61,14 @@ export default class Carousel extends Subscriber {
   }
 
   addClone() {
-    let firstItem = this.panels[0];
-    let lastItem = this.panels[this.maxIdx - 1];
+    const firstItem = this.panels[0];
+    const lastItem = this.panels[this.maxIdx - 1];
     this.camera.insertBefore(lastItem.cloneNode(true), this.camera.firstChild);
     this.camera.appendChild(firstItem.cloneNode(true));
   }
 
   handleBtnClick(direction) {
-    this.publisher.setState({ direction })
+    this.publisher.setState({ direction });
   }
 
   async move({ targetIdx }) {

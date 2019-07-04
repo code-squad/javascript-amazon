@@ -14,7 +14,8 @@ const initCarousel = (data) => {
     infinite: true,
     btnWrapper: ".content-wrapper",
     prevBtn: 'arrow-left',
-    nextBtn: 'arrow-right'
+    nextBtn: 'arrow-right',
+    startIdx: startIdx
   });
 }
 

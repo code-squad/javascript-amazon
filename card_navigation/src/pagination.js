@@ -14,7 +14,7 @@ export default class Pagination extends Subscriber {
   init() {
     this.addIdx(this.paginations);
     this.toggleActive(this.startIdx, this.paginations);
-    this.delegateEvt(this.paginations.item(this.startIdx + 1).className);
+    this.delegateEvt(this.paginations.item((this.startIdx + 1) % this.paginations.length).className);
   }
 
   delegateEvt(className) {
