@@ -1,12 +1,21 @@
-"use strict";
-
 import Carousel from "./carousel.js";
 import Pagination from "./pagination.js";
 
-const carousel = new Carousel(".carousel", {
-  infinite: true
-});
+class Manager {
+  constructor(obj) {
+    this.carousel = obj.carousel;
+    this.pagination = obj.pagination;
+  }
 
-const pagination = new Pagination(carousel);
-carousel.init(pagination);
-pagination.init();
+  initComponent() {
+    carousel.getJsonData("./resources/data/carouselData.json");
+  }
+}
+
+const carousel = new Carousel(".carousel");
+const pagination = new Pagination();
+const manager = new Manager({ carousel, pagination });
+
+window.addEventListener("DOMContentLoaded", () => {
+  manager.initComponent();
+});

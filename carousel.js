@@ -1,14 +1,15 @@
 "use strict";
+import Pagination from "./pagination.js";
 
 class Carousel {
-  constructor(input, option) {
+  constructor(input) {
     this.carousel = document.querySelector(input);
+    this.itemsInitCount;
     this.items = this.carousel.children;
     this.width = this.carousel.offsetWidth;
-    this.itemsInitCount = this.items.length;
+
     this.currentPointer = -this.width;
-    this.pagination;
-    this.option = option;
+    this.data;
 
     this.prevBtn = document.querySelector(".btn-prev");
     this.nextBtn = document.querySelector(".btn-next");
@@ -19,41 +20,54 @@ class Carousel {
     };
   }
 
-  init(pagination) {
-    this.pagination = pagination;
-    let itemsCount = this.items.length;
-    if (this.option.infinite) {
-      itemsCount = this.setCarouselItem();
-    }
+  getJsonData(url) {
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        this.data = data;
+        this.initData(this.data);
+      });
+  }
 
-    this.setCarouselFullWidth(itemsCount);
+  initData(data) {
+    let result = data.reduce((acc, cur) => {
+      acc += `<li class="carousel-item"><div class="info-img"><img src="${
+        cur.imgurl
+      }"></div><div class="info-text"><h3>${
+        cur.title
+      }</h3><ul>${this.makeDescArr(cur.desc)}</ul></div></li>`;
+      return acc;
+    }, "");
+
+    this.carousel.insertAdjacentHTML("beforeend", result);
+    this.itemsInitCount = this.carousel.children.length;
+    this.start();
+  }
+
+  makeDescArr(arr) {
+    let result = arr.reduce((acc, cur) => {
+      acc += `<li>${cur}</li>`;
+      return acc;
+    }, "");
+    return result;
+  }
+
+  start() {
+    this.setCarouselItem(this.items.length);
+    this.setCarouselFullWidth(this.items.length);
     this.setAttrToElement(this.items, "data-index");
     this.setCarouselPosition();
-
     this.attchEventToBtn();
   }
 
-  isInfinite() {
-    return this.option.infinite;
-  }
-
-  setCarouselItem() {
+  setCarouselItem(itemsCount) {
     this.appendCloneItem(
       this.carousel,
       this.items[0],
-      this.items[this.itemsInitCount - 1]
+      this.items[itemsCount - 1]
     );
-    return this.items.length;
-  }
-
-  setCarouselPosition() {
-    if (this.option.infinite) {
-      this.carousel.style.transform = `translateX(${this.currentPointer}px)`;
-      this.carousel.style.transition = `all 0s`;
-      this.addElementToClass(this.items[1], this.config.active);
-    } else {
-      this.addElementToClass(this.items[0], this.config.active);
-    }
   }
 
   appendCloneItem(parentNode, firstItem, lastItem) {
@@ -67,10 +81,6 @@ class Carousel {
     this.addElementToClass(lastCloneItem, this.config.clone);
   }
 
-  addElementToClass(elementName, className) {
-    elementName.classList.add(className);
-  }
-
   setCarouselFullWidth(itemsCount) {
     let fullWidth = this.width * itemsCount;
     this.carousel.style.width = `${fullWidth}px`;
@@ -82,12 +92,51 @@ class Carousel {
     elementName = Array.from(elementName);
 
     elementName.forEach((v, i) => {
-      if (this.option.infinite && navoption === false) {
+      if (navoption === false) {
         elementName[i].setAttribute(attrName, i);
       } else {
         elementName[i].setAttribute(attrName, i + 1);
       }
     });
+  }
+
+  setCarouselPosition() {
+    this.carousel.style.transform = `translateX(${this.currentPointer}px)`;
+    this.carousel.style.transition = `all 0s`;
+    this.addElementToClass(this.items[1], this.config.active);
+  }
+
+  attchEventToBtn() {
+    this.prevBtn.addEventListener("click", () => {
+      let activeIndex = this.getActiveItem();
+      let newActiveItem = this.updateActiveItem(activeIndex, -1);
+      let navIndex = this.getNavIndex(newActiveItem);
+      // this.pagination.scaleUp(navIndex - 1);
+      this.moveCarousel(1);
+
+      if (newActiveItem.classList.contains(this.config.clone)) {
+        this.updateCloneActiveItem(newActiveItem, this.itemsInitCount);
+        let newPointerValue = this.width * this.itemsInitCount;
+        setTimeout(() => this.moveCloneCarousel(newPointerValue), 1000);
+      }
+    });
+    this.nextBtn.addEventListener("click", () => {
+      let activeIndex = this.getActiveItem();
+      let newActiveItem = this.updateActiveItem(activeIndex, 1);
+      let navIndex = this.getNavIndex(newActiveItem);
+      // this.pagination.scaleUp(navIndex - 1);
+      this.moveCarousel(-1);
+
+      if (newActiveItem.classList.contains(this.config.clone)) {
+        this.updateCloneActiveItem(newActiveItem, 1);
+        let newPointerValue = this.width;
+        setTimeout(() => this.moveCloneCarousel(newPointerValue), 1000);
+      }
+    });
+  }
+
+  addElementToClass(elementName, className) {
+    elementName.classList.add(className);
   }
 
   getActiveItem() {
@@ -96,11 +145,12 @@ class Carousel {
   }
 
   updateActiveItem(activeIndex, moveValue, navoption = false) {
-    this.items[activeIndex].classList.remove(this.config.active);
+    this.items[Number(activeIndex)].classList.remove(this.config.active);
     if (navoption) {
       this.items[moveValue].classList.add(this.config.active);
     } else {
-      this.items[Number(activeIndex) + moveValue].classList.add(
+      this.addElementToClass(
+        this.items[Number(activeIndex) + moveValue],
         this.config.active
       );
     }
@@ -138,41 +188,6 @@ class Carousel {
       navIndex = 1;
     }
     return navIndex;
-  }
-
-  attchEventToBtn() {
-    this.prevBtn.addEventListener("click", () => {
-      let activeIndex = this.getActiveItem();
-      let newActiveItem = this.updateActiveItem(activeIndex, -1);
-      let navIndex = this.getNavIndex(newActiveItem);
-      this.pagination.scaleUp(navIndex - 1);
-      this.moveCarousel(1);
-
-      if (
-        this.option.infinite &&
-        newActiveItem.classList.contains(this.config.clone)
-      ) {
-        this.updateCloneActiveItem(newActiveItem, this.itemsInitCount);
-        let newPointerValue = this.width * this.itemsInitCount;
-        setTimeout(() => this.moveCloneCarousel(newPointerValue), 1000);
-      }
-    });
-    this.nextBtn.addEventListener("click", () => {
-      let activeIndex = this.getActiveItem();
-      let newActiveItem = this.updateActiveItem(activeIndex, 1);
-      let navIndex = this.getNavIndex(newActiveItem);
-      this.pagination.scaleUp(navIndex - 1);
-      this.moveCarousel(-1);
-
-      if (
-        this.option.infinite &&
-        newActiveItem.classList.contains(this.config.clone)
-      ) {
-        this.updateCloneActiveItem(newActiveItem, 1);
-        let newPointerValue = this.width;
-        setTimeout(() => this.moveCloneCarousel(newPointerValue), 1000);
-      }
-    });
   }
 }
 
