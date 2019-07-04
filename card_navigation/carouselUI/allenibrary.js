@@ -16,7 +16,7 @@ const delegate = (el, eventType, domElProperty, funcMap) => {
     })
   }
   else el.addEventListener(eventType, ({ target }) => {
-    funcMap[target[domElProperty]](target);
+    if (funcMap[target[domElProperty]]) funcMap[target[domElProperty]](target);
   })
 }
 
