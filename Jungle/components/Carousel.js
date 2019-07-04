@@ -73,8 +73,10 @@ class Carousel {
   }
 
   attatchEvent() {
-    this.prevButton.addEventListener("click", () => this.prevHandler());
-    this.nextButton.addEventListener("click", () => this.nextHandler());
+    this.container.addEventListener("click", ({target}) => {
+      if(target.className.includes("prev")) this.prevHandler();
+      else if(target.className.includes("next")) this.nextHandler();
+    });
 
     this.cardSlider.addEventListener("transitionend", () =>
       this.transitionEndHandler()
