@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Fast, Free Delivery",
+    "desc": [
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+      "Aperiam eaque incidunt impedit delectus?",
+      "Consectetur explicabo odio culpa itaque odit blanditiis molestiae! Esse aut error numquam asperiores repudiandae amet quae atque."
+    ],
+    "imgURL": "./images/Card_A01.png"
+  },
+  {
+    "id": 2,
+    "title": "Exclusive deals and offers",
+    "desc": [
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam eaque incidunt impedit delectus?",
+      "Consectetur explicabo odio culpa itaque odit blanditiis molestiae! Esse aut error numquam asperiores repudiandae amet quae atque."
+    ],
+    "imgURL": "./images/Card_B01.png"
+  },
+  {
+    "id": 3,
+    "title": "Prime Originals, movies and TV shows",
+    "desc": [
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam eaque incidunt impedit delectus? Consectetur explicabo odio culpa itaque odit blanditiis molestiae! Esse aut error numquam asperiores repudiandae amet quae atque."
+    ],
+    "imgURL": "./images/Card_C01.png"
+  },
+  {
+    "id": 4,
+    "title": "Over 2 million songs ad free",
+    "desc": [
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam eaque incidunt impedit delectus? Consectetur explicabo odio culpa itaque odit blanditiis molestiae! Esse aut error numquam asperiores repudiandae amet quae atque."
+    ],
+    "imgURL": "./images/Card_D01.png"
+  }
+]
