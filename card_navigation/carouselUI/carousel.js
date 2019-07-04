@@ -1,4 +1,4 @@
-import $ from './allenibrary.js'
+import { $, delegate } from './allenibrary.js'
 import Subscriber from './subscriber.js'
 
 export default class Carousel extends Subscriber {
@@ -9,16 +9,14 @@ export default class Carousel extends Subscriber {
     this.panels = this.camera.children;
     this.maxIdx = this.panels.length;
     this.option = this.mergeOption(option);
-    this.prevBtn = $(this.option.prevBtn);
-    this.nextBtn = $(this.option.nextBtn);
+    this.btnWrapper = $(this.option.btnWrapper);
     this.init();
     this.subscribe('carousel', publisher)
   }
 
   mergeOption(option) {
     const default_option = {
-      prevBtn: ".btn_prev",
-      nextBtn: ".btn_next",
+      btnWrapper: '.btnWrapper',
       // easing: "ease-in-out",
       // duration: "500",
       infinite: false
@@ -35,7 +33,11 @@ export default class Carousel extends Subscriber {
     }
     else this.checkMovable(0);
     this.addCarouselClass();
-    this.attachBtnEvent();
+    const funcMap = {
+      'arrow-left': () => this.handleBtnClick('prev'),
+      'arrow-right': () => this.handleBtnClick('next')
+    }
+    delegate(this.btnWrapper, 'click', 'classList', funcMap);
   }
 
   addCarouselClass() {
@@ -49,11 +51,6 @@ export default class Carousel extends Subscriber {
     let lastItem = this.panels[this.maxIdx - 1];
     this.camera.insertBefore(lastItem.cloneNode(true), this.camera.firstChild);
     this.camera.appendChild(firstItem.cloneNode(true));
-  }
-
-  attachBtnEvent() {
-    this.prevBtn.addEventListener("click", () => this.handleBtnClick("prev"));
-    this.nextBtn.addEventListener("click", () => this.handleBtnClick("next"));
   }
 
   handleBtnClick(direction) {

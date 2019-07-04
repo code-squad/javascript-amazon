@@ -12,8 +12,7 @@ const initCarousel = (data) => {
   const pagination = new Pagination(stateManager, ".benefit-list");
   const carousel = new Carousel(stateManager, ".benefit-content", {
     infinite: true,
-    prevBtn: ".arrow-left",
-    nextBtn: ".arrow-right",
+    btnWrapper: ".content-wrapper"
   });
 }
 
