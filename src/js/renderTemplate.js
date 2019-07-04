@@ -1,4 +1,4 @@
-class Viewer {
+class RenderTemplate {
   constructor(parentElement, getTemplate) {
     this.parentElement = document.querySelector(parentElement);
     this.getTemplate = getTemplate;
@@ -15,4 +15,4 @@ class Viewer {
   }
 }
 
-export default Viewer;
+export default RenderTemplate;
