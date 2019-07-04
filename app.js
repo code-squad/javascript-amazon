@@ -5,10 +5,10 @@ import Carousel from './src/js/carousel.js'
 import Viewer from './src/js/viewer.js';
 import Carousel from './src/js/carousel.js'
 
-const headerViewer = new Viewer(config.header, template.getHeaderTemplate);
-const mainViewer = new Viewer(config.container, template.getMainTempalte);
+const headerViewer = new RenderTemplate(config.header, template.getHeaderTemplate);
+const mainViewer = new RenderTemplate(config.container, template.getMainTempalte);
 
-const getData = async () => 
+const getCarouselData = async () => 
   await fetch('./src/JSON/localData.json').then(data => data.json());
 
 const headerViewer = new RenderTemplate(config.header, template.getHeaderTemplate);
