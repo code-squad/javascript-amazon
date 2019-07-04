@@ -1,28 +1,37 @@
-import $ from './allenibrary.js'
+import { $, delegate } from './allenibrary.js'
 import Subscriber from './subscriber.js'
 
 export default class Pagination extends Subscriber {
-  constructor(publisher, paginationSelector) {
+  constructor(publisher, paginationSelector, startIdx) {
     super();
-    this.paginations = $(paginationSelector).children;
+    this.startIdx = startIdx;
+    this.wrapper = $(paginationSelector);
+    this.paginations = this.wrapper.children;
     this.init();
     this.subscribe('pagination', publisher);
   }
 
   init() {
-    this.addPaginationEvent(this.paginations);
-    this.toggleActive(0, this.paginations);
+    this.addIdx(this.paginations);
+    this.toggleActive(this.startIdx, this.paginations);
+    this.delegateEvt(this.paginations.item(this.startIdx + 1).className);
   }
 
-  handleClick({ target }) {
+  delegateEvt(className) {
+    const funcMap = {
+      [className]: (target) => this.handleClick(target)
+    };
+    delegate(this.wrapper, 'click', 'className', funcMap);
+  }
+
+  handleClick(target) {
     const targetIdx = Number(target.dataset.idx);
     this.publisher.setState({ targetIdx });;
   }
 
-  addPaginationEvent(paginations) {
+  addIdx(paginations) {
     Array.from(paginations).forEach((el, i) => {
       el.dataset.idx = i;
-      el.addEventListener("click", this.handleClick.bind(this));
     })
   }
 

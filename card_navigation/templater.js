@@ -1,4 +1,4 @@
-import $ from './carouselUI/allenibrary.js'
+import { $ } from './carouselUI/allenibrary.js'
 
 export default class Templater {
   getDescLists = (descLists) => {
