@@ -1,0 +1,23 @@
+.arrow-disabled {
+  pointer-events: none;
+  opacity: 0;
+}
+/* .viewport {
+  height: 100%;
+  overflow: hidden;
+} */
+.camera {
+  display: flex;
+  transition: transform 250ms;
+}
+.panel {
+  width: 100%;
+  height: 100%;
+}
+.infinite-camera {
+  position: relative;
+  left: -100%;
+}
+.no-animation {
+  transition: none;
+}
