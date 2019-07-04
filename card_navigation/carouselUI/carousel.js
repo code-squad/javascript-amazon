@@ -16,7 +16,7 @@ export default class Carousel extends Subscriber {
 
   mergeOption(option) {
     const default_option = {
-      btnWrapper: '.btnWrapper',
+      btnWrapper: '.btn-wrapper',
       // easing: "ease-in-out",
       // duration: "500",
       infinite: false
@@ -33,9 +33,13 @@ export default class Carousel extends Subscriber {
     }
     else this.checkMovable(0);
     this.addCarouselClass();
+    this.delegateBtnEvt(this.option.prevBtn, this.option.nextBtn);
+  }
+
+  delegateBtnEvt(prevBtn, nextBtn) {
     const funcMap = {
-      'arrow-left': () => this.handleBtnClick('prev'),
-      'arrow-right': () => this.handleBtnClick('next')
+      [prevBtn]: () => this.handleBtnClick('prev'),
+      [nextBtn]: () => this.handleBtnClick('next')
     }
     delegate(this.btnWrapper, 'click', 'classList', funcMap);
   }
