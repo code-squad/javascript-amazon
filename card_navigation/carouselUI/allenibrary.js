@@ -1,26 +1,23 @@
 const $ = (selector) => {
   return document.querySelector(selector);
 }
-
+/**
+ * @param  {HTML element} el 이벤트를 위임할 엘리먼트
+ * @param  {string} eventType
+ * @param  {string} domElProperty event.target이 고유하게 갖는 속성(ex: tagName, className). className이 여러개일 경우 classList를 사용가능
+ * @param  {object} funcMap 이벤트핸들러 함수를 매핑한 객체
+ */
 const delegate = (el, eventType, domElProperty, funcMap) => {
-  el.addEventListener(eventType, ({ target }) => {
-    if (domElProperty === 'classList') {
+  if (domElProperty === 'classList') {
+    el.addEventListener(eventType, ({ target }) => {
       target[domElProperty].forEach(className => {
         if (funcMap[className]) funcMap[className](target);
-      });
-    }
-    else funcMap[target[domElProperty]](target);
+      })
+    })
+  }
+  else el.addEventListener(eventType, ({ target }) => {
+    funcMap[target[domElProperty]](target);
   })
 }
-// const ul = document.querySelector('ul');
-// const eventType = 'click';
-// const domElProperty = 'tagName';
-
-// const funcMap = {
-//   IMG: (target) => { log.innerHTML = "clicked" + target.src },
-//   LI: (target) => { log.innerHTML = 'clicked' + target.firstChild.src }
-// }
-
-// delegate(ul, eventType, domElProperty, funcMap)
 
 export { $, delegate }
