@@ -4,10 +4,10 @@ class Navigation {
         this.contentsData = contentsData;
     }
     makeTemplate(){
-    const contentsTemplate = this.contentsData.reduce((contentsTemplate,cur)=>{
+    const contentsTemplate = this.contentsData.reduce((contentsTemplate,card)=>{
         const liTemplate = `
-        <li class="title__card title__card_${cur.color}">
-        ${cur.title}
+        <li class="title__card title__card_${card.color}">
+        ${card.title}
         </li>
         `
         return contentsTemplate += liTemplate
