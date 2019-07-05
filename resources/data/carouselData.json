@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Enjoy exclusive saving and rewards",
-    "imgurl": "./images/card/Card_A01.jpg",
+    "imgurl": "./resources/images/card/Card_A01.jpg",
     "desc": [
       "Save on groceries and get an additional 10% off select sale items in all US Whole Food Market stores",
       "Save 20% off diapers, baby food, and more",
@@ -13,7 +13,7 @@
   {
     "id": 2,
     "title": "Exclusive deals and offers",
-    "imgurl": "./images/card/Card_B01.jpg",
+    "imgurl": "./resources/images/card/Card_B01.jpg",
     "desc": [
       "Save on groceries and get an additional 10% off select sale items in all US Whole Food Market stores",
       "Save 20% off diapers, baby food, and more",
@@ -24,7 +24,7 @@
   {
     "id": 3,
     "title": "Prime Originals, movies and TV shows",
-    "imgurl": "./images/card/Card_C01.jpg",
+    "imgurl": "./resources/images/card/Card_C01.jpg",
     "desc": [
       "Save on groceries and get an additional 10% off select sale items in all US Whole Food Market stores",
       "Save 20% off diapers, baby food, and more",
@@ -35,7 +35,7 @@
   {
     "id": 4,
     "title": "Over 2 million songs ad free",
-    "imgurl": "./images/card/Card_D01.jpg",
+    "imgurl": "./resources/images/card/Card_D01.jpg",
     "desc": [
       "Save on groceries and get an additional 10% off select sale items in all US Whole Food Market stores",
       "Save 20% off diapers, baby food, and more",

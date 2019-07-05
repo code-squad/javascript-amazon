@@ -3,16 +3,18 @@ import Pagination from "./pagination.js";
 import $ from "./mylibrary.js";
 
 class Carousel {
-  constructor(inputTag) {
-    this.carousel = $(inputTag);
-    this.prevBtn = $(".btn-prev");
-    this.nextBtn = $(".btn-next");
+  constructor(inputTags) {
+    let [carouselTag, prevBtnTag, nextBtnTag] = [...inputTags];
+    this.carousel = $(carouselTag);
+    this.prevBtn = $(prevBtnTag);
+    this.nextBtn = $(nextBtnTag);
 
     this.items = this.carousel.children;
     this.width = this.carousel.offsetWidth;
     this.currentPointer = -this.width;
 
     this.config;
+    this.changeNotify;
   }
 
   initData(data) {
@@ -89,6 +91,11 @@ class Carousel {
     );
   }
 
+  setCarouselTransition(transitionType, transformVal) {
+    this.carousel.style.transition = transitionType;
+    this.carousel.style.transform = `translateX(${transformVal}px)`;
+  }
+
   getActiveItem() {
     const active = $(`.${this.config.active}`);
     return active.dataset.index;
@@ -104,6 +111,10 @@ class Carousel {
     return navIndex;
   }
 
+  addElementToClass(elementName, className) {
+    elementName.classList.add(className);
+  }
+
   updateActiveItem(activeIndex, moveValue, navoption = false) {
     this.items[Number(activeIndex)].classList.remove(this.config.active);
 
@@ -115,12 +126,9 @@ class Carousel {
         this.config.active
       );
     }
+
     const newActiveItem = $(`.${this.config.active}`);
     return newActiveItem;
-  }
-
-  addElementToClass(elementName, className) {
-    elementName.classList.add(className);
   }
 
   updateCloneActiveItem(newActiveItem, value) {
@@ -130,18 +138,14 @@ class Carousel {
   }
 
   moveCarousel(moveValue, navoption) {
-    if (navoption) {
-      this.currentPointer = moveValue;
-    } else {
-      this.currentPointer += moveValue * this.width;
-    }
-    this.carousel.style.transition = `all 1s`;
-    this.carousel.style.transform = `translateX(${this.currentPointer}px)`;
+    if (navoption) this.currentPointer = moveValue;
+    else this.currentPointer += moveValue * this.width;
+
+    this.setCarouselTransition(`all 1s`, this.currentPointer);
   }
 
   moveCloneCarousel(newPointerValue) {
-    this.carousel.style.transition = `none`;
-    this.carousel.style.transform = `translateX(-${newPointerValue}px)`;
+    this.setCarouselTransition(`none`, -newPointerValue);
     this.currentPointer = -newPointerValue;
   }
 
