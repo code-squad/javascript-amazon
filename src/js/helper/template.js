@@ -1,7 +1,7 @@
 const template = {
   getHeaderTemplate(header) {
     return `
-      <li class="carousel__header--item">
+      <li class="carousel__header--item" data-id=${header.id}>
         <p>${header.title}</p>
       </li>
     `

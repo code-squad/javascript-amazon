@@ -112,8 +112,8 @@ class Carousel {
     setTimeout(() => this.moveWithoutAnimation(), this.config.duration);
   }
 
-  clickHeaderItem({target}) {
-    const clickedIndex = this.getHeaderIndex(target.closest(".carousel__header--item"));
+  clickHeaderItem({target, currentTarget}) {
+    const clickedIndex = currentTarget.dataset.id - 1;
     const currentIndex = this.currentItem - 1;
     this.offset += this.itemWidth * (currentIndex - clickedIndex);
     this.moveHeader(clickedIndex);
@@ -126,9 +126,10 @@ class Carousel {
     this.headerItems[clickedIndex].classList.add("active");
   }
 
-  getHeaderIndex(element) {
-    return this.headerItems.indexOf(element)
-  }
+  /* Refactoring에 따른 Method 삭제 */
+  // getHeaderIndex(element) {
+  //   return this.headerItems.indexOf(element)
+  // }
 
 
 }
