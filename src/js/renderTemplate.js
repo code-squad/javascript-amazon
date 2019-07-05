@@ -5,7 +5,6 @@ class RenderTemplate {
   }
 
   makeTemplate(data) {
-    console.log(this.getTemplate(data))
     return this.getTemplate(data);
   }
 

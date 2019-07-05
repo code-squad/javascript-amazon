@@ -46,11 +46,16 @@ class Carousel {
   }
 
   attachEvent() {
-    const prev = this.carousel.querySelector('.prev');
-    const next = this.carousel.querySelector('.next');
-    prev.addEventListener('click', () => this.moveToPrev());
-    next.addEventListener('click', () => this.moveToNext());
-    this.headerItems.forEach(card => card.addEventListener('click', (e) => this.clickHeaderItem(e)));
+    const buttons = this.carousel.querySelector('.carousel__buttons');
+    buttons.addEventListener('click', ({target}) => {
+      // console.log(evt)
+      // console.log(evt.target.dataset.name)
+
+      if(target.dataset.name === 'next') this.moveToNext();
+      if(target.dataset.name === 'prev') this.moveToPrev();
+    })
+    this.headerItems.forEach(card => card.addEventListener('click', e => this.clickHeaderItem(e)));
+    // this.header.addEventListener('click', e => this.clickHeaderItem(e))
     this.container.addEventListener('transitionend', () => this.transitionStatsToggle());
   }
 
@@ -112,8 +117,9 @@ class Carousel {
     setTimeout(() => this.moveWithoutAnimation(), this.config.duration);
   }
 
-  clickHeaderItem({target, currentTarget}) {
-    const clickedIndex = currentTarget.dataset.id - 1;
+  clickHeaderItem({target}) {
+    const mainTarget = target.closest('.carousel__header--item');
+    const clickedIndex = mainTarget.dataset.id - 1;
     const currentIndex = this.currentItem - 1;
     this.offset += this.itemWidth * (currentIndex - clickedIndex);
     this.moveHeader(clickedIndex);
@@ -130,8 +136,6 @@ class Carousel {
   // getHeaderIndex(element) {
   //   return this.headerItems.indexOf(element)
   // }
-
-
 }
 
 export default Carousel;
