@@ -7,7 +7,7 @@ class Manager {
     this.pagination = obj.pagination;
     this.jsonData;
 
-    this.MapData = {
+    this.mapData = {
       initDataCnt: 0,
       currentShowingIndex: 1,
       active: "active",
@@ -30,36 +30,40 @@ class Manager {
 
   initManager(data) {
     this.jsonData = data;
-    this.MapData["initDataCnt"] = this.jsonData.length;
+    this.mapData["initDataCnt"] = this.jsonData.length;
   }
 
   initComponent() {
     this.carousel.initData(this.jsonData);
     this.pagination.initData(this.jsonData);
 
-    this.carousel.initSetting(this.MapData, this.notify.bind(this));
-    this.pagination.initSetting(this.MapData, this.notify.bind(this));
+    this.carousel.initSetting(this.mapData, this.notify.bind(this));
+    this.pagination.initSetting(this.mapData, this.notify.bind(this));
   }
 
   notify(el, newActiveIndex) {
     if (el.classList.contains("btn-prev")) {
-      this.carousel.moveCarousel(1);
-      this.pagination.scaleUp(newActiveIndex - 1);
+      this.updateDisplay(newActiveIndex, 1);
     } else if (el.classList.contains("btn-next")) {
-      this.carousel.moveCarousel(-1);
-      this.pagination.scaleUp(newActiveIndex - 1);
-    } else if (el.classList.contains(`item${newActiveIndex}`)) {
-      let navPointer = -(this.carousel.width * newActiveIndex);
-      let currentActiveIndex = this.carousel.getActiveItem();
-      this.pagination.scaleUp(newActiveIndex - 1);
+      this.updateDisplay(newActiveIndex, -1);
+    } else {
+      //pagination에서 알림이 온 경우
+      const navPointer = -(this.carousel.width * newActiveIndex);
+      const currentActiveIndex = this.carousel.getActiveItem();
       this.carousel.updateActiveItem(currentActiveIndex, newActiveIndex, true);
-      navPointer = -(this.carousel.width * newActiveIndex);
-      this.carousel.moveCarousel(navPointer, true);
+
+      this.updateDisplay(newActiveIndex, navPointer, true);
     }
+  }
+
+  updateDisplay(newActiveIndex, moveValue, navoption = false) {
+    this.pagination.scaleUp(newActiveIndex - 1);
+    if (navoption) this.carousel.moveCarousel(moveValue, navoption);
+    else this.carousel.moveCarousel(moveValue);
   }
 }
 
-const carousel = new Carousel(".carousel");
+const carousel = new Carousel([".carousel", ".btn-prev", ".btn-next"]);
 const pagination = new Pagination(".navigation-list");
 const manager = new Manager({ carousel, pagination });
 
