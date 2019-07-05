@@ -1,8 +1,7 @@
 import Jungle from './Jungle/index.js';
 import { makeHTMLString } from './template.js';
 
-const getData = async () =>
-  await fetch('./resources/localData.json').then(response => response.json());
+const getData = () => fetch('./resources/localData.json').then(response => response.json());
 
 const addCardsToDOM = cards => {
   const cardElements = makeHTMLString({ data: cards, type: 'card' });
