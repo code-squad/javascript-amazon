@@ -1,5 +1,3 @@
-import Carousel from './Carousel.js';
-import Navigation from './Naviagtion.js';
 
 class Controller {
     constructor({ carousel, navigation , animationTime }) {
@@ -12,7 +10,8 @@ class Controller {
     registerEvents() {
         this.carousel.leftBtn.addEventListener('click', this.carouselClickHandler.bind(this));
         this.carousel.rightBtn.addEventListener('click', this.carouselClickHandler.bind(this));
-        this.navigation.navbar.forEach(
+        
+        [ ...this.navigation.navbar.firstElementChild.children].forEach(
             (navItem,idx)=>{
                 navItem.addEventListener('click',(e)=>
                     this.navItemClickHandler(e,idx)
@@ -21,6 +20,7 @@ class Controller {
         )
     }
     init() {
+        this.navigation.makeTemplate();
         this.currentIndex = this.makeRandomIndex();
         this.carousel.drawCardPosition(this.currentIndex);
         this.navigation.drawCurrentNavItem(this.currentIndex); 
@@ -58,15 +58,4 @@ class Controller {
     }
 }
 
-const leftBtn = document.querySelector(".contents__button_left");
-const rightBtn = document.querySelector(".contents__button_right");
-// ol태그로 잡는것보다 querySelecterAll로 nodeList를 잡는게 더 좋은 방법인듯! 
-const cardList = document.querySelector(".carousel__contents > ol");
-const navbar = document.querySelectorAll(".carousel__title > ol > li");
-const animationTime = 200;
-
-const carousel = new Carousel({ leftBtn, rightBtn, cardList, animationTime });
-const navigation = new Navigation({ navbar, animationTime });
-const amazonController = new Controller({ carousel, navigation ,animationTime});
-
-amazonController.init();
+export default Controller;

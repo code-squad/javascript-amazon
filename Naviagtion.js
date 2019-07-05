@@ -1,12 +1,25 @@
 class Navigation {
-    constructor({navbar}){
+    constructor({navbar,contentsData}){
         this.navbar = navbar;
+        this.contentsData = contentsData;
+    }
+    makeTemplate(){
+    const contentsTemplate = this.contentsData.reduce((contentsTemplate,cur)=>{
+        const liTemplate = `
+        <li class="title__card title__card_${cur.color}">
+        ${cur.title}
+        </li>
+        `
+        return contentsTemplate += liTemplate
+    },`<ol>`);
+    this.navbar.insertAdjacentHTML('afterbegin',contentsTemplate.concat('</ol>'));
+        
     }
 
     drawCurrentNavItem(currentIndex,previousIndex = undefined){
-        // console.log('onClickHandler로 Navigation으로 넘어온 현재화면의 인덱스:',currentIndex, '넘어온 이전화면의 인덱스',previousIndex);
-        let previousItem = this.navbar[previousIndex];
-        let currentItem = this.navbar[currentIndex];
+        const navList =  this.navbar.firstElementChild.children    
+        let previousItem = navList[previousIndex];
+        let currentItem = navList[currentIndex];
 
         if(previousIndex !== undefined) previousItem.classList.toggle('curser');
         currentItem.classList.toggle('curser');

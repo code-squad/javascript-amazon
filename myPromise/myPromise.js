@@ -36,6 +36,8 @@ const myFirstPromise = new MyPromise((MyResolve, MyReject) => {
         MyResolve({ "name": "Success!", "id": 123123 });
     }, 1000);
 })
+
+
 myFirstPromise.then((successMessage) => {
     return successMessage.name;
 }).then((data) => {
