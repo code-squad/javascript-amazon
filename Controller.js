@@ -7,6 +7,7 @@ class Controller {
         this.previousIndex = undefined;
         this.animationTime = animationTime;
     }
+    
     registerEvents() {
         this.carousel.leftBtn.addEventListener('click', this.carouselClickHandler.bind(this));
         this.carousel.rightBtn.addEventListener('click', this.carouselClickHandler.bind(this));
@@ -21,6 +22,7 @@ class Controller {
     }
     init() {
         this.navigation.makeTemplate();
+        this.carousel.makeTemplate();
         this.currentIndex = this.makeRandomIndex();
         this.carousel.drawCardPosition(this.currentIndex);
         this.navigation.drawCurrentNavItem(this.currentIndex); 
@@ -44,17 +46,20 @@ class Controller {
     }
 
     moveIndex(direction) {
+        const countOfCards = this.carousel.cardList.firstElementChild.childElementCount
         this.previousIndex = this.currentIndex;
         let index =
             direction === "left" ? this.currentIndex - 1 : this.currentIndex + 1;
-        if (index < 0) index += this.carousel.cardList.childElementCount;
+        if (index < 0) index += countOfCards;
         this.currentIndex = this.modCardLength(index);
     }
     modCardLength(number) {
-        return number % this.carousel.cardList.childElementCount;
+        const countOfCards = this.carousel.cardList.firstElementChild.childElementCount
+        return number % countOfCards;
     }
     makeRandomIndex() {
-        return Math.floor(Math.random() * (this.carousel.cardList.childElementCount - 1));
+        const countOfCards = this.carousel.cardList.firstElementChild.childElementCount
+        return Math.floor(Math.random() * (countOfCards - 1));
     }
 }
 
