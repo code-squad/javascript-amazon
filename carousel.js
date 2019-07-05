@@ -5,23 +5,14 @@ import $ from "./mylibrary.js";
 class Carousel {
   constructor(inputTag) {
     this.carousel = $(inputTag);
+    this.prevBtn = $(".btn-prev");
+    this.nextBtn = $(".btn-next");
+
     this.items = this.carousel.children;
     this.width = this.carousel.offsetWidth;
     this.currentPointer = -this.width;
 
-    this.prevBtn = $(".btn-prev");
-    this.nextBtn = $(".btn-next");
-
-    this.config = {
-      active: "active",
-      clone: "clone",
-      flex: "flex",
-      attr: "data-index"
-    };
-
-    //manager에게 받아서 초기화 되는 변수들
-    this.initDataCnt;
-    this.currentShowingIndex;
+    this.config;
   }
 
   initData(data) {
@@ -38,13 +29,12 @@ class Carousel {
   }
 
   initSetting(obj, func) {
-    this.initDataCnt = obj.initDataCnt;
-    this.currentShowingIndex = obj.currentShowingIndex;
+    this.config = obj;
     this.changeNotify = func;
 
-    this.setCarouselItem(this.initDataCnt);
+    this.setCarouselItem(this.config.initDataCnt);
     this.setCarouselFullWidth(this.items.length);
-    this.setCarouselAttr(this.items, this.config.attr);
+    this.setCarouselAttr(this.items, this.config.carouselAttr);
     this.setCarouselPosition();
     this.attchEventToBtn();
   }
@@ -94,21 +84,21 @@ class Carousel {
     this.carousel.style.transform = `translateX(${this.currentPointer}px)`;
     this.carousel.style.transition = `all 0s`;
     this.addElementToClass(
-      this.items[this.currentShowingIndex],
+      this.items[this.config.currentShowingIndex],
       this.config.active
     );
   }
 
   getActiveItem() {
-    const active = $(`.active`);
+    const active = $(`.${this.config.active}`);
     return active.dataset.index;
   }
 
   getActiveIndex(newActiveItem) {
     let navIndex = Number(newActiveItem.dataset.index);
     if (navIndex === 0) {
-      navIndex = this.initDataCnt;
-    } else if (navIndex === this.initDataCnt + 1) {
+      navIndex = this.config.initDataCnt;
+    } else if (navIndex === this.config.initDataCnt + 1) {
       navIndex = 1;
     }
     return navIndex;
@@ -125,7 +115,7 @@ class Carousel {
         this.config.active
       );
     }
-    const newActiveItem = $(".active");
+    const newActiveItem = $(`.${this.config.active}`);
     return newActiveItem;
   }
 
@@ -165,9 +155,9 @@ class Carousel {
       if (newActiveItem.classList.contains(this.config.clone)) {
         newActiveItem = this.updateCloneActiveItem(
           newActiveItem,
-          this.initDataCnt
+          this.config.initDataCnt
         );
-        let newPointerValue = this.width * this.initDataCnt;
+        let newPointerValue = this.width * this.config.initDataCnt;
         setTimeout(() => this.moveCloneCarousel(newPointerValue), 1000);
       }
     });

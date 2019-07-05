@@ -1,17 +1,21 @@
 import Carousel from "./carousel.js";
 import Pagination from "./pagination.js";
-import $ from "./mylibrary.js";
 
 class Manager {
   constructor(obj) {
     this.carousel = obj.carousel;
     this.pagination = obj.pagination;
     this.jsonData;
+
     this.MapData = {
       initDataCnt: 0,
-      currentShowingIndex: 0,
-      prevBtn: [-1, 1],
-      nextBtn: [1, -1]
+      currentShowingIndex: 1,
+      active: "active",
+      clone: "clone",
+      flex: "flex",
+      scale: "scale",
+      carouselAttr: "data-index",
+      paginationAttr: "data-nav-index"
     };
   }
 
@@ -27,12 +31,12 @@ class Manager {
   initManager(data) {
     this.jsonData = data;
     this.MapData["initDataCnt"] = this.jsonData.length;
-    this.MapData["currentShowingIndex"] = 1;
   }
 
   initComponent() {
     this.carousel.initData(this.jsonData);
     this.pagination.initData(this.jsonData);
+
     this.carousel.initSetting(this.MapData, this.notify.bind(this));
     this.pagination.initSetting(this.MapData, this.notify.bind(this));
   }
@@ -48,8 +52,6 @@ class Manager {
       let navPointer = -(this.carousel.width * newActiveIndex);
       let currentActiveIndex = this.carousel.getActiveItem();
       this.pagination.scaleUp(newActiveIndex - 1);
-      console.log(currentActiveIndex);
-      console.log(newActiveIndex);
       this.carousel.updateActiveItem(currentActiveIndex, newActiveIndex, true);
       navPointer = -(this.carousel.width * newActiveIndex);
       this.carousel.moveCarousel(navPointer, true);
