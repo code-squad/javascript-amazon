@@ -45,17 +45,14 @@ class Carousel {
     this.carouselMain.style.height = this.item.offsetHeight + 'px';
   }
 
+  // step14-2 변경사항 (Event Delegation : buttons, this.header);
   attachEvent() {
     const buttons = this.carousel.querySelector('.carousel__buttons');
     buttons.addEventListener('click', ({target}) => {
-      // console.log(evt)
-      // console.log(evt.target.dataset.name)
-
       if(target.dataset.name === 'next') this.moveToNext();
       if(target.dataset.name === 'prev') this.moveToPrev();
     })
-    this.headerItems.forEach(card => card.addEventListener('click', e => this.clickHeaderItem(e)));
-    // this.header.addEventListener('click', e => this.clickHeaderItem(e))
+    this.header.addEventListener('click', e => this.clickHeaderItem(e))
     this.container.addEventListener('transitionend', () => this.transitionStatsToggle());
   }
 
@@ -117,6 +114,7 @@ class Carousel {
     setTimeout(() => this.moveWithoutAnimation(), this.config.duration);
   }
 
+  // step14-2 변경사항: li tag의 정보만 받을 수 있도록.
   clickHeaderItem({target}) {
     const mainTarget = target.closest('.carousel__header--item');
     const clickedIndex = mainTarget.dataset.id - 1;
@@ -131,11 +129,6 @@ class Carousel {
     this.header.querySelector(".active").classList.remove("active");
     this.headerItems[clickedIndex].classList.add("active");
   }
-
-  /* Refactoring에 따른 Method 삭제 */
-  // getHeaderIndex(element) {
-  //   return this.headerItems.indexOf(element)
-  // }
 }
 
 export default Carousel;
