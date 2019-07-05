@@ -42,7 +42,7 @@ export default class StateManager extends Publisher {
   }
 
   updateCurrentIdx(state) {
-    let { targetIdx, panelQuantity } = state;
+    const { targetIdx, panelQuantity } = state;
     state.currentIdx = targetIdx < 0 || targetIdx > panelQuantity - 1
       ? panelQuantity - Math.abs(targetIdx)
       : targetIdx;

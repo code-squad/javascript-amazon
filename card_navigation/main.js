@@ -1,4 +1,4 @@
-import initCarousel from './carouselUI/carousel_initiator.js'
+import initCarousel from './src/initiator.js'
 import Templater from './templater.js'
 
 const templater = new Templater();
