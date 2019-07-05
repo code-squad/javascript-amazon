@@ -9,11 +9,13 @@ const initCarousel = (data) => {
   const panelQuantity = data.length;
 
   const stateManager = new StateManager({ startIdx, quantityToSlide, panelQuantity });
-  const pagination = new Pagination(stateManager, ".benefit-list");
+  const pagination = new Pagination(stateManager, ".benefit-list", startIdx);
   const carousel = new Carousel(stateManager, ".benefit-content", {
     infinite: true,
-    prevBtn: ".arrow-left",
-    nextBtn: ".arrow-right",
+    btnWrapper: ".content-wrapper",
+    prevBtn: 'arrow-left',
+    nextBtn: 'arrow-right',
+    startIdx: startIdx
   });
 }
 

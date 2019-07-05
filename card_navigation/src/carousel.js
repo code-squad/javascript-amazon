@@ -1,4 +1,4 @@
-import $ from './allenibrary.js'
+import { $, delegate } from '../utils/allenibrary.js'
 import Subscriber from './subscriber.js'
 
 export default class Carousel extends Subscriber {
@@ -9,19 +9,16 @@ export default class Carousel extends Subscriber {
     this.panels = this.camera.children;
     this.maxIdx = this.panels.length;
     this.option = this.mergeOption(option);
-    this.prevBtn = $(this.option.prevBtn);
-    this.nextBtn = $(this.option.nextBtn);
+    this.btnWrapper = $(this.option.btnWrapper);
     this.init();
-    this.subscribe('carousel', publisher)
+    this.subscribe('carousel', publisher);
   }
 
   mergeOption(option) {
     const default_option = {
-      prevBtn: ".btn_prev",
-      nextBtn: ".btn_next",
-      // easing: "ease-in-out",
-      // duration: "500",
-      infinite: false
+      duration: "200",
+      infinite: false,
+      startIdx: 0
     };
     return { ...default_option, ...option };
   }
@@ -33,9 +30,28 @@ export default class Carousel extends Subscriber {
       this.setInitialOffset();
       setTimeout(() => this.toggleAnimate('on'), 0);
     }
-    else this.checkMovable(0);
+    else {
+      this.getBtns(this.option.prevBtn, this.option.nextBtn);
+      this.checkMovable(this.option.startIdx);
+    }
     this.addCarouselClass();
-    this.attachBtnEvent();
+    this.setNoAnimateTransform(this.option.startIdx)
+    this.delegateBtnEvt(this.option.prevBtn, this.option.nextBtn);
+  }
+
+  getBtns(prevBtn, nextBtn) {
+    Array.from(this.btnWrapper.children).forEach(el => {
+      if (el.classList.contains(prevBtn)) this.prevBtn = el;
+      if (el.classList.contains(nextBtn)) this.nextBtn = el;
+    })
+  }
+
+  delegateBtnEvt(prevBtn, nextBtn) {
+    const funcMap = {
+      [prevBtn]: () => this.handleBtnClick('prev'),
+      [nextBtn]: () => this.handleBtnClick('next')
+    }
+    delegate(this.btnWrapper, 'click', 'classList', funcMap);
   }
 
   addCarouselClass() {
@@ -45,30 +61,21 @@ export default class Carousel extends Subscriber {
   }
 
   addClone() {
-    let firstItem = this.panels[0];
-    let lastItem = this.panels[this.maxIdx - 1];
+    const firstItem = this.panels[0];
+    const lastItem = this.panels[this.maxIdx - 1];
     this.camera.insertBefore(lastItem.cloneNode(true), this.camera.firstChild);
     this.camera.appendChild(firstItem.cloneNode(true));
   }
 
-  attachBtnEvent() {
-    this.prevBtn.addEventListener("click", () => this.eventHandler("prev"));
-    this.nextBtn.addEventListener("click", () => this.eventHandler("next"));
-  }
-
-  eventHandler(direction) {
-    this.publisher.setState({ direction })
+  handleBtnClick(direction) {
+    this.publisher.setState({ direction });
   }
 
   async move({ targetIdx }) {
     this.setTransform(targetIdx);
     if (this.isCloneItem(targetIdx) && this.option.infinite) {
-      //TODO: duration을 옵션으로 받으면서 sleep의 매직넘버없애기
-      await this.sleep(250);
-      this.toggleAnimate('off');
-      this.setTransform(targetIdx - this.maxIdx);
-      await this.sleep(250);
-      this.toggleAnimate('on');
+      await this.sleep(this.option.duration - 50);
+      this.setNoAnimateTransform(targetIdx - this.maxIdx);
     }
     if (!this.option.infinite) this.checkMovable(targetIdx);
   }
@@ -83,7 +90,12 @@ export default class Carousel extends Subscriber {
 
   setTransform(idx) {
     idx = idx < -1 ? this.maxIdx - 1 : idx;
-    this.camera.style.transform = `translateX(${-100 * idx}%`;
+    this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: transform ${this.option.duration}ms`
+  }
+
+  setNoAnimateTransform(idx) {
+    idx = idx < -1 ? this.maxIdx - 1 : idx;
+    this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: none`
   }
 
   toggleAnimate(onoff) {

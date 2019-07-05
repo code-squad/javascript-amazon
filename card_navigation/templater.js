@@ -1,4 +1,4 @@
-import $ from './carouselUI/allenibrary.js'
+import { $ } from './utils/allenibrary.js'
 
 export default class Templater {
   getDescLists = (descLists) => {
@@ -15,7 +15,7 @@ export default class Templater {
                       ${this.getDescLists(desc)}
                       </ul>
                   </div>
-                  </li>`
+                </li>`
     }, '')
 
     const cardWrapper = $('.card-wrapper');
