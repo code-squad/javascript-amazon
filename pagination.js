@@ -6,6 +6,7 @@ class Pagination {
     this.navList = $(inputTag);
     this.navItems = this.navList.children;
     this.config;
+    this.changeNotify;
   }
 
   initData(data) {
