@@ -26,3 +26,11 @@ export const makeHTMLString = ({ data, type }) => {
     return (acc += templates[type](cur));
   }, '');
 };
+
+export const addCardsToDOM = cards => {
+  const cardElements = makeHTMLString({ data: cards, type: 'card' });
+  const navItemElements = makeHTMLString({ data: cards, type: 'navItem' });
+
+  document.querySelector('.container').insertAdjacentHTML('afterbegin', cardElements);
+  document.querySelector('.nav').insertAdjacentHTML('afterbegin', navItemElements);
+};
