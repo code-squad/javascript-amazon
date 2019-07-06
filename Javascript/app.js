@@ -1,15 +1,15 @@
-import MakeTemplate from "./template.js";
+import MakeTemplate from "./models/template.js";
 import Carousel from "./carousel.js";
 import Pagination from "./pagination.js";
 
-const cardRequest = new Request('http://127.0.0.1:5500/localData.json');
+const cardRequest = new Request('http://127.0.0.1:5500/Javascript/models/localData.json');
 fetch(cardRequest)
   .then((response) => {
     return response.json();
   })
   .then((data) => {
     const makeTemplate = new MakeTemplate();
-    
+
     makeTemplate.init(data);
   })
   .then(() => {
@@ -19,8 +19,8 @@ fetch(cardRequest)
       speed: 1000
     });  
 
-    carousel.init(pagination);
-    pagination.init(carousel);
+    // carousel.init(pagination);
+    // pagination.init(carousel);
   }) 
 
 
