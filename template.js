@@ -4,59 +4,65 @@ class MakeTemplate {
         this.carousel = document.querySelector('.carousel');
     }
 
-    makeNavigationItem(element) {
-        let createdNode = document.createElement('li');
-        createdNode.classList.add("item");
-        createdNode.innerHTML = `${element.navTitle}`;
-
-        this.navigation.appendChild(createdNode);
-    }
-
-    makeCarouselItem(element) {
-        let createdNode = document.createElement('li');
-        createdNode.classList.add('carousel-item');
-
-        let imgNode = this.makeCarouselImageNode(element);
-        let txtNode = this.makeCarouselTextNode(element);
-
-        createdNode.appendChild(imgNode);
-        createdNode.appendChild(txtNode);
-
-        this.carousel.appendChild(createdNode);
-    }
-    makeCarouselImageNode(element) {
-        let createdNode = document.createElement('div');
-        createdNode.classList.add('info-img');
-        createdNode.innerHTML = `<img src="${element.imgURL}">`;
-
-        return createdNode;
-    }
-    makeCarouselTextNode(element) {
-        let createdNode = document.createElement('div');
-        createdNode.classList.add('info-text');
-
-        let titleNode = document.createElement('h3');
-        titleNode.innerHTML = `${element.mainTitle}`;
-
-        let descUlNode = document.createElement('ul');
-        element.mainDesc.forEach((value) => {
-            let descLiNode = document.createElement('li');
-            descLiNode.innerHTML = `${value}`
-
-            descUlNode.appendChild(descLiNode);
-        })
-        
-        createdNode.appendChild(titleNode);
-        createdNode.appendChild(descUlNode);
-
-        return createdNode;
-    }
-
     init(data) {
+        this.specifyData(data);
+        this.buildNavi();
+        this.buildCarousel();
+    }    
+
+    specifyData(data) {
+        this.naviInfo = [];
+        this.carouselInfo = [];
+        
         data.forEach((element) => {
-            this.makeNavigationItem(element);
-            this.makeCarouselItem(element);
+            let carouselInfoObj = {
+                'imgURL' : element.imgURL,
+                'mainTitle' : element.mainTitle,
+                'mainDesc' : element.mainDesc
+            }
+
+            this.extractInfo(this.naviInfo, element.navTitle);
+            this.extractInfo(this.carouselInfo, carouselInfoObj);
+        });
+    }
+
+    extractInfo(targetArray, element) {
+        targetArray.push(element);
+    }
+
+    buildNavi() {
+        this.naviInfo.forEach((v) => {
+            v = this.getNaviItemHTML(v);
+            this.navigation.innerHTML += v;
         })
+    }
+    buildCarousel() {
+        this.carouselInfo.forEach((v) => {
+            v = this.getCarouselItemHTML(v);
+            this.carousel.innerHTML += v;
+        })
+    }
+
+    getNaviItemHTML(item) {
+        return `<li class="item">${item}</li>`
+    }
+    
+    getCarouselItemHTML(item) {
+        let desc = item.mainDesc.reduce((bef, aft) => {
+            bef += `<li>${aft}</li>`
+            return bef;
+        }, '<ul>') + '</ul>';
+
+        return `
+            <li class="carousel-item">
+                <div class="info-img">
+                    <img src="${item.imgURL}">
+                </div>
+                <div class="info-text">
+                    <h3>${item.mainTitle}</h3>
+                    ${desc}
+                </div>
+            </li>`
     }
 }
 
