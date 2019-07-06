@@ -1,6 +1,5 @@
 class MakeTemplate {
     constructor() {
-        this.cardRequest = new Request('http://127.0.0.1:5500/localData.json');
         this.navigation = document.querySelector('.navigation-list');
         this.carousel = document.querySelector('.carousel');
     }
@@ -53,17 +52,11 @@ class MakeTemplate {
         return createdNode;
     }
 
-    init() {
-        fetch(this.cardRequest)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                data.forEach((element) => {
-                    this.makeNavigationItem(element);
-                    this.makeCarouselItem(element);
-                })
-            })
+    init(data) {
+        data.forEach((element) => {
+            this.makeNavigationItem(element);
+            this.makeCarouselItem(element);
+        })
     }
 }
 

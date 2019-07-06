@@ -11,6 +11,8 @@ class Carousel {
     this.prevBtn = document.querySelector(".btn-prev");
     this.nextBtn = document.querySelector(".btn-next");
 
+    console.log(this.itemsInitCount);
+
     this.config = {
       active: "active",
       clone: "clone"
@@ -151,6 +153,7 @@ class Carousel {
       "moveValue" : -1
     });
     let navIndex = this.getNavIndex(newActiveItem);
+    console.log('test', navIndex);
     this.pagination.scaleUp(navIndex - 1);
     this.moveCarousel(1);
 
