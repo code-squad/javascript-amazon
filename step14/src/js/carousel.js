@@ -59,21 +59,23 @@ class Carousel {
 
   moveToNext() {
     if (!this.isTransitioning) {
+      const currentIndex = this.currentItem - 1;
       this.offset -= this.itemWidth;
       this.moveMain();
       this.currentItem++;
       if (this.isClone()) this.fakeMove();
-      this.moveHeader(this.currentItem - 1);
+      this.moveHeader(currentIndex, this.currentItem - 1);
     }
   }
 
   moveToPrev() {
     if (!this.isTransitioning) {
+      const currentIndex = this.currentItem - 1;
       this.offset += this.itemWidth;
       this.moveMain();
       this.currentItem--;
       if (this.isClone()) this.fakeMove();
-      this.moveHeader(this.currentItem - 1);
+      this.moveHeader(currentIndex, this.currentItem - 1);
     }
   }
 
@@ -121,23 +123,18 @@ class Carousel {
   }
 
   clickHeaderItem({ target }) {
-    const clickedIndex = this.getHeaderIndex(
-      target.closest('.carousel__header--item'),
-    );
-    const currentIndex = this.currentItem - 1;
+    const clickedIndex = target.closest('.carousel__header--item').dataset
+      .index;
+    const currentIndex = this.header.querySelector('.active').dataset.index;
     this.offset += this.itemWidth * (currentIndex - clickedIndex);
-    this.moveHeader(clickedIndex);
+    this.moveHeader(currentIndex, clickedIndex);
     this.moveMain();
     this.currentItem = clickedIndex + 1;
   }
 
-  moveHeader(clickedIndex) {
-    this.header.querySelector('.active').classList.remove('active');
+  moveHeader(currentIndex, clickedIndex) {
+    this.headerItems[currentIndex].classList.remove('active');
     this.headerItems[clickedIndex].classList.add('active');
-  }
-
-  getHeaderIndex(element) {
-    return this.headerItems.indexOf(element);
   }
 }
 
