@@ -9,9 +9,9 @@ class Navigation {
   }
 
   init() {
+    this.setItemsId();
     this.attatchEvent();
     this.setItem(this.selectedId);
-    this.setItemsId();
   }
 
   setItemsId() {
