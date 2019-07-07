@@ -1,5 +1,6 @@
 export default {
-  PageNation({ offset, itemWidth, currentItem, direction }) {
+  PageNation(state) {
+    const { offset, currentItem, direction, itemWidth } = state;
     if (direction === 'next')
       return {
         offset: offset - itemWidth,
@@ -11,7 +12,8 @@ export default {
     };
   },
 
-  Nav({ offest, currentItem, itemWidth, currentNavItem }) {
+  Nav(state) {
+    const { offest, currentItem, itemWidth, currentNavItem } = state;
     return {
       offest: offest + itemWidth * (currentItem - (currentNavItem + 1)),
       currentItem: currentNavItem + 1,

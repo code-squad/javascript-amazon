@@ -30,9 +30,11 @@ const Nav = class extends Observer {
   }
 
   update(state) {
-    let { prevNavItem, currNavItem } = state;
     const maxIndex = this.this.navItems.length;
     const minIndex = 0;
+    const { prevNavItem } = state;
+    let { currNavItem } = state;
+
     if (currNavItem === maxIndex) currNavItem = minIndex;
     else if (currNavItem === minIndex) currNavItem = maxIndex - 1;
 

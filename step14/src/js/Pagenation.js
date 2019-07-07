@@ -112,7 +112,7 @@ const Pagenation = class extends Observer {
   }
 
   transitionStatsToggle() {
-    this.isTransitioning = this.isTransitioning ? false : true;
+    this.isTransitioning = !this.isTransitioning;
   }
 };
 
