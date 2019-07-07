@@ -1,12 +1,10 @@
-import state from "./constants/PromiseState.js";
-import type from "../constants/TypesString.js";
-import errMsg from "../constants/ErrorMessages.js";
+import state from "./constants/promiseState.js";
+import type from "./constants/typesString.js";
+import errMsg from "./constants/errorMessages.js";
 
 class MyPromise {
   constructor(action) {
-    if(typeof action !== type.FUNCTION) {
-      throw new TypeError(errMsg.promise.RESOLVER_TYPE);
-    }
+    if(typeof action !== type.FUNCTION) throw new TypeError(errMsg.RESOLVER_TYPE);
 
     this.state = state.PENDING;
     this.value = undefined;
