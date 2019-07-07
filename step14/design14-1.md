@@ -29,7 +29,7 @@ const carouselHeader = data =>
 `
 export default carouselHeader;
 
-// --------------------------------------------------
+------------------------------------------------------
 
 // carouselMain
 const carouselMain = data => 
@@ -38,7 +38,7 @@ const carouselMain = data =>
     ${data} //
   </div>
 `
-//----------------------------------------------------
+------------------------------------------------------
 
 // carousel
 import carouselHeader from './carouselHeader.js';
@@ -205,7 +205,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 ### ![image-20190705085151258](assets/image-20190705085151258.png)
 
-- 현재 상단에 표기된 `nav`, `pagenation` 은 현재 carousel 객체(view + model 짬뽕) 내부에 몽땅 들어있음 
+- 현재 상단에 표기된 `nav`, `pagenation` 은 현재 carousel 객체(view + model 짬뽕) 내부에 몽땅 들어있다.
 - nav, pagenation 을 각각의 view 로 분리해서 그려봤다.
 - 현재는 view가 화면을 그리는 일 이외에 상태를 관리하는 일까지 모두 한다. 이럴 경우 변경이 필요한 순간 모든 코드를 다 고쳐야 하며 그것은 끔찍한 일이다. 
 - 상태관리는 별도의 객체(model) 가 하도록 하고, 각 view 들은 그리는 일만 담당하도록 바꿔야 한다. 
@@ -239,4 +239,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
 - 한쪽 view가 발생시킨 이벤트가 모델의 상태변경을 요청한다.
 - 여기서 조금 특이한게 **해당 상태변경의 파급력이 존재하는 모든 view 에 화면변화를 유도**한다는 점이다. 
-- 슬슬 패턴이 보이기 시작한다. 주변 동료들이 옵저버(observer) 패턴을 쓴다고 하는데 아마도 옵저버 패턴을 공부해보자. 
+- 슬슬 패턴이 보이기 시작한다. 주변 동료들이 옵저버(observer) 패턴을 쓴다고 하는데 옵저버 패턴을 공부해보자. 
+
+### 4-3 Observer Pattern
+
+#### 4-3-1 [blog 학습](https://webdevstudios.com/2019/02/19/observable-pattern-in-javascript/) 
+
+> The observer pattern is a software design pattern in which **an object, called the subject**, **maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.**
+>
+> **The observer pattern defines a one-to-many relationship. When one object updates, it notifies many other objects that it has been updated.** 
+>
+> Here is a brief explanation for each:
+>
+> - **subject** – This is the object that will send out a notification to all of the ‘observers’ who want/need to know that the subject was updated. In our case, the subject will be the application state object.
+> - **observers** – These are the objects that want to know when the subject has changed. In our case, these will be the page elements that need to update when the application state changes.
+
+ **''옵저버 패턴은 일대다 관계를 정의한다. 상태를 관리하는 객체의 변경이 있을 경우 다른 모든 객체에 그 변경을 알려야 한다.**" 라는 내용은 바로 **4-2-3 에서 발견했던 독특한 특징**과  동일했다.  옵져버 패턴을 써야할 명분이 생겼다. 
+
+ 
