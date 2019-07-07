@@ -96,7 +96,8 @@ const Pagenation = class extends Observer {
     this.container.style.transform = `translate3D(${offset}px, 0, 0)`;
   }
 
-  update({ offset, currentItem }) {
+  update(state) {
+    const { offset, currentItem } = state;
     this.moveMain(offset);
     if (this.isClone(currentItem)) this.fakeMove({ offset, currentItem });
   }
