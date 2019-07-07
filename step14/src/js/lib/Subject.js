@@ -3,8 +3,8 @@ class Subject {
     this.observers = [];
   }
 
-  addObserver(observer) {
-    this.observers.push(observer);
+  addObserver(...observer) {
+    this.observers = this.observers.concat(...observer);
   }
 
   removeObserver(observer) {

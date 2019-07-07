@@ -1,6 +1,6 @@
-import Observer from './lib/Observer';
+import Observer from '../../js/lib/Observer.js';
 
-const Pagenation = class extends Observer {
+const Main = class extends Observer {
   constructor({
     carousel,
     carouselMain,
@@ -27,7 +27,7 @@ const Pagenation = class extends Observer {
   init() {
     this.subject.setState({
       currentItem: 1,
-      offest: -this.itemWidth,
+      offset: -this.itemWidth,
       itemWidth: this.itemWidth,
     });
     this.setCarouselSize();
@@ -38,7 +38,7 @@ const Pagenation = class extends Observer {
   }
 
   setCarouselSize() {
-    this.carouselMain.style.width = `${this.item.offsetWidth}px'`;
+    this.carouselMain.style.width = `${this.item.offsetWidth}px`;
     this.carouselMain.style.height = `${this.item.offsetHeight}px`;
   }
 
@@ -56,7 +56,7 @@ const Pagenation = class extends Observer {
   reportEvent(e) {
     if (this.isTransitioning) return;
 
-    const { direction } = e.target.closest('arrow').dataset;
+    const { direction } = e.target.closest('.arrow').dataset;
     const { name } = this.constructor;
 
     this.subject.setState({ direction });
@@ -64,7 +64,7 @@ const Pagenation = class extends Observer {
   }
 
   attachEvent() {
-    const arrow = this.carousel.querySelector('.arrow');
+    const arrow = this.carousel.querySelector('.arrow-wrapper');
 
     arrow.addEventListener('click', e => this.reportEvent(e));
     this.container.addEventListener('transitionend', () => {
@@ -116,4 +116,4 @@ const Pagenation = class extends Observer {
   }
 };
 
-export default Pagenation;
+export default Main;

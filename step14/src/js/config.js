@@ -1,8 +1,8 @@
 export default {
   carousel: '.carousel',
   // carousel__header
-  header: '.carousel__header',
-  headerItems: '.carousel__header--item',
+  nav: '.carousel__nav',
+  navItem: '.carousel__nav--item',
 
   // carousel__main
   carouselMain: '.carousel__main',

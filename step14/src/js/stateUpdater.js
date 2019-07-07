@@ -1,22 +1,24 @@
 export default {
-  PageNation(state) {
+  Main(state) {
     const { offset, currentItem, direction, itemWidth } = state;
     if (direction === 'next')
       return {
         offset: offset - itemWidth,
-        currentItem: ++currentItem,
+        currentItem: currentItem + 1,
+        currNavItem: currentItem,
       };
     return {
       offset: offset + itemWidth,
-      currentItem: --currentItem,
+      currentItem: currentItem - 1,
+      currNavItem: currentItem - 2,
     };
   },
 
   Nav(state) {
-    const { offest, currentItem, itemWidth, currentNavItem } = state;
+    const { offset, currentItem, itemWidth, currNavItem } = state;
     return {
-      offest: offest + itemWidth * (currentItem - (currentNavItem + 1)),
-      currentItem: currentNavItem + 1,
+      offset: offset + itemWidth * (currentItem - (currNavItem + 1)),
+      currentItem: currNavItem + 1,
     };
   },
 };

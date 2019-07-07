@@ -2,11 +2,11 @@ class Observer {
   // Gets called by the Subject::notify method.
   constructor() {}
 
-  addPublisher(subject) {
+  addSubjet(subject) {
     this.subject = subject;
   }
 
-  removePublisher() {
+  removeSubject() {
     this.subject = null;
   }
 

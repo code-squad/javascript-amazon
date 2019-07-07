@@ -1,4 +1,4 @@
-import Observer from './lib/Observer';
+import Observer from '../../js/lib/Observer.js';
 
 const Nav = class extends Observer {
   constructor({ nav, navItem }) {
@@ -19,7 +19,7 @@ const Nav = class extends Observer {
   reportEvent(e) {
     const { index } = e.target.closest(this.navItemName).dataset;
     const { name } = this.constructor;
-    this.subject.setState({ currNavItem: index });
+    this.subject.setState({ currNavItem: Number(index) });
     this.subject.updateState(name);
   }
 
@@ -30,12 +30,12 @@ const Nav = class extends Observer {
   }
 
   update(state) {
-    const maxIndex = this.this.navItems.length;
-    const minIndex = 0;
+    const maxIndex = this.navItems.length;
+    const minIndex = -1;
     const { prevNavItem } = state;
     let { currNavItem } = state;
 
-    if (currNavItem === maxIndex) currNavItem = minIndex;
+    if (currNavItem === maxIndex) currNavItem = 0;
     else if (currNavItem === minIndex) currNavItem = maxIndex - 1;
 
     this.navItems[prevNavItem].classList.remove('active');

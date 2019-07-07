@@ -1,13 +1,16 @@
-import carouselNav from './carouselNav.js/index.js.js';
-import carouselMain from './carouselMain.js/index.js.js';
+import carouselNav from './Nav/NavTPL.js';
+import carouselMain from './Main/MainTPL.js';
 
 const carousel = data =>
   `
   <div class="carousel">
     ${carouselNav(data)}
     ${carouselMain(data)}
-    <button class="arrow next"></button>
-    <button class="arrow prev"></button>
+    <div class="arrow-wrapper">
+      <button class="arrow next" data-direction="next"></button>
+      <button class="arrow prev" data-driection="prev" ></button>
+    </div>
+    
   </div>
 `;
 

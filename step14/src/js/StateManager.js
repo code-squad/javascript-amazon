@@ -1,4 +1,4 @@
-import Subject from './lib/Subject';
+import Subject from './lib/Subject.js';
 
 class StateManager extends Subject {
   constructor() {
@@ -14,9 +14,11 @@ class StateManager extends Subject {
     this.state = Object.assign(this.state, data);
   }
 
-  update(reporter) {
-    const changedState = StateManager.getChangedStateBy[reporter](this.state);
-    this.state = Object.assign(this.state, changedState);
+  updateState(eventReporter) {
+    const UpdatedState = StateManager.getUpdatedStateFrom[eventReporter](
+      this.state,
+    );
+    this.state = Object.assign(this.state, UpdatedState);
     this.notify(this.state);
   }
 }
