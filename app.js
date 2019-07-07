@@ -63,7 +63,7 @@ window.onload = () => {
 
   const cardDataInSession = sessionStorage.getItem(`cardData`);
 
-  if (!cardDataInSession) {
+  if (cardDataInSession) {
     cardSlider1_div.innerHTML = cardSlider2_div.innerHTML = cardDataInSession;
     jungle.createCarousel(slider1ParamObj);
     jungle.createCarousel(slider2ParamObj);
