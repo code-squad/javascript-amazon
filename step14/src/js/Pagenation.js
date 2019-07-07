@@ -21,16 +21,18 @@ const Pagenation = class extends Observer {
     this.itemWidth = this.item.offsetWidth;
     this.itemsLength = this.items.length;
     this.config = config;
+    this.isTransitioning = false;
   }
 
   init() {
-    this.setCarouselSize();
-    this.attachEvent();
-    this.insertClone();
-    this.publisher.setState({
+    this.subject.setState({
+      currentItem: 1,
       offest: -this.itemWidth,
       itemWidth: this.itemWidth,
     });
+    this.setCarouselSize();
+    this.attachEvent();
+    this.insertClone();
     this.moveWithoutAnimation(-this.itemWidth);
     this.carouselMain.style.opacity = 1;
   }
@@ -48,20 +50,22 @@ const Pagenation = class extends Observer {
       lastItem.cloneNode(true),
       this.container.firstChild,
     );
-
     this.container.appendChild(firstItem.cloneNode(true));
   }
 
   reportEvent(e) {
     if (this.isTransitioning) return;
+
     const { direction } = e.target.closest('arrow').dataset;
     const { name } = this.constructor;
-    this.publisher.setState({ direction });
-    this.publisher.updateState(name);
+
+    this.subject.setState({ direction });
+    this.subject.updateState(name);
   }
 
   attachEvent() {
     const arrow = this.carousel.querySelector('.arrow');
+
     arrow.addEventListener('click', e => this.reportEvent(e));
     this.container.addEventListener('transitionend', () => {
       this.transitionStatsToggle();
@@ -75,7 +79,7 @@ const Pagenation = class extends Observer {
   fakeMove(state) {
     const itemWidth = this.item.offsetWidth;
     let { offset, currentItem } = state;
-    // setState
+
     if (currentItem === 0) {
       offset -= this.itemsLength * itemWidth;
       currentItem += this.itemsLength;
@@ -83,8 +87,8 @@ const Pagenation = class extends Observer {
       offset += this.itemsLength * itemWidth;
       currentItem -= this.itemsLength;
     }
-    this.publisher.setState({ offset, currentItem });
-    // pagenation
+
+    this.subject.setState({ offset, currentItem });
     setTimeout(() => this.moveWithoutAnimation(offset), this.config.duration);
   }
 
@@ -102,10 +106,13 @@ const Pagenation = class extends Observer {
     if (this.isClone(currentItem)) this.fakeMove({ offset, currentItem });
   }
 
-  // pagenation
   moveWithoutAnimation(offset) {
     this.container.style.transition = 'none';
     this.container.style.transform = `translate3D(${offset}px, 0, 0)`;
+  }
+
+  transitionStatsToggle() {
+    this.isTransitioning = this.isTransitioning ? false : true;
   }
 };
 

@@ -9,7 +9,7 @@ const Nav = class extends Observer {
   }
 
   init() {
-    this.publisher.setState({
+    this.subject.setState({
       prevNavItem: 0,
       currNavItem: null,
     });
@@ -19,8 +19,8 @@ const Nav = class extends Observer {
   reportEvent(e) {
     const { index } = e.target.closest(this.navItemName).dataset;
     const { name } = this.constructor;
-    this.publisher.setState({ currNavItem: index });
-    this.publisher.updateState(name);
+    this.subject.setState({ currNavItem: index });
+    this.subject.updateState(name);
   }
 
   attachEvent() {
@@ -38,7 +38,7 @@ const Nav = class extends Observer {
 
     this.navItems[prevNavItem].classList.remove('active');
     this.navItems[currNavItem].classList.add('active');
-    this.publisher.setState({ prevNavItem: currNavItem });
+    this.subject.setState({ prevNavItem: currNavItem });
   }
 };
 

@@ -6,8 +6,8 @@ export default {
         currentItem: ++currentItem,
       };
     return {
-      offset: offset - itemWidth,
-      currentItem: ++currentItem,
+      offset: offset + itemWidth,
+      currentItem: --currentItem,
     };
   },
 
