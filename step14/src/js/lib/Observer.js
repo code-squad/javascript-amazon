@@ -10,6 +10,10 @@ class Observer {
     this.publisher = null;
   }
 
+  attachEvent() {
+    throw new Error('this method will be overided');
+  }
+
   reportEvent() {
     throw new Error('this method will be overided');
   }
