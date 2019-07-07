@@ -15,15 +15,15 @@ class Navigation {
   }
 
   setItemsId() {
-    this.navItems.forEach((item, index) =>
-      item.setAttribute(`data-id`, index + 1)
-    );
+    this.navItems.forEach((item, index) => {
+      item.setAttribute(`data-id`, index + 1);
+    });
   }
 
   attatchEvent() {
-    this.nav.addEventListener("click", ({ target }) =>
-      this.setItem(Number(target.dataset.id))
-    );
+    this.nav.addEventListener(`click`, ({ target }) => {
+      if (target.className.includes(`nav-item`)) this.setItem(Number(target.dataset.id));
+    });
   }
 
   setItem(id) {
