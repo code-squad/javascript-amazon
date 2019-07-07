@@ -1,3 +1,5 @@
+import delegate from "../utils/delegate.js";
+
 class Carousel {
   constructor({ container, slider }, observer, config) {
     //DOM
@@ -73,10 +75,8 @@ class Carousel {
   }
 
   attatchEvent() {
-    this.container.addEventListener("click", ({target}) => {
-      if(target.className.includes("prev")) this.prevHandler();
-      else if(target.className.includes("next")) this.nextHandler();
-    });
+    delegate(this.container, `.prev`, `click`, this.prevHandler.bind(this));
+    delegate(this.container, `.next`, `click`, this.nextHandler.bind(this));
 
     this.cardSlider.addEventListener("transitionend", () =>
       this.transitionEndHandler()
