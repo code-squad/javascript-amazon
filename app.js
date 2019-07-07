@@ -4,6 +4,9 @@ import myFetch from "./MyFetch/index.js";
 const jungle = new Jungle();
 
 const makeCardHtml = data => {
+  const list = data.map(eachData => eachData.desc);
+  let liIndex = 0;
+
   return `
       ${data.reduce(
         (html, item) => `
@@ -15,13 +18,7 @@ const makeCardHtml = data => {
       <div class="content">
         <h2>${item.title}</h2>
         <ul>
-          ${item.desc.reduce(
-            (html, item) => `
-            ${html}
-            <li>${item}</li>
-          `,
-            ``
-          )}
+          <li>${list[liIndex++]}</li>
         </ul>
       </div>
     </div>
@@ -66,11 +63,10 @@ window.onload = () => {
 
   const cardDataInSession = sessionStorage.getItem(`cardData`);
 
-  if (cardDataInSession) {
+  if (!cardDataInSession) {
     cardSlider1_div.innerHTML = cardSlider2_div.innerHTML = cardDataInSession;
     jungle.createCarousel(slider1ParamObj);
     jungle.createCarousel(slider2ParamObj);
-
   } else {
     myFetch(dataPath)
       .then(data => {
