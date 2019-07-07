@@ -1,6 +1,6 @@
 import MyPromise from "../MyPromise/index.js";
-import errMsg from "./constants/errorMessages.js";
-import type from "./constants/typeStrings.js";
+import errMsg from "./constants/errMsgs.js";
+import type from "./constants/types.js";
 
 const defaultOptions = {
   method: "GET"

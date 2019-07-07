@@ -1,6 +1,6 @@
-import state from "./constants/promiseState.js";
-import type from "./constants/typesString.js";
-import errMsg from "./constants/errorMessages.js";
+import state from "./constants/states.js";
+import type from "./constants/types.js";
+import errMsg from "./constants/errMsgs.js";
 
 class MyPromise {
   constructor(action) {
