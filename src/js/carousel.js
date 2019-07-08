@@ -8,7 +8,7 @@ class Carousel {
     item,
     items,
     config = {
-      duration: 200,
+      duration: 300,
       easing: "ease-out"
     },
     currentItem = 1,
@@ -36,6 +36,7 @@ class Carousel {
     this.attachEvent();
     this.insertClone();
     this.moveWithoutAnimation();
+    this.headerItems[0].classList.add('active');
     this.carouselMain.style.opacity = 1;
   }
 

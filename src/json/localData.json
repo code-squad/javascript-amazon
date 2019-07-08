@@ -1,0 +1,48 @@
+{
+  "header": 
+  [
+    {
+      "id": 1,
+      "title": "Fast, Free Delivery"
+    },
+    {
+      "id": 2,
+      "title": "Exclusive deals and offers"
+    },
+    {
+      "id": 3,
+      "title": "Prime Originals movies and TV shows"
+    },
+    {
+      "id": 4,
+      "title": "Over 2 million songs ad free"
+    }
+  ],
+  "main":
+  [
+    {
+      "id": "1",
+      "title": "FREE delivery, as fast as today",
+      "description" : "Fast, free and convenient ways to get millions of items, from unlimited Two-Day Shipping to Same-Day and 2-Hour Delivery in select areas",
+      "imgURL" : "./src/images/carousel_1.png"
+    },
+    {
+      "id": "2",
+      "title": "Exclusive Deals Just for you",
+      "description" : "Get exclusive access to deals and discounts before anyone else with 30-minute early access to Lightning Deals",
+      "imgURL" : "./src/images/carousel_2.png"
+    },
+    {
+      "id": "3",
+      "title": "Award-Winning Movies & TV Shows",
+      "description" : "Watch what you love with award-winning Amazon Originals, movies and TV shows, included in your membership.",
+      "imgURL" : "./src/images/carousel_3.jpg"
+    },
+    {
+      "id": "4",
+      "title": "Over two million songs, ad free",
+      "description" : "Get access to an exclusive library of songs from Amazon Music without any ads.",
+      "imgURL" : "./src/images/carousel_4.jpg"
+    }
+  ]
+}

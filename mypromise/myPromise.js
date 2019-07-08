@@ -9,23 +9,21 @@ class MyPromise {
   }  
 
   static resolve(value) {
-    if(this.status === 'pending'){
+    if(this.status !== 'pending') return;
       this.status = 'resolved';
       this.value.push(value);
       setTimeout(() => {
         this.executor();
       })
-    }
   }
 
   static reject(reason) {
-    if(this.status === 'pending'){
+    if(this.status !== 'pending') return;
       this.status = 'rejected';
       this.reason.push(reason);
       setTimeout(() => {
         this.executor();
       })
-    }
   }
 
   then(resolvedCallback, rejectedCallback) {
