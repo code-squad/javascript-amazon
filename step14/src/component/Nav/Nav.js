@@ -16,8 +16,8 @@ const Nav = class extends Observer {
     this.attachEvent();
   }
 
-  reportEvent(e) {
-    const { index } = e.target.closest(this.navItemName).dataset;
+  reportEvent({ target }) {
+    const { index } = target.closest(this.navItemName).dataset;
     const { name } = this.constructor;
     this.subject.setState({ currNavItem: Number(index) });
     this.subject.updateState(name);

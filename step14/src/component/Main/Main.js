@@ -53,10 +53,10 @@ const Main = class extends Observer {
     this.container.appendChild(firstItem.cloneNode(true));
   }
 
-  reportEvent(e) {
+  reportEvent({ target }) {
     if (this.isTransitioning) return;
 
-    const { direction } = e.target.closest('.arrow').dataset;
+    const { direction } = target.closest('.arrow').dataset;
     const { name } = this.constructor;
 
     this.subject.setState({ direction });
