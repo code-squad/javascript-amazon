@@ -4,9 +4,13 @@
 
 ###  1-1기획 
 
-- react 에서 component 처럼 분리해 보면 어떨까?
+#### react 에서 component 처럼 분리해 보면 어떨까?
 
 ![image-20190703150551373](assets/image-20190703150551373.png)
+
+- component로 관리하면 business logic 에만 집중할 수 있는 장점이 있기 때문에 이렇게 판단했다.
+
+#### 설계
 
 - carouselHeader, carouselMain, carousel(index) 로 나누고, carousel이 header와 main template를 포함한다
 - carousel(index)
