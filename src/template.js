@@ -27,7 +27,7 @@ export const makeHTMLString = ({ data, type }) => {
   }, '');
 };
 
-export const addCardsToDOM = cards => {
+export const renderCard = cards => {
   const cardElements = makeHTMLString({ data: cards, type: 'card' });
   const navItemElements = makeHTMLString({ data: cards, type: 'navItem' });
 
