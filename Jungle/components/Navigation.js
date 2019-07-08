@@ -1,6 +1,7 @@
 class Navigation {
   constructor({ nav }, options, observer) {
-    this.navItems = [...document.querySelector(nav).children];
+    this.nav = document.querySelector(nav);
+    this.navItems = [...this.nav.children];
 
     this.observer = observer;
     this.itemLength = this.navItems.length;
@@ -8,22 +9,26 @@ class Navigation {
   }
 
   init() {
+    this.setItemsId();
     this.attatchEvent();
     this.setItem(this.selectedId);
   }
 
-  attatchEvent() {
+  setItemsId() {
     this.navItems.forEach((item, index) => {
-      item.addEventListener("click", () => {
-        const id = index + 1;
-        this.setItem(id);
-      });
+      item.setAttribute(`data-id`, index + 1);
+    });
+  }
+
+  attatchEvent() {
+    this.nav.addEventListener(`click`, ({ target }) => {
+      if (target.className.includes(`nav-item`)) this.setItem(Number(target.dataset.id));
     });
   }
 
   setItem(id) {
     this.selectedId = id;
-    this.observer.notify('selectNav', {getId: () => this.selectedId});
+    this.observer.notify("selectNav", { getId: () => this.selectedId });
     this.selectNav();
   }
 

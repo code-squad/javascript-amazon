@@ -1,3 +1,5 @@
+import delegate from "../utils/delegate.js";
+
 class Carousel {
   constructor({ container, slider }, observer, config) {
     //DOM
@@ -24,46 +26,17 @@ class Carousel {
     this.config = this.mergeConfig(config);
   }
 
-  makeCardHtml(data) {
-    return `
-        ${data.reduce(
-          (html, item) => `
-          ${html}
-        <div class="card">
-        <div class="thumb">
-          <img src="${item.imgUrl}" alt="card-thumbnail" />
-        </div>
-        <div class="content">
-          <h2>${item.title}</h2>
-          <ul>
-            ${item.desc.reduce(
-              (html, item) => `
-              ${html}
-              <li>${item}</li>
-            `,
-              ``
-            )}
-          </ul>
-        </div>
-      </div>
-        `,
-          ``
-        )}
-        `;
-  }
-
   mergeConfig(config) {
     return Object.assign(this.defaultConfig, config);
   }
 
-  setOpacity(el, val) {
-    el.style.opacity = val;
+  setCss() {
+    const cardWrapper = this.container.querySelector(".card-wrapper");
+    cardWrapper.style.width = `${this.itemWidth}px`;
+    this.container.style.opacity = 1;
   }
 
   init() {
-    const cardWrapper = this.container.querySelector(".card-wrapper");
-
-    cardWrapper.style.width = `${this.itemWidth}px`;
     this.attatchEvent();
 
     if (this.config.infinite) {
@@ -75,7 +48,7 @@ class Carousel {
       this.isMovable();
     }
 
-    this.setOpacity(this.container, 1);
+    this.setCss();
   }
 
   cloneVirtualCard() {
@@ -102,8 +75,8 @@ class Carousel {
   }
 
   attatchEvent() {
-    this.prevButton.addEventListener("click", () => this.prevHandler());
-    this.nextButton.addEventListener("click", () => this.nextHandler());
+    delegate(this.container, `.prev`, `click`, this.prevHandler.bind(this));
+    delegate(this.container, `.next`, `click`, this.nextHandler.bind(this));
 
     this.cardSlider.addEventListener("transitionend", () =>
       this.transitionEndHandler()
