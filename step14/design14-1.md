@@ -1,4 +1,4 @@
-## Templating 설계
+## 14-1 설계
 
 ## 1. template literal 활용과 함수로직 분리 
 
@@ -164,8 +164,7 @@ window.addEventListener('DOMContentLoaded', () => {
     url: 'http://127.0.0.1:5500/data.json',
     templateFunc: carouselTemplate,
   }).then(_ => {
-    const carousel = new Carousel(config);
-    carousel.init();
+    carouselInit();
   });
 });
 
@@ -203,7 +202,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 #### 4-1-1 책임과 역할 파악 
 
-### ![image-20190705085151258](assets/image-20190705085151258.png)
+![image-20190708142455046](assets/image-20190708142455046.png)
 
 - 현재 상단에 표기된 `nav`, `pagenation` 은 현재 carousel 객체(view + model 짬뽕) 내부에 몽땅 들어있다.
 - nav, pagenation 을 각각의 view 로 분리해서 그려봤다.
@@ -225,7 +224,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 #### 4-2-2 역할 할당 (구체화)
 
-![image-20190705160327308](assets/image-20190705160327308.png)
+![역할모델](assets/역할모델.png)
 
 - 각 view 는 이벤트 등록과 화면 변경의 역할을 가진다.
 - model은 상태를 변경한다. 
@@ -235,7 +234,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 #### 4-2-3 *케러셀의 독특한 특징
 
-![image-20190705162339907](assets/image-20190705162339907.png)
+![이벤트흐름추상](assets/이벤트흐름추상.png)
 
 - 한쪽 view가 발생시킨 이벤트가 모델의 상태변경을 요청한다.
 - 여기서 조금 특이한게 **해당 상태변경의 파급력이 존재하는 모든 view 에 화면변화를 유도**한다는 점이다. 
@@ -256,4 +255,71 @@ window.addEventListener('DOMContentLoaded', () => {
 
  **''옵저버 패턴은 일대다 관계를 정의한다. 상태를 관리하는 객체의 변경이 있을 경우 다른 모든 객체에 그 변경을 알려야 한다.**" 라는 내용은 바로 **4-2-3 에서 발견했던 독특한 특징**과  동일했다.  옵져버 패턴을 써야할 명분이 생겼다. 
 
- 
+> [obsever 패턴 데모](https://codesandbox.io/s/vqq4vvxl20?view=preview)
+
+ ## 4-4 Observer Pattern 과 조금은 다른 것들
+
+### 이벤트 발동 이후의 구체적인 실행흐름 
+
+![이벤트흐름구체](assets/이벤트흐름구체.png)
+
+### 4-4-1 그리기(기존) vs 데이터변경 요청 + 그리기(My)
+
+- 참고 했던 observer 패턴의 observer 객체의 경우 **view 객체는 변경된 상태를 그리는 일(역할1**)만한다. 
+- 나의 observer 패턴은 이벤트 발생시  **subject(Publisher) 에게 데이터 변경을 요청(역할2**)하고, 그 **요청 메시지에 데이터를 담아 보내기도 한다.** **두 가지의 역할 (역할1, 2)을 하는 것이다.**
+- **이벤트를 감지해서 데이터의 변경을 요청하는 역할을 다른 객체에게 위임한다면 응집도가 떨어진다고 판단**하여 observer들에게 해당 역할을 부여했다. 
+- 실제 새로운 view가 추가한다 하더라도 각 view에 별도의 수정이 필요가 없다
+
+### 4-4-2 상태변경과 무관하게 view 내부적으로 화면을 그리고, stateManager에게  별도로 보고만 하는 로직 
+
+```js
+update(state) { // 여기서 update는 stateManager (Publisher)가 실행시키며, 인자 state도 Publisher의 this.state 이다.
+  const { offset, currentItem } = state;
+  this.moveMain(offset);
+  if (this.isClone(currentItem)) this.fakeMove({ offset, currentItem });
+}
+
+
+fakeMove(state) {
+  const itemWidth = this.item.offsetWidth;
+  let { offset, currentItem } = state;
+
+  if (currentItem === 0) {
+    offset -= this.itemsLength * itemWidth;
+    currentItem += this.itemsLength;
+  } else {
+    offset += this.itemsLength * itemWidth;
+    currentItem -= this.itemsLength;
+  }
+
+  this.subject.setState({ offset, currentItem });
+  setTimeout(() => this.moveWithoutAnimation(offset), this.config.duration);
+}
+```
+
+- 구체적으로 `fakeMove()` 함수의 경우 상태변경에 따른 반응이라기 보다는 view 내부의 필요에 의해 화면을 그린다. 
+- **보통은 observer 들은 publisher 들에게 통지받은 결과를 화면에 그리는 수동적인 객체이지만,** **Main 객체는 내부적인 필요에 의해 스스로 화면을 그리고, 그린 결과와 해당 상태를 publisher(stateManager)에게 보고한다. 이때 따라 상태의 변동이 발생하지만, publisher는  상태의 변화를 view에게 다시 통지(notify) 하지 않는다.**  
+
+### 4-4-3  stateManager의 setState 와 updateState 
+
+```js
+ setState(data = {}) {
+    this.state = Object.assign(this.state, data);
+  }
+
+  updateState(eventReporter) {
+    const UpdatedState = StateManager.getUpdatedStateFrom[eventReporter](
+      this.state,
+    );
+    this.state = Object.assign(this.state, UpdatedState);
+    this.notify(this.state);
+  }
+```
+
+
+
+- 위 로직을 구현 하려면 stateManager 에게는 상태만 변경하는 함수와, 상태변경을 반영 한 후 observer 들에게 상태의 변화를 통지하는 함수가 필요하다.  
+- **setState 는 데이터를 받아 상태만 변경하는 함수이다. **
+- **updateState 함수는 이벤트 리포터의 이름을 받아 해당 리포터에 따른 상태 연산을 수행하고, 상태 변경한다. 그렇게 변경된 상태를 observer 들에게 다시 통지한다. 통지를 받은 Obersver 객체는 변경된 상태를 기반으로 다시 화면을 그린다.** 
+
+### 4-4-4 getUpdatedStateFrom[eventReporter]
