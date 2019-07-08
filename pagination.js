@@ -1,35 +1,49 @@
 "use strict";
+import $ from "./mylibrary.js";
 
 class Pagination {
-  constructor(carousel) {
-    this.carousel = carousel;
-    this.navList = document.querySelector(".navigation-list");
+  constructor(inputTag) {
+    this.navList = $(inputTag);
     this.navItems = this.navList.children;
+    this.config;
+    this.changeNotify;
   }
 
-  init() {
-    let navoption = true;
-    this.carousel.setAttrToElement(this.navItems, "data-nav-index", navoption);
+  initData(data) {
+    const result = data.reduce((acc, cur) => {
+      acc += `<li class="item${cur.id}">${cur.title}</li>`;
+      return acc;
+    }, "");
+
+    this.navList.insertAdjacentHTML("beforeend", result);
+  }
+
+  initSetting(obj, func) {
+    this.config = obj;
+    this.changeNotify = func;
+    this.setPaginationAttr(this.navItems, this.config.paginationAttr);
+    this.navItems[0].classList.add(this.config.scale);
     this.attachEventToPagination();
-    this.navItems[0].classList.add("scale");
   }
 
   scaleUp(navIndex) {
-    let currentScale = document.querySelector(".scale");
-    currentScale.classList.remove("scale");
-    this.navItems[navIndex].classList.add("scale");
+    const currentScale = $(`.${this.config.scale}`);
+    currentScale.classList.remove(this.config.scale);
+    this.navItems[navIndex].classList.add(this.config.scale);
+  }
+
+  setPaginationAttr(arr, attrName) {
+    const _arr = [...arr];
+
+    _arr.forEach((v, i) => {
+      _arr[i].setAttribute(attrName, i + 1);
+    });
   }
 
   attachEventToPagination() {
     this.navList.addEventListener("click", e => {
       let navIndex = e.target.dataset.navIndex;
-      let navPointer = -(this.carousel.width * navIndex);
-      let currentactiveIndex = this.carousel.getActiveItem();
-
-      this.scaleUp(navIndex - 1);
-      this.carousel.updateActiveItem(currentactiveIndex, navIndex, true);
-      navPointer = -(this.carousel.width * navIndex);
-      this.carousel.moveCarousel(navPointer, true);
+      this.changeNotify(e.target, navIndex);
     });
   }
 }

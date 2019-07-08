@@ -1,64 +1,65 @@
 "use strict";
+import Pagination from "./pagination.js";
+import $ from "./mylibrary.js";
 
 class Carousel {
-  constructor(input, option) {
-    this.carousel = document.querySelector(input);
+  constructor(inputTags) {
+    let [carouselTag, prevBtnTag, nextBtnTag] = [...inputTags];
+    this.carousel = $(carouselTag);
+    this.prevBtn = $(prevBtnTag);
+    this.nextBtn = $(nextBtnTag);
+
     this.items = this.carousel.children;
     this.width = this.carousel.offsetWidth;
-    this.itemsInitCount = this.items.length;
     this.currentPointer = -this.width;
-    this.pagination;
-    this.option = option;
 
-    this.prevBtn = document.querySelector(".btn-prev");
-    this.nextBtn = document.querySelector(".btn-next");
-
-    this.config = {
-      active: "active",
-      clone: "clone"
-    };
+    this.config;
+    this.changeNotify;
   }
 
-  init(pagination) {
-    this.pagination = pagination;
-    let itemsCount = this.items.length;
-    if (this.option.infinite) {
-      itemsCount = this.setCarouselItem();
-    }
+  initData(data) {
+    const result = data.reduce((acc, cur) => {
+      acc += `<li class="carousel-item"><div class="info-img"><img src="${
+        cur.imgurl
+      }"></div><div class="info-text"><h3>${
+        cur.title
+      }</h3><ul>${this.makeDescArr(cur.desc)}</ul></div></li>`;
+      return acc;
+    }, "");
 
-    this.setCarouselFullWidth(itemsCount);
-    this.setAttrToElement(this.items, "data-index");
+    this.carousel.insertAdjacentHTML("beforeend", result);
+  }
+
+  initSetting(obj, func) {
+    this.config = obj;
+    this.changeNotify = func;
+
+    this.setCarouselItem(this.config.initDataCnt);
+    this.setCarouselFullWidth(this.items.length);
+    this.setCarouselAttr(this.items, this.config.carouselAttr);
     this.setCarouselPosition();
-
     this.attchEventToBtn();
   }
 
-  isInfinite() {
-    return this.option.infinite;
+  makeDescArr(arr) {
+    const result = arr.reduce((acc, cur) => {
+      acc += `<li>${cur}</li>`;
+      return acc;
+    }, "");
+    return result;
   }
 
-  setCarouselItem() {
+  setCarouselItem(initDataCnt) {
     this.appendCloneItem(
       this.carousel,
       this.items[0],
-      this.items[this.itemsInitCount - 1]
+      this.items[initDataCnt - 1]
     );
-    return this.items.length;
-  }
-
-  setCarouselPosition() {
-    if (this.option.infinite) {
-      this.carousel.style.transform = `translateX(${this.currentPointer}px)`;
-      this.carousel.style.transition = `all 0s`;
-      this.addElementToClass(this.items[1], this.config.active);
-    } else {
-      this.addElementToClass(this.items[0], this.config.active);
-    }
   }
 
   appendCloneItem(parentNode, firstItem, lastItem) {
-    let firstCloneItem = firstItem.cloneNode(true);
-    let lastCloneItem = lastItem.cloneNode(true);
+    const firstCloneItem = firstItem.cloneNode(true);
+    const lastCloneItem = lastItem.cloneNode(true);
 
     parentNode.prepend(lastCloneItem);
     parentNode.appendChild(firstCloneItem);
@@ -67,44 +68,66 @@ class Carousel {
     this.addElementToClass(lastCloneItem, this.config.clone);
   }
 
+  setCarouselFullWidth(itemsCnt) {
+    const fullWidth = this.width * itemsCnt;
+    this.carousel.style.width = `${fullWidth}px`;
+    this.addElementToClass(this.carousel, this.config.flex);
+  }
+
+  setCarouselAttr(arr, attrName) {
+    const _arr = [...arr];
+
+    _arr.forEach((v, i) => {
+      _arr[i].setAttribute(attrName, i);
+    });
+  }
+
+  setCarouselPosition() {
+    this.carousel.style.transform = `translateX(${this.currentPointer}px)`;
+    this.carousel.style.transition = `all 0s`;
+    this.addElementToClass(
+      this.items[this.config.currentShowingIndex],
+      this.config.active
+    );
+  }
+
+  setCarouselTransition(transitionType, transformVal) {
+    this.carousel.style.transition = transitionType;
+    this.carousel.style.transform = `translateX(${transformVal}px)`;
+  }
+
+  getActiveItem() {
+    const active = $(`.${this.config.active}`);
+    return active.dataset.index;
+  }
+
+  getActiveIndex(newActiveItem) {
+    let navIndex = Number(newActiveItem.dataset.index);
+    if (navIndex === 0) {
+      navIndex = this.config.initDataCnt;
+    } else if (navIndex === this.config.initDataCnt + 1) {
+      navIndex = 1;
+    }
+    return navIndex;
+  }
+
   addElementToClass(elementName, className) {
     elementName.classList.add(className);
   }
 
-  setCarouselFullWidth(itemsCount) {
-    let fullWidth = this.width * itemsCount;
-    this.carousel.style.width = `${fullWidth}px`;
-    this.addElementToClass(this.carousel, "flex");
-  }
-
-  setAttrToElement(elementName, attrName, navoption = false) {
-    let cnt = elementName.length;
-    elementName = Array.from(elementName);
-
-    elementName.forEach((v, i) => {
-      if (this.option.infinite && navoption === false) {
-        elementName[i].setAttribute(attrName, i);
-      } else {
-        elementName[i].setAttribute(attrName, i + 1);
-      }
-    });
-  }
-
-  getActiveItem() {
-    let active = document.querySelector(`.${this.config.active}`);
-    return active.dataset.index;
-  }
-
   updateActiveItem(activeIndex, moveValue, navoption = false) {
-    this.items[activeIndex].classList.remove(this.config.active);
+    this.items[Number(activeIndex)].classList.remove(this.config.active);
+
     if (navoption) {
       this.items[moveValue].classList.add(this.config.active);
     } else {
-      this.items[Number(activeIndex) + moveValue].classList.add(
+      this.addElementToClass(
+        this.items[Number(activeIndex) + moveValue],
         this.config.active
       );
     }
-    let newActiveItem = document.querySelector(".active");
+
+    const newActiveItem = $(`.${this.config.active}`);
     return newActiveItem;
   }
 
@@ -115,60 +138,41 @@ class Carousel {
   }
 
   moveCarousel(moveValue, navoption) {
-    if (navoption) {
-      this.currentPointer = moveValue;
-    } else {
-      this.currentPointer += moveValue * this.width;
-    }
-    this.carousel.style.transition = `all 1s`;
-    this.carousel.style.transform = `translateX(${this.currentPointer}px)`;
+    if (navoption) this.currentPointer = moveValue;
+    else this.currentPointer += moveValue * this.width;
+
+    this.setCarouselTransition(`all 1s`, this.currentPointer);
   }
 
   moveCloneCarousel(newPointerValue) {
-    this.carousel.style.transition = `none`;
-    this.carousel.style.transform = `translateX(-${newPointerValue}px)`;
+    this.setCarouselTransition(`none`, -newPointerValue);
     this.currentPointer = -newPointerValue;
   }
 
-  getNavIndex(newActiveItem) {
-    let navIndex = Number(newActiveItem.dataset.index);
-    if (navIndex === 0) {
-      navIndex = this.itemsInitCount;
-    } else if (navIndex === this.itemsInitCount + 1) {
-      navIndex = 1;
-    }
-    return navIndex;
-  }
-
   attchEventToBtn() {
-    this.prevBtn.addEventListener("click", () => {
+    this.prevBtn.addEventListener("click", e => {
       let activeIndex = this.getActiveItem();
       let newActiveItem = this.updateActiveItem(activeIndex, -1);
-      let navIndex = this.getNavIndex(newActiveItem);
-      this.pagination.scaleUp(navIndex - 1);
-      this.moveCarousel(1);
+      let newActiveIndex = this.getActiveIndex(newActiveItem);
+      this.changeNotify(e.target, newActiveIndex);
 
-      if (
-        this.option.infinite &&
-        newActiveItem.classList.contains(this.config.clone)
-      ) {
-        this.updateCloneActiveItem(newActiveItem, this.itemsInitCount);
-        let newPointerValue = this.width * this.itemsInitCount;
+      if (newActiveItem.classList.contains(this.config.clone)) {
+        newActiveItem = this.updateCloneActiveItem(
+          newActiveItem,
+          this.config.initDataCnt
+        );
+        let newPointerValue = this.width * this.config.initDataCnt;
         setTimeout(() => this.moveCloneCarousel(newPointerValue), 1000);
       }
     });
-    this.nextBtn.addEventListener("click", () => {
+    this.nextBtn.addEventListener("click", e => {
       let activeIndex = this.getActiveItem();
       let newActiveItem = this.updateActiveItem(activeIndex, 1);
-      let navIndex = this.getNavIndex(newActiveItem);
-      this.pagination.scaleUp(navIndex - 1);
-      this.moveCarousel(-1);
+      let newActiveIndex = this.getActiveIndex(newActiveItem);
+      this.changeNotify(e.target, newActiveIndex);
 
-      if (
-        this.option.infinite &&
-        newActiveItem.classList.contains(this.config.clone)
-      ) {
-        this.updateCloneActiveItem(newActiveItem, 1);
+      if (newActiveItem.classList.contains(this.config.clone)) {
+        newActiveItem = this.updateCloneActiveItem(newActiveItem, 1);
         let newPointerValue = this.width;
         setTimeout(() => this.moveCloneCarousel(newPointerValue), 1000);
       }
