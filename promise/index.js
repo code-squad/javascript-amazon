@@ -1,10 +1,13 @@
-const Mypromise = require('./MyPromise');
+const MyPromise = require('./MyPromise')
 
-const promise = new Mypromise(
-  function executor(resolve, reject) {
-    console.log("inside")
-    resolve("OK")
-  }
-)
+let myFirstPromise = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve({"name":"Success!", "id" :123123});
+  }, 1000);
+});
 
-console.log("outside")
+myFirstPromise.then((successMessage) => {
+  return successMessage.name;
+}).then((data) => {
+  console.log(`data is ${data}`)
+})
