@@ -1,4 +1,4 @@
-import MyEventEmitter from "../../../../MyEventEmitter/index.js";
+import MyEventEmitter from "../../../../Grenutil/MyEventEmitter/index.js";
 
 export default class RecentModel extends MyEventEmitter {
   constructor({maxLen}) {
