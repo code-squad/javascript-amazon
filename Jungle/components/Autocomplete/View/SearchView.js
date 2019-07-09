@@ -41,10 +41,10 @@ export default class SearchView extends MyEventEmitter {
     evt.preventDefault();
 
     const search_input = evt.target.querySelector("input[type=search]");
-    if(search_input.value === "") return;
+    if (search_input.value === "") return;
 
     this.emit("search", this.makeRecentSearchData(search_input.value));
-    search_input.value = '';
+    search_input.value = "";
   }
 
   attachEvent() {

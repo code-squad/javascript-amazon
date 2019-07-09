@@ -5,11 +5,10 @@ const jungle = new Jungle();
 
 const makeCardHtml = data => {
   const list = data.map(eachData => eachData.desc);
-  let liIndex = 0;
 
   return `
       ${data.reduce(
-        (html, item) => `
+        (html, item, index) => `
         ${html}
       <div class="card">
       <div class="thumb">
@@ -18,7 +17,7 @@ const makeCardHtml = data => {
       <div class="content">
         <h2>${item.title}</h2>
         <ul>
-          <li>${list[liIndex++]}</li>
+          <li>${list[index]}</li>
         </ul>
       </div>
     </div>

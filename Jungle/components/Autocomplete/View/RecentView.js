@@ -41,11 +41,11 @@ export default class RecentView {
       <ul>
         ${data.reduce(
           (html, curr) =>
-          `
+            `
             ${html}
             <li>${curr.word}</li>
-          `
-        , ``
+          `,
+          ``
         )}
       </ul>
     `;
