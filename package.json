@@ -4,8 +4,11 @@
   "description": "레벨3",
   "main": "index.js",
   "scripts": {
-    "scss": "sass --watch scss:css",
-    "test": "jest"
+    "scss": "sass --watch scss:css Jungle/components/Autocomplete/style/scss:Jungle/components/Autocomplete/style/css",
+    "test": "jest",
+    "test-MyEventEmitter": "jest MyEventEmitter",
+    "test-Autocomplete-Model": "jest Jungle/components/Autocomplete/Model",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,9 @@
     "url": "https://github.com/fed-gren/javascript-amazon/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "babel-jest": "^24.8.0",
     "jest": "^24.8.0"
   }
 }
