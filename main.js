@@ -1,7 +1,9 @@
 import Carousel from "./Jungle/components/Carousel/Carousel.js";
 //TODO: Carousel.js를 index.js로 바꾸기.
 
-//DOM
-const main = document.querySelector("main");
+window.addEventListener("DOMContentLoaded", () => {
+  //DOM
+  const carousel_div = document.querySelector(".carousel");
 
-const carousel = new Carousel(main);
+  new Carousel({ carouselElement: carousel_div });
+});

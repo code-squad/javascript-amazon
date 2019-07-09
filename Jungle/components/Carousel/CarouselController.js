@@ -11,6 +11,6 @@ export default class CarouselController {
   }
 
   createCarousel() {
-    MyFetch("../../../data/localData.json").then(data => console.log(data));
+    MyFetch("../../../data/localData.json").then(data => this.view.render(data));
   }
 }
