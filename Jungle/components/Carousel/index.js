@@ -1,4 +1,4 @@
-import delegate from "../utils/delegate.js";
+import delegate from "../../utils/delegate.js";
 
 class Carousel {
   constructor({ container, slider }, observer, config) {
