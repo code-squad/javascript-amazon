@@ -1,0 +1,18 @@
+.search {
+  width: 80%;
+  margin: 0 auto;
+}
+
+select#search__range {
+  max-width: 350px;
+}
+
+select:focus#search__range {
+  width: auto\9;
+}
+
+.recent-searches__container {
+  
+  visibility: hidden;
+
+}
