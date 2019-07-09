@@ -38,10 +38,13 @@ export default class SearchView extends MyEventEmitter {
   }
 
   addSearchWord(evt) {
+    evt.preventDefault();
+
     const search_input = evt.target.querySelector("input[type=search]");
+    if(search_input.value === "") return;
+
     this.emit("search", this.makeRecentSearchData(search_input.value));
     search_input.value = '';
-    evt.preventDefault(); //새로고침 방지.
   }
 
   attachEvent() {
