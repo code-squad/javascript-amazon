@@ -1,5 +1,5 @@
-import type from "./constants/type.js";
-import errMsgs from "./constants/errMsgs.js";
+import type from "./constants/type.js.js";
+import errMsgs from "./constants/errMsgs.js.js";
 
 class EventEmitter {
   constructor() {

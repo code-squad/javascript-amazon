@@ -1,6 +1,6 @@
 import Carousel from "./components/Carousel/index.js";
 import Navigation from "./components/Navigation/Navigation.js";
-import Observer from "./utils/Observer.js";
+import Observer from "../Grenutil/Observer.js";
 
 class Jungle {
   createCarousel({ elClassNameObj, options, observer = new Observer() }) {

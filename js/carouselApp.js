@@ -1,5 +1,5 @@
 import Jungle from "../Jungle/index.js";
-import myFetch from "../MyFetch/index.js";
+import myFetch from "../Grenutil/MyFetch/index.js";
 
 const jungle = new Jungle();
 
