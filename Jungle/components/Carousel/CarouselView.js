@@ -14,9 +14,9 @@ export default class CarouselView extends MyEventEmitter {
         ${data.reduce(
           (html, item, index) => `
           ${html}
-        <div class="card">
+        <div class="item">
         <div class="thumb">
-          <img src="${item.imgUrl}" alt="card-thumbnail" />
+          <img src="${item.imgUrl}" alt="item-thumbnail" />
         </div>
         <div class="content">
           <h2>${item.title}</h2>
