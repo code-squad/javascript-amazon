@@ -1,10 +1,14 @@
 import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
 
 export default class CarouselView extends MyEventEmitter {
-  constructor({ carouselElement }) {
+  constructor({ carouselElement, options }) {
     super();
 
     this.carousel = carouselElement;
+
+    this.options = options;
+    this.carouselWidth = options.width;
+    this.offset = 0;
   }
 
   makeCarouselItemHtml(data) {
@@ -30,6 +34,28 @@ export default class CarouselView extends MyEventEmitter {
         `;
   }
 
+  attachEvent() {
+    this.prevBtn = this.carousel.querySelector(".prev");
+    this.nextBtn = this.carousel.querySelector(".next");
+
+    this.prevBtn.addEventListener("click", () => {
+      this.emit("prev");
+    });
+
+    this.nextBtn.addEventListener("click", () => {
+      this.emit("next");
+    });
+  }
+
+  setCss() {
+    this.items = this.carousel.querySelectorAll(".item");
+
+    this.carousel.style.width = `${this.carouselWidth}px`;
+    this.carousel.style.height = `${this.options.height}px`;
+
+    this.items.forEach(item => (item.style.width = `${this.options.width}px`));
+  }
+
   initRender(data) {
     const carouselItemHtml = this.makeCarouselItemHtml(data);
 
@@ -42,19 +68,19 @@ export default class CarouselView extends MyEventEmitter {
     `;
 
     this.carousel.innerHTML = carouselTemplate;
+    this.setCss();
     this.attachEvent();
   }
 
-  attachEvent() {
-    this.prevBtn = this.carousel.querySelector(".prev");
-    this.nextBtn = this.carousel.querySelector(".next");
+  setItemSliderPosition({ dir }) {
+    this.itemSlider = this.carousel.querySelector(".item-slider");
 
-    this.prevBtn.addEventListener("click", () => {
-      this.emit("prev");
-    });
+    if (dir === "prev") {
+      this.offset += this.carouselWidth;
+    } else if (dir === "next") {
+      this.offset -= this.carouselWidth;
+    } else throw new Error("Wrong direction");
 
-    this.nextBtn.addEventListener("click", () => {
-      this.emit("next");
-    });
+    this.itemSlider.style.transform = `translateX(${this.offset}px)`;
   }
 }

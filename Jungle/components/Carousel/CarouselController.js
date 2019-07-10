@@ -4,8 +4,12 @@ export default class CarouselController {
   constructor({ view }) {
     this.view = view;
 
-    view.on("prev", () => console.log("prev"));
-    view.on("next", () => console.log("next"));
+    view.on("prev", () => {
+      this.view.setItemSliderPosition({ dir: "prev" });
+    });
+    view.on("next", () => {
+      this.view.setItemSliderPosition({ dir: "next" });
+    });
 
     this.createCarousel();
   }

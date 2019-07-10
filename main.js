@@ -5,5 +5,11 @@ window.addEventListener("DOMContentLoaded", () => {
   //DOM
   const carousel_div = document.querySelector(".carousel");
 
-  new Carousel({ carouselElement: carousel_div });
+  new Carousel({
+    carouselElement: carousel_div,
+    options: {
+      width: 700,
+      height: 300
+    }
+  });
 });
