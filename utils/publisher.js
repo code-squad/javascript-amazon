@@ -9,7 +9,8 @@ export default class Publisher {
   }
 
   notify(name, state) {
-    this.subscribers[name].render(state);
+    if (name === '') Object.keys(this.subscribers).forEach(name => this.subscribers[name].render(state));
+    else this.subscribers[name].render(state);
   }
 
   setState(state) {
