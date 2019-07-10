@@ -8,7 +8,7 @@ class Model extends Subject {
 
   setState(data = {}) {
     this.state = data;
-    this.notify(this.state);
+    this.fire(this.state);
   }
 }
 

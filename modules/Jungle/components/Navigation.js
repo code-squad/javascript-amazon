@@ -47,7 +47,7 @@ class Navigation {
     this.navItems[id - 1].classList.add('selected');
   }
 
-  update(state) {
+  render(state) {
     const { currentItem } = state;
     let changeItem;
     if (currentItem > this.itemLength) {

@@ -16,8 +16,8 @@ class Jungle {
         model
       });
 
-      model.addObserver(carousel);
-      model.addObserver(nav);
+      model.on(carousel);
+      model.on(nav);
     }
 
     return carousel;

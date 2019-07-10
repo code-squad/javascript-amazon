@@ -3,11 +3,11 @@ class Subject {
     this.observers = [];
   }
 
-  addObserver(observer) {
+  on(observer) {
     this.observers.push(observer);
   }
 
-  removeObserver(observer) {
+  remove(observer) {
     const removeIndex = this.observers.findIndex(obs => {
       return observer === obs;
     });
@@ -17,9 +17,9 @@ class Subject {
     }
   }
 
-  notify(data) {
+  fire(data) {
     if (this.observers.length > 0) {
-      this.observers.forEach(observer => observer.update(data));
+      this.observers.forEach(observer => observer.render(data));
     }
   }
 }

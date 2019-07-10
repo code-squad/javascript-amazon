@@ -95,7 +95,6 @@ class Carousel extends Observer {
   }
 
   transitionEndHandler() {
-    // this.isMoving = false;
     const {
       state: { currentItem }
     } = this.model;
@@ -161,7 +160,7 @@ class Carousel extends Observer {
   //     : { addIndex: 0, removeIndex: this.itemLength - 1 };
   // }
 
-  update(state) {
+  render(state) {
     this.moveSlider(state.currentItem);
   }
 }
