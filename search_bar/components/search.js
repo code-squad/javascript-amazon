@@ -27,7 +27,7 @@ class Search extends Subscriber {
   }
 
   handleKeydown({ target }) {
-    this.publisher.setState({ currentValue: target.value });
+    this.publisher.setState({ mode: 'waiting', currentValue: target.value });
   }
 
 }
