@@ -6,11 +6,20 @@ class Search extends Subscriber {
   constructor(publisher, selector) {
     super();
     this.init(publisher);
-    this.addKeydownEvent(selector)
+    this.addFocusEvent(selector);
+    this.addKeydownEvent(selector);
   }
 
   init(publisher) {
     this.subscribe(COMPONENTS_NAME.SEARCH, publisher);
+  }
+
+  addFocusEvent(selector) {
+    _.on(_.$(selector), 'focus', this.handleFocus.bind(this));
+  }
+
+  handleFocus() {
+    this.publisher.setState({ mode: 'recentKeywords' })
   }
 
   addKeydownEvent(selector) {
