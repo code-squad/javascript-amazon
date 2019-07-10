@@ -1,28 +1,33 @@
-class searchModel {
+export default class searchModel {
   constructor() {
-    this.state = {
-      recentSearches: [],
-      autocomData: []
-    }
+    this.curInputVal = null;
+    this.recentSearches = [];
+    this.autocomData = [
+      'diplomatic',
+      'opposition',
+      'parameter',
+      'understanding',
+      'favorable',
+      'beautiful',
+      'multimedia',
+      'publication',
+      'timetable',
+      'identity',
+      'demonstrator',
+      'manufacture',
+      'minority',
+      'constellation',
+      'legislation',
+      'community',
+      'recovery',
+      'astonishing',
+      'miserable',
+      'motorcycle',
+    ];
   }
 
-  setAutocomData(autocomData) {
-    this.state.autocomData = autocomData
-  }
-
-  setRecentSearches(searchedWord) {
-    this.state.recentSearches = [searchedWord, ...this.recentSearches];
-  }
-
-  getRecentSearches() {
-    return this.state.recentSearches;
-  }
-
-  getAutocomData(inputLetters) {
-    return this.autocomData.filter(word => word.includes(inputLetters));
-  }
-
-  // setState(newState) {
-  //   this.state = {...this.state, ...newState}
-  // }
+  setCurInputVal(inputVal) {
+    this.curInputVal = inputVal;
+    console.log(this.curInputVal);
+  } 
 }
