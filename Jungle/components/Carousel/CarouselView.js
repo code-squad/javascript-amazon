@@ -75,12 +75,10 @@ export default class CarouselView extends MyEventEmitter {
   setItemSliderPosition({ dir }) {
     this.itemSlider = this.carousel.querySelector(".item-slider");
 
-    if (dir === "prev") {
-      this.offset += this.carouselWidth;
-    } else if (dir === "next") {
-      this.offset -= this.carouselWidth;
-    } else throw new Error("Wrong direction");
-
+    this.offset =
+      dir === "prev"
+        ? this.offset + this.carouselWidth
+        : this.offset - this.carouselWidth;
     this.itemSlider.style.transform = `translateX(${this.offset}px)`;
   }
 }
