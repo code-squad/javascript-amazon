@@ -4,6 +4,7 @@ export default {
   },
 
   appendElLastly(elem, literalTemplate) {
+    console.log(elem)
     elem.insertAdjacentHTML('beforeend', literalTemplate)
   }
 }

@@ -1,4 +1,4 @@
-export default searchTemplate = {
+export default {
   createListContainer() {
     return `
         <ul class="search__searcheable-list">
