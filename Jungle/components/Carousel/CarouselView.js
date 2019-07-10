@@ -30,7 +30,7 @@ export default class CarouselView extends MyEventEmitter {
         `;
   }
 
-  render(data) {
+  initRender(data) {
     const carouselItemHtml = this.makeCarouselItemHtml(data);
 
     const carouselTemplate = `
@@ -42,5 +42,19 @@ export default class CarouselView extends MyEventEmitter {
     `;
 
     this.carousel.innerHTML = carouselTemplate;
+    this.attachEvent();
+  }
+
+  attachEvent() {
+    this.prevBtn = this.carousel.querySelector(".prev");
+    this.nextBtn = this.carousel.querySelector(".next");
+
+    this.prevBtn.addEventListener("click", () => {
+      this.emit("prev");
+    });
+
+    this.nextBtn.addEventListener("click", () => {
+      this.emit("next");
+    });
   }
 }

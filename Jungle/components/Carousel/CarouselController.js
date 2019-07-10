@@ -27,6 +27,14 @@ export default class CarouselController {
         this.loadCarsouelCss();
         return data;
       })
-      .then(data => this.view.render(data));
+      .then(data => this.view.initRender(data));
+
+    // fetch("../../../data/localData.json")
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     this.loadCarsouelCss();
+    //     return data;
+    //   })
+    //   .then(data => this.view.initRender(data));
   }
 }
