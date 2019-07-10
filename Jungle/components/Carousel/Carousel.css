@@ -1,9 +1,8 @@
 .carousel {
   border: 1px dotted red;
-  /* width: 700px;
-  height: 300px; */
   position: relative;
-  margin: 3rem;
+  padding: 3rem;
+  overflow: hidden;
 }
 
 .item-wrapper {
@@ -42,9 +41,9 @@
 }
 
 .carousel-control.prev {
-  left: -3rem;
+  left: 0rem;
 }
 
 .carousel-control.next {
-  right: -3rem;
+  right: 0rem;
 }

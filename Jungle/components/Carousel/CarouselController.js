@@ -7,8 +7,14 @@ export default class CarouselController {
     view.on("prev", () => {
       this.view.setItemSliderPosition({ dir: "prev" });
     });
+
     view.on("next", () => {
       this.view.setItemSliderPosition({ dir: "next" });
+    });
+
+    view.on("moveend", () => {
+      this.view.isMoving = false;
+      this.view.moveToCorrectPosition();
     });
 
     this.createCarousel();
@@ -32,13 +38,5 @@ export default class CarouselController {
         return data;
       })
       .then(data => this.view.initRender(data));
-
-    // fetch("../../../data/localData.json")
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     this.loadCarsouelCss();
-    //     return data;
-    //   })
-    //   .then(data => this.view.initRender(data));
   }
 }
