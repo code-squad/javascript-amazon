@@ -3,7 +3,7 @@ import { mergeConfig, setCSS, removeNodes, isContainClass } from '../utils/index
 import { makeHTMLString } from '../template/index.js';
 
 class Carousel extends Observer {
-  constructor({ container }, model, config) {
+  constructor({ container, config, onClick }) {
     super();
 
     //DOM
@@ -14,7 +14,7 @@ class Carousel extends Observer {
     // values
     this.itemWidth;
     this.itemLength;
-    this.model = model;
+    this.onClick = onClick;
     this.initIndex = 0;
     this.offset = 0;
     this.isMoving = false;
@@ -55,7 +55,7 @@ class Carousel extends Observer {
   }
 
   attatchEvent() {
-    this.container.addEventListener('click', e => this.buttonClickHanlder(e));
+    this.container.addEventListener('click', e => this.onClick(e));
     this.slider.addEventListener('transitionend', () => this.transitionEndHandler());
   }
 
@@ -65,7 +65,7 @@ class Carousel extends Observer {
 
     if (this.config.infinite) {
       this.cloneVirtualCard();
-      this.moveWithoutTransition();
+      this.moveWithoutTransition(1);
     } else {
       this.setTransition(this.slider, true);
       this.isMovable();
@@ -78,20 +78,6 @@ class Carousel extends Observer {
 
     this.slider.insertAdjacentElement('afterbegin', lastCard);
     this.slider.insertAdjacentElement('beforeend', firstCard);
-  }
-
-  buttonClickHanlder(evt) {
-    const {
-      state: { currentItem }
-    } = this.model;
-    if (isContainClass(evt.target, 'prev')) {
-      this.model.setState({ currentItem: currentItem - 1 });
-    }
-
-    if (isContainClass(evt.target, 'next')) {
-      this.model.setState({ currentItem: currentItem + 1 });
-    }
-    this.isMovable();
   }
 
   transitionEndHandler() {
@@ -115,18 +101,13 @@ class Carousel extends Observer {
     this.nextButton.disabled = this.isLast(currentItem);
   }
 
-  moveWithoutTransition() {
-    const {
-      state: { currentItem }
-    } = this.model;
-
+  moveWithoutTransition(currentItem) {
     this.setTransition(this.slider, false);
     const moveItem = currentItem === 0 ? this.itemLength : 1;
     this.moveSlider(moveItem);
     setTimeout(() => {
-      this.isMoving = false;
       this.setTransition(this.slider, true);
-      this.model.setState({ currentItem: moveItem });
+      // this.model.setState({ currentItem: moveItem });
     }, 0);
   }
 

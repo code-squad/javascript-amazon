@@ -4,7 +4,7 @@ const jungle = new Jungle();
 
 export const makeCarousel = () => {
   return jungle.createCarousel({
-    elClassNameObj: { container: '.container', nav: '.nav' }
+    classNameObj: { container: '.container', nav: '.nav' }
     // options: { infinite: false }
   });
 };
