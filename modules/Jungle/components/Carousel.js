@@ -3,7 +3,7 @@ import { mergeConfig, setCSS, removeNodes, isContainClass } from '../utils/index
 import { makeHTMLString } from '../template/index.js';
 
 class Carousel extends Observer {
-  constructor({ container, config, onClick }) {
+  constructor({ container, config, onClick, onTransitionEnd, moveWithoutTransition, props }) {
     super();
 
     //DOM
@@ -15,6 +15,9 @@ class Carousel extends Observer {
     this.itemWidth;
     this.itemLength;
     this.onClick = onClick;
+    this.onTransitionEnd = onTransitionEnd;
+    this.moveWithoutTransition = moveWithoutTransition;
+    this.props = props;
     this.initIndex = 0;
     this.offset = 0;
     this.isMoving = false;
@@ -56,7 +59,7 @@ class Carousel extends Observer {
 
   attatchEvent() {
     this.container.addEventListener('click', e => this.onClick(e));
-    this.slider.addEventListener('transitionend', () => this.transitionEndHandler());
+    this.slider.addEventListener('transitionend', () => this.onTransitionEnd.call(this));
   }
 
   setInitialUI() {
@@ -80,16 +83,6 @@ class Carousel extends Observer {
     this.slider.insertAdjacentElement('beforeend', firstCard);
   }
 
-  transitionEndHandler() {
-    const {
-      state: { currentItem }
-    } = this.model;
-
-    if (this.isEndOfCards(currentItem) && this.config.infinite) {
-      this.moveWithoutTransition();
-    }
-  }
-
   isMovable() {
     if (this.config.infinite) return;
 
@@ -101,32 +94,10 @@ class Carousel extends Observer {
     this.nextButton.disabled = this.isLast(currentItem);
   }
 
-  moveWithoutTransition(currentItem) {
-    this.setTransition(this.slider, false);
-    const moveItem = currentItem === 0 ? this.itemLength : 1;
-    this.moveSlider(moveItem);
-    setTimeout(() => {
-      this.setTransition(this.slider, true);
-      // this.model.setState({ currentItem: moveItem });
-    }, 0);
-  }
-
   moveSlider(id) {
-    const dist = this.config.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
+    const dist = this.props.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
 
     this.slider.style.transform = `translateX(${dist}px)`;
-  }
-
-  isEndOfCards(id) {
-    return this.isFirst(id) || this.isLast(id);
-  }
-
-  isFirst(id) {
-    return this.config.infinite ? id === 0 : id === 1;
-  }
-
-  isLast(id) {
-    return this.config.infinite ? id === this.itemLength + 1 : id === this.itemLength;
   }
 
   setTransition(el, val) {
@@ -134,12 +105,6 @@ class Carousel extends Observer {
       ? setCSS(el, 'transition', `transform ${this.config.duration}ms ${this.config.animation}`)
       : setCSS(el, 'transition', 'none');
   }
-
-  // getChangingIndex() {
-  //   return this.isFirst()
-  //     ? { addIndex: this.itemLength - 1, removeIndex: this.currentItem }
-  //     : { addIndex: 0, removeIndex: this.itemLength - 1 };
-  // }
 
   render(state) {
     this.moveSlider(state.currentItem);
