@@ -1,6 +1,11 @@
 const $ = (selector) => {
   return document.querySelector(selector);
 }
+
+const on = (el, eventType, handler) => {
+  el.addEventListener(eventType, handler);
+}
+
 /**
  * @param  {Element} el 이벤트를 위임할 엘리먼트
  * @param  {string} eventType
@@ -20,4 +25,4 @@ const delegate = (el, eventType, domElProperty, funcMap) => {
   })
 }
 
-export { $, delegate }
+export { $, on, delegate }
