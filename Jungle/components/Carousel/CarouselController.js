@@ -10,7 +10,23 @@ export default class CarouselController {
     this.createCarousel();
   }
 
+  loadCarsouelCss() {
+    const head = document.getElementsByTagName("HEAD")[0];
+    const link = document.createElement("link");
+
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = "Jungle/components/Carousel/Carousel.css";
+
+    head.appendChild(link);
+  }
+
   createCarousel() {
-    MyFetch("../../../data/localData.json").then(data => this.view.render(data));
+    MyFetch("../../../data/localData.json")
+      .then(data => {
+        this.loadCarsouelCss();
+        return data;
+      })
+      .then(data => this.view.render(data));
   }
 }

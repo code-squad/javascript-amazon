@@ -1,0 +1,45 @@
+.carousel {
+  border: 1px dotted red;
+  width: 700px;
+  height: 300px;
+  position: relative;
+  margin: 3rem;
+}
+
+.item-slider {
+  display: flex;
+}
+
+.item {
+  display: flex;
+  flex-shrink: 0;
+  width: 700px;
+  height: 300px;
+}
+
+.item .thumb {
+  width: 400px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.item .content {
+  flex-grow: 1;
+}
+
+.carousel-control {
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  position: absolute;
+  top: 50%;
+}
+
+.carousel-control.prev {
+  left: -3rem;
+}
+
+.carousel-control.next {
+  right: -3rem;
+}

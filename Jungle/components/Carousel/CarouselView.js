@@ -15,8 +15,7 @@ export default class CarouselView extends MyEventEmitter {
           (html, item, index) => `
           ${html}
         <div class="item">
-        <div class="thumb">
-          <img src="${item.imgUrl}" alt="item-thumbnail" />
+        <div class="thumb" style="background-image: url('${item.imgUrl}')">
         </div>
         <div class="content">
           <h2>${item.title}</h2>
@@ -38,8 +37,8 @@ export default class CarouselView extends MyEventEmitter {
     <div class="item-wrapper">
       <div class="item-slider">${carouselItemHtml}</div>
     </div>
-    <button class="item-control prev"><</button>
-    <button class="item-control next">></button>
+    <button class="carousel-control prev"><</button>
+    <button class="carousel-control next">></button>
     `;
 
     this.carousel.innerHTML = carouselTemplate;
