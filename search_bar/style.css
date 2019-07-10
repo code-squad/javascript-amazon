@@ -1,3 +1,11 @@
 button {
   background-color: #febd69;
 }
+
+.lists-wrapper {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+}

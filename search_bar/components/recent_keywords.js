@@ -3,15 +3,34 @@ import Subscriber from '../../utils/Subscriber.js'
 import { COMPONENTS_NAME } from '../constants.js'
 
 class RecentKeywords extends Subscriber {
-  constructor(publisher) {
+  constructor(publisher, selector) {
     super();
-    this.init(publisher);
+    this.init(publisher, selector);
   }
 
-  init(publisher) {
+  init(publisher, selector) {
+    this.targetEl = _.$(selector);
     this.subscribe(COMPONENTS_NAME.RECENT_KEYWORDS, publisher);
   }
 
+  render(state) {
+    if (state.mode === 'recentKeywords') {
+      this.targetEl.classList.add('visible');
+
+      const copy = [...state.recentKeywords.values()];
+      const tpl = copy.reduce((acc, curr) => {
+        return acc + `<li>${curr}</li>`
+      }, '');
+
+      this.targetEl.innerHTML = tpl;
+    }
+    else if (state.mode === 'suggestion') {
+
+    }
+    else if (state.mode === 'waiting') {
+
+    }
+  }
 }
 
 export default RecentKeywords;

@@ -7,7 +7,7 @@ class StateManager extends Publisher {
     super();
     this.state = {
       mode: 'waiting',
-      recentKeywords: new Set(keywords)
+      recentKeywords: new Map(keywords)
     }
   }
 
