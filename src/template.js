@@ -1,7 +1,7 @@
 const templates = {
   card: data => {
     return `
-      <div class="card" key=${data._id}>
+      <div class="card">
         <div class="thumb">
         <img src="${data.imgURL}" alt="card-thumbnail" />
         </div>
