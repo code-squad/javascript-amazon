@@ -1,7 +1,7 @@
 import { Carousel, Navigation } from '../components/index.js';
+import Store from '../store/index.js';
 
 import { isContainClass, mergeConfig, sleep } from '../utils/index.js';
-import Store from '../model/index.js';
 
 export default class CarouselContainer {
   constructor({ classNameObj, options }) {
