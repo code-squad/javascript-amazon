@@ -8,7 +8,7 @@ const searchBarView = new SearchBarView(),
       searchModel = new SearchModel(),
       autocompleteView = new AutocompleteView(),
       instances = {searchBarView, searchModel, autocompleteView},
-      controlSearch = new ControlSearch(instances);
+      controlSearch = new ControlSearch(instances, 6);
 
 controlSearch.eventHandler();
 

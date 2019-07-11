@@ -1,6 +1,12 @@
 .search {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
   width: 80%;
+  height: 50px;
   margin: 0 auto;
+  background-color: orange;
 }
 
 select#search__range {
@@ -11,8 +17,34 @@ select:focus#search__range {
   width: auto\9;
 }
 
-.recent-searches__container {
-  
-  visibility: hidden;
+.input__box {
+  position: relative;
+  width: 500px;
+}
 
+.input__box--search-bar {
+  width: 95%;
+}
+
+.search__searcheable-list {
+  position: absolute;
+  list-style-type: none;
+  padding: 0;
+  width: 96%;
+}
+
+.search__iconbox {
+  margin-top: 5px;
+  height: 20px;
+  width: 20px;
+}
+
+.icon {
+  display: inline-block;
+  background-image: url('../../images/search.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 20px;
+  width: 20px;
 }

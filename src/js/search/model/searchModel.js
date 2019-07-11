@@ -28,10 +28,10 @@ export default class searchModel {
 
   setCurInputVal(inputVal) {
     this.curInputVal = inputVal;
-    console.log(this.curInputVal);
   }
 
-  getIncludedWords() {
-    if(this.curInputVal) return this.autocomData.filter(word => word.includes(this.curInputVal));
+  getMatchedWords() {
+    return this.autocomData.filter(word => word.includes(this.curInputVal));
   }
+
 }
