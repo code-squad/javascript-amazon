@@ -4,7 +4,7 @@
   "description": "나만의 프로미스를 구현해 봅시다.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha index.spec.js"
   },
   "author": "",
   "license": "ISC",
