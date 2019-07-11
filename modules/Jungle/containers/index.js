@@ -1,3 +1,3 @@
-import Carousel from './Carousel.js';
+import CarouselContainer from './CarouselContainer.js';
 
-export { Carousel };
+export { CarouselContainer };

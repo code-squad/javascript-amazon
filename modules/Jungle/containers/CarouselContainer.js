@@ -37,7 +37,7 @@ export default class CarouselContainer {
   carouselClickHandler(evt) {
     const { state } = this.store;
     const { currentItem, itemLength } = state;
-    const { duration } = this.options;
+    const { duration, infinite } = this.options;
     const carousel = this.carousel;
     let moveId;
 
@@ -51,8 +51,8 @@ export default class CarouselContainer {
       this.store.setState({ ...state, currentItem: moveId });
     }
 
-    if (this.carousel.isEndOfCards(moveId)) {
-      this.sleep(this.options.duration).then(_ => {
+    if (infinite && this.carousel.isEndOfCards(moveId)) {
+      this.sleep(duration).then(_ => {
         moveId = this.carousel.isFirst(moveId) ? itemLength : 1;
         this.carousel.moveWithoutTransition(moveId);
         this.store.setState({ ...state, currentItem: moveId }, false);

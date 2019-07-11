@@ -50,10 +50,10 @@ class Carousel extends Observer {
 
     if (this.config.infinite) {
       this.cloneVirtualCard();
-      this.moveWithoutTransition(1);
+      this.moveWithoutTransition(this.props.currentItem);
     } else {
       this.setTransition(this.slider, true);
-      this.isMovable();
+      this.isMovable(this.props.currentItem);
     }
   }
 
@@ -72,7 +72,8 @@ class Carousel extends Observer {
 
   move(id) {
     this.setTransition(this.slider, true);
-    const dist = -(this.itemWidth * id);
+    const dist = this.config.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
+
     this.slider.style.transform = `translateX(${dist}px)`;
 
     if (!this.config.infinite) {
@@ -82,7 +83,7 @@ class Carousel extends Observer {
 
   moveWithoutTransition(id) {
     this.setTransition(this.slider, false);
-    const dist = -(this.itemWidth * id);
+    const dist = this.config.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
     this.slider.style.transform = `translateX(${dist}px)`;
   }
 
