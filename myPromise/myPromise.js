@@ -36,6 +36,8 @@ const myFirstPromise = new MyPromise((MyResolve, MyReject) => {
         MyResolve({ "name": "Success!", "id": 123123 });
     }, 1000);
 })
+
+
 myFirstPromise.then((successMessage) => {
     return successMessage.name;
 }).then((data) => {
@@ -48,5 +50,17 @@ myFirstPromise.then((successMessage) => {
       console.log(`data3 is ${data3}`);
   })
 
+mySecondPromise.then((successMessage) => {
+    // console.log("여기는 Promise의 상태가 변해야만 실행됨",successMessage)
+    return successMessage.name;
+}).then((data) => {
+    console.log(`data is ${data}`);
+    return data
+  }).then((data2) => {
+      console.log(`data2 인 ${data2}를 잘 받았습니다.`);
+      return data2
+  }).then((data3) => { 
+      console.log(`data3 is ${data3}`);
+  })
 
 

@@ -1,0 +1,49 @@
+[
+  {
+    "title": "FREE delivery, as fast as today",
+    "desc": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "Consectetur adipisci accusamus ad officia autem eum dignissimos a deleniti, magni cupiditate consequuntur debitis.",
+      "Voluptate, ullam molestias necessitatibus sequi distinctio veniam facere.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    ],
+    "imgAddress": "./images/Card_A01.png",
+    "color": "blue"
+    
+  },
+  {
+    "title": "Exclusive Deals Just for you",
+    "desc": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "Consectetur adipisci accusamus ad officia autem eum dignissimos a deleniti, magni cupiditate consequuntur debitis.",
+      "Voluptate, ullam molestias necessitatibus sequi distinctio veniam facere."
+      ],
+    "imgAddress": "./images/Card_B01.png",
+    "color": "pink"
+
+  },
+  {
+    "title": "Award-Winning Movies & TV Shows",
+    "desc": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "Consectetur adipisci accusamus ad officia autem eum dignissimos a deleniti, magni cupiditate consequuntur debitis.",
+      "Voluptate, ullam molestias necessitatibus sequi distinctio veniam facere.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    ],
+    "imgAddress": "./images/Card_C01.png",
+    "color": "cyan"
+
+  },
+  {
+    "title": "Over two million songs, ad free",
+    "desc": [
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    ],
+    "imgAddress": "./images/Card_D01.png",
+    "color": "orange"
+
+  }
+]
+
