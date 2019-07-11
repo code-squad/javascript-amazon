@@ -15,14 +15,10 @@ export default class CarouselContainer {
     this.store = this.getStore(classNameObj);
     this.props = this.getProps();
 
-    this.carousel = this.getCarousel(classNameObj);
-    this.store.on(this.carousel);
-    this.carousel.init();
+    this.carousel = this.getView(classNameObj, 'carousel');
 
     if ('nav' in classNameObj) {
-      this.nav = this.getNavigation(classNameObj);
-      this.store.on(this.nav);
-      this.nav.init();
+      this.nav = this.getView(classNameObj, 'navigation');
     }
   }
 
@@ -39,6 +35,23 @@ export default class CarouselContainer {
       currentItem: this.store.state.currentItem,
       itemLength: this.store.state.itemLength
     };
+  }
+
+  getView(classNameObj, type) {
+    let returnObject;
+
+    if (type === 'carousel') {
+      returnObject = this.getCarousel(classNameObj);
+    }
+
+    if (type === 'navigation') {
+      returnObject = this.getNavigation(classNameObj);
+    }
+
+    this.store.on(returnObject);
+    returnObject.init();
+
+    return returnObject;
   }
 
   getCarousel(classNameObj) {
