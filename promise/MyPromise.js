@@ -1,35 +1,56 @@
-const [
-  FULFILLED,
-  REJECTED,
-  PENDING
-] = [true, false, void 0]
-
-class MyPromise {
-  constructor(exec) {
-    if (typeof exec != "function") {
-      throw new TypeError("Promise resolver is not a function")
+module.exports = class MyPromise {
+  constructor (executer) {
+    if(typeof executer != "function") {
+      throw new Error("Promise resolver must be a function")
     }
 
-    this._state = PENDING
-    this._value = void 0
+    this.state = "pending"
+    this.value = undefined
+    this.laterCalls = []
+
+    try {
+      executer(MyPromise.resolve.bind(this), MyPromise.reject.bind(this))
+    } catch(e) {
+      MyPromise.reject(e)
+    }
   }
 
-  static resolve() {
-    
+  change(state, value) {
+    this.state = state
+    this.value = value
   }
-  static reject() {
-    
+
+  then(func) {
+    if(this.state == "pending") {
+      return new MyPromise((resolve) => {
+        this.laterCalls.push(() => resolve(func(this.value)))
+      })
+    }
+    return new MyPromise((resolve) => resolve(func(this.value)))
   }
-  static all() {
-    
+
+  catch(func) {
+    if(this.state == "pending") {
+      return new MyPromise((_, reject) => {
+        this.laterCalls.push(() => reject(func(this.value)))
+      })
+    }
+    return new MyPromise((_, reject) => reject(func(this.value)))
   }
-  static race() {
-    
+
+  static resolve(val) {
+    if (val instanceof MyPromise) {
+      val.then((v) => {
+        this.change("resolved", v)
+        this.laterCalls.forEach(laterCall => laterCall(this.value));
+      })
+    } else {
+      this.change("resolved", val)
+      this.laterCalls.forEach(laterCall => laterCall(this.value));
+    }
   }
-  then() {
-    
-  }
-  catch() {
-    
+
+  static reject(val) {
+    this.change("rejected", val)
   }
 }
