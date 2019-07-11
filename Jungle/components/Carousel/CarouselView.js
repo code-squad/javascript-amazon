@@ -7,11 +7,20 @@ export default class CarouselView extends MyEventEmitter {
     //DOM caching
     this.carousel = carouselElement;
 
-    this.options = options;
     this.carouselWidth = options.width;
     this.offset = -this.carouselWidth;
     this.currentItem = 1;
     this.isMoving = false;
+
+    this.defaultOption = {
+      duration: 200
+    };
+
+    this.options = this.mergeOption(options);
+  }
+
+  mergeOption(userOption) {
+    return { ...this.defaultOption, ...userOption };
   }
 
   attachClone() {
@@ -69,12 +78,18 @@ export default class CarouselView extends MyEventEmitter {
     });
   }
 
+  setSliderTransition(on) {
+    on
+      ? (this.itemSlider.style.transition = `${this.options.duration}ms transform`)
+      : (this.itemSlider.style.transition = `none`);
+  }
+
   setCss() {
     this.items = this.carousel.querySelectorAll(".item");
     this.itemSlider = this.carousel.querySelector(".item-slider");
 
     this.itemSlider.style.transform = `translateX(${this.offset}px)`;
-    this.itemSlider.style.transition = `.5s transform`;
+    this.setSliderTransition(true);
 
     this.carousel.style.width = `${this.carouselWidth}px`;
     this.carousel.style.height = `${this.options.height}px`;
@@ -111,13 +126,11 @@ export default class CarouselView extends MyEventEmitter {
   }
 
   moveToCorrectPosition() {
-    console.log("move");
+    this.setSliderTransition(false);
 
     if (this.isFirstClone()) {
-      this.itemSlider.style.transition = `none`;
       this.moveToFirstItem();
     } else if (this.isLastClone()) {
-      this.itemSlider.style.transition = `none`;
       this.moveToLastItem();
     }
   }
@@ -141,8 +154,7 @@ export default class CarouselView extends MyEventEmitter {
   setItemSliderPosition({ dir }) {
     if (this.isMoving) return;
     this.isMoving = true;
-
-    this.itemSlider.style.transition = `.5s transform`;
+    this.setSliderTransition(true);
 
     this.offset =
       dir === "prev"

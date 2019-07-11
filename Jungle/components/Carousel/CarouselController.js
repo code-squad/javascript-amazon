@@ -1,5 +1,8 @@
 import MyFetch from "../../../Grenutil/MyFetch/index.js";
 
+const FETCH_PATH = "../../../data/localData.json";
+const CSS_PATH = "Jungle/components/Carousel/Carousel.css";
+
 export default class CarouselController {
   constructor({ view }) {
     this.view = view;
@@ -26,13 +29,13 @@ export default class CarouselController {
 
     link.rel = "stylesheet";
     link.type = "text/css";
-    link.href = "Jungle/components/Carousel/Carousel.css";
+    link.href = CSS_PATH;
 
     head.appendChild(link);
   }
 
   createCarousel() {
-    MyFetch("../../../data/localData.json")
+    MyFetch(FETCH_PATH)
       .then(data => {
         this.loadCarsouelCss();
         return data;

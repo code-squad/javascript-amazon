@@ -1,5 +1,4 @@
-import Carousel from "./Jungle/components/Carousel/Carousel.js";
-//TODO: Carousel.js를 index.js로 바꾸기.
+import Carousel from "./Jungle/components/Carousel/index.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   //DOM
@@ -9,7 +8,8 @@ window.addEventListener("DOMContentLoaded", () => {
     carouselElement: carousel_div,
     options: {
       width: 700,
-      height: 300
+      height: 300,
+      duration: 300
     }
   });
 });
