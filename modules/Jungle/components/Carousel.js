@@ -1,11 +1,10 @@
 import Observer from '../observer/Observer.js';
-import { mergeConfig, setCSS, removeNodes, isContainClass } from '../utils/index.js';
+import { setCSS, removeNodes } from '../utils/index.js';
 import { makeHTMLString } from '../template/index.js';
 
 class Carousel extends Observer {
-  constructor({ container, config, onClick, onTransitionEnd, moveWithoutTransition, props }) {
+  constructor({ container, config, onClick, props }) {
     super();
-
     //DOM
     this.container = document.querySelector(container);
     this.wrapper;
@@ -13,23 +12,9 @@ class Carousel extends Observer {
 
     // values
     this.itemWidth;
-    this.itemLength;
     this.onClick = onClick;
-    this.onTransitionEnd = onTransitionEnd;
-    this.moveWithoutTransition = moveWithoutTransition;
     this.props = props;
-    this.initIndex = 0;
-    this.offset = 0;
-    this.isMoving = false;
-    this.initStatus = true;
-
-    this.defaultConfig = {
-      infinite: true,
-      duration: 300,
-      animation: 'cubic-bezier(0.240, -0.010, 0.400, 1.650)'
-    };
-
-    this.config = mergeConfig(this.defaultConfig, config);
+    this.config = config;
   }
 
   init() {
@@ -37,7 +22,6 @@ class Carousel extends Observer {
     this.attatchEvent();
     this.setInitialUI();
     setCSS(this.container, 'opacity', 1);
-    this.initStatus = false;
   }
 
   manipulateDOM() {
@@ -46,7 +30,6 @@ class Carousel extends Observer {
 
     this.wrapper = this.container.firstElementChild;
     this.slider = this.wrapper.firstElementChild;
-    this.itemLength = this.slider.children.length;
     this.prevButton = this.container.querySelector('button.prev');
     this.nextButton = this.container.querySelector('button.next');
   }
@@ -59,7 +42,6 @@ class Carousel extends Observer {
 
   attatchEvent() {
     this.container.addEventListener('click', e => this.onClick(e));
-    this.slider.addEventListener('transitionend', () => this.onTransitionEnd.call(this));
   }
 
   setInitialUI() {
@@ -83,20 +65,24 @@ class Carousel extends Observer {
     this.slider.insertAdjacentElement('beforeend', firstCard);
   }
 
-  isMovable() {
-    if (this.config.infinite) return;
-
-    const {
-      state: { currentItem }
-    } = this.model;
-
-    this.prevButton.disabled = this.isFirst(currentItem);
-    this.nextButton.disabled = this.isLast(currentItem);
+  isMovable(id) {
+    this.prevButton.disabled = this.isFirst(id);
+    this.nextButton.disabled = this.isLast(id);
   }
 
-  moveSlider(id) {
-    const dist = this.props.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
+  move(id) {
+    this.setTransition(this.slider, true);
+    const dist = -(this.itemWidth * id);
+    this.slider.style.transform = `translateX(${dist}px)`;
 
+    if (!this.config.infinite) {
+      this.isMovable(id);
+    }
+  }
+
+  moveWithoutTransition(id) {
+    this.setTransition(this.slider, false);
+    const dist = -(this.itemWidth * id);
     this.slider.style.transform = `translateX(${dist}px)`;
   }
 
@@ -106,8 +92,20 @@ class Carousel extends Observer {
       : setCSS(el, 'transition', 'none');
   }
 
+  isEndOfCards(id) {
+    return this.isFirst(id) || this.isLast(id);
+  }
+
+  isFirst(id) {
+    return this.config.infinite ? id === 0 : id === 1;
+  }
+
+  isLast(id) {
+    return this.config.infinite ? id === this.props.itemLength + 1 : id === this.props.itemLength;
+  }
+
   render(state) {
-    this.moveSlider(state.currentItem);
+    this.move(state.currentItem);
   }
 }
 

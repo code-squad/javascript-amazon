@@ -6,8 +6,13 @@ class Model extends Subject {
     this.state = state;
   }
 
-  setState(data = {}) {
+  setState(data = {}, render = true) {
     this.state = data;
+
+    if (!render) {
+      return;
+    }
+
     this.fire(this.state);
   }
 }

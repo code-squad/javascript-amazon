@@ -2,93 +2,81 @@ import Carousel from '../components/Carousel.js';
 import { isContainClass, mergeConfig } from '../utils/index.js';
 import Store from '../model/index.js';
 
-export default ({ classNameObj, options }) => {
-  const defaultOptions = {
-    infinite: true,
-    duration: 300,
-    animation: 'cubic-bezier(0.240, -0.010, 0.400, 1.650)'
-  };
+export default class CarouselContainer {
+  constructor({ classNameObj, options }) {
+    const defaultOptions = {
+      infinite: true,
+      duration: 300,
+      animation: 'cubic-bezier(0.240, -0.010, 0.400, 1.650)'
+    };
 
-  options = mergeConfig(defaultOptions, options);
+    this.options = mergeConfig(defaultOptions, options);
 
-  const store = new Store({
-    currentItem: 1,
-    itemLength: document.querySelector(classNameObj.container).children.length,
-    infinite: options.infinite
-  });
+    this.store = new Store({
+      currentItem: 1,
+      itemLength: document.querySelector(classNameObj.container).children.length,
+      infinite: this.options.infinite
+    });
 
-  const carouselClickHandler = evt => {
-    const { state } = store;
+    const props = {
+      currentItem: this.store.state.currentItem,
+      itemLength: this.store.state.itemLength
+    };
+
+    this.carousel = new Carousel({
+      container: classNameObj.container,
+      config: this.options,
+      onClick: this.carouselClickHandler.bind(this),
+      props
+    });
+
+    this.store.on(this.carousel);
+    this.carousel.init();
+  }
+
+  carouselClickHandler(evt) {
+    const { state } = this.store;
+    const { currentItem, itemLength } = state;
+    const { duration } = this.options;
+    const carousel = this.carousel;
+    let moveId;
 
     if (isContainClass(evt.target, 'prev')) {
-      store.setState({
-        ...state,
-        currentItem: state.currentItem - 1
-      });
+      moveId = currentItem - 1;
+      this.store.setState({ ...state, currentItem: moveId });
     }
 
     if (isContainClass(evt.target, 'next')) {
-      store.setState({
-        ...state,
-        currentItem: state.currentItem + 1
-      });
+      moveId = currentItem + 1;
+      this.store.setState({ ...state, currentItem: moveId });
     }
-  };
 
-  function transitionEndHandler() {
-    const { state } = store;
-    if (isEndOfCards(state.currentItem) && options.infinite) {
-      moveWithoutTransition.call(this, state.currentItem);
+    if (this.carousel.isEndOfCards(moveId)) {
+      this.sleep(this.options.duration).then(_ => {
+        moveId = this.carousel.isFirst(moveId) ? itemLength : 1;
+        this.carousel.moveWithoutTransition(moveId);
+        this.store.setState({ ...state, currentItem: moveId }, false);
+      });
     }
   }
 
-  function moveWithoutTransition(currentItem) {
-    this.setTransition(this.slider, false);
-    const moveItem = currentItem === 0 ? this.itemLength : 1;
-    this.moveSlider(moveItem);
-    setTimeout(() => {
-      store.setState({
-        ...store.state,
-        currentItem: moveItem
-      });
-      this.setTransition(this.slider, true);
-    }, 0);
+  sleep(duration) {
+    return new Promise(resolve => setTimeout(resolve, duration - 1));
   }
+}
 
-  const isEndOfCards = id => isFirst(id) || isLast(id);
-  const isFirst = id => (options.infinite ? id === 0 : id === 1);
-  const isLast = id =>
-    options.infinite ? id === store.state.itemLength + 1 : id === store.state.itemLength;
+// if ('nav' in elClassNameObj) {
+//   const { duration } = options || {};
 
-  const props = {
-    currentItem: store.state.currentItem,
-    infinite: store.state.infinite
-  };
+//   const nav = this.createNavigation({
+//     elClassNameObj: { nav: elClassNameObj.nav },
+//     options: { duration },
+//     model
+//   });
 
-  const carousel = new Carousel({
-    container: classNameObj.container,
-    config: options,
-    onClick: carouselClickHandler.bind(this),
-    onTransitionEnd: transitionEndHandler,
-    moveWithoutTransition,
-    props
-  });
+//   model.on(carousel);
+//   model.on(nav);
+// }
 
-  store.on(carousel);
-  carousel.init();
-
-  // if ('nav' in elClassNameObj) {
-  //   const { duration } = options || {};
-
-  //   const nav = this.createNavigation({
-  //     elClassNameObj: { nav: elClassNameObj.nav },
-  //     options: { duration },
-  //     model
-  //   });
-
-  //   model.on(carousel);
-  //   model.on(nav);
-  // }
-
-  return carousel;
-};
+// return carousel;
+// };
