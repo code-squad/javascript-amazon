@@ -1,4 +1,5 @@
-import Carousel from '../components/Carousel.js';
+import { Carousel, Navigation } from '../components/index.js';
+
 import { isContainClass, mergeConfig, sleep } from '../utils/index.js';
 import Store from '../model/index.js';
 
@@ -12,11 +13,22 @@ export default class CarouselContainer {
 
     this.options = mergeConfig(defaultOptions, options);
     this.store = this.getStore(classNameObj);
+    this.props = this.getProps();
 
     this.carousel = this.getCarousel(classNameObj);
-
     this.store.on(this.carousel);
     this.carousel.init();
+
+    if ('nav' in classNameObj) {
+      this.nav = new Navigation({
+        nav: classNameObj.nav,
+        options: this.options,
+        onClick: this.navClickHandler.bind(this),
+        props: this.props
+      });
+      this.store.on(this.nav);
+      this.nav.init();
+    }
   }
 
   getStore({ container }) {
@@ -32,7 +44,7 @@ export default class CarouselContainer {
       container: classNameObj.container,
       options: this.options,
       onClick: this.carouselClickHandler.bind(this),
-      props: this.getProps()
+      props: this.props
     });
   }
 
@@ -79,20 +91,10 @@ export default class CarouselContainer {
       this.store.setState({ ...state, currentItem: newMoveId }, { render: false });
     });
   }
+
+  navClickHandler(evt) {
+    const id = evt.target.dataset.id;
+    if (!id) return;
+    this.store.setState({ ...this.store.state, currentItem: parseInt(id) });
+  }
 }
-
-// if ('nav' in elClassNameObj) {
-//   const { duration } = options || {};
-
-//   const nav = this.createNavigation({
-//     elClassNameObj: { nav: elClassNameObj.nav },
-//     options: { duration },
-//     model
-//   });
-
-//   model.on(carousel);
-//   model.on(nav);
-// }
-
-// return carousel;
-// };
