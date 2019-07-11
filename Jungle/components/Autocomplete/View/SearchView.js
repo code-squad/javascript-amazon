@@ -1,4 +1,4 @@
-import MyEventEmitter from "../../../../MyEventEmitter/index.js";
+import MyEventEmitter from "../../../../Grenutil/MyEventEmitter/index.js";
 import template from "./template.js";
 import RecentView from "./RecentView.js";
 
