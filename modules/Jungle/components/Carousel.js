@@ -3,7 +3,7 @@ import { setCSS, removeNodes } from '../utils/index.js';
 import { makeHTMLString } from '../template/index.js';
 
 class Carousel extends Observer {
-  constructor({ container, config, onClick, props }) {
+  constructor({ container, options, onClick, props }) {
     super();
     //DOM
     this.container = document.querySelector(container);
@@ -14,7 +14,7 @@ class Carousel extends Observer {
     this.itemWidth;
     this.onClick = onClick;
     this.props = props;
-    this.config = config;
+    this.options = options;
   }
 
   init() {
@@ -48,9 +48,9 @@ class Carousel extends Observer {
     this.itemWidth = this.slider.firstElementChild.getBoundingClientRect().width;
     this.wrapper.style.width = `${this.itemWidth}px`;
 
-    if (this.config.infinite) {
+    if (this.options.infinite) {
       this.cloneVirtualCard();
-      this.moveWithoutTransition(this.props.currentItem);
+      this.move({ id: this.props.currentItem, transition: false });
     } else {
       this.setTransition(this.slider, true);
       this.isMovable(this.props.currentItem);
@@ -70,27 +70,24 @@ class Carousel extends Observer {
     this.nextButton.disabled = this.isLast(id);
   }
 
-  move(id) {
-    this.setTransition(this.slider, true);
-    const dist = this.config.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
+  move({ id, transition = true }) {
+    this.setTransition(this.slider, transition ? true : false);
+    this.setTransform(id);
 
-    this.slider.style.transform = `translateX(${dist}px)`;
-
-    if (!this.config.infinite) {
+    if (transition && !this.options.infinite) {
       this.isMovable(id);
     }
   }
 
-  moveWithoutTransition(id) {
-    this.setTransition(this.slider, false);
-    const dist = this.config.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
-    this.slider.style.transform = `translateX(${dist}px)`;
-  }
-
   setTransition(el, val) {
     val
-      ? setCSS(el, 'transition', `transform ${this.config.duration}ms ${this.config.animation}`)
+      ? setCSS(el, 'transition', `transform ${this.options.duration}ms ${this.options.animation}`)
       : setCSS(el, 'transition', 'none');
+  }
+
+  setTransform(id) {
+    const dist = this.options.infinite ? -(this.itemWidth * id) : -(this.itemWidth * (id - 1));
+    this.slider.style.transform = `translateX(${dist}px)`;
   }
 
   isEndOfCards(id) {
@@ -98,15 +95,15 @@ class Carousel extends Observer {
   }
 
   isFirst(id) {
-    return this.config.infinite ? id === 0 : id === 1;
+    return this.options.infinite ? id === 0 : id === 1;
   }
 
   isLast(id) {
-    return this.config.infinite ? id === this.props.itemLength + 1 : id === this.props.itemLength;
+    return this.options.infinite ? id === this.props.itemLength + 1 : id === this.props.itemLength;
   }
 
   render(state) {
-    this.move(state.currentItem);
+    this.move({ id: state.currentItem });
   }
 }
 

@@ -6,10 +6,10 @@ class Model extends Subject {
     this.state = state;
   }
 
-  setState(data = {}, render = true) {
+  setState(data = {}, options = { render: true }) {
     this.state = data;
 
-    if (!render) {
+    if (!options.render) {
       return;
     }
 

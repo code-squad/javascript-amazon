@@ -25,7 +25,7 @@ export default class CarouselContainer {
 
     this.carousel = new Carousel({
       container: classNameObj.container,
-      config: this.options,
+      options: this.options,
       onClick: this.carouselClickHandler.bind(this),
       props
     });
@@ -34,34 +34,45 @@ export default class CarouselContainer {
     this.carousel.init();
   }
 
-  carouselClickHandler(evt) {
+  carouselClickHandler({ target }) {
+    if (target.tagName !== 'BUTTON') return;
+
     const { state } = this.store;
-    const { currentItem, itemLength } = state;
-    const { duration, infinite } = this.options;
-    const carousel = this.carousel;
-    let moveId;
+    const { infinite } = this.options;
 
-    if (isContainClass(evt.target, 'prev')) {
-      moveId = currentItem - 1;
-      this.store.setState({ ...state, currentItem: moveId });
-    }
-
-    if (isContainClass(evt.target, 'next')) {
-      moveId = currentItem + 1;
-      this.store.setState({ ...state, currentItem: moveId });
-    }
+    const moveId = this.getMoveId(target);
+    this.store.setState({ ...state, currentItem: moveId });
 
     if (infinite && this.carousel.isEndOfCards(moveId)) {
-      this.sleep(duration).then(_ => {
-        moveId = this.carousel.isFirst(moveId) ? itemLength : 1;
-        this.carousel.moveWithoutTransition(moveId);
-        this.store.setState({ ...state, currentItem: moveId }, false);
-      });
+      this.moveNoTransition(moveId);
     }
   }
 
-  sleep(duration) {
-    return new Promise(resolve => setTimeout(resolve, duration - 1));
+  getMoveId(target) {
+    const { currentItem } = this.store.state;
+
+    if (isContainClass(target, 'next')) {
+      return currentItem + 1;
+    }
+
+    if (isContainClass(target, 'prev')) {
+      return currentItem - 1;
+    }
+  }
+
+  moveNoTransition(moveId) {
+    const { state } = this.store;
+
+    this.sleep(this.options.duration).then(_ => {
+      const newMoveId = this.carousel.isFirst(moveId) ? state.itemLength : 1;
+
+      this.carousel.move({ id: newMoveId, transition: false });
+      this.store.setState({ ...state, currentItem: newMoveId }, { render: false });
+    });
+  }
+
+  sleep(delay) {
+    return new Promise(resolve => setTimeout(resolve, delay));
   }
 }
 
