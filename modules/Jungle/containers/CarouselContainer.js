@@ -1,5 +1,5 @@
 import Carousel from '../components/Carousel.js';
-import { isContainClass, mergeConfig } from '../utils/index.js';
+import { isContainClass, mergeConfig, sleep } from '../utils/index.js';
 import Store from '../model/index.js';
 
 export default class CarouselContainer {
@@ -72,16 +72,12 @@ export default class CarouselContainer {
   moveNoTransition(moveId) {
     const { state } = this.store;
 
-    this.sleep(this.options.duration).then(_ => {
+    sleep(this.options.duration).then(_ => {
       const newMoveId = this.carousel.isFirst(moveId) ? state.itemLength : 1;
 
       this.carousel.move({ id: newMoveId, transition: false });
       this.store.setState({ ...state, currentItem: newMoveId }, { render: false });
     });
-  }
-
-  sleep(delay) {
-    return new Promise(resolve => setTimeout(resolve, delay));
   }
 }
 
