@@ -6,7 +6,11 @@ export default class ControlSearch {
     // this.getAutocomVal = this.getAutocomVal.bind(this);
     // this.showAutocomList = this.showAutocomList.bind(this);
   }
-
+  /*
+    TODO: 1. Refactoring하기.
+          2. 최근 검색 List 구현하기.
+          3. 자동완성 data JSON으로 만들어서 Model에 전달.
+  */
   eventHandler() {
     const searchBar = this.searchBarView.getSearchBarDom();
     searchBar.addEventListener('input', (e) => {
@@ -27,8 +31,7 @@ export default class ControlSearch {
   }
 
   getAutocomVal() {
-    const autocomVal = this.searchModel.getIncludedWords();
-    return autocomVal;
+    return this.searchModel.getIncludedWords();
   }
 
   showAutocomList(values) {
