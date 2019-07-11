@@ -11,27 +11,36 @@ export default class CarouselContainer {
     };
 
     this.options = mergeConfig(defaultOptions, options);
+    this.store = this.getStore(classNameObj);
 
-    this.store = new Store({
-      currentItem: 1,
-      itemLength: document.querySelector(classNameObj.container).children.length,
-      infinite: this.options.infinite
-    });
-
-    const props = {
-      currentItem: this.store.state.currentItem,
-      itemLength: this.store.state.itemLength
-    };
-
-    this.carousel = new Carousel({
-      container: classNameObj.container,
-      options: this.options,
-      onClick: this.carouselClickHandler.bind(this),
-      props
-    });
+    this.carousel = this.getCarousel(classNameObj);
 
     this.store.on(this.carousel);
     this.carousel.init();
+  }
+
+  getStore({ container }) {
+    return new Store({
+      currentItem: 1,
+      itemLength: document.querySelector(container).children.length,
+      infinite: this.options.infinite
+    });
+  }
+
+  getCarousel(classNameObj) {
+    return new Carousel({
+      container: classNameObj.container,
+      options: this.options,
+      onClick: this.carouselClickHandler.bind(this),
+      props: this.getProps()
+    });
+  }
+
+  getProps() {
+    return {
+      currentItem: this.store.state.currentItem,
+      itemLength: this.store.state.itemLength
+    };
   }
 
   carouselClickHandler({ target }) {
