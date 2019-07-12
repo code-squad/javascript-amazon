@@ -1,6 +1,5 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
-import { COMPONENTS_NAME } from '../constants.js'
 
 class RecentKeywords extends Subscriber {
   constructor(publisher, selector) {
@@ -10,7 +9,7 @@ class RecentKeywords extends Subscriber {
 
   init(publisher, selector) {
     this.targetEl = _.$(selector);
-    this.subscribe(COMPONENTS_NAME.RECENT_KEYWORDS, publisher);
+    this.subscribe('recentKeywords', publisher);
   }
 
   render(state) {

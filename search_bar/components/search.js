@@ -1,6 +1,5 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
-import { COMPONENTS_NAME } from '../constants.js'
 
 class Search extends Subscriber {
   constructor(publisher, selector) {
@@ -11,7 +10,7 @@ class Search extends Subscriber {
   }
 
   init(publisher) {
-    this.subscribe(COMPONENTS_NAME.SEARCH, publisher);
+    this.subscribe('search', publisher);
   }
 
   addFocusEvent(selector) {
@@ -19,17 +18,18 @@ class Search extends Subscriber {
   }
 
   handleFocus() {
-    this.publisher.setState({ mode: 'recentKeywords' })
+    this.publisher.setState({ mode: 'recentKeywords' });
   }
 
   addKeydownEvent(selector) {
-    _.on(_.$(selector), 'keydown', this.handleKeydown.bind(this));
+    _.on(_.$(selector), 'keyup', this.handleKeydown.bind(this));
   }
 
-  handleKeydown({ target }) {
-    this.publisher.setState({ mode: 'waiting', currentValue: target.value });
+  handleKeydown({ target, key }) {
+    if (key.length === 1 || key === 'Backspace') {
+      this.publisher.setState({ mode: 'suggestion', currentValue: target.value });
+    }
   }
-
 }
 
 export default Search;
