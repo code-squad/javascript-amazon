@@ -10,6 +10,30 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <div class="header">
+      <div class="header-first-line">
+        <div class="header-first-line-item company-logo">
+          <img src="./resources/images/main/amazon-logo.png" alt="" />
+        </div>
+        <div class="header-first-line-item search-box-container">
+          <select id="select-choice" class="select-classification">
+            <option value="" selected="selected">모두</option>
+            <option value="학생">학생</option>
+            <option value="회사원">회사원</option>
+            <option value="Kindle 스토어">Kindle 스토어</option>
+          </select>
+          <input type="text" class="search-form" />
+          <button class="header-first-line-item btn-search">
+            <img src="./resources/images/main/search-icon.png" alt="" />
+          </button>
+        </div>
+        <div class="header-first-line-item service-info">
+          <img src="./resources/images/banner/detail_banneer.png" alt="" />
+        </div>
+      </div>
+      <div class="header-second-line"></div>
+    </div>
+
     <div class="card-wrap">
       <div class="navigation">
         <ul class="navigation-list"></ul>
@@ -35,3 +59,30 @@
     <script type="module" src="./app.js"></script>
   </body>
 </html>
+
+<!-- 
+<div class="header-firstline">
+    <div class="header-fist-item logo-img" style="background-color: red;">
+      <img src="./resources/images/main/amazon-logo.png" alt="" />
+    </div>
+    <div
+      class="header-fist-item search-box"
+      style="background-color: orange;"
+    >
+      <select name="" id="">
+        <option value=""></option>
+      </select>
+      <input type="text" />
+      <button>
+        <img src="./resources/images/banner/detail_banneer.png" alt="" />
+      </button>
+    </div>
+    <div class="header-first-item detail-infomation"></div>
+  </div>
+
+  <div class="header-secondline">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</header> -->
