@@ -28,8 +28,8 @@ class Navigation {
   }
 
   setNavigation(id) {
-    this.navItems.forEach(item => item.classList.remove('selected'));
-    this.navItems[id - 1].classList.add('selected');
+    this.navItems.forEach(item => item.classList.remove('navigation-selected'));
+    this.navItems[id - 1].classList.add('navigation-selected');
   }
 
   render(state) {

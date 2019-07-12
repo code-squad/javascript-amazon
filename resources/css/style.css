@@ -62,20 +62,6 @@ li {
   .nav-item.selected {
     transform: scale(1.1); }
 
-.card-wrapper {
-  position: relative;
-  margin: 0 auto;
-  padding: 1.25rem 0;
-  height: auto;
-  overflow: hidden; }
-
-.card-slider {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex; }
-
 .card {
   display: -webkit-box;
   display: -moz-box;
@@ -124,60 +110,3 @@ li {
   flex: 1 1 auto; }
   .content h2 {
     margin-bottom: 0.625rem; }
-
-.card-control {
-  position: absolute;
-  font-size: 1.375rem;
-  top: 50%;
-  width: 3.125rem;
-  height: 3.125rem;
-  border-radius: 1.5625rem;
-  background-color: #a9b7b8;
-  color: #fff;
-  border: none;
-  cursor: pointer; }
-
-.card-control:focus {
-  outline: none; }
-
-.card-control:hover {
-  background-color: #808386; }
-
-.card-control:active {
-  background-color: #495057;
-  border: none; }
-
-.prev {
-  left: 0.625rem; }
-
-.next {
-  right: 0.625rem; }
-
-.container2 {
-  max-width: 64rem;
-  opacity: 0;
-  margin: 0 auto;
-  position: relative; }
-
-.card-slider2 {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex; }
-
-.nav2 {
-  height: 6.25rem;
-  padding: 1.25rem 0;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -ms-flex-pack: center; }
-
-/*# sourceMappingURL=style.css.map */

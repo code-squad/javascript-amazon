@@ -86,8 +86,6 @@ export default class CarouselContainer {
     }
   }
 
-  // util 통합하자.
-  // 그리고 css 분리하자
   getMoveId(target) {
     const { currentItem } = this.store.state;
 
