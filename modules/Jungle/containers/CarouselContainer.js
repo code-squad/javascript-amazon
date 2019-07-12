@@ -1,7 +1,7 @@
 import { Carousel, Navigation } from '../components/index.js';
 import Store from '../store/index.js';
 
-import { isContainClass, mergeConfig, sleep } from '../utils/index.js';
+import { isContainClass, mergeConfig, sleep } from '../../JinUtil/index.js';
 
 export default class CarouselContainer {
   constructor({ classNameObj, options }) {
@@ -86,6 +86,8 @@ export default class CarouselContainer {
     }
   }
 
+  // util 통합하자.
+  // 그리고 css 분리하자
   getMoveId(target) {
     const { currentItem } = this.store.state;
 

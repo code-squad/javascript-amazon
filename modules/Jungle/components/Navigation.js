@@ -1,4 +1,4 @@
-import { setCSS } from '../utils/index.js';
+import { setCSS } from '../../JinUtil/index.js';
 
 class Navigation {
   constructor({ nav, options, onClick, props }) {
