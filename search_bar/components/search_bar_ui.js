@@ -1,7 +1,7 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
 
-class Search extends Subscriber {
+class SearchBarUI extends Subscriber {
   constructor(publisher, selector) {
     super();
     this.init(publisher);
@@ -10,7 +10,7 @@ class Search extends Subscriber {
   }
 
   init(publisher) {
-    this.subscribe('search', publisher);
+    this.subscribe('searchBarUI', publisher);
   }
 
   addFocusEvent(selector) {
@@ -32,4 +32,4 @@ class Search extends Subscriber {
   }
 }
 
-export default Search;
+export default SearchBarUI;

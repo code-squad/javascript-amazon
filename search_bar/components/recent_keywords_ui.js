@@ -1,7 +1,7 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
 
-class RecentKeywords extends Subscriber {
+class RecentKeywordsUI extends Subscriber {
   constructor(publisher, selector) {
     super();
     this.init(publisher, selector);
@@ -9,15 +9,15 @@ class RecentKeywords extends Subscriber {
 
   init(publisher, selector) {
     this.targetEl = _.$(selector);
-    this.subscribe('recentKeywords', publisher);
+    this.subscribe('recentKeywordsUI', publisher);
   }
 
   render(state) {
     if (state.mode === 'recentKeywords') {
       this.targetEl.classList.add('visible');
 
-      const copy = [...state.recentKeywords.values()];
-      const tpl = copy.reduce((acc, curr) => {
+      const recentKeywords = [...state.recentKeywords.values()];
+      const tpl = recentKeywords.reduce((acc, curr) => {
         return acc + `<li>${curr}</li>`
       }, '');
 
@@ -32,4 +32,4 @@ class RecentKeywords extends Subscriber {
   }
 }
 
-export default RecentKeywords;
+export default RecentKeywordsUI;
