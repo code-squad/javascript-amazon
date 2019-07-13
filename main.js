@@ -11,16 +11,8 @@ window.addEventListener("DOMContentLoaded", () => {
     options: {
       width: 700,
       height: 300,
-      duration: 300
-    }
-  });
-
-  new Navigation({
-    navigationElement: navigation_div,
-    options: {
-      width: 650,
-      height: 100,
-      duration: 200
+      duration: 300,
+      navigation: true
     }
   });
 });

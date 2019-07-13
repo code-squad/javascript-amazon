@@ -1,4 +1,5 @@
 import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
+import Navigation from "../Navigation/index.js";
 
 export default class CarouselView extends MyEventEmitter {
   constructor({ carouselElement, options }) {
@@ -80,7 +81,9 @@ export default class CarouselView extends MyEventEmitter {
 
   setSliderTransition(on) {
     on
-      ? (this.itemSlider.style.transition = `${this.options.duration}ms transform`)
+      ? (this.itemSlider.style.transition = `${
+          this.options.duration
+        }ms transform`)
       : (this.itemSlider.style.transition = `none`);
   }
 
@@ -109,6 +112,8 @@ export default class CarouselView extends MyEventEmitter {
     `;
 
     this.carousel.innerHTML = carouselTemplate;
+
+    if(this.options.navigation) this.addNav();
 
     this.setCss();
     this.attachClone();
@@ -165,5 +170,21 @@ export default class CarouselView extends MyEventEmitter {
       dir === "prev" ? this.currentItem - 1 : this.currentItem + 1;
 
     this.itemSlider.style.transform = `translateX(${this.offset}px)`;
+  }
+
+  addNav() {
+    const navContainer = document.createElement("div");
+    navContainer.classList.add("nav-container");
+
+    this.carousel.insertAdjacentElement("beforebegin", navContainer);
+
+    new Navigation({
+      navigationElement: navContainer,
+      options: {
+        width: this.carouselWidth,
+        height: 100,
+        duration: 200
+      }
+    });
   }
 }

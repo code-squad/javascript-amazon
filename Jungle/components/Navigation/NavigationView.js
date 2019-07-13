@@ -12,7 +12,6 @@ export default class NavigationView extends MyEventEmitter {
     super();
 
     this.navigation = navigationElement;
-
     this.currentActivatedItem = 1;
 
     this.defaultOptions = {
