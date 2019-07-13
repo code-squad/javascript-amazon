@@ -8,7 +8,7 @@ const CSS_PATH = "Jungle/components/Navigation/Navigation.css";
 const NAV_ITEMS_COLORS = ["#2591c0", "#a90067", "#008577", "#e65d18"];
 
 export default class NavigationView extends MyEventEmitter {
-  constructor({ navigationElement, options }) {
+  constructor({ navigationElement, options, carousel }) {
     super();
 
     this.navigation = navigationElement;
@@ -23,6 +23,15 @@ export default class NavigationView extends MyEventEmitter {
 
     this.loadNavigationCss();
     this.init();
+
+    this.carousel = carousel;
+
+    this.carousel.on("prev", () => {
+      this.setPrevItem();
+    });
+    this.carousel.on("next", () => {
+      this.setNextItem();
+    });
   }
 
   loadNavigationCss() {
@@ -49,21 +58,23 @@ export default class NavigationView extends MyEventEmitter {
       const navBtn = item.querySelector("button");
       navBtn.style.backgroundColor = NAV_ITEMS_COLORS[idx];
       navBtn.style.color = "white";
-    })
+    });
   }
 
   activateCurrentItem() {
     this.navItems = this.navigation.querySelectorAll("li");
+    this.navItems.forEach(item => {
+      item.classList.remove("active");
+    });
 
     this.navItems[this.currentActivatedItem - 1].classList.add("active");
   }
 
   attachEvent() {
     delegate(this.navigation, "li", "click", ({ currentTarget }) => {
-      this.navItems.forEach(item => item.classList.remove("active"));
-
-      this.currentActivatedItem = currentTarget.dataset.itemnum;
+      this.currentActivatedItem = Number(currentTarget.dataset.itemnum);
       this.activateCurrentItem();
+      this.carousel.setItemSliderOffset(this.currentActivatedItem);
     });
   }
 
@@ -92,5 +103,15 @@ export default class NavigationView extends MyEventEmitter {
 
   init() {
     MyFetch(FETCH_PATH).then(data => this.render(data));
+  }
+
+  setNextItem() {
+    this.currentActivatedItem = (this.currentActivatedItem >=  this.navItems.length) ? 1 : this.currentActivatedItem + 1;
+    this.activateCurrentItem();
+  }
+
+  setPrevItem() {
+    this.currentActivatedItem = (this.currentActivatedItem <=  1) ? this.navItems.length : this.currentActivatedItem - 1;
+    this.activateCurrentItem();
   }
 }

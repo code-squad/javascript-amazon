@@ -4,15 +4,17 @@ const FETCH_PATH = "../../../data/localData.json";
 const CSS_PATH = "Jungle/components/Carousel/Carousel.css";
 
 export default class CarouselController {
-  constructor({ view }) {
+  constructor({ view, nav }) {
     this.view = view;
 
     view.on("prev", () => {
-      this.view.setItemSliderPosition({ dir: "prev" });
+      this.view.currentItem -= 1;
+      this.view.setItemSliderOffset(this.view.currentItem);
     });
 
     view.on("next", () => {
-      this.view.setItemSliderPosition({ dir: "next" });
+      this.view.currentItem += 1;
+      this.view.setItemSliderOffset(this.view.currentItem);
     });
 
     view.on("moveend", () => {

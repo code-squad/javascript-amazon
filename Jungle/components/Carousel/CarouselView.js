@@ -66,17 +66,18 @@ export default class CarouselView extends MyEventEmitter {
     this.prevBtn = this.carousel.querySelector(".prev");
     this.nextBtn = this.carousel.querySelector(".next");
 
-    this.prevBtn.addEventListener("click", () => {
+    this.prevBtn.addEventListener("click", _ => {
+      if (this.isMoving) return;
       this.emit("prev");
     });
-
-    this.nextBtn.addEventListener("click", () => {
+    this.nextBtn.addEventListener("click", _ => {
+      if (this.isMoving) return;
       this.emit("next");
     });
 
-    this.itemSlider.addEventListener("transitionend", () => {
-      this.emit("moveend");
-    });
+    this.itemSlider.addEventListener("transitionend", _ =>
+      this.emit("moveend")
+    );
   }
 
   setSliderTransition(on) {
@@ -113,7 +114,7 @@ export default class CarouselView extends MyEventEmitter {
 
     this.carousel.innerHTML = carouselTemplate;
 
-    if(this.options.navigation) this.addNav();
+    if (this.options.navigation) this.addNav();
 
     this.setCss();
     this.attachClone();
@@ -141,8 +142,6 @@ export default class CarouselView extends MyEventEmitter {
   }
 
   moveToFirstItem() {
-    if (this.isMoving) return;
-
     this.offset = -this.carouselWidth;
     this.itemSlider.style.transform = `translateX(${this.offset}px)`;
     this.currentItem = 1;
@@ -156,20 +155,14 @@ export default class CarouselView extends MyEventEmitter {
     this.currentItem = lastItemIndexWithoutClone;
   }
 
-  setItemSliderPosition({ dir }) {
-    if (this.isMoving) return;
+  setItemSliderOffset(itemnum) {
+    const offset = -1 * (itemnum * this.carouselWidth);
+    this.currentItem = itemnum;
+
     this.isMoving = true;
     this.setSliderTransition(true);
 
-    this.offset =
-      dir === "prev"
-        ? this.offset + this.carouselWidth
-        : this.offset - this.carouselWidth;
-
-    this.currentItem =
-      dir === "prev" ? this.currentItem - 1 : this.currentItem + 1;
-
-    this.itemSlider.style.transform = `translateX(${this.offset}px)`;
+    this.itemSlider.style.transform = `translateX(${offset}px)`;
   }
 
   addNav() {
@@ -178,13 +171,14 @@ export default class CarouselView extends MyEventEmitter {
 
     this.carousel.insertAdjacentElement("beforebegin", navContainer);
 
-    new Navigation({
+    this.nav = new Navigation({
       navigationElement: navContainer,
       options: {
         width: this.carouselWidth,
         height: 100,
         duration: 200
-      }
+      },
+      carousel: this
     });
   }
 }
