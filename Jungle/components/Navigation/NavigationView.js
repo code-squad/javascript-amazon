@@ -5,6 +5,8 @@ import delegate from "../../../Grenutil/delegate.js";
 const FETCH_PATH = "../../../data/localData.json";
 const CSS_PATH = "Jungle/components/Navigation/Navigation.css";
 
+const NAV_ITEMS_COLORS = ["#2591c0", "#a90067", "#008577", "#e65d18"];
+
 export default class NavigationView extends MyEventEmitter {
   constructor({ navigationElement, options }) {
     super();
@@ -42,6 +44,13 @@ export default class NavigationView extends MyEventEmitter {
   setCss() {
     this.navigation.style.width = `${this.options.width}px`;
     this.navigation.style.height = `${this.options.height}px`;
+
+    //#2591c0
+    this.navItems.forEach((item, idx) => {
+      const navBtn = item.querySelector("button");
+      navBtn.style.backgroundColor = NAV_ITEMS_COLORS[idx];
+      navBtn.style.color = "white";
+    })
   }
 
   activateCurrentItem() {
@@ -77,8 +86,8 @@ export default class NavigationView extends MyEventEmitter {
     `;
 
     this.navigation.innerHTML = template;
-    this.setCss();
     this.activateCurrentItem();
+    this.setCss();
     this.attachEvent();
   }
 
