@@ -92,6 +92,22 @@ $search-radius: 5px;
       font-size: 0.8rem;
       color: #111;
     }
+
+    .search-info {
+      width: 100%;
+      position: absolute;
+      background-color: #fff;
+      height: 100%;
+      top: 100%;
+      border-bottom-left-radius: $search-radius;
+      border-bottom-right-radius: $search-radius;
+      border: 1px dotted orange;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(219, 219, 219);
+      }
+    }
   }
 
   .search-submit {

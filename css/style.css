@@ -85,6 +85,18 @@ header {
       padding: 0 0.5rem;
       font-size: 0.8rem;
       color: #111; }
+    .search-wrapper .search-input .search-info {
+      width: 100%;
+      position: absolute;
+      background-color: #fff;
+      height: 100%;
+      top: 100%;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border: 1px dotted orange;
+      cursor: pointer; }
+      .search-wrapper .search-input .search-info:hover {
+        background-color: #dbdbdb; }
   .search-wrapper .search-submit {
     background-color: #febd68;
     width: 45px;
