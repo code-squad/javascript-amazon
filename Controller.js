@@ -21,17 +21,18 @@ class Controller {
   }
 
   registerEvents() {
-    this.carouselView.leftBtn.addEventListener(
-      "click",
-      this.carouselViewClickHandler.bind(this)
-    );
-    this.carouselView.rightBtn.addEventListener(
-      "click",
-      this.carouselViewClickHandler.bind(this)
-    );
-    const navList = [...this.navigationView.navbar.firstElementChild.children];
-    navList.forEach((navItem, idx) => {
-      navItem.addEventListener("click", e => this.navItemClickHandler(e, idx));
+    this.carouselView.cardList.addEventListener("click", e => {
+      if (e.target.tagName === "A") this.carouselViewClickHandler(e);
+    });
+
+    this.navigationView.navbar.addEventListener("click", e => {
+      const {
+        target: {
+          tagName,
+          dataset: { idx }
+        }
+      } = e;
+      if (tagName === "LI") this.navItemClickHandler(idx);
     });
   }
 
@@ -49,7 +50,7 @@ class Controller {
       this.previousIndex
     );
   }
-  navItemClickHandler(e, idx) {
+  navItemClickHandler(idx) {
     this.changeIndexByNav(idx);
     this.navigationView.drawCurrentNavItem(
       this.currentIndex,

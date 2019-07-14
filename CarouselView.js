@@ -1,8 +1,8 @@
 class CarouselView {
   constructor({ leftBtn, rightBtn, cardList, animationTime }) {
+    this.cardList = cardList;
     this.leftBtn = leftBtn;
     this.rightBtn = rightBtn;
-    this.cardList = cardList;
     this.countOfCards = undefined;
     this.animationTime = animationTime;
   }
