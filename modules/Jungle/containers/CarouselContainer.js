@@ -1,7 +1,7 @@
 import { Carousel, Navigation } from '../components/index.js';
 import Store from '../store/index.js';
 
-import { isContainClass, mergeConfig, sleep } from '../../JinUtil/index.js';
+import { isContainClass, mergeConfig, sleep, qs } from '../../JinUtil/index.js';
 
 export default class CarouselContainer {
   constructor({ classNameObj, options }) {
@@ -25,7 +25,7 @@ export default class CarouselContainer {
   getStore({ container }) {
     return new Store({
       currentItem: 1,
-      itemLength: document.querySelector(container).children.length,
+      itemLength: qs(container).children.length,
       infinite: this.options.infinite
     });
   }
