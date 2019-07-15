@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.card-wrap {
+.wrap {
   max-width: 800px;
   width: 100%;
   min-height: 300px;
@@ -10,15 +10,15 @@
   margin-top: 20px;
 }
 
-.card-wrap .navigation {
+.wrap .card-navigation {
   margin-bottom: 40px;
 }
 
-.card-wrap .navigation-list {
+.wrap .card-navi-list {
   display: flex;
   align-items: center;
 }
-.card-wrap .navigation-list > li {
+.wrap .card-navi-list > li {
   flex: 1;
   display: flex;
   align-items: center;
@@ -30,21 +30,21 @@
   cursor: pointer;
 }
 
-.card-wrap .navigation-list > li:nth-child(1) {
+.wrap .card-navi-list > li:nth-child(1) {
   background: #2392c0;
 }
-.card-wrap .navigation-list > li:nth-child(2) {
+.wrap .card-navi-list > li:nth-child(2) {
   background: #a90067;
 }
-.card-wrap .navigation-list > li:nth-child(3) {
+.wrap .card-navi-list > li:nth-child(3) {
   background: #018577;
 }
-.card-wrap .navigation-list > li:nth-child(4) {
+.wrap .card-navi-list > li:nth-child(4) {
   background: #e65d17;
 }
 
-.carousel-wrap {
-  overflow: hidden;
+.card-wrap {
+  position: relative;
 }
 
 .carousel-item {

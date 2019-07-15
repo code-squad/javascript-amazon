@@ -7,3 +7,7 @@
 .scale {
   transform: scale(1.1);
 }
+
+.carousel-wrap {
+  overflow: hidden;
+}

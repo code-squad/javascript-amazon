@@ -1,28 +1,63 @@
-import MakeTemplate from "./models/template.js";
-import Carousel from "./carousel.js";
-import Pagination from "./pagination.js";
+import koon from "./koon.js";
+const {qS} = koon;
 
-const cardRequest = new Request('http://127.0.0.1:5500/Javascript/models/localData.json');
-fetch(cardRequest)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    const makeTemplate = new MakeTemplate();
+import MainController from "./controllers/mainController.js";
+import Carousel from "./views/carouselView.js";
+import Arrows from "./views/arrowsView.js";
+import CardNavi from "./views/cardNaviView.js";
 
-    makeTemplate.init(data);
-  })
-  .then(() => {
-    const pagination = new Pagination();
-    const carousel = new Carousel(".carousel", {
-      infinite: true,
-      speed: 1000
-    });  
+const element = qS('.card-wrap');
+const option = {
+  infinite : true,
+  speed : 1,
+  arrows : true,
+  cardNavi : '.card-navigation'    
+}
 
-    // carousel.init(pagination);
-    // pagination.init(carousel);
-  }) 
+const carousel = new Carousel(element, option);
+const arrows = new Arrows();
+const cardNavi = new CardNavi(option);
 
+const mainController = new MainController(option, carousel, arrows, cardNavi)
+mainController.init();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import mediator from "./mediator.js";
+
+// mediator.init('.card-wrap', {
+//   infinite : true,
+//   speed : 1000,
+//   arrows : true,
+//   cardNavigation : '.card-navigation'   
+// })
 
 
 
