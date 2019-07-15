@@ -8,7 +8,7 @@
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     ],
-    "imgAddress": "./images/Card_A01.png",
+    "imgAddress": "images/Card_A01.png",
     "color": "blue"
     
   },
@@ -19,7 +19,7 @@
       "Consectetur adipisci accusamus ad officia autem eum dignissimos a deleniti, magni cupiditate consequuntur debitis.",
       "Voluptate, ullam molestias necessitatibus sequi distinctio veniam facere."
       ],
-    "imgAddress": "./images/Card_B01.png",
+    "imgAddress": "images/Card_B01.png",
     "color": "pink"
 
   },
@@ -32,7 +32,7 @@
       "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     ],
-    "imgAddress": "./images/Card_C01.png",
+    "imgAddress": "images/Card_C01.png",
     "color": "cyan"
 
   },
@@ -41,7 +41,7 @@
     "desc": [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit."
     ],
-    "imgAddress": "./images/Card_D01.png",
+    "imgAddress": "images/Card_D01.png",
     "color": "orange"
 
   }

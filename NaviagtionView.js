@@ -3,9 +3,9 @@ class NavigationView {
     this.navbar = navbar;
   }
   render(contentsData) {
-    const contentsTemplate = contentsData.reduce((contentsTemplate, card) => {
+    const contentsTemplate = contentsData.reduce((contentsTemplate, card, idx) => {
       const liTemplate = `
-        <li class="title__card title__card_${card.color}">
+        <li data-idx="${idx}" class="title__card title__card_${card.color}">
         ${card.title}
         </li>
         `;
