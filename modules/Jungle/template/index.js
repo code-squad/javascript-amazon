@@ -17,10 +17,10 @@ const templates = {
     return `
     <div class="auto-container">
       <div class="autocomplete-wrapper">
-        <input type="text" name="jungle-search" id="jungle-search" class="jungle-search" /><button>
+        <input type="text" name="auto-search" id="auto-search" class="auto-search" /><button>
           <img src="./resources/images/search-icon.png" />
         </button>
-        <div class="autocomplete-area">
+        <div class="auto-frame">
           <ul>
             <li><span>안녕하세요</span></li>
             <li><span>안녕하세요</span> 하기가싫군요</li>

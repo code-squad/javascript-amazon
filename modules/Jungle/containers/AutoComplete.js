@@ -34,6 +34,31 @@ export default class AutoCompleteContainer {
   }
 
   getAutoComplete(classNameObj) {
-    return new AutoComplete(classNameObj);
+    return new AutoComplete({
+      container: classNameObj.container,
+      onChange: this.autoCmpChangeHandler.bind(this),
+      onBlur: this.autoCmpBlurHandler.bind(this)
+    });
+  }
+
+  autoCmpChangeHandler({ target }) {
+    const { state } = this.store;
+    const { value } = target;
+    if (!value) return;
+
+    this.store.setState({
+      ...state,
+      isWriting: true,
+      query: value
+    });
+  }
+
+  autoCmpBlurHandler() {
+    const { state } = this.store;
+
+    this.store.setState({
+      ...state,
+      isWriting: false
+    });
   }
 }
