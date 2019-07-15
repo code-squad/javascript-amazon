@@ -10,8 +10,8 @@ export default class AutoCompleteContainer {
     this.store = this.getStore({});
 
     classNameObj.parentNode = '.auto-wrapper';
-    this.autoFrame = this.getView(classNameObj, 'autoMatchedList');
     this.autoInput = this.getView(classNameObj, 'autoInput');
+    this.autoMatched = this.getView(classNameObj, 'autoMatchedList');
     this.autoRecent = this.getView(classNameObj, 'autoRecentList');
   }
 
@@ -31,10 +31,10 @@ export default class AutoCompleteContainer {
       returnObject = this.getAutoMathedList(classNameObj);
     }
     if (type === 'autoInput') {
-      returnObject = this.getAutoRecentList(classNameObj);
+      returnObject = this.getAutoInput(classNameObj);
     }
     if (type === 'autoRecentList') {
-      returnObject = this.getAutoInput(classNameObj);
+      returnObject = this.getAutoRecentList(classNameObj);
     }
 
     this.store.on(returnObject);
@@ -43,19 +43,19 @@ export default class AutoCompleteContainer {
     return returnObject;
   }
 
-  getAutoMathedList(classNameObj) {
-    return new AutoMatchedList({
-      container: classNameObj.container
-    });
-  }
-
   getAutoInput(classNameObj) {
     return new AutoInput({
       container: classNameObj.container,
-      parentNode: classNameObj.parentNode,
       onChange: this.autoInputChangeHandler.bind(this),
       onBlur: this.autoInputBlurHandler.bind(this),
       onFocus: this.autoInputFocusHandler.bind(this)
+    });
+  }
+
+  getAutoMathedList(classNameObj) {
+    return new AutoMatchedList({
+      container: classNameObj.container,
+      parentNode: classNameObj.parentNode
     });
   }
 

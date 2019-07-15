@@ -15,25 +15,26 @@ const templates = {
 
   autoMatchedArea: _ => {
     return `
-    <div class="auto-container">
-      <div class="auto-wrapper">
-        <div class="auto-area matched">
-          <ul>
-            <li><span>안녕하세요</span></li>
-            <li><span>안녕하세요</span> 하기가싫군요</li>
-            <li class="selected"><span>안녕하세요</span> 마크업은 매우 귀찮네요</li>
-          </ul>
-        </div>
+      <div class="auto-area matched">
+        <ul>
+          <li><span>안녕하세요</span></li>
+          <li><span>안녕하세요</span> 하기가싫군요</li>
+          <li class="selected"><span>안녕하세요</span> 마크업은 매우 귀찮네요</li>
+        </ul>
       </div>
-    </div>
     `;
   },
 
   autoInput: _ => {
     return `
-      <input type="text" name="auto-search" id="auto-search" class="auto-search" /><button>
-        <img src="./resources/images/search-icon.png" />
-      </button>`;
+      <div class="auto-container">
+        <div class="auto-wrapper">
+          <input type="text" name="auto-search" id="auto-search" class="auto-search" /><button>
+            <img src="./resources/images/search-icon.png" />
+          </button>
+        </div>
+      </div>
+    `;
   },
 
   autoRecentArea: _ => {

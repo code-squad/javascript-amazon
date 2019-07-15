@@ -1,9 +1,10 @@
 import { makeHTMLString } from '../template/index.js';
 import { qs } from '../../JinUtil/index.js';
 
-export default class AutoCompleteFrame {
-  constructor({ container }) {
+export default class AutoMatchedList {
+  constructor({ container, parentNode }) {
     this.container = qs(container);
+    this.parentNode = this.container.qs(parentNode);
     this.matchedList;
   }
 
@@ -14,9 +15,9 @@ export default class AutoCompleteFrame {
 
   setInitialUI() {
     const matchedList = makeHTMLString({ type: 'autoMatchedArea' });
-    this.container.insertAdjacentHTML('afterbegin', matchedList);
+    this.parentNode.insertAdjacentHTML('beforeend', matchedList);
 
-    this.matchedList = this.container.qs('.auto-area.matched');
+    this.matchedList = this.parentNode.qs('.auto-area.matched');
   }
 
   attatchEvent() {}

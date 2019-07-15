@@ -4,7 +4,7 @@ import { qs, removeNodes, setCSS } from '../../JinUtil/index.js';
 export default class AutoComplete {
   constructor({ container, parentNode }) {
     this.container = qs(container);
-    this.parentNode = parentNode;
+    this.parentNode = this.container.qs(parentNode);
     this.recentArea;
   }
 
@@ -15,10 +15,9 @@ export default class AutoComplete {
 
   setInitialUI() {
     const recentAreaHTML = makeHTMLString({ type: 'autoRecentArea' });
-    const parent = qs(this.parentNode);
+    this.parentNode.insertAdjacentHTML('beforeend', recentAreaHTML);
 
-    parent.insertAdjacentHTML('beforeend', recentAreaHTML);
-    this.recentArea = parent.qs('.auto-area.recent');
+    this.recentArea = this.parentNode.qs('.auto-area.recent');
   }
 
   attatchEvent() {}
