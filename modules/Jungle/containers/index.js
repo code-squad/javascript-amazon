@@ -1,4 +1,4 @@
 import CarouselContainer from './CarouselContainer.js';
-import AutoComplete from './AutoComplete.js';
+import AutoCompleteContainer from './AutoComplete.js';
 
-export { CarouselContainer, AutoComplete };
+export { CarouselContainer, AutoCompleteContainer };

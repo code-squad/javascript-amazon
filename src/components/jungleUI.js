@@ -8,3 +8,10 @@ export const makeCarousel = () => {
     // options: { infinite: false }
   });
 };
+
+export const makeAutoComplete = () => {
+  return jungle.createAutoComplete({
+    classNameObj: { container: '.autoComplete' }
+    // options
+  });
+};

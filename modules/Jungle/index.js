@@ -5,8 +5,8 @@ class Jungle {
     return new containers.CarouselContainer({ classNameObj, options });
   }
 
-  createAutoComplete({}) {
-    return new containers.AutoComplete({});
+  createAutoComplete({ classNameObj, options }) {
+    return new containers.AutoCompleteContainer({ classNameObj, options });
   }
 }
 
