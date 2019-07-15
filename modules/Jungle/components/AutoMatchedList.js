@@ -13,7 +13,7 @@ export default class AutoCompleteFrame {
   }
 
   setInitialUI() {
-    const matchedList = makeHTMLString({ type: 'autoMatchedList' });
+    const matchedList = makeHTMLString({ type: 'autoMatchedArea' });
     this.container.insertAdjacentHTML('afterbegin', matchedList);
 
     this.matchedList = this.container.qs('.auto-area.matched');

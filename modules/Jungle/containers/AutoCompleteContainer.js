@@ -19,8 +19,8 @@ export default class AutoCompleteContainer {
     return new Store({
       isWriting: false,
       query: '',
-      recentQuery: [],
-      matchedQuery: []
+      recentQueries: ['hello', 'recent'],
+      matchedQueries: []
     });
   }
 

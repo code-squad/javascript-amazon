@@ -1,11 +1,11 @@
 import { makeHTMLString } from '../template/index.js';
-import { qs } from '../../JinUtil/index.js';
+import { qs, removeNodes, setCSS } from '../../JinUtil/index.js';
 
 export default class AutoComplete {
   constructor({ container, parentNode }) {
     this.container = qs(container);
     this.parentNode = parentNode;
-    this.recentList;
+    this.recentArea;
   }
 
   init() {
@@ -14,20 +14,25 @@ export default class AutoComplete {
   }
 
   setInitialUI() {
-    const autoRecentList = makeHTMLString({ type: 'autoRecentList' });
+    const recentAreaHTML = makeHTMLString({ type: 'autoRecentArea' });
     const parent = qs(this.parentNode);
 
-    parent.insertAdjacentHTML('beforeend', autoRecentList);
-    this.recentList = parent.qs('.auto-area.recent');
+    parent.insertAdjacentHTML('beforeend', recentAreaHTML);
+    this.recentArea = parent.qs('.auto-area.recent');
   }
 
   attatchEvent() {}
 
   render(state) {
-    if (state.isWriting && !state.query) {
-      this.recentList.style.display = 'block';
-    } else {
-      this.recentList.style.display = 'none';
+    if (!state.isWriting || !!state.query) {
+      setCSS(this.recentArea, 'display', 'none');
+      return;
     }
+
+    removeNodes([...this.recentArea.children]);
+
+    const autoListHTML = makeHTMLString({ type: 'autoList', data: state.recentQueries });
+    this.recentArea.insertAdjacentHTML('beforeend', autoListHTML);
+    setCSS(this.recentArea, 'display', 'block');
   }
 }

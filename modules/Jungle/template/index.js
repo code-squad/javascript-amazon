@@ -13,7 +13,7 @@ const templates = {
     `;
   },
 
-  autoMatchedList: _ => {
+  autoMatchedArea: _ => {
     return `
     <div class="auto-container">
       <div class="auto-wrapper">
@@ -32,18 +32,24 @@ const templates = {
   autoInput: _ => {
     return `
       <input type="text" name="auto-search" id="auto-search" class="auto-search" /><button>
-          <img src="./resources/images/search-icon.png" />
+        <img src="./resources/images/search-icon.png" />
       </button>`;
   },
 
-  autoRecentList: _ => {
+  autoRecentArea: _ => {
     return `
       <div class="auto-area recent">
         <ul>
-          <li><span>이건 최근검색어에요</span></li>
-          <li class="selected">최근검색!!</li>
         </ul>
       </div>
+    `;
+  },
+
+  autoList: lists => {
+    return `
+      ${lists.reduce((acc, list) => {
+        return (acc += `<li>${list}</li>`);
+      }, '')}
     `;
   }
 };
