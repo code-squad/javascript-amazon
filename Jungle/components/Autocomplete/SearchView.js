@@ -1,7 +1,13 @@
+import MyFetch from "../../../Grenutil/MyFetch/index.js";
+
 export default class SearchView {
   constructor({ categories }) {
     //카테고리 입력받아 seach-category에 사용하기
     this.categories = categories;
+
+    MyFetch("https://jsonplaceholder.typicode.com/photos")
+      .then(data => data.map(item => item.title))
+      .then(data => this.titleData = data);
   }
 
   /**
