@@ -16,8 +16,8 @@ const templates = {
   autoFrame: _ => {
     return `
     <div class="auto-container">
-      <div class="autocomplete-wrapper">
-        <div class="auto-frame">
+      <div class="auto-wrapper">
+        <div class="auto-area matched">
           <ul>
             <li><span>안녕하세요</span></li>
             <li><span>안녕하세요</span> 하기가싫군요</li>
@@ -38,7 +38,7 @@ const templates = {
 
   autoRecent: _ => {
     return `
-      <div class="auto-frame">
+      <div class="auto-area recent">
         <ul>
           <li><span>이건 최근검색어에요</span></li>
           <li><span>안녕하세요</span> 하기가싫군요</li>

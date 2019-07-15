@@ -16,7 +16,7 @@ export default class AutoCompleteFrame {
     const autoComplete = makeHTMLString({ type: 'autoFrame' });
     this.container.insertAdjacentHTML('afterbegin', autoComplete);
 
-    this.autoFrame = this.container.qs('.auto-frame');
+    this.autoFrame = this.container.qs('.auto-area.matched');
   }
 
   attatchEvent() {}

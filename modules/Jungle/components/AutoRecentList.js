@@ -2,8 +2,9 @@ import { makeHTMLString } from '../template/index.js';
 import { qs } from '../../JinUtil/index.js';
 
 export default class AutoComplete {
-  constructor({ container }) {
+  constructor({ container, parentNode }) {
     this.container = qs(container);
+    this.parentNode = parentNode;
   }
 
   init() {
@@ -11,7 +12,10 @@ export default class AutoComplete {
     this.attatchEvent();
   }
 
-  setInitialUI() {}
+  setInitialUI() {
+    const autoRecent = makeHTMLString({ type: 'autoRecent' });
+    qs(this.parentNode).insertAdjacentHTML('beforeend', autoRecent);
+  }
 
   attatchEvent() {}
 

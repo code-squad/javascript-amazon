@@ -1,4 +1,4 @@
-import { AutoCompleteFrame, AutoCompleteInput, AutoCompleteRecent } from '../components/index.js';
+import { AutoInput, AutoMatchedList, AutoRecentList } from '../components/index.js';
 import Store from '../store/index.js';
 
 import { mergeConfig, qs } from '../../JinUtil/index.js';
@@ -8,9 +8,11 @@ export default class AutoCompleteContainer {
     this.container = qs(classNameObj.container);
 
     this.store = this.getStore({});
-    this.autoFrame = this.getView(classNameObj, 'autoFrame');
+
+    classNameObj.parentNode = '.auto-wrapper';
+    this.autoFrame = this.getView(classNameObj, 'autoMatchedList');
     this.autoInput = this.getView(classNameObj, 'autoInput');
-    this.autoRecent = this.getView(classNameObj, 'autoRecent');
+    this.autoRecent = this.getView(classNameObj, 'autoRecentList');
   }
 
   getStore({}) {
@@ -25,13 +27,13 @@ export default class AutoCompleteContainer {
   getView(classNameObj, type) {
     let returnObject;
 
-    if (type === 'autoFrame') {
-      returnObject = this.getAutoFrame(classNameObj);
-    }
-    if (type === 'autoRecent') {
-      returnObject = this.getAutoRecent(classNameObj);
+    if (type === 'autoMatchedList') {
+      returnObject = this.getAutoMathedList(classNameObj);
     }
     if (type === 'autoInput') {
+      returnObject = this.getAutoRecentList(classNameObj);
+    }
+    if (type === 'autoRecentList') {
       returnObject = this.getAutoInput(classNameObj);
     }
 
@@ -41,30 +43,31 @@ export default class AutoCompleteContainer {
     return returnObject;
   }
 
-  getAutoFrame(classNameObj) {
-    return new AutoCompleteFrame({
+  getAutoMathedList(classNameObj) {
+    return new AutoMatchedList({
       container: classNameObj.container
     });
   }
 
   getAutoInput(classNameObj) {
-    return new AutoCompleteInput({
+    return new AutoInput({
       container: classNameObj.container,
+      parentNode: classNameObj.parentNode,
       onChange: this.autoCmpChangeHandler.bind(this),
       onBlur: this.autoCmpBlurHandler.bind(this)
     });
   }
 
-  getAutoRecent(classNameObj) {
-    return new AutoCompleteRecent({
-      container: classNameObj.container
+  getAutoRecentList(classNameObj) {
+    return new AutoRecentList({
+      container: classNameObj.container,
+      parentNode: classNameObj.parentNode
     });
   }
 
   autoCmpChangeHandler({ target }) {
     const { state } = this.store;
     const { value } = target;
-    if (!value) return;
 
     this.store.setState({
       ...state,

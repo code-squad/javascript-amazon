@@ -10,6 +10,11 @@ $font-size: 16px;
   margin: calcRem(30px) auto calcRem(10px) auto;
   opacity: 1;
   position: relative;
+}
+
+.auto-wrapper {
+  width: calcRem(450px);
+  box-sizing: border-box;
 
   & input {
     width: calcRem(400px);
@@ -50,12 +55,7 @@ $font-size: 16px;
   }
 }
 
-.autocomplete-wrapper {
-  width: calcRem(450px);
-  box-sizing: border-box;
-}
-
-.auto-frame {
+.auto-area {
   position: absolute;
   width: inherit;
   border: 1px solid #ced4da;

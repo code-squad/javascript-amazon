@@ -1,7 +1,7 @@
 import Carousel from './Carousel.js';
 import Navigation from './Navigation.js';
-import AutoCompleteFrame from './AutoCompleteFrame.js';
-import AutoCompleteInput from './AutoCompleteInput.js';
-import AutoCompleteRecent from './AutoCompleteRecent.js';
+import AutoInput from './AutoInput.js';
+import AutoMatchedList from './AutoMatchedList.js';
+import AutoRecentList from './AutoRecentList.js';
 
-export { Carousel, Navigation, AutoCompleteFrame, AutoCompleteInput, AutoCompleteRecent };
+export { Carousel, Navigation, AutoInput, AutoMatchedList, AutoRecentList };
