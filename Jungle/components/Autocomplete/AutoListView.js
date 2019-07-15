@@ -1,5 +1,5 @@
 //utils
-import MyFetch from "../../../Grenutil/MyFetch/index.js";
+import myDelay from "../../../Grenutil/MyDelay/index.js";
 import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
 
 const dummyData = [
@@ -73,16 +73,13 @@ export default class AutoListView extends MyEventEmitter {
    * 3. 목록을 위아래로 움직일 수 있음. (키보드 이벤트)
    * 4. 선택된 값을 전달 가능해야함
    */
-  constructor({ maxLen, dataUrl }) {
+  constructor({ maxLen, dataUrl, delayTime }) {
     super();
 
     this.maxLen = maxLen;
+    this.delayTime = delayTime;
 
-    this.on("typing", inputVal => {
-      if (inputVal === "") {
-        this.setShow(false);
-        return;
-      }
+    this.on("typing", this.searchTypingHandler.bind(this));
 
       // MyFetch(dataUrl)
       //   .then(data => data.map(item => item.title))
@@ -94,10 +91,18 @@ export default class AutoListView extends MyEventEmitter {
       //       this.setShow(true);
       //     }
       //   });
+  }
 
+  searchTypingHandler(inputVal) {
+    if (inputVal === "") {
+      this.setShow(false);
+      return;
+    }
+
+    myDelay(this.delayTime).then(() => {
       const dummy = dummyData.map(item => item.title);
-
       const data = this.getFilteredData(inputVal, dummy);
+
       if(data.length === 0) this.setShow(false);
       else {
         this.autoList.innerHTML = this.getTemplate(data);

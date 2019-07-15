@@ -7,15 +7,15 @@ const autoData = ["apple", "abc", "best", "bee", "character", "cat"];
 describe("Autocomplete test", () => {
   test("텍스트 일치 검사", () => {
     expect(autoListView.getFilteredData("a", autoData)).toEqual([
-      "abc",
       "apple",
+      "abc",
       "cat",
       "character"
     ]);
 
     expect(autoListView.getFilteredData("b", autoData)).toEqual([
-      "bee",
       "best",
+      "bee",
       "abc"
     ]);
   });

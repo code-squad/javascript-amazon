@@ -10,7 +10,8 @@ export default class SearchView {
 
     this.autoListView = new AutoListView({
       maxLen: 8,
-      dataUrl
+      dataUrl,
+      delayTime: 1000
     });
   }
 
