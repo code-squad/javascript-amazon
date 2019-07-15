@@ -24,12 +24,20 @@ export default class AutoListView extends MyEventEmitter {
     });
   }
 
+  compareByIndex(a, b) {
+    return (a.index > b.index) ? true : (a.index === b.index && a.word > b.word) ? true : false;
+  }
+
   getFilteredData(text) {
     let filteredData = [...this.autoData];
 
-    filteredData = filteredData.filter(data => {
-      return (data.includes(text));
-    });
+    filteredData = filteredData
+      .filter(data => data.includes(text))
+      .map(data => ({
+        word: data,
+        index: data.indexOf(text)
+      })).sort(this.compareByIndex)
+      .map(data => data.word);
 
     return filteredData;
   }

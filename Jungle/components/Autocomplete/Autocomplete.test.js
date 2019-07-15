@@ -6,7 +6,17 @@ autoListView.autoData = ["apple", "abc", "best", "bee", "character", "cat"];
 
 describe("Autocomplete test", () => {
   test("텍스트 일치 검사", () => {
-    expect(autoListView.getFilteredData("a")).toEqual(["apple", "abc", "character", "cat"]);
-    expect(autoListView.getFilteredData("b")).toEqual(["abc", "best", "bee"]);
+    expect(autoListView.getFilteredData("a")).toEqual([
+      "abc",
+      "apple",
+      "cat",
+      "character"
+    ]);
+
+    expect(autoListView.getFilteredData("b")).toEqual([
+      "bee",
+      "best",
+      "abc"
+    ]);
   });
 });
