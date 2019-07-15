@@ -25,7 +25,7 @@ header {
   @include flexbox();
   @include justify-content(center);
   @include align-items(center);
-  margin-bottom: 10rem;  //TODO:지워야함
+  margin-bottom: 15rem;  //TODO:지워야함
 }
 
 $search-radius: 5px;
@@ -101,6 +101,7 @@ $search-radius: 5px;
       height: 100%;
       top: 100%;
       z-index: 10;
+      opacity: 0;
 
       & > ul,
       & li {

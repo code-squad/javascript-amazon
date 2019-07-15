@@ -3,13 +3,15 @@ import AutoListView from "./AutoListView.js";
 
 const dataUrl = "https://jsonplaceholder.typicode.com/photos";
 
-
 export default class SearchView {
   constructor({ categories }) {
     //카테고리 입력받아 seach-category에 사용하기
     this.categories = categories;
 
-    this.autoListView = new AutoListView({maxLen: 8, dataUrl});
+    this.autoListView = new AutoListView({
+      maxLen: 8,
+      dataUrl
+    });
   }
 
   /**
@@ -55,7 +57,8 @@ export default class SearchView {
       </div>
       <div class="search-input">
         <input type="search" name="" id="">
-        ${this.autoListView.getTemplate()}
+        <div class="search-auto-list">
+        </div>
       </div>
       <div class="search-submit">
         <div class="icon-magnifying-glass">&#9906;</div>
@@ -72,8 +75,8 @@ export default class SearchView {
     this.cacheDom();
     this.autoListView.cacheDom();
 
-    this.searchInput.addEventListener("input", ({target}) => {
+    this.searchInput.addEventListener("input", ({ target }) => {
       this.autoListView.emit("typing", target.value);
-    })
+    });
   }
 }

@@ -30,7 +30,7 @@ header {
   -moz-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  margin-bottom: 10rem; }
+  margin-bottom: 15rem; }
 
 .search-wrapper {
   width: 640px;
@@ -92,7 +92,8 @@ header {
       background-color: #fff;
       height: 100%;
       top: 100%;
-      z-index: 10; }
+      z-index: 10;
+      opacity: 0; }
       .search-wrapper .search-input .search-auto-list > ul, .search-wrapper .search-input .search-auto-list li {
         height: 100%; }
       .search-wrapper .search-input .search-auto-list li {
