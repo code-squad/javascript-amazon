@@ -4,7 +4,7 @@ import { qs } from '../../JinUtil/index.js';
 export default class AutoCompleteFrame {
   constructor({ container }) {
     this.container = qs(container);
-    this.autoFrame;
+    this.matchedList;
   }
 
   init() {
@@ -13,20 +13,20 @@ export default class AutoCompleteFrame {
   }
 
   setInitialUI() {
-    const autoComplete = makeHTMLString({ type: 'autoFrame' });
-    this.container.insertAdjacentHTML('afterbegin', autoComplete);
+    const matchedList = makeHTMLString({ type: 'autoMatchedList' });
+    this.container.insertAdjacentHTML('afterbegin', matchedList);
 
-    this.autoFrame = this.container.qs('.auto-area.matched');
+    this.matchedList = this.container.qs('.auto-area.matched');
   }
 
   attatchEvent() {}
 
   render(state) {
-    if (!state.isWriting) {
-      this.autoFrame.style.display = 'none';
+    if (!state.isWriting || !state.query) {
+      this.matchedList.style.display = 'none';
       return;
     }
 
-    this.autoFrame.style.display = 'block';
+    this.matchedList.style.display = 'block';
   }
 }

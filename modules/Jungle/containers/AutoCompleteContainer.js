@@ -53,8 +53,9 @@ export default class AutoCompleteContainer {
     return new AutoInput({
       container: classNameObj.container,
       parentNode: classNameObj.parentNode,
-      onChange: this.autoCmpChangeHandler.bind(this),
-      onBlur: this.autoCmpBlurHandler.bind(this)
+      onChange: this.autoInputChangeHandler.bind(this),
+      onBlur: this.autoInputBlurHandler.bind(this),
+      onFocus: this.autoInputFocusHandler.bind(this)
     });
   }
 
@@ -65,7 +66,7 @@ export default class AutoCompleteContainer {
     });
   }
 
-  autoCmpChangeHandler({ target }) {
+  autoInputChangeHandler({ target }) {
     const { state } = this.store;
     const { value } = target;
 
@@ -76,12 +77,21 @@ export default class AutoCompleteContainer {
     });
   }
 
-  autoCmpBlurHandler() {
+  autoInputBlurHandler() {
     const { state } = this.store;
 
     this.store.setState({
       ...state,
       isWriting: false
+    });
+  }
+
+  autoInputFocusHandler() {
+    const { state } = this.store;
+
+    this.store.setState({
+      ...state,
+      isWriting: true
     });
   }
 }

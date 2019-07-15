@@ -5,6 +5,7 @@ export default class AutoComplete {
   constructor({ container, parentNode }) {
     this.container = qs(container);
     this.parentNode = parentNode;
+    this.recentList;
   }
 
   init() {
@@ -13,11 +14,20 @@ export default class AutoComplete {
   }
 
   setInitialUI() {
-    const autoRecent = makeHTMLString({ type: 'autoRecent' });
-    qs(this.parentNode).insertAdjacentHTML('beforeend', autoRecent);
+    const autoRecentList = makeHTMLString({ type: 'autoRecentList' });
+    const parent = qs(this.parentNode);
+
+    parent.insertAdjacentHTML('beforeend', autoRecentList);
+    this.recentList = parent.qs('.auto-area.recent');
   }
 
   attatchEvent() {}
 
-  render(state) {}
+  render(state) {
+    if (state.isWriting && !state.query) {
+      this.recentList.style.display = 'block';
+    } else {
+      this.recentList.style.display = 'none';
+    }
+  }
 }

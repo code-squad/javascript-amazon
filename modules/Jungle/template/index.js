@@ -13,7 +13,7 @@ const templates = {
     `;
   },
 
-  autoFrame: _ => {
+  autoMatchedList: _ => {
     return `
     <div class="auto-container">
       <div class="auto-wrapper">
@@ -36,13 +36,12 @@ const templates = {
       </button>`;
   },
 
-  autoRecent: _ => {
+  autoRecentList: _ => {
     return `
       <div class="auto-area recent">
         <ul>
           <li><span>이건 최근검색어에요</span></li>
-          <li><span>안녕하세요</span> 하기가싫군요</li>
-          <li class="selected"><span>안녕하세요</span> 마크업은 매우 귀찮네요</li>
+          <li class="selected">최근검색!!</li>
         </ul>
       </div>
     `;

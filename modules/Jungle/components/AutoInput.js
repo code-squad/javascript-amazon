@@ -2,11 +2,12 @@ import { makeHTMLString } from '../template/index.js';
 import { qs } from '../../JinUtil/index.js';
 
 export default class AutoCompleteInput {
-  constructor({ container, parentNode, onChange, onBlur }) {
+  constructor({ container, parentNode, onChange, onBlur, onFocus }) {
     this.container = qs(container);
     this.parentNode = parentNode;
     this.onChange = onChange;
     this.onBlur = onBlur;
+    this.onFocus = onFocus;
   }
 
   init() {
@@ -24,6 +25,7 @@ export default class AutoCompleteInput {
   attatchEvent() {
     this.searchInput.addEventListener('keyup', e => this.onChange(e));
     this.searchInput.addEventListener('blur', _ => this.onBlur());
+    this.searchInput.addEventListener('focus', _ => this.onFocus());
   }
 
   render(state) {
