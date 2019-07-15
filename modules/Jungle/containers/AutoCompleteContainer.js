@@ -1,4 +1,4 @@
-import { AutoComplete } from '../components/index.js';
+import { AutoCompleteFrame, AutoCompleteInput, AutoCompleteRecent } from '../components/index.js';
 import Store from '../store/index.js';
 
 import { mergeConfig, qs } from '../../JinUtil/index.js';
@@ -8,7 +8,9 @@ export default class AutoCompleteContainer {
     this.container = qs(classNameObj.container);
 
     this.store = this.getStore({});
-    this.autoComplete = this.getView(classNameObj, 'autoComplete');
+    this.autoFrame = this.getView(classNameObj, 'autoFrame');
+    this.autoInput = this.getView(classNameObj, 'autoInput');
+    this.autoRecent = this.getView(classNameObj, 'autoRecent');
   }
 
   getStore({}) {
@@ -23,8 +25,14 @@ export default class AutoCompleteContainer {
   getView(classNameObj, type) {
     let returnObject;
 
-    if (type === 'autoComplete') {
-      returnObject = this.getAutoComplete(classNameObj);
+    if (type === 'autoFrame') {
+      returnObject = this.getAutoFrame(classNameObj);
+    }
+    if (type === 'autoRecent') {
+      returnObject = this.getAutoRecent(classNameObj);
+    }
+    if (type === 'autoInput') {
+      returnObject = this.getAutoInput(classNameObj);
     }
 
     this.store.on(returnObject);
@@ -33,11 +41,23 @@ export default class AutoCompleteContainer {
     return returnObject;
   }
 
-  getAutoComplete(classNameObj) {
-    return new AutoComplete({
+  getAutoFrame(classNameObj) {
+    return new AutoCompleteFrame({
+      container: classNameObj.container
+    });
+  }
+
+  getAutoInput(classNameObj) {
+    return new AutoCompleteInput({
       container: classNameObj.container,
       onChange: this.autoCmpChangeHandler.bind(this),
       onBlur: this.autoCmpBlurHandler.bind(this)
+    });
+  }
+
+  getAutoRecent(classNameObj) {
+    return new AutoCompleteRecent({
+      container: classNameObj.container
     });
   }
 
