@@ -4,73 +4,73 @@ import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
 
 const dummyData = [
   {
-    "userId": 1,
-    "id": 1,
-    "title": "delectus aut autem",
-    "completed": false
+    userId: 1,
+    id: 1,
+    title: "delectus aut autem",
+    completed: false
   },
   {
-    "userId": 1,
-    "id": 2,
-    "title": "quis ut nam facilis et officia qui",
-    "completed": false
+    userId: 1,
+    id: 2,
+    title: "quis ut nam facilis et officia qui",
+    completed: false
   },
   {
-    "userId": 1,
-    "id": 3,
-    "title": "fugiat veniam minus",
-    "completed": false
+    userId: 1,
+    id: 3,
+    title: "fugiat veniam minus",
+    completed: false
   },
   {
-    "userId": 1,
-    "id": 4,
-    "title": "et porro tempora",
-    "completed": true
+    userId: 1,
+    id: 4,
+    title: "et porro tempora",
+    completed: true
   },
   {
-    "userId": 1,
-    "id": 5,
-    "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-    "completed": false
+    userId: 1,
+    id: 5,
+    title: "laboriosam mollitia et enim quasi adipisci quia provident illum",
+    completed: false
   },
   {
-    "userId": 1,
-    "id": 6,
-    "title": "qui ullam ratione quibusdam voluptatem quia omnis",
-    "completed": false
+    userId: 1,
+    id: 6,
+    title: "qui ullam ratione quibusdam voluptatem quia omnis",
+    completed: false
   },
   {
-    "userId": 1,
-    "id": 7,
-    "title": "illo expedita consequatur quia in",
-    "completed": false
+    userId: 1,
+    id: 7,
+    title: "illo expedita consequatur quia in",
+    completed: false
   },
   {
-    "userId": 1,
-    "id": 8,
-    "title": "quo adipisci enim quam ut ab",
-    "completed": true
+    userId: 1,
+    id: 8,
+    title: "quo adipisci enim quam ut ab",
+    completed: true
   },
   {
-    "userId": 1,
-    "id": 9,
-    "title": "molestiae perspiciatis ipsa",
-    "completed": false
+    userId: 1,
+    id: 9,
+    title: "molestiae perspiciatis ipsa",
+    completed: false
   },
   {
-    "userId": 1,
-    "id": 10,
-    "title": "illo est ratione doloremque quia maiores aut",
-    "completed": true
-  },
+    userId: 1,
+    id: 10,
+    title: "illo est ratione doloremque quia maiores aut",
+    completed: true
+  }
 ];
 
 export default class AutoListView extends MyEventEmitter {
   /**
    * TODO list
-   * 1. SearchView에 입력이 있을 때 입력값에 맞는 목록 생성해서 보여줌
-   * 2. 보여줄 최대 갯수 옵션으로 받음
-   * 3. 목록을 위아래로 움직일 수 있음. (키보드 이벤트)
+   * //1. SearchView에 입력이 있을 때 입력값에 맞는 목록 생성해서 보여줌
+   * //2. 보여줄 최대 갯수 옵션으로 받음
+   * //3. 목록을 위아래로 움직일 수 있음. (키보드 이벤트)
    * 4. 선택된 값을 전달 가능해야함
    */
   constructor({ maxLen, dataUrl, delayTime }) {
@@ -78,19 +78,21 @@ export default class AutoListView extends MyEventEmitter {
 
     this.maxLen = maxLen;
     this.delayTime = delayTime;
+    this.activatedItemIndex = -1;
+    this.currentItemLen = 0;
 
     this.on("typing", this.searchTypingHandler.bind(this));
 
-      // MyFetch(dataUrl)
-      //   .then(data => data.map(item => item.title))
-      //   .then(data => this.getFilteredData(inputVal, data))
-      //   .then(data => {
-      //     if (data.length === 0) this.setShow(false);
-      //     else {
-      //       this.autoList.innerHTML = this.getTemplate(data);
-      //       this.setShow(true);
-      //     }
-      //   });
+    // MyFetch(dataUrl)
+    //   .then(data => data.map(item => item.title))
+    //   .then(data => this.getFilteredData(inputVal, data))
+    //   .then(data => {
+    //     if (data.length === 0) this.setShow(false);
+    //     else {
+    //       this.autoList.innerHTML = this.getTemplate(data);
+    //       this.setShow(true);
+    //     }
+    //   });
   }
 
   searchTypingHandler(inputVal) {
@@ -103,10 +105,12 @@ export default class AutoListView extends MyEventEmitter {
       const dummy = dummyData.map(item => item.title);
       const data = this.getFilteredData(inputVal, dummy);
 
-      if(data.length === 0) this.setShow(false);
+      if (data.length === 0) this.setShow(false);
       else {
         this.autoList.innerHTML = this.getTemplate(data);
         this.setShow(true);
+        this.currentItemList = this.autoList.querySelectorAll("li");
+        this.currentItemLen = this.currentItemList.length;
       }
     });
   }
@@ -161,7 +165,52 @@ export default class AutoListView extends MyEventEmitter {
   }
 
   setShow(on) {
+    this.activatedItemIndex = -1;
+
     if (on) this.autoList.style.opacity = 1;
     else this.autoList.style.opacity = 0;
+  }
+
+  setActivatedItemClass() {
+    if (this.currentItemLen === 0) return;
+
+    this.currentItemList.forEach(item => {
+      item.classList.remove("activated");
+    });
+
+    if (this.activatedItemIndex < 0) return;
+    this.currentItemList[this.activatedItemIndex].classList.add("activated");
+  }
+
+  attachEvent() {
+    const wrapper = document.querySelector(".search-wrapper");
+    wrapper.addEventListener("keydown", evt => {
+      const { target, key } = evt;
+
+      if (!this.autoList.style.opacity) return;
+
+      if (key === "ArrowDown") {
+        this.activatedItemIndex =
+          this.activatedItemIndex === this.currentItemLen - 2
+            ? -1
+            : this.activatedItemIndex + 1;
+      } else if (key === "ArrowUp") {
+        this.activatedItemIndex =
+          this.activatedItemIndex === -1
+            ? this.currentItemLen - 2
+            : this.activatedItemIndex - 1;
+        evt.preventDefault();
+      } else if (key === "Enter") {
+        if (this.activatedItemIndex === -1) return;
+
+        const selectedVal = this.currentItemList[this.activatedItemIndex]
+          .innerText;
+
+        target.value = selectedVal;
+        this.searchTypingHandler(target.value);
+      }
+
+      this.setActivatedItemClass();
+    });
   }
 }

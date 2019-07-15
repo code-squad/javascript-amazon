@@ -17,8 +17,8 @@ export default class SearchView {
 
   /**
    * TODO list
-   * 1. 검색어를 입력하면 자동 완성 결과 보여주기 (300ms 지연)
-   * 2. 검색어를 지워도 일치하는 자동완성 결과 보여주기 -> 즉 검색창 value에 변화가 있을 때.
+   * //1. 검색어를 입력하면 자동 완성 결과 보여주기 (300ms 지연)
+   * //2. 검색어를 지워도 일치하는 자동완성 결과 보여주기 -> 즉 검색창 value에 변화가 있을 때.
    * 3. 자동 완성 목록은 키보드 위 아래 버튼으로 이동 가능
    * 4. 검색 된 내용 중 자동 완성과 일치되는 부분을 하이라이팅 해주기.
    * 5. 자동완성 결과를 키보드 방향키로 이동시에 선택부분의 배경색은 변경된다.
@@ -75,6 +75,7 @@ export default class SearchView {
   attachEvent() {
     this.cacheDom();
     this.autoListView.cacheDom();
+    this.autoListView.attachEvent();
 
     this.searchInput.addEventListener("input", ({ target }) => {
       this.autoListView.emit("typing", target.value);

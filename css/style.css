@@ -105,6 +105,8 @@ header {
         border-right: 1px dotted orange;
         background-color: #fff;
         cursor: pointer; }
+        .search-wrapper .search-input .search-auto-list li.activated {
+          background-color: #dbdbdb; }
         .search-wrapper .search-input .search-auto-list li:last-child {
           border-bottom-left-radius: 5px;
           border-bottom-right-radius: 5px;
@@ -118,8 +120,6 @@ header {
           border-bottom: 1px dotted orange; }
           .search-wrapper .search-input .search-auto-list li:last-child:hover {
             background-color: #fff; }
-        .search-wrapper .search-input .search-auto-list li:hover {
-          background-color: #dbdbdb; }
       .search-wrapper .search-input .search-auto-list > div {
         font-size: 0.7rem;
         color: #555;

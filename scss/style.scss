@@ -118,6 +118,10 @@ $search-radius: 5px;
         background-color: #fff;
         cursor: pointer;
 
+        &.activated {
+          background-color: rgb(219, 219, 219);
+        }
+
         &:last-child {
           border-bottom-left-radius: $search-radius;
           border-bottom-right-radius: $search-radius;
@@ -132,10 +136,6 @@ $search-radius: 5px;
           border-left: 1px dotted orange;
           border-right: 1px dotted orange;
           border-bottom: 1px dotted orange;
-        }
-
-        &:hover {
-          background-color: rgb(219, 219, 219);
         }
       }
 
