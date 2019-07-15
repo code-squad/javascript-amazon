@@ -85,18 +85,43 @@ header {
       padding: 0 0.5rem;
       font-size: 0.8rem;
       color: #111; }
-    .search-wrapper .search-input .search-info {
+    .search-wrapper .search-input .search-auto-list {
       width: 100%;
       position: absolute;
       background-color: #fff;
       height: 100%;
       top: 100%;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
-      border: 1px dotted orange;
-      cursor: pointer; }
-      .search-wrapper .search-input .search-info:hover {
-        background-color: #dbdbdb; }
+      z-index: 10; }
+      .search-wrapper .search-input .search-auto-list > ul, .search-wrapper .search-input .search-auto-list li {
+        height: 100%; }
+      .search-wrapper .search-input .search-auto-list li {
+        display: flex;
+        align-items: center;
+        padding: 0 0.5rem;
+        border-top: 1px dotted orange;
+        border-left: 1px dotted orange;
+        border-right: 1px dotted orange;
+        background-color: #fff;
+        cursor: pointer; }
+        .search-wrapper .search-input .search-auto-list li:last-child {
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          font-size: 0.7rem;
+          color: #555;
+          height: 70%;
+          cursor: default;
+          justify-content: flex-end;
+          border-left: 1px dotted orange;
+          border-right: 1px dotted orange;
+          border-bottom: 1px dotted orange; }
+          .search-wrapper .search-input .search-auto-list li:last-child:hover {
+            background-color: #fff; }
+        .search-wrapper .search-input .search-auto-list li:hover {
+          background-color: #dbdbdb; }
+      .search-wrapper .search-input .search-auto-list > div {
+        font-size: 0.7rem;
+        color: #555;
+        height: 50%; }
   .search-wrapper .search-submit {
     background-color: #febd68;
     width: 45px;

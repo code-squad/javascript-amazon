@@ -1,3 +1,7 @@
+//components
+import AutoListView from "./AutoListView.js";
+
+//utils
 import MyFetch from "../../../Grenutil/MyFetch/index.js";
 
 export default class SearchView {
@@ -8,6 +12,8 @@ export default class SearchView {
     MyFetch("https://jsonplaceholder.typicode.com/photos")
       .then(data => data.map(item => item.title))
       .then(data => this.titleData = data);
+
+    this.autoListView = new AutoListView({maxLen: 8});
   }
 
   /**
@@ -48,9 +54,7 @@ export default class SearchView {
       </div>
       <div class="search-input">
         <input type="search" name="" id="">
-        <div class="search-info">
-          <!-- 최근검색어/자동완성 -->
-        </div>
+        ${this.autoListView.getTemplate()}
       </div>
       <div class="search-submit">
         <div class="icon-magnifying-glass">&#9906;</div>
