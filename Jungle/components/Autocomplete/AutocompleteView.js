@@ -5,6 +5,7 @@ export default class AutocompleteView {
     const searchView = new SearchView({ categories });
 
     autocompleteElement.innerHTML = searchView.getTemplate();
+    searchView.attachEvent();
   }
 
   /**

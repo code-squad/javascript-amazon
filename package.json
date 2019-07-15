@@ -8,6 +8,7 @@
     "test": "jest",
     "test-MyEventEmitter": "jest MyEventEmitter",
     "test-Autocomplete-Model": "jest Jungle/components/Autocomplete/Model",
+    "test-Autocomplete": "jest Jungle/components/Autocomplete",
     "test-Carousel": "jest Jungle/components/Carousel/Test",
     "test:coverage": "jest --coverage"
   },

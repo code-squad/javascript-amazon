@@ -1,19 +1,15 @@
 //components
 import AutoListView from "./AutoListView.js";
 
-//utils
-import MyFetch from "../../../Grenutil/MyFetch/index.js";
+const dataUrl = "https://jsonplaceholder.typicode.com/photos";
+
 
 export default class SearchView {
   constructor({ categories }) {
     //카테고리 입력받아 seach-category에 사용하기
     this.categories = categories;
 
-    MyFetch("https://jsonplaceholder.typicode.com/photos")
-      .then(data => data.map(item => item.title))
-      .then(data => this.titleData = data);
-
-    this.autoListView = new AutoListView({maxLen: 8});
+    this.autoListView = new AutoListView({maxLen: 8, dataUrl});
   }
 
   /**
@@ -42,6 +38,11 @@ export default class SearchView {
     `;
   }
 
+  cacheDom() {
+    this.searchWrapper = document.querySelector(".search-wrapper");
+    this.searchInput = this.searchWrapper.querySelector("input[type=search]");
+  }
+
   getTemplate() {
     const template = `
     <form action="#" class="form-search">
@@ -65,5 +66,14 @@ export default class SearchView {
     `;
 
     return template;
+  }
+
+  attachEvent() {
+    this.cacheDom();
+    this.autoListView.cacheDom();
+
+    this.searchInput.addEventListener("input", ({target}) => {
+      this.autoListView.emit("typing", target.value);
+    })
   }
 }
