@@ -46,7 +46,19 @@ const templates = {
     `;
   },
 
-  autoList: lists => {
+  autoList: (lists, prefix) => {
+    if (!!prefix) {
+      const length = prefix.length;
+      return `
+        ${lists.reduce(
+          (acc, str) =>
+            (acc += `
+          <li><span>${str.substring(0, length)}</span>${str.substring(length)}</li>`),
+          ''
+        )}
+      `;
+    }
+
     return `
       ${lists.reduce((acc, list) => {
         return (acc += `<li>${list}</li>`);
@@ -55,6 +67,10 @@ const templates = {
   }
 };
 
-export const makeHTMLString = ({ data, type }) => {
+export const makeHTMLString = ({ data, prefix, type }) => {
+  if (!!prefix) {
+    return templates[type](data, prefix);
+  }
+
   return templates[type](data);
 };

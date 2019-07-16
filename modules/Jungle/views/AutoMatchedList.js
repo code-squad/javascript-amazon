@@ -31,7 +31,8 @@ export default class AutoMatchedList {
 
     const autoListHTML = makeHTMLString({
       type: 'autoList',
-      data: this.getNewQuries(state)
+      data: this.getNewQuries(state),
+      prefix: state.query
     });
 
     this.matchedList.insertAdjacentHTML('beforeend', autoListHTML);
