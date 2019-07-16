@@ -1,5 +1,4 @@
 //utils
-import myDelay from "../../../Grenutil/MyDelay/index.js";
 import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
 
 const dummyData = [
@@ -71,13 +70,16 @@ export default class AutoListView extends MyEventEmitter {
    * //1. SearchView에 입력이 있을 때 입력값에 맞는 목록 생성해서 보여줌
    * //2. 보여줄 최대 갯수 옵션으로 받음
    * //3. 목록을 위아래로 움직일 수 있음. (키보드 이벤트)
-   * 4. 선택된 값을 전달 가능해야함
+   * //4. 선택된 값을 전달 가능해야함
+   * 5. 마우스 온 됐을 때도 배경 색 바뀌게 해야함.
+   * 6. 클릭했을 때 input value 변경하기.
+   * 7. 일치 글자 하이라이팅 해야함.
+   * //8. debouncing. 딜레이로 기다렸다가 보여주는 방식이 아니라 같은 값 유지가 일정 시간 이상 되었을 때만 하는 것이다!.
    */
-  constructor({ maxLen, dataUrl, delayTime }) {
+  constructor({ maxLen, dataUrl }) {
     super();
 
     this.maxLen = maxLen;
-    this.delayTime = delayTime;
     this.activatedItemIndex = -1;
     this.currentItemLen = 0;
 
@@ -95,24 +97,27 @@ export default class AutoListView extends MyEventEmitter {
     //   });
   }
 
+  highlightMatchedText(inputVal) {
+    //TODO: 일치하는 글자 하이라이팅 구현
+  }
+
   searchTypingHandler(inputVal) {
     if (inputVal === "") {
       this.setShow(false);
       return;
     }
+    const dummy = dummyData.map(item => item.title);
+    const data = this.getFilteredData(inputVal, dummy);
 
-    myDelay(this.delayTime).then(() => {
-      const dummy = dummyData.map(item => item.title);
-      const data = this.getFilteredData(inputVal, dummy);
+    if (data.length === 0) this.setShow(false);
+    else {
+      this.autoList.innerHTML = this.getTemplate(data);
+      this.setShow(true);
+      this.currentItemList = this.autoList.querySelectorAll("li");
+      this.currentItemLen = this.currentItemList.length;
 
-      if (data.length === 0) this.setShow(false);
-      else {
-        this.autoList.innerHTML = this.getTemplate(data);
-        this.setShow(true);
-        this.currentItemList = this.autoList.querySelectorAll("li");
-        this.currentItemLen = this.currentItemList.length;
-      }
-    });
+      this.highlightMatchedText(inputVal);
+    }
   }
 
   compareByIndex(a, b) {

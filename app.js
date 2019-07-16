@@ -25,5 +25,13 @@ window.addEventListener("DOMContentLoaded", () => {
     "Books"
   ];
 
-  new Autocomplete({ autocompleteElement: autocomplete_div, categories });
+  const autocompleteOptions = {
+    debouncingDelay: 1000
+  };
+
+  new Autocomplete({
+    autocompleteElement: autocomplete_div,
+    categories,
+    options: autocompleteOptions
+  });
 });
