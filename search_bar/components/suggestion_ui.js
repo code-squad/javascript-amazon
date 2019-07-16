@@ -24,10 +24,12 @@ class SuggestionUI extends Subscriber {
   }
 
   renderSuggestion(state) {
-    if (!state.suggestions[state.currentValue]) return;
-    const suggestions = [...state.suggestions[state.currentValue]];
+    const prefix = state.currentValue;
+    const suggestions = state.suggestions[state.currentValue];
+    if (!suggestions) return;
     const tpl = suggestions.reduce((acc, curr) => {
-      return acc + `<li tabindex=-1>${curr}</li>`
+      curr = curr.replace(prefix, '');
+      return acc + `<li tabindex=-1>${prefix}<b>${curr}</b></li>`
     }, '');
     this.targetEl.innerHTML = `<ul>${tpl}</ul>`;
   }
