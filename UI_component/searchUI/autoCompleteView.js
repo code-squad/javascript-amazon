@@ -91,7 +91,7 @@ class AutoCompleteView {
           "highlight"
         );
         this.modal.children[this.currentHighlightIndex].style.backgroundColor =
-          "yellow";
+          "#EEEEEE";
       }
     } else if (this.currentHighlightIndex === lastIndex) {
       if (keyCode === "ArrowUp") {
@@ -99,13 +99,13 @@ class AutoCompleteView {
           "highlight"
         );
         this.modal.children[this.currentHighlightIndex].style.backgroundColor =
-          "lightblue";
+          "white";
         this.currentHighlightIndex -= 1;
         this.modal.children[this.currentHighlightIndex].classList.add(
           "highlight"
         );
         this.modal.children[this.currentHighlightIndex].style.backgroundColor =
-          "yellow";
+          "#EEEEEE";
       }
     } else {
       if (keyCode === "ArrowDown") {
@@ -113,25 +113,25 @@ class AutoCompleteView {
           "highlight"
         );
         this.modal.children[this.currentHighlightIndex].style.backgroundColor =
-          "lightblue";
+          "white";
         this.currentHighlightIndex += 1;
         this.modal.children[this.currentHighlightIndex].classList.add(
           "highlight"
         );
         this.modal.children[this.currentHighlightIndex].style.backgroundColor =
-          "yellow";
+          "#EEEEEE";
       } else if (keyCode === "ArrowUp") {
         this.modal.children[this.currentHighlightIndex].classList.remove(
           "highlight"
         );
         this.modal.children[this.currentHighlightIndex].style.backgroundColor =
-          "lightblue";
+          "white";
         this.currentHighlightIndex -= 1;
         this.modal.children[this.currentHighlightIndex].classList.add(
           "highlight"
         );
         this.modal.children[this.currentHighlightIndex].style.backgroundColor =
-          "yellow";
+          "#EEEEEE";
       }
     }
   }
