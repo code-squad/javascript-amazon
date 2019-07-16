@@ -25,7 +25,7 @@ class StateManager extends Publisher {
   }
 
   processRecentKeywordsMode(state) {
-    this.state = { ...this.state, ...state, selectedIdx: INITIAL_SELECTED_IDX, maxIdx: MAXIMUM_RECENT_KEYWORDS - 1 };
+    this.state = { ...this.state, ...state, selectedIdx: INITIAL_SELECTED_IDX, maxIdx: this.state.recentKeywords.length - 1 };
     this.notify(this.state);
   }
 
@@ -98,7 +98,6 @@ class StateManager extends Publisher {
 
     return directionMap[newState.arrowDirection]();
   }
-
   setSelectedIdx(state, fromIdx, toIdx, direction) {
     const increment = direction === 'down' ? 1 : -1;
     if (state.selectedIdx === fromIdx) state.selectedIdx = toIdx;
