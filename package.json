@@ -4,7 +4,7 @@
   "description": "레벨3",
   "main": "index.js",
   "scripts": {
-    "scss": "sass --watch scss:css Jungle/components/Autocomplete/style/scss:Jungle/components/Autocomplete/style/css",
+    "scss": "sass --watch scss:css",
     "test": "jest",
     "test-MyEventEmitter": "jest MyEventEmitter",
     "test-Autocomplete-Model": "jest Jungle/components/Autocomplete/Model",

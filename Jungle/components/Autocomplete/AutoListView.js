@@ -1,70 +1,30 @@
-//utils
-import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
-
 const dummyData = [
   {
-    userId: 1,
-    id: 1,
-    title: "delectus aut autem",
-    completed: false
+    title: "iphone"
   },
   {
-    userId: 1,
-    id: 2,
-    title: "quis ut nam facilis et officia qui",
-    completed: false
+    title: "ipad"
   },
   {
-    userId: 1,
-    id: 3,
-    title: "fugiat veniam minus",
-    completed: false
+    title: "imac"
   },
   {
-    userId: 1,
-    id: 4,
-    title: "et porro tempora",
-    completed: true
+    title: "ipod"
   },
   {
-    userId: 1,
-    id: 5,
-    title: "laboriosam mollitia et enim quasi adipisci quia provident illum",
-    completed: false
+    title: "iphoneX"
   },
   {
-    userId: 1,
-    id: 6,
-    title: "qui ullam ratione quibusdam voluptatem quia omnis",
-    completed: false
+    title: "iphone6"
   },
   {
-    userId: 1,
-    id: 7,
-    title: "illo expedita consequatur quia in",
-    completed: false
-  },
-  {
-    userId: 1,
-    id: 8,
-    title: "quo adipisci enim quam ut ab",
-    completed: true
-  },
-  {
-    userId: 1,
-    id: 9,
-    title: "molestiae perspiciatis ipsa",
-    completed: false
-  },
-  {
-    userId: 1,
-    id: 10,
-    title: "illo est ratione doloremque quia maiores aut",
-    completed: true
+    title: "apple watch"
   }
 ];
 
-export default class AutoListView extends MyEventEmitter {
+import SearchInfoView from "./SearchInfoView.js";
+
+export default class AutoListView extends SearchInfoView {
   /**
    * TODO list
    * //1. SearchView에 입력이 있을 때 입력값에 맞는 목록 생성해서 보여줌
@@ -76,47 +36,30 @@ export default class AutoListView extends MyEventEmitter {
    * //7. 일치 글자 하이라이팅 해야함.
    * //8. debouncing. 딜레이로 기다렸다가 보여주는 방식이 아니라 같은 값 유지가 일정 시간 이상 되었을 때만 하는 것이다!.
    */
-  constructor({ maxLen, dataUrl }) {
-    super();
-
-    this.maxLen = maxLen;
-    this.activatedItemIndex = -1;
-    this.currentItemLen = 0;
+  constructor({ maxLen, dataUrl, title }) {
+    super({ maxLen, title });
 
     this.on("typing", this.searchTypingHandler.bind(this));
-
-    // MyFetch(dataUrl)
-    //   .then(data => data.map(item => item.title))
-    //   .then(data => this.getFilteredData(inputVal, data))
-    //   .then(data => {
-    //     if (data.length === 0) this.setShow(false);
-    //     else {
-    //       this.autoList.innerHTML = this.getTemplate(data);
-    //       this.setShow(true);
-    //     }
-    //   });
   }
 
   getParsedText({ inputVal, innerText }) {
-    let start = innerText.indexOf(inputVal);
-    let end = start + inputVal.length;
-
-    let newInnerHtml = innerText
-      .split("")
-      .map((c, idx) => {
-        //TODO: refactoring
-        if (idx === start) c = "<span class='highlighted'>" + c;
-        else if (idx === end) c = "</span>" + c;
-        return c;
-      })
-      .join("");
-
-    return newInnerHtml;
+    // let start = innerText.indexOf(inputVal);
+    // let end = start + inputVal.length;
+    // let newInnerHtml = innerText
+    //   .split("")
+    //   .map((c, idx) => {
+    //     //TODO: refactoring
+    //     if (idx === start) c = "<span class='highlighted'>" + c;
+    //     else if (idx === end) c = "</span>" + c;
+    //     return c;
+    //   })
+    //   .join("");
+    // return newInnerHtml;
   }
 
-  highlightMatchedText(inputVal) {
+  highlightMatchedText(text, filteredData) {
     //TODO: 일치하는 글자 하이라이팅 구현
-    this.currentItemList
+    filteredData
       .map(liItem => {
         return liItem.querySelector("span");
       })
@@ -128,167 +71,160 @@ export default class AutoListView extends MyEventEmitter {
       });
   }
 
-  setActivatedIndexItem(idx) {
-    this.activatedItemIndex = idx;
-    this.setActivatedItemClass();
-  }
-
-  mouseOverHandler(target) {
-    let currTarget = target;
-    const liElement = target.closest("li");
-
-    if(liElement.classList.contains("search-info-title")) return;
-    if (target.tagName === "SPAN") currTarget = target.closest("li");
-    else if (!target.classList.contains("auto-list-item")) return;
-
-    this.setActivatedIndexItem(Number(currTarget.dataset.idx));
-  }
-
-  mouseOutHandler() {
-    this.setActivatedIndexItem(-1);
-  }
-
-  mouseClickHandler(target) {
-    const liElement = target.closest("li");
-    if(liElement.classList.contains("search-info-title")) return;
-
-    const searchInput = document.querySelector("input[type=search]");
-    searchInput.value = liElement.innerText;
-
-    console.log(liElement);
-
-    this.searchTypingHandler(searchInput.value);
-  }
-
-  attachMouseEvent() {
-    this.autoList.addEventListener("click", ({ target }) => this.mouseClickHandler(target));
-    this.autoList.addEventListener("mouseover", ({ target }) => this.mouseOverHandler(target));
-    this.autoList.addEventListener("mouseout", () => this.mouseOutHandler());
-  }
-
-  searchTypingHandler(inputVal) {
-    if (inputVal === "") {
-      this.setShow(false);
-      return;
-    }
-
-    const dummy = dummyData.map(item => item.title);
-    const data = this.getFilteredData(inputVal, dummy);
-
-    if (data.length === 0) this.setShow(false);
-    else {
-      this.autoList.innerHTML = this.getTemplate(data);
-      this.setShow(true);
-      this.currentItemList = [...this.autoList.querySelectorAll("li")];
-      this.currentItemList.pop();
-      this.currentItemLen = this.currentItemList.length;
-
-      this.highlightMatchedText(inputVal);
-
-      this.attachMouseEvent();
-    }
+  getHighlightParsedText({
+    text,
+    startIndex,
+    endIndex
+  }) {
+    let parsedText = text
+      .split("")
+      .map((c, index) => {
+        //TODO: refactoring
+        if (index === startIndex) c = "<span class='highlighted'>" + c;
+        else if (index === endIndex) c = "</span>" + c;
+        return c;
+      })
+      .join("");
+    return parsedText;
   }
 
   compareByIndex(a, b) {
-    return a.index - b.index;
+    return a.startIndex - b.startIndex;
   }
 
-  getFilteredData(text, data) {
-    let filteredData = [...data];
+  getFilteredData(text) {
+    let filteredData = dummyData.map(data => data.title);
 
     filteredData = filteredData
       .filter(data => data.includes(text))
       .map(data => ({
-        word: data,
-        index: data.indexOf(text)
+        text: data,
+        startIndex: data.indexOf(text),
+        endIndex: data.indexOf(text) + text.length
       }))
       .sort(this.compareByIndex)
       .filter((_, index) => index < this.maxLen)
-      .map(data => data.word);
+      .map(data => this.getHighlightParsedText(data));
 
     return filteredData;
   }
 
-  getListTemplate(list) {
-    const listTemplate = `
-      <ul>
-        ${list.reduce(
-          (html, item, idx) => `
-            ${html}
-            <li class="auto-list-item" data-idx=${idx}><span>${item}</span></li>
-          `,
-          ``
-        )}
-        <li class="search-info-title"><span>자동 완성</span></li>
-      </ul>
-    `;
+  getTemplate(text) {
+    const filteredData = this.getFilteredData(text);
 
-    return listTemplate;
+    return (filteredData.length > 0)
+      ? this.getListTemplate({
+          list: filteredData,
+          listClassName: "autocomplete-list"
+        })
+      : null
+  }
+
+  setActivatedIndexItem(idx) {
+    // this.activatedItemIndex = idx;
+    // this.setActivatedItemClass();
+  }
+
+  mouseOverHandler(target) {
+    // let currTarget = target;
+    // const liElement = target.closest("li");
+    // if (liElement.classList.contains("search-info-title")) return;
+    // if (target.tagName === "SPAN") currTarget = target.closest("li");
+    // else if (!target.classList.contains("auto-list-item")) return;
+    // this.setActivatedIndexItem(Number(currTarget.dataset.idx));
+  }
+
+  mouseOutHandler() {
+    // this.setActivatedIndexItem(-1);
+  }
+
+  mouseClickHandler(target) {
+    // const liElement = target.closest("li");
+    // if (liElement.classList.contains("search-info-title")) return;
+    // const searchInput = document.querySelector("input[type=search]");
+    // searchInput.value = liElement.innerText;
+    // console.log(liElement);
+    // this.searchTypingHandler(searchInput.value);
+  }
+
+  attachMouseEvent() {
+    // this.autoList.addEventListener("click", ({ target }) =>
+    //   this.mouseClickHandler(target)
+    // );
+    // this.autoList.addEventListener("mouseover", ({ target }) =>
+    //   this.mouseOverHandler(target)
+    // );
+    // this.autoList.addEventListener("mouseout", () => this.mouseOutHandler());
+  }
+
+  searchTypingHandler(inputVal) {
+    // if (inputVal === "") {
+    //   this.setShow(false);
+    //   return;
+    // }
+    // const dummy = dummyData.map(item => item.title);
+    // const data = this.getFilteredData(inputVal, dummy);
+    // if (data.length === 0) this.setShow(false);
+    // else {
+    //   this.autoList.innerHTML = this.getTemplate(data);
+    //   this.setShow(true);
+    //   this.currentItemList = [...this.autoList.querySelectorAll("li")];
+    //   this.currentItemList.pop();
+    //   this.currentItemLen = this.currentItemList.length;
+    //   this.highlightMatchedText(inputVal);
+    //   this.attachMouseEvent();
+    // }
   }
 
   cacheDom() {
-    this.autoList = document.querySelector(".search-auto-list");
-  }
-
-  getTemplate(list = []) {
-    const template = `
-      ${this.getListTemplate(list)}
-    `;
-
-    return template;
-  }
-
-  setShow(on) {
-    this.activatedItemIndex = -1;
-
-    if (on) this.autoList.style.display = "block";
-    else this.autoList.style.display = "none";
+    //   this.autoList = document.querySelector(".search-auto-list");
+    // }
+    // getTemplate(list = []) {
+    //   const template = `
+    //     ${this.getListTemplate(list)}
+    //   `;
+    //   return template;
+    // }
+    // setShow(on) {
+    //   this.activatedItemIndex = -1;
+    //   if (on) this.autoList.style.display = "block";
+    //   else this.autoList.style.display = "none";
   }
 
   setActivatedItemClass() {
-    if (this.currentItemLen === 0) return;
-
-    this.currentItemList.forEach(item => {
-      item.classList.remove("activated");
-    });
-
-    if (this.activatedItemIndex < 0) return;
-
-    this.currentItemList[this.activatedItemIndex].classList.add("activated");
+    //   if (this.currentItemLen === 0) return;
+    //   this.currentItemList.forEach(item => {
+    //     item.classList.remove("activated");
+    //   });
+    //   if (this.activatedItemIndex < 0) return;
+    //   this.currentItemList[this.activatedItemIndex].classList.add("activated");
   }
 
   attachEvent() {
-    const wrapper = document.querySelector(".search-wrapper");
-
-    wrapper.addEventListener("keydown", evt => {
-      const { target, key } = evt;
-
-      if (this.autoList.style.display === "none") return;
-
-      if (key === "ArrowDown") {
-        this.activatedItemIndex =
-          this.activatedItemIndex === this.currentItemLen - 1
-            ? -1
-            : this.activatedItemIndex + 1;
-      } else if (key === "ArrowUp") {
-        this.activatedItemIndex =
-          this.activatedItemIndex === -1
-            ? this.currentItemLen - 1
-            : this.activatedItemIndex - 1;
-        evt.preventDefault();
-      } else if (key === "Enter") {
-        if (this.activatedItemIndex === -1) return;
-
-        const selectedVal = this.currentItemList[this.activatedItemIndex]
-          .innerText;
-
-        target.value = selectedVal;
-
-        this.searchTypingHandler(target.value);
-        evt.preventDefault();
-      }
-
-      this.setActivatedItemClass();
-    });
+    //   const wrapper = document.querySelector(".search-wrapper");
+    //   wrapper.addEventListener("keydown", evt => {
+    //     const { target, key } = evt;
+    //     if (this.autoList.style.display === "none") return;
+    //     if (key === "ArrowDown") {
+    //       this.activatedItemIndex =
+    //         this.activatedItemIndex === this.currentItemLen - 1
+    //           ? -1
+    //           : this.activatedItemIndex + 1;
+    //     } else if (key === "ArrowUp") {
+    //       this.activatedItemIndex =
+    //         this.activatedItemIndex === -1
+    //           ? this.currentItemLen - 1
+    //           : this.activatedItemIndex - 1;
+    //       evt.preventDefault();
+    //     } else if (key === "Enter") {
+    //       if (this.activatedItemIndex === -1) return;
+    //       const selectedVal = this.currentItemList[this.activatedItemIndex]
+    //         .innerText;
+    //       target.value = selectedVal;
+    //       this.searchTypingHandler(target.value);
+    //       evt.preventDefault();
+    //     }
+    //     this.setActivatedItemClass();
+    //   });
   }
 }

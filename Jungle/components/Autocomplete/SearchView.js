@@ -86,26 +86,71 @@ export default class SearchView {
     return template;
   }
 
+  setSearchInfoOn(on) {
+    this.searchInfoList.style.display = on ? "block" : "none";
+  }
+
   inputChangeHandler(target) {
-    if(target.value === "") {
-      this.searchInfoList.style.display = "none";
+    if (target.value === "") {
+      this.setSearchInfoOn(false);
       return;
     }
 
     const template = this.autoListView.getTemplate(target.value);
 
     this.searchInfoList.innerHTML = template;
-    this.searchInfoList.style.display = (template === null) ? "none" : "block";
+    this.setSearchInfoOn(template === null ? false : true);
   }
 
   submitHandler() {
     console.log("submit");
   }
 
+  arrowUpHandler(lists) {
+    this.autoListView.selectedIndex -= 1;
+    lists.forEach(list => list.classList.remove("activated"));
+
+    if (this.autoListView.selectedIndex < 0) {
+      this.autoListView.selectedIndex = this.autoListView.itemLen;
+    } else {
+      lists[this.autoListView.selectedIndex].classList.add("activated");
+    }
+  }
+
+  arrowDownHandler(lists) {
+    this.autoListView.selectedIndex += 1;
+    lists.forEach(list => list.classList.remove("activated"));
+
+    if (this.autoListView.selectedIndex >= this.autoListView.itemLen) {
+      this.autoListView.selectedIndex = -1;
+    } else {
+      lists[this.autoListView.selectedIndex].classList.add("activated");
+    }
+  }
+
+  keyDownHandler(evt) {
+    const { key } = evt;
+
+    if (!(key === "ArrowDown" || key === "ArrowUp")) return;
+    const lists = this.searchInfoList.querySelectorAll("li");
+
+    if (key === "ArrowUp") {
+      this.arrowUpHandler(lists);
+      evt.preventDefault();
+    } else {
+      this.arrowDownHandler(lists);
+    }
+  }
+
   attachEvent() {
     this.cacheDom();
 
-    this.searchInput.addEventListener("input", ({ target }) => this.inputChangeHandler(target));
+    this.searchInput.addEventListener("input", ({ target }) =>
+      this.inputChangeHandler(target)
+    );
     this.searchForm.addEventListener("submit", _ => this.submitHandler());
+    this.searchForm.addEventListener("keydown", evt =>
+      this.keyDownHandler(evt)
+    );
   }
 }

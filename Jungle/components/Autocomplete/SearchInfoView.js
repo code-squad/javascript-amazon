@@ -5,9 +5,12 @@ export default class SearchInfoView extends MyEventEmitter {
     super();
     this.maxLen = maxLen;
     this.title = title;
+    this.selectedIndex = -1;
   }
 
   getListTemplate({ list, listClassName }) {
+    this.itemLen = list.length;
+
     const listTemplate = `
       <ul>
         ${list.reduce(
