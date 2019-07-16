@@ -36,7 +36,7 @@ class RecentKeywordsUI extends Subscriber {
   }
 
   renderRecentKeywords(state) {
-    const recentKeywords = [...state.recentKeywords.values()];
+    const recentKeywords = state.recentKeywords;
     const tpl = recentKeywords.reduce((acc, curr, idx) => {
       return acc + `<li data-idx=${idx} tabindex=-1>${curr}</li>`
     }, '');

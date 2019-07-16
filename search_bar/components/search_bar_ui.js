@@ -13,7 +13,8 @@ class SearchBarUI extends Subscriber {
     this.subscribe('searchBarUI', publisher);
     this.addFocusEvent();
     this.addKeyupEvent();
-    this.addArrowControlEvent();
+    this.addKeydownEvent();
+    this.addClickEvent();
   }
 
   addFocusEvent() {
@@ -34,24 +35,38 @@ class SearchBarUI extends Subscriber {
     }
   }
 
-  addArrowControlEvent() {
+  addKeydownEvent() {
     _.on(document, 'keydown', this.handleKeydown.bind(this));
   }
 
-  handleKeydown({ target, key }) {
+  handleKeydown(e) {
+    const { target, key } = e;
     const keyMap = {
       ArrowDown: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'down' }),
       ArrowUp: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'up' }),
-      Enter: () => this.publisher.setState({ mode: 'waiting', selectedValue: target.textContent })
+      Enter: () => {
+        e.preventDefault();
+        if (target.tagName === 'LI' || target.tagName === 'INPUT') {
+          this.publisher.setState({ mode: 'waiting', selectedValue: target.textContent, currentValue: target.value });
+        }
+      }
     };
     if (keyMap[key]) keyMap[key]();
   }
 
-  render(state) {
-    if (this.mode !== state.mode) return;
-    this.inputEl.value = state.selectedValue;
+  addClickEvent() {
+    _.on(_.$('button'), 'click', this.handleClick.bind(this));
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    this.publisher.setState({ mode: 'waiting', currentValue: this.inputEl.value })
+  }
+
+  render(state) {
+    if ((this.mode !== state.mode) || !state.selectedValue) return;
+    this.inputEl.value = state.selectedValue;
+  }
 }
 
 export default SearchBarUI;

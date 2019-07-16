@@ -1,37 +1,36 @@
 import * as _ from '../../utils/allenibrary.js'
 import Publisher from '../../utils/Publisher.js'
-import { AUTO_COMPLETE_DELAY, MAXIMUM_SUGGESTIONS, INITIAL_SELECTED_IDX } from '../constants.js'
+import { AUTO_COMPLETE_DELAY, MAXIMUM_SUGGESTIONS, MAXIMUM_RECENT_KEYWORDS, INITIAL_SELECTED_IDX } from '../constants.js'
 
 class StateManager extends Publisher {
-  constructor(keywords) {
+  constructor(keywords = []) {
     super();
     this.state = {
       mode: 'waiting',
-      recentKeywords: new Map(keywords),
+      recentKeywords: keywords,
       suggestions: {},
-      selectedIdx: -1,
-      prevIdx: -1
+      selectedIdx: INITIAL_SELECTED_IDX,
+      prevIdx: INITIAL_SELECTED_IDX
     }
   }
 
   setState(state) {
-    this.state = { ...this.state, ...state };
     const actionMap = {
-      recentKeywords: () => this.processRecentKeywordsMode(),
-      suggestion: () => this.processSuggestionMode(),
-      waiting: () => this.processWaitingMode(),
-      selection: () => this.processSelectionMode()
+      recentKeywords: (state) => this.processRecentKeywordsMode(state),
+      suggestion: (state) => this.processSuggestionMode(state),
+      waiting: (state) => this.processWaitingMode(state),
+      selection: (state) => this.processSelectionMode(state)
     }
-    actionMap[this.state.mode]();
+    actionMap[state.mode](state);
   }
 
-  processRecentKeywordsMode() {
-    this.state = { ...this.state, selectedIdx: INITIAL_SELECTED_IDX, maxIdx: this.state.recentKeywords.size - 1 };
+  processRecentKeywordsMode(state) {
+    this.state = { ...this.state, ...state, selectedIdx: INITIAL_SELECTED_IDX, maxIdx: MAXIMUM_RECENT_KEYWORDS - 1 };
     this.notify(this.state);
   }
 
-  processSuggestionMode() {
-    this.state = { ...this.state, selectedIdx: INITIAL_SELECTED_IDX, maxIdx: MAXIMUM_SUGGESTIONS - 1 };
+  processSuggestionMode(state) {
+    this.state = { ...this.state, ...state, selectedIdx: INITIAL_SELECTED_IDX, maxIdx: MAXIMUM_SUGGESTIONS - 1 };
     const prefix = this.state.currentValue;
     if (prefix === '') return;
     if (this.state.suggestions[prefix]) {
@@ -47,22 +46,43 @@ class StateManager extends Publisher {
             this.notify(this.state);
           }, AUTO_COMPLETE_DELAY);
         })
-        .catch(reason => console.log(reason));
+        .catch(reason => {
+          this.notify(this.state);
+          console.log(reason);
+        });
     }
   }
 
   updateSuggestions(suggestions, prefix, state) {
     const newState = { ...state };
-    //suggestions를 카피해서 바꿔야할듯?
     newState.suggestions[prefix] = suggestions.map(el => el.value);
     return newState;
   }
 
-  processWaitingMode() {
+  processWaitingMode(state) {
+    this.state = { ...this.state, ...state };
+    this.state = this.updateRecentKeywords(this.state);
     this.notify(this.state);
   }
 
-  processSelectionMode() {
+  updateRecentKeywords(state) {
+    let currentValue = state.currentValue;
+    if (!currentValue) return state;
+    currentValue = currentValue.trim();
+    const newKeywords = [...state.recentKeywords];
+    if (newKeywords.includes(currentValue)) {
+      newKeywords.splice(newKeywords.indexOf(currentValue), 1);
+    }
+    if (newKeywords.length >= MAXIMUM_RECENT_KEYWORDS) {
+      newKeywords.pop();
+    }
+    newKeywords.unshift(currentValue);
+    state.recentKeywords = newKeywords;
+    return state;
+  }
+
+  processSelectionMode(state) {
+    this.state = { ...this.state, ...state }
     this.state = this.updateSelectedIdx(this.state);
     this.notify(this.state);
   }
