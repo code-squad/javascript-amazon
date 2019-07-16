@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Amazon clone</title>
     <link rel="stylesheet" href="./reset.css" />
-    <link rel="stylesheet" href="./carousel.css" />
+    <link rel="stylesheet" href="./UI_component/carouselUI/carousel.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -26,6 +26,10 @@
           <button class="header-first-line-item btn-search">
             <img src="./resources/images/main/search-icon.png" alt="" />
           </button>
+          <div>
+            <ul class="modal-autocomplete"></ul>
+            <ul class="modal-recent"></ul>
+          </div>
         </div>
         <div class="header-first-line-item service-info">
           <img src="./resources/images/banner/detail_banneer.png" alt="" />
@@ -56,33 +60,8 @@
         </div>
       </div>
     </div>
-    <script type="module" src="./app.js"></script>
+    <!-- <script type="module" src="./app.js"></script> -->
+    <script type="module" src="./UI_component/carouselUI/app.js"></script>
+    <script type="module" src="./UI_component/searchUI/app.js"></script>
   </body>
 </html>
-
-<!-- 
-<div class="header-firstline">
-    <div class="header-fist-item logo-img" style="background-color: red;">
-      <img src="./resources/images/main/amazon-logo.png" alt="" />
-    </div>
-    <div
-      class="header-fist-item search-box"
-      style="background-color: orange;"
-    >
-      <select name="" id="">
-        <option value=""></option>
-      </select>
-      <input type="text" />
-      <button>
-        <img src="./resources/images/banner/detail_banneer.png" alt="" />
-      </button>
-    </div>
-    <div class="header-first-item detail-infomation"></div>
-  </div>
-
-  <div class="header-secondline">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</header> -->
