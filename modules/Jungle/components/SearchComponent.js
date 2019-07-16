@@ -20,7 +20,14 @@ export default class SearchComponent {
       isWriting: false,
       query: '',
       recentQueries: ['hello', 'recent'],
-      matchedQueries: []
+      matchedQueries: {
+        i: ['iphone', 'icon', 'infinite', 'input', 'instagram'],
+        ip: ['ipad', 'ipconfig', 'iphone', 'iptime', 'ip'],
+        iph: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone mockup'],
+        ipho: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone se', 'iphone se2'],
+        iphon: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone se2', 'iphone xr'],
+        iphone: ['iphone', 'iphone11', 'iphone xs', 'iphone xr', 'iphone mockup', 'iphone x']
+      }
     });
   }
 
@@ -67,9 +74,23 @@ export default class SearchComponent {
     });
   }
 
-  inputChangeHandler({ target }) {
+  inputChangeHandler(e, input) {
+    if (e.keyCode == 38 || e.keyCode == 40) {
+      // moveCursorToEnd(input);
+      return;
+    }
+    // function moveCursorToEnd(el) {
+    //   if (typeof el.selectionStart == 'number') {
+    //     el.selectionStart = el.selectionEnd = el.value.length;
+    //   } else if (typeof el.createTextRange != 'undefined') {
+    //     el.focus();
+    //     var range = el.createTextRange();
+    //     range.collapse(false);
+    //     range.select();
+    //   }
+    // }
     const { state } = this.store;
-    const { value } = target;
+    const { value } = e.target;
 
     this.store.setState({
       ...state,

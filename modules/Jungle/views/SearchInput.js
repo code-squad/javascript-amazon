@@ -23,10 +23,17 @@ export default class SearchInput {
   }
 
   attatchEvent() {
-    this.searchInput.addEventListener('keyup', e => this.onChange(e));
+    this.searchInput.addEventListener('keyup', e => this.onChange(e, this.searchInput));
+    this.searchInput.addEventListener('keydown', e => this.preventMoveCursor(e));
     this.searchInput.addEventListener('blur', _ => this.onBlur());
     this.searchInput.addEventListener('focus', _ => this.onFocus());
     this.button.addEventListener('click', e => this.onClick(e, this.searchInput.value));
+  }
+
+  preventMoveCursor(e) {
+    if (e.keyCode == 38 || e.keyCode == 40) {
+      e.preventDefault();
+    }
   }
 
   render(state) {
