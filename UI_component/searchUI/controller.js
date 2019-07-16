@@ -44,9 +44,6 @@ class Controller {
         this.autoCompleteView.updateHighlight(e.code);
       }
     });
-
-    this.autoCompleteView.hideModalWindow();
-    this.recentSearchView.hideModalWindow();
   }
 
   initSearchView() {
@@ -81,11 +78,11 @@ class Controller {
         this.recentSearchView.hideModalWindow();
 
         this.makeFilterdData(inputValue);
-        this.autoCompleteView.makeliTemplate(this.filterdData);
+        this.autoCompleteView.makeModalContent(this.filterdData);
       },
 
       completing: () => {
-        this.autoCompleteView.currentHighlightIndex = -1;
+        this.autoCompleteView.initHighlightIndex();
         this.recentSearchView.saveRecentKeyword(inputValue);
       },
 
@@ -94,7 +91,7 @@ class Controller {
       },
 
       focusing: () => {
-        this.recentSearchView.makeliTemplate();
+        this.recentSearchView.makeModalContent();
       },
 
       blured: () => {
