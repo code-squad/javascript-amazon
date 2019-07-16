@@ -68,6 +68,10 @@ class Controller {
     return baseData.filter(data => data.slice(0, targetLength) === inputStr);
   }
 
+  isEmptyArr(arr) {
+    return arr.length === 0;
+  }
+
   searchViewHandler(changedmode, inputStr = "") {
     this.setCurrentMode(changedmode);
 
@@ -76,7 +80,8 @@ class Controller {
         this.recentSearchView.hideModalWindow();
 
         this.filterdData = this.makeFilterdData(inputStr);
-        this.autoCompleteView.makeModalContent(this.filterdData);
+        if (this.isEmptyArr(this.filterdData)) return;
+        else this.autoCompleteView.makeModalContent(this.filterdData);
       },
 
       completing: () => {

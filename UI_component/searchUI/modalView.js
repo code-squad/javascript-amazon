@@ -124,21 +124,15 @@ class ModalView {
 
     if (this.highlightIndexisFirst()) {
       this.currentHighlightIndex += 1;
-      if (keyCode === "ArrowDown") {
-        this.addHighlight();
-      }
+      if (keyCode === "ArrowDown") this.addHighlight();
     } else if (this.highlightIndexisLast(lastIndex)) {
-      if (keyCode === "ArrowUp") {
-        this.execArrowUp();
-      }
+      if (keyCode === "ArrowUp") this.execArrowUp();
     } else {
       if (keyCode === "ArrowDown") {
         this.removeHighlight();
         this.currentHighlightIndex += this.config.downDirection;
         this.addHighlight();
-      } else if (keyCode === "ArrowUp") {
-        this.execArrowUp();
-      }
+      } else if (keyCode === "ArrowUp") this.execArrowUp();
     }
   }
 }

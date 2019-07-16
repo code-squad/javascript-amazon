@@ -29,11 +29,8 @@ class SearchView {
     this.searchForm.addEventListener("input", e => {
       setTimeout(() => {
         const target = e.srcElement;
-        if (target.value === "") {
-          this.notify(this.modeType.pending);
-        } else {
-          this.notify(this.modeType.entering, target.value);
-        }
+        if (target.value === "") this.notify(this.modeType.pending);
+        else this.notify(this.modeType.entering, target.value);
       }, 1000);
     });
   }
