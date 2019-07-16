@@ -10,7 +10,8 @@ export default class SearchView {
 
     this.autoListView = new AutoListView({
       maxLen: 8,
-      dataUrl
+      dataUrl,
+      title: "자동 완성"
     });
 
     this.defaultOptions = {
@@ -54,11 +55,14 @@ export default class SearchView {
     this.searchWrapper = document.querySelector(".search-wrapper");
     this.searchInput = this.searchWrapper.querySelector("input[type=search]");
     this.searchSubmit = this.searchWrapper.querySelector(".search-submit");
+    this.searchForm = document.querySelector(".search-form");
+
+    this.searchInfoList = this.searchWrapper.querySelector(".search-info-list");
   }
 
   getTemplate() {
     const template = `
-    <form action="#" class="form-search">
+    <form action="#" class="search-form">
     <div class="search-wrapper">
       <div class="search-category">
         <div class="icon-down-arrow"></div>
@@ -68,7 +72,7 @@ export default class SearchView {
       </div>
       <div class="search-input">
         <input type="search" name="" id="">
-        <div class="search-auto-list">
+        <div class="search-info-list">
         </div>
       </div>
       <div class="search-submit">
@@ -82,19 +86,26 @@ export default class SearchView {
     return template;
   }
 
+  inputChangeHandler(target) {
+    if(target.value === "") {
+      this.searchInfoList.style.display = "none";
+      return;
+    }
+
+    const template = this.autoListView.getTemplate(target.value);
+
+    this.searchInfoList.innerHTML = template;
+    this.searchInfoList.style.display = (template === null) ? "none" : "block";
+  }
+
+  submitHandler() {
+    console.log("submit");
+  }
+
   attachEvent() {
     this.cacheDom();
-    this.autoListView.cacheDom();
-    this.autoListView.attachEvent();
 
-    this.searchInput.addEventListener("input", ({ target }) => {
-      setTimeout(() => {
-        this.autoListView.emit("typing", target.value);
-      }, this.options.debouncingDelay);
-    });
-
-    this.searchSubmit.addEventListener("click", () => {
-      this.autoListView.setShow(false);
-    })
+    this.searchInput.addEventListener("input", ({ target }) => this.inputChangeHandler(target));
+    this.searchForm.addEventListener("submit", _ => this.submitHandler());
   }
 }

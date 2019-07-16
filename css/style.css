@@ -86,7 +86,7 @@ header {
       padding: 0 0.5rem;
       font-size: 0.8rem;
       color: #111; }
-    .search-wrapper .search-input .search-auto-list {
+    .search-wrapper .search-input .search-info-list {
       width: 100%;
       position: absolute;
       background-color: #fff;
@@ -94,9 +94,9 @@ header {
       top: 100%;
       z-index: 10;
       display: none; }
-      .search-wrapper .search-input .search-auto-list > ul, .search-wrapper .search-input .search-auto-list li {
+      .search-wrapper .search-input .search-info-list > ul, .search-wrapper .search-input .search-info-list li {
         height: 100%; }
-      .search-wrapper .search-input .search-auto-list li {
+      .search-wrapper .search-input .search-info-list li {
         display: flex;
         align-items: center;
         padding: 0 0.5rem;
@@ -105,9 +105,9 @@ header {
         border-right: 1px dotted orange;
         background-color: #fff;
         cursor: pointer; }
-        .search-wrapper .search-input .search-auto-list li.activated {
+        .search-wrapper .search-input .search-info-list li.activated {
           background-color: #dbdbdb; }
-        .search-wrapper .search-input .search-auto-list li:last-child {
+        .search-wrapper .search-input .search-info-list li:last-child {
           border-bottom-left-radius: 5px;
           border-bottom-right-radius: 5px;
           font-size: 0.7rem;
@@ -118,12 +118,12 @@ header {
           border-left: 1px dotted orange;
           border-right: 1px dotted orange;
           border-bottom: 1px dotted orange; }
-          .search-wrapper .search-input .search-auto-list li:last-child:hover {
+          .search-wrapper .search-input .search-info-list li:last-child:hover {
             background-color: #fff; }
-        .search-wrapper .search-input .search-auto-list li span.highlighted {
+        .search-wrapper .search-input .search-info-list li span.highlighted {
           font-weight: bold;
           background-color: #eee; }
-      .search-wrapper .search-input .search-auto-list > div {
+      .search-wrapper .search-input .search-info-list > div {
         font-size: 0.7rem;
         color: #555;
         height: 50%; }
