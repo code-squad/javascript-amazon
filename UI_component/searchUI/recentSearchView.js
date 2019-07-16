@@ -40,15 +40,15 @@ class RecentSearchView {
 
   makeliTemplate() {
     let newEl, textEl;
-    let list = [...this.recentKeyword];
+    const arr = [...this.recentKeyword];
 
-    if (list.length === 0) {
+    if (arr.length === 0) {
       newEl = document.createElement("li");
       textEl = document.createTextNode(`최근 검색어 없음`);
       newEl.appendChild(textEl);
       this.modal.append(newEl);
     } else {
-      list.forEach(el => {
+      arr.forEach(el => {
         newEl = document.createElement("li");
         textEl = document.createTextNode(el);
         newEl.appendChild(textEl);
@@ -58,9 +58,7 @@ class RecentSearchView {
   }
 
   setAttribute() {
-    const arr = this.modal.children;
-
-    const _arr = [...arr];
+    const _arr = [...this.modal.children];
 
     _arr.forEach((v, i) => {
       _arr[i].setAttribute(this.config.attrName, i);
@@ -138,6 +136,14 @@ class RecentSearchView {
     ].style.backgroundColor = this.config.unselectedColor;
   }
 
+  highlightIndexisFirst() {
+    return this.currentHighlightIndex === -1;
+  }
+
+  highlightIndexisLast(lastIndex) {
+    return this.currentHighlightIndex === lastIndex;
+  }
+
   updateHighlight(keyCode) {
     if (keyCode === "Enter") {
       this.submitAutoCompleteData();
@@ -146,13 +152,13 @@ class RecentSearchView {
 
     const lastIndex = this.getLastIndex();
 
-    if (this.currentHighlightIndex === -1) {
+    if (this.highlightIndexisFirst()) {
       this.currentHighlightIndex += 1;
 
       if (keyCode === "ArrowDown") {
         this.addHighlight();
       }
-    } else if (this.currentHighlightIndex === lastIndex) {
+    } else if (this.highlightIndexisLast(lastIndex)) {
       if (keyCode === "ArrowUp") {
         this.removeHighlight();
         this.initHighlightIndex();

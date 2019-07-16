@@ -49,9 +49,7 @@ class AutoCompleteView {
   }
 
   setAttribute() {
-    const arr = this.modal.children;
-
-    const _arr = [...arr];
+    const _arr = [...this.modal.children];
 
     _arr.forEach((v, i) => {
       _arr[i].setAttribute(this.config.attrName, i);
@@ -115,6 +113,14 @@ class AutoCompleteView {
     ].style.backgroundColor = this.config.unselectedColor;
   }
 
+  highlightIndexisFirst() {
+    return this.currentHighlightIndex === -1;
+  }
+
+  highlightIndexisLast(lastIndex) {
+    return this.currentHighlightIndex === lastIndex;
+  }
+
   updateHighlight(keyCode) {
     if (keyCode === "Enter") {
       this.submitAutoCompleteData();
@@ -123,13 +129,13 @@ class AutoCompleteView {
 
     const lastIndex = this.getLastIndex();
 
-    if (this.currentHighlightIndex === -1) {
+    if (this.highlightIndexisFirst()) {
       this.currentHighlightIndex += 1;
 
       if (keyCode === "ArrowDown") {
         this.addHighlight();
       }
-    } else if (this.currentHighlightIndex === lastIndex) {
+    } else if (this.highlightIndexisLast(lastIndex)) {
       if (keyCode === "ArrowUp") {
         this.removeHighlight();
         this.initHighlightIndex();

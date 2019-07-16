@@ -108,7 +108,7 @@ class Controller {
   }
 
   recentSearchViewHandler(selectedKeyword = "") {
-    if (selectedKeyword === "") {
+    if (!selectedKeyword) {
       this.setCurrentMode(this.modeType.pending);
       this.autoCompleteView.hideModalWindow();
       this.searchView.removeSearchKeyword();
