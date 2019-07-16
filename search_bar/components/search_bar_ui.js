@@ -4,13 +4,15 @@ import Subscriber from '../../utils/Subscriber.js'
 class SearchBarUI extends Subscriber {
   constructor(publisher, selector) {
     super();
+    this.inputEl = _.$(selector);
     this.init(publisher);
     this.addFocusEvent(selector);
-    this.addKeydownEvent(selector);
+    this.addKeyupEvent(selector);
   }
 
   init(publisher) {
     this.subscribe('searchBarUI', publisher);
+    this.addArrowControlEvent();
   }
 
   addFocusEvent(selector) {
@@ -21,14 +23,31 @@ class SearchBarUI extends Subscriber {
     this.publisher.setState({ mode: 'recentKeywords' });
   }
 
-  addKeydownEvent(selector) {
-    _.on(_.$(selector), 'keyup', this.handleKeydown.bind(this));
+  addKeyupEvent(selector) {
+    _.on(_.$(selector), 'keyup', this.handleKeyup.bind(this));
   }
 
-  handleKeydown({ target, key }) {
+  handleKeyup({ target, key }) {
     if (key.length === 1 || key === 'Backspace') {
       this.publisher.setState({ mode: 'suggestion', currentValue: target.value });
     }
+  }
+
+  addArrowControlEvent() {
+    _.on(document, 'keydown', this.handleKeydown.bind(this));
+  }
+
+  handleKeydown({ target, key }) {
+    const keyMap = {
+      ArrowDown: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'down' }),
+      ArrowUp: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'up' }),
+      Enter: () => this.publisher.setState({ mode: 'waiting', selectedValue: target.textContent })
+    };
+    if (keyMap[key]) keyMap[key]();
+  }
+
+  render(state) {
+    this.inputEl.value = state.selectedValue;
   }
 }
 
