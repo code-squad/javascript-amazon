@@ -29,13 +29,18 @@ class Controller {
       });
   }
 
-  initController() {
-    this.currentMode = "pending";
+  setCurrentMode(changedmode) {
+    this.currentMode = changedmode;
+  }
 
+  initController() {
+    this.setCurrentMode(this.modeType.pending);
+
+    //keydown Event를 autoCompleteView, recentSearchView에 모두 다는 것 보다 Controller에 다는게 더 낫다고 판단
     document.addEventListener("keydown", e => {
-      if (this.currentMode === "focusing") {
+      if (this.currentMode === this.modeType.focusing) {
         this.recentSearchView.updateHighlight(e.code);
-      } else if (this.currentMode === "entering") {
+      } else if (this.currentMode === this.modeType.entering) {
         this.autoCompleteView.updateHighlight(e.code);
       }
     });
@@ -59,30 +64,46 @@ class Controller {
     this.recentSearchView.init(this.recentSearchViewHandler);
   }
 
+  makeFilterdData(inputValue) {
+    const targetLength = inputValue.length;
+    const baseData = [...this.data.product];
+
+    this.filterdData = baseData.filter(
+      data => data.slice(0, targetLength) === inputValue
+    );
+  }
+
   searchViewHandler(changedmode, inputValue) {
-    this.currentMode = changedmode;
+    this.setCurrentMode(changedmode);
 
-    if (this.currentMode === "entering") {
-      this.recentSearchView.hideModalWindow();
+    const mapFunc = {
+      entering: inputValue => {
+        this.recentSearchView.hideModalWindow();
 
-      const targetLength = inputValue.length;
-      const baseData = [...this.data.product];
+        this.makeFilterdData(inputValue);
+        this.autoCompleteView.makeliTemplate(this.filterdData);
+      },
 
-      this.filterdData = baseData.filter(
-        data => data.slice(0, targetLength) === inputValue
-      );
-      this.autoCompleteView.makeliTemplate(this.filterdData);
-    } else if (this.currentMode === "completing") {
-      this.autoCompleteView.currentHighlightIndex = -1;
-      this.recentSearchView.saveRecentKeyword(inputValue);
-    } else if (this.currentMode === "pending") {
-      this.autoCompleteView.hideModalWindow();
-    } else if (this.currentMode === "focusing") {
-      this.recentSearchView.makeliTemplate();
-    } else if (this.currentMode === "blured") {
-      this.autoCompleteView.hideModalWindow();
-      this.recentSearchView.hideModalWindow();
-    }
+      completing: () => {
+        this.autoCompleteView.currentHighlightIndex = -1;
+        this.recentSearchView.saveRecentKeyword(inputValue);
+      },
+
+      pending: () => {
+        this.autoCompleteView.hideModalWindow();
+      },
+
+      focusing: () => {
+        this.recentSearchView.makeliTemplate();
+      },
+
+      blured: () => {
+        this.autoCompleteView.hideModalWindow();
+        this.recentSearchView.hideModalWindow();
+      }
+    };
+
+    mapFunc[changedmode](inputValue);
   }
 
   autoCompleteHandler(selectedKeyword) {
@@ -91,7 +112,7 @@ class Controller {
 
   recentSearchViewHandler(selectedKeyword = "") {
     if (selectedKeyword === "") {
-      this.currentMode = "pending";
+      this.setCurrentMode(this.modeType.pending);
       this.autoCompleteView.hideModalWindow();
       this.searchView.removeSearchKeyword();
     } else {
