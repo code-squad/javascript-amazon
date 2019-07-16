@@ -61,29 +61,27 @@ class Controller {
     this.recentSearchView.init(this.recentSearchViewHandler);
   }
 
-  makeFilterdData(inputValue) {
-    const targetLength = inputValue.length;
+  makeFilterdData(inputStr) {
+    const targetLength = inputStr.length;
     const baseData = [...this.data.product];
 
-    this.filterdData = baseData.filter(
-      data => data.slice(0, targetLength) === inputValue
-    );
+    return baseData.filter(data => data.slice(0, targetLength) === inputStr);
   }
 
-  searchViewHandler(changedmode, inputValue) {
+  searchViewHandler(changedmode, inputStr = "") {
     this.setCurrentMode(changedmode);
 
     const mapFunc = {
-      entering: inputValue => {
+      entering: inputStr => {
         this.recentSearchView.hideModalWindow();
 
-        this.makeFilterdData(inputValue);
+        this.filterdData = this.makeFilterdData(inputStr);
         this.autoCompleteView.makeModalContent(this.filterdData);
       },
 
       completing: () => {
         this.autoCompleteView.initHighlightIndex();
-        this.recentSearchView.saveRecentKeyword(inputValue);
+        this.recentSearchView.saveRecentKeyword(inputStr);
       },
 
       pending: () => {
@@ -100,7 +98,7 @@ class Controller {
       }
     };
 
-    mapFunc[changedmode](inputValue);
+    mapFunc[changedmode](inputStr);
   }
 
   autoCompleteHandler(selectedKeyword) {

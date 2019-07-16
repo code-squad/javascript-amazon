@@ -27,12 +27,14 @@ class SearchView {
     });
 
     this.searchForm.addEventListener("input", e => {
-      const target = e.srcElement;
-      if (target.value === "") {
-        this.notify(this.modeType.pending);
-      } else {
-        this.notify(this.modeType.entering, target.value);
-      }
+      setTimeout(() => {
+        const target = e.srcElement;
+        if (target.value === "") {
+          this.notify(this.modeType.pending);
+        } else {
+          this.notify(this.modeType.entering, target.value);
+        }
+      }, 1000);
     });
   }
 

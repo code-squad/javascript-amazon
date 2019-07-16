@@ -8,7 +8,9 @@ class ModalView {
     this.config = {
       className: "highlight",
       unselectedColor: "white",
-      selectedColor: "#EEEEEE"
+      selectedColor: "#EEEEEE",
+      upDirection: -1,
+      downDirection: 1
     };
   }
 
@@ -118,18 +120,27 @@ class ModalView {
     } else if (this.highlightIndexisLast(lastIndex)) {
       if (keyCode === "ArrowUp") {
         this.removeHighlight();
-        this.initHighlightIndex();
-        this.addHighlight();
+        this.currentHighlightIndex += this.config.upDirection;
+
+        if (this.highlightIndexisFirst()) {
+          this.initHighlightIndex();
+        } else {
+          this.addHighlight();
+        }
       }
     } else {
       if (keyCode === "ArrowDown") {
         this.removeHighlight();
-        this.currentHighlightIndex += 1;
+        this.currentHighlightIndex += this.config.downDirection;
         this.addHighlight();
       } else if (keyCode === "ArrowUp") {
         this.removeHighlight();
-        this.initHighlightIndex();
-        this.addHighlight();
+        this.currentHighlightIndex += this.config.upDirection;
+        if (this.highlightIndexisFirst()) {
+          this.initHighlightIndex();
+        } else {
+          this.addHighlight();
+        }
       }
     }
   }
