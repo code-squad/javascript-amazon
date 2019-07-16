@@ -19,15 +19,10 @@ export default class SearchComponent {
     return new Store({
       isWriting: false,
       query: '',
+      currentItem: -1,
+      itemLength: 2,
       recentQueries: ['hello', 'recent'],
-      matchedQueries: {
-        i: ['iphone', 'icon', 'infinite', 'input', 'instagram'],
-        ip: ['ipad', 'ipconfig', 'iphone', 'iptime', 'ip'],
-        iph: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone mockup'],
-        ipho: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone se', 'iphone se2'],
-        iphon: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone se2', 'iphone xr'],
-        iphone: ['iphone', 'iphone11', 'iphone xs', 'iphone xr', 'iphone mockup', 'iphone x']
-      }
+      matchedQueries: {}
     });
   }
 
@@ -74,29 +69,64 @@ export default class SearchComponent {
     });
   }
 
-  inputChangeHandler(e, input) {
-    if (e.keyCode == 38 || e.keyCode == 40) {
-      // moveCursorToEnd(input);
-      return;
-    }
-    // function moveCursorToEnd(el) {
-    //   if (typeof el.selectionStart == 'number') {
-    //     el.selectionStart = el.selectionEnd = el.value.length;
-    //   } else if (typeof el.createTextRange != 'undefined') {
-    //     el.focus();
-    //     var range = el.createTextRange();
-    //     range.collapse(false);
-    //     range.select();
-    //   }
-    // }
+  inputChangeHandler(e) {
     const { state } = this.store;
     const { value } = e.target;
+
+    if (this.isArrowKey(e.keyCode)) {
+      const newItem = this.getNewItem(e.keyCode, state);
+
+      this.store.setState({ ...state, currentItem: newItem });
+      return;
+    }
+
+    const matchedQueries = this.getData(value);
 
     this.store.setState({
       ...state,
       isWriting: true,
-      query: value
+      query: value,
+      currentItem: -1,
+      itemLength: matchedQueries.length,
+      matchedQueries
     });
+  }
+
+  getNewItem(keycode, { currentItem, itemLength }) {
+    let newItem = keycode === 38 ? currentItem - 1 : currentItem + 1;
+
+    if (newItem < -1) {
+      return itemLength;
+    }
+
+    if (newItem > itemLength - 1) {
+      return -1;
+    }
+
+    return newItem;
+  }
+
+  // 추후 api로 데이터를 불러오는 부분
+  getData(prefix) {
+    const data = {
+      i: ['iphone', 'icon', 'infinite', 'input', 'instagram'],
+      ip: ['ipad', 'ipconfig', 'iphone', 'iptime', 'ip'],
+      iph: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone mockup'],
+      ipho: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone se', 'iphone se2'],
+      iphon: ['iphone', 'iphone11', 'iphone xs', 'iphone wallpaper', 'iphone se2', 'iphone xr'],
+      iphone: ['iphone', 'iphone11', 'iphone xs', 'iphone xr', 'iphone mockup', 'iphone x']
+    };
+
+    const returnData = data[prefix];
+
+    if (!returnData) {
+      return [prefix];
+    }
+    return returnData;
+  }
+
+  isArrowKey(keycode) {
+    return keycode == 38 || keycode == 40;
   }
 
   inputBlurHandler() {
@@ -127,6 +157,8 @@ export default class SearchComponent {
     this.store.setState({
       ...state,
       isWriting: false,
+      currentItem: -1,
+      itemLength: newQueries.length,
       recentQueries: newQueries
     });
   }

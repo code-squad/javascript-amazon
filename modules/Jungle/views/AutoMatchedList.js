@@ -1,5 +1,5 @@
 import { makeHTMLString } from '../template/index.js';
-import { qs, removeNodes } from '../../JinUtil/index.js';
+import { qs, removeNodes, setCSS } from '../../JinUtil/index.js';
 
 export default class AutoMatchedList {
   constructor({ container, parentNode }) {
@@ -27,24 +27,22 @@ export default class AutoMatchedList {
       this.matchedList.style.display = 'none';
       return;
     }
+
     removeNodes([...this.matchedList.children]);
 
     const autoListHTML = makeHTMLString({
       type: 'autoList',
-      data: this.getNewQuries(state),
+      data: state.matchedQueries,
       prefix: state.query
     });
 
     this.matchedList.insertAdjacentHTML('beforeend', autoListHTML);
 
-    this.matchedList.style.display = 'block';
-  }
-
-  getNewQuries(state) {
-    const queries = state.matchedQueries[state.query];
-    if (!queries) {
-      return [state.query];
+    if (-1 < state.currentItem && state.currentItem < state.itemLength) {
+      const targetItem = this.matchedList.children[state.currentItem];
+      targetItem.classList.add('selected');
     }
-    return queries;
+
+    this.matchedList.style.display = 'block';
   }
 }
