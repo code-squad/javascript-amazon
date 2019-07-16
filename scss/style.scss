@@ -101,7 +101,7 @@ $search-radius: 5px;
       height: 100%;
       top: 100%;
       z-index: 10;
-      opacity: 0;
+      display: none;
 
       & > ul,
       & li {

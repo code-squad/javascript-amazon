@@ -128,11 +128,50 @@ export default class AutoListView extends MyEventEmitter {
       });
   }
 
+  setActivatedIndexItem(idx) {
+    this.activatedItemIndex = idx;
+    this.setActivatedItemClass();
+  }
+
+  mouseOverHandler(target) {
+    let currTarget = target;
+    const liElement = target.closest("li");
+
+    if(liElement.classList.contains("search-info-title")) return;
+    if (target.tagName === "SPAN") currTarget = target.closest("li");
+    else if (!target.classList.contains("auto-list-item")) return;
+
+    this.setActivatedIndexItem(Number(currTarget.dataset.idx));
+  }
+
+  mouseOutHandler() {
+    this.setActivatedIndexItem(-1);
+  }
+
+  mouseClickHandler(target) {
+    const liElement = target.closest("li");
+    if(liElement.classList.contains("search-info-title")) return;
+
+    const searchInput = document.querySelector("input[type=search]");
+    searchInput.value = liElement.innerText;
+
+    console.log(liElement);
+
+    this.searchTypingHandler(searchInput.value);
+  }
+
+  attachMouseEvent() {
+    this.autoList.addEventListener("click", ({ target }) => this.mouseClickHandler(target));
+    this.autoList.addEventListener("mouseover", ({ target }) => this.mouseOverHandler(target));
+    this.autoList.addEventListener("mouseout", () => this.mouseOutHandler());
+  }
+
   searchTypingHandler(inputVal) {
     if (inputVal === "") {
       this.setShow(false);
       return;
     }
+
     const dummy = dummyData.map(item => item.title);
     const data = this.getFilteredData(inputVal, dummy);
 
@@ -145,6 +184,8 @@ export default class AutoListView extends MyEventEmitter {
       this.currentItemLen = this.currentItemList.length;
 
       this.highlightMatchedText(inputVal);
+
+      this.attachMouseEvent();
     }
   }
 
@@ -172,13 +213,13 @@ export default class AutoListView extends MyEventEmitter {
     const listTemplate = `
       <ul>
         ${list.reduce(
-          (html, item) => `
+          (html, item, idx) => `
             ${html}
-            <li><span>${item}</span></li>
+            <li class="auto-list-item" data-idx=${idx}><span>${item}</span></li>
           `,
           ``
         )}
-        <li><span>자동 완성</span></li>
+        <li class="search-info-title"><span>자동 완성</span></li>
       </ul>
     `;
 
@@ -200,8 +241,8 @@ export default class AutoListView extends MyEventEmitter {
   setShow(on) {
     this.activatedItemIndex = -1;
 
-    if (on) this.autoList.style.opacity = 1;
-    else this.autoList.style.opacity = 0;
+    if (on) this.autoList.style.display = "block";
+    else this.autoList.style.display = "none";
   }
 
   setActivatedItemClass() {
@@ -212,15 +253,17 @@ export default class AutoListView extends MyEventEmitter {
     });
 
     if (this.activatedItemIndex < 0) return;
+
     this.currentItemList[this.activatedItemIndex].classList.add("activated");
   }
 
   attachEvent() {
     const wrapper = document.querySelector(".search-wrapper");
+
     wrapper.addEventListener("keydown", evt => {
       const { target, key } = evt;
 
-      if (!this.autoList.style.opacity) return;
+      if (this.autoList.style.display === "none") return;
 
       if (key === "ArrowDown") {
         this.activatedItemIndex =
@@ -240,7 +283,9 @@ export default class AutoListView extends MyEventEmitter {
           .innerText;
 
         target.value = selectedVal;
+
         this.searchTypingHandler(target.value);
+        evt.preventDefault();
       }
 
       this.setActivatedItemClass();

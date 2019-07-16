@@ -93,7 +93,7 @@ header {
       height: 100%;
       top: 100%;
       z-index: 10;
-      opacity: 0; }
+      display: none; }
       .search-wrapper .search-input .search-auto-list > ul, .search-wrapper .search-input .search-auto-list li {
         height: 100%; }
       .search-wrapper .search-input .search-auto-list li {
