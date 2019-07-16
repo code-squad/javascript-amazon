@@ -120,6 +120,9 @@ header {
           border-bottom: 1px dotted orange; }
           .search-wrapper .search-input .search-auto-list li:last-child:hover {
             background-color: #fff; }
+        .search-wrapper .search-input .search-auto-list li span.highlighted {
+          font-weight: bold;
+          background-color: #eee; }
       .search-wrapper .search-input .search-auto-list > div {
         font-size: 0.7rem;
         color: #555;

@@ -97,8 +97,34 @@ export default class AutoListView extends MyEventEmitter {
     //   });
   }
 
+  getParsedText({ inputVal, innerText }) {
+    let start = innerText.indexOf(inputVal);
+    let end = start + inputVal.length;
+
+    let newInnerHtml = innerText
+      .split("")
+      .map((c, idx) => {
+        if (idx === start) c = "<span class='highlighted'>" + c;
+        else if (idx === end) c = "</span>" + c;
+        return c;
+      })
+      .join("");
+
+    return newInnerHtml;
+  }
+
   highlightMatchedText(inputVal) {
     //TODO: 일치하는 글자 하이라이팅 구현
+    this.currentItemList
+      .map(liItem => {
+        return liItem.querySelector("span");
+      })
+      .map(spanItem => {
+        spanItem.innerHTML = this.getParsedText({
+          inputVal,
+          innerText: spanItem.innerText
+        });
+      });
   }
 
   searchTypingHandler(inputVal) {
@@ -113,7 +139,8 @@ export default class AutoListView extends MyEventEmitter {
     else {
       this.autoList.innerHTML = this.getTemplate(data);
       this.setShow(true);
-      this.currentItemList = this.autoList.querySelectorAll("li");
+      this.currentItemList = [...this.autoList.querySelectorAll("li")];
+      this.currentItemList.pop();
       this.currentItemLen = this.currentItemList.length;
 
       this.highlightMatchedText(inputVal);
@@ -196,13 +223,13 @@ export default class AutoListView extends MyEventEmitter {
 
       if (key === "ArrowDown") {
         this.activatedItemIndex =
-          this.activatedItemIndex === this.currentItemLen - 2
+          this.activatedItemIndex === this.currentItemLen - 1
             ? -1
             : this.activatedItemIndex + 1;
       } else if (key === "ArrowUp") {
         this.activatedItemIndex =
           this.activatedItemIndex === -1
-            ? this.currentItemLen - 2
+            ? this.currentItemLen - 1
             : this.activatedItemIndex - 1;
         evt.preventDefault();
       } else if (key === "Enter") {

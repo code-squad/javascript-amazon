@@ -137,6 +137,11 @@ $search-radius: 5px;
           border-right: 1px dotted orange;
           border-bottom: 1px dotted orange;
         }
+
+        & span.highlighted {
+          font-weight: bold;
+          background-color: #eee;
+        }
       }
 
       & > div {
