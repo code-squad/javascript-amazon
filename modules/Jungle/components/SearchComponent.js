@@ -1,16 +1,16 @@
-import { AutoInput, AutoMatchedList, AutoRecentList } from '../components/index.js';
+import { SearchInput, AutoMatchedList, AutoRecentList } from '../views/index.js';
 import Store from '../store/index.js';
 
 import { mergeConfig, qs } from '../../JinUtil/index.js';
 
-export default class AutoCompleteContainer {
+export default class SearchComponent {
   constructor({ classNameObj, options }) {
     this.container = qs(classNameObj.container);
 
     this.store = this.getStore({});
 
     classNameObj.parentNode = '.auto-wrapper';
-    this.autoInput = this.getView(classNameObj, 'autoInput');
+    this.input = this.getView(classNameObj, 'searchInput');
     this.autoMatched = this.getView(classNameObj, 'autoMatchedList');
     this.autoRecent = this.getView(classNameObj, 'autoRecentList');
   }
@@ -30,8 +30,8 @@ export default class AutoCompleteContainer {
     if (type === 'autoMatchedList') {
       returnObject = this.getAutoMathedList(classNameObj);
     }
-    if (type === 'autoInput') {
-      returnObject = this.getAutoInput(classNameObj);
+    if (type === 'searchInput') {
+      returnObject = this.getSearchInput(classNameObj);
     }
     if (type === 'autoRecentList') {
       returnObject = this.getAutoRecentList(classNameObj);
@@ -43,13 +43,13 @@ export default class AutoCompleteContainer {
     return returnObject;
   }
 
-  getAutoInput(classNameObj) {
-    return new AutoInput({
+  getSearchInput(classNameObj) {
+    return new SearchInput({
       container: classNameObj.container,
-      onChange: this.autoInputChangeHandler.bind(this),
-      onBlur: this.autoInputBlurHandler.bind(this),
-      onFocus: this.autoInputFocusHandler.bind(this),
-      onClick: this.autoInputButtonClickHandler.bind(this)
+      onChange: this.inputChangeHandler.bind(this),
+      onBlur: this.inputBlurHandler.bind(this),
+      onFocus: this.inputFocusHandler.bind(this),
+      onClick: this.inputButtonClickHandler.bind(this)
     });
   }
 
@@ -67,7 +67,7 @@ export default class AutoCompleteContainer {
     });
   }
 
-  autoInputChangeHandler({ target }) {
+  inputChangeHandler({ target }) {
     const { state } = this.store;
     const { value } = target;
 
@@ -78,7 +78,7 @@ export default class AutoCompleteContainer {
     });
   }
 
-  autoInputBlurHandler() {
+  inputBlurHandler() {
     const { state } = this.store;
 
     this.store.setState({
@@ -87,7 +87,7 @@ export default class AutoCompleteContainer {
     });
   }
 
-  autoInputFocusHandler() {
+  inputFocusHandler() {
     const { state } = this.store;
 
     this.store.setState({
@@ -96,7 +96,7 @@ export default class AutoCompleteContainer {
     });
   }
 
-  autoInputButtonClickHandler(e, value) {
+  inputButtonClickHandler(e, value) {
     if (!value) return;
 
     const { state } = this.store;

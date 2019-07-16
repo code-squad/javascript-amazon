@@ -1,7 +1,7 @@
 import { makeHTMLString } from '../template/index.js';
 import { qs } from '../../JinUtil/index.js';
 
-export default class AutoCompleteInput {
+export default class SearchInput {
   constructor({ container, onChange, onBlur, onFocus, onClick }) {
     this.container = qs(container);
     this.onChange = onChange;
@@ -16,7 +16,7 @@ export default class AutoCompleteInput {
   }
 
   setInitialUI() {
-    const autoInput = makeHTMLString({ type: 'autoInput' });
+    const autoInput = makeHTMLString({ type: 'searchInput' });
     this.container.insertAdjacentHTML('afterbegin', autoInput);
     this.searchInput = this.container.qs('#auto-search');
     this.button = this.searchInput.nextElementSibling;

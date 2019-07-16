@@ -1,9 +1,9 @@
-import { Carousel, Navigation } from '../components/index.js';
+import { Carousel, Navigation } from '../views/index.js';
 import Store from '../store/index.js';
 
 import { isContainClass, mergeConfig, sleep, qs } from '../../JinUtil/index.js';
 
-export default class CarouselContainer {
+export default class CarouselComponent {
   constructor({ classNameObj, options }) {
     const defaultOptions = {
       infinite: true,

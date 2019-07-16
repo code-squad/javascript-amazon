@@ -25,7 +25,7 @@ const templates = {
     `;
   },
 
-  autoInput: _ => {
+  searchInput: _ => {
     return `
       <div class="auto-container">
         <div class="auto-wrapper">
