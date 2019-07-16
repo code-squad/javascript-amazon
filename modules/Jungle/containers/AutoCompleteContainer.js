@@ -48,7 +48,8 @@ export default class AutoCompleteContainer {
       container: classNameObj.container,
       onChange: this.autoInputChangeHandler.bind(this),
       onBlur: this.autoInputBlurHandler.bind(this),
-      onFocus: this.autoInputFocusHandler.bind(this)
+      onFocus: this.autoInputFocusHandler.bind(this),
+      onClick: this.autoInputButtonClickHandler.bind(this)
     });
   }
 
@@ -93,5 +94,31 @@ export default class AutoCompleteContainer {
       ...state,
       isWriting: true
     });
+  }
+
+  autoInputButtonClickHandler(e, value) {
+    if (!value) return;
+
+    const { state } = this.store;
+    const { recentQueries } = state;
+    const newQueries = this.getNewRecentQuries(recentQueries, value);
+
+    this.store.setState({
+      ...state,
+      isWriting: false,
+      recentQueries: newQueries
+    });
+  }
+
+  getNewRecentQuries(list, value) {
+    if (list.includes(value)) {
+      return list;
+    }
+
+    if (list.length === 5) {
+      return [...list.splice(1, 4), value];
+    }
+
+    return list.concat(value);
   }
 }
