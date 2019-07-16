@@ -1,4 +1,4 @@
-import { makeCarousel, makeAutoComplete } from './src/components/jungleUI.js';
+import { makeCarousel, makeSearch } from './src/components/jungleUI.js';
 import { renderCard } from './src/template.js';
 import { getData } from './modules/JinUtil/index.js';
 
@@ -13,6 +13,6 @@ window.addEventListener('DOMContentLoaded', () => {
     .then(cards => renderCard(cards))
     .then(_ => {
       carousel = makeCarousel();
-      autoComplete = makeAutoComplete();
+      autoComplete = makeSearch();
     });
 });

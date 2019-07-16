@@ -9,8 +9,8 @@ export const makeCarousel = () => {
   });
 };
 
-export const makeAutoComplete = () => {
-  return jungle.createAutoComplete({
+export const makeSearch = () => {
+  return jungle.createSearch({
     classNameObj: { container: '.autoComplete' }
     // options
   });

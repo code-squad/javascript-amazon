@@ -5,7 +5,7 @@ class Jungle {
     return new components.Carousel({ classNameObj, options });
   }
 
-  createAutoComplete({ classNameObj, options }) {
+  createSearch({ classNameObj, options }) {
     return new components.Search({ classNameObj, options });
   }
 }
