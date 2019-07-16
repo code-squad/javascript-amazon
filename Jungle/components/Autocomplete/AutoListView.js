@@ -73,7 +73,7 @@ export default class AutoListView extends MyEventEmitter {
    * //4. 선택된 값을 전달 가능해야함
    * 5. 마우스 온 됐을 때도 배경 색 바뀌게 해야함.
    * 6. 클릭했을 때 input value 변경하기.
-   * 7. 일치 글자 하이라이팅 해야함.
+   * //7. 일치 글자 하이라이팅 해야함.
    * //8. debouncing. 딜레이로 기다렸다가 보여주는 방식이 아니라 같은 값 유지가 일정 시간 이상 되었을 때만 하는 것이다!.
    */
   constructor({ maxLen, dataUrl }) {
@@ -104,6 +104,7 @@ export default class AutoListView extends MyEventEmitter {
     let newInnerHtml = innerText
       .split("")
       .map((c, idx) => {
+        //TODO: refactoring
         if (idx === start) c = "<span class='highlighted'>" + c;
         else if (idx === end) c = "</span>" + c;
         return c;

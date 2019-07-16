@@ -53,6 +53,7 @@ export default class SearchView {
   cacheDom() {
     this.searchWrapper = document.querySelector(".search-wrapper");
     this.searchInput = this.searchWrapper.querySelector("input[type=search]");
+    this.searchSubmit = this.searchWrapper.querySelector(".search-submit");
   }
 
   getTemplate() {
@@ -91,5 +92,9 @@ export default class SearchView {
         this.autoListView.emit("typing", target.value);
       }, this.options.debouncingDelay);
     });
+
+    this.searchSubmit.addEventListener("click", () => {
+      this.autoListView.setShow(false);
+    })
   }
 }
