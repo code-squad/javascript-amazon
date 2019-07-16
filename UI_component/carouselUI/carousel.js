@@ -1,5 +1,5 @@
 "use strict";
-import $ from "../../mylibrary.js";
+import $ from "../../Utills/mylibrary.js";
 
 class Carousel {
   constructor(inputTags) {

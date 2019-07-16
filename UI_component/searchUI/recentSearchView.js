@@ -1,41 +1,15 @@
-import $ from "../../mylibrary.js";
+import $ from "../../Utills/mylibrary.js";
+import ModalView from "./modalView.js";
 
-class RecentSearchView {
+class RecentSearchView extends ModalView {
   constructor(inputTag) {
-    this.modal = $(inputTag);
+    super(inputTag);
     this.recentKeyword = [];
-    this.notify;
-    this.currentHighlightIndex;
-    this.config = {
-      attrName: "recentIndex",
-      className: "highlight",
-      unselectedColor: "white",
-      selectedColor: "#EEEEEE"
-    };
   }
 
   init(func) {
-    this.notify = func;
-    this.initHighlightIndex();
-    this.hideModalWindow();
-  }
-
-  initHighlightIndex() {
-    this.currentHighlightIndex = -1;
-  }
-
-  showModalWindow() {
-    this.modal.style.display = `block`;
-  }
-
-  hideModalWindow() {
-    this.modal.style.display = `none`;
-  }
-
-  removeChildAll() {
-    while (this.modal.hasChildNodes()) {
-      this.modal.removeChild(this.modal.firstChild);
-    }
+    super.init(func);
+    this.config.attrName = "recentIndex";
   }
 
   makeliTemplate() {
@@ -57,51 +31,12 @@ class RecentSearchView {
     }
   }
 
-  setAttribute() {
-    const _arr = [...this.modal.children];
-
-    _arr.forEach((v, i) => {
-      _arr[i].setAttribute(this.config.attrName, i);
-    });
-  }
-
-  initHighlight() {
-    const modal = this.modal;
-    const firstChild = modal.firstChild;
-
-    firstChild.classList.add(this.config.className);
-    this.initHighlightIndex();
-  }
-
   makeModalContent() {
     this.removeChildAll();
     this.makeliTemplate();
     this.showModalWindow();
     this.setAttribute();
     this.initHighlight();
-  }
-
-  submitAutoCompleteData() {
-    this.hideModalWindow();
-    this.initHighlightIndex();
-
-    let arr = [...this.modal.children];
-    let target;
-    arr.forEach(el => {
-      if (el.classList.contains(this.config.className)) {
-        target = el;
-      }
-    });
-
-    let targetText = target.innerHTML;
-    this.notify(targetText);
-  }
-
-  getLastIndex() {
-    const lastItem = this.modal.lastChild;
-    let lastIndex = lastItem.getAttribute(this.config.attrName);
-    lastIndex = Number(lastIndex);
-    return lastIndex;
   }
 
   saveRecentKeyword(inputValue) {
@@ -116,65 +51,6 @@ class RecentSearchView {
 
     this.recentKeyword.unshift(inputValue);
     this.notify();
-  }
-
-  addHighlight() {
-    this.modal.children[this.currentHighlightIndex].classList.add(
-      this.config.className
-    );
-    this.modal.children[
-      this.currentHighlightIndex
-    ].style.backgroundColor = this.config.selectedColor;
-  }
-
-  removeHighlight() {
-    this.modal.children[this.currentHighlightIndex].classList.remove(
-      this.config.className
-    );
-    this.modal.children[
-      this.currentHighlightIndex
-    ].style.backgroundColor = this.config.unselectedColor;
-  }
-
-  highlightIndexisFirst() {
-    return this.currentHighlightIndex === -1;
-  }
-
-  highlightIndexisLast(lastIndex) {
-    return this.currentHighlightIndex === lastIndex;
-  }
-
-  updateHighlight(keyCode) {
-    if (keyCode === "Enter") {
-      this.submitAutoCompleteData();
-      return;
-    }
-
-    const lastIndex = this.getLastIndex();
-
-    if (this.highlightIndexisFirst()) {
-      this.currentHighlightIndex += 1;
-
-      if (keyCode === "ArrowDown") {
-        this.addHighlight();
-      }
-    } else if (this.highlightIndexisLast(lastIndex)) {
-      if (keyCode === "ArrowUp") {
-        this.removeHighlight();
-        this.initHighlightIndex();
-        this.addHighlight();
-      }
-    } else {
-      if (keyCode === "ArrowDown") {
-        this.removeHighlight();
-        this.currentHighlightIndex += 1;
-        this.addHighlight();
-      } else if (keyCode === "ArrowUp") {
-        this.removeHighlight();
-        this.initHighlightIndex();
-        this.addHighlight();
-      }
-    }
   }
 }
 

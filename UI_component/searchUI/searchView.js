@@ -1,4 +1,4 @@
-import $ from "../../mylibrary.js";
+import $ from "../../Utills/mylibrary.js";
 
 class SearchView {
   constructor(inputTags) {
