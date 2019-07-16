@@ -1,6 +1,8 @@
+import $ from "../../mylibrary.js";
+
 class RecentSearchView {
   constructor(inputTag) {
-    this.modal = document.querySelector(inputTag);
+    this.modal = $(inputTag);
     this.recentKeyword = [];
     this.notify;
     this.currentHighlightIndex;

@@ -1,31 +1,44 @@
+import $ from "../../mylibrary.js";
+
 class SearchView {
-  constructor(inputArr) {
-    this.searchForm = document.querySelector(inputArr[0]);
-    this.findBtn = document.querySelector(inputArr[1]);
+  constructor(inputTags) {
+    let [searchformTag, findbtnTag] = [...inputTags];
+    this.searchForm = $(searchformTag);
+    this.findBtn = $(findbtnTag);
     this.notify;
+    this.modeType;
   }
 
-  init(func) {
+  init(func, obj) {
     this.notify = func;
+    this.modeType = obj;
 
+    this.attachSearchFormEvent();
+    this.attachFindBtnEvent();
+  }
+
+  attachSearchFormEvent() {
     this.searchForm.addEventListener("focus", e => {
-      this.notify("focusing");
+      this.notify(this.modeType.focusing);
     });
 
     this.searchForm.addEventListener("blur", e => {
-      this.notify("blured");
+      this.notify(this.modeType.blured);
     });
 
     this.searchForm.addEventListener("input", e => {
-      if (e.srcElement.value === "") {
-        this.notify("pending");
+      const target = e.srcElement;
+      if (target.value === "") {
+        this.notify(this.modeType.pending);
       } else {
-        this.notify("entering", e.srcElement.value);
+        this.notify(this.modeType.entering, target.value);
       }
     });
+  }
 
+  attachFindBtnEvent() {
     this.findBtn.addEventListener("click", e => {
-      this.notify("completing", this.searchForm.value);
+      this.notify(this.modeType.completing, this.searchForm.value);
     });
   }
 
@@ -34,7 +47,7 @@ class SearchView {
   }
 
   updateSearchKeyword(selectedKeyword) {
-    this.searchForm.value = "";
+    this.removeSearchKeyword();
     this.searchForm.value = selectedKeyword;
   }
 }

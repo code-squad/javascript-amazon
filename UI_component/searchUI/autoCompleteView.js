@@ -1,6 +1,8 @@
+import $ from "../../mylibrary.js";
+
 class AutoCompleteView {
   constructor(inputTag) {
-    this.modal = document.querySelector(inputTag);
+    this.modal = $(inputTag);
     this.notify;
     this.currentHighlightIndex;
   }

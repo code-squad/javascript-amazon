@@ -7,6 +7,13 @@ class Controller {
     this.recentSearchView = obj.recentSearchView;
 
     this.currentMode;
+    this.modeType = {
+      focusing: "focusing",
+      blured: "blured",
+      pending: "pending",
+      entering: "entering",
+      completing: "completing"
+    };
   }
 
   getData(url) {
@@ -16,11 +23,8 @@ class Controller {
         this.data = data;
 
         this.initController();
-
         this.initSearchView();
-
         this.initAutoCompleteView();
-
         this.initRecentSearchView();
       });
   }
@@ -42,7 +46,7 @@ class Controller {
 
   initSearchView() {
     this.searchViewHandler = this.searchViewHandler.bind(this);
-    this.searchView.init(this.searchViewHandler);
+    this.searchView.init(this.searchViewHandler, this.modeType);
   }
 
   initAutoCompleteView() {
@@ -81,6 +85,10 @@ class Controller {
     }
   }
 
+  autoCompleteHandler(selectedKeyword) {
+    this.searchView.updateSearchKeyword(selectedKeyword);
+  }
+
   recentSearchViewHandler(selectedKeyword = "") {
     if (selectedKeyword === "") {
       this.currentMode = "pending";
@@ -90,22 +98,6 @@ class Controller {
       this.searchView.updateSearchKeyword(selectedKeyword);
     }
   }
-
-  autoCompleteHandler(selectedKeyword) {
-    this.searchView.updateSearchKeyword(selectedKeyword);
-  }
-
-  initFindBtn() {
-    this.findBtn.addEventListener("click", () => {
-      // 현재 input창에 들어 있는 value 추출
-      // value를 최그느 검색 데이터에 저장
-    });
-    //event 등록
-    // click 했을 때, input창에 입력된 data를 최근 검색 데이터에 저장하는 함수를 호출한다.
-    //
-  }
-
-  saveRecentkeyword() {}
 }
 
 export default Controller;
