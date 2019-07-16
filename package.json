@@ -1,0 +1,24 @@
+{
+  "name": "codesquad_mission",
+  "version": "1.0.0",
+  "description": "step13-16",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-css": "node-sass -w ./step15/src/scss/init.scss ./step15/src/autoComplate.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/P-iknow/javascript-amazon.git"
+  },
+  "keywords": [
+    "autocomplate",
+    "carousel"
+  ],
+  "author": "p-iknow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/P-iknow/javascript-amazon/issues"
+  },
+  "homepage": "https://github.com/P-iknow/javascript-amazon#readme"
+}

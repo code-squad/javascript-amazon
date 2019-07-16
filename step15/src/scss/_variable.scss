@@ -1,0 +1,23 @@
+// Buttons
+$button-height: calcRem(35px);
+$button-border-radius: calcRem(20px);
+
+// Layout
+$layout-width: 1070px;
+$layout-post-width-px: 945px;
+$layout-post-width: calcRem($layout-post-width-px);
+
+// layout post width 속성 변경
+
+// color
+$color-primary: rgb(254, 189, 105);
+$color-primary-border: rgba(254, 189, 105, 1);
+$color-hover: rgba(238, 238, 238, 1);
+
+// autocomplate-input
+$input-height-px: 32px;
+$input-height: calcRem(32px);
+$result-width-px: $layout-post-width-px * 0.978;
+$result-width: calcRem($result-width-px);
+// $result-height-px: $input-height-px * 0.4;
+// $result-height: calcRem($result-height-px);
