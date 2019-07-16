@@ -103,7 +103,18 @@ class ModalView {
     return this.currentHighlightIndex === lastIndex;
   }
 
-  updateHighlight(keyCode) {
+  execArrowUp() {
+    this.removeHighlight();
+    this.currentHighlightIndex += this.config.upDirection;
+
+    if (this.highlightIndexisFirst()) {
+      this.initHighlightIndex();
+    } else {
+      this.addHighlight();
+    }
+  }
+
+  setHighlightStatus(keyCode) {
     if (keyCode === "Enter") {
       this.submitAutoCompleteData();
       return;
@@ -113,20 +124,12 @@ class ModalView {
 
     if (this.highlightIndexisFirst()) {
       this.currentHighlightIndex += 1;
-
       if (keyCode === "ArrowDown") {
         this.addHighlight();
       }
     } else if (this.highlightIndexisLast(lastIndex)) {
       if (keyCode === "ArrowUp") {
-        this.removeHighlight();
-        this.currentHighlightIndex += this.config.upDirection;
-
-        if (this.highlightIndexisFirst()) {
-          this.initHighlightIndex();
-        } else {
-          this.addHighlight();
-        }
+        this.execArrowUp();
       }
     } else {
       if (keyCode === "ArrowDown") {
@@ -134,13 +137,7 @@ class ModalView {
         this.currentHighlightIndex += this.config.downDirection;
         this.addHighlight();
       } else if (keyCode === "ArrowUp") {
-        this.removeHighlight();
-        this.currentHighlightIndex += this.config.upDirection;
-        if (this.highlightIndexisFirst()) {
-          this.initHighlightIndex();
-        } else {
-          this.addHighlight();
-        }
+        this.execArrowUp();
       }
     }
   }

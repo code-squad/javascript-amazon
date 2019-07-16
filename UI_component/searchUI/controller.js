@@ -39,9 +39,9 @@ class Controller {
     //keydown Event를 autoCompleteView, recentSearchView에 모두 다는 것 보다 Controller에 다는게 더 낫다고 판단
     document.addEventListener("keydown", e => {
       if (this.currentMode === this.modeType.focusing) {
-        this.recentSearchView.updateHighlight(e.code);
+        this.recentSearchView.setHighlightStatus(e.code);
       } else if (this.currentMode === this.modeType.entering) {
-        this.autoCompleteView.updateHighlight(e.code);
+        this.autoCompleteView.setHighlightStatus(e.code);
       }
     });
   }
