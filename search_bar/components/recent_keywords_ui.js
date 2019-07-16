@@ -14,33 +14,38 @@ class RecentKeywordsUI extends Subscriber {
   }
 
   render(state) {
-    if (state.mode === 'recentKeywords') {
-      // this.targetEl.classList.add('visible');
+    const actionMap = {
+      recentKeywords: (state) => this.renderRecentKeywords(state),
+      suggestion: () => this.resetView(),
+      selection: (state) => this.renderSelection(state),
+      waiting: () => this.resetView()
+    }
+    actionMap[state.mode](state);
+  }
 
-      const recentKeywords = [...state.recentKeywords.values()];
-      const tpl = recentKeywords.reduce((acc, curr, idx) => {
-        return acc + `<li data-idx=${idx} tabindex=-1>${curr}</li>`
-      }, '');
+  renderSelection(state) {
+    const ul = this.targetEl.firstElementChild;
+    if (!ul) return;
+    const lists = ul.children;
+    const prevEl = lists[state.prevIdx];
+    if (prevEl) prevEl.style = {};
 
-      this.targetEl.innerHTML = `<ul class='recent-keywords'>${tpl}</ul>`;
-    }
-    else if (state.mode === 'selection') {
-      const ul = this.targetEl.firstElementChild;
-      if (!ul) return;
-      const lists = ul.children;
-      const prevEl = lists[state.prevIdx];
-      if (prevEl) prevEl.style = {};
+    const selectedEl = lists[state.selectedIdx];
+    selectedEl.focus();
+    selectedEl.style.backgroundColor = SELECTED_EL_COLOR;
+  }
 
-      const selectedEl = lists[state.selectedIdx];
-      selectedEl.focus();
-      selectedEl.style.backgroundColor = SELECTED_EL_COLOR;
-    }
-    else if (state.mode === 'suggestion') {
-      this.targetEl.innerHTML = '';
-    }
-    else if (state.mode === 'waiting') {
-      this.targetEl.innerHTML = '';
-    }
+  renderRecentKeywords(state) {
+    const recentKeywords = [...state.recentKeywords.values()];
+    const tpl = recentKeywords.reduce((acc, curr, idx) => {
+      return acc + `<li data-idx=${idx} tabindex=-1>${curr}</li>`
+    }, '');
+
+    this.targetEl.innerHTML = `<ul class='recent-keywords'>${tpl}</ul>`;
+  }
+
+  resetView() {
+    this.targetEl.innerHTML = ``;
   }
 }
 

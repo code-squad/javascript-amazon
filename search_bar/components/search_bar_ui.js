@@ -6,25 +6,26 @@ class SearchBarUI extends Subscriber {
     super();
     this.inputEl = _.$(selector);
     this.init(publisher);
-    this.addFocusEvent(selector);
-    this.addKeyupEvent(selector);
+    this.mode = 'waiting'
   }
 
   init(publisher) {
     this.subscribe('searchBarUI', publisher);
+    this.addFocusEvent();
+    this.addKeyupEvent();
     this.addArrowControlEvent();
   }
 
-  addFocusEvent(selector) {
-    _.on(_.$(selector), 'focus', this.handleFocus.bind(this));
+  addFocusEvent() {
+    _.on(this.inputEl, 'focus', this.handleFocus.bind(this));
   }
 
   handleFocus() {
     this.publisher.setState({ mode: 'recentKeywords' });
   }
 
-  addKeyupEvent(selector) {
-    _.on(_.$(selector), 'keyup', this.handleKeyup.bind(this));
+  addKeyupEvent() {
+    _.on(this.inputEl, 'keyup', this.handleKeyup.bind(this));
   }
 
   handleKeyup({ target, key }) {
@@ -47,8 +48,10 @@ class SearchBarUI extends Subscriber {
   }
 
   render(state) {
+    if (this.mode !== state.mode) return;
     this.inputEl.value = state.selectedValue;
   }
+
 }
 
 export default SearchBarUI;
