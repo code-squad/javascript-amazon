@@ -59,7 +59,6 @@ class SuggestionUI extends Subscriber {
   renderBlank() {
     this.targetEl.innerHTML = ``;
   }
-
 }
 
 export default SuggestionUI;

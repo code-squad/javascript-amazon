@@ -1,5 +1,5 @@
-import { $, delegate } from '../utils/allenibrary.js'
-import Subscriber from './subscriber.js'
+import { $, delegate } from '../../utils/allenibrary.js'
+import Subscriber from '../../utils/subscriber.js'
 
 export default class Carousel extends Subscriber {
   constructor(publisher, viewportSelector, option) {
@@ -39,11 +39,44 @@ export default class Carousel extends Subscriber {
     this.delegateBtnEvt(this.option.prevBtn, this.option.nextBtn);
   }
 
+  addClone() {
+    const firstItem = this.panels[0];
+    const lastItem = this.panels[this.maxIdx - 1];
+    this.camera.insertBefore(lastItem.cloneNode(true), this.camera.firstChild);
+    this.camera.appendChild(firstItem.cloneNode(true));
+  }
+
+  setInitialOffset() {
+    this.camera.classList.add('infinite-camera');
+  }
+
+  toggleAnimate(onoff) {
+    const action = onoff === 'on' ? 'remove' : 'add';
+    this.camera.classList[action]('no-animation');
+  }
+
   getBtns(prevBtn, nextBtn) {
     Array.from(this.btnWrapper.children).forEach(el => {
       if (el.classList.contains(prevBtn)) this.prevBtn = el;
       if (el.classList.contains(nextBtn)) this.nextBtn = el;
     })
+  }
+
+  checkMovable(idx) {
+    if (idx == 0)
+      this.prevBtn.classList.add('arrow-disable');
+    else if (idx == this.maxIdx - 1)
+      this.nextBtn.classList.add('arrow-disable');
+    else {
+      this.prevBtn.classList.remove('arrow-disable');
+      this.nextBtn.classList.remove('arrow-disable');
+    }
+  }
+
+  addCarouselClass() {
+    this.viewport.classList.add("viewport");
+    this.camera.classList.add("camera");
+    Array.from(this.panels).forEach(el => el.classList.add('panel'));
   }
 
   delegateBtnEvt(prevBtn, nextBtn) {
@@ -54,19 +87,6 @@ export default class Carousel extends Subscriber {
     delegate(this.btnWrapper, 'click', 'classList', funcMap);
   }
 
-  addCarouselClass() {
-    this.viewport.classList.add("viewport");
-    this.camera.classList.add("camera");
-    Array.from(this.panels).forEach(el => el.classList.add('panel'));
-  }
-
-  addClone() {
-    const firstItem = this.panels[0];
-    const lastItem = this.panels[this.maxIdx - 1];
-    this.camera.insertBefore(lastItem.cloneNode(true), this.camera.firstChild);
-    this.camera.appendChild(firstItem.cloneNode(true));
-  }
-
   handleBtnClick(direction) {
     this.publisher.setState({ direction });
   }
@@ -74,18 +94,18 @@ export default class Carousel extends Subscriber {
   async move({ targetIdx }) {
     this.setTransform(targetIdx);
     if (this.isCloneItem(targetIdx) && this.option.infinite) {
-      await this.sleep(this.option.duration - 50);
-      this.setNoAnimateTransform(targetIdx - this.maxIdx);
+      // await this.sleep(this.option.duration - 50);
+      // this.setNoAnimateTransform(targetIdx - this.maxIdx);
+      setTimeout(() => {
+        this.setNoAnimateTransform(targetIdx - this.maxIdx)
+      }, this.option.duration - 50)
+
     }
     if (!this.option.infinite) this.checkMovable(targetIdx);
   }
 
   isCloneItem(idx) {
     return idx === -1 || idx === this.maxIdx;
-  }
-
-  setInitialOffset() {
-    this.camera.classList.add('infinite-camera');
   }
 
   setTransform(idx) {
@@ -98,24 +118,8 @@ export default class Carousel extends Subscriber {
     this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: none`
   }
 
-  toggleAnimate(onoff) {
-    const action = onoff === 'on' ? 'remove' : 'add';
-    this.camera.classList[action]('no-animation');
-  }
-
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  checkMovable(idx) {
-    if (idx == 0)
-      this.prevBtn.classList.add('arrow-disable');
-    else if (idx == this.maxIdx - 1)
-      this.nextBtn.classList.add('arrow-disable');
-    else {
-      this.prevBtn.classList.remove('arrow-disable');
-      this.nextBtn.classList.remove('arrow-disable');
-    }
   }
 
   render(state) {

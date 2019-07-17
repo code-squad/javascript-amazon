@@ -2,12 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>CARD-NAVIGATION</title>
+    <title>amazon-clone</title>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./src/carousel.css" />
+    <script src="https://kit.fontawesome.com/b7e4569d54.js"></script>
+    <link rel="stylesheet" href="./search_bar/style.css" />
+    <link rel="stylesheet" href="./card_navigation/style.css" />
+    <link rel="stylesheet" href="./card_navigation/src/carousel.css" />
   </head>
   <body>
+    <header>
+      <form class="search-form">
+        <select class="search-select"></select>
+        <input class="search-bar" type="text" placeholder="type here.." />
+        <button class="search-button"><i class="fas fa-search"></i></button>
+      </form>
+    </header>
     <div class="card-navigation">
       <ul class="benefit-list inner">
         <li class="benefit-li" id="benefit1">Fast, Free Delivery</li>
