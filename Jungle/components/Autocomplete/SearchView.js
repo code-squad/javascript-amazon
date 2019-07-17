@@ -24,6 +24,8 @@ export default class SearchView {
       debouncingDelay: 500
     };
 
+    this.autoListTimeout = null;
+
     this.options = this.mergeOptions(options);
   }
 
@@ -91,24 +93,24 @@ export default class SearchView {
   }
 
   renderAutoListView(searchText) {
+    if(this.autoListTimeout) clearTimeout(this.autoListTimeout);
     const template = this.autoListView.getTemplate(searchText);
 
-    this.searchInfoList.innerHTML = template;
-    this.setSearchInfoOn(template === null ? false : true);
+    this.autoListTimeout = setTimeout(() => {
+      this.searchInfoList.innerHTML = template;
+      this.setSearchInfoOn(template === null ? false : true);
+    }, this.options.debouncingDelay);
   }
 
   inputChangeHandler(target) {
     if (target.value === "") {
+      if(this.autoListTimeout) clearTimeout(this.autoListTimeout);
       this.setSearchInfoOn(false);
       this.renderRecentListView();
       return;
     }
 
     this.renderAutoListView(target.value);
-  }
-
-  submitHandler() {
-    console.log("submit");
   }
 
   arrowUpHandler(lists) {
@@ -159,13 +161,15 @@ export default class SearchView {
   }
 
   focusOnHandler(target) {
-    if(target.value !== "") return;
-
-    this.renderRecentListView();
+    if(target.value !== "") {
+      this.renderAutoListView(target.value);
+    } else {
+      this.renderRecentListView();
+    }
   }
 
   focusOutHandler() {
-    // this.setSearchInfoOn(false);
+    this.setSearchInfoOn(false);
   }
 
   attachEvent() {

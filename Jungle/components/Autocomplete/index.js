@@ -1,7 +1,10 @@
-import AutocompleteView from "./AutocompleteView.js";
+import SearchView from "./SearchView.js";
 
 export default class Autocomplete {
   constructor({ autocompleteElement, categories, options }) {
-    new AutocompleteView({ autocompleteElement, categories, options });
+    const searchView = new SearchView({ categories, options });
+
+    autocompleteElement.innerHTML = searchView.getTemplate();
+    searchView.attachEvent();
   }
 }
