@@ -27,38 +27,21 @@ import SearchInfoView from "./SearchInfoView.js";
 export default class AutoListView extends SearchInfoView {
   constructor({ maxLen, dataUrl, title }) {
     super({ maxLen, title });
-
-    this.on("typing", this.searchTypingHandler.bind(this));
   }
 
-  highlightMatchedText(text, filteredData) {
-    //TODO: 일치하는 글자 하이라이팅 구현
-    filteredData
-      .map(liItem => {
-        return liItem.querySelector("span");
-      })
-      .map(spanItem => {
-        spanItem.innerHTML = this.getParsedText({
-          inputVal,
-          innerText: spanItem.innerText
-        });
-      });
-  }
-
-  getHighlightParsedText({
-    text,
-    startIndex,
-    endIndex
-  }) {
+  getHighlightParsedText({ text, startIndex, endIndex }) {
     let parsedText = text
       .split("")
-      .map((c, index) => {
-        //TODO: refactoring
-        if (index === startIndex) c = "<span class='highlighted'>" + c;
-        else if (index === endIndex) c = "</span>" + c;
-        return c;
-      })
+      .map((c, index) =>
+        index === startIndex
+          ? "<span class='highlighted'>" + c
+          : index === endIndex
+          ? "</span>" + c
+          : c
+      )
       .join("");
+    parsedText = `<span>${parsedText}</span>`;
+
     return parsedText;
   }
 
@@ -86,11 +69,11 @@ export default class AutoListView extends SearchInfoView {
   getTemplate(text) {
     const filteredData = this.getFilteredData(text);
 
-    return (filteredData.length > 0)
+    return filteredData.length > 0
       ? this.getListTemplate({
           list: filteredData,
           listClassName: "autocomplete-list"
         })
-      : null
+      : null;
   }
 }

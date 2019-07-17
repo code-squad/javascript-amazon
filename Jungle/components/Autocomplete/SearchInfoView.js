@@ -1,8 +1,5 @@
-import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
-
-export default class SearchInfoView extends MyEventEmitter {
+export default class SearchInfoView {
   constructor({ maxLen, title }) {
-    super();
     this.maxLen = maxLen;
     this.title = title;
     this.selectedIndex = -1;
