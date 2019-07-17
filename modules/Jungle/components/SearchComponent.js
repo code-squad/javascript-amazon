@@ -73,36 +73,33 @@ export default class SearchComponent {
 
   inputChangeHandler({ keyCode, target }) {
     const { state } = this.store;
-    let { value } = target;
+    const { currentItem, recentQueries, matchedQueries } = state;
+    const { value } = target;
 
     if (this.isArrowKey(keyCode)) {
-      const newItem = this.getNewItem(keyCode, state);
-
-      this.store.setState({ ...state, currentItem: newItem });
+      this.store.setState({ ...state, currentItem: this.getNewItem(keyCode, state) });
       return;
     }
 
     if (isMatchedKey(keyCode, 'enter')) {
-      if (state.currentItem === -1) {
+      if (currentItem === -1) {
         this.search(value);
         return;
       }
 
-      value = !!value
-        ? state.matchedQueries[state.currentItem]
-        : state.recentQueries[state.currentItem];
-      this.search(value);
+      const searchValue = !value ? recentQueries[currentItem] : matchedQueries[currentItem];
+      this.search(searchValue);
       return;
     }
 
-    const matchedQueries = this.getData(value);
+    const matchinglist = this.getData(value);
     this.store.setState({
       ...state,
       isWriting: true,
       query: value,
       currentItem: -1,
-      itemLength: !!value ? matchedQueries.length : state.recentQueries.length,
-      matchedQueries
+      itemLength: !value ? recentQueries.length : matchedQueries.length,
+      matchedQueries: matchinglist
     });
   }
 
@@ -120,7 +117,8 @@ export default class SearchComponent {
     return newItem;
   }
 
-  // 추후 api로 데이터를 불러오는 부분
+  // 추후 서버로 데이터를 불러오는 부분
+  // 지금은 fetch로 요청을 보내지 않고 로컬에서 처리함
   getData(prefix) {
     const data = {
       i: ['iphone', 'icon', 'infinite', 'input', 'instagram'],
@@ -139,7 +137,7 @@ export default class SearchComponent {
     return returnData;
   }
 
-  // 추후 서버로 req를 보내는 method
+  // 추후 서버로 검색 req를 보내는 method
   // 지금은 활성화된 기능이 비활성화 되며 최근 검색어에만 추가함
   search(value) {
     if (!value) return;
