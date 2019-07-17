@@ -13,7 +13,7 @@ body {
   height: 100%; }
 
 header {
-  height: 100px;
+  height: 6rem;
   width: 100%;
   background-color: #222f3e;
   display: -webkit-box;
@@ -32,29 +32,29 @@ header {
   align-items: center; }
 
 .search-wrapper {
-  width: 640px;
-  height: 33px;
+  width: 40rem;
+  height: 2.0625rem;
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center; }
   .search-wrapper .search-category {
     height: 100%;
-    width: 46px;
+    width: 2.875rem;
     border-right: 1px solid gray;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-left-radius: 0.3125rem;
+    border-bottom-left-radius: 0.3125rem;
     position: relative;
     background-color: #f3f3f3; }
     .search-wrapper .search-category .icon-down-arrow {
       position: absolute;
       width: 0;
       height: 0;
-      border-top: 5px solid #555555;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
+      border-top: 0.3125rem solid #555555;
+      border-left: 0.3125rem solid transparent;
+      border-right: 0.3125rem solid transparent;
       top: calc(50%);
       left: 1.8rem; }
     .search-wrapper .search-category select {
@@ -107,8 +107,8 @@ header {
         .search-wrapper .search-input .search-info-list li.activated {
           background-color: #dbdbdb; }
         .search-wrapper .search-input .search-info-list li:last-child {
-          border-bottom-left-radius: 5px;
-          border-bottom-right-radius: 5px;
+          border-bottom-left-radius: 0.3125rem;
+          border-bottom-right-radius: 0.3125rem;
           font-size: 0.7rem;
           color: #555;
           height: 70%;
@@ -128,10 +128,10 @@ header {
         height: 50%; }
   .search-wrapper .search-submit {
     background-color: #febd68;
-    width: 45px;
+    width: 2.8125rem;
     height: 100%;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 0.3125rem;
+    border-bottom-right-radius: 0.3125rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
