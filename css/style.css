@@ -29,8 +29,7 @@ header {
   -webkit-align-items: center;
   -moz-align-items: center;
   -ms-align-items: center;
-  align-items: center;
-  margin-bottom: 15rem; }
+  align-items: center; }
 
 .search-wrapper {
   width: 640px;

@@ -1,5 +1,6 @@
 //components
 import AutoListView from "./AutoListView.js";
+import RecentListView from "./RecentListView.js";
 
 const dataUrl = "https://jsonplaceholder.typicode.com/photos";
 
@@ -14,6 +15,12 @@ export default class SearchView {
       title: "자동 완성"
     });
 
+    this.recentListView = new RecentListView({
+      maxLen: 5,
+      title: "최근 검색어"
+    });
+
+
     this.defaultOptions = {
       debouncingDelay: 500
     };
@@ -27,15 +34,14 @@ export default class SearchView {
 
   /**
    * TODO list
-   * //1. 검색어를 입력하면 자동 완성 결과 보여주기 (300ms 지연)
-   * //2. 검색어를 지워도 일치하는 자동완성 결과 보여주기 -> 즉 검색창 value에 변화가 있을 때.
-   * //3. 자동 완성 목록은 키보드 위 아래 버튼으로 이동 가능
-   * 4. 검색 된 내용 중 자동 완성과 일치되는 부분을 하이라이팅 해주기.
-   * 5. 자동완성 결과를 키보드 방향키로 이동시에 선택부분의 배경색은 변경된다.
-   *    선택된 상태에서 엔터키를 입력하면 해당검색어가 위쪽 검색input창에 추가된다.
-   *    동시에 검색결과창은 사라진다.
-   * 6. 포커스가 오면 최근 검색어 5개 바로 띄우기
-   * 7. 검색 버튼을 눌러도 검색되진 않고 자동완성 결과창 지우기
+   * //1. 검색어를 입력하면 자동완성결과가 노출된다.
+   * 2. 자동완성결과는 바로 추가되지 않고, 300ms지연 후에 화면에 추가된다.
+   * //3. 입력창의 내용을 백스페이스로 삭제해도 일치하는 자동완성결과가 노출된다.
+   * //4. 자동완성 결과는 키보드 위/아래키로 이동할수 있다.
+   * //5. 노출된 데이터 중 검색어와 일치하는 단어는 색깔이 하이라이트 되여 보여진다.
+   * //6. 자동완성 결과를 키보드 방향키로 이동시에 선택부분의 배경색은 변경된다. 선택된 상태에서 엔터키를 입력하면 해당검색어가 위쪽 검색input창에 추가된다.  동시에 검색결과창은 사라진다.
+   * 7. 검색창에 포커스가 가면, 최근 검색한 결과가 최대 5개까지 노출된다. (시간 역순으로 최근 검색한 내용이 위에 나옴)
+   * 8. 실제 검색버튼을 눌러도 검색이 이뤄지진 않으며, 자동완성 결과 창은 닫힌다.
    */
 
   getCategoryTagsTemplate(categories) {
@@ -128,17 +134,26 @@ export default class SearchView {
     }
   }
 
-  keyDownHandler(evt) {
-    const { key } = evt;
+  enterHandler(target) {
+    const activatedEl = this.searchInfoList.querySelector(".activated");
+    target.value = (activatedEl === null) ? target.value  : activatedEl.innerText;
 
-    if (!(key === "ArrowDown" || key === "ArrowUp")) return;
+    this.setSearchInfoOn(false);
+  }
+
+  keyDownHandler(evt) {
+    const { key, target } = evt;
+
+    if (!(key === "ArrowDown" || key === "ArrowUp" || key ==="Enter")) return;
     const lists = this.searchInfoList.querySelectorAll("li");
 
     if (key === "ArrowUp") {
       this.arrowUpHandler(lists);
       evt.preventDefault();
-    } else {
+    } else if(key === "ArrowDown") {
       this.arrowDownHandler(lists);
+    } else {
+      this.enterHandler(target);
     }
   }
 

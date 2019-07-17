@@ -25,7 +25,6 @@ header {
   @include flexbox();
   @include justify-content(center);
   @include align-items(center);
-  margin-bottom: 15rem;  //TODO:지워야함
 }
 
 $search-radius: 5px;
