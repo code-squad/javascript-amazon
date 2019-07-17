@@ -2,9 +2,10 @@ import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
 
 class SearchBarUI extends Subscriber {
-  constructor(publisher, selector) {
+  constructor(publisher, { inputSelector, buttonSelector }) {
     super();
-    this.inputEl = _.$(selector);
+    this.inputEl = _.$(inputSelector);
+    this.buttonEl = _.$(buttonSelector);
     this.init(publisher);
     this.mode = 'waiting'
   }
@@ -46,7 +47,7 @@ class SearchBarUI extends Subscriber {
       ArrowUp: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'up' }),
       Enter: () => {
         e.preventDefault();
-        if (target.tagName === 'LI' || target.tagName === 'INPUT') {
+        if (target.className === 'suggestions' || target.className === 'keywords' || target === this.inputEl) {
           this.publisher.setState({ mode: 'waiting', selectedValue: target.textContent, currentValue: target.value });
         }
       }
@@ -55,7 +56,7 @@ class SearchBarUI extends Subscriber {
   }
 
   addClickEvent() {
-    _.on(_.$('button'), 'click', this.handleClick.bind(this));
+    _.on(this.buttonEl, 'click', this.handleClick.bind(this));
   }
 
   handleClick(e) {
@@ -66,6 +67,7 @@ class SearchBarUI extends Subscriber {
   render(state) {
     if ((this.mode !== state.mode) || !state.selectedValue) return;
     this.inputEl.value = state.selectedValue;
+    this.inputEl.focus();
   }
 }
 

@@ -9,35 +9,45 @@ class SuggestionUI extends Subscriber {
   }
 
   init(publisher, selector) {
-    this.targetEl = _.$(selector);
     this.subscribe('suggestionUI', publisher);
+    this.renderWrapper(selector);
+    this.targetEl = _.$('.auto-suggestions');
+  }
+
+  renderWrapper(selector) {
+    const tpl = `<ul class='auto-suggestions'></ul>`;
+    _.$(selector).insertAdjacentHTML('beforeend', tpl);
   }
 
   render(state) {
     const actionMap = {
-      recentKeywords: () => this.resetView(),
+      recentKeywords: () => this.renderBlank(),
       suggestion: (state) => this.renderSuggestion(state),
       selection: (state) => this.renderSelection(state),
-      waiting: () => this.resetView()
+      waiting: () => this.renderBlank()
     }
     actionMap[state.mode](state);
   }
 
   renderSuggestion(state) {
     const prefix = state.currentValue;
+    if (!prefix) {
+      this.renderBlank();
+      return;
+    }
     const suggestions = state.suggestions[state.currentValue];
     if (!suggestions) return;
     const tpl = suggestions.reduce((acc, curr) => {
       curr = curr.replace(prefix, '');
-      return acc + `<li tabindex=-1>${prefix}<b>${curr}</b></li>`
+      return acc + `<li class='suggestions' tabindex=-1>${prefix}<b>${curr}</b></li>`
     }, '');
-    this.targetEl.innerHTML = `<ul>${tpl}</ul>`;
+    this.targetEl.innerHTML = tpl;
   }
 
   renderSelection(state) {
-    const ul = this.targetEl.firstElementChild;
-    if (!ul) return;
+    const ul = this.targetEl;
     const lists = ul.children;
+    if (!lists.length) return;
     const prevEl = lists[state.prevIdx];
     if (prevEl) prevEl.style = {};
 
@@ -46,7 +56,7 @@ class SuggestionUI extends Subscriber {
     selectedEl.style.backgroundColor = SELECTED_EL_COLOR;
   }
 
-  resetView() {
+  renderBlank() {
     this.targetEl.innerHTML = ``;
   }
 

@@ -1,16 +1,17 @@
 import * as _ from '../../utils/allenibrary.js'
 import Publisher from '../../utils/Publisher.js'
-import { AUTO_COMPLETE_DELAY, MAXIMUM_SUGGESTIONS, MAXIMUM_RECENT_KEYWORDS, INITIAL_SELECTED_IDX } from '../constants.js'
+import { SUGGESTION_DELAY, MAXIMUM_SUGGESTIONS, MAXIMUM_RECENT_KEYWORDS, INITIAL_SELECTED_IDX } from '../constants.js'
 
 class StateManager extends Publisher {
-  constructor(keywords = []) {
+  constructor({ keywords = [], url }) {
     super();
     this.state = {
       mode: 'waiting',
       recentKeywords: keywords,
       suggestions: {},
       selectedIdx: INITIAL_SELECTED_IDX,
-      prevIdx: INITIAL_SELECTED_IDX
+      prevIdx: INITIAL_SELECTED_IDX,
+      url: url
     }
   }
 
@@ -25,30 +26,39 @@ class StateManager extends Publisher {
   }
 
   processRecentKeywordsMode(state) {
-    this.state = { ...this.state, ...state, selectedIdx: INITIAL_SELECTED_IDX, maxIdx: this.state.recentKeywords.length - 1 };
+    this.state = {
+      ...this.state,
+      ...state,
+      selectedIdx: INITIAL_SELECTED_IDX,
+      maxIdx: this.state.recentKeywords.length - 1
+    };
     this.notify(this.state);
   }
 
   processSuggestionMode(state) {
-    this.state = { ...this.state, ...state, selectedIdx: INITIAL_SELECTED_IDX, maxIdx: MAXIMUM_SUGGESTIONS - 1 };
+    this.state = {
+      ...this.state,
+      ...state,
+      selectedIdx: INITIAL_SELECTED_IDX,
+      maxIdx: MAXIMUM_SUGGESTIONS - 1,
+    };
     const prefix = this.state.currentValue;
-    if (prefix === '') return;
     if (this.state.suggestions[prefix]) {
       setTimeout(() => {
         this.notify(this.state);
-      }, AUTO_COMPLETE_DELAY);
+      }, SUGGESTION_DELAY);
     }
     else {
-      _.getJsonData(`suggestion_keywords/${prefix}.json`)
+      _.getJsonData(`${this.state.url}${prefix}`)
         .then(data => {
-          this.state = this.updateSuggestions(data.suggestions, prefix, this.state);
+          this.state = this.updateSuggestions(data.body.suggestions, prefix, this.state);
           setTimeout(() => {
             this.notify(this.state);
-          }, AUTO_COMPLETE_DELAY);
+          }, SUGGESTION_DELAY);
         })
         .catch(reason => {
           this.notify(this.state);
-          console.log(reason);
+          console.log('NO_SUGGESTIONS');
         });
     }
   }
@@ -95,9 +105,9 @@ class StateManager extends Publisher {
       down: () => this.setSelectedIdx(newState, newState.maxIdx, 0, 'down'),
       up: () => this.setSelectedIdx(newState, 0, newState.maxIdx, 'up')
     }
-
     return directionMap[newState.arrowDirection]();
   }
+
   setSelectedIdx(state, fromIdx, toIdx, direction) {
     const increment = direction === 'down' ? 1 : -1;
     if (state.selectedIdx === fromIdx) state.selectedIdx = toIdx;
