@@ -6,6 +6,7 @@ import { mergeConfig, qs } from '../../JinUtil/index.js';
 export default class SearchComponent {
   constructor({ classNameObj, options }) {
     this.container = qs(classNameObj.container);
+    this.RECENT_LIMIT = 5;
 
     this.store = this.getStore({});
 
@@ -51,7 +52,7 @@ export default class SearchComponent {
       onChange: this.inputChangeHandler.bind(this),
       onBlur: this.inputBlurHandler.bind(this),
       onFocus: this.inputFocusHandler.bind(this),
-      onClick: this.inputButtonClickHandler.bind(this)
+      onClick: this.search.bind(this)
     });
   }
 
@@ -69,14 +70,27 @@ export default class SearchComponent {
     });
   }
 
-  inputChangeHandler(e) {
+  inputChangeHandler({ keyCode, target }) {
     const { state } = this.store;
-    const { value } = e.target;
+    let { value } = target;
 
-    if (this.isArrowKey(e.keyCode)) {
-      const newItem = this.getNewItem(e.keyCode, state);
+    if (this.isArrowKey(keyCode)) {
+      const newItem = this.getNewItem(keyCode, state);
 
       this.store.setState({ ...state, currentItem: newItem });
+      return;
+    }
+
+    if (this.isEnterKey(keyCode)) {
+      if (state.currentItem === -1) {
+        this.search(value);
+        return;
+      }
+
+      value = !!value
+        ? state.matchedQueries[state.currentItem]
+        : state.recentQueries[state.currentItem];
+      this.search(value);
       return;
     }
 
@@ -91,11 +105,11 @@ export default class SearchComponent {
     });
   }
 
-  getNewItem(keycode, { currentItem, itemLength }) {
-    let newItem = keycode === 38 ? currentItem - 1 : currentItem + 1;
+  getNewItem(keyCode, { currentItem, itemLength }) {
+    let newItem = keyCode === 38 ? currentItem - 1 : currentItem + 1;
 
     if (newItem < -1) {
-      return itemLength;
+      return itemLength - 1;
     }
 
     if (newItem > itemLength - 1) {
@@ -124,8 +138,32 @@ export default class SearchComponent {
     return returnData;
   }
 
-  isArrowKey(keycode) {
-    return keycode == 38 || keycode == 40;
+  isArrowKey(keyCode) {
+    return keyCode === 38 || keyCode === 40;
+  }
+
+  isEnterKey(keyCode) {
+    return keyCode === 13;
+  }
+
+  // 추후 서버로 req를 보내는 method
+  // 지금은 활성화된 기능이 비활성화 되며 최근 검색어에만 추가함
+  search(value) {
+    if (!value) return;
+
+    const { state } = this.store;
+    const { recentQueries } = state;
+
+    const newQueries = this.getNewRecentQuries(recentQueries, value);
+
+    this.store.setState({
+      ...state,
+      query: value,
+      isWriting: false,
+      currentItem: -1,
+      itemLength: newQueries.length,
+      recentQueries: newQueries
+    });
   }
 
   inputBlurHandler() {
@@ -146,31 +184,15 @@ export default class SearchComponent {
     });
   }
 
-  inputButtonClickHandler(e, value) {
-    if (!value) return;
-
-    const { state } = this.store;
-    const { recentQueries } = state;
-    const newQueries = this.getNewRecentQuries(recentQueries, value);
-
-    this.store.setState({
-      ...state,
-      isWriting: false,
-      currentItem: -1,
-      itemLength: newQueries.length,
-      recentQueries: newQueries
-    });
-  }
-
   getNewRecentQuries(list, value) {
     if (list.includes(value)) {
       return list;
     }
 
-    if (list.length === 5) {
-      return [...list.splice(1, 4), value];
+    if (list.length === this.RECENT_LIMIT) {
+      return [value, ...list.splice(0, 4)];
     }
 
-    return list.concat(value);
+    return [value, ...list];
   }
 }

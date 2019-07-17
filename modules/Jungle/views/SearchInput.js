@@ -27,7 +27,7 @@ export default class SearchInput {
     this.searchInput.addEventListener('keydown', e => this.preventMoveCursor(e));
     this.searchInput.addEventListener('blur', _ => this.onBlur());
     this.searchInput.addEventListener('focus', _ => this.onFocus());
-    this.button.addEventListener('click', e => this.onClick(e, this.searchInput.value));
+    this.button.addEventListener('click', _ => this.onClick(this.searchInput.value));
   }
 
   preventMoveCursor(e) {
