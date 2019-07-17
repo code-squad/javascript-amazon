@@ -20,7 +20,7 @@ export default class AutoComplete {
   }
 
   render(state) {
-    const { currentItem, itemLength } = state;
+    const { currentItem, itemLength, recentQueries } = state;
 
     if (this.isInvisibleState(state)) {
       setCSS(this.recentArea, 'display', 'none');
@@ -29,7 +29,11 @@ export default class AutoComplete {
 
     removeNodes([...this.recentArea.children]);
 
-    const autoListHTML = makeHTMLString({ type: 'autoList', data: state.recentQueries });
+    const autoListHTML = makeHTMLString({
+      type: 'autoList',
+      data: recentQueries.length === 0 ? ['최근 검색어가 없습니다.'] : recentQueries
+    });
+
     this.recentArea.insertAdjacentHTML('beforeend', autoListHTML);
 
     this.selectItem(currentItem, itemLength);

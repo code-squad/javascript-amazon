@@ -22,8 +22,8 @@ export default class SearchComponent {
       isWriting: false,
       query: '',
       currentItem: -1,
-      itemLength: 2,
-      recentQueries: ['recent', 'keyword'],
+      itemLength: 0,
+      recentQueries: [],
       matchedQueries: {}
     });
   }
