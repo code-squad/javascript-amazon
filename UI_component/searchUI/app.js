@@ -15,6 +15,6 @@ export default function loadSearchUI() {
   });
 
   window.addEventListener("DOMContentLoaded", () => {
-    controller.getData("../../resources/data/searchData.json");
+    controller.getJsonData("../../resources/data/searchData.json");
   });
 }

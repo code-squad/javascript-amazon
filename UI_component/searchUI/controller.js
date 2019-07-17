@@ -16,7 +16,7 @@ class Controller {
     };
   }
 
-  getData(url) {
+  getJsonData(url) {
     fetch(url)
       .then(response => response.json())
       .then(data => {
