@@ -10,7 +10,6 @@ export default class AutoComplete {
 
   init() {
     this.setInitialUI();
-    this.attatchEvent();
   }
 
   setInitialUI() {
@@ -20,10 +19,10 @@ export default class AutoComplete {
     this.recentArea = this.parentNode.qs('.auto-area.recent');
   }
 
-  attatchEvent() {}
-
   render(state) {
-    if (!state.isWriting || !!state.query) {
+    const { currentItem, itemLength } = state;
+
+    if (this.isInvisibleState(state)) {
       setCSS(this.recentArea, 'display', 'none');
       return;
     }
@@ -31,14 +30,20 @@ export default class AutoComplete {
     removeNodes([...this.recentArea.children]);
 
     const autoListHTML = makeHTMLString({ type: 'autoList', data: state.recentQueries });
-
     this.recentArea.insertAdjacentHTML('beforeend', autoListHTML);
 
-    if (-1 < state.currentItem && state.currentItem < state.itemLength) {
-      const targetItem = this.recentArea.children[state.currentItem];
+    this.selectItem(currentItem, itemLength);
+    setCSS(this.recentArea, 'display', 'block');
+  }
+
+  isInvisibleState({ isWriting, query }) {
+    return !isWriting || !!query;
+  }
+
+  selectItem(currentItem, itemLength) {
+    if (-1 < currentItem && currentItem < itemLength) {
+      const targetItem = this.recentArea.children[currentItem];
       targetItem.classList.add('selected');
     }
-
-    setCSS(this.recentArea, 'display', 'block');
   }
 }

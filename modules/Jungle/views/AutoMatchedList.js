@@ -10,7 +10,6 @@ export default class AutoMatchedList {
 
   init() {
     this.setInitialUI();
-    this.attatchEvent();
   }
 
   setInitialUI() {
@@ -20,10 +19,10 @@ export default class AutoMatchedList {
     this.matchedArea = this.parentNode.qs('.auto-area.matched');
   }
 
-  attatchEvent() {}
-
   render(state) {
-    if (!state.isWriting || !state.query) {
+    const { currentItem, itemLength } = state;
+
+    if (this.isInvisibleState(state)) {
       setCSS(this.matchedArea, 'display', 'none');
       return;
     }
@@ -38,11 +37,18 @@ export default class AutoMatchedList {
 
     this.matchedArea.insertAdjacentHTML('beforeend', autoListHTML);
 
-    if (-1 < state.currentItem && state.currentItem < state.itemLength) {
-      const targetItem = this.matchedArea.children[state.currentItem];
+    this.selectItem(currentItem, itemLength);
+    setCSS(this.matchedArea, 'display', 'block');
+  }
+
+  isInvisibleState({ isWriting, query }) {
+    return !isWriting || !query;
+  }
+
+  selectItem(currentItem, itemLength) {
+    if (-1 < currentItem && currentItem < itemLength) {
+      const targetItem = this.matchedArea.children[currentItem];
       targetItem.classList.add('selected');
     }
-
-    setCSS(this.matchedArea, 'display', 'block');
   }
 }
