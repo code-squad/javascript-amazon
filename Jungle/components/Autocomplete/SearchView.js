@@ -2,16 +2,12 @@
 import AutoListView from "./AutoListView.js";
 import RecentListView from "./RecentListView.js";
 
-const dataUrl = "https://jsonplaceholder.typicode.com/photos";
-
 export default class SearchView {
   constructor({ categories, options }) {
-    //카테고리 입력받아 seach-category에 사용하기
     this.categories = categories;
 
     this.autoListView = new AutoListView({
       maxLen: 8,
-      dataUrl,
       title: "자동 완성"
     });
 
@@ -27,6 +23,9 @@ export default class SearchView {
     this.autoListTimeout = null;
 
     this.options = this.mergeOptions(options);
+
+    this.currentSelectIndex = -1;
+    this.infoItemLen = 0;
   }
 
   mergeOptions(options) {
@@ -93,8 +92,10 @@ export default class SearchView {
   }
 
   renderAutoListView(searchText) {
-    if(this.autoListTimeout) clearTimeout(this.autoListTimeout);
+    if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
     const template = this.autoListView.getTemplate(searchText);
+
+    this.currentSelectIndex = -1;
 
     this.autoListTimeout = setTimeout(() => {
       this.searchInfoList.innerHTML = template;
@@ -103,8 +104,10 @@ export default class SearchView {
   }
 
   inputChangeHandler(target) {
+    this.currentSelectIndex = -1;
+
     if (target.value === "") {
-      if(this.autoListTimeout) clearTimeout(this.autoListTimeout);
+      if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
       this.setSearchInfoOn(false);
       this.renderRecentListView();
       return;
@@ -114,31 +117,30 @@ export default class SearchView {
   }
 
   arrowUpHandler(lists) {
-    this.autoListView.selectedIndex -= 1;
+    this.currentSelectIndex -= 1;
+    this.infoItemLen = lists.length - 1;
+
     lists.forEach(list => list.classList.remove("activated"));
 
-    if (this.autoListView.selectedIndex < 0) {
-      this.autoListView.selectedIndex = this.autoListView.itemLen;
-    } else {
-      lists[this.autoListView.selectedIndex].classList.add("activated");
-    }
+    if (this.currentSelectIndex < 0) this.currentSelectIndex = this.infoItemLen;
+    else lists[this.currentSelectIndex].classList.add("activated");
   }
 
   arrowDownHandler(lists) {
-    this.autoListView.selectedIndex += 1;
+    this.currentSelectIndex += 1;
+    this.infoItemLen = lists.length - 1;
+
     lists.forEach(list => list.classList.remove("activated"));
 
-    if (this.autoListView.selectedIndex >= this.autoListView.itemLen) {
-      this.autoListView.selectedIndex = -1;
-    } else {
-      lists[this.autoListView.selectedIndex].classList.add("activated");
-    }
+    if (this.currentSelectIndex >= this.infoItemLen) this.currentSelectIndex = -1;
+    else lists[this.currentSelectIndex].classList.add("activated");
   }
 
   enterHandler(target) {
-    const activatedEl = this.searchInfoList.querySelector(".activated");
-    target.value = activatedEl === null ? target.value : activatedEl.innerText;
-
+    if(this.currentSelectIndex >= 0) {
+      const activatedEl = this.searchInfoList.querySelectorAll("li")[this.currentSelectIndex];
+      target.value = activatedEl === null ? target.value : activatedEl.innerText;
+    }
     this.setSearchInfoOn(false);
 
     this.recentListView.addRecentSearchText({ text: target.value });
@@ -161,7 +163,7 @@ export default class SearchView {
   }
 
   focusOnHandler(target) {
-    if(target.value !== "") {
+    if (target.value !== "") {
       this.renderAutoListView(target.value);
     } else {
       this.renderRecentListView();
@@ -172,18 +174,24 @@ export default class SearchView {
     this.setSearchInfoOn(false);
   }
 
+  submitHandler(evt) {
+    evt.preventDefault();
+  }
+
   attachEvent() {
     this.cacheDom();
 
     this.searchInput.addEventListener("input", ({ target }) =>
       this.inputChangeHandler(target)
     );
-    this.searchForm.addEventListener("submit", _ => this.submitHandler());
+    this.searchForm.addEventListener("submit", evt => this.submitHandler(evt));
     this.searchForm.addEventListener("keydown", evt =>
       this.keyDownHandler(evt)
     );
 
-    this.searchInput.addEventListener("focus", ({ target }) => this.focusOnHandler(target));
+    this.searchInput.addEventListener("focus", ({ target }) =>
+      this.focusOnHandler(target)
+    );
     this.searchInput.addEventListener("focusout", () => this.focusOutHandler());
   }
 }
