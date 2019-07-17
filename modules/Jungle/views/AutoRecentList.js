@@ -31,7 +31,14 @@ export default class AutoComplete {
     removeNodes([...this.recentArea.children]);
 
     const autoListHTML = makeHTMLString({ type: 'autoList', data: state.recentQueries });
+
     this.recentArea.insertAdjacentHTML('beforeend', autoListHTML);
+
+    if (-1 < state.currentItem && state.currentItem < state.itemLength) {
+      const targetItem = this.recentArea.children[state.currentItem];
+      targetItem.classList.add('selected');
+    }
+
     setCSS(this.recentArea, 'display', 'block');
   }
 }

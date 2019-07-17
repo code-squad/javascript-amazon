@@ -21,7 +21,7 @@ export default class SearchComponent {
       query: '',
       currentItem: -1,
       itemLength: 2,
-      recentQueries: ['hello', 'recent'],
+      recentQueries: ['recent', 'keyword'],
       matchedQueries: {}
     });
   }
@@ -81,13 +81,12 @@ export default class SearchComponent {
     }
 
     const matchedQueries = this.getData(value);
-
     this.store.setState({
       ...state,
       isWriting: true,
       query: value,
       currentItem: -1,
-      itemLength: matchedQueries.length,
+      itemLength: !!value ? matchedQueries.length : state.recentQueries.length,
       matchedQueries
     });
   }

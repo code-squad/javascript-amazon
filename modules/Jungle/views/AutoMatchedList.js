@@ -5,7 +5,7 @@ export default class AutoMatchedList {
   constructor({ container, parentNode }) {
     this.container = qs(container);
     this.parentNode = this.container.qs(parentNode);
-    this.matchedList;
+    this.matchedArea;
   }
 
   init() {
@@ -17,18 +17,18 @@ export default class AutoMatchedList {
     const matchedList = makeHTMLString({ type: 'autoMatchedArea' });
     this.parentNode.insertAdjacentHTML('beforeend', matchedList);
 
-    this.matchedList = this.parentNode.qs('.auto-area.matched');
+    this.matchedArea = this.parentNode.qs('.auto-area.matched');
   }
 
   attatchEvent() {}
 
   render(state) {
     if (!state.isWriting || !state.query) {
-      this.matchedList.style.display = 'none';
+      setCSS(this.matchedArea, 'display', 'none');
       return;
     }
 
-    removeNodes([...this.matchedList.children]);
+    removeNodes([...this.matchedArea.children]);
 
     const autoListHTML = makeHTMLString({
       type: 'autoList',
@@ -36,13 +36,13 @@ export default class AutoMatchedList {
       prefix: state.query
     });
 
-    this.matchedList.insertAdjacentHTML('beforeend', autoListHTML);
+    this.matchedArea.insertAdjacentHTML('beforeend', autoListHTML);
 
     if (-1 < state.currentItem && state.currentItem < state.itemLength) {
-      const targetItem = this.matchedList.children[state.currentItem];
+      const targetItem = this.matchedArea.children[state.currentItem];
       targetItem.classList.add('selected');
     }
 
-    this.matchedList.style.display = 'block';
+    setCSS(this.matchedArea, 'display', 'block');
   }
 }
