@@ -100,9 +100,12 @@
       text-decoration: none;
       padding-left: 0.7rem;
     }
-  }
+    &:last-child {
+      border-radius: 0 0 1rem 1rem;
+    }
 
-  &_result_item:last-child {
-    border-radius: 0 0 1rem 1rem;
+    &-highlighted {
+      color: $color-primary;
+    }
   }
 }

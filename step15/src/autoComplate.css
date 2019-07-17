@@ -484,5 +484,7 @@ textarea {
       color: #7b7b7b;
       text-decoration: none;
       padding-left: 0.7rem; }
-  .autoComplete_result_item:last-child {
-    border-radius: 0 0 1rem 1rem; }
+    .autoComplete_result_item:last-child {
+      border-radius: 0 0 1rem 1rem; }
+    .autoComplete_result_item-highlighted {
+      color: #febd69; }
