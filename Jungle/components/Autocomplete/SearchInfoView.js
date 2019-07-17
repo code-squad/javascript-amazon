@@ -9,6 +9,8 @@ export default class SearchInfoView extends MyEventEmitter {
   }
 
   getListTemplate({ list, listClassName }) {
+    if(list.length > this.maxLen) list.length = this.maxLen;
+
     this.itemLen = list.length;
 
     const listTemplate = `
@@ -16,7 +18,7 @@ export default class SearchInfoView extends MyEventEmitter {
         ${list.reduce(
           (html, item, idx) => `
             ${html}
-            <li class="${listClassName}" data-idx=${idx}><span>${item}</span></li>
+            <li class="${listClassName}" data-idx=${idx}>${item}</li>
           `,
           ``
         )}

@@ -20,7 +20,6 @@ export default class SearchView {
       title: "최근 검색어"
     });
 
-
     this.defaultOptions = {
       debouncingDelay: 500
     };
@@ -96,16 +95,28 @@ export default class SearchView {
     this.searchInfoList.style.display = on ? "block" : "none";
   }
 
-  inputChangeHandler(target) {
-    if (target.value === "") {
-      this.setSearchInfoOn(false);
-      return;
-    }
-
-    const template = this.autoListView.getTemplate(target.value);
+  renderRecentListView() {
+    const template = this.recentListView.getTemplate();
 
     this.searchInfoList.innerHTML = template;
     this.setSearchInfoOn(template === null ? false : true);
+  }
+
+  renderAutoListView(searchText) {
+    const template = this.autoListView.getTemplate(searchText);
+
+    this.searchInfoList.innerHTML = template;
+    this.setSearchInfoOn(template === null ? false : true);
+  }
+
+  inputChangeHandler(target) {
+    if (target.value === "") {
+      this.setSearchInfoOn(false);
+      this.renderRecentListView();
+      return;
+    }
+
+    this.renderAutoListView(target.value);
   }
 
   submitHandler() {
@@ -136,25 +147,37 @@ export default class SearchView {
 
   enterHandler(target) {
     const activatedEl = this.searchInfoList.querySelector(".activated");
-    target.value = (activatedEl === null) ? target.value  : activatedEl.innerText;
+    target.value = activatedEl === null ? target.value : activatedEl.innerText;
 
     this.setSearchInfoOn(false);
+
+    this.recentListView.addRecentSearchText({ text: target.value });
   }
 
   keyDownHandler(evt) {
     const { key, target } = evt;
 
-    if (!(key === "ArrowDown" || key === "ArrowUp" || key ==="Enter")) return;
+    if (!(key === "ArrowDown" || key === "ArrowUp" || key === "Enter")) return;
     const lists = this.searchInfoList.querySelectorAll("li");
 
     if (key === "ArrowUp") {
       this.arrowUpHandler(lists);
       evt.preventDefault();
-    } else if(key === "ArrowDown") {
+    } else if (key === "ArrowDown") {
       this.arrowDownHandler(lists);
     } else {
       this.enterHandler(target);
     }
+  }
+
+  focusOnHandler(target) {
+    if(target.value !== "") return;
+
+    this.renderRecentListView();
+  }
+
+  focusOutHandler() {
+    this.setSearchInfoOn(false);
   }
 
   attachEvent() {
@@ -167,5 +190,8 @@ export default class SearchView {
     this.searchForm.addEventListener("keydown", evt =>
       this.keyDownHandler(evt)
     );
+
+    this.searchInput.addEventListener("focus", ({ target }) => this.focusOnHandler(target));
+    this.searchInput.addEventListener("focusout", () => this.focusOutHandler());
   }
 }
