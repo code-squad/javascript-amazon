@@ -15,13 +15,7 @@ const render = items => {
 };
 
 fetch(dataURL)
-  .then(response => {
-    if (response.status !== 200) {
-      console.log(`Status code: ${response.status}`);
-      return;
-    }
-    return response.json();
-  })
+  .then(response => response.json())
   .then(data => {
     const carouselData = findByTargetId(data);
     const listItems = render(carouselData.list);
