@@ -11,7 +11,7 @@ export default class SearchComponent {
     this.options = mergeConfig(defaultOptions, options);
     this.store = this.getStore({});
 
-    classNameObj.parentNode = '.auto-wrapper';
+    classNameObj.parentNode = '.search-wrapper';
     this.input = this.getView(classNameObj, 'searchInput');
     this.autoMatched = this.getView(classNameObj, 'autoMatchedList');
     this.autoRecent = this.getView(classNameObj, 'autoRecentList');
