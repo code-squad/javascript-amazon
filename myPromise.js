@@ -1,8 +1,8 @@
 class MyPromise {
   constructor(executor) {
-    this.promiseStatus = undefined;
+    this.promiseStatus = "pending";
     this.promiseValue = undefined;
-
+    this.delayedQueue = [];
     this.init(executor);
   }
 
@@ -10,13 +10,6 @@ class MyPromise {
     if (typeof executor !== "function") {
       throw new Error("error");
     }
-    if (!executor.length) {
-      this.updateStatus({
-        status: "pending",
-        value: undefined
-      });
-    }
-
     this.resolveExecutor(executor);
   }
 
@@ -25,26 +18,38 @@ class MyPromise {
     this.promiseValue = value;
   }
 
+  handle(delayed) {
+    if (this.promiseStatus === "pending") {
+      this.delayedQueue.push(delayed);
+      return;
+    }
+    const delayedData = delayed.onFulfilled(this.promiseValue);
+    delayed.promise.resolve(delayedData);
+  }
+
   resolveExecutor(executor) {
     try {
-      executor(
-        value => {
-          this.resolve(value);
-        },
-        reason => {
-          this.reject(reason);
-        }
-      );
+      executor(this.resolve.bind(this), this.reject.bind(this));
     } catch (error) {
       this.reject(error);
     }
   }
 
   resolve(value) {
-    this.updateStatus({
-      status: "resolved",
-      value
-    });
+    try {
+      this.updateStatus({
+        status: "resolved",
+        value
+      });
+
+      if (this.delayedQueue.length !== 0) {
+        this.delayedQueue = this.delayedQueue.map(delayed => {
+          this.handle(delayed);
+        });
+      }
+    } catch (error) {
+      this.reject(error);
+    }
   }
 
   reject(reason) {
@@ -54,12 +59,23 @@ class MyPromise {
     });
   }
 
-  then(onFulfilled, onRejected) {
+  then(onFulfilled) {
     onFulfilled =
       typeof onFulfilled === "function" ? onFulfilled : value => value;
-    onRejected = typeof onRejected === "function" ? onRejected : value => value;
+    const promise = new MyPromise(() => {});
+    this.handle({ onFulfilled, promise });
+    return promise;
+  }
+
+  static resolve(value) {
     return new MyPromise(resolve => {
-      resolve(onFulfilled(this.promiseValue));
+      resolve(value);
+    });
+  }
+
+  static reject(value) {
+    return new MyPromise(resolve, reject => {
+      reject(value);
     });
   }
 }
