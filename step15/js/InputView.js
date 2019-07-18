@@ -1,5 +1,6 @@
 class InputView {
   constructor({ inputView }) {
+    this.config = inputView;
     this.inputEl = document.querySelector(inputView.inputEl);
     this.init();
   }

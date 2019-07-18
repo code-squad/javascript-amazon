@@ -1,8 +1,14 @@
+import { debounce } from '../../PLib/index.js';
+
 class Model {
   constructor({ model }) {
     this.config = model;
     this.data = fetch(model.srcUrl).then(response => response.json());
     this.state = {};
+    this.updateSuggesions = debounce(
+      this.updateSuggesions.bind(this),
+      model.delay,
+    );
   }
 
   updateSuggesions({ value }) {

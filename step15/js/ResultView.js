@@ -9,12 +9,19 @@ class ResultView {
   }
 
   renderSuggestions({ query, suggesions }) {
-    this.resultEl.style.display = 'block';
     this.resultEl.innerHTML = '';
-    this.resultEl.insertAdjacentHTML(
-      'afterbegin',
-      this.makeTemplate(query, suggesions),
-    );
+    this.resultEl.style.display = 'block';
+    if (suggesions.length === 0) {
+      this.resultEl.insertAdjacentHTML(
+        'afterbegin',
+        `<li class="${this.config.resultItem}">검색결과가 없습니다</li>`,
+      );
+    } else {
+      this.resultEl.insertAdjacentHTML(
+        'afterbegin',
+        this.makeTemplate(query, suggesions),
+      );
+    }
   }
 
   makeTemplate(query, suggesions) {

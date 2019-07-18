@@ -11,6 +11,7 @@ export default {
       return 0;
     },
     maxResult: 10,
+    delay: 300,
   },
   inputView: {
     inputEl: '.autoComplete_input',
