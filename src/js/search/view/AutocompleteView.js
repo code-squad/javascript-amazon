@@ -7,6 +7,7 @@ export default class AutocompleteView {
     this.autocomplete = null;
     this.limitedNum = limitedNum;
     this.autocomItems = null;
+    this.dataName = null;
   }
 
   initRender(autoViewContainer) {
@@ -31,11 +32,17 @@ export default class AutocompleteView {
     const autocomList = words.reduce((acc, cur, idx) => {
       // List 최대 6개까지만 만들기 위해 초기 설정값 이상으로 넘어가면 종료.
       if(idx > this.limitedNum-1) return acc; 
-      cur = this.emphasizeLetters(cur, inputVal);
-      const accumulatedTemplate = acc+template.createAutoViewItem(cur);
+      this.dataName = cur;
+      const boldText = this.emphasizeLetters(cur, inputVal);
+      const accumulatedTemplate = acc+template.createAutoViewItem(boldText, this.dataName);
+
       return accumulatedTemplate
     }, '');
     return autocomList
+  }
+
+  getAutocomList() {
+    return this.autocomplete.children;
   }
 
   emphasizeLetters(word, emLetter) {

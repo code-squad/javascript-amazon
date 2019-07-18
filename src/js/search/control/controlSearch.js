@@ -8,13 +8,12 @@ export default class ControlSearch {
     // this.viewRecentSearch = this.viewRecentSearch.bind(this);
     // this.hideSearchHelpList = this.hideSearchHelpList.bind(this);
   }
+
   eventHandler() {
     const searchBar = this.mainView.getSearchBar();
     searchBar.addEventListener('focus', ({target}) => {
       //최근검색과 자동완성 공통으로 쓰이는 메소드
-      this.showAutocomplete(target);
-      this.showRecentSearch(target);
-      
+      this.showAutoView(target)
     });
     searchBar.addEventListener('blur', e => {
       //최근검색과 자동완성 공통으로 쓰이는 메소드
@@ -22,19 +21,20 @@ export default class ControlSearch {
     });
     searchBar.addEventListener('input', ({target}) => {
       this.storeCurrentInput(target);
-      this.showAutocomplete(target);
-      this.showRecentSearch(target);
-      // this.autocompleteHandler(e);
-      // const isInputting = this.searchBarView.isInputting();
-      // if(isInputting) this.showRecentSearch(e);
+      this.showAutoView(target);
     });
     searchBar.addEventListener('keydown', e => {
-      // this.selectAutocomList(e);
+      this.focusAutoViewList(e);
       this.storeSearchedValues(e);
     });
   }
+
+  showAutoView({value}) {
+    this.showAutocomplete(value)
+    this.showRecentSearch(value);
+  }
     
-  showAutocomplete({value}) {
+  showAutocomplete(value) {
     if(this.timeoutID) this.removeAutocomList();
     if(!value) {
       this.autoViewViewer('autocom', 'hide');
@@ -53,14 +53,15 @@ export default class ControlSearch {
     this.mainView.deleteAutocomList();
   }
           
-  // selectAutocomList(e) {
-  //   if(e.keyCode === 38 || e.keyCode === 40) {
-  //     // 방향키 (위, 아래)를 눌렀을 때 input bar안의 커서가
-  //     // 왼쪽 오른쪾으로 움직이는 event bubbling을 제거하기 위해 preventDefault 사용.
-  //     e.preventDefault();
-  //     this.autocompleteView.focusItem(e);
-  //   }
-  // }
+  focusAutoViewList(e) {
+    if(e.keyCode === 38 || e.keyCode === 40) {
+      // 방향키 (위, 아래)를 눌렀을 때 input bar안의 커서가
+      // 왼쪽 오른쪾으로 움직이는 event bubbling을 제거하기 위해 preventDefault 사용.
+      e.preventDefault();
+      this.mainView.focusItem(e);
+      this.mainView.changeBarText(e);
+    }
+  }
 
   // autocom / recentSearch
   autoViewViewer(viewType, action) {
@@ -81,7 +82,7 @@ export default class ControlSearch {
   }
     
     // recentSearch
-  showRecentSearch({value}) {
+  showRecentSearch(value) {
     if(value) {
       this.autoViewViewer('recentSearch', 'hide');
       return;
