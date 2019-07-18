@@ -1,0 +1,48 @@
+.carousel {
+  position: relative;
+  padding: 3rem;
+  overflow: hidden;
+}
+
+.item-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.item-slider {
+  display: flex;
+  height: 100%;
+}
+
+.item {
+  display: flex;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.item .thumb {
+  width: 400px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.item .content {
+  flex-grow: 1;
+}
+
+.carousel-control {
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  position: absolute;
+  top: 50%;
+}
+
+.carousel-control.prev {
+  left: 0rem;
+}
+
+.carousel-control.next {
+  right: 0rem;
+}

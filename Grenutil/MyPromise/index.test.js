@@ -1,4 +1,4 @@
-const MyPromise = require("./index");
+import MyPromise from "./index.js";
 
 test("프로미스 생성 테스트", () => {
   const initObj = {

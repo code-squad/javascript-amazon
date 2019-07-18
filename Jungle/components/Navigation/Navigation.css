@@ -1,0 +1,31 @@
+.nav-container {
+  padding: 1rem;
+}
+
+.nav-container > ul {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-container li {
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transition: 200ms transform;
+  margin: 0 1rem;
+}
+
+.nav-container button {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+.nav-container li.active {
+  transform: scale(1.25);
+}

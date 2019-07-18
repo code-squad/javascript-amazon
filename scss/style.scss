@@ -1,10 +1,8 @@
 @import "flex";
 
-$font-size: 16px;
-$card-control-position: 10px;
-
 @function calcRem($size) {
-  @return #{$size / $font-size}rem;
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
 }
 
 * {
@@ -17,139 +15,184 @@ li {
   list-style: none;
 }
 
-.container {
-  max-width: calcRem(1024px);
-  opacity: 0;
-  margin: 0 auto;
-  position: relative;
+html {
+  height: 100%;
 }
 
-.nav {
-  height: calcRem(100px);
-  padding: calcRem(20px) 0;
-
-  @include flexbox();
-  @include justify-content(center);
+body {
+  height: 100%;
 }
 
-.steelblue {
-  background-color: #2392c0;
-}
-.purple {
-  background-color: #a90067;
-}
-.darkgreen {
-  background-color: #018577;
-}
-.orange {
-  background-color: #e65d17;
-}
-
-.nav-item {
-  width: calcRem(200px);
-  height: calcRem(75px);
-  margin: 0 calcRem(3px);
-  padding: calcRem(20px);
-  color: #fff;
-
+header {
+  height: 6rem;
+  width: 100%;
+  background-color: #222f3e;
   @include flexbox();
   @include justify-content(center);
   @include align-items(center);
+}
 
-  cursor: pointer;
+$search-radius: calcRem(5px);
 
-  &.selected {
-    transform: scale(1.1);
+.search-wrapper {
+  width: calcRem(640px);
+  height: calcRem(33px);
+  background-color: #fff;
+  border-radius: $search-radius;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .search-category {
+    height: 100%;
+    width: calcRem(46px);
+    border-right: 1px solid gray;
+    border-top-left-radius: $search-radius;
+    border-bottom-left-radius: $search-radius;
+    position: relative;
+    background-color: #f3f3f3;
+
+    .icon-down-arrow {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: $search-radius solid #555555;
+      border-left: $search-radius solid transparent;
+      border-right: $search-radius solid transparent;
+      top: calc(50%);
+      left: 1.8rem;
+    }
+
+    select {
+      position: absolute;
+      -webkit-appearance: none;
+      outline: none;
+      border: none;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      font-size: 0.8rem;
+      color: #111;
+    }
+  }
+
+  .search-input {
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+
+    input[type="search"] {
+      position: absolute;
+      -webkit-appearance: none;
+      outline: none;
+      border: none;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      cursor: text;
+      padding: 0 0.5rem;
+      font-size: 0.8rem;
+      color: #111;
+    }
+
+    .search-info-list {
+      width: 100%;
+      position: absolute;
+      background-color: #fff;
+      height: 100%;
+      top: 100%;
+      z-index: 10;
+      display: none;
+
+      & > ul,
+      & li {
+        height: 100%;
+      }
+
+      & li {
+        display: flex;
+        align-items: center;
+        padding: 0 0.5rem;
+        border-top: 1px dotted orange;
+        border-left: 1px dotted orange;
+        border-right: 1px dotted orange;
+        background-color: #fff;
+        cursor: pointer;
+
+        &.activated {
+          background-color: #dbdbdb;
+        }
+
+        &:last-child {
+          border-bottom-left-radius: $search-radius;
+          border-bottom-right-radius: $search-radius;
+          font-size: 0.7rem;
+          color: #555;
+          height: 70%;
+          cursor: default;
+          justify-content: flex-end;
+          &:hover {
+            background-color: #fff;
+          }
+          border-left: 1px dotted orange;
+          border-right: 1px dotted orange;
+          border-bottom: 1px dotted orange;
+        }
+
+        & span.highlighted {
+          font-weight: bold;
+          background-color: #eee;
+        }
+      }
+
+      & > div {
+        font-size: 0.7rem;
+        color: #555;
+        height: 50%;
+      }
+    }
+  }
+
+  .search-submit {
+    background-color: #febd68;
+    width: calcRem(45px);
+    height: 100%;
+    border-top-right-radius: $search-radius;
+    border-bottom-right-radius: $search-radius;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .icon-magnifying-glass {
+      transform: rotate(-45deg);
+      font-size: 1.9rem;
+      font-weight: 400;
+    }
+
+    input[type="submit"] {
+      position: absolute;
+      -webkit-appearance: none;
+      outline: none;
+      border: none;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  .search-submit:hover {
+    background-color: #fdab3f;
   }
 }
 
-.card-wrapper {
-  position: relative;
-  margin: 0 auto;
-  padding: calcRem(20px) 0;
+main {
+  @include flex-grow(1);
   height: auto;
-  overflow: hidden;
-}
-
-.card-slider {
-  @include flexbox();
-}
-
-.card {
-  @include flexbox();
-  @include flex(1 0 auto);
-  overflow: hidden;
-  width: calcRem(700px);
-}
-
-.thumb {
-  @include flexbox();
-  @include justify-content(center);
-  @include align-items(center);
-  @include flex(1 1 auto);
-  img {
-    padding: calcRem(20px);
-    width: calcRem(250px);
-    height: calcRem(250px);
-    object-fit: contain;
-  }
-}
-
-.content {
-  @include flex(1 1 auto);
-  h2 {
-    margin-bottom: calcRem(10px);
-  }
-}
-
-.card-control {
-  position: absolute;
-  font-size: calcRem(22px);
-  top: 50%;
-  width: calcRem(50px);
-  height: calcRem(50px);
-  border-radius: calcRem(25px);
-  background-color: #a9b7b8;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.card-control:focus {
-  outline: none;
-}
-
-.card-control:hover {
-  background-color: #808386;
-}
-.card-control:active {
-  background-color: #495057;
-  border: none;
-}
-
-.prev {
-  left: calcRem($card-control-position);
-}
-
-.next {
-  right: calcRem($card-control-position);
-}
-
-.container2 {
-  max-width: calcRem(1024px);
-  opacity: 0;
-  margin: 0 auto;
-  position: relative;
-}
-
-.card-slider2 {
-  @include flexbox();
-}
-
-.nav2 {
-  height: calcRem(100px);
-  padding: calcRem(20px) 0;
-
-  @include flexbox();
-  @include justify-content(center);
+  padding: 1rem 2rem;
 }
