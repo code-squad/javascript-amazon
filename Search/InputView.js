@@ -1,6 +1,6 @@
 class InputView {
-  constructor({inputDiv}){
-    this.div = document.querySelector(inputDiv)
+  constructor({inputUl}){
+    this.ul = document.querySelector(inputUl)
   }
 }
 

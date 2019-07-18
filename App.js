@@ -30,13 +30,13 @@ const amazonController = new CarouselController({
 });
 amazonController.init(dataURL);
 
-const inputDiv = ".searchbar__input";
-const matchDiv = ".searchbar__match";
+const inputUl = ".searchbar__input";
+const matchedUl = ".searchbar__match";
 // const history = "searchbar__history";
 
-//// {inputDiv} deconstructing 햇갈린다. 이렇게 보내면 받는거 맞나? 
-const inputView = new InputView({inputDiv});
-const matchedView = new MatchedView({matchDiv});
+//// {inputUl} deconstructing 햇갈린다. 이렇게 보내면 받는거 맞나? 
+const inputView = new InputView({inputUl});
+const matchedView = new MatchedView({matchedUl});
 const searchModel = new SearchModel({});
 const searchController = new SearchController({
   inputView,

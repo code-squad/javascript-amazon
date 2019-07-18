@@ -1,11 +1,18 @@
 class MatchedView {
-  constructor({mathedDiv}){
-    // this.mathedDiv = document.querySelector(mathedDiv)
-    this.div = document.querySelector(mathedDiv)
+  constructor({matchedUl}){
+    this.ul = document.querySelector(matchedUl)
   }
   
   render(data){
-    console.log('모델이 준 fetchedData',data.body.suggestions);
+    const {body:{suggestions}} = data
+    console.log("suggestions",suggestions);
+    this.ul.style.display = 'block'
+    const liTemplates = suggestions.reduce((accum,cur)=>{
+      accum += `<li class="suggestions">${cur.value}</li>`
+      return accum
+    },'')
+    this.ul.insertAdjacentHTML("afterbegin",liTemplates)
+     
   }
 }
 

@@ -56,12 +56,16 @@ header {
   position: absolute;
   left: 46px;
   width: 640px;
-  height: 354px;
   z-index: 100;
   background-color: #fff;
   border: 1px solid gray 
 }
 
+.suggestions {
+  line-height: 35px;
+  background-color: #fff;
+  list-style: none;
+}
 
 .carousel {
   height: 600px;

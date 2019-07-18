@@ -1,7 +1,5 @@
 class SearchModel {
-  constructor({inputDiv}){
-    this.div = document.querySelector(inputDiv)
-  }
+
   
   async find(input){
     const dataURL = `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query=${input}`
