@@ -81,7 +81,7 @@ select:focus#search__range {
   width: 20px;
 }
 
-.search__searcheable-list--item.focus{
+.focus{
   background-color: #ebe8e8;
   outline: none;
 }

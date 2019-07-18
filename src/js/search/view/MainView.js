@@ -10,7 +10,7 @@ export default class MainView {
     this.autoViewContainer = null;
     this.autoViewItems = null;
     this.numOfAutoView = null;
-    this.curItemIdx = null;
+    this.curFocusedIdx = null;
     this.focusedDom = null;
     this.delayedTime = 300;
     this.initRender();
@@ -64,6 +64,7 @@ export default class MainView {
 
   renderAutocomList(matchedWords, value) {
     this.autocompleteView.renderAutocomplete(matchedWords, value, this.delayedTime)
+    this.autoViewItems = this.autocompleteView.getAutocomList();
   }
 
   deleteAutocomList() {
@@ -89,10 +90,10 @@ export default class MainView {
     lastItemIdx = this.numOfAutoView - 1;
     if(keyCode === 40) {
       this.focusedDom = this.autoViewItems[firstItemIdx];
-      this.curItemIdx = firstItemIdx;
+      this.curFocusedIdx = firstItemIdx;
     } else {
       this.focusedDom = this.autoViewItems[lastItemIdx];
-      this.curItemIdx = lastItemIdx;
+      this.curFocusedIdx = lastItemIdx;
     }
     this.focusToggle(this.focusedDom);
   }
@@ -100,27 +101,38 @@ export default class MainView {
   moveFocus(keyCode) {
     this.focusToggle(this.focusedDom);
     let nextItemIdx;
-    keyCode === 40 ? nextItemIdx = this.curItemIdx + 1 : nextItemIdx = this.curItemIdx - 1;
+    keyCode === 40 ? nextItemIdx = this.curFocusedIdx + 1 : nextItemIdx = this.curFocusedIdx - 1;
     if(nextItemIdx < 0 || nextItemIdx >= this.numOfAutoView) {
       this.resetFocusDom();
       return;
     }
     this.focusedDom = this.autoViewItems[nextItemIdx];
-    this.curItemIdx = nextItemIdx;
+    this.curFocusedIdx = nextItemIdx;
     this.focusToggle(this.focusedDom);
   }
   
   focusToggle(targetElem) {
+    if(!this.focusedDom) return;
     targetElem.classList.toggle('focus');
   }
   
+  getFocusedText() {
+    return this.focusedDom.dataset.name;
+  }
+
+  changeBarText({target}) {
+    if(!this.focusedDom) return;
+    const curFocusedText = this.getFocusedText();
+    target.value = curFocusedText
+  }
+
   setAutoViewItems(autoViewContainer) {
     this.autoViewItems = autoViewContainer.children;
   }
 
   resetFocusDom() {
     this.focusedDom = null;
-    this.curItemIdx = null;
+    this.curFocusedIdx = null;
   }
   
   clearAutocomList() {

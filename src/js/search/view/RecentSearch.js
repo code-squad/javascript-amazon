@@ -28,15 +28,6 @@ export default class recentSearchView {
     const recentSearch = template.createAutoView(className);
     ut.appendElLastly(this.autoViewContainer, recentSearch);
   }
-
-  // showAutoView() {
-  //   this.autoViewContainer.classList.remove('hide');
-  // }
-  
-  // removeAutoView() {
-  //   this.autoViewContainer.classList.add('hide');
-  // }
-
   
   recentSearchViewer(action) {
     const recentSearhcCL = this.recentSearch.classList
