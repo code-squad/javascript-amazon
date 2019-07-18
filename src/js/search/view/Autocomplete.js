@@ -1,25 +1,41 @@
 import ut from '../../myUtil/myUtil.js';
 import template from './template/Template.js';
 
-export default class Autocomplete {
-  constructor() {
-    this.inputBox = document.querySelector('.input__box');
-    this.autocomContainer = this.inputBox.querySelector('.search__searcheable-list');
+export default class AutocompleteView {
+  constructor(limitedNum) {
+    this.autoViewContainer = null;
+    this.autocomplete = null;
+    this.limitedNum = limitedNum;
     this.autocomItems = null;
-    this.autocomItemsLen = null;
-    this.curItemIdx = null;
-    this.focusedDom = null;
   }
 
-  attachAutocomList(words, inputVal, numOfList) {
+  initRender(autoViewContainer) {
+    this.autoViewContainer = autoViewContainer;
+    const className = "search__autocomplete";
+    this.attachAutocomContainer(className);
+    this.autocomplete = ut.qrSelectorByClass(className, this.autoViewContainer);
+  }
+
+  attachAutocomContainer(className) {
+    const autocomplete = template.createAutoView(className);
+    ut.appendElLastly(this.autoViewContainer, autocomplete);
+  }
+
+  renderAutocomplete(words, inputVal, delayedTime) {
+    const autocomList = this.attachAutocomList(words, inputVal);
+    this.delayedRenderer(autocomList, delayedTime);
+  }
+
+  attachAutocomList(words, inputVal) {
     words = words.sort();
     const autocomList = words.reduce((acc, cur, idx) => {
-      if(idx > numOfList-1) return acc; 
+      // List 최대 6개까지만 만들기 위해 초기 설정값 이상으로 넘어가면 종료.
+      if(idx > this.limitedNum-1) return acc; 
       cur = this.emphasizeLetters(cur, inputVal);
-      const accumulatedTemplate = acc+template.createSearcheableList(cur);
+      const accumulatedTemplate = acc+template.createAutoViewItem(cur);
       return accumulatedTemplate
     }, '');
-    this.delayedListRenderer(autocomList, 300);
+    return autocomList
   }
 
   emphasizeLetters(word, emLetter) {
@@ -30,70 +46,73 @@ export default class Autocomplete {
     splitWord.splice(matchedIdx, letterLen, template.createBoldLetter(emLetter));
     return splitWord.join('');
   }
-  
-  dettachAutocomList() {
-    this.autocomContainer.classList.add('hide');
-    this.autocomContainer.innerHTML = ''
-    this.resetFocus();
-    this.clearAutocomList();
-  }
-  
-  delayedListRenderer(template, delayedTime) {
-    setTimeout(() => {
-      console.log(this.autocomItems);
-      ut.appendElLastly(this.autocomContainer, template);
-      this.autocomContainer.classList.remove('hide');
-      this.autocomItems = this.autocomContainer.children;
-    }, delayedTime);
-  }
 
-  focusItem({keyCode}) {
-    if (!this.autocomItems) return;
-    this.autocomItemsLen = this.autocomItems.length;
-    if(this.focusedDom === null) {
-      this.firstFocus(keyCode);
-    } else {
-      this.moveFocus(keyCode);
-    }
-  }
-
-  firstFocus(keyCode) {
-    const firstItemIdx = 0,
-          lastItemIdx = this.autocomItemsLen - 1;
-    if(keyCode === 40) {
-      this.focusedDom = this.autocomItems[firstItemIdx];
-      this.curItemIdx = 0;
-    } else {
-      this.focusedDom = this.autocomItems[lastItemIdx];
-      this.curItemIdx = this.autocomItemsLen-1;
-    }
-    this.focusToggle(this.focusedDom);
-  }
-
-  moveFocus(keyCode) {
-    this.focusToggle(this.focusedDom);
-    let nextItemIdx;
-    keyCode === 40 ? nextItemIdx = this.curItemIdx + 1 : nextItemIdx = this.curItemIdx - 1;
-    if(nextItemIdx < 0 || nextItemIdx >= this.autocomItemsLen) {
-      this.resetFocus();
-      return;
-    }
-    this.focusedDom = this.autocomItems[nextItemIdx];
-    this.curItemIdx = nextItemIdx;
-    this.focusToggle(this.focusedDom);
-  }
-
-  focusToggle(targetElem) {
-    targetElem.classList.toggle('focus');
-  }
-
-  resetFocus() {
-    this.focusedDom = null;
-    this.curItemIdx = null;
+  autocompleteViewer(action) {
+    const autocomCL = this.autocomplete.classList
+    if(action === 'hide') autocomCL.add('hide');
+    else autocomCL.remove('hide');
   }
   
-  clearAutocomList() {
-    this.autocomItems = null;
-    this.autocomItemslen = null;
+  deleteRenderedList() {
+    this.autocomplete.innerHTML = '';
   }
+  
+  delayedRenderer(template, delayedTime) {
+    ut.appendElLastly(this.autocomplete, template);
+    this.autocompleteViewer('show');
+  }
+
+  // focusItem({keyCode}) {
+  //   if (!this.autocomItems) return;
+  //   this.autocomItemsLen = this.autocomItems.length;
+  //   if(this.focusedDom === null) {
+  //     this.firstFocus(keyCode);
+  //   } else {
+  //     this.moveFocus(keyCode);
+  //   }
+  // }
+
+  // firstFocus(keyCode) {
+  //   const firstItemIdx = 0,
+  //         lastItemIdx = this.autocomItemsLen - 1;
+  //   if(keyCode === 40) {
+  //     this.focusedDom = this.autocomItems[firstItemIdx];
+  //     this.curItemIdx = firstItemIdx;
+  //   } else {
+  //     this.focusedDom = this.autocomItems[lastItemIdx];
+  //     this.curItemIdx = lastItemIdx;
+  //   }
+  //   this.focusToggle(this.focusedDom);
+  // }
+
+  // moveFocus(keyCode) {
+  //   this.focusToggle(this.focusedDom);
+  //   let nextItemIdx;
+  //   keyCode === 40 ? nextItemIdx = this.curItemIdx + 1 : nextItemIdx = this.curItemIdx - 1;
+  //   if(nextItemIdx < 0 || nextItemIdx >= this.autocomItemsLen) {
+  //     this.resetFocusDom();
+  //     return;
+  //   }
+  //   this.focusedDom = this.autocomItems[nextItemIdx];
+  //   this.curItemIdx = nextItemIdx;
+  //   this.focusToggle(this.focusedDom);
+  // }
+
+  // focusToggle(targetElem) {
+  //   targetElem.classList.toggle('focus');
+  // }
+  
+  // resetFocusDom() {
+  //   this.focusedDom = null;
+  //   this.curItemIdx = null;
+  // }
+  
+  // clearAutocomList() {
+  //   this.autocomItems = null;
+  //   this.autocomItemslen = null;
+  // }
+
+  // hideAutoView() {
+  //   this.autocomplete.classList.add('hide');
+  // }
 }
