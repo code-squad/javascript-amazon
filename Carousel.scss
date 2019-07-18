@@ -24,6 +24,38 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
+
+.searchbar {
+  position: relative;
+  width: 740px;
+  padding-top: 60px;
+  margin: 0 auto;
+  * { // selector first depth child 
+    height: 35px;
+  }
+  &__left{
+    width: 43px;
+  }
+  &__input{
+    width: 640px;
+  }
+  &__right{
+    width: 45px;
+  }
+  
+}
+
+.content {
+  display: none;
+  background-color: gray;
+  position: absolute;
+  left: 80px;
+  width: 640px;
+  height: 354px;
+  z-index: 100;
+}
+
+
 .carousel {
   height: 600px;
   &__contents {
