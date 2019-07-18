@@ -1,4 +1,4 @@
-class Controller {
+class CarouselController {
   constructor({ carouselView, navigationView, animationTime }) {
     this.carouselView = carouselView;
     this.navigationView = navigationView;
@@ -10,7 +10,9 @@ class Controller {
 
   async init(dataURL) {
     const response = await fetch(dataURL);
+    // console.log(response);
     const data = await response.json();
+    // console.log('data',data);
     this.countOfCards = data.length;
     this.currentIndex = this.makeRandomIndex();
     this.carouselView.render(data);
@@ -78,4 +80,4 @@ class Controller {
   }
 }
 
-export default Controller;
+export default CarouselController;
