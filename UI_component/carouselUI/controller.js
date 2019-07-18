@@ -23,14 +23,20 @@ class Controller {
     };
   }
 
-  getJsonData(url) {
-    fetch(url)
-      .then(response => response.json())
-      .then(jsonData => {
+  async getJsonData(url) {
+    try {
+      const response = await fetch(url);
+      const jsonData = await response.json();
+      try {
         this.initController(jsonData);
         this.initCarousel(jsonData);
         this.initPagination(jsonData);
-      });
+      } catch (error) {
+        console.log("failed to init component");
+      }
+    } catch (error) {
+      console.log(`failed to fetch`);
+    }
   }
 
   initController(jsonData) {

@@ -16,17 +16,22 @@ class Controller {
     };
   }
 
-  getJsonData(url) {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        this.data = data;
-
+  async getJsonData(url) {
+    try {
+      const response = await fetch(url);
+      const jsonData = await response.json();
+      try {
+        this.data = jsonData;
         this.initController();
         this.initSearchView();
         this.initAutoCompleteView();
         this.initRecentSearchView();
-      });
+      } catch (error) {
+        console.log("failed to init component");
+      }
+    } catch (error) {
+      console.log(`failed to fetch`);
+    }
   }
 
   setCurrentMode(changedmode) {
