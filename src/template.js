@@ -1,7 +1,9 @@
+import { qs } from '../modules/JinUtil/index.js';
+
 const templates = {
   card: data => {
     return `
-      <div class="card" key=${data._id}>
+      <div class="card">
         <div class="thumb">
         <img src="${data.imgURL}" alt="card-thumbnail" />
         </div>
@@ -27,10 +29,10 @@ export const makeHTMLString = ({ data, type }) => {
   }, '');
 };
 
-export const addCardsToDOM = cards => {
+export const renderCard = cards => {
   const cardElements = makeHTMLString({ data: cards, type: 'card' });
   const navItemElements = makeHTMLString({ data: cards, type: 'navItem' });
 
-  document.querySelector('.container').insertAdjacentHTML('afterbegin', cardElements);
-  document.querySelector('.nav').insertAdjacentHTML('afterbegin', navItemElements);
+  qs('.container').insertAdjacentHTML('afterbegin', cardElements);
+  qs('.nav').insertAdjacentHTML('afterbegin', navItemElements);
 };
