@@ -1,3 +1,5 @@
+import sleep from './sleep.js';
+
 class SearchController {
   constructor({ inputView, matchedView, searchModel }) {
     this.inputView = inputView;
@@ -17,13 +19,12 @@ class SearchController {
   }
 
   // util 함수
-  sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+
 
   async inputViewKeyDownHandler(value) {
-    await this.sleep(300);
+    await sleep(300);
     const matchedData = await this.searchModel.find(value);
+    console.log('matchedData',matchedData);
     await this.matchedView.render(matchedData);
   }
 }
