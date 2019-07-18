@@ -3,7 +3,12 @@ export default {
     elem.setAttribute('style', `${attr}:${style};`)
   },
 
-  appendElLastly(elem, literalTemplate) {
-    elem.insertAdjacentHTML('beforeend', literalTemplate)
+  appendElLastly(parent, literalTemplate) {
+    parent.insertAdjacentHTML('beforeend', literalTemplate)
+  },
+
+  qrSelectorByClass(className, parent) {
+    const elem = parent || document
+    return elem.querySelector(`.${className}`);
   }
 }

@@ -2,15 +2,21 @@
 // import template from './template/Template';
 
 export default class SearchBarView {
-  constructor() {
-    this.searchBar = document.querySelector('.input__box--search-bar');
+  constructor(searchBar) {
+    this.searchBar = searchBar;
+    this.inputChecker = false;
   }
 
-  getSearchBarDom() {
+  getInputVal(value) {
+    !value ? this.inputChecker = false : true;
+    return value;
+  }
+
+  isInputting() {
+    return this.inputChecker;
+  }
+
+  getNdSearchBar() {
     return this.searchBar;
-  }
-
-  getInputVal({srcElement}) {
-    return srcElement.value;
   }
 }

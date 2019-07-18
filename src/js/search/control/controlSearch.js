@@ -1,69 +1,97 @@
 export default class ControlSearch {
-  constructor({searchBarView, searchModel, autocompleteView}, numOfList) {
-    this.searchBarView = searchBarView;
+  constructor({mainView, searchModel}) {
+    this.mainView = mainView;
     this.searchModel = searchModel;
-    this.autocompleteView = autocompleteView;
-    this.numOfList = numOfList;
-    this.autocomHandler = this.autocomHandler.bind(this);
-    this.selectAutocomList = this.selectAutocomList.bind(this);
-    // this.getAutocomVal = this.getAutocomVal.bind(this);
-    // this.showAutocomList = this.showAutocomList.bind(this);
+    this.timeoutID = null;
+    // this.autocompleteView = autocompleteView;
+    // this.recentSearchView = recentSearchView;
+    // this.viewRecentSearch = this.viewRecentSearch.bind(this);
+    // this.hideSearchHelpList = this.hideSearchHelpList.bind(this);
   }
-  /*
-    TODO: 1. Refactoring하기. - 
-          2. 최근 검색 List 구현하기.
-          3. 자동완성 data JSON으로 만들어서 Model에 전달.
-          4. li에 'tabindex="1"' 속성 사용 / nextsibling
-          5. input 클릭 => focus
-  */
   eventHandler() {
-    const searchBar = this.searchBarView.getSearchBarDom();
-    searchBar.addEventListener('input', this.autocomHandler);
-    searchBar.addEventListener('keydown', this.selectAutocomList)
+    const searchBar = this.mainView.getSearchBar();
+    searchBar.addEventListener('focus', ({target}) => {
+      //최근검색과 자동완성 공통으로 쓰이는 메소드
+      this.showAutocomplete(target);
+      this.showRecentSearch(target);
+      
+    });
+    searchBar.addEventListener('blur', e => {
+      //최근검색과 자동완성 공통으로 쓰이는 메소드
+      this.autoViewViewer('all', 'hide');
+    });
+    searchBar.addEventListener('input', ({target}) => {
+      this.storeCurrentInput(target);
+      this.showAutocomplete(target);
+      this.showRecentSearch(target);
+      // this.autocompleteHandler(e);
+      // const isInputting = this.searchBarView.isInputting();
+      // if(isInputting) this.showRecentSearch(e);
+    });
+    searchBar.addEventListener('keydown', e => {
+      // this.selectAutocomList(e);
+      this.storeSearchedValues(e);
+    });
   }
-
-  autocomHandler(e) {
-    if(!e.srcElement.value) {
-        this.removeAutocomList();
+    
+  showAutocomplete({value}) {
+    if(this.timeoutID) this.removeAutocomList();
+    if(!value) {
+      this.autoViewViewer('autocom', 'hide');
       return;
     }
-    this.storeCurrentInput(e);
-    const autocomValues = this.getAutocomVal();
-    this.showAutocomList(autocomValues, e.srcElement.value);
-  }
-
-  storeCurrentInput(e) {
-    const currentVal = this.searchBarView.getInputVal(e);
-    this.searchModel.setCurInputVal(currentVal);
-  }
-
-  getAutocomVal() {
-    return this.searchModel.getMatchedWords();
-  }
-
-  showAutocomList(values, inputVal) {
-    this.removeAutocomList();
-    // this.numOflist option으로 받도록 설정 (리스트 갯수 설정)
-    if(values.length) this.autocompleteView.attachAutocomList(values, inputVal, this.numOfList);
-  }
-  
-  removeAutocomList() {
-    setTimeout( () => {
-      this.autocompleteView.dettachAutocomList();
-    },300)
-  }
-
-  selectAutocomList(e) {
-    if(e.keyCode === 38 || e.keyCode === 40) {
-      e.preventDefault();
-      this.autocompleteView.focusItem(e);
+    const matchedWords = this.searchModel.getMatchedWords();
+    if(matchedWords.length){
+      this.timeoutID = setTimeout(()=>{
+        this.mainView.renderAutocomList(matchedWords, value);
+      }, 300)
     }
   }
-  
+      
+  removeAutocomList() {
+    clearTimeout(this.timeoutID);
+    this.mainView.deleteAutocomList();
+  }
+          
   // selectAutocomList(e) {
-    
   //   if(e.keyCode === 38 || e.keyCode === 40) {
+  //     // 방향키 (위, 아래)를 눌렀을 때 input bar안의 커서가
+  //     // 왼쪽 오른쪾으로 움직이는 event bubbling을 제거하기 위해 preventDefault 사용.
   //     e.preventDefault();
+  //     this.autocompleteView.focusItem(e);
   //   }
+  // }
+
+  // autocom / recentSearch
+  autoViewViewer(viewType, action) {
+    this.mainView.autoViewViewer(viewType, action);
+  }
+    
+  //model - 검색한 결과 저장
+  storeSearchedValues(e) {
+    if(e.keyCode === 13) {
+      this.searchModel.setRecentSearches(e.target.value, this.limitedNum); 
+    }
+  }
+
+  //model - 현재 입력한 결과를 저장
+  storeCurrentInput({value}) {
+    // const currentVal = this.searchBarView.getInputVal(value);
+    this.searchModel.setCurInputVal(value);
+  }
+    
+    // recentSearch
+  showRecentSearch({value}) {
+    if(value) {
+      this.autoViewViewer('recentSearch', 'hide');
+      return;
+    }
+    const recentSearches = this.searchModel.getRecentSearches();
+    this.mainView.viewRecentSearch(recentSearches);
+  }
+
+
+  // hideSearchHelpList() {
+  //   this.recentSearchView.removeSearchHelpList();
   // }
 }

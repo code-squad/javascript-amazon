@@ -38,9 +38,14 @@ select:focus#search__range {
   border-color: #999898
 }
 
-.search__searcheable-list {
+.search__auto-view{
   position: absolute;
-  width: 97%;
+  width: 97%
+}
+
+.search__autocomplete,
+.search__recent-search{
+  width: 100%;
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -52,7 +57,7 @@ select:focus#search__range {
   display: none;
 }
 
-.search__searcheable-list--item {
+.search__auto-view--item {
   width: auto;
   height: 35px;
   line-height: 30px;
