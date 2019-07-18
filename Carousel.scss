@@ -24,11 +24,17 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110px;
+  background-color: #232f3e;
+}
 
 .searchbar {
   position: relative;
   width: 740px;
-  padding-top: 60px;
   margin: 0 auto;
   * { // selector first depth child 
     height: 35px;
@@ -47,12 +53,13 @@ body {
 
 .content {
   display: none;
-  background-color: gray;
   position: absolute;
-  left: 80px;
+  left: 46px;
   width: 640px;
   height: 354px;
   z-index: 100;
+  background-color: #fff;
+  border: 1px solid gray 
 }
 
 
