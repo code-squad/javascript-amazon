@@ -18,17 +18,21 @@ class Controller {
     this.inputEl.addEventListener('keyup', e => {
       this.doByInputKey(e);
     });
-    // this.inputEl.addEventListener('focus', _ => {
-    //   this.resultView.renderRecentQuery(...this.model.recentQueryList);
-    // });
+    this.inputEl.addEventListener('focus', _ => {
+      this.resultView.renderRecentQuery(Array.from(this.model.recentQueryList));
+    });
   }
 
   doByInputKey(e) {
     switch (e.keyCode) {
       case 40:
       case 38:
-      case 18:
+        // enters
         break;
+      case 13:
+        this.model.addRecentQuery(e.target.value);
+        break;
+
       default:
         this.handelSuggestions(e.target.value);
     }
@@ -37,7 +41,7 @@ class Controller {
   handelSuggestions(query) {
     const { suggesionData, recentQueryList } = this.model;
     if (query.trim() === '')
-      this.resultView.renderRecentQuery(...recentQueryList);
+      this.resultView.renderRecentQuery(Array.from(recentQueryList));
     else {
       suggesionData.then(data => {
         this.resultView.renderSuggestion(data, query);

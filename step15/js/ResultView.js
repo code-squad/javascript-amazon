@@ -9,7 +9,7 @@ class ResultView {
     this.resultEl.innerHTML = '';
     this.resultEl.style.display = 'block';
     const template =
-      dataSrc === undefined
+      dataSrc.length === 0
         ? config.noResultRecentQueryTemplate()
         : config.recentQueryTemplate(dataSrc);
     this.resultEl.insertAdjacentHTML('afterbegin', template);
