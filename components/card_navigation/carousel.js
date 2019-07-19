@@ -91,13 +91,12 @@ export default class Carousel extends Subscriber {
     this.publisher.setState({ direction });
   }
 
-  async move({ targetIdx }) {
+  move({ targetIdx }) {
     this.setTransform(targetIdx);
     if (this.isCloneItem(targetIdx) && this.option.infinite) {
-      // await this.sleep(this.option.duration - 50);
-      // this.setNoAnimateTransform(targetIdx - this.maxIdx);
       setTimeout(() => {
         this.setNoAnimateTransform(targetIdx - this.maxIdx)
+        //TODO: 매직넘버 제거
       }, this.option.duration - 50)
 
     }
@@ -110,14 +109,16 @@ export default class Carousel extends Subscriber {
 
   setTransform(idx) {
     idx = idx < -1 ? this.maxIdx - 1 : idx;
+    //TODO: seperate constants
     this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: transform ${this.option.duration}ms`
   }
 
   setNoAnimateTransform(idx) {
     idx = idx < -1 ? this.maxIdx - 1 : idx;
+    //TODO: seperate constants
     this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: none`
   }
-
+  //TODO: remove this method
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }

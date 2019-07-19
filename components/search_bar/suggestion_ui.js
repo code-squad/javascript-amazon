@@ -1,6 +1,6 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/subscriber.js'
-import { SELECTED_EL_COLOR } from '../constants.js'
+import { SELECTED_EL_COLOR } from './constants.js'
 
 class SuggestionUI extends Subscriber {
   constructor(publisher, selector) {

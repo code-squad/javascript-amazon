@@ -1,7 +1,7 @@
-import SuggestionUI from './components/suggestion_ui.js';
-import RecentKeywordsUI from './components/recent_keywords_ui.js'
-import SearchBarUI from './components/search_bar_ui.js'
-import StateManager from './components/state_manager.js'
+import SuggestionUI from './suggestion_ui.js';
+import RecentKeywordsUI from './recent_keywords_ui.js'
+import SearchBarUI from './search_bar_ui.js'
+import StateManager from './state_manager.js'
 import { config } from './config.js'
 
 const { url, searchFormSelector, inputSelector, buttonSelector } = config;

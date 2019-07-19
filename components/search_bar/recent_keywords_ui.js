@@ -1,6 +1,6 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
-import { SELECTED_EL_COLOR } from '../constants.js'
+import { SELECTED_EL_COLOR } from './constants.js'
 
 class RecentKeywordsUI extends Subscriber {
   constructor(publisher, selector) {

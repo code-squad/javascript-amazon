@@ -1,6 +1,6 @@
 import * as _ from '../../utils/allenibrary.js'
 import Publisher from '../../utils/Publisher.js'
-import { SUGGESTION_DELAY, MAXIMUM_SUGGESTIONS, MAXIMUM_RECENT_KEYWORDS, INITIAL_SELECTED_IDX } from '../constants.js'
+import { SUGGESTION_DELAY, MAXIMUM_SUGGESTIONS, MAXIMUM_RECENT_KEYWORDS, INITIAL_SELECTED_IDX } from './constants.js'
 
 class StateManager extends Publisher {
   constructor({ keywords = [], url }) {
