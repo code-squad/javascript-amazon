@@ -1,11 +1,13 @@
 import InputView from './InputView.js';
 import ResultView from './ResultView.js';
+import Controller from './Controller.js';
 import Model from './Model.js';
-import config from './config.js';
 
-const inputView = new InputView(config);
-const resultView = new ResultView(config);
-const model = new Model(config);
+const inputView = new InputView();
+const resultView = new ResultView();
+const model = new Model();
+const controller = new Controller();
 
-model.resultView = resultView;
-inputView.model = model;
+controller.inputView = inputView;
+controller.resultView = resultView;
+controller.model = model;
