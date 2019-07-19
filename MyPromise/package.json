@@ -1,0 +1,26 @@
+{
+  "name": "javascript-amazon",
+  "version": "1.0.0",
+  "description": "레벨3",
+  "main": "myPromise.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowjang24/javascript-amazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snowjang24/javascript-amazon/issues"
+  },
+  "homepage": "https://github.com/snowjang24/javascript-amazon#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
+}
