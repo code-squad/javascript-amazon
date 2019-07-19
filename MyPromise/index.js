@@ -11,5 +11,5 @@ myFirstPromise
     return successMessage.name;
   })
   .then(data => {
-    console.log(`data is ${data}`);
+    console.log(`data is ${data} !`);
   });
