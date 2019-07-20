@@ -27,10 +27,7 @@ class Controller {
   }
 
   doByInputKeyUp(e) {
-    // e.preventDefault();
     switch (true) {
-      // down arrow
-      // up arrow
       case e.key === 'ArrowDown' || e.key === 'ArrowUp':
         break;
       // enters
@@ -44,9 +41,10 @@ class Controller {
   }
 
   doByInputKeyDown(e) {
-    // e.preventDefault();
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp')
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
       this.inputView.navigate(this.resultEl, e.key);
+    }
   }
 
   handelSuggestions(query) {

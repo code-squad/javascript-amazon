@@ -19,7 +19,8 @@ export const controller = {
 
 export const inputView = {
   inputEl: global.inputEl,
-  onSelect: 'onSelect'
+  onSelect: 'onSelect',
+  delay: 60
 };
 
 export const resultView = {
@@ -37,7 +38,7 @@ export const resultView = {
 
   recentQueryTemplate(recentQueryList) {
     return recentQueryList.reduce((prev, curr) => {
-      return `${prev}<li class="${global.resultItem}"tabindex=1>${curr}</li>`;
+      return `${prev}<li class="${global.resultItem}" data-value="${curr}">${curr}</li>`;
     }, '');
   },
 
@@ -49,7 +50,7 @@ export const resultView = {
         match,
         `<span class=${global.resultItemHighlighted}>${match}</span>`
       );
-      return `${prev}<li class="${global.resultItem}" data-value="${curr}" tabindex=1>${hilghtedSuggestion}</li>`;
+      return `${prev}<li class="${global.resultItem}" data-value="${curr}">${hilghtedSuggestion}</li>`;
     }, '');
   },
 

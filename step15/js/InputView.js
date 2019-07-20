@@ -1,8 +1,10 @@
 import { inputView as config } from './config.js';
+import { throttle } from '../../PLib/index.js';
 
 class InputView {
   constructor() {
     this.inputEl = document.querySelector(config.inputEl);
+    this.navigate = throttle(this.navigate.bind(this), config.delay);
   }
 
   navigate(resultEl, direction) {
