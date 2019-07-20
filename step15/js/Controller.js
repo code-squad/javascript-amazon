@@ -24,6 +24,13 @@ class Controller {
       if (this.inputView.onSelect) return;
       this.resultView.renderRecentQuery(Array.from(this.model.recentQueryList));
     });
+
+    this.resultEl.addEventListener('click', e => {
+      if (e.target === this.resultEl) return;
+      const suggestion = e.target.closest(`.${config.resultItem}`).dataset
+        .value;
+      this.model.addRecentQuery(suggestion);
+    });
   }
 
   doByInputKeyUp(e) {

@@ -38,7 +38,7 @@ export const resultView = {
 
   recentQueryTemplate(recentQueryList) {
     return recentQueryList.reduce((prev, curr) => {
-      return `${prev}<li class="${global.resultItem}" data-value="${curr}">${curr}</li>`;
+      return `${prev}<li class="${global.resultItem}" data-value="${curr}"><a href="#">${curr}</a></li>`;
     }, '');
   },
 
@@ -50,7 +50,7 @@ export const resultView = {
         match,
         `<span class=${global.resultItemHighlighted}>${match}</span>`
       );
-      return `${prev}<li class="${global.resultItem}" data-value="${curr}">${hilghtedSuggestion}</li>`;
+      return `${prev}<li class="${global.resultItem}" data-value="${curr}"><a href="#">${hilghtedSuggestion}</a></li>`;
     }, '');
   },
 
