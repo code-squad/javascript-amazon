@@ -1,13 +1,62 @@
+header {
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  height: 65px;
+  background: #232f3e;
+}
+
+header h1 {
+  display: inline-block;
+  padding: 10px;
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+header h1 span {
+  color: #febd69;
+}
+
+header .searchBox {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+header .searchBox form input {
+  width: 300px;
+  height: 30px;
+  display: inline-block;
+  border-radius: 30px;
+  border: none;
+  padding: 0 10px;
+}
+
+header .searchBox form button {
+  background: #febd69;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+header .searchBox form button i {
+  color: #fff;
+}
+
 .content {
   position: relative;
 }
 
 .wrap {
-  max-width: 800px;
+  max-width: 85%;
   width: 100%;
   min-height: 300px;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .wrap .card-navigation {
@@ -26,8 +75,11 @@
   justify-content: center;
   text-align: center;
   color: #fff;
+  margin: 0 1%;
   padding: 5px 30px;
+  border-radius: 30px;
   cursor: pointer;
+  line-height: 1.2;
 }
 
 .wrap .card-navi-list > li:nth-child(1) {
@@ -49,6 +101,7 @@
 
 .carousel-item {
   display: flex;
+  padding: 0 10px;
 }
 
 .carousel-item > div {

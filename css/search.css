@@ -1,0 +1,51 @@
+.searchBox {
+    position: relative;
+    z-index: 10;
+}
+
+.searchBox .recent-list,
+.searchBox .auto-complete-list {
+    display: none;
+    min-height: 30px;
+    background: #fff;
+    width: 300px;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top: 110%;
+    
+}
+
+.searchBox .recent-list > li,
+.searchBox .auto-complete-list > li {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.searchBox .recent-list > li.focus,
+.searchBox .auto-complete-list > li.focus {
+    background: #febd69;
+    color: #fff;
+}
+
+.searchBox .recent-list > li:hover,
+.searchBox .auto-complete-list > li:hover {
+    background: #febd69;
+    color: #fff;
+}
+
+.searchBox .recent-list:empty {
+    border: none;
+    background: #febd69;
+}
+.searchBox .recent-list:empty::after {
+    content: '! 최근 검색 결과가 없습니다.';
+    display: block;
+    font-weight: normal;
+    color: #fff;
+    font-size: 12px;
+    padding-top: 10px;
+    text-align: center;
+}
