@@ -90,11 +90,6 @@
       background-color: $color-hover;
     }
 
-    &:focus {
-      outline: none;
-      background-color: $color-hover;
-    }
-
     & > a {
       color: rgb(123, 123, 123);
       text-decoration: none;
@@ -108,4 +103,8 @@
       color: $color-primary;
     }
   }
+}
+
+.onSelect {
+  background-color: $color-hover;
 }

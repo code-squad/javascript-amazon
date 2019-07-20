@@ -18,7 +18,8 @@ export const controller = {
 };
 
 export const inputView = {
-  inputEl: global.inputEl
+  inputEl: global.inputEl,
+  onSelect: 'onSelect'
 };
 
 export const resultView = {
@@ -48,7 +49,7 @@ export const resultView = {
         match,
         `<span class=${global.resultItemHighlighted}>${match}</span>`
       );
-      return `${prev}<li class="${global.resultItem}"tabindex=1>${hilghtedSuggestion}</li>`;
+      return `${prev}<li class="${global.resultItem}" data-value="${curr}" tabindex=1>${hilghtedSuggestion}</li>`;
     }, '');
   },
 

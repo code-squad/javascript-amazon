@@ -6,30 +6,35 @@ const { delay } = config;
 class Controller {
   constructor() {
     this.inputEl = document.querySelector(config.inputEl);
+    this.resultEl = document.querySelector(config.resultEl);
     this.handelSuggestions = debounce(this.handelSuggestions.bind(this), delay);
-    this.init();
-  }
-
-  init() {
     this.attatchEvent();
   }
 
   attatchEvent() {
     this.inputEl.addEventListener('keyup', e => {
-      this.doByInputKey(e);
+      this.doByInputKeyUp(e);
     });
+
+    this.inputEl.addEventListener('keydown', e => {
+      this.doByInputKeyDown(e);
+    });
+
     this.inputEl.addEventListener('focus', _ => {
+      if (this.inputView.onSelect) return;
       this.resultView.renderRecentQuery(Array.from(this.model.recentQueryList));
     });
   }
 
-  doByInputKey(e) {
-    switch (e.keyCode) {
-      case 40:
-      case 38:
-        // enters
+  doByInputKeyUp(e) {
+    // e.preventDefault();
+    switch (true) {
+      // down arrow
+      // up arrow
+      case e.key === 'ArrowDown' || e.key === 'ArrowUp':
         break;
-      case 13:
+      // enters
+      case e.key === 'Enter':
         this.model.addRecentQuery(e.target.value);
         break;
 
@@ -38,7 +43,15 @@ class Controller {
     }
   }
 
+  doByInputKeyDown(e) {
+    // e.preventDefault();
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp')
+      this.inputView.navigate(this.resultEl, e.key);
+  }
+
   handelSuggestions(query) {
+    // inputView 상태 초기화
+    this.inputView.onSelect = null;
     const { suggesionData, recentQueryList } = this.model;
     if (query.trim() === '')
       this.resultView.renderRecentQuery(Array.from(recentQueryList));

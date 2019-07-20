@@ -477,9 +477,6 @@ textarea {
     .autoComplete_result_item:hover {
       cursor: pointer;
       background-color: #eeeeee; }
-    .autoComplete_result_item:focus {
-      outline: none;
-      background-color: #eeeeee; }
     .autoComplete_result_item > a {
       color: #7b7b7b;
       text-decoration: none;
@@ -488,3 +485,6 @@ textarea {
       border-radius: 0 0 1rem 1rem; }
     .autoComplete_result_item-highlighted {
       color: #febd69; }
+
+.onSelect {
+  background-color: #eeeeee; }
