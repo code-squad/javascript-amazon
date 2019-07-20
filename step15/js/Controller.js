@@ -21,11 +21,13 @@ class Controller {
     });
 
     this.inputEl.addEventListener('focus', _ => {
+      // 현재 검색결과가 있을 경우 예외처리
       if (this.inputView.onSelect) return;
       this.resultView.renderRecentQuery(Array.from(this.model.recentQueryList));
     });
 
     this.resultEl.addEventListener('click', e => {
+      // ul 영역을 클릭했을 경우 예외처리
       if (e.target === this.resultEl) return;
       const suggestion = e.target.closest(`.${config.resultItem}`).dataset
         .value;
@@ -37,7 +39,7 @@ class Controller {
     switch (true) {
       case e.key === 'ArrowDown' || e.key === 'ArrowUp':
         break;
-      // enters
+
       case e.key === 'Enter':
         this.model.addRecentQuery(e.target.value);
         break;

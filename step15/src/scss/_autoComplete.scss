@@ -66,7 +66,7 @@
   }
   &_result {
     border: 0.05rem solid #e3e3e3;
-    border-radius: 0 0 1rem 1rem;
+    border-radius: 0 0 0.5rem 0.5rem;
     box-sizing: border-box;
     position: absolute;
     z-index: 1000;
@@ -93,10 +93,10 @@
     & > a {
       color: rgb(123, 123, 123);
       text-decoration: none;
-      padding-left: 0.7rem;
+      padding-left: 0.4rem;
     }
     &:last-child {
-      border-radius: 0 0 1rem 1rem;
+      border-radius: 0 0 0.5rem 0.5rem;
     }
 
     &-highlighted {
