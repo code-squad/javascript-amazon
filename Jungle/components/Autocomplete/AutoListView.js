@@ -1,28 +1,5 @@
-const dummyData = [
-  {
-    title: "iphone"
-  },
-  {
-    title: "ipad"
-  },
-  {
-    title: "imac"
-  },
-  {
-    title: "ipod"
-  },
-  {
-    title: "iphoneX"
-  },
-  {
-    title: "iphone6"
-  },
-  {
-    title: "apple watch"
-  }
-];
-
 import SearchInfoView from "./SearchInfoView.js";
+import dummyData from "../../../data/dummyData.js";
 
 export default class AutoListView extends SearchInfoView {
   constructor({ maxLen, dataUrl, title }) {
