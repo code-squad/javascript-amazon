@@ -1,5 +1,6 @@
 import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
 import Navigation from "../Navigation/index.js";
+import templates from "../../templates.js";
 
 export default class CarouselView extends MyEventEmitter {
   constructor({ carouselElement, options }) {
@@ -38,26 +39,7 @@ export default class CarouselView extends MyEventEmitter {
   }
 
   makeCarouselItemHtml(data) {
-    const list = data.map(eachData => eachData.desc);
-
-    return `
-        ${data.reduce(
-          (html, item, index) => `
-          ${html}
-        <div class="item">
-        <div class="thumb" style="background-image: url('${item.imgUrl}')">
-        </div>
-        <div class="content">
-          <h2>${item.title}</h2>
-          <ul>
-            <li>${list[index]}</li>
-          </ul>
-        </div>
-      </div>
-        `,
-          ``
-        )}
-        `;
+    return templates.getCarouselItemTempalte({ data });
   }
 
   attachEvent() {
@@ -102,13 +84,9 @@ export default class CarouselView extends MyEventEmitter {
   initRender(data) {
     const carouselItemHtml = this.makeCarouselItemHtml(data);
 
-    const carouselTemplate = `
-    <div class="item-wrapper">
-      <div class="item-slider">${carouselItemHtml}</div>
-    </div>
-    <button class="carousel-control prev"><</button>
-    <button class="carousel-control next">></button>
-    `;
+    const carouselTemplate = templates.getCarouselTemplate({
+      carouselItemHtml
+    });
 
     this.carousel.innerHTML = carouselTemplate;
 

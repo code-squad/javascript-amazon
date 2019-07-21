@@ -1,6 +1,7 @@
 import MyFetch from "../../../Grenutil/MyFetch/index.js";
 import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
 import delegate from "../../../Grenutil/delegate.js";
+import templates from "../../templates.js";
 
 const FETCH_PATH = "../../../data/localData.json";
 const CSS_PATH = "Jungle/components/Navigation/Navigation.css";
@@ -78,21 +79,7 @@ export default class NavigationView extends MyEventEmitter {
   }
 
   render(data) {
-    const template = `
-      <ul>
-        ${data.reduce(
-          (html, item, idx) => `
-        ${html}
-        <li data-itemnum=${idx + 1}>
-          <button class="nav-item">
-          ${item.title}
-          </button>
-        </li>
-      `,
-          ``
-        )}
-      </ul>
-    `;
+    const template = templates.getNavigationTemplate({ data });
 
     this.navigation.innerHTML = template;
     this.activateCurrentItem();
