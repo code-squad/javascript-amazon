@@ -190,7 +190,7 @@ export default class SearchView {
       this.inputChangeHandler(target)
     );
     this.searchForm.addEventListener("submit", evt => this.submitHandler(evt));
-    this.searchForm.addEventListener("keydown", evt =>
+    this.searchForm.addEventListener("keypress", evt =>
       this.keyDownHandler(evt)
     );
 
