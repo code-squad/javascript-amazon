@@ -21,6 +21,7 @@ export const sleep = delay => {
 
 export const getData = url => fetch(url).then(response => response.json());
 
+// 상속으로도 대체가능
 HTMLElement.prototype.qs = className => document.querySelector(className);
 HTMLElement.prototype.qsa = className => document.querySelectorAll(className);
 export const qs = className => document.querySelector(className);

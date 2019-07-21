@@ -127,13 +127,14 @@ export default class SearchComponent {
     try {
       const data = await fetch(url + prefix).then(data => data.json());
 
-      if (data.statusCode !== 200) {
-        return [{ value: prefix }];
+      if (data.statusCode === 404) {
+        throw new Error('resources not found error');
+        // return [{ value: prefix }];
       }
 
       return data.body.suggestions;
     } catch (error) {
-      console.error(`error : ${error}`);
+      console.warn(error);
       return [{ value: prefix }];
     }
   }
