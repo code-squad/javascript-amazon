@@ -2,7 +2,6 @@ import Carousel from "./Jungle/components/Carousel/index.js";
 import Autocomplete from "./Jungle/components/Autocomplete/index.js";
 
 window.addEventListener("DOMContentLoaded", () => {
-  //DOM
   const carousel_div = document.querySelector(".carousel");
   const autocomplete_div = document.querySelector(".autocomplete");
 

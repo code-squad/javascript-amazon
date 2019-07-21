@@ -132,14 +132,18 @@ export default class SearchView {
 
     lists.forEach(list => list.classList.remove("activated"));
 
-    if (this.currentSelectIndex >= this.infoItemLen) this.currentSelectIndex = -1;
+    if (this.currentSelectIndex >= this.infoItemLen)
+      this.currentSelectIndex = -1;
     else lists[this.currentSelectIndex].classList.add("activated");
   }
 
   enterHandler(target) {
-    if(this.currentSelectIndex >= 0) {
-      const activatedEl = this.searchInfoList.querySelectorAll("li")[this.currentSelectIndex];
-      target.value = activatedEl === null ? target.value : activatedEl.innerText;
+    if (this.currentSelectIndex >= 0) {
+      const activatedEl = this.searchInfoList.querySelectorAll("li")[
+        this.currentSelectIndex
+      ];
+      target.value =
+        activatedEl === null ? target.value : activatedEl.innerText;
     }
     this.setSearchInfoOn(false);
 

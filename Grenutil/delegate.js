@@ -6,7 +6,6 @@ function delegate(target, childSelector, event, cb) {
   if (childrenLen === 1) {
     childTarget.addEventListener(event, cb);
   } else {
-    // debugger;
     childrenTarget.forEach(child => child.addEventListener(event, cb));
   }
 }

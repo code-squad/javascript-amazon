@@ -4,8 +4,6 @@ import Navigation from "../Navigation/index.js";
 export default class CarouselView extends MyEventEmitter {
   constructor({ carouselElement, options }) {
     super();
-
-    //DOM caching
     this.carousel = carouselElement;
 
     this.carouselWidth = options.width;

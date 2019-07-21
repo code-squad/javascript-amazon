@@ -53,7 +53,6 @@ export default class NavigationView extends MyEventEmitter {
     this.navigation.style.width = `${this.options.width}px`;
     this.navigation.style.height = `${this.options.height}px`;
 
-    //#2591c0
     this.navItems.forEach((item, idx) => {
       const navBtn = item.querySelector("button");
       navBtn.style.backgroundColor = NAV_ITEMS_COLORS[idx];
@@ -106,12 +105,18 @@ export default class NavigationView extends MyEventEmitter {
   }
 
   setNextItem() {
-    this.currentActivatedItem = (this.currentActivatedItem >=  this.navItems.length) ? 1 : this.currentActivatedItem + 1;
+    this.currentActivatedItem =
+      this.currentActivatedItem >= this.navItems.length
+        ? 1
+        : this.currentActivatedItem + 1;
     this.activateCurrentItem();
   }
 
   setPrevItem() {
-    this.currentActivatedItem = (this.currentActivatedItem <=  1) ? this.navItems.length : this.currentActivatedItem - 1;
+    this.currentActivatedItem =
+      this.currentActivatedItem <= 1
+        ? this.navItems.length
+        : this.currentActivatedItem - 1;
     this.activateCurrentItem();
   }
 }
