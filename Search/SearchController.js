@@ -28,42 +28,33 @@ class SearchController {
   }
 
   inputViewKeyDownHandler(code) {
-    // const curIdx = this.matchedView.curIdx;
-    // const prevIdx = this.matchedView.prevIdx;
-    const curLi = this.matchedView.ul.querySelectorAll("li")[this.matchedView.curIdx];
-    
 
-    if (code === "ArrowDown") {
-      console.log("연산전 prevIdx:",this.matchedView.prevIdx, "curIdx:",this.matchedView.curIdx);
+    if(["ArrowDown","ArrowUp","Enter"].includes(code)){
+      const lists = this.matchedView.ul.querySelectorAll("li");
+      if (code === "ArrowDown") {
+        // this.matchedView.curserIndex += 1;
+        this.matchedView.curserIndex++;
 
-      // debugger
-      if (this.matchedView.prevIdx !== undefined) {
-        // debugger
-        const prevLi = this.matchedView.ul.querySelectorAll("li")[this.matchedView.prevIdx];
-        prevLi.style.backgroundColor = "#fff";
+
+        //돌면서 activated있는거 다 삭제한다. 
+        lists.forEach(list=>list.classList.remove("activated"))
+        lists[this.matchedView.curserIndex].classList.add("activated");
+        // this.matchedView.curserIndex++;
+
+
+
       }
-      this.matchedView.prevIdx = this.matchedView.curIdx;
-      this.matchedView.curIdx++;
-      curLi.style.backgroundColor = "rgb(241, 242, 246)";
+  
+      if (code === "ArrowUp") {
+        this.matchedView.curserIndex--;
 
+        lists.forEach(list=>list.classList.remove("activated"))
+        lists[this.matchedView.curserIndex].classList.add("activated");
+        // this.matchedView.curserIndex--;
 
-      console.log("연산후 prevIdx:",this.matchedView.prevIdx, "curIdx:",this.matchedView.curIdx);
+      }
     }
 
-    if (code === "ArrowUp") {
-      console.log("연산전 prevIdx:",this.matchedView.prevIdx, "curIdx:",this.matchedView.curIdx);
-
-      // debugger
-      if (this.matchedView.prevIdx !== undefined) {
-        const prevLi = this.matchedView.ul.querySelectorAll("li")[this.matchedView.prevIdx];
-        prevLi.style.backgroundColor = "#fff";
-      }
-      this.matchedView.prevIdx = this.matchedView.curIdx;
-      this.matchedView.curIdx--;
-
-      curLi.style.backgroundColor = "rgb(241, 242, 246)";
-      console.log("연산후 prevIdx:",this.matchedView.prevIdx, "curIdx:",this.matchedView.curIdx);
-    }
 
   }
 }
