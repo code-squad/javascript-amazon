@@ -138,6 +138,7 @@ export default class SearchView {
   }
 
   enterHandler(target) {
+    if (target.value === "") return;
     if (this.currentSelectIndex >= 0) {
       const activatedEl = this.searchInfoList.querySelectorAll("li")[
         this.currentSelectIndex
