@@ -1,7 +1,7 @@
 import { SearchInput, AutoMatchedList, AutoRecentList } from '../views/index.js';
 import Store from '../store/index.js';
 
-import { mergeConfig, qs, isMatchedKey } from '../../JinUtil/index.js';
+import { mergeConfig, qs, isMatchedKey, asyncDebounce } from '../../JinUtil/index.js';
 
 export default class SearchComponent {
   constructor({ classNameObj, options }) {
@@ -92,7 +92,7 @@ export default class SearchComponent {
       return;
     }
 
-    const matchinglist = await this.getData(value);
+    const matchinglist = await asyncDebounce(this.getData, 1200, value);
 
     const newState = {
       ...state,
@@ -103,7 +103,7 @@ export default class SearchComponent {
       matchedQueries: matchinglist
     };
 
-    debounce(this.store.setState.bind(this.store), 1200, newState);
+    this.store.setState(newState);
   }
 
   getNewItem(keyCode, { currentItem, itemLength }) {
@@ -132,7 +132,7 @@ export default class SearchComponent {
       }
 
       if (statusCode === 404) {
-        throw new Error('resources not found error');
+        throw new Error('Resource not found');
       }
 
       throw new Error(`[error] status code: ${statusCode}`);
