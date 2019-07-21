@@ -32,22 +32,21 @@ class SearchController {
     if(["ArrowDown","ArrowUp","Enter"].includes(code)){
       const lists = this.matchedView.ul.querySelectorAll("li");
       if (code === "ArrowDown") {
-        // this.matchedView.curserIndex += 1;
-        this.matchedView.curserIndex++;
-
-
-        //돌면서 activated있는거 다 삭제한다. 
+        this.matchedView.curserIndex += 1;
+         
+        if(this.matchedView.curserIndex === lists.length ) this.matchedView.curserIndex = 0;
+        
         lists.forEach(list=>list.classList.remove("activated"))
         lists[this.matchedView.curserIndex].classList.add("activated");
-        // this.matchedView.curserIndex++;
+
 
 
 
       }
   
       if (code === "ArrowUp") {
-        this.matchedView.curserIndex--;
-
+        this.matchedView.curserIndex -= 1;
+        if(this.matchedView.curserIndex === -1 ) this.matchedView.curserIndex = lists.length-1;
         lists.forEach(list=>list.classList.remove("activated"))
         lists[this.matchedView.curserIndex].classList.add("activated");
         // this.matchedView.curserIndex--;
