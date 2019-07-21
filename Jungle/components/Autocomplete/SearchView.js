@@ -33,19 +33,6 @@ export default class SearchView {
     return { ...this.defaultOptions, ...options };
   }
 
-  getCategoryTagsTemplate(categories) {
-    return `
-      ${categories.reduce(
-        (html, category, idx) =>
-          `
-          ${html}
-          <option value="" ${idx === 0 ? `selected` : ``}>${category}</option>
-          `,
-        ``
-      )}
-    `;
-  }
-
   cacheDom() {
     this.searchWrapper = document.querySelector(".search-wrapper");
     this.searchInput = this.searchWrapper.querySelector("input[type=search]");
@@ -74,9 +61,9 @@ export default class SearchView {
     this.setSearchInfoOn(template === null ? false : true);
   }
 
-  renderAutoListView(searchText) {
+  renderAutoListView(text) {
     if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
-    const template = this.autoListView.getTemplate(searchText);
+    const template = this.autoListView.getTemplate(text);
     template.then(template => {
       this.autoListTimeout = setTimeout(() => {
         this.searchInfoList.innerHTML = template;

@@ -11,6 +11,10 @@ export default class SearchInfoView {
     if (list.length > this.maxLen) list.length = this.maxLen;
     this.itemLen = list.length;
 
-    return templates.getSearchInfoTemplate({ list, listClassName });
+    return templates.getSearchInfoTemplate({
+      list,
+      listClassName,
+      title: this.title
+    });
   }
 }

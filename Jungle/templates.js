@@ -87,7 +87,7 @@ export default {
     `;
   },
 
-  getSearchInfoTemplate({ list, listClassName }) {
+  getSearchInfoTemplate({ list, listClassName, title }) {
     return `
     <ul>
       ${list.reduce(
@@ -97,7 +97,7 @@ export default {
         `,
         ``
       )}
-      <li class="search-info-title"><span>${this.title}</span></li>
+      <li class="search-info-title"><span>${title}</span></li>
     </ul>
   `;
   }
