@@ -49,7 +49,7 @@ export default class NavigationView extends MyEventEmitter {
     return { ...this.defaultOptions, ...userOptions };
   }
 
-  setCss() {
+  setNavigationStyle() {
     this.navigation.style.width = `${this.options.width}px`;
     this.navigation.style.height = `${this.options.height}px`;
 
@@ -96,7 +96,7 @@ export default class NavigationView extends MyEventEmitter {
 
     this.navigation.innerHTML = template;
     this.activateCurrentItem();
-    this.setCss();
+    this.setNavigationStyle();
     this.attachEvent();
   }
 

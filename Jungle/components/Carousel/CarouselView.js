@@ -86,7 +86,7 @@ export default class CarouselView extends MyEventEmitter {
       : (this.itemSlider.style.transition = `none`);
   }
 
-  setCss() {
+  setCarouselStyle() {
     this.items = this.carousel.querySelectorAll(".item");
     this.itemSlider = this.carousel.querySelector(".item-slider");
 
@@ -114,7 +114,7 @@ export default class CarouselView extends MyEventEmitter {
 
     if (this.options.navigation) this.addNav();
 
-    this.setCss();
+    this.setCarouselStyle();
     this.attachClone();
     this.attachEvent();
   }

@@ -179,17 +179,13 @@ export default class SearchView {
     this.setSearchInfoOn(false);
   }
 
-  submitHandler(evt) {
-    evt.preventDefault();
-  }
-
   attachEvent() {
     this.cacheDom();
 
     this.searchInput.addEventListener("input", ({ target }) =>
       this.inputChangeHandler(target)
     );
-    this.searchForm.addEventListener("submit", evt => this.submitHandler(evt));
+    this.searchForm.addEventListener("submit", evt => evt.preventDefault());
     this.searchForm.addEventListener("keypress", evt =>
       this.keyDownHandler(evt)
     );
