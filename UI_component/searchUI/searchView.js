@@ -7,6 +7,7 @@ class SearchView {
     this.findBtn = $(findbtnTag);
     this.notify;
     this.modeType;
+    this.timer;
   }
 
   init(func, obj) {
@@ -15,6 +16,12 @@ class SearchView {
 
     this.attachSearchFormEvent();
     this.attachFindBtnEvent();
+  }
+
+  cb() {
+    const target = e.srcElement;
+    if (target.value === "") this.notify(this.modeType.pending);
+    else this.notify(this.modeType.entering, target.value);
   }
 
   attachSearchFormEvent() {
@@ -27,11 +34,15 @@ class SearchView {
     });
 
     this.searchForm.addEventListener("input", e => {
-      setTimeout(() => {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+
+      this.timer = setTimeout(() => {
         const target = e.srcElement;
         if (target.value === "") this.notify(this.modeType.pending);
         else this.notify(this.modeType.entering, target.value);
-      }, 1000);
+      }, 1200);
     });
   }
 
