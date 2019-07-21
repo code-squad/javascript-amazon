@@ -1,6 +1,7 @@
-//components
 import AutoListView from "./AutoListView.js";
 import RecentListView from "./RecentListView.js";
+
+import templates from "../../templates.js";
 
 export default class SearchView {
   constructor({ categories, options }) {
@@ -55,27 +56,9 @@ export default class SearchView {
   }
 
   getTemplate() {
-    const template = `
-    <form action="#" class="search-form">
-    <div class="search-wrapper">
-      <div class="search-category">
-        <div class="icon-down-arrow"></div>
-        <select name="" id="">
-          ${this.getCategoryTagsTemplate(this.categories)}
-        </select>
-      </div>
-      <div class="search-input">
-        <input type="search" name="" id="">
-        <div class="search-info-list">
-        </div>
-      </div>
-      <div class="search-submit">
-        <div class="icon-magnifying-glass">&#9906;</div>
-        <input type="submit" value="">
-      </div>
-    </div>
-  </form>
-    `;
+    const template = templates.getSearchTemplate({
+      categories: this.categories
+    });
 
     return template;
   }
@@ -94,13 +77,14 @@ export default class SearchView {
   renderAutoListView(searchText) {
     if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
     const template = this.autoListView.getTemplate(searchText);
+    template.then(template => {
+      this.autoListTimeout = setTimeout(() => {
+        this.searchInfoList.innerHTML = template;
+        this.setSearchInfoOn(template === null ? false : true);
+      }, this.options.debouncingDelay);
+    });
 
     this.currentSelectIndex = -1;
-
-    this.autoListTimeout = setTimeout(() => {
-      this.searchInfoList.innerHTML = template;
-      this.setSearchInfoOn(template === null ? false : true);
-    }, this.options.debouncingDelay);
   }
 
   inputChangeHandler(target) {

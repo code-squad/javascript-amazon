@@ -1,5 +1,5 @@
 import SearchInfoView from "./SearchInfoView.js";
-import dummyData from "../../../data/dummyData.js";
+import MyFetch from "../../../Grenutil/MyFetch/index.js";
 
 export default class AutoListView extends SearchInfoView {
   constructor({ maxLen, dataUrl, title }) {
@@ -26,8 +26,13 @@ export default class AutoListView extends SearchInfoView {
     return a.startIndex - b.startIndex;
   }
 
-  getFilteredData(text) {
-    let filteredData = dummyData.map(data => data.title);
+  async getFilteredData(text) {
+    let filteredData;
+    await MyFetch(
+      `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query=${text}`
+    )
+      .then(data => data.body.suggestions)
+      .then(data => (filteredData = data.map(v => v.value)));
 
     filteredData = filteredData
       .filter(data => data.includes(text))
@@ -43,8 +48,8 @@ export default class AutoListView extends SearchInfoView {
     return filteredData;
   }
 
-  getTemplate(text) {
-    const filteredData = this.getFilteredData(text);
+  async getTemplate(text) {
+    const filteredData = await this.getFilteredData(text);
 
     return filteredData.length > 0
       ? this.getListTemplate({
