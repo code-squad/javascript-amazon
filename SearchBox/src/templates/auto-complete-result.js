@@ -1,9 +1,11 @@
 const autoCompleteResult = ({ item, keyword }) => {
   const title = splitByKeyword(item, keyword);
   return `
-    <li>${title.before ? `<strong>${title.before}</strong>` : ``}
+    <li>
+      ${title.before ? `<strong>${title.before}</strong>` : ``}
       ${title.matched ? `<span>${title.matched}</span>` : ``}
-      ${title.after ? `<strong>${title.after}</strong>` : ``}</li>
+      ${title.after ? `<strong>${title.after}</strong>` : ``}
+    </li>
   `;
 };
 
