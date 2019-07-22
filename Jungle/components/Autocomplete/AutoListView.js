@@ -1,11 +1,14 @@
 import SearchInfoView from "./SearchInfoView.js";
 import MyFetch from "../../../Grenutil/MyFetch/index.js";
 
+const amazoneApiUrl =
+  "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete";
+
 export default class AutoListView extends SearchInfoView {
   constructor({ maxLen, dataUrl, title }) {
     super({ maxLen, title });
 
-    this.noSuggestionData = ["<span>자동 추천 검색어가 없습니다.</span>"];
+    this.noSuggestionData = ["<span>추천 검색어가 없습니다.</span>"];
   }
 
   getHighlightParsedText({ text, startIndex, endIndex }) {
@@ -28,25 +31,28 @@ export default class AutoListView extends SearchInfoView {
     return a.startIndex - b.startIndex;
   }
 
+  getSortedData({ filteredData, text }) {
+    return filteredData
+      .filter(data => data.includes(text))
+      .map(data => ({
+        text: data,
+        startIndex: data.indexOf(text),
+        endIndex: data.indexOf(text) + text.length
+      }))
+      .sort(this.compareByIndex)
+      .filter((_, index) => index < this.maxLen)
+      .map(data => this.getHighlightParsedText(data));
+  }
+
   async getFilteredData(text) {
     let filteredData;
-    try {
-      await MyFetch(
-        `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query=${text}`
-      )
-        .then(data => data.body.suggestions)
-        .then(data => (filteredData = data.map(v => v.value)));
 
-      filteredData = filteredData
-        .filter(data => data.includes(text))
-        .map(data => ({
-          text: data,
-          startIndex: data.indexOf(text),
-          endIndex: data.indexOf(text) + text.length
-        }))
-        .sort(this.compareByIndex)
-        .filter((_, index) => index < this.maxLen)
-        .map(data => this.getHighlightParsedText(data));
+    try {
+      filteredData = (await MyFetch(
+        `${amazoneApiUrl}?query=${text}`
+      )).body.suggestions.map(v => v.value);
+
+      filteredData = this.getSortedData({ filteredData, text });
     } catch (error) {
       filteredData = this.noSuggestionData;
     }

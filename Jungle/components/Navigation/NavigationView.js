@@ -87,8 +87,8 @@ export default class NavigationView extends MyEventEmitter {
     this.attachEvent();
   }
 
-  init() {
-    MyFetch(FETCH_PATH).then(data => this.render(data));
+  async init() {
+    this.render(await MyFetch(FETCH_PATH));
   }
 
   setNextItem() {

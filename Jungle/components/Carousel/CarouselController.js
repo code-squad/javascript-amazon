@@ -36,12 +36,9 @@ export default class CarouselController {
     head.appendChild(link);
   }
 
-  createCarousel() {
-    MyFetch(FETCH_PATH)
-      .then(data => {
-        this.loadCarsouelCss();
-        return data;
-      })
-      .then(data => this.view.initRender(data));
+  async createCarousel() {
+    const data = await MyFetch(FETCH_PATH);
+    this.loadCarsouelCss();
+    this.view.initRender(data);
   }
 }

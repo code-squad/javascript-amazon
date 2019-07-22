@@ -61,16 +61,14 @@ export default class SearchView {
     this.setSearchInfoOn(template === null ? false : true);
   }
 
-  renderAutoListView(text) {
+  async renderAutoListView(text) {
     if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
-    const template = this.autoListView.getTemplate(text);
-    template.then(template => {
-      this.autoListTimeout = setTimeout(() => {
-        this.searchInfoList.innerHTML = template;
-        this.setSearchInfoOn(template === null ? false : true);
-      }, this.options.debouncingDelay);
-    });
+    const template = await this.autoListView.getTemplate(text);
 
+    this.autoListTimeout = setTimeout(() => {
+      this.searchInfoList.innerHTML = template;
+      this.setSearchInfoOn(template === null ? false : true);
+    }, this.options.debouncingDelay);
     this.currentSelectIndex = -1;
   }
 
