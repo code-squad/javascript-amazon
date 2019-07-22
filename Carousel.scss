@@ -61,6 +61,17 @@ header {
   border: 1px solid gray 
 }
 
+
+.activated{
+  background-color: black;
+}
+
+b {
+  font-weight:bold; // 그냥 b태그만 넣으면 작동하지 않음
+  background-color: gray; //확인용으로 넣어놓음
+  
+}
+
 .suggestions {
   line-height: 35px;
   background-color: #fff;

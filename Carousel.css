@@ -53,6 +53,15 @@ header {
   border: 1px solid gray;
 }
 
+.activated {
+  background-color: black;
+}
+
+b {
+  font-weight: bold;
+  background-color: gray;
+}
+
 .suggestions {
   line-height: 35px;
   background-color: #fff;
