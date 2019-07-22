@@ -1,5 +1,6 @@
 import ut from '../../myUtil/myUtil.js'
 import template from './template/Template.js';
+import config from '../helper/config.js';
 
 export default class recentSearchView {
   constructor() {
@@ -9,9 +10,9 @@ export default class recentSearchView {
 
   initRender(autoViewContainer) {
     this.autoViewContainer = autoViewContainer;
-    const className = "search__recent-search";
-    this.attachAutocomContainer(className);
-    this.recentSearch = ut.qrSelectorByClass(className, this.autoViewContainer);
+    const { recentSearch } = config.class
+    this.attachAutocomContainer(recentSearch);
+    this.recentSearch = ut.qrSelectorByClass(recentSearch, this.autoViewContainer);
   }
   
   attachAutocomContainer(className) {
@@ -20,9 +21,9 @@ export default class recentSearchView {
   }
 
   render(recentSearches) {
-    // this.informRecentSearchMade();
+    const { autoViewList } = config.class;
     const recentSearchesTpl = recentSearches.reduce((acc, cur) => {
-      return acc+template.createAutoViewItem(cur, cur);
+      return acc+template.createAutoViewItem(cur, cur, autoViewList);
     },"")
     ut.appendElLastly(this.recentSearch, recentSearchesTpl);
   }

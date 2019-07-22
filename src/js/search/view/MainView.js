@@ -1,5 +1,6 @@
 import ut from '../../myUtil/myUtil.js'
 import template from './template/Template.js';
+import config from '../helper/config.js';
 
 export default class MainView {
   constructor({autocompleteView, recentSearchView, inputBox, searchBar}) {
@@ -27,10 +28,10 @@ export default class MainView {
   }
 
   renderAutoViewContainer() {
-    const className = 'search__auto-view';
-    const autoViewContainer = template.createAutoViewContainer(className);
+    const { autoView } = config.class;
+    const autoViewContainer = template.createAutoViewContainer(autoView);
     ut.appendElLastly(this.inputBox, autoViewContainer);
-    this.autoViewContainer = ut.qrSelectorByClass(className, this.input)
+    this.autoViewContainer = ut.qrSelectorByClass(autoView, this.input)
   }
   
   renderAutocomList(matchedWords, value) {
@@ -46,7 +47,6 @@ export default class MainView {
   }
 
   renderRecentSearch(recentSearches) {
-    // const isRecentSearch = this.recentSearchView.recentSearchChecker();
     if(!recentSearches.length) return;
     this.recentSearchView.removeRecentSearchList();
     this.recentSearchView.render(recentSearches);
@@ -79,7 +79,8 @@ export default class MainView {
     this.numOfAutoView = this.autoViewItems.length;
     if(this.focusedDom === null) {
       this.firstFocus(keyCode);
-    } else {
+    } 
+    else {
       this.moveFocus(keyCode);
     }
   }
