@@ -7,9 +7,9 @@ export default {
     return `<ul class="${className}"></ul>`
   },
 
-  createAutoViewItem(boldText, originalText) {
+  createAutoViewItem(text, originalText, className) {
     return `
-      <li class="search__auto-view--item" data-name="${originalText}">${boldText}</li>
+      <li class="${className} data-name="${originalText}">${text}</li>
     `
   },
 

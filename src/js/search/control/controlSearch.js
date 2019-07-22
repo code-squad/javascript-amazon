@@ -6,7 +6,7 @@ export default class ControlSearch {
     this.searchIcon = searchIcon;
     this.delayedTime = delayedTime;
   }
-
+ 
   eventHandler() {
     const searchBar = this.mainView.getSearchBar();
     searchBar.addEventListener('focus', ({target}) => {
@@ -20,10 +20,12 @@ export default class ControlSearch {
       this.focusAutoViewList(e);
     });
     searchBar.addEventListener('keydown', (e) => {
-      this.storeSearchedValues(e.keyCode, e.target);
+      this.storeSearchedValues(e.key, e.target.value);
       this.focusAutoViewList(e);
     });
-    this.searchIcon.addEventListener('click', () => {
+    this.searchIcon.addEventListener('click', (e) => {
+      const inputVal = searchBar.value;
+      this.storeSearchedValues(e.type, inputVal)
       this.autoViewViewer('autocom', 'hide');
     })
   }
@@ -63,11 +65,11 @@ export default class ControlSearch {
 
   // recent search / autocomplete - 검색바 아래 결과 리스트 방향키로 선택
   focusAutoViewList(e) {
-    if(e.keyCode === 38 || e.keyCode === 40) {
+    if(e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       // 방향키 (위, 아래)를 눌렀을 때 input bar안의 커서가
       // 왼쪽 오른쪾으로 움직이는 event bubbling을 제거하기 위해 preventDefault 사용.
       e.preventDefault();
-      this.mainView.focusItem(e.keyCode);
+      this.mainView.focusItem(e.key);
       this.mainView.changeBarText(e.target);
     }
   }
@@ -79,10 +81,11 @@ export default class ControlSearch {
   }
     
   //model - 검색한 결과 저장
-  storeSearchedValues(keyCode, {value}) {
-    if(keyCode !== 13) return
-    this.searchModel.setRecentSearches(value, this.limitedNum);
-    this.autoViewViewer('all', 'hide');
+  storeSearchedValues(key, value) {
+    if(key === 'Enter' || key === 'click') {
+      this.searchModel.setRecentSearches(value);
+      this.autoViewViewer('all', 'hide');
+    }
   }
 
   //model - 현재 입력한 결과를 저장

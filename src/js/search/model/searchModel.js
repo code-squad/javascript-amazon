@@ -31,7 +31,7 @@ export default class searchModel {
   }
 
   setRecentSearches(searchedVal) {
-    this.recentSearches = [searchedVal, ...this.recentSearches];
+    this.recentSearches = [...new Set([searchedVal, ...this.recentSearches])];
     if(this.recentSearches.length > this.limitedNum) this.manageRecentSearches(this.limitedNum);
   }
 
