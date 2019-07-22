@@ -1,4 +1,4 @@
-import $ from "../../Utills/mylibrary.js";
+import { $ } from "../../Utills/mylibrary.js";
 import ModalView from "./modalView.js";
 
 class RecentSearchView extends ModalView {

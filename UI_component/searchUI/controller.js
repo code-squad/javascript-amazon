@@ -1,10 +1,10 @@
 class Controller {
-  constructor(obj) {
+  constructor({ searchView, autoCompleteView, recentSearchView }) {
     this.data;
     this.filterdData = [];
-    this.searchView = obj.searchView;
-    this.autoCompleteView = obj.autoCompleteView;
-    this.recentSearchView = obj.recentSearchView;
+    this.searchView = searchView;
+    this.autoCompleteView = autoCompleteView;
+    this.recentSearchView = recentSearchView;
 
     this.currentMode;
     this.modeType = {
@@ -67,22 +67,15 @@ class Controller {
     try {
       const response = await fetch(url);
       const jsonData = await response.json();
+
       if (jsonData.statusCode === 404) throw new Error("FAILED_TO_FETCH.");
-      try {
-        const suggestionArr = this.makeSuggestionArr(jsonData);
-        if (this.isEmptyArr(suggestionArr))
-          throw new Error(`NO_SUGGESTION_DATA.`);
-        this.autoCompleteView.makeModalContent(suggestionArr);
-      } catch (error) {
-        console.log(error);
-      }
+      if (jsonData.statusCode !== 200)
+        throw new Error(`STATUS_CODE : ${jsonData.statusCode}`);
+      const suggestionArr = this.makeSuggestionArr(jsonData);
+      this.autoCompleteView.makeModalContent(suggestionArr);
     } catch (error) {
       console.log(error);
     }
-  }
-
-  isEmptyArr(arr) {
-    return arr.length === 0;
   }
 
   searchViewHandler(changedmode, inputStr = "") {

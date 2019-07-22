@@ -1,7 +1,7 @@
 "use strict";
 import Carousel from "./carousel.js";
 import Pagination from "./pagination.js";
-import $ from "../../Utills/mylibrary.js";
+import { $ } from "../../Utills/mylibrary.js";
 
 class Controller {
   constructor(obj) {

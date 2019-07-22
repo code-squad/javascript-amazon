@@ -1,4 +1,4 @@
-import $ from "../../Utills/mylibrary.js";
+import { $ } from "../../Utills/mylibrary.js";
 
 class SearchView {
   constructor(inputTags) {
@@ -8,20 +8,16 @@ class SearchView {
     this.notify;
     this.modeType;
     this.timer;
+    this.duration;
   }
 
   init(func, obj) {
     this.notify = func;
     this.modeType = obj;
+    this.duration = 1200;
 
     this.attachSearchFormEvent();
     this.attachFindBtnEvent();
-  }
-
-  cb() {
-    const target = e.srcElement;
-    if (target.value === "") this.notify(this.modeType.pending);
-    else this.notify(this.modeType.entering, target.value);
   }
 
   attachSearchFormEvent() {
@@ -42,7 +38,7 @@ class SearchView {
         const target = e.srcElement;
         if (target.value === "") this.notify(this.modeType.pending);
         else this.notify(this.modeType.entering, target.value);
-      }, 1200);
+      }, this.duration);
     });
   }
 
