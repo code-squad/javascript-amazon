@@ -1,5 +1,4 @@
 import ControlSearch from './control/controlSearch.js';
-// import SearchBarView from './view/SearchBarView.js';
 import SearchModel from './model/searchModel.js';
 import AutocompleteView from './view/AutocompleteView.js';
 import RecentSearchView from './view/RecentSearchView.js';
