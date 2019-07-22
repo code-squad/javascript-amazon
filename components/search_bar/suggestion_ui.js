@@ -1,16 +1,16 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/subscriber.js'
-import { SELECTED_EL_COLOR } from './constants.js'
 
 class SuggestionUI extends Subscriber {
-  constructor(publisher, selector) {
+  constructor({ stateManager, config: { searchFormSelector, selectedElementColor } }) {
     super();
-    this.init(publisher, selector);
+    this.init(stateManager, searchFormSelector);
+    this.selectedElementColor = selectedElementColor;
   }
 
-  init(publisher, selector) {
+  init(publisher, searchFormSelector) {
     this.subscribe('suggestionUI', publisher);
-    this.renderWrapper(selector);
+    this.renderWrapper(searchFormSelector);
     this.targetEl = _.$('.auto-suggestions');
   }
 
@@ -53,7 +53,7 @@ class SuggestionUI extends Subscriber {
 
     const selectedEl = lists[state.selectedIdx];
     selectedEl.focus();
-    selectedEl.style.backgroundColor = SELECTED_EL_COLOR;
+    selectedEl.style.backgroundColor = this.selectedElementColor;
   }
 
   renderBlank() {

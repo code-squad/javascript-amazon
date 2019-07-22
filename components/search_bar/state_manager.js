@@ -1,63 +1,71 @@
 import * as _ from '../../utils/allenibrary.js'
 import Publisher from '../../utils/Publisher.js'
-import { SUGGESTION_DELAY, MAXIMUM_SUGGESTIONS, MAXIMUM_RECENT_KEYWORDS, INITIAL_SELECTED_IDX } from './constants.js'
+import { INITIAL_IDX, MAX_SUGGESTIONS } from './constants.js'
 
 class StateManager extends Publisher {
-  constructor({ keywords = [], url }) {
+  constructor({ config }) {
     super();
     this.state = {
       mode: 'waiting',
-      recentKeywords: keywords,
+      recentKeywords: [],
       suggestions: {},
-      selectedIdx: INITIAL_SELECTED_IDX,
-      prevIdx: INITIAL_SELECTED_IDX,
-      url: url
+      selectedIdx: INITIAL_IDX,
+      prevIdx: INITIAL_IDX
+    }
+    this.config = {
+      url: config.url,
+      suggestionDelay: config.suggestionDelay,
+      maxRecentKeywords: config.maxRecentKeywords
     }
   }
 
   setState(state) {
+    const config = this.config;
+    const initialIdx = INITIAL_IDX;
+    const maxSuggestions = MAX_SUGGESTIONS;
+
     const actionMap = {
-      recentKeywords: (state) => this.processRecentKeywordsMode(state),
-      suggestion: (state) => this.processSuggestionMode(state),
-      waiting: (state) => this.processWaitingMode(state),
-      selection: (state) => this.processSelectionMode(state)
+      recentKeywords: ({ state, initialIdx }) => this.processRecentKeywordsMode(state, initialIdx),
+      suggestion: ({ state, config, initialIdx, maxSuggestions }) => this.processSuggestionMode(state, config, initialIdx, maxSuggestions),
+      waiting: ({ state, config }) => this.processWaitingMode(state, config),
+      selection: ({ state }) => this.processSelectionMode(state)
     }
-    actionMap[state.mode](state);
+    actionMap[state.mode]({ state, config, initialIdx, maxSuggestions });
   }
 
-  processRecentKeywordsMode(state) {
+  processRecentKeywordsMode(state, initialIdx) {
     this.state = {
       ...this.state,
       ...state,
-      selectedIdx: INITIAL_SELECTED_IDX,
+      selectedIdx: initialIdx,
       maxIdx: this.state.recentKeywords.length - 1
     };
-    this.notify(this.state);
+    super.notify(this.state);
   }
 
-  processSuggestionMode(state) {
+  processSuggestionMode(state, config, initialIdx, maxSuggestions) {
     this.state = {
       ...this.state,
       ...state,
-      selectedIdx: INITIAL_SELECTED_IDX,
-      maxIdx: MAXIMUM_SUGGESTIONS - 1,
+      selectedIdx: initialIdx,
+      maxIdx: maxSuggestions - 1
     };
     const prefix = this.state.currentValue;
     if (this.state.suggestions[prefix]) {
       setTimeout(() => {
-        this.notify(this.state);
-      }, SUGGESTION_DELAY);
+        super.notify(this.state);
+      }, config.suggestionDelay);
     }
     else {
-      _.getJsonData(`${this.state.url}${prefix}`)
-        .then(data => {
-          this.state = this.updateSuggestions(data.body.suggestions, prefix, this.state);
+      _.getJsonData(`${config.url}${prefix}`)
+        .then(({ body }) => {
+          this.state = this.updateSuggestions(body.suggestions, prefix, this.state);
           setTimeout(() => {
-            this.notify(this.state);
-          }, SUGGESTION_DELAY);
+            super.notify(this.state);
+          }, config.suggestionDelay);
         })
         .catch(reason => {
-          this.notify(this.state);
+          super.notify(this.state);
           console.log('NO_SUGGESTIONS');
         });
     }
@@ -69,13 +77,13 @@ class StateManager extends Publisher {
     return newState;
   }
 
-  processWaitingMode(state) {
+  processWaitingMode(state, { maxRecentKeywords }) {
     this.state = { ...this.state, ...state };
-    this.state = this.updateRecentKeywords(this.state);
-    this.notify(this.state);
+    this.state = this.updateRecentKeywords(this.state, maxRecentKeywords);
+    super.notify(this.state);
   }
 
-  updateRecentKeywords(state) {
+  updateRecentKeywords(state, maxRecentKeywords) {
     let currentValue = state.currentValue;
     if (!currentValue) return state;
     currentValue = currentValue.trim();
@@ -83,7 +91,7 @@ class StateManager extends Publisher {
     if (newKeywords.includes(currentValue)) {
       newKeywords.splice(newKeywords.indexOf(currentValue), 1);
     }
-    if (newKeywords.length >= MAXIMUM_RECENT_KEYWORDS) {
+    if (newKeywords.length >= maxRecentKeywords) {
       newKeywords.pop();
     }
     newKeywords.unshift(currentValue);
@@ -94,7 +102,7 @@ class StateManager extends Publisher {
   processSelectionMode(state) {
     this.state = { ...this.state, ...state }
     this.state = this.updateSelectedIdx(this.state);
-    this.notify(this.state);
+    super.notify(this.state);
   }
 
   updateSelectedIdx(state) {

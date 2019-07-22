@@ -1,13 +1,14 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
+import config from './config.js';
 
 class SearchBarUI extends Subscriber {
-  constructor(publisher, { inputSelector, buttonSelector }) {
+  constructor({ stateManager, config: { inputSelector, buttonSelector } }) {
     super();
+    this.mode = 'waiting'
     this.inputEl = _.$(inputSelector);
     this.buttonEl = _.$(buttonSelector);
-    this.init(publisher);
-    this.mode = 'waiting'
+    this.init(stateManager);
   }
 
   init(publisher) {

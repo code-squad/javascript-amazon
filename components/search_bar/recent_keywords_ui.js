@@ -1,16 +1,16 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
-import { SELECTED_EL_COLOR } from './constants.js'
 
 class RecentKeywordsUI extends Subscriber {
-  constructor(publisher, selector) {
+  constructor({ stateManager, config }) {
     super();
-    this.init(publisher, selector);
+    this.init(stateManager, config);
+    this.selectedElementColor = config.selectedElementColor;
   }
 
-  init(publisher, selector) {
+  init(publisher, config) {
     this.subscribe('recentKeywordsUI', publisher);
-    this.renderWrapper(selector);
+    this.renderWrapper(config.searchFormSelector);
     this.targetEl = _.$('.recent-keywords');
   }
 
@@ -38,7 +38,7 @@ class RecentKeywordsUI extends Subscriber {
 
     const selectedEl = lists[state.selectedIdx];
     selectedEl.focus();
-    selectedEl.style.backgroundColor = SELECTED_EL_COLOR;
+    selectedEl.style.backgroundColor = this.selectedElementColor;
   }
 
   renderRecentKeywords(state) {

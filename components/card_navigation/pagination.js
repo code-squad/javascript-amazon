@@ -2,22 +2,21 @@ import { $, delegate } from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/subscriber.js'
 
 export default class Pagination extends Subscriber {
-  constructor(publisher, paginationSelector, startIdx) {
+  constructor({ stateManager, config: { paginationSelector, option } }) {
     super();
-    this.startIdx = startIdx;
+    this.startIdx = option.startIdx || 0;
     this.wrapper = $(paginationSelector);
     this.paginations = this.wrapper.children;
-    this.init();
-    this.subscribe('pagination', publisher);
+    this.subscribe('pagination', stateManager);
   }
 
   init() {
-    this.addIdx(this.paginations);
+    this.addDatasetIdx(this.paginations);
     this.toggleActive(this.startIdx, this.paginations);
     this.delegateEvt(this.paginations.item((this.startIdx + 1) % this.paginations.length).className);
   }
 
-  addIdx(paginations) {
+  addDatasetIdx(paginations) {
     Array.from(paginations).forEach((el, i) => {
       el.dataset.idx = i;
     })
