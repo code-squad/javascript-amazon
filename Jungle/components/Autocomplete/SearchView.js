@@ -108,8 +108,9 @@ export default class SearchView {
     else lists[this.currentSelectIndex].classList.add("activated");
   }
 
-  enterHandler(target) {
-    if (target.value === "") return;
+  enterHandler(target, key) {
+    if (!(key === "Enter") || target.value === "") return;
+
     if (this.currentSelectIndex >= 0) {
       const activatedEl = this.searchInfoList.querySelectorAll("li")[
         this.currentSelectIndex
@@ -123,9 +124,9 @@ export default class SearchView {
   }
 
   keyDownHandler(evt) {
-    const { key, target } = evt;
+    const { key } = evt;
 
-    if (!(key === "ArrowDown" || key === "ArrowUp" || key === "Enter")) return;
+    if (!(key === "ArrowDown" || key === "ArrowUp")) return;
     const lists = this.searchInfoList.querySelectorAll("li");
 
     if (key === "ArrowUp") {
@@ -133,8 +134,6 @@ export default class SearchView {
       evt.preventDefault();
     } else if (key === "ArrowDown") {
       this.arrowDownHandler(lists);
-    } else {
-      this.enterHandler(target);
     }
   }
 
@@ -157,8 +156,12 @@ export default class SearchView {
       this.inputChangeHandler(target)
     );
     this.searchForm.addEventListener("submit", evt => evt.preventDefault());
-    this.searchForm.addEventListener("keypress", evt =>
+    this.searchForm.addEventListener("keydown", evt =>
       this.keyDownHandler(evt)
+    );
+
+    this.searchForm.addEventListener("keypress", ({ target, key }) =>
+      this.enterHandler(target, key)
     );
 
     this.searchInput.addEventListener("focus", ({ target }) =>
