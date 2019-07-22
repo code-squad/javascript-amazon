@@ -1,5 +1,6 @@
 import ut from '../../myUtil/myUtil.js';
 import template from './template/Template.js';
+import config from '../helper/config.js';
 
 export default class AutocompleteView {
   constructor(limitedNum) {
@@ -10,10 +11,10 @@ export default class AutocompleteView {
   }
 
   initRender(autoViewContainer) {
-    const className = "search__autocomplete";
+    const { autocomplete } = config.class;
     this.autoViewContainer = autoViewContainer;
-    this.attachAutocomContainer(className);
-    this.autocomplete = ut.qrSelectorByClass(className, this.autoViewContainer);
+    this.attachAutocomContainer(autocomplete);
+    this.autocomplete = ut.qrSelectorByClass(autocomplete, this.autoViewContainer);
   }
 
   attachAutocomContainer(className) {
@@ -31,9 +32,9 @@ export default class AutocompleteView {
     const autocomList = words.reduce((acc, cur, idx) => {
       if(idx > this.limitedNum-1) return acc; 
       this.dataName = cur;
-      const boldText = this.emphasizeLetters(cur, inputVal);
-      const accumulatedTemplate = acc+template.createAutoViewItem(boldText, this.dataName);
-
+      const boldText = this.emphasizeLetters(cur, inputVal),
+            autoViewList = config.class.autoViewList;
+      const accumulatedTemplate = acc+template.createAutoViewItem(boldText, this.dataName, autoViewList);
       return accumulatedTemplate
     }, '');
     return autocomList
@@ -56,7 +57,8 @@ export default class AutocompleteView {
     const autocomCL = this.autocomplete.classList
     if(action === 'hide') {
       autocomCL.add('hide');
-    } else autocomCL.remove('hide');
+    } 
+    else autocomCL.remove('hide');
   }
   
   deleteRenderedList() {
