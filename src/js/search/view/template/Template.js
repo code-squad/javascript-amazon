@@ -16,5 +16,4 @@ export default {
   createBoldLetter(letter) {
     return `<b>${letter}</b>`
   },
-
 }

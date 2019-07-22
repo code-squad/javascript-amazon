@@ -10,5 +10,5 @@ export default {
   qrSelectorByClass(className, parent) {
     const elem = parent || document
     return elem.querySelector(`.${className}`);
-  }
+  },
 }
