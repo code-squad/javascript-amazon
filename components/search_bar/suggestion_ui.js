@@ -35,8 +35,9 @@ class SuggestionUI extends Subscriber {
       this.renderBlank();
       return;
     }
-    const suggestions = state.suggestions[state.currentValue];
+    const suggestions = state.suggestions[prefix];
     if (!suggestions) return;
+
     const tpl = suggestions.reduce((acc, curr) => {
       curr = curr.replace(prefix, '');
       return acc + `<li class='suggestions' tabindex=-1>${prefix}<b>${curr}</b></li>`
@@ -44,16 +45,17 @@ class SuggestionUI extends Subscriber {
     this.targetEl.innerHTML = tpl;
   }
 
-  renderSelection(state) {
+  renderSelection({ prevIdx, selectedIdx }) {
     const ul = this.targetEl;
     const lists = ul.children;
     if (!lists.length) return;
-    const prevEl = lists[state.prevIdx];
-    if (prevEl) prevEl.style = {};
 
-    const selectedEl = lists[state.selectedIdx];
+    const prevEl = lists[prevIdx];
+    if (prevEl) _.setCssStyle(prevEl, 'all', 'none');
+
+    const selectedEl = lists[selectedIdx];
     selectedEl.focus();
-    selectedEl.style.backgroundColor = this.selectedElementColor;
+    _.setCssStyle(selectedEl, 'backgroundColor', this.selectedElementColor);
   }
 
   renderBlank() {

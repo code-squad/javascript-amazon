@@ -29,20 +29,23 @@ class RecentKeywordsUI extends Subscriber {
     actionMap[state.mode](state);
   }
 
-  renderSelection(state) {
+  renderSelection({ prevIdx, selectedIdx }) {
     const ul = this.targetEl;
     const lists = ul.children;
     if (!lists.length) return;
-    const prevEl = lists[state.prevIdx];
-    if (prevEl) prevEl.style = {};
 
-    const selectedEl = lists[state.selectedIdx];
+    const prevEl = lists[prevIdx];
+    if (prevEl) _.setCssStyle(prevEl, 'all', 'none');
+
+    const selectedEl = lists[selectedIdx];
     selectedEl.focus();
-    selectedEl.style.backgroundColor = this.selectedElementColor;
+    _.setCssStyle(selectedEl, 'backgroundColor', this.selectedElementColor);
   }
 
   renderRecentKeywords(state) {
     const recentKeywords = state.recentKeywords;
+    if (!recentKeywords.length) return;
+
     const tpl = recentKeywords.reduce((acc, curr) => {
       return acc + `<li class='keywords' tabindex=-1>${curr}</li>`
     }, '');

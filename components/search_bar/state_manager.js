@@ -70,9 +70,8 @@ class StateManager extends Publisher {
       const { body } = await _.getJsonData(`${url}${prefix}`);
       this.state = this.updateSuggestions(body.suggestions, prefix, this.state);
     }
-    catch (err) {
+    catch {
       super.notify(this.state);
-      console.log('NO_SUGGESTIONS');
     }
     await _.makeDelay(suggestionDelay);
     super.notify(this.state);

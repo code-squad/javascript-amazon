@@ -5,7 +5,6 @@ import config from './config.js';
 class SearchBarUI extends Subscriber {
   constructor({ stateManager, config: { inputSelector, buttonSelector } }) {
     super();
-    this.mode = 'waiting'
     this.inputEl = _.$(inputSelector);
     this.buttonEl = _.$(buttonSelector);
     this.init(stateManager);
@@ -48,12 +47,16 @@ class SearchBarUI extends Subscriber {
       ArrowUp: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'up' }),
       Enter: () => {
         e.preventDefault();
-        if (target.className === 'suggestions' || target.className === 'keywords' || target === this.inputEl) {
+        if (this.isValidTarget(target)) {
           this.publisher.setState({ mode: 'waiting', selectedValue: target.textContent, currentValue: target.value });
         }
       }
     };
     if (keyMap[key]) keyMap[key]();
+  }
+
+  isValidTarget(target) {
+    return target.className === 'suggestions' || target.className === 'keywords' || target === this.inputEl;
   }
 
   addClickEvent() {
@@ -65,9 +68,9 @@ class SearchBarUI extends Subscriber {
     this.publisher.setState({ mode: 'waiting', currentValue: this.inputEl.value })
   }
 
-  render(state) {
-    if ((this.mode !== state.mode) || !state.selectedValue) return;
-    this.inputEl.value = state.selectedValue;
+  render({ mode, selectedValue }) {
+    if ((mode !== 'waiting') || !selectedValue) return;
+    this.inputEl.value = selectedValue;
     this.inputEl.focus();
   }
 }

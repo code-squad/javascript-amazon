@@ -33,4 +33,16 @@ const makeDelay = (timeInMs) => {
   })
 }
 
-export { $, on, delegate, getJsonData, makeDelay }
+/**
+ * @param  {Element} targetEl
+ * @param  {string} property
+ */
+const setCssStyle = (targetEl, property, value) => {
+  if (property === 'all' && value === 'none') {
+    targetEl.style = {};
+    return;
+  }
+  targetEl.style[property] = value;
+}
+
+export { $, on, delegate, getJsonData, makeDelay, setCssStyle }
