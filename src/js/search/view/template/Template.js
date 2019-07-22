@@ -14,7 +14,7 @@ export default {
   },
 
   createBoldLetter(letter) {
-    return `<b style='background-color:#FCFF56;'>${letter}</b>`
+    return `<b>${letter}</b>`
   },
 
 }

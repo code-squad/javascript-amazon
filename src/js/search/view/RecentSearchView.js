@@ -1,5 +1,5 @@
-import template from './template/Template.js';
 import ut from '../../myUtil/myUtil.js'
+import template from './template/Template.js';
 
 export default class recentSearchView {
   constructor() {
@@ -18,10 +18,9 @@ export default class recentSearchView {
   render(recentSearches) {
     this.informRecentSearchMade();
     const recentSearchesTpl = recentSearches.reduce((acc, cur) => {
-      return acc+template.createAutoViewItem(cur);
+      return acc+template.createAutoViewItem(cur, cur);
     },"")
     ut.appendElLastly(this.recentSearch, recentSearchesTpl);
-    this.recentSearchViewer('show');
   }
   
   attachAutocomContainer(className) {
@@ -47,9 +46,8 @@ export default class recentSearchView {
     this.recentSearch.classList.remove('hide');
   }
 
+  getRecentSearchList() {
+    return this.recentSearch.children;
+  }
   
 }
-
-//TODO: 1. Data list view
-//      2. Data list 삭제
-//      3. delayed rendering(?)
