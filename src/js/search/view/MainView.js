@@ -46,16 +46,11 @@ export default class MainView {
   }
 
   renderRecentSearch(recentSearches) {
-    const isRecentSearch = this.recentSearchView.recentSearchChecker();
-    if(recentSearches.length && !isRecentSearch) {
-      this.recentSearchView.render(recentSearches);
-      this.autoViewViewer('recentSearch', 'show');
-      this.recentSearchView.showAutoView();
-      return;
-    }
-    if(isRecentSearch) {
-      this.recentSearchView.showAutoView();
-    }
+    // const isRecentSearch = this.recentSearchView.recentSearchChecker();
+    if(!recentSearches.length) return;
+    this.recentSearchView.removeRecentSearchList();
+    this.recentSearchView.render(recentSearches);
+    this.autoViewViewer('recentSearch', 'show');
     this.autoViewItems = this.recentSearchView.getRecentSearchList();
   }
 
@@ -92,7 +87,7 @@ export default class MainView {
   firstFocus(keyCode) {
     const firstItemIdx = 0,
     lastItemIdx = this.numOfAutoView - 1;
-    if(keyCode === 40) {
+    if(keyCode === 'ArrowDown') {
       this.focusedDom = this.autoViewItems[firstItemIdx];
       this.curFocusedIdx = firstItemIdx;
     } else {
@@ -105,7 +100,7 @@ export default class MainView {
   moveFocus(keyCode) {
     this.focusToggle();
     let nextItemIdx;
-    keyCode === 40 ? nextItemIdx = this.curFocusedIdx + 1 : nextItemIdx = this.curFocusedIdx - 1;
+    keyCode === 'ArrowDown' ? nextItemIdx = this.curFocusedIdx + 1 : nextItemIdx = this.curFocusedIdx - 1;
     if(nextItemIdx < 0 || nextItemIdx >= this.numOfAutoView) {
       this.resetFocusedDom();
       return;
