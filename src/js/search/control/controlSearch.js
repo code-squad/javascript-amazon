@@ -6,7 +6,7 @@ export default class ControlSearch {
     this.searchIcon = searchIcon;
     this.delayedTime = delayedTime;
   }
-
+ 
   eventHandler() {
     const searchBar = this.mainView.getSearchBar();
     searchBar.addEventListener('focus', ({target}) => {
