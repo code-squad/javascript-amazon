@@ -11,7 +11,8 @@ class MatchedView {
     } = data;
     console.log("요청의종류", data.body.responseId);
     if (!suggestions) {
-      // 나중엔 historyView가 생겨야한다.
+      // historyView 가 없는 경우에는 빈 화면이 나오도록 한다. 
+      console.log(' matchedView의 render가 실행되고 suggestions가 없네요!',456  )
       this.hide();
       return;
     }

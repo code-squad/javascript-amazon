@@ -7,6 +7,7 @@ import InputView from "./Search/InputView.js"
 import MatchedView from "./Search/MatchedView.js"
 // import HistoryView from "./Search/HistoryView.js"
 import SearchModel from "./Search/SearchModel.js"
+import HistoryView from "./Search/HistoryView.js"
 
 const leftBtn = document.querySelector(".contents__button_left");
 const rightBtn = document.querySelector(".contents__button_right");
@@ -37,10 +38,12 @@ const matchedUl = ".searchbar__match";
 //// {inputUl} deconstructing 햇갈린다. 이렇게 보내면 받는거 맞나? 
 const inputView = new InputView({inputUl});
 const matchedView = new MatchedView({matchedUl});
+const historyView = new HistoryView();
 const searchModel = new SearchModel({});
 const searchController = new SearchController({
   inputView,
   matchedView,
+  historyView,
   searchModel
 });
 searchController.init();
