@@ -27,4 +27,10 @@ const delegate = (el, eventType, domElProperty, funcMap) => {
   })
 }
 
-export { $, on, delegate, getJsonData }
+const makeDelay = (timeInMs) => {
+  return new Promise(res => {
+    setTimeout(res, timeInMs)
+  })
+}
+
+export { $, on, delegate, getJsonData, makeDelay }

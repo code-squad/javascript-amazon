@@ -51,24 +51,31 @@ class StateManager extends Publisher {
       maxIdx: maxSuggestions - 1
     };
     const prefix = this.state.currentValue;
-    if (this.state.suggestions[prefix]) {
-      setTimeout(() => {
-        super.notify(this.state);
-      }, config.suggestionDelay);
+    this.hasCachedSuggestion(prefix)
+      ? this.notifyCachedSuggestions(config)
+      : this.fetchSuggestions(prefix, config);
+  }
+
+  hasCachedSuggestion(prefix) {
+    return this.state.suggestions[prefix];
+  }
+
+  async notifyCachedSuggestions({ suggestionDelay }) {
+    await _.makeDelay(suggestionDelay);
+    super.notify(this.state);
+  }
+
+  async fetchSuggestions(prefix, { url, suggestionDelay }) {
+    try {
+      const { body } = await _.getJsonData(`${url}${prefix}`);
+      this.state = this.updateSuggestions(body.suggestions, prefix, this.state);
     }
-    else {
-      _.getJsonData(`${config.url}${prefix}`)
-        .then(({ body }) => {
-          this.state = this.updateSuggestions(body.suggestions, prefix, this.state);
-          setTimeout(() => {
-            super.notify(this.state);
-          }, config.suggestionDelay);
-        })
-        .catch(reason => {
-          super.notify(this.state);
-          console.log('NO_SUGGESTIONS');
-        });
+    catch (err) {
+      super.notify(this.state);
+      console.log('NO_SUGGESTIONS');
     }
+    await _.makeDelay(suggestionDelay);
+    super.notify(this.state);
   }
 
   updateSuggestions(suggestions, prefix, state) {
