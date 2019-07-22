@@ -1,5 +1,5 @@
-import template from './template/Template.js';
 import ut from '../../myUtil/myUtil.js'
+import template from './template/Template.js';
 
 export default class MainView {
   constructor({autocompleteView, recentSearchView, inputBox, searchBar}) {
@@ -12,7 +12,6 @@ export default class MainView {
     this.numOfAutoView = null;
     this.curFocusedIdx = null;
     this.focusedDom = null;
-    this.delayedTime = 300;
     this.initRender();
   }
 
@@ -34,20 +33,38 @@ export default class MainView {
     this.autoViewContainer = ut.qrSelectorByClass(className, this.input)
   }
   
-  viewRecentSearch(recentSearches) {
+  renderAutocomList(matchedWords, value) {
+    this.autocompleteView.deleteRenderedList();
+    this.autocompleteView.render(matchedWords, value);
+    this.autoViewViewer('autocom', 'show');
+    this.autoViewItems = this.autocompleteView.getAutocomList();
+  }
+  
+  deleteAutocomList() {
+    this.autoViewViewer('autocom', 'hide');
+    this.autocompleteView.deleteRenderedList();
+  }
+
+  renderRecentSearch(recentSearches) {
     const isRecentSearch = this.recentSearchView.recentSearchChecker();
     if(recentSearches.length && !isRecentSearch) {
       this.recentSearchView.render(recentSearches);
+      this.autoViewViewer('recentSearch', 'show');
       this.recentSearchView.showAutoView();
       return;
     }
     if(isRecentSearch) {
       this.recentSearchView.showAutoView();
     }
+    this.autoViewItems = this.recentSearchView.getRecentSearchList();
   }
 
   autoViewViewer(viewType, action){
+    this.focusToggle();
+    this.resetFocusedDom();
+    this.clearAutoViewList();
     if(viewType === 'recentSearch') {
+      if(action === 'show') this.autoViewItems = this.recentSearchView.getRecentSearchList();
       this.recentSearchView.recentSearchViewer(action);
       return;
     }
@@ -62,20 +79,7 @@ export default class MainView {
     }
   }
 
-  renderAutocomList(matchedWords, value) {
-    this.autocompleteView.renderAutocomplete(matchedWords, value, this.delayedTime)
-    this.autoViewItems = this.autocompleteView.getAutocomList();
-  }
-
-  deleteAutocomList() {
-    // this.resetFocusDom();
-    // this.clearAutocomList();
-    // clearTimeout(this.timeoutID);
-    this.autoViewViewer('autocom', 'hide');
-    this.autocompleteView.deleteRenderedList();
-  }
-  
-  focusItem({keyCode}) {
+  focusItem(keyCode) {
     if (!this.autoViewItems) return;
     this.numOfAutoView = this.autoViewItems.length;
     if(this.focusedDom === null) {
@@ -95,49 +99,44 @@ export default class MainView {
       this.focusedDom = this.autoViewItems[lastItemIdx];
       this.curFocusedIdx = lastItemIdx;
     }
-    this.focusToggle(this.focusedDom);
+    this.focusToggle();
   }
   
   moveFocus(keyCode) {
-    this.focusToggle(this.focusedDom);
+    this.focusToggle();
     let nextItemIdx;
     keyCode === 40 ? nextItemIdx = this.curFocusedIdx + 1 : nextItemIdx = this.curFocusedIdx - 1;
     if(nextItemIdx < 0 || nextItemIdx >= this.numOfAutoView) {
-      this.resetFocusDom();
+      this.resetFocusedDom();
       return;
     }
     this.focusedDom = this.autoViewItems[nextItemIdx];
     this.curFocusedIdx = nextItemIdx;
-    this.focusToggle(this.focusedDom);
+    this.focusToggle();
   }
   
-  focusToggle(targetElem) {
+  focusToggle() {
     if(!this.focusedDom) return;
-    targetElem.classList.toggle('focus');
+    this.focusedDom.classList.toggle('focus');
   }
   
   getFocusedText() {
     return this.focusedDom.dataset.name;
   }
 
-  changeBarText({target}) {
+  changeBarText(target) {
     if(!this.focusedDom) return;
     const curFocusedText = this.getFocusedText();
     target.value = curFocusedText
   }
 
-  setAutoViewItems(autoViewContainer) {
-    this.autoViewItems = autoViewContainer.children;
-  }
-
-  resetFocusDom() {
+  resetFocusedDom() {
     this.focusedDom = null;
     this.curFocusedIdx = null;
   }
   
-  clearAutocomList() {
+  clearAutoViewList() {
     this.autoViewItems = null;
     this.autocomItemslen = null;
   }
-  
 }
