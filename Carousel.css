@@ -54,7 +54,7 @@ header {
 }
 
 .activated {
-  background-color: black;
+  background-color: #f1f2f6 !important;
 }
 
 b {
