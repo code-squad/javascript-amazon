@@ -62,8 +62,12 @@ header {
   border: 1px solid gray 
 }
 
+.render{
+  display: block;
+}
 
-.activated{
+.cursered{
+  // !important 를 넣어야 배경색이 바뀌는 문제 
   background-color: rgb(241, 242, 246) !important;
 }
 
