@@ -1,6 +1,5 @@
 import ut from '../../myUtil/myUtil.js'
 import template from './template/Template.js';
-import config from '../helper/config.js';
 
 export default class MainView {
   constructor({autocompleteView, recentSearchView, inputBox, searchBar}) {
@@ -28,10 +27,10 @@ export default class MainView {
   }
 
   renderAutoViewContainer() {
-    const { autoView } = config.class;
-    const autoViewContainer = template.createAutoViewContainer(autoView);
+    const className = 'search__auto-view';
+    const autoViewContainer = template.createAutoViewContainer(className);
     ut.appendElLastly(this.inputBox, autoViewContainer);
-    this.autoViewContainer = ut.qrSelectorByClass(autoView, this.input)
+    this.autoViewContainer = ut.qrSelectorByClass(className, this.input)
   }
   
   renderAutocomList(matchedWords, value) {
@@ -47,10 +46,16 @@ export default class MainView {
   }
 
   renderRecentSearch(recentSearches) {
-    if(!recentSearches.length) return;
-    this.recentSearchView.removeRecentSearchList();
-    this.recentSearchView.render(recentSearches);
-    this.autoViewViewer('recentSearch', 'show');
+    const isRecentSearch = this.recentSearchView.recentSearchChecker();
+    if(recentSearches.length && !isRecentSearch) {
+      this.recentSearchView.render(recentSearches);
+      this.autoViewViewer('recentSearch', 'show');
+      this.recentSearchView.showAutoView();
+      return;
+    }
+    if(isRecentSearch) {
+      this.recentSearchView.showAutoView();
+    }
     this.autoViewItems = this.recentSearchView.getRecentSearchList();
   }
 
@@ -79,8 +84,7 @@ export default class MainView {
     this.numOfAutoView = this.autoViewItems.length;
     if(this.focusedDom === null) {
       this.firstFocus(keyCode);
-    } 
-    else {
+    } else {
       this.moveFocus(keyCode);
     }
   }
@@ -88,7 +92,7 @@ export default class MainView {
   firstFocus(keyCode) {
     const firstItemIdx = 0,
     lastItemIdx = this.numOfAutoView - 1;
-    if(keyCode === 'ArrowDown') {
+    if(keyCode === 40) {
       this.focusedDom = this.autoViewItems[firstItemIdx];
       this.curFocusedIdx = firstItemIdx;
     } else {
@@ -101,7 +105,7 @@ export default class MainView {
   moveFocus(keyCode) {
     this.focusToggle();
     let nextItemIdx;
-    keyCode === 'ArrowDown' ? nextItemIdx = this.curFocusedIdx + 1 : nextItemIdx = this.curFocusedIdx - 1;
+    keyCode === 40 ? nextItemIdx = this.curFocusedIdx + 1 : nextItemIdx = this.curFocusedIdx - 1;
     if(nextItemIdx < 0 || nextItemIdx >= this.numOfAutoView) {
       this.resetFocusedDom();
       return;
