@@ -7,6 +7,7 @@ import Carousel from "./Carousel/views/carouselView.js";
 import Arrows from "./Carousel/views/arrowsView.js";
 import CardNavi from "./Carousel/views/cardNaviView.js";
 
+const url = 'https://kkw10.github.io//Javascript/Carousel/models/localData.json'
 const element = qS('.card-wrap');
 const option = {
   infinite : true,
@@ -20,7 +21,7 @@ const arrows = new Arrows();
 const cardNavi = new CardNavi(option);
 
 const mainController = new MainController(option, carousel, arrows, cardNavi)
-mainController.init();
+mainController.init(url);
 
 /** Search App **/
 import SearchController from "./Search/controllers/searchController.js";

@@ -7,8 +7,8 @@ class MainController {
         this.eventSetting();
     }
 
-    init() {
-        let data = new Request('https://kkw10.github.io//Javascript/Carousel/models/localData.json')
+    init(url) {
+        let data = new Request(url)
         
         fetch(data)
             .then((response) => {
