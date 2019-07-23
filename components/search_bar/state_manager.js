@@ -25,15 +25,15 @@ class StateManager extends Publisher {
     const maxSuggestions = MAX_SUGGESTIONS;
 
     const actionMap = {
-      recentKeywords: ({ state, initialIdx }) => this.processRecentKeywordsMode(state, initialIdx),
-      suggestion: ({ state, config, initialIdx, maxSuggestions }) => this.processSuggestionMode(state, config, initialIdx, maxSuggestions),
-      waiting: ({ state, config }) => this.processWaitingMode(state, config),
-      selection: ({ state }) => this.processSelectionMode(state)
+      recentKeywords: (params) => this.processRecentKeywordsMode(params),
+      suggestion: (params) => this.processSuggestionMode(params),
+      waiting: (params) => this.processWaitingMode(params),
+      selection: (params) => this.processSelectionMode(params)
     }
     actionMap[state.mode]({ state, config, initialIdx, maxSuggestions });
   }
 
-  processRecentKeywordsMode(state, initialIdx) {
+  processRecentKeywordsMode({ state, initialIdx }) {
     this.state = {
       ...this.state,
       ...state,
@@ -43,7 +43,7 @@ class StateManager extends Publisher {
     super.notify(this.state);
   }
 
-  processSuggestionMode(state, config, initialIdx, maxSuggestions) {
+  processSuggestionMode({ state, config, initialIdx, maxSuggestions }) {
     this.state = {
       ...this.state,
       ...state,
@@ -66,13 +66,17 @@ class StateManager extends Publisher {
   }
 
   async fetchSuggestions(prefix, { url, suggestionDelay }) {
+    let data = {};
     try {
-      const { body } = await _.getJsonData(`${url}${prefix}`);
-      this.state = this.updateSuggestions(body.suggestions, prefix, this.state);
+      data = await _.getJsonData(`${url}${prefix}`);
+      if (data.statusCode === 404) throw Error('404, NO_SUGGESTIONS');
     }
-    catch {
+    catch ({ message }) {
+      console.log(message);
       super.notify(this.state);
+      return;
     }
+    this.state = this.updateSuggestions(data.body.suggestions, prefix, this.state);
     await _.makeDelay(suggestionDelay);
     super.notify(this.state);
   }
@@ -83,7 +87,7 @@ class StateManager extends Publisher {
     return newState;
   }
 
-  processWaitingMode(state, { maxRecentKeywords }) {
+  processWaitingMode({ state, config: { maxRecentKeywords } }) {
     this.state = { ...this.state, ...state };
     this.state = this.updateRecentKeywords(this.state, maxRecentKeywords);
     super.notify(this.state);
@@ -91,9 +95,11 @@ class StateManager extends Publisher {
 
   updateRecentKeywords(state, maxRecentKeywords) {
     let currentValue = state.currentValue;
-    if (!currentValue) return state;
-    currentValue = currentValue.trim();
     const newKeywords = [...state.recentKeywords];
+
+    if (!currentValue) return state;
+
+    currentValue = currentValue.trim();
     if (newKeywords.includes(currentValue)) {
       newKeywords.splice(newKeywords.indexOf(currentValue), 1);
     }
@@ -105,7 +111,7 @@ class StateManager extends Publisher {
     return state;
   }
 
-  processSelectionMode(state) {
+  processSelectionMode({ state }) {
     this.state = { ...this.state, ...state }
     this.state = this.updateSelectedIdx(this.state);
     super.notify(this.state);

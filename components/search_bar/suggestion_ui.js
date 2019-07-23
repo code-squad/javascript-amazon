@@ -36,7 +36,10 @@ class SuggestionUI extends Subscriber {
       return;
     }
     const suggestions = state.suggestions[prefix];
-    if (!suggestions) return;
+    if (!suggestions) {
+      this.renderBlank();
+      return;
+    }
 
     const tpl = suggestions.reduce((acc, curr) => {
       curr = curr.replace(prefix, '');
