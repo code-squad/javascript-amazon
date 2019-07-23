@@ -1,6 +1,7 @@
 class RecentModel {
-    constructor() {
+    constructor(maxNumber) {
         this.data = [];
+        this.maxNumber = maxNumber;
     }
 
     saveData(value) {
@@ -8,7 +9,7 @@ class RecentModel {
             this.data.unshift(value);
         }
 
-        if(this.data.length > 5) {
+        if(this.data.length > this.maxNumber) {
             this.data.pop();
         }
     }

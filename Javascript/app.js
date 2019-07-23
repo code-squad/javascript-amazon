@@ -31,11 +31,13 @@ import RecentList from "./Search/views/recentList.js";
 import autoModel from "./Search/models/autoModel.js"
 import RecentModel from "./Search/models/recentModel.js";
 
+let recentModelMaxNumber = 5;
+
 const el = qS('.searchBox');
 const searchForm = new SearchForm(el);
 const autoList = new AutoList(el);
 const recentList = new RecentList(el);
-const recentModel = new RecentModel();
+const recentModel = new RecentModel(recentModelMaxNumber);
 
 const searchController = new SearchController(searchForm, autoList, recentList, recentModel, autoModel);
 searchController.init();
