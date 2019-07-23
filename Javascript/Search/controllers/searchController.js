@@ -40,6 +40,8 @@ class SearchController {
         } else if((event.detail === '@outFocus') || (event.detail === '@esc')) {
             this.recentList.hide();
             this.autoList.hide();
+            this.autoList.status = false;
+            this.recentList.status = false;
             this.searchForm.inputEl.value = '';
 
         } else if(event.detail === '@onKeyUp') {
@@ -56,6 +58,7 @@ class SearchController {
 
         } else if(target === 'Enter') {
             this.enterEvent()
+            this.autoList.status = false;
 
         } else {
             this.recentList.hide();

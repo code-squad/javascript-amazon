@@ -17,7 +17,6 @@ class SearchList {
 
         this.list.children[this.currentPointer].classList.add('focus');
         this.status = true;
-
         return this.list.children[this.currentPointer].innerText;
     }
 
