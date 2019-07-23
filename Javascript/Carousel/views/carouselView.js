@@ -6,7 +6,8 @@ class Carousel {
         this.option = option;
     }
 
-    init() {
+    init(data) {
+        this.render(data);
         this.setValues();
         this.setInitForm();
         this.setInitPosition();

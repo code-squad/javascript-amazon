@@ -15,8 +15,7 @@ class MainController {
                 return response.json();
             }) 
             .then((data) => {
-                this.carousel.render(data);
-                this.carousel.init();
+                this.carousel.init(data);
                 this.checkingOption(data);
             })
     }
@@ -29,17 +28,13 @@ class MainController {
 
     checkingOption(data) {
         if(this.option.arrows) {
-            this.arrows.render(this.carousel.el);
-            this.arrows.init();
+            this.arrows.init(this.carousel.el);
             this.carousel.setValues();
         } 
 
         if(this.option.cardNavi) {
-            this.cardNavi.render(data);
-            this.cardNavi.init();
+            this.cardNavi.init(data);
         }  
-
-        
     }
 
     mainEvent(event) {

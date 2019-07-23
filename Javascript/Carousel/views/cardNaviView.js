@@ -9,7 +9,8 @@ class CardNavi {
         this.setItemAttribute = null;
     }
 
-    init() {
+    init(data) {
+        this.render(data)
         this.setValues();
         this.setItemAttribute({
             'target' : this.naviItems,

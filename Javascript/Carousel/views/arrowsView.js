@@ -5,7 +5,8 @@ class Arrows {
         this.arrowsEvent = null;
     }
 
-    init() {
+    init(target) {
+        this.render(target);
         this.prevBtn = qS(".btn-prev");
         this.nextBtn = qS(".btn-next");
         this.bindEvents()
