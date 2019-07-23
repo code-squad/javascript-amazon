@@ -21,8 +21,8 @@ class MainController {
     }
 
     eventSetting() {
-        this.arrows.arrowsEvent = this.mainEvent.bind(this);
-        this.cardNavi.mainEvent = this.mainEvent.bind(this);
+        this.arrows.arrowsEvent = this.mainEventHandler.bind(this);
+        this.cardNavi.mainEvent = this.mainEventHandler.bind(this);
         this.cardNavi.setItemAttribute = this.carousel.setItemAttribute.bind(this);
     }
 
@@ -37,7 +37,7 @@ class MainController {
         }  
     }
 
-    mainEvent(event) {
+    mainEventHandler(event) {
         let distance;
         let direction;
 
