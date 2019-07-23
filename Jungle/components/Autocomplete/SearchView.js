@@ -1,6 +1,8 @@
-//components
 import AutoListView from "./AutoListView.js";
 import RecentListView from "./RecentListView.js";
+
+import templates from "../../templates.js";
+import debounce from "../../../Grenutil/debounce.js";
 
 export default class SearchView {
   constructor({ categories, options }) {
@@ -32,19 +34,6 @@ export default class SearchView {
     return { ...this.defaultOptions, ...options };
   }
 
-  getCategoryTagsTemplate(categories) {
-    return `
-      ${categories.reduce(
-        (html, category, idx) =>
-          `
-          ${html}
-          <option value="" ${idx === 0 ? `selected` : ``}>${category}</option>
-          `,
-        ``
-      )}
-    `;
-  }
-
   cacheDom() {
     this.searchWrapper = document.querySelector(".search-wrapper");
     this.searchInput = this.searchWrapper.querySelector("input[type=search]");
@@ -55,27 +44,9 @@ export default class SearchView {
   }
 
   getTemplate() {
-    const template = `
-    <form action="#" class="search-form">
-    <div class="search-wrapper">
-      <div class="search-category">
-        <div class="icon-down-arrow"></div>
-        <select name="" id="">
-          ${this.getCategoryTagsTemplate(this.categories)}
-        </select>
-      </div>
-      <div class="search-input">
-        <input type="search" name="" id="">
-        <div class="search-info-list">
-        </div>
-      </div>
-      <div class="search-submit">
-        <div class="icon-magnifying-glass">&#9906;</div>
-        <input type="submit" value="">
-      </div>
-    </div>
-  </form>
-    `;
+    const template = templates.getSearchTemplate({
+      categories: this.categories
+    });
 
     return template;
   }
@@ -91,29 +62,25 @@ export default class SearchView {
     this.setSearchInfoOn(template === null ? false : true);
   }
 
-  renderAutoListView(searchText) {
-    if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
-    const template = this.autoListView.getTemplate(searchText);
+  async renderAutoListView(text) {
+    // if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
+    const template = await this.autoListView.getTemplate(text);
 
+    this.searchInfoList.innerHTML = template;
+    this.setSearchInfoOn(template === null ? false : true);
     this.currentSelectIndex = -1;
-
-    this.autoListTimeout = setTimeout(() => {
-      this.searchInfoList.innerHTML = template;
-      this.setSearchInfoOn(template === null ? false : true);
-    }, this.options.debouncingDelay);
   }
 
-  inputChangeHandler(target) {
+  inputChangeHandler(value) {
     this.currentSelectIndex = -1;
+    // clearTimeout(this.autoListTimeout);
 
-    if (target.value === "") {
-      if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
+    if (value === "") {
       this.setSearchInfoOn(false);
       this.renderRecentListView();
-      return;
+    } else {
+      this.renderAutoListView(value);
     }
-
-    this.renderAutoListView(target.value);
   }
 
   arrowUpHandler(lists) {
@@ -132,24 +99,29 @@ export default class SearchView {
 
     lists.forEach(list => list.classList.remove("activated"));
 
-    if (this.currentSelectIndex >= this.infoItemLen) this.currentSelectIndex = -1;
+    if (this.currentSelectIndex >= this.infoItemLen)
+      this.currentSelectIndex = -1;
     else lists[this.currentSelectIndex].classList.add("activated");
   }
 
-  enterHandler(target) {
-    if(this.currentSelectIndex >= 0) {
-      const activatedEl = this.searchInfoList.querySelectorAll("li")[this.currentSelectIndex];
-      target.value = activatedEl === null ? target.value : activatedEl.innerText;
+  enterHandler(value, key) {
+    if (!(key === "Enter") || value === "") return;
+
+    if (this.currentSelectIndex >= 0) {
+      const activatedEl = this.searchInfoList.querySelectorAll("li")[
+        this.currentSelectIndex
+      ];
+      value = activatedEl === null ? value : activatedEl.innerText;
     }
     this.setSearchInfoOn(false);
 
-    this.recentListView.addRecentSearchText({ text: target.value });
+    this.recentListView.addRecentSearchText({ text: value });
   }
 
   keyDownHandler(evt) {
-    const { key, target } = evt;
+    const { key } = evt;
 
-    if (!(key === "ArrowDown" || key === "ArrowUp" || key === "Enter")) return;
+    if (!(key === "ArrowDown" || key === "ArrowUp")) return;
     const lists = this.searchInfoList.querySelectorAll("li");
 
     if (key === "ArrowUp") {
@@ -157,40 +129,40 @@ export default class SearchView {
       evt.preventDefault();
     } else if (key === "ArrowDown") {
       this.arrowDownHandler(lists);
-    } else {
-      this.enterHandler(target);
     }
   }
 
-  focusOnHandler(target) {
-    if (target.value !== "") {
-      this.renderAutoListView(target.value);
-    } else {
-      this.renderRecentListView();
-    }
+  focusOnHandler(value) {
+    if (value === "") this.renderRecentListView();
+    else this.renderAutoListView(value);
   }
 
   focusOutHandler() {
     this.setSearchInfoOn(false);
   }
 
-  submitHandler(evt) {
-    evt.preventDefault();
-  }
-
   attachEvent() {
     this.cacheDom();
 
-    this.searchInput.addEventListener("input", ({ target }) =>
-      this.inputChangeHandler(target)
+    const debouncedInputChangeHandler = debounce(
+      (...args) => this.inputChangeHandler(...args),
+      this.options.debouncingDelay
     );
-    this.searchForm.addEventListener("submit", evt => this.submitHandler(evt));
+
+    this.searchInput.addEventListener("input", ({ target: { value } }) =>
+      debouncedInputChangeHandler(value)
+    );
+    this.searchForm.addEventListener("submit", evt => evt.preventDefault());
     this.searchForm.addEventListener("keydown", evt =>
       this.keyDownHandler(evt)
     );
 
-    this.searchInput.addEventListener("focus", ({ target }) =>
-      this.focusOnHandler(target)
+    this.searchForm.addEventListener("keypress", ({ target: { value }, key }) =>
+      this.enterHandler(value, key)
+    );
+
+    this.searchInput.addEventListener("focus", ({ target: { value } }) =>
+      this.focusOnHandler(value)
     );
     this.searchInput.addEventListener("focusout", () => this.focusOutHandler());
   }

@@ -1,32 +1,14 @@
-const dummyData = [
-  {
-    title: "iphone"
-  },
-  {
-    title: "ipad"
-  },
-  {
-    title: "imac"
-  },
-  {
-    title: "ipod"
-  },
-  {
-    title: "iphoneX"
-  },
-  {
-    title: "iphone6"
-  },
-  {
-    title: "apple watch"
-  }
-];
-
 import SearchInfoView from "./SearchInfoView.js";
+import MyFetch from "../../../Grenutil/MyFetch/index.js";
+
+const amazoneApiUrl =
+  "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete";
 
 export default class AutoListView extends SearchInfoView {
   constructor({ maxLen, dataUrl, title }) {
     super({ maxLen, title });
+
+    this.noSuggestionData = ["<span>추천 검색어가 없습니다.</span>"];
   }
 
   getHighlightParsedText({ text, startIndex, endIndex }) {
@@ -49,10 +31,8 @@ export default class AutoListView extends SearchInfoView {
     return a.startIndex - b.startIndex;
   }
 
-  getFilteredData(text) {
-    let filteredData = dummyData.map(data => data.title);
-
-    filteredData = filteredData
+  getSortedData({ filteredData, text }) {
+    return filteredData
       .filter(data => data.includes(text))
       .map(data => ({
         text: data,
@@ -62,12 +42,26 @@ export default class AutoListView extends SearchInfoView {
       .sort(this.compareByIndex)
       .filter((_, index) => index < this.maxLen)
       .map(data => this.getHighlightParsedText(data));
+  }
+
+  async getFilteredData(text) {
+    let filteredData;
+
+    try {
+      filteredData = (await MyFetch(
+        `${amazoneApiUrl}?query=${text}`
+      )).body.suggestions.map(v => v.value);
+
+      filteredData = this.getSortedData({ filteredData, text });
+    } catch (error) {
+      filteredData = this.noSuggestionData;
+    }
 
     return filteredData;
   }
 
-  getTemplate(text) {
-    const filteredData = this.getFilteredData(text);
+  async getTemplate(text) {
+    const filteredData = await this.getFilteredData(text);
 
     return filteredData.length > 0
       ? this.getListTemplate({

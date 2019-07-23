@@ -1,3 +1,5 @@
+import templates from "../../templates.js";
+
 export default class SearchInfoView {
   constructor({ maxLen, title }) {
     this.maxLen = maxLen;
@@ -6,23 +8,13 @@ export default class SearchInfoView {
   }
 
   getListTemplate({ list, listClassName }) {
-    if(list.length > this.maxLen) list.length = this.maxLen;
-
+    if (list.length > this.maxLen) list.length = this.maxLen;
     this.itemLen = list.length;
 
-    const listTemplate = `
-      <ul>
-        ${list.reduce(
-          (html, item, idx) => `
-            ${html}
-            <li class="${listClassName}" data-idx=${idx}>${item}</li>
-          `,
-          ``
-        )}
-        <li class="search-info-title"><span>${this.title}</span></li>
-      </ul>
-    `;
-
-    return listTemplate;
+    return templates.getSearchInfoTemplate({
+      list,
+      listClassName,
+      title: this.title
+    });
   }
 }

@@ -1,6 +1,7 @@
 import MyFetch from "../../../Grenutil/MyFetch/index.js";
 import MyEventEmitter from "../../../Grenutil/MyEventEmitter/index.js";
 import delegate from "../../../Grenutil/delegate.js";
+import templates from "../../templates.js";
 
 const FETCH_PATH = "../../../data/localData.json";
 const CSS_PATH = "Jungle/components/Navigation/Navigation.css";
@@ -49,11 +50,10 @@ export default class NavigationView extends MyEventEmitter {
     return { ...this.defaultOptions, ...userOptions };
   }
 
-  setCss() {
+  setNavigationStyle() {
     this.navigation.style.width = `${this.options.width}px`;
     this.navigation.style.height = `${this.options.height}px`;
 
-    //#2591c0
     this.navItems.forEach((item, idx) => {
       const navBtn = item.querySelector("button");
       navBtn.style.backgroundColor = NAV_ITEMS_COLORS[idx];
@@ -79,39 +79,31 @@ export default class NavigationView extends MyEventEmitter {
   }
 
   render(data) {
-    const template = `
-      <ul>
-        ${data.reduce(
-          (html, item, idx) => `
-        ${html}
-        <li data-itemnum=${idx + 1}>
-          <button class="nav-item">
-          ${item.title}
-          </button>
-        </li>
-      `,
-          ``
-        )}
-      </ul>
-    `;
+    const template = templates.getNavigationTemplate({ data });
 
     this.navigation.innerHTML = template;
     this.activateCurrentItem();
-    this.setCss();
+    this.setNavigationStyle();
     this.attachEvent();
   }
 
-  init() {
-    MyFetch(FETCH_PATH).then(data => this.render(data));
+  async init() {
+    this.render(await MyFetch(FETCH_PATH));
   }
 
   setNextItem() {
-    this.currentActivatedItem = (this.currentActivatedItem >=  this.navItems.length) ? 1 : this.currentActivatedItem + 1;
+    this.currentActivatedItem =
+      this.currentActivatedItem >= this.navItems.length
+        ? 1
+        : this.currentActivatedItem + 1;
     this.activateCurrentItem();
   }
 
   setPrevItem() {
-    this.currentActivatedItem = (this.currentActivatedItem <=  1) ? this.navItems.length : this.currentActivatedItem - 1;
+    this.currentActivatedItem =
+      this.currentActivatedItem <= 1
+        ? this.navItems.length
+        : this.currentActivatedItem - 1;
     this.activateCurrentItem();
   }
 }
