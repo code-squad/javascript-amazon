@@ -1,4 +1,8 @@
 class SearchController {
+    get recentData() {
+        return this.recentModel.data;
+    }
+    
     constructor(searchForm, autoList, recentList, recentModel, autoModel) {
         this.searchForm = searchForm;
         this.autoList = autoList;
@@ -31,8 +35,7 @@ class SearchController {
 
     focusEvent(event) {
         if(event.detail === '@onFocus') {
-            let data = this.recentModel.data;
-            this.recentList.render(data);
+            this.recentList.render(this.recentData);
 
         } else if((event.detail === '@outFocus') || (event.detail === '@esc')) {
             this.recentList.hide();
