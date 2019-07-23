@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
   ];
 
   const autocompleteOptions = {
-    debouncingDelay: 300
+    debouncingDelay: 1200
   };
 
   new Autocomplete({

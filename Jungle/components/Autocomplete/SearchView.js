@@ -2,6 +2,7 @@ import AutoListView from "./AutoListView.js";
 import RecentListView from "./RecentListView.js";
 
 import templates from "../../templates.js";
+import debounce from "../../../Grenutil/debounce.js";
 
 export default class SearchView {
   constructor({ categories, options }) {
@@ -62,27 +63,24 @@ export default class SearchView {
   }
 
   async renderAutoListView(text) {
-    if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
+    // if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
     const template = await this.autoListView.getTemplate(text);
 
-    this.autoListTimeout = setTimeout(() => {
-      this.searchInfoList.innerHTML = template;
-      this.setSearchInfoOn(template === null ? false : true);
-    }, this.options.debouncingDelay);
+    this.searchInfoList.innerHTML = template;
+    this.setSearchInfoOn(template === null ? false : true);
     this.currentSelectIndex = -1;
   }
 
-  inputChangeHandler(target) {
+  inputChangeHandler(value) {
     this.currentSelectIndex = -1;
+    // clearTimeout(this.autoListTimeout);
 
-    if (target.value === "") {
-      if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
+    if (value === "") {
       this.setSearchInfoOn(false);
       this.renderRecentListView();
-      return;
+    } else {
+      this.renderAutoListView(value);
     }
-
-    this.renderAutoListView(target.value);
   }
 
   arrowUpHandler(lists) {
@@ -106,19 +104,18 @@ export default class SearchView {
     else lists[this.currentSelectIndex].classList.add("activated");
   }
 
-  enterHandler(target, key) {
-    if (!(key === "Enter") || target.value === "") return;
+  enterHandler(value, key) {
+    if (!(key === "Enter") || value === "") return;
 
     if (this.currentSelectIndex >= 0) {
       const activatedEl = this.searchInfoList.querySelectorAll("li")[
         this.currentSelectIndex
       ];
-      target.value =
-        activatedEl === null ? target.value : activatedEl.innerText;
+      value = activatedEl === null ? value : activatedEl.innerText;
     }
     this.setSearchInfoOn(false);
 
-    this.recentListView.addRecentSearchText({ text: target.value });
+    this.recentListView.addRecentSearchText({ text: value });
   }
 
   keyDownHandler(evt) {
@@ -135,12 +132,9 @@ export default class SearchView {
     }
   }
 
-  focusOnHandler(target) {
-    if (target.value !== "") {
-      this.renderAutoListView(target.value);
-    } else {
-      this.renderRecentListView();
-    }
+  focusOnHandler(value) {
+    if (value === "") this.renderRecentListView();
+    else this.renderAutoListView(value);
   }
 
   focusOutHandler() {
@@ -150,20 +144,25 @@ export default class SearchView {
   attachEvent() {
     this.cacheDom();
 
-    this.searchInput.addEventListener("input", ({ target }) =>
-      this.inputChangeHandler(target)
+    const debouncedInputChangeHandler = debounce(
+      (...args) => this.inputChangeHandler(...args),
+      this.options.debouncingDelay
+    );
+
+    this.searchInput.addEventListener("input", ({ target: { value } }) =>
+      debouncedInputChangeHandler(value)
     );
     this.searchForm.addEventListener("submit", evt => evt.preventDefault());
     this.searchForm.addEventListener("keydown", evt =>
       this.keyDownHandler(evt)
     );
 
-    this.searchForm.addEventListener("keypress", ({ target, key }) =>
-      this.enterHandler(target, key)
+    this.searchForm.addEventListener("keypress", ({ target: { value }, key }) =>
+      this.enterHandler(value, key)
     );
 
-    this.searchInput.addEventListener("focus", ({ target }) =>
-      this.focusOnHandler(target)
+    this.searchInput.addEventListener("focus", ({ target: { value } }) =>
+      this.focusOnHandler(value)
     );
     this.searchInput.addEventListener("focusout", () => this.focusOutHandler());
   }
