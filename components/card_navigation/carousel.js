@@ -1,17 +1,16 @@
 import { $, delegate } from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/subscriber.js'
+import { WIDTH_IN_PERCENT } from './constants.js'
 
 export default class Carousel extends Subscriber {
-  constructor(publisher, viewportSelector, option) {
+  constructor({ stateManager, config }) {
     super();
-    this.viewport = $(viewportSelector);
-    this.camera = this.viewport.firstElementChild;
-    this.panels = this.camera.children;
-    this.maxIdx = this.panels.length;
-    this.option = this.mergeOption(option);
-    this.btnWrapper = $(this.option.btnWrapper);
-    this.init();
-    this.subscribe('carousel', publisher);
+    this.btnWrapper = $(config.btnWrapperSelector);
+    this.viewport = $(config.carouselSelector);
+    this.prevBtnCssClass = config.prevBtnCssClass;
+    this.nextBtnCssClass = config.nextBtnCssClass;
+    this.option = this.mergeOption(config.option);
+    this.subscribe('carousel', stateManager);
   }
 
   mergeOption(option) {
@@ -24,6 +23,7 @@ export default class Carousel extends Subscriber {
   }
 
   init() {
+    this.cacheElements();
     if (this.option.infinite) {
       this.addClone();
       this.toggleAnimate('off');
@@ -31,12 +31,18 @@ export default class Carousel extends Subscriber {
       setTimeout(() => this.toggleAnimate('on'), 0);
     }
     else {
-      this.getBtns(this.option.prevBtn, this.option.nextBtn);
+      this.getBtns(this.prevBtnCssClass, this.nextBtnCssClass);
       this.checkMovable(this.option.startIdx);
     }
     this.addCarouselClass();
     this.setNoAnimateTransform(this.option.startIdx)
-    this.delegateBtnEvt(this.option.prevBtn, this.option.nextBtn);
+    this.delegateBtnEvt(this.prevBtnCssClass, this.nextBtnCssClass);
+  }
+
+  cacheElements() {
+    this.camera = this.viewport.firstElementChild;
+    this.panels = this.camera.children;
+    this.maxIdx = this.panels.length;
   }
 
   addClone() {
@@ -79,10 +85,10 @@ export default class Carousel extends Subscriber {
     Array.from(this.panels).forEach(el => el.classList.add('panel'));
   }
 
-  delegateBtnEvt(prevBtn, nextBtn) {
+  delegateBtnEvt(prevBtnClass, nextBtnClass) {
     const funcMap = {
-      [prevBtn]: () => this.handleBtnClick('prev'),
-      [nextBtn]: () => this.handleBtnClick('next')
+      [prevBtnClass]: () => this.handleBtnClick('prev'),
+      [nextBtnClass]: () => this.handleBtnClick('next')
     }
     delegate(this.btnWrapper, 'click', 'classList', funcMap);
   }
@@ -91,14 +97,12 @@ export default class Carousel extends Subscriber {
     this.publisher.setState({ direction });
   }
 
-  async move({ targetIdx }) {
+  move({ targetIdx }) {
     this.setTransform(targetIdx);
     if (this.isCloneItem(targetIdx) && this.option.infinite) {
-      // await this.sleep(this.option.duration - 50);
-      // this.setNoAnimateTransform(targetIdx - this.maxIdx);
       setTimeout(() => {
         this.setNoAnimateTransform(targetIdx - this.maxIdx)
-      }, this.option.duration - 50)
+      }, this.option.duration)
 
     }
     if (!this.option.infinite) this.checkMovable(targetIdx);
@@ -110,16 +114,12 @@ export default class Carousel extends Subscriber {
 
   setTransform(idx) {
     idx = idx < -1 ? this.maxIdx - 1 : idx;
-    this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: transform ${this.option.duration}ms`
+    this.camera.style.cssText = `transform: translateX(${-WIDTH_IN_PERCENT * idx}%); transition: transform ${this.option.duration}ms`
   }
 
   setNoAnimateTransform(idx) {
     idx = idx < -1 ? this.maxIdx - 1 : idx;
-    this.camera.style.cssText = `transform: translateX(${-100 * idx}%); transition: none`
-  }
-
-  sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    this.camera.style.cssText = `transform: translateX(${-WIDTH_IN_PERCENT * idx}%); transition: none`
   }
 
   render(state) {

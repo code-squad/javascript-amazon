@@ -1,15 +1,19 @@
 import Publisher from '../../utils/publisher.js'
 
 export default class StateManager extends Publisher {
-  constructor({ startIdx, quantityToSlide, panelQuantity }) {
+  constructor({ config: { option = { startIdx: 0, quantityToSlide: 1 } } }) {
     super();
     this.state = {
-      currentIdx: startIdx,
-      targetIdx: startIdx,
+      currentIdx: option.startIdx,
+      targetIdx: option.startIdx,
       direction: null,
-      quantityToSlide: quantityToSlide,
-      panelQuantity: panelQuantity
+      quantityToSlide: option.quantityToSlide,
+      panelQuantity: null
     };
+  }
+
+  init(panelQuantity) {
+    this.state.panelQuantity = panelQuantity;
   }
 
   setState(data) {
@@ -19,13 +23,13 @@ export default class StateManager extends Publisher {
       this.updateTargetIdx(this.state);
       this.updateDirection(this.state);
       this.updateCurrentIdx(this.state);
-      this.notify(this.state, 'carousel');
+      super.notify(this.state, 'carousel');
       this.syncronizeIdx(this.state);
-      this.notify(this.state, 'pagination');
+      super.notify(this.state, 'pagination');
     }
     else {
       this.updateCurrentIdx(this.state);
-      this.notify(this.state);
+      super.notify(this.state);
     }
   }
 

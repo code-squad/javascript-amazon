@@ -99,12 +99,12 @@ body {
 
 .arrow.arrow-left {
   left: -80px;
-  background-image: url("./images/left-chevron.svg");
+  background-image: url("../../resource/images/left-chevron.svg");
 }
 
 .arrow.arrow-right {
   right: -80px;
-  background-image: url("./images/right-chevron.svg");
+  background-image: url("../../resource/images/right-chevron.svg");
 }
 
 .arrow.arrow-disable {
@@ -160,4 +160,24 @@ body {
 .desc-li a {
   text-decoration: none;
   color: #557fa4;
+}
+
+.arrow-disabled {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.camera {
+  display: flex;
+}
+.panel {
+  width: 100%;
+  height: 100%;
+}
+.infinite-camera {
+  position: relative;
+  left: -100%;
+}
+.no-animation {
+  transition: none;
 }

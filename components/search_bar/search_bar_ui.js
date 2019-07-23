@@ -2,12 +2,11 @@ import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
 
 class SearchBarUI extends Subscriber {
-  constructor(publisher, { inputSelector, buttonSelector }) {
+  constructor({ stateManager, config: { inputSelector, buttonSelector } }) {
     super();
     this.inputEl = _.$(inputSelector);
     this.buttonEl = _.$(buttonSelector);
-    this.init(publisher);
-    this.mode = 'waiting'
+    this.init(stateManager);
   }
 
   init(publisher) {
@@ -32,7 +31,8 @@ class SearchBarUI extends Subscriber {
 
   handleKeyup({ target, key }) {
     if (key.length === 1 || key === 'Backspace') {
-      this.publisher.setState({ mode: 'suggestion', currentValue: target.value });
+      const param = { mode: 'suggestion', currentValue: target.value };
+      _.setDebounce((p) => this.publisher.setState(p), 1200, param);
     }
   }
 
@@ -47,12 +47,16 @@ class SearchBarUI extends Subscriber {
       ArrowUp: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'up' }),
       Enter: () => {
         e.preventDefault();
-        if (target.className === 'suggestions' || target.className === 'keywords' || target === this.inputEl) {
+        if (this.isValidTarget(target)) {
           this.publisher.setState({ mode: 'waiting', selectedValue: target.textContent, currentValue: target.value });
         }
       }
     };
     if (keyMap[key]) keyMap[key]();
+  }
+
+  isValidTarget(target) {
+    return target.className === 'suggestions' || target.className === 'keywords' || target === this.inputEl;
   }
 
   addClickEvent() {
@@ -64,9 +68,9 @@ class SearchBarUI extends Subscriber {
     this.publisher.setState({ mode: 'waiting', currentValue: this.inputEl.value })
   }
 
-  render(state) {
-    if ((this.mode !== state.mode) || !state.selectedValue) return;
-    this.inputEl.value = state.selectedValue;
+  render({ mode, selectedValue }) {
+    if ((mode !== 'waiting') || !selectedValue) return;
+    this.inputEl.value = selectedValue;
     this.inputEl.focus();
   }
 }
