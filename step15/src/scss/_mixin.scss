@@ -1,0 +1,10 @@
+$font-size: 16px;
+
+@function calcRem($size) {
+  @return #{$size / $font-size}rem;
+}
+
+@mixin flexbox() {
+  display: flex;
+  justify-content: center;
+}
