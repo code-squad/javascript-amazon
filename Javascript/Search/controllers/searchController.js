@@ -38,11 +38,11 @@ class SearchController {
             this.recentList.render(this.recentData);
 
         } else if((event.detail === '@outFocus') || (event.detail === '@esc')) {
+            this.currentList = 'recentList';
             this.recentList.hide();
             this.autoList.hide();
-            this.autoList.status = false;
-            this.recentList.status = false;
             this.searchForm.inputEl.value = '';
+            this.searchForm.inputEl.blur();
 
         } else if(event.detail === '@onKeyUp') {
             this.keyEvent(event.target);
@@ -58,7 +58,6 @@ class SearchController {
 
         } else if(target === 'Enter') {
             this.enterEvent()
-            this.autoList.status = false;
 
         } else {
             this.recentList.hide();

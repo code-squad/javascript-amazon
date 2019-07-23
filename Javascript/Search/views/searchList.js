@@ -46,6 +46,12 @@ class SearchList {
         }   
     }
 
+    hide() {
+        this.list.innerHTML = '';
+        this.list.style.display = 'none';
+        this.status = false;
+    }
+
 }
 
 export default SearchList;

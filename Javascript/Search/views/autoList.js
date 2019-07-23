@@ -27,12 +27,6 @@ class AutoList extends SearchList {
 
         this.list.innerHTML = node;        
     }
-
-    hide() {
-        this.list.innerHTML = '';
-        this.list.style.display = 'none';
-    }
-
 }
 
 export default AutoList;

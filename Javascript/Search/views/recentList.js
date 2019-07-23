@@ -20,13 +20,6 @@ class RecentList extends SearchList {
         })
         this.list.style.display = 'block';
     }
-
-    hide() {
-        this.list.innerHTML = '';
-        this.list.style.display = 'none';
-        this.status = false;
-        this.currentPointer = 0;
-    }
 }
 
 export default RecentList;
