@@ -70,6 +70,7 @@ class StateManager extends Publisher {
     try {
       data = await _.getJsonData(`${url}${prefix}`);
       if (data.statusCode === 404) throw Error('404, NO_SUGGESTIONS');
+      if (data.statusCode !== 200) throw Error(`${data.statusCode}_ERROR`)
     }
     catch ({ message }) {
       console.log(message);

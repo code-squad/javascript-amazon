@@ -1,6 +1,5 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
-import config from './config.js';
 
 class SearchBarUI extends Subscriber {
   constructor({ stateManager, config: { inputSelector, buttonSelector } }) {
@@ -32,7 +31,8 @@ class SearchBarUI extends Subscriber {
 
   handleKeyup({ target, key }) {
     if (key.length === 1 || key === 'Backspace') {
-      this.publisher.setState({ mode: 'suggestion', currentValue: target.value });
+      const param = { mode: 'suggestion', currentValue: target.value };
+      _.setDebounce((p) => this.publisher.setState(p), 1200, param);
     }
   }
 
