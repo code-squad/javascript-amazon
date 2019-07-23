@@ -23,13 +23,14 @@ class Arrows {
     }
 
     getArrowsHTML() {
-        let prevBtn = `<img src="./images/left-chevron.svg" alt="" class="btn-common btn-prev"/>`;
-        let nextBtn = `<img src="./images/right-chevron.svg" alt="" class="btn-common btn-next"/>`;
-
         let btnList = `
             <ul class="btn-wrap">
-                <li>${prevBtn}</li>
-                <li>${nextBtn}</li>
+                <li>
+                    <img src="./images/left-chevron.svg" alt="" class="btn-common btn-prev"/>
+                </li>
+                <li>
+                    <img src="./images/right-chevron.svg" alt="" class="btn-common btn-next"/>
+                </li>
             </ul>`
 
         return [btnList];
