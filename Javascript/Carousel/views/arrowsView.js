@@ -30,18 +30,16 @@ class Arrows {
             <ul class="btn-wrap">
                 <li>${prevBtn}</li>
                 <li>${nextBtn}</li>
-            </ul>
-        `
+            </ul>`
 
         return [btnList];
     }    
 
     bindEvents() {
         this.btnList.addEventListener('click', (evt) => {
-            if(evt.target.tagName === 'IMG') {
-                let targetClassName = evt.target.classList[1] 
-                this.detailEvent(targetClassName);
-            }
+            if(evt.target.tagName !== 'IMG') return;
+            let targetClassName = evt.target.classList[1] 
+            this.detailEvent(targetClassName);
         })
     }
 
