@@ -16,14 +16,12 @@ class MatchedView {
       body: { suggestions }
     } = data;
 
-    if (this.liTemplates) {
-      while (this.ul.firstElementChild) {
-        this.ul.removeChild(this.ul.firstElementChild);
-      }
-    }
+    this.initializeTemplate();
+
+    // debugger
     // 하이라이트 함수로 리팩토링 할것 , replace를 쓸지 slice를 쓸지
     this.liTemplates = suggestions.reduce((accum, cur) => {
-      accum += `<li class="suggestions">${cur.value.replace(
+      accum += `<li class="results">${cur.value.replace(
         inputValue,
         `<b>${inputValue}</b>`
       )}</li>`;
@@ -34,8 +32,17 @@ class MatchedView {
     this.ul.classList.add("render");
   }
 
+  initializeTemplate(){
+    if (this.liTemplates) {
+      while (this.ul.firstElementChild) {
+        this.ul.removeChild(this.ul.firstElementChild);
+      }
+    }
+  }
+
   hide() {
     this.ul.classList.remove("render");
+    console.log("MatchedView의 hide 함수 실행! 가려저라 얍");
   }
 
   findCurseredValue(){

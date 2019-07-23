@@ -28,11 +28,12 @@ class SearchController {
     if(matchedData === undefined  ){
       // matchedData가 있을땐 검색내역 보이도록 구현해야함.
       // await 필요한가?  --> 실험해보니 필요없더라 
-      // const historys = this.searchModel.historyQueue 
-      // this.historyView.render(historys);
-      // return;
+      this.matchedView.hide();
+      const historys = this.searchModel.historyQueue 
+      this.historyView.render(historys);
+      return;
     }
-
+    this.historyView.hide();
     // console.log('Handler가  실행됩니다!',123)
     await this.matchedView.render(matchedData, inputValue);
   }

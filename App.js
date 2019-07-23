@@ -33,12 +33,12 @@ amazonController.init(dataURL);
 
 const inputUl = ".searchbar__input";
 const matchedUl = ".searchbar__match";
-// const history = "searchbar__history";
+const historyUl = ".searchbar__history";
 
 //// {inputUl} deconstructing 햇갈린다. 이렇게 보내면 받는거 맞나? 
 const inputView = new InputView({inputUl});
 const matchedView = new MatchedView({matchedUl});
-const historyView = new HistoryView();
+const historyView = new HistoryView({historyUl});
 const searchModel = new SearchModel({});
 const searchController = new SearchController({
   inputView,
