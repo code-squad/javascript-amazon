@@ -1,4 +1,4 @@
-import { $ } from '../utils/allenibrary.js'
+import { $ } from '../../utils/allenibrary.js'
 
 export default class Templater {
   getDescLists = (descLists) => {

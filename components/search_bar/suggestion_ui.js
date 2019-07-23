@@ -1,16 +1,16 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/subscriber.js'
-import { SELECTED_EL_COLOR } from '../constants.js'
 
 class SuggestionUI extends Subscriber {
-  constructor(publisher, selector) {
+  constructor({ stateManager, config: { searchFormSelector, selectedElementColor } }) {
     super();
-    this.init(publisher, selector);
+    this.init(stateManager, searchFormSelector);
+    this.selectedElementColor = selectedElementColor;
   }
 
-  init(publisher, selector) {
+  init(publisher, searchFormSelector) {
     this.subscribe('suggestionUI', publisher);
-    this.renderWrapper(selector);
+    this.renderWrapper(searchFormSelector);
     this.targetEl = _.$('.auto-suggestions');
   }
 
@@ -35,8 +35,12 @@ class SuggestionUI extends Subscriber {
       this.renderBlank();
       return;
     }
-    const suggestions = state.suggestions[state.currentValue];
-    if (!suggestions) return;
+    const suggestions = state.suggestions[prefix];
+    if (!suggestions) {
+      this.renderBlank();
+      return;
+    }
+
     const tpl = suggestions.reduce((acc, curr) => {
       curr = curr.replace(prefix, '');
       return acc + `<li class='suggestions' tabindex=-1>${prefix}<b>${curr}</b></li>`
@@ -44,16 +48,17 @@ class SuggestionUI extends Subscriber {
     this.targetEl.innerHTML = tpl;
   }
 
-  renderSelection(state) {
+  renderSelection({ prevIdx, selectedIdx }) {
     const ul = this.targetEl;
     const lists = ul.children;
     if (!lists.length) return;
-    const prevEl = lists[state.prevIdx];
-    if (prevEl) prevEl.style = {};
 
-    const selectedEl = lists[state.selectedIdx];
+    const prevEl = lists[prevIdx];
+    if (prevEl) _.setCssStyle(prevEl, 'all', 'none');
+
+    const selectedEl = lists[selectedIdx];
     selectedEl.focus();
-    selectedEl.style.backgroundColor = SELECTED_EL_COLOR;
+    _.setCssStyle(selectedEl, 'backgroundColor', this.selectedElementColor);
   }
 
   renderBlank() {

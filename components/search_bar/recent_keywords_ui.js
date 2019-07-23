@@ -1,16 +1,16 @@
 import * as _ from '../../utils/allenibrary.js'
 import Subscriber from '../../utils/Subscriber.js'
-import { SELECTED_EL_COLOR } from '../constants.js'
 
 class RecentKeywordsUI extends Subscriber {
-  constructor(publisher, selector) {
+  constructor({ stateManager, config }) {
     super();
-    this.init(publisher, selector);
+    this.init(stateManager, config);
+    this.selectedElementColor = config.selectedElementColor;
   }
 
-  init(publisher, selector) {
+  init(publisher, config) {
     this.subscribe('recentKeywordsUI', publisher);
-    this.renderWrapper(selector);
+    this.renderWrapper(config.searchFormSelector);
     this.targetEl = _.$('.recent-keywords');
   }
 
@@ -29,20 +29,23 @@ class RecentKeywordsUI extends Subscriber {
     actionMap[state.mode](state);
   }
 
-  renderSelection(state) {
+  renderSelection({ prevIdx, selectedIdx }) {
     const ul = this.targetEl;
     const lists = ul.children;
     if (!lists.length) return;
-    const prevEl = lists[state.prevIdx];
-    if (prevEl) prevEl.style = {};
 
-    const selectedEl = lists[state.selectedIdx];
+    const prevEl = lists[prevIdx];
+    if (prevEl) _.setCssStyle(prevEl, 'all', 'none');
+
+    const selectedEl = lists[selectedIdx];
     selectedEl.focus();
-    selectedEl.style.backgroundColor = SELECTED_EL_COLOR;
+    _.setCssStyle(selectedEl, 'backgroundColor', this.selectedElementColor);
   }
 
   renderRecentKeywords(state) {
     const recentKeywords = state.recentKeywords;
+    if (!recentKeywords.length) return;
+
     const tpl = recentKeywords.reduce((acc, curr) => {
       return acc + `<li class='keywords' tabindex=-1>${curr}</li>`
     }, '');

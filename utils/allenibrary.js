@@ -27,4 +27,30 @@ const delegate = (el, eventType, domElProperty, funcMap) => {
   })
 }
 
-export { $, on, delegate, getJsonData }
+const makeDelay = (timeInMs) => {
+  return new Promise(res => setTimeout(res, timeInMs))
+}
+
+/**
+ * @param  {Element} targetEl
+ * @param  {string} property
+ */
+const setCssStyle = (targetEl, property, value) => {
+  if (property === 'all' && value === 'none') {
+    targetEl.style = {};
+    return;
+  }
+  targetEl.style[property] = value;
+}
+
+/**
+ * @param  {Function} fn 디바운스를 적용할 함수
+ * @param  {number} timeInMs
+ */
+let _timer;
+function setDebounce(fn, timeInMs, param) {
+  if (_timer) clearTimeout(_timer);
+  _timer = setTimeout(fn, timeInMs, param);
+}
+
+export { $, on, delegate, getJsonData, makeDelay, setCssStyle, setDebounce }

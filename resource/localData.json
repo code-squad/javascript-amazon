@@ -7,7 +7,7 @@
       "Aperiam eaque incidunt impedit delectus?",
       "Consectetur explicabo odio culpa itaque odit blanditiis molestiae! Esse aut error numquam asperiores repudiandae amet quae atque."
     ],
-    "imgURL": "./card_navigation/images/Card_A01.png"
+    "imgURL": "./resource/images/Card_A01.png"
   },
   {
     "id": 2,
@@ -16,7 +16,7 @@
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam eaque incidunt impedit delectus?",
       "Consectetur explicabo odio culpa itaque odit blanditiis molestiae! Esse aut error numquam asperiores repudiandae amet quae atque."
     ],
-    "imgURL": "./card_navigation/images/Card_B01.png"
+    "imgURL": "./resource/images/Card_B01.png"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "desc": [
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam eaque incidunt impedit delectus? Consectetur explicabo odio culpa itaque odit blanditiis molestiae! Esse aut error numquam asperiores repudiandae amet quae atque."
     ],
-    "imgURL": "./card_navigation/images/Card_C01.png"
+    "imgURL": "./resource/images/Card_C01.png"
   },
   {
     "id": 4,
@@ -32,6 +32,6 @@
     "desc": [
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam eaque incidunt impedit delectus? Consectetur explicabo odio culpa itaque odit blanditiis molestiae! Esse aut error numquam asperiores repudiandae amet quae atque."
     ],
-    "imgURL": "./card_navigation/images/Card_D01.png"
+    "imgURL": "./resource/images/Card_D01.png"
   }
 ]
