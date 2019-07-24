@@ -2,7 +2,8 @@ const global = {
   inputEl: '.autoComplete_input',
   resultEl: '.autoComplete_result',
   resultItem: 'autoComplete_result_item',
-  resultItemHighlighted: 'autoComplete_result_item-highlighted'
+  resultItemHighlighted: 'autoComplete_result_item-highlighted',
+  noResultItem: 'no-result'
 };
 
 export const model = {
@@ -14,12 +15,14 @@ export const controller = {
   resultEl: global.resultEl,
   resultItem: global.resultItem,
   resultItemHighlighted: global.resultItemHighlighted,
+  noResultItem: global.noResultItem,
   debounceDelay: 300
 };
 
 export const inputView = {
   inputEl: global.inputEl,
   resultItem: global.resultItem,
+  noResultItem: global.noResultItem,
   onSelect: 'onSelect',
   throttleDelay: 60
 };
@@ -30,16 +33,16 @@ export const resultView = {
   resultItemHighlighted: global.resultItemHighlighted,
 
   noResultSuggestionTemplate() {
-    return `<li class="${global.resultItem}">일치하는 검색결과가 없습니다</li>`;
+    return `<li class="${global.resultItem} ${global.noResultItem}">일치하는 검색결과가 없습니다</li>`;
   },
 
   noResultRecentQueryTemplate() {
-    return `<li class="${global.resultItem}">최근 검색결과가 없습니다</li>`;
+    return `<li class="${global.resultItem} ${global.noResultItem}">최근 검색결과가 없습니다</li>`;
   },
 
   recentQueryTemplate(recentQueryList) {
     return recentQueryList.reduce((prev, curr) => {
-      return `${prev}<li class="${global.resultItem}" data-value="${curr}"><a href="#">${curr}</a></li>`;
+      return `${prev}<a href="#" class="${global.resultItem}" data-value="${curr}"><li >${curr}</li></a>`;
     }, '');
   },
 
@@ -51,7 +54,7 @@ export const resultView = {
         match,
         `<span class=${global.resultItemHighlighted}>${match}</span>`
       );
-      return `${prev}<li class="${global.resultItem}" data-value="${curr}"><a href="#">${hilghtedSuggestion}</a></li>`;
+      return `${prev}<a href="#" class="${global.resultItem}" data-value="${curr}"><li>${hilghtedSuggestion}</li></a>`;
     }, '');
   },
 

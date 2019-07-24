@@ -36,8 +36,14 @@ class Controller {
       if (this.isWrongTargetClicked(target)) return;
       this.inputView.mouseNavigate(target);
     });
+
+    this.resultView.resultEl.addEventListener('mouseout', _ => {
+      this.inputView.clearOnSelect();
+    });
+
     // click 이벤트 적용시 blur 보다 늦게 일어나기 때문에 mousedown 이벤트 적용
     this.resultView.resultEl.addEventListener('mousedown', e => {
+      e.preventDefault();
       const { target } = e;
       // li 이외의 ul 영역을 클릭했을 경우 예외처리
       if (this.isWrongTargetClicked(target)) return;
@@ -46,7 +52,10 @@ class Controller {
   }
 
   isWrongTargetClicked(target) {
-    return target === this.resultView.resultEl;
+    return (
+      target === this.resultView.resultEl ||
+      target.closest(`.${config.noResultItem}`)
+    );
   }
 
   isResultViewOpen() {

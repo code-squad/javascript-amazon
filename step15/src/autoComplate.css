@@ -468,16 +468,17 @@ textarea {
     background: white;
     transition: all 0.1s ease-in-out; }
   .autoComplete_result_item {
+    display: block;
     padding: 0.4rem;
-    list-style: none;
-    text-align: left;
     font-size: 0.9rem;
     color: #7b7b7b;
-    transition: all 0.1s ease-in-out; }
-    .autoComplete_result_item > a {
-      color: #7b7b7b;
-      text-decoration: none;
-      padding-left: 0.4rem; }
+    transition: all 0.1s ease-in-out;
+    text-decoration: none;
+    text-align: left; }
+    .autoComplete_result_item > li {
+      padding-left: 0.4rem;
+      list-style: none;
+      text-align: left; }
     .autoComplete_result_item:last-child {
       border-radius: 0 0 0.5rem 0.5rem; }
     .autoComplete_result_item-highlighted {

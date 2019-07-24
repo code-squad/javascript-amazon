@@ -22,7 +22,7 @@ class InputView {
     const firstNode = resultEl.firstElementChild;
     const lastNode = resultEl.lastElementChild;
     const { onSelect } = config;
-
+    if (this.isNoResultItem(firstNode)) return;
     if (this.onSelect) {
       this.onSelect.classList.remove(onSelect);
       if (direction === 'ArrowDown') {
@@ -43,6 +43,17 @@ class InputView {
     }
     this.inputEl.value = this.onSelect.dataset.value;
     this.onSelect.classList.add(onSelect);
+  }
+
+  isNoResultItem(target) {
+    return target.classList.contains(`${config.noResultItem}`);
+  }
+
+  clearOnSelect() {
+    if (this.onSelect) {
+      this.onSelect.classList.remove('onSelect');
+      this.onSelect = null;
+    }
   }
 }
 

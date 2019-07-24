@@ -78,17 +78,18 @@
   }
 
   &_result_item {
+    display: block;
     padding: 0.4rem;
-    list-style: none;
-    text-align: left;
     font-size: 0.9rem;
     color: rgb(123, 123, 123);
     transition: all 0.1s ease-in-out;
+    text-decoration: none;
+    text-align: left;
 
-    & > a {
-      color: rgb(123, 123, 123);
-      text-decoration: none;
+    & > li {
       padding-left: 0.4rem;
+      list-style: none;
+      text-align: left;
     }
     &:last-child {
       border-radius: 0 0 0.5rem 0.5rem;
