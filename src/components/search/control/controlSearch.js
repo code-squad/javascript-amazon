@@ -1,16 +1,19 @@
+import config from '../helper/config.js';
+
 export default class ControlSearch {
-  constructor({mainView, searchModel, searchIcon, delayedTime}) {
+  constructor({mainView, searchModel, searchIcon, delayedTime, autocompleteData}) {
     this.mainView = mainView;
     this.searchModel = searchModel;
     this.timeoutID = null;
     this.searchIcon = searchIcon;
     this.delayedTime = delayedTime;
+    this.autocomData = autocompleteData;
   }
  
   eventHandler() {
     const searchBar = this.mainView.getSearchBar();
     searchBar.addEventListener('focus', ({target}) => {
-      this.showAutoView(target)
+      this.showAutoView(target);
     });
     searchBar.addEventListener('blur', () => {
       this.autoViewViewer('all', 'hide');
@@ -25,7 +28,7 @@ export default class ControlSearch {
     });
     this.searchIcon.addEventListener('click', (e) => {
       const inputVal = searchBar.value;
-      this.storeSearchedValues(e.type, inputVal)
+      this.storeSearchedValues(e.type, inputVal);
       this.autoViewViewer('autocom', 'hide');
     })
   }
@@ -43,12 +46,17 @@ export default class ControlSearch {
   
   // autocomplete - 자동완성 화면에 출력
   showAutocomplete(inputVal) {
-    const matchedWords = this.searchModel.getMatchedWords(inputVal);
+    const matchedWords = this.getMatchedWords(inputVal);
     if(matchedWords.length){
       this.timeoutID = setTimeout(()=>{
         this.mainView.renderAutocomList(matchedWords, inputVal);
       }, this.delayedTime);
     }
+  }
+  
+  // model - search model과 의존(x)
+  getMatchedWords(inputVal) {
+    return this.autocomData.filter(word => word.includes(inputVal));
   }
   
   // autocomplete - 자동완성 화면에서 제거

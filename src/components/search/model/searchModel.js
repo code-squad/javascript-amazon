@@ -26,10 +26,6 @@ export default class searchModel {
     this.limitedNum = limitedNum
   }
 
-  getMatchedWords(inputVal) {
-    return this.autocomData.filter(word => word.includes(inputVal));
-  }
-
   setRecentSearches(searchedVal) {
     this.recentSearches = [...new Set([searchedVal, ...this.recentSearches])];
     if(this.recentSearches.length > this.limitedNum) this.manageRecentSearches(this.limitedNum);

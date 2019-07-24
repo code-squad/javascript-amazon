@@ -1,4 +1,4 @@
-import ut from '../../myUtil/myUtil.js';
+import ut from '../../../lib/myUtil/myUtil.js';
 import template from './template/Template.js';
 import config from '../helper/config.js';
 
@@ -19,25 +19,24 @@ export default class AutocompleteView {
 
   attachAutocomContainer(className) {
     const autocomplete = template.createAutoView(className);
-    ut.appendElLastly(this.autoViewContainer, autocomplete);
+    ut.appendAtLast(this.autoViewContainer, autocomplete);
   }
 
   render(words, inputVal) {
     const autocomList = this.attachAutocomList(words, inputVal);
-    ut.appendElLastly(this.autocomplete, autocomList);
+    ut.appendAtLast(this.autocomplete, autocomList);
   }
 
   attachAutocomList(words, inputVal) {
     words = words.sort();
-    const autocomList = words.reduce((acc, cur, idx) => {
-      if(idx > this.limitedNum-1) return acc; 
+    return words.reduce((acc, cur, idx) => {
+      if(idx > this.limitedNum-1) return acc;
       this.dataName = cur;
       const boldText = this.emphasizeLetters(cur, inputVal),
-            autoViewList = config.class.autoViewList;
+      autoViewList = config.class.autoViewList;
       const accumulatedTemplate = acc+template.createAutoViewItem(boldText, this.dataName, autoViewList);
-      return accumulatedTemplate
+      return accumulatedTemplate;
     }, '');
-    return autocomList
   }
 
   getAutocomList() {

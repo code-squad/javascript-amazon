@@ -9,7 +9,7 @@ export default {
 
   createAutoViewItem(text, originalText, className) {
     return `
-      <li class="${className} data-name="${originalText}">${text}</li>
+      <li class="${className}" data-name="${originalText}">${text}</li>
     `
   },
 

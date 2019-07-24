@@ -1,7 +1,7 @@
-import config from './src/js/carousel/helper/config.js';
-import template from './src/js/carousel/helper/template.js';
-import RenderTemplate from './src/js/carousel/renderTemplate.js';
-import Carousel from './src/js/carousel/carousel.js'
+import config from './src/components/carousel/helper/config.js';
+import template from './src/components/carousel/helper/template.js';
+import RenderTemplate from './src/components/carousel/renderTemplate.js';
+import Carousel from './src/components/carousel/carousel.js'
 
 const headerViewer = new RenderTemplate(config.header, template.getHeaderTemplate);
 const mainViewer = new RenderTemplate(config.container, template.getMainTempalte);

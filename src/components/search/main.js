@@ -9,14 +9,14 @@ import config from './helper/config.js';
 const searchIcon = document.querySelector('.search__iconbox'),
       inputBox = document.querySelector('.input__box'),
       searchBar = inputBox.querySelector('.input__box--search-bar'),
-      {delayedTime, limitedNum} = config;
+      {delayedTime, limitedNum, autocompleteData} = config;
 
 
 const searchModel = new SearchModel(limitedNum),
       recentSearchView = new RecentSearchView(),
       autocompleteView = new AutocompleteView(limitedNum),
       mainView = new MainView({autocompleteView, recentSearchView, inputBox, searchBar}),
-      controlSearch = new ControlSearch({mainView, searchModel, searchIcon, delayedTime});
+      controlSearch = new ControlSearch({mainView, searchModel, searchIcon, delayedTime, autocompleteData});
 
 
 window.addEventListener('DOMContentLoaded', () => {

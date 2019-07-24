@@ -1,4 +1,4 @@
-import ut from '../../myUtil/myUtil.js'
+import ut from '../../../lib/myUtil/myUtil.js'
 import template from './template/Template.js';
 import config from '../helper/config.js';
 
@@ -30,8 +30,8 @@ export default class MainView {
   renderAutoViewContainer() {
     const { autoView } = config.class;
     const autoViewContainer = template.createAutoViewContainer(autoView);
-    ut.appendElLastly(this.inputBox, autoViewContainer);
-    this.autoViewContainer = ut.qrSelectorByClass(autoView, this.input)
+    ut.appendAtLast(this.inputBox, autoViewContainer);
+    this.autoViewContainer = ut.qrSelectorByClass(autoView, this.input);
   }
   
   renderAutocomList(matchedWords, value) {
@@ -87,7 +87,7 @@ export default class MainView {
   
   firstFocus(keyCode) {
     const firstItemIdx = 0,
-    lastItemIdx = this.numOfAutoView - 1;
+          lastItemIdx = this.numOfAutoView - 1;
     if(keyCode === 'ArrowDown') {
       this.focusedDom = this.autoViewItems[firstItemIdx];
       this.curFocusedIdx = firstItemIdx;
@@ -123,7 +123,7 @@ export default class MainView {
   changeBarText(target) {
     if(!this.focusedDom) return;
     const curFocusedText = this.getFocusedText();
-    target.value = curFocusedText
+    target.value = curFocusedText;
   }
 
   resetFocusedDom() {

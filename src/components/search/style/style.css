@@ -65,7 +65,7 @@
 
 .icon {
   display: inline-block;
-  background-image: url('../../images/search.png');
+  background-image: url('../../../images/search.png');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
