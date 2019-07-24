@@ -14,15 +14,15 @@ export default class RecentListView extends SearchInfoView {
   }
 
   makeHtml(queue) {
-    return queue.map(item => `<span class="recent-text">${item.text}</span>`);
+    return queue.map(item => `<span class="info-text">${item.text}</span>`);
   }
 
   getTemplate() {
-    return (this.queue.length > 0)
+    return this.queue.length > 0
       ? this.getListTemplate({
           list: this.makeHtml(this.queue),
           listClassName: "recent-list"
         })
-      : null
+      : null;
   }
 }

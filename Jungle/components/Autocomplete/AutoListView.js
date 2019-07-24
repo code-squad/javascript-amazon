@@ -22,7 +22,7 @@ export default class AutoListView extends SearchInfoView {
           : c
       )
       .join("");
-    parsedText = `<span>${parsedText}</span>`;
+    parsedText = `<span class="info-text">${parsedText}</span>`;
 
     return parsedText;
   }
