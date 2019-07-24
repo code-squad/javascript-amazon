@@ -85,11 +85,6 @@
     color: rgb(123, 123, 123);
     transition: all 0.1s ease-in-out;
 
-    &:hover {
-      cursor: pointer;
-      background-color: $color-hover;
-    }
-
     & > a {
       color: rgb(123, 123, 123);
       text-decoration: none;

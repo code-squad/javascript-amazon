@@ -4,30 +4,45 @@ import { throttle } from '../../../PLib/index.js';
 class InputView {
   constructor() {
     this.inputEl = document.querySelector(config.inputEl);
-    this.navigate = throttle(this.navigate.bind(this), config.throttleDelay);
+    this.keyboardNavigate = throttle(
+      this.keyboardNavigate.bind(this),
+      config.throttleDelay
+    );
   }
 
-  navigate(resultEl, direction) {
-    const first = resultEl.firstElementChild;
-    const last = resultEl.lastElementChild;
+  mouseNavigate(target) {
+    const { onSelect } = config;
+    if (this.onSelect) this.onSelect.classList.remove(onSelect);
+    this.onSelect = target.closest(`.${config.resultItem}`);
+    this.inputEl.value = this.onSelect.dataset.value;
+    this.onSelect.classList.add(onSelect);
+  }
+
+  keyboardNavigate(resultEl, direction) {
+    const firstNode = resultEl.firstElementChild;
+    const lastNode = resultEl.lastElementChild;
     const { onSelect } = config;
 
     if (this.onSelect) {
       this.onSelect.classList.remove(onSelect);
       if (direction === 'ArrowDown') {
         this.onSelect =
-          this.onSelect === last ? first : this.onSelect.nextElementSibling;
+          this.onSelect === lastNode
+            ? firstNode
+            : this.onSelect.nextElementSibling;
       }
       if (direction === 'ArrowUp') {
         this.onSelect =
-          this.onSelect === first ? last : this.onSelect.previousElementSibling;
+          this.onSelect === firstNode
+            ? lastNode
+            : this.onSelect.previousElementSibling;
       }
     } else {
-      if (direction === 'ArrowDown') this.onSelect = first;
-      if (direction === 'ArrowUp') this.onSelect = last;
+      if (direction === 'ArrowDown') this.onSelect = firstNode;
+      if (direction === 'ArrowUp') this.onSelect = lastNode;
     }
-    this.onSelect.classList.add(onSelect);
     this.inputEl.value = this.onSelect.dataset.value;
+    this.onSelect.classList.add(onSelect);
   }
 }
 

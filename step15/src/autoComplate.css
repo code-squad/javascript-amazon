@@ -474,9 +474,6 @@ textarea {
     font-size: 0.9rem;
     color: #7b7b7b;
     transition: all 0.1s ease-in-out; }
-    .autoComplete_result_item:hover {
-      cursor: pointer;
-      background-color: #eeeeee; }
     .autoComplete_result_item > a {
       color: #7b7b7b;
       text-decoration: none;

@@ -19,6 +19,7 @@ export const controller = {
 
 export const inputView = {
   inputEl: global.inputEl,
+  resultItem: global.resultItem,
   onSelect: 'onSelect',
   throttleDelay: 60
 };

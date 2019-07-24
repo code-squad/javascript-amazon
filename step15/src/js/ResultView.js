@@ -29,6 +29,10 @@ class ResultView {
         : config.suggestionTemplate(query, suggestions);
     this.resultEl.insertAdjacentHTML('afterbegin', template);
   }
+
+  hide() {
+    this.resultEl.style.display = 'none';
+  }
 }
 
 export default ResultView;
