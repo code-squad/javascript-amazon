@@ -10,7 +10,9 @@
     "test-Autocomplete-Model": "jest Jungle/components/Autocomplete/Model",
     "test-Autocomplete": "jest Jungle/components/Autocomplete",
     "test-Carousel": "jest Jungle/components/Carousel/Test",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "start": "node index.js",
+    "start-dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,10 @@
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
     "babel-jest": "^24.8.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
