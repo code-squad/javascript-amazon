@@ -1,8 +1,9 @@
-import { resultView as config } from './config.js';
+import config from './config.js';
 
 class ResultView {
-  constructor() {
+  constructor(viewRenderer) {
     this.resultEl = document.querySelector(config.resultEl);
+    this.viewRenderer = viewRenderer;
   }
 
   renderRecentQuery(dataSrc) {
@@ -10,23 +11,23 @@ class ResultView {
     this.resultEl.style.display = 'block';
     const template =
       dataSrc.length === 0
-        ? config.noResultRecentQueryTemplate()
-        : config.recentQueryTemplate(dataSrc);
+        ? this.viewRenderer.noResultRecentQueryTemplate(config)
+        : this.viewRenderer.recentQueryTemplate(dataSrc, config);
     this.resultEl.insertAdjacentHTML('afterbegin', template);
   }
 
   renderSuggestion(dataSrc, query) {
     this.resultEl.innerHTML = '';
     this.resultEl.style.display = 'block';
-    const suggestions = config.getAutoSuggesionList({
+    const suggestions = this.viewRenderer.getAutoSuggesionList({
       dataSrc,
       query,
       config
     });
     const template =
       suggestions.length === 0
-        ? config.noResultSuggestionTemplate()
-        : config.suggestionTemplate(query, suggestions);
+        ? this.viewRenderer.noResultSuggestionTemplate()
+        : this.viewRenderer.suggestionTemplate(query, suggestions, config);
     this.resultEl.insertAdjacentHTML('afterbegin', template);
   }
 

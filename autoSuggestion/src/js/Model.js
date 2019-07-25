@@ -1,9 +1,9 @@
 import { asyncFetch } from '../../../PLib/index.js';
-import { model as config } from './config.js';
+import { srcUrl } from './config.js';
 
 class Model {
   constructor() {
-    this.suggesionData = asyncFetch(config.srcUrl);
+    this.suggesionData = asyncFetch(srcUrl);
     this.recentQueryList = new Set();
   }
 

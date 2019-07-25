@@ -1,4 +1,4 @@
-import { controller as config } from './config.js';
+import config from './config.js';
 import { debounce } from '../../../PLib/index.js';
 
 class Controller {
@@ -26,8 +26,9 @@ class Controller {
       this.inputFoucsHandler(e);
     });
 
-    this.inputView.inputEl.addEventListener('blur', _ => {
-      this.resultView.hide();
+    this.inputView.inputEl.addEventListener('blur', e => {
+      e.preventDefault();
+      // this.resultView.hide();
     });
 
     this.resultView.resultEl.addEventListener('mouseover', e => {
@@ -37,9 +38,9 @@ class Controller {
       this.inputView.mouseNavigate(target);
     });
 
-    this.resultView.resultEl.addEventListener('mouseout', _ => {
-      this.inputView.clearOnSelect();
-    });
+    this.resultView.resultEl.addEventListener('mouseout', _ =>
+      this.inputView.clearOnSelect()
+    );
 
     // click 이벤트 적용시 blur 보다 늦게 일어나기 때문에 mousedown 이벤트 적용
     this.resultView.resultEl.addEventListener('mousedown', e => {

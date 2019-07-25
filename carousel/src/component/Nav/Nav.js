@@ -11,7 +11,7 @@ const Nav = class extends Observer {
   init() {
     this.subject.setState({
       prevNavItem: 0,
-      currNavItem: null,
+      currNavItem: null
     });
     this.attachEvent();
   }

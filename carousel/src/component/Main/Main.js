@@ -9,8 +9,8 @@ const Main = class extends Observer {
     items,
     config = {
       duration: 200,
-      easing: 'ease-out',
-    },
+      easing: 'ease-out'
+    }
   }) {
     super();
     this.carousel = document.querySelector(carousel);
@@ -28,7 +28,7 @@ const Main = class extends Observer {
     this.subject.setState({
       currentItem: 1,
       offset: -this.itemWidth,
-      itemWidth: this.itemWidth,
+      itemWidth: this.itemWidth
     });
     this.setCarouselSize();
     this.attachEvent();
@@ -48,7 +48,7 @@ const Main = class extends Observer {
 
     this.container.insertBefore(
       lastItem.cloneNode(true),
-      this.container.firstChild,
+      this.container.firstChild
     );
     this.container.appendChild(firstItem.cloneNode(true));
   }
@@ -94,9 +94,7 @@ const Main = class extends Observer {
 
   moveMain(offset) {
     this.transitionStatsToggle();
-    this.container.style.transition = `transform ${this.config.duration}ms ${
-      this.config.easing
-    }`;
+    this.container.style.transition = `transform ${this.config.duration}ms ${this.config.easing}`;
     this.container.style.transform = `translate3D(${offset}px, 0, 0)`;
   }
 

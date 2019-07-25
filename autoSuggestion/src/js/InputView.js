@@ -1,4 +1,4 @@
-import { inputView as config } from './config.js';
+import config from './config.js';
 import { throttle } from '../../../PLib/index.js';
 
 class InputView {
@@ -23,6 +23,7 @@ class InputView {
     const lastNode = resultEl.lastElementChild;
     const { onSelect } = config;
     if (this.isNoResultItem(firstNode)) return;
+
     if (this.onSelect) {
       this.onSelect.classList.remove(onSelect);
       if (direction === 'ArrowDown') {

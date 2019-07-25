@@ -16,7 +16,7 @@ class StateManager extends Subject {
 
   updateState(eventReporter) {
     const UpdatedState = StateManager.getUpdatedStateFrom[eventReporter](
-      this.state,
+      this.state
     );
     this.state = Object.assign(this.state, UpdatedState);
     this.notify(this.state);

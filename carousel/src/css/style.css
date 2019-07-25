@@ -99,13 +99,13 @@
 .next {
   position: absolute;
   right: 5%;
-  background-image: url('/src/images/right-chevron.svg');
+  background-image: url('../images/right-chevron.svg');
   background-position: center;
 }
 
 .prev {
   position: absolute;
   left: 5%;
-  background-image: url('/src/images/left-chevron.svg');
+  background-image: url('../images/left-chevron.svg');
   background-position: center;
 }

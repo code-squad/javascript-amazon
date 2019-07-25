@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderHTML({
     currentVersion: 1,
     url: './data.json',
-    templateFunc: carouselTemplate,
+    templateFunc: carouselTemplate
   }).then(_ => {
     initCarousel();
   });
