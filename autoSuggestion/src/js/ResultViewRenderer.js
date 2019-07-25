@@ -25,13 +25,9 @@ export default {
     }, '');
   },
 
-  getAutoSuggesionList({ dataSrc, query }) {
-    const queryLowerCase = query.toLowerCase();
+  getAutoSuggesionList(dataSrc) {
     const resList = dataSrc
-      .filter(d => {
-        const dataLowerCase = d.toLowerCase();
-        return dataLowerCase.startsWith(queryLowerCase);
-      })
+      .map(item => item.value)
       .sort(this.sort)
       .slice(0, this.maxResult);
     return resList;

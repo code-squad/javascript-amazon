@@ -19,15 +19,17 @@ class ResultView {
   renderSuggestion(dataSrc, query) {
     this.resultEl.innerHTML = '';
     this.resultEl.style.display = 'block';
-    const suggestions = this.viewRenderer.getAutoSuggesionList({
-      dataSrc,
-      query,
-      config
-    });
-    const template =
-      suggestions.length === 0
-        ? this.viewRenderer.noResultSuggestionTemplate()
-        : this.viewRenderer.suggestionTemplate(query, suggestions, config);
+    let template;
+    if (!dataSrc) {
+      template = this.viewRenderer.noResultSuggestionTemplate(config);
+    } else {
+      const suggestions = this.viewRenderer.getAutoSuggesionList(dataSrc);
+      template = this.viewRenderer.suggestionTemplate(
+        query,
+        suggestions,
+        config
+      );
+    }
     this.resultEl.insertAdjacentHTML('afterbegin', template);
   }
 

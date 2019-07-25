@@ -60,7 +60,7 @@ class Controller {
   }
 
   isResultViewOpen() {
-    return this.inputView.onSelect || this.resultView.resultEl.children;
+    return this.inputView.onSelect || this.resultView.resultEl.children.length;
   }
 
   isInputValueExist() {
@@ -110,10 +110,31 @@ class Controller {
       const recentQueryList = this.model.getRecentQueryList();
       this.resultView.renderRecentQuery(recentQueryList);
     } else {
-      const { suggesionData } = this.model;
+      const suggesionData = this.getData(config.srcUrl, query);
       suggesionData.then(data => {
         this.resultView.renderSuggestion(data, query);
       });
+    }
+  }
+
+  async getData(srcUrl, prefix) {
+    try {
+      const response = await fetch(srcUrl + prefix);
+      const { statusCode, body } = await response.json();
+
+      if (statusCode === 200) {
+        const { suggestions } = body;
+        return suggestions;
+      }
+
+      if (statusCode === 404) {
+        throw new Error(body);
+      }
+
+      throw new Error(`error status code: ${statusCode}`);
+    } catch (error) {
+      console.warn(error);
+      return false;
     }
   }
 }
