@@ -65,6 +65,7 @@ export default class SearchView {
   }
 
   async renderAutoListView(text) {
+    if (this.searchInput !== document.activeElement) return;
     const template = await this.autoListView.getTemplate(text);
 
     this.searchInfoList.innerHTML = template;
