@@ -14,7 +14,7 @@ const renderHTML = ({ currentVersion, url, templateFunc }) => {
   const body = document.querySelector('body');
   const data = getTplInputData(currentVersion, url);
   return data.then(parsedData => {
-    body.insertAdjacentHTML('beforeend', templateFunc(parsedData));
+    body.insertAdjacentHTML('afterbegin', templateFunc(parsedData));
   });
 };
 
