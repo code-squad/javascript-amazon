@@ -20,7 +20,7 @@
     {
       "title": "Award-Winning Movies & TV Shows",
       "desc": "Watch what you love with award-winning Amazon Originals, movies and TV shows, included in your membership.",
-      "imgAdress": "./images/carousel_3.jpg"
+      "imgAdress": "static/images/carousel/carousel_3.jpg"
     },
     {
       "title": "Over two million songs, ad free",
