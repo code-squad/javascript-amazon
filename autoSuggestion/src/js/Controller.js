@@ -28,7 +28,7 @@ class Controller {
 
     this.inputView.inputEl.addEventListener('blur', e => {
       e.preventDefault();
-      // this.resultView.hide();
+      this.resultView.hide();
     });
 
     this.resultView.resultEl.addEventListener('mouseover', e => {
