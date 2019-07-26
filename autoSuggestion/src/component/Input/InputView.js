@@ -1,5 +1,5 @@
-import config from './config.js';
-import { throttle } from '../../../PLib/index.js';
+import config from '../../js/config.js';
+import { throttle } from '../../../../PLib/index.js';
 
 class InputView {
   constructor() {

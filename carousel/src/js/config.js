@@ -13,6 +13,6 @@ export default {
   // 설정 정보
   aniconfig: {
     duration: 200,
-    easing: 'ease-out',
-  },
+    easing: 'ease-out'
+  }
 };

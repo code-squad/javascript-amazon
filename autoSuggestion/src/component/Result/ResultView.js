@@ -1,4 +1,4 @@
-import config from './config.js';
+import config from '../../js/config.js';
 
 class ResultView {
   constructor(viewRenderer) {
