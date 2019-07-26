@@ -22,6 +22,8 @@ class SearchController {
   }
 
   async inputViewInputHandler(inputValue) {
+    // 새로운 검색이 생길때마다 인덱스 초기화 
+    this.matchedView.curserIndex = -1;
     await sleep(300);
     const matchedData = await this.searchModel.find(inputValue);
     console.log('matchedData',matchedData);
@@ -66,6 +68,7 @@ class SearchController {
         this.inputView.render(fetchedValue);  
         // 검색 결과창이 사라진다.
         this.matchedView.hide();
+        this.matchedView.curserIndex = -1; // initialize index;
       }
     }
   }
