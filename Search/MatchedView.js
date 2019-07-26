@@ -18,10 +18,10 @@ class MatchedView {
 
     this.initializeTemplate();
 
-    // debugger
+    // ipn 과 같이 ip는 있는데 ipn은 없는경우 문제발생 
     // 하이라이트 함수로 리팩토링 할것 , replace를 쓸지 slice를 쓸지
-    this.liTemplates = suggestions.reduce((accum, cur) => {
-      accum += `<li class="results">${cur.value.replace(
+    this.liTemplates = suggestions.reduce((accum, cur,idx) => {
+      accum += `<li data-idx=${idx} class="results">${cur.value.replace(
         inputValue,
         `<b>${inputValue}</b>`
       )}</li>`;

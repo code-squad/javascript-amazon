@@ -19,6 +19,30 @@ class SearchController {
     this.inputView.ul.addEventListener("keydown", e =>
       this.inputViewKeyDownHandler(e)
     );
+    // event 버블링으로 미리 등록 
+      this.matchedView.ul.addEventListener("mousedown",e =>{
+        const fetchedValue = e.target.innerText
+        // 생각해보니 e.target.innerText 만 넣으면 된다. idx 필요없다.
+        // this.matchedView.curserIndex = e.target.data.idx;
+        this.searchModel.save(fetchedValue);
+        this.inputView.render(fetchedValue);  
+        // 검색 결과창이 사라진다.
+        this.matchedView.hide();
+        this.matchedView.curserIndex = -1; // initialize index;
+
+    });    
+
+    this.inputView.btn.addEventListener("click", e=>{
+      e.preventDefault();
+      // inputViewKeyDownHandler의 enter 이벤트와 중복 함수로 처리할것 
+      const fetchedValue = this.matchedView.findCurseredValue();
+      this.searchModel.save(fetchedValue);
+      this.inputView.render(fetchedValue);  
+      // 검색 결과창이 사라진다.
+      this.matchedView.hide();
+      this.matchedView.curserIndex = -1; // initialize index;
+    })
+
   }
 
   async inputViewInputHandler(inputValue) {
@@ -60,6 +84,7 @@ class SearchController {
         lists.forEach(list => list.classList.remove("cursered"));
         lists[this.matchedView.curserIndex].classList.add("cursered");
       }
+      // 이건 여기 왜 있는거지...? 엔터는 바로 일어나서 여기있는것같긴한데 리팩토링 가능한가? 
       e.preventDefault();
       if (code === "Enter") {
         // 엔터키 입력시 inputView에 현재 위치의 검색어가 추가된다.
