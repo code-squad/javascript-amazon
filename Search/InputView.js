@@ -1,11 +1,11 @@
 class InputView {
-  constructor({inputUl,submitBtn}){
-    this.ul = document.querySelector(inputUl);
+  constructor({inputDiv,submitBtn}){
+    this.div = document.querySelector(inputDiv);
     this.btn = document.querySelector(submitBtn);
   }
 
   render(value){
-    this.ul.value = value;
+    this.div.value = value;
   }
 }
 

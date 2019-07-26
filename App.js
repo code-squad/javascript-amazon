@@ -5,7 +5,6 @@ import CarouselController from "./Carousel/CarouselController.js";
 import SearchController from "./Search/SearchController.js";
 import InputView from "./Search/InputView.js"
 import MatchedView from "./Search/MatchedView.js"
-// import HistoryView from "./Search/HistoryView.js"
 import SearchModel from "./Search/SearchModel.js"
 import HistoryView from "./Search/HistoryView.js"
 
@@ -15,7 +14,6 @@ const cardList = document.querySelector(".carousel__contents");
 const navbar = document.querySelector(".carousel__title");
 const animationTime = 200;
 const dataURL = "./Carousel/CarouselLocalData.json";
-// const dataURL = "./data.json";
 
 const carouselView = new CarouselView({
   leftBtn,
@@ -31,13 +29,13 @@ const amazonController = new CarouselController({
 });
 amazonController.init(dataURL);
 
-const inputUl = ".searchbar__input";
+const inputDiv = ".searchbar__input";
 const matchedUl = ".searchbar__match";
 const historyUl = ".searchbar__history";
 const submitBtn = ".searchbar__right";
 
-//// {inputUl} deconstructing 햇갈린다. 이렇게 보내면 받는거 맞나? 
-const inputView = new InputView({inputUl,submitBtn});
+// {inputDiv} deconstructing 햇갈림. 
+const inputView = new InputView({inputDiv,submitBtn});
 const matchedView = new MatchedView({matchedUl});
 const historyView = new HistoryView({historyUl});
 const searchModel = new SearchModel({});
