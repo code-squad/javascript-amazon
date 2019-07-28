@@ -23,13 +23,14 @@ class InputView {
     const lastNode = resultEl.lastElementChild;
     const { onSelect } = config;
     if (this.isNoResultItem(firstNode)) return;
-    this.onSelect.classList.remove(onSelect);
+
+    if (this.onSelect) this.onSelect.classList.remove(onSelect);
     this.onSelect = this.getNextOnSelectEl(direction, firstNode, lastNode);
     this.onSelect.classList.add(onSelect);
     this.inputEl.value = this.onSelect.dataset.value;
   }
 
-  getNextonSelectEl(direction, firstNode, lastNode) {
+  getNextOnSelectEl(direction, firstNode, lastNode) {
     if (!this.onSelect) {
       return direction === 'ArrowDown' ? firstNode : lastNode;
     }

@@ -6,13 +6,13 @@ import initCarousel from '../Carousel/src/js/initiator.js';
 import mainTpl from './src/mainTpl.js';
 import renderHTML from '../PLib/render.js';
 
-window.addEventListener('DOMContentLoaded', () => {
-  renderHTML({
+window.addEventListener('DOMContentLoaded', async () => {
+  await renderHTML({
     currentVersion: 1,
     url: '../static/tpl-src-data.json',
     templateFunc: mainTpl
-  }).then(_ => {
-    autoSugesstionInit();
-    initCarousel();
   });
+
+  autoSugesstionInit();
+  initCarousel();
 });

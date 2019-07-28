@@ -11,7 +11,7 @@ const getTplInputData = async (currentVersion, url) => {
   return JSON.parse(cache);
 };
 const renderHTML = ({ currentVersion, url, templateFunc }) => {
-  const body = document.querySelector('body');
+  const { body } = document;
   const data = getTplInputData(currentVersion, url);
   return data.then(parsedData => {
     body.insertAdjacentHTML('afterbegin', templateFunc(parsedData));
