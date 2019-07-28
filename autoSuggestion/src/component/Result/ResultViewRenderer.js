@@ -16,10 +16,9 @@ export default {
   suggestionTemplate(query, suggesions, { resultItemHighlighted, resultItem }) {
     const pattern = new RegExp(`${query}`, 'i');
     return suggesions.reduce((prev, curr) => {
-      const match = pattern.exec(curr);
       const hilghtedSuggestion = curr.replace(
-        match,
-        `<span class=${resultItemHighlighted}>${match}</span>`
+        pattern,
+        `<span class=${resultItemHighlighted}>$&</span>`
       );
       return `${prev}<a href="#" class="${resultItem}" data-value="${curr}"><li>${hilghtedSuggestion}</li></a>`;
     }, '');

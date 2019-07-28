@@ -7,6 +7,5 @@ export default {
   onSelect: 'onSelect',
   debounceDelay: 300,
   throttleDelay: 60,
-  srcUrl:
-    'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query='
+  srcUrl: 'http://127.0.0.1:3000/auto-suggestion?maxresult=10&prefix='
 };

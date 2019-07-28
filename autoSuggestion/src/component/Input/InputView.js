@@ -23,27 +23,27 @@ class InputView {
     const lastNode = resultEl.lastElementChild;
     const { onSelect } = config;
     if (this.isNoResultItem(firstNode)) return;
-
-    if (this.onSelect) {
-      this.onSelect.classList.remove(onSelect);
-      if (direction === 'ArrowDown') {
-        this.onSelect =
-          this.onSelect === lastNode
-            ? firstNode
-            : this.onSelect.nextElementSibling;
-      }
-      if (direction === 'ArrowUp') {
-        this.onSelect =
-          this.onSelect === firstNode
-            ? lastNode
-            : this.onSelect.previousElementSibling;
-      }
-    } else {
-      if (direction === 'ArrowDown') this.onSelect = firstNode;
-      if (direction === 'ArrowUp') this.onSelect = lastNode;
-    }
-    this.inputEl.value = this.onSelect.dataset.value;
+    this.onSelect.classList.remove(onSelect);
+    this.onSelect = this.getNextOnSelectEl(direction, firstNode, lastNode);
     this.onSelect.classList.add(onSelect);
+    this.inputEl.value = this.onSelect.dataset.value;
+  }
+
+  getNextonSelectEl(direction, firstNode, lastNode) {
+    if (!this.onSelect) {
+      return direction === 'ArrowDown' ? firstNode : lastNode;
+    }
+
+    if (direction === 'ArrowDown') {
+      return this.onSelect === lastNode
+        ? firstNode
+        : this.onSelect.nextElementSibling;
+    }
+    if (direction === 'ArrowUp') {
+      return this.onSelect === firstNode
+        ? lastNode
+        : this.onSelect.previousElementSibling;
+    }
   }
 
   isNoResultItem(target) {
