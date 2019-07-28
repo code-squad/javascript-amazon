@@ -7,7 +7,7 @@ const getTplInputData = async (currentVersion, url) => {
     localStorage.setItem('version', currentVersion);
     return data;
   }
-  const cache = await localStorage.getItem('data');
+  const cache = localStorage.getItem('data');
   return JSON.parse(cache);
 };
 const renderHTML = ({ currentVersion, url, templateFunc }) => {
