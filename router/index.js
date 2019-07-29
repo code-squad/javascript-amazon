@@ -14,4 +14,11 @@ router.get("/", (req, res) => {
   );
 });
 
+router.get("/api/", (req, res) => {
+  fs.readFile(path.join(__dirname, "../api/index.json"), (err, data) => {
+    res.write(data);
+    res.end();
+  });
+});
+
 module.exports = router;

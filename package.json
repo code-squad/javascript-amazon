@@ -12,7 +12,7 @@
     "test-Carousel": "jest Jungle/components/Carousel/Test",
     "test:coverage": "jest --coverage",
     "start": "node index.js",
-    "start-dev": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
