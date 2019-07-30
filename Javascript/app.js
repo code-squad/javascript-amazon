@@ -28,16 +28,18 @@ import SearchController from "./Search/controllers/searchController.js";
 import SearchForm from "./Search/views/searchForm.js"; 
 import AutoList from "./Search/views/autoList.js";
 import RecentList from "./Search/views/recentList.js";
-import autoModel from "./Search/models/autoModel.js"
+import AutoModel from "./Search/models/autoModel.js"
 import RecentModel from "./Search/models/recentModel.js";
 
 let recentModelMaxNumber = 5;
+const apiUrl = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query="
 
 const el = qS('.searchBox');
 const searchForm = new SearchForm(el);
 const autoList = new AutoList(el);
 const recentList = new RecentList(el);
 const recentModel = new RecentModel(recentModelMaxNumber);
+const autoModel = new AutoModel(apiUrl);
 
 const searchController = new SearchController(searchForm, autoList, recentList, recentModel, autoModel);
 searchController.init();

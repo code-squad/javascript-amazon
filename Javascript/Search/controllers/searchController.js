@@ -91,17 +91,8 @@ class SearchController {
         this.searchForm.inputEl.value = '';
     }
 
-    checkWord(target) {
-        let answer = undefined;
-        this.autoModel.map((v) => {
-            if(target === v.key || target.includes(v.key)) {
-                answer =  v.list;
-                return;
-            } else {
-                this.autoList.hide();
-            }
-        })
-
+    async checkWord(keyword) {
+        let answer = await this.autoModel.fetchKeyword(keyword);
         return answer;
     };
 }
