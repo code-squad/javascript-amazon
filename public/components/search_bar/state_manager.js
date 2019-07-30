@@ -72,9 +72,8 @@ class StateManager extends Publisher {
 
     try {
       const response = await fetch(targetUrl);
+      if (!response.ok) throw Error(`${response.status}_ERROR`);
       body = await response.json();
-      if (response.status === 404) throw Error('404, NO_SUGGESTIONS');
-      if (response.status !== 200) throw Error(`${response.status}_ERROR`);
     }
     catch (err) {
       console.error(err);
