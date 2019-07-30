@@ -63,10 +63,11 @@ class SearchController {
             this.recentList.hide();
             this.currentList = 'autoList';
 
-            let target = this.searchForm.inputEl.value;
-            let answer = this.checkWord(target);
-            this.autoList.render(target, answer);
- 
+            let keyword = this.searchForm.inputEl.value;
+            this.checkWord(keyword)
+                .then((data) => {
+                    this.autoList.render(keyword, data);
+                })
         }
     }
 

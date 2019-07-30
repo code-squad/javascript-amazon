@@ -19,8 +19,8 @@ class AutoList extends SearchList {
         let node = data
             .filter(v => v.includes(target))
             .reduce((acc, cur)  => {
-                cur = `<li>${cur}</li>`;
                 cur = cur.replace(target, `<strong>${target}</strong>`);
+                cur = `<li>${cur}</li>`;
                 acc += cur;
                 return acc;
             }, '')
