@@ -1,36 +1,13 @@
-import Carousel from "./Jungle/components/Carousel/index.js";
-import Autocomplete from "./Jungle/components/Autocomplete/index.js";
+const express = require("express");
+const path = require("path");
+const router = require("./router/index");
 
-window.addEventListener("DOMContentLoaded", () => {
-  const carousel_div = document.querySelector(".carousel");
-  const autocomplete_div = document.querySelector(".autocomplete");
+const app = express();
+const port = 8080;
 
-  new Carousel({
-    carouselElement: carousel_div,
-    options: {
-      width: 700,
-      height: 300,
-      duration: 300,
-      navigation: true
-    }
-  });
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/", router);
 
-  const categories = [
-    "All",
-    "Arts & Crafts",
-    "Automotive",
-    "Baby",
-    "Beauty & Personal Care",
-    "Books"
-  ];
-
-  const autocompleteOptions = {
-    debouncingDelay: 1200
-  };
-
-  new Autocomplete({
-    autocompleteElement: autocomplete_div,
-    categories,
-    options: autocompleteOptions
-  });
+app.listen(port, () => {
+  console.log(`App is listening on port ${port}`);
 });

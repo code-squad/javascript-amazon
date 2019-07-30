@@ -28,6 +28,7 @@ export default class SearchView {
 
     this.currentSelectIndex = -1;
     this.infoItemLen = 0;
+    this.cursorInListFlag = false;
   }
 
   mergeOptions(options) {
@@ -53,6 +54,7 @@ export default class SearchView {
 
   setSearchInfoOn(on) {
     this.searchInfoList.style.display = on ? "block" : "none";
+    this.currentSelectIndex = -1;
   }
 
   renderRecentListView() {
@@ -63,7 +65,7 @@ export default class SearchView {
   }
 
   async renderAutoListView(text) {
-    // if (this.autoListTimeout) clearTimeout(this.autoListTimeout);
+    if (this.searchInput !== document.activeElement) return;
     const template = await this.autoListView.getTemplate(text);
 
     this.searchInfoList.innerHTML = template;
@@ -73,7 +75,6 @@ export default class SearchView {
 
   inputChangeHandler(value) {
     this.currentSelectIndex = -1;
-    // clearTimeout(this.autoListTimeout);
 
     if (value === "") {
       this.setSearchInfoOn(false);
@@ -104,18 +105,22 @@ export default class SearchView {
     else lists[this.currentSelectIndex].classList.add("activated");
   }
 
-  enterHandler(value, key) {
-    if (!(key === "Enter") || value === "") return;
+  enterHandler(target, key) {
+    const { value } = target;
 
-    if (this.currentSelectIndex >= 0) {
+    if (!(key === "Enter") || value === "") return;
+    if (
+      this.currentSelectIndex >= 0 &&
+      this.currentSelectIndex < this.infoItemLen
+    ) {
       const activatedEl = this.searchInfoList.querySelectorAll("li")[
         this.currentSelectIndex
       ];
-      value = activatedEl === null ? value : activatedEl.innerText;
+      target.value = activatedEl === null ? value : activatedEl.innerText;
+      this.setSearchInfoOn(false);
+    } else {
+      this.recentListView.addRecentSearchText({ text: value });
     }
-    this.setSearchInfoOn(false);
-
-    this.recentListView.addRecentSearchText({ text: value });
   }
 
   keyDownHandler(evt) {
@@ -138,7 +143,37 @@ export default class SearchView {
   }
 
   focusOutHandler() {
+    if (this.cursorInListFlag === true) return;
     this.setSearchInfoOn(false);
+  }
+
+  mouseOverHandler(target) {
+    if (
+      !target.dataset.idx ||
+      !target.firstElementChild.classList.contains("info-text")
+    )
+      return;
+
+    const lists = this.searchInfoList.querySelectorAll("li");
+    lists.forEach(list => {
+      list.classList.remove("activated");
+    });
+
+    target.classList.add("activated");
+    this.currentSelectIndex = Number(target.dataset.idx);
+    this.cursorInListFlag = true;
+  }
+
+  mouseOutHandler(target) {
+    if (!target.dataset.idx) return;
+    this.cursorInListFlag = false;
+  }
+
+  infoClickHandler(target) {
+    if (!target.firstElementChild.classList.contains("info-text")) return;
+
+    this.searchInput.value = target.firstElementChild.innerText;
+    this.searchInput.focus();
   }
 
   attachEvent() {
@@ -157,13 +192,25 @@ export default class SearchView {
       this.keyDownHandler(evt)
     );
 
-    this.searchForm.addEventListener("keypress", ({ target: { value }, key }) =>
-      this.enterHandler(value, key)
+    this.searchForm.addEventListener("keypress", ({ target, key }) =>
+      this.enterHandler(target, key)
     );
 
     this.searchInput.addEventListener("focus", ({ target: { value } }) =>
       this.focusOnHandler(value)
     );
     this.searchInput.addEventListener("focusout", () => this.focusOutHandler());
+
+    this.searchInfoList.addEventListener("mouseover", ({ target }) =>
+      this.mouseOverHandler(target)
+    );
+
+    this.searchInfoList.addEventListener("mouseout", ({ target }) =>
+      this.mouseOutHandler(target)
+    );
+
+    this.searchInfoList.addEventListener("click", ({ target }) =>
+      this.infoClickHandler(target)
+    );
   }
 }

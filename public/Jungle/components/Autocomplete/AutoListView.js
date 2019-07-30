@@ -1,8 +1,6 @@
 import SearchInfoView from "./SearchInfoView.js";
 import MyFetch from "../../../Grenutil/MyFetch/index.js";
-
-const amazoneApiUrl =
-  "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete";
+import config from "./config.js";
 
 export default class AutoListView extends SearchInfoView {
   constructor({ maxLen, dataUrl, title }) {
@@ -22,7 +20,7 @@ export default class AutoListView extends SearchInfoView {
           : c
       )
       .join("");
-    parsedText = `<span>${parsedText}</span>`;
+    parsedText = `<span class="info-text">${parsedText}</span>`;
 
     return parsedText;
   }
@@ -31,8 +29,8 @@ export default class AutoListView extends SearchInfoView {
     return a.startIndex - b.startIndex;
   }
 
-  getSortedData({ filteredData, text }) {
-    return filteredData
+  getSortedData({ suggestionData, text }) {
+    return suggestionData
       .filter(data => data.includes(text))
       .map(data => ({
         text: data,
@@ -45,19 +43,17 @@ export default class AutoListView extends SearchInfoView {
   }
 
   async getFilteredData(text) {
-    let filteredData;
+    let suggestionData;
 
     try {
-      filteredData = (await MyFetch(
-        `${amazoneApiUrl}?query=${text}`
-      )).body.suggestions.map(v => v.value);
-
-      filteredData = this.getSortedData({ filteredData, text });
+      suggestionData = (await MyFetch(
+        `${config.localApiUrl}?text=${text}`
+      )).filter(v => v.prefix === text)[0].suggestions;
+      suggestionData = this.getSortedData({ suggestionData, text });
     } catch (error) {
-      filteredData = this.noSuggestionData;
+      suggestionData = this.noSuggestionData;
     }
-
-    return filteredData;
+    return suggestionData;
   }
 
   async getTemplate(text) {
