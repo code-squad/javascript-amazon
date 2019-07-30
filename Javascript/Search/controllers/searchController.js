@@ -1,3 +1,5 @@
+import {debounce} from "../../koon.js";
+
 class SearchController {
     get recentData() {
         return this.recentModel.data;
@@ -60,15 +62,19 @@ class SearchController {
             this.enterEvent()
 
         } else {
-            this.recentList.hide();
-            this.currentList = 'autoList';
-
-            let keyword = this.searchForm.inputEl.value;
-            this.checkWord(keyword)
-                .then((data) => {
-                    this.autoList.render(keyword, data);
-                })
+            this.searchEvent();
         }
+    }
+
+    searchEvent() {
+        this.recentList.hide();
+        this.currentList = 'autoList';
+
+        let keyword = this.searchForm.inputEl.value;
+        this.checkWord(keyword)
+            .then((data) => {
+                this.autoList.render(keyword, data);
+            })
     }
 
     arrowEvent(direction) {
