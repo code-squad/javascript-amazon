@@ -13,6 +13,7 @@ class SearchController {
         this.autoModel = autoModel;
         this.eventSetting();
         this.currentList = "recentList";
+        this.searchEvent = debounce(this.searchEvent.bind(this), 300);
     }
 
     eventSetting() {
