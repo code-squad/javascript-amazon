@@ -1,5 +1,4 @@
-import koon from "../koon.js";
-const {qS, addClass, removeClass} = koon;
+import {qS, addClass, removeClass} from "../../koon.js";
 
 class Carousel {
     constructor(element, option) {
@@ -7,18 +6,25 @@ class Carousel {
         this.option = option;
     }
 
+    init(data) {
+        this.render(data);
+        this.setValues();
+        this.setInitForm();
+        this.setInitPosition();
+        this.setItemAttribute({
+            'target' : this.elementItems,
+            'attrName' : "data-index"
+        }); 
+    }
+
     render(data) {
-        console.log('carousel rendering...')
-        this.el.innerHTML = `<div class="carousel-wrap"></div>`;
-        let createdNode = this.el.querySelector('.carousel-wrap');
+        let createdNode = data.reduce((bef, aft) => {
+            aft = this.getCarouselItemHTML(aft);
+            bef += aft;
+            return bef;
+        }, '<div class="carousel-wrap"><ul class="carousel-list">') + '</ul></div>' 
 
-        createdNode.innerHTML = "<ul class='carousel-list'></ul>";
-        let target = this.el.querySelector('.carousel-list');
-
-        data.forEach((v) => {
-            v = this.getCarouselItemHTML(v);
-            target.innerHTML += v;
-        })
+        this.el.innerHTML = createdNode;
     }
 
     getCarouselItemHTML(data) {
@@ -38,19 +44,8 @@ class Carousel {
             </li>`
     }    
 
-    init() {
-        console.log('carousel initiating...')
-        this.setValues();
-        this.setInitForm();
-        this.setInitPosition();
-        this.setItemAttribute({
-            'target' : this.elementItems,
-            'attrName' : "data-index"
-        }); 
-    }
-
     setValues() {
-        this.elementList = document.querySelector('.carousel-list');
+        this.elementList = qS('.carousel-list');
         this.elementItems = this.elementList.children;
         this.elementWidth = this.el.offsetWidth;
         this.itemsInitCount = this.elementItems.length;
@@ -118,7 +113,7 @@ class Carousel {
     }
     
     moveCarousel(distance, direction, speed = this.option.speed) {            
-        this.elementList.style.transition = `all ${speed}s`;
+        this.elementList.style.transition = `all ${speed}ms`;
         this.elementList.style.transform = `translateX(${distance}px)`;
         this.changeActiveItem(direction);
         
@@ -133,7 +128,7 @@ class Carousel {
         let newActiveIdx = Number(this.getActiveItem());
         let newActiveItem = this.elementItems[newActiveIdx];
         if(newActiveItem.classList.contains('clone')) {
-            setTimeout(() => {this.moveCloneItems(newActiveIdx);}, this.option.speed * 1000);
+            setTimeout(() => {this.moveCloneItems(newActiveIdx);}, this.option.speed);
         }
     };
 
@@ -153,13 +148,14 @@ class Carousel {
 
     moveCloneItems(idx) {
         let newPointer;
+        let clonedItemCount = 2;
         this.elementList.style.transition = `all 0s`;
         this.elementItems[idx].classList.remove('active');
 
         if(idx === 0) {
-            newPointer = -(this.elementWidth * (this.itemsInitCount - 2));
+            newPointer = -(this.elementWidth * (this.itemsInitCount - clonedItemCount));
             this.elementList.style.transform = `translateX(${newPointer}px)`;
-            this.elementItems[this.itemsClonedCount - 2].classList.add('active');
+            this.elementItems[this.itemsClonedCount - clonedItemCount].classList.add('active');
 
         } else if(idx === (this.itemsClonedCount - 1)) {
             newPointer = -this.elementWidth   
@@ -172,9 +168,10 @@ class Carousel {
 
     findCurrentPosition() {
         let currentPosition = Number(this.getActiveItem());
+        let clonedItemCount = 2;
 
         if(currentPosition === 0) {
-            currentPosition = this.itemsInitCount - 2;
+            currentPosition = this.itemsInitCount - clonedItemCount;
         } else if(currentPosition === this.itemsInitCount - 1) {
             currentPosition = 1;
         }

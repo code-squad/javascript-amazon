@@ -1,5 +1,4 @@
-import koon from "../koon.js";
-const {qS, addClass, removeClass} = koon;
+import {qS, addClass, removeClass} from "../../koon.js";
 
 class CardNavi {
     constructor(option, data) {
@@ -10,18 +9,8 @@ class CardNavi {
         this.setItemAttribute = null;
     }
 
-    render(data) {
-        this.el.innerHTML = `<ul class="card-navi-list"></ul>`;
-        let target = this.el.querySelector('.card-navi-list');
-        let createdNode;
-
-        data.forEach((v) => {
-            createdNode = `<li class="card-navi-item">${v.navTitle}</li>`;
-            target.innerHTML += createdNode;
-        })        
-    }
-
-    init() {
+    init(data) {
+        this.render(data)
         this.setValues();
         this.setItemAttribute({
             'target' : this.naviItems,
@@ -32,6 +21,15 @@ class CardNavi {
         this.bindEvents();
     }
 
+    render(data) {
+        let createdNode = data.reduce((bef, aft) => {
+            bef += `<li>${aft.navTitle}</li>`
+            return bef;
+        }, '<ul class="card-navi-list">') + '</ul>'
+
+        this.el.innerHTML = createdNode;
+    }
+
     setValues() {
         this.naviList = qS('.card-navi-list');
         this.naviItems = this.naviList.children;
@@ -39,15 +37,17 @@ class CardNavi {
 
     bindEvents() {
         this.naviList.addEventListener("click", (e) => {
-            this.mainEvent({
-                'detail' : '@cardNavi',
-                'target' : e.target.dataset.naviIndex
-            });
+            if(e.target.tagName === 'LI') {
+                this.mainEvent({
+                    'detail' : '@cardNavi',
+                    'target' : e.target.dataset.naviIndex
+                });
+            }
         })
     }
 
     scaleUp(idx) {
-        let currentScale = document.querySelector(".scale");
+        let currentScale = qS(".scale");
         currentScale.classList.remove("scale");
         this.naviItems[idx - 1].classList.add("scale");
     }

@@ -7,13 +7,29 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/carousel.css" />
+    <link rel="stylesheet" href="/css/search.css">
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://kit.fontawesome.com/a2fac18703.js"></script>
   </head>
   <body>
+    <header>
+      <h1>Amazon <span>prime</span></h1>
+      <div class="searchBox">
+          <form action="">
+              <input type="text" placeholder="검색어를 입력하세요">
+              <button type="submit">
+                  <i class="fas fa-search"></i>
+              </button>
+          </form>
+          <ul class="recent-list"></ul>
+          <ul class="auto-complete-list"></ul>
+      </div>
+    </header>
     <div class="wrap">
       <div class="card-navigation"></div>
       <div class="card-wrap"></div>
     </div>
+    
     <script type="module" src="/Javascript/app.js"></script>
   </body>
 </html>

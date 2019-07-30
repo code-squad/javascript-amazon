@@ -10,4 +10,8 @@ const removeClass = (target, className) => {
     target.classList.remove(className); 
 }
 
-export default {qS, addClass, removeClass};
+export {
+    qS,
+    addClass,
+    removeClass
+}
