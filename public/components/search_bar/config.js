@@ -3,7 +3,7 @@ const config = {
   inputSelector: '.search-bar',
   buttonSelector: '.search-button',
 
-  url: 'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query=',
+  url: 'http://localhost:3000/suggestions',
 
   suggestionDelayInMs: 300,
   selectedElementColor: '#f1f2f6',

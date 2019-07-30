@@ -66,18 +66,22 @@ class StateManager extends Publisher {
   }
 
   async fetchSuggestions(prefix, { url, suggestionDelay }) {
-    let data = {};
+    let body = {};
+    const targetUrl = new URL(url);
+    targetUrl.search = new URLSearchParams({ prefix });
+
     try {
-      data = await _.getJsonData(`${url}${prefix}`);
-      if (data.statusCode === 404) throw Error('404, NO_SUGGESTIONS');
-      if (data.statusCode !== 200) throw Error(`${data.statusCode}_ERROR`)
+      const response = await fetch(targetUrl);
+      body = await response.json();
+      if (response.status === 404) throw Error('404, NO_SUGGESTIONS');
+      if (response.status !== 200) throw Error(`${response.status}_ERROR`);
     }
-    catch ({ message }) {
-      console.log(message);
+    catch (err) {
+      console.error(err);
       super.notify(this.state);
       return;
     }
-    this.state = this.updateSuggestions(data.body.suggestions, prefix, this.state);
+    this.state = this.updateSuggestions(body.suggestions, prefix, this.state);
     await _.makeDelay(suggestionDelay);
     super.notify(this.state);
   }
