@@ -1,0 +1,111 @@
+@import url('../css/reset.css');
+.carousel {
+  position: relative;
+  box-sizing: border-box;
+  width: 60rem;
+  margin: 0 auto;
+  padding-top: 1.875rem;
+}
+.carousel__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+}
+.carousel__nav--item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 9.375rem;
+  height: 3.125rem;
+  margin: 0 0.125rem;
+  cursor: pointer;
+}
+
+.carousel__nav--item:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.carousel__nav--item p {
+  font-size: 0.8rem;
+  padding: 0 0.4375rem;
+  text-align: center;
+  color: white;
+}
+.carousel__nav--item:nth-of-type(1) {
+  background-color: #2392c0;
+}
+.carousel__nav--item:nth-of-type(2) {
+  background-color: #a71c67;
+}
+.carousel__nav--item:nth-of-type(3) {
+  background-color: #008577;
+}
+.carousel__nav--item:nth-of-type(4) {
+  background-color: #df6f35;
+}
+.carousel__main {
+  margin: 0 auto;
+  overflow: hidden;
+  opacity: 0;
+}
+.carousel__container {
+  display: flex;
+}
+.carousel__item {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.625rem;
+}
+.carousel__item--image img {
+  width: 12.5rem;
+  height: 12.5rem;
+}
+.carousel__item--contents {
+  padding-top: 1.25rem;
+  width: 25rem;
+}
+.carousel__item--contents-wrapper {
+  padding-left: 2.5rem;
+}
+.carousel__item--contents-wrapper h3 {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.carousel__item--contents-wrapper p {
+  font-size: 1.1rem;
+  margin-top: 0.9375rem;
+  line-height: 1.4rem;
+}
+
+.active {
+  transform: scale(1.1);
+}
+
+.arrow {
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  width: 3rem;
+  height: 3rem;
+  background-size: 3rem;
+  border-radius: 1.875rem;
+  top: 60%;
+}
+
+.arrow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.next {
+  position: absolute;
+  right: 5%;
+  background-image: url('../images/right-chevron.svg');
+  background-position: center;
+}
+
+.prev {
+  position: absolute;
+  left: 5%;
+  background-image: url('../images/left-chevron.svg');
+  background-position: center;
+}

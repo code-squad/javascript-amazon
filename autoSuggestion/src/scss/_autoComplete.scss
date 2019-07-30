@@ -1,0 +1,106 @@
+.autoComplete {
+  margin: 1rem 18rem;
+  position: relative;
+  text-align: center;
+
+  &_input {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 0 2rem 0 1.25rem;
+    height: $input-height;
+    font-size: 1rem;
+    outline: none;
+    border-radius: 0.8rem;
+    border: 0.05rem solid $color-primary;
+    caret-color: $color-primary;
+    color: $color-primary-border;
+    background-image: url(./images/magnifier.svg);
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+    background-origin: border-box;
+    background-position: right 0.8rem top 0.3rem;
+    transition: all 0.4s ease;
+    -webkit-transition: all -webkit-transform 0.4s ease;
+    text-overflow: ellipsis;
+
+    &:hover {
+      box-shadow: rgba(255, 122, 122, 0.1) 0px 0px 30px 10px;
+      transition: all 0.3s ease;
+      -webkit-transition: all -webkit-transform 0.3s ease;
+    }
+
+    &:focus {
+      box-shadow: rgba(255, 122, 122, 0.1) 0px 0px 30px 10px;
+      transition: all 0.3s ease;
+      -webkit-transition: all -webkit-transform 0.3s ease;
+    }
+
+    &::placeholder {
+      color: rgba(255, 122, 122, 0);
+      transition: all 0.3s ease;
+    }
+
+    &:hover::placeholder {
+      color: rgba(255, 122, 122, 0.3);
+      transition: all 0.3s ease;
+      -webkit-transition: all -webkit-transform 0.3s ease;
+    }
+
+    &:focus::placeholder {
+      padding: 0.1rem 0.6rem;
+      font-size: 1rem;
+      color: rgba(255, 122, 122, 0.3);
+      transition: all 0.3s ease;
+      -webkit-transition: all -webkit-transform 0.3s ease;
+    }
+
+    &::selection {
+      color: transparent;
+    }
+
+    &:focus::selection {
+      color: #fff;
+      background-color: $color-primary;
+    }
+  }
+  &_result {
+    border: 0.05rem solid #e3e3e3;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 1000;
+    padding: 0;
+    left: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 1);
+    transition: all 0.1s ease-in-out;
+  }
+
+  &_result_item {
+    display: block;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    color: rgb(123, 123, 123);
+    transition: all 0.1s ease-in-out;
+    text-decoration: none;
+    text-align: left;
+
+    & > li {
+      padding-left: 0.4rem;
+      list-style: none;
+      text-align: left;
+    }
+    &:last-child {
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
+
+    &-highlighted {
+      color: $color-primary;
+    }
+  }
+}
+
+.onSelect {
+  background-color: $color-hover;
+}

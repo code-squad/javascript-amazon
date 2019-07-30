@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch-css": "node-sass -w ./step15/src/scss/init.scss ./step15/src/autoComplate.css"
+    "watch-css": "node-sass -w ./AutoSuggestion/src/scss/init.scss ./AutoSuggestion/src/autoComplate.css"
   },
   "repository": {
     "type": "git",
