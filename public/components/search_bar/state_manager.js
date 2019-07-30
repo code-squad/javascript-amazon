@@ -1,5 +1,5 @@
 import * as _ from '../../utils/allenibrary.js'
-import Publisher from '../../utils/Publisher.js'
+import Publisher from '../../utils/publisher.js'
 import { INITIAL_IDX, MAX_SUGGESTIONS } from './constants.js'
 
 class StateManager extends Publisher {

@@ -1,5 +1,5 @@
 import * as _ from '../../utils/allenibrary.js'
-import Subscriber from '../../utils/Subscriber.js'
+import Subscriber from '../../utils/subscriber.js'
 
 class RecentKeywordsUI extends Subscriber {
   constructor({ stateManager, config }) {
