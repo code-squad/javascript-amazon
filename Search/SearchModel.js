@@ -4,7 +4,7 @@ class SearchModel {
     this.fetchURL = fetchURL;
   }
 
-  async find(input) {
+  async getData(input) {
     try {
       const response = await fetch(this.fetchURL + input);
       const fetchedData = await response.json(); 

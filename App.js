@@ -30,13 +30,12 @@ const amazonController = new CarouselController({
 });
 amazonController.init(dataURL);
 
-const inputDiv = ".searchbar__input";
+const input = ".searchbar__input";
 const matchedUl = ".searchbar__match";
 const historyUl = ".searchbar__history";
 const submitBtn = ".searchbar__right";
 
-// {inputDiv} deconstructing 햇갈림. 
-const inputView = new InputView({inputDiv,submitBtn});
+const inputView = new InputView({input,submitBtn});
 const matchedView = new MatchedView({matchedUl});
 const historyView = new HistoryView({historyUl});
 const searchModel = new SearchModel({fetchURL});

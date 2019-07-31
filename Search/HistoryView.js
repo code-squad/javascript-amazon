@@ -21,11 +21,12 @@ class HistoryView {
   }
 
   initializeTemplate() {
-    if (this.liTemplates) {
-      while (this.ul.firstElementChild) {
-        this.ul.removeChild(this.ul.firstElementChild);
-      }
+    if (!this.liTemplates) return;
+  
+    while (this.ul.firstElementChild) {
+      this.ul.removeChild(this.ul.firstElementChild);
     }
+     
   }
 }
 
