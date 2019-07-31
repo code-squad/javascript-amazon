@@ -5,7 +5,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 
 app.use(logger('dev'));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
