@@ -31,7 +31,7 @@ import RecentList from "./Search/views/recentList.js";
 import AutoModel from "./Search/models/autoModel.js"
 import RecentModel from "./Search/models/recentModel.js";
 
-let recentModelMaxNumber = 5;
+const recentModelMaxNumber = 5;
 const apiUrl = "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query="
 
 const el = qS('.searchBox');
