@@ -3,7 +3,7 @@ const config = {
   inputSelector: '.search-bar',
   buttonSelector: '.search-button',
 
-  url: 'http://localhost:3000/suggestions',
+  url: 'https://allen-amazon.herokuapp.com/suggestions',
 
   suggestionDelayInMs: 300,
   selectedElementColor: '#f1f2f6',

@@ -12,5 +12,5 @@ app.use('/', indexRouter);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log("Start server on port 3000!!");
+  console.log(`Start server on port ${port}!!`);
 });
