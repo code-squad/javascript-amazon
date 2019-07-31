@@ -6,7 +6,7 @@ const config = {
   prevBtnCssClass: 'arrow-left',
   nextBtnCssClass: 'arrow-right',
 
-  url: './resource/localData.json',
+  url: '../resource/localData.json',
 
   option: {
     infinite: true,

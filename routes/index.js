@@ -3,8 +3,8 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 
-router.get('/index.html', function (req, res, next) {
-  res.end()
+router.get('/', function (req, res, next) {
+  res.redirect('/entry/index.html');
 })
 
 router.get('/suggestions', (req, res, next) => {
