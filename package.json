@@ -20,5 +20,8 @@
   "homepage": "https://github.com/park78951/javascript-amazon#readme",
   "dependencies": {
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0"
   }
 }

@@ -1,6 +1,6 @@
-import ut from '../../../lib/myUtil/myUtil.js'
+import * as ut from '../../../lib/myUtil/myUtil.js'
 import template from './template/Template.js';
-import config from '../helper/config.js';
+import { CLASS_AUTOVIEW } from '../helper/config.js';
 
 export default class MainView {
   constructor({autocompleteView, recentSearchView, inputBox, searchBar}) {
@@ -28,16 +28,15 @@ export default class MainView {
   }
 
   renderAutoViewContainer() {
-    const { autoView } = config.class;
-    const autoViewContainer = template.createAutoViewContainer(autoView);
-    ut.appendAtLast(this.inputBox, autoViewContainer);
-    this.autoViewContainer = ut.qrSelectorByClass(autoView, this.input);
+    const autoViewContainer = template.createAutoViewContainer(CLASS_AUTOVIEW);
+    ut.appendHTMLAtLast(this.inputBox, autoViewContainer);
+    this.autoViewContainer = ut.qsByClass(CLASS_AUTOVIEW, this.input);
   }
   
   renderAutocomList(matchedWords, value) {
     this.autocompleteView.deleteRenderedList();
     this.autocompleteView.render(matchedWords, value);
-    this.autoViewViewer('autocom', 'show');
+    if(matchedWords.length) this.autoViewViewer('autocom', 'show');
     this.autoViewItems = this.autocompleteView.getAutocomList();
   }
   
@@ -74,21 +73,21 @@ export default class MainView {
     }
   }
 
-  focusItem(keyCode) {
+  focusItem(key) {
     if (!this.autoViewItems) return;
     this.numOfAutoView = this.autoViewItems.length;
     if(this.focusedDom === null) {
-      this.firstFocus(keyCode);
+      this.firstFocus(key);
     } 
     else {
-      this.moveFocus(keyCode);
+      this.moveFocus(key);
     }
   }
   
-  firstFocus(keyCode) {
+  firstFocus(key) {
     const firstItemIdx = 0,
           lastItemIdx = this.numOfAutoView - 1;
-    if(keyCode === 'ArrowDown') {
+    if(key === 'ArrowDown') {
       this.focusedDom = this.autoViewItems[firstItemIdx];
       this.curFocusedIdx = firstItemIdx;
     } else {
@@ -98,10 +97,10 @@ export default class MainView {
     this.focusToggle();
   }
   
-  moveFocus(keyCode) {
+  moveFocus(key) {
     this.focusToggle();
     let nextItemIdx;
-    keyCode === 'ArrowDown' ? nextItemIdx = this.curFocusedIdx + 1 : nextItemIdx = this.curFocusedIdx - 1;
+    key === 'ArrowDown' ? nextItemIdx = this.curFocusedIdx + 1 : nextItemIdx = this.curFocusedIdx - 1;
     if(nextItemIdx < 0 || nextItemIdx >= this.numOfAutoView) {
       this.resetFocusedDom();
       return;

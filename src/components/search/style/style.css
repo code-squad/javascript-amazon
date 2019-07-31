@@ -31,7 +31,7 @@
 
 .search__auto-view{
   position: absolute;
-  width: 97%
+  width: 97%;
 }
 
 .search__autocomplete,
@@ -54,6 +54,7 @@
   line-height: 30px;
   padding-left: 10px;
   background-color: white;
+  overflow: hidden;
 }
 
 .search__iconbox {
