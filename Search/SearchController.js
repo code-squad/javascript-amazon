@@ -32,21 +32,27 @@ class SearchController {
       this.matchedView.curserIndex = -1;
     });
     // event 버블링으로 미리 등록
-    this.matchedView.ul.addEventListener("mousedown", e => {
-      const fetchedValue = e.target.innerText;
-      this.searchModel.save(fetchedValue);
-      this.inputView.render(fetchedValue);
-      this.matchedView.hide();
-      this.matchedView.curserIndex = -1; // initialize index;
-    });
+    this.matchedView.ul.addEventListener(
+      "mousedown",
+      ({ target: { innerText } }) => {
+        const fetchedValue = innerText;
+        this.searchModel.save(fetchedValue);
+        this.inputView.render(fetchedValue);
+        this.matchedView.hide();
+        this.matchedView.curserIndex = -1; // initialize index;
+      }
+    );
 
-    this.matchedView.ul.addEventListener("mouseover", e => {
-      const fetchedValue = e.target.innerText;
-      const lists = this.matchedView.ul.querySelectorAll("li");
-      lists.forEach(list => list.classList.remove("cursered"));
-      lists[e.target.dataset.idx].classList.add("cursered");
-      this.inputView.render(fetchedValue);
-    });
+    this.matchedView.ul.addEventListener(
+      "mouseover",
+      ({ target: { innerText } }) => {
+        const fetchedValue = innerText;
+        const lists = this.matchedView.ul.querySelectorAll("li");
+        lists.forEach(list => list.classList.remove("cursered"));
+        lists[e.target.dataset.idx].classList.add("cursered");
+        this.inputView.render(fetchedValue);
+      }
+    );
   }
 
   async inputViewInputHandler(inputValue) {
