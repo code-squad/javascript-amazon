@@ -14,6 +14,7 @@ const cardList = document.querySelector(".carousel__contents");
 const navbar = document.querySelector(".carousel__title");
 const animationTime = 200;
 const dataURL = "./Carousel/CarouselLocalData.json";
+const fetchURL = `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query=`
 
 const carouselView = new CarouselView({
   leftBtn,
@@ -38,7 +39,7 @@ const submitBtn = ".searchbar__right";
 const inputView = new InputView({inputDiv,submitBtn});
 const matchedView = new MatchedView({matchedUl});
 const historyView = new HistoryView({historyUl});
-const searchModel = new SearchModel({});
+const searchModel = new SearchModel({fetchURL});
 const searchController = new SearchController({
   inputView,
   matchedView,

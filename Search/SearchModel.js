@@ -1,14 +1,19 @@
 class SearchModel {
-  constructor() {
+  constructor({ fetchURL }) {
     this.historyQueue = [];
+    this.fetchURL = fetchURL;
   }
 
   async find(input) {
-    const dataURL = `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query=${input}`;
-    const response = await fetch(dataURL);
-    const fetchedData = await response.json();
-    if(fetchedData.statusCode === 404) return; //데이터가 없을때 예외처리
-    return fetchedData;
+    try {
+      const response = await fetch(this.fetchURL + input);
+      const fetchedData = await response.json();
+      if(fetchedData.statusCode === 404) throw new Error('404에러:  데이터가 없습니다'); //데이터가 없을때 예외처리
+      return fetchedData;
+    } catch(error) {
+      console.warn(error);
+      return;
+    }
   }
 
   save(value) {
