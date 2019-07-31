@@ -13,11 +13,11 @@ class SearchController {
   }
 
   registerEvents() {
-    this.inputView.div.addEventListener("input", ({ target: { value } }) =>
+    this.inputView.input.addEventListener("input", ({ target: { value } }) =>
       this.inputViewInputHandler(value)
     );
 
-    this.inputView.div.addEventListener("keydown", e =>
+    this.inputView.input.addEventListener("keydown", e =>
       this.inputViewKeyDownHandler(e)
     );
 
@@ -47,7 +47,6 @@ class SearchController {
       lists[e.target.dataset.idx].classList.add("cursered");
       this.inputView.render(fetchedValue);
     });
-
   }
 
   async inputViewInputHandler(inputValue) {
@@ -55,10 +54,10 @@ class SearchController {
     this.matchedView.curserIndex = -1;
     await sleep(300);
 
-    const matchedData = await this.searchModel.find(inputValue);
+    const matchedData = await this.searchModel.getData(inputValue);
     console.log("matchedData", matchedData);
     if (matchedData === undefined) {
-      // await 필요한가? 실험해보니 필요 없음. 
+      // await 필요한가? 실험해보니 필요 없음.
       this.matchedView.hide();
       const historys = this.searchModel.historyQueue;
       this.historyView.render(historys);
@@ -68,55 +67,44 @@ class SearchController {
     await this.matchedView.render(matchedData, inputValue);
   }
 
+  changeIdxInfinite(code, lists) {
+    const [changedIdx, endIdx, initialIdx] =
+      code === "ArrowDown" ? [1, lists.length, 0] : [-1, -1, lists.length - 1];
+    this.matchedView.curserIndex += changedIdx;
+    if (this.matchedView.curserIndex === endIdx) {
+      this.matchedView.curserIndex = initialIdx;
+    }
+  }
+
+  curserEffect(lists) {
+    lists.forEach(list => list.classList.remove("cursered"));
+    lists[this.matchedView.curserIndex].classList.add("cursered");
+  }
+
   inputViewKeyDownHandler(e) {
     // view가 matched인지, history인지 파악하여 history에서도 keydown 적용하기 필요
     const { code } = e;
-    if (["ArrowDown", "ArrowUp", "Enter"].includes(code)) {
-      const lists = this.matchedView.ul.querySelectorAll("li");
-      if (code === "ArrowDown") {
-        //change idx
-        this.matchedView.curserIndex += 1;
-        if (this.matchedView.curserIndex === lists.length) {
-          this.matchedView.curserIndex = 0;
-        }
-        // render inputView
-        const fetchedValue = this.matchedView.findCurseredValue();
-        this.inputView.render(fetchedValue);
+    const lists = this.matchedView.ul.querySelectorAll("li");
 
-        // curser effect
-        lists.forEach(list => list.classList.remove("cursered"));
-        lists[this.matchedView.curserIndex].classList.add("cursered");
-        return;
-      }
+    if (!["ArrowDown", "ArrowUp", "Enter"].includes(code)) return;
 
-      if (code === "ArrowUp") {
-        //change idx
-        this.matchedView.curserIndex -= 1;
-        if (this.matchedView.curserIndex === -1) {
-          this.matchedView.curserIndex = lists.length - 1;
-        }
-        // render inputView
-        const fetchedValue = this.matchedView.findCurseredValue();
-        this.inputView.render(fetchedValue);
-        // curser effect
+    if (["ArrowDown", "ArrowUp"].includes(code)) {
+      this.changeIdxInfinite(code, lists);
+      const fetchedValue = this.matchedView.findCurseredValue();
+      this.inputView.render(fetchedValue);
+      this.curserEffect(lists);
+      return;
+    }
 
-        lists.forEach(list => list.classList.remove("cursered"));
-        lists[this.matchedView.curserIndex].classList.add("cursered");
-        return;
-      }
-      // 이건 여기 왜 있는거지...? 엔터는 바로 일어나서 여기있는것같긴한데 리팩토링 가능한가?
+    // 이건 여기 왜 있는거지...? 엔터는 바로 일어나서 여기있는것같긴한데 리팩토링 가능한가?
+    if (code === "Enter") {
       e.preventDefault();
-      if (code === "Enter") {
-        //render inputView
-        const fetchedValue = this.matchedView.findCurseredValue();
-        this.inputView.render(fetchedValue);
-        // save model
-        this.searchModel.save(fetchedValue);
-        // hide
-        this.matchedView.hide();
-        // initialize index;
-        this.matchedView.curserIndex = -1;
-      }
+      const fetchedValue = this.matchedView.findCurseredValue();
+      this.inputView.render(fetchedValue);
+      this.searchModel.save(fetchedValue);
+      this.matchedView.hide();
+      // initialize index;
+      this.matchedView.curserIndex = -1;
     }
   }
 }
