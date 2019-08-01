@@ -27,9 +27,9 @@ export default class recentSearchView {
   }
   
   recentSearchViewer(action) {
-    const recentSearhcCL = this.recentSearch.classList;
-    if(action === 'hide') recentSearhcCL.add('hide');
-    else recentSearhcCL.remove('hide');
+    const recentSearchCL = this.recentSearch.classList;
+    if(action === 'hide') recentSearchCL.add('hide');
+    else recentSearchCL.remove('hide');
   }
 
   showAutoView() {

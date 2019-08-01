@@ -15,22 +15,3 @@ export const debounce = (func, delay) => {
     timeoutID = setTimeout(() => func(arg), delay);
   }
 }
-
-// export const throtlle = (func, delay) => {
-//   let timeoutID = null;
-//   let lastRan = null;
-//   return (arg) => {
-//     if (!lastRan) {
-//       func(arg)
-//       lastRan = Date.now()
-//     } else {
-//       clearTimeout(timeoutID)
-//       timeoutID = setTimeout(function() {
-//         if ((Date.now() - lastRan) >= delay) {
-//           func(arg)
-//           lastRan = Date.now()
-//         }
-//       }, delay - (Date.now() - lastRan))
-//     }
-//   }
-// }

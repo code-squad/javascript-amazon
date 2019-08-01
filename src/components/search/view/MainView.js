@@ -58,7 +58,7 @@ export default class MainView {
     this.resetFocusedDom();
     this.clearAutoViewList();
     if(viewType === 'recentSearch') {
-      if(action === 'show') this.autoViewItems = this.recentSearchView.getRecentSearchList();
+      // if(action === 'show') this.autoViewItems = this.recentSearchView.getRecentSearchList();
       this.recentSearchView.recentSearchViewer(action);
       return;
     }
@@ -86,7 +86,7 @@ export default class MainView {
   
   firstFocus(key) {
     const firstItemIdx = 0,
-          lastItemIdx = this.numOfAutoView - 1;
+    lastItemIdx = this.numOfAutoView - 1;
     if(key === 'ArrowDown') {
       this.focusedDom = this.autoViewItems[firstItemIdx];
       this.curFocusedIdx = firstItemIdx;
