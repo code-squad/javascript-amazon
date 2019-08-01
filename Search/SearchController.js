@@ -9,48 +9,21 @@ class SearchController {
     this.initService();
   }
 
-
   initService() {
-
-    // inputViewHandler 함수안에서 call처럼 this를 넘겨주어야하는건 없을까? 
     this.inputView.inputHandler = this.inputViewInputHandler.bind(this);
     this.inputView.keyDownHandler = this.inputViewKeyDownHandler.bind(this);
     this.inputView.clickHandler = this.inputViewClickHandler.bind(this);
-
-
-    // event 버블링으로 미리 등록
-    this.matchedView.ul.addEventListener(
-      "mousedown",
-      ({ target: { innerText } }) => {
-        const fetchedValue = innerText;
-        this.searchModel.save(fetchedValue);
-        this.inputView.render(fetchedValue);
-        this.matchedView.hide();
-        this.matchedView.curserIndex = -1; // initialize index;
-      }
-    );
-
-    this.matchedView.ul.addEventListener(
-      "mouseover",
-      ({ target: { innerText , dataset : {idx} } }) => {
-        const fetchedValue = innerText;
-        const lists = this.matchedView.ul.querySelectorAll("li");
-        lists.forEach(list => list.classList.remove("cursered"));
-        lists[idx].classList.add("cursered");
-        this.inputView.render(fetchedValue);
-      }
-    );
+    this.matchedView.mousedownHandler = this.matchedViewMouseDownHandler
+    this.matchedView.mouseoverHandler = this.matchedViewMouseOverHandler
   }
 
   async inputViewInputHandler(inputValue) {
-    // 새로운 검색이 생길때마다 인덱스 초기화
     this.matchedView.curserIndex = -1;
     await sleep(300);
 
     const matchedData = await this.searchModel.getData(inputValue);
     // console.log("matchedData", matchedData);
     if (matchedData === undefined) {
-      // await 필요한가? 실험해보니 필요 없음.
       this.matchedView.hide();
       const historys = this.searchModel.historyQueue;
       this.historyView.render(historys);
@@ -58,20 +31,6 @@ class SearchController {
     }
     this.historyView.hide();
     await this.matchedView.render(matchedData, inputValue);
-  }
-
-  changeIdxInfinite(code, lists) {
-    const [changedIdx, endIdx, initialIdx] =
-      code === "ArrowDown" ? [1, lists.length, 0] : [-1, -1, lists.length - 1];
-    this.matchedView.curserIndex += changedIdx;
-    if (this.matchedView.curserIndex === endIdx) {
-      this.matchedView.curserIndex = initialIdx;
-    }
-  }
-
-  curserEffect(lists) {
-    lists.forEach(list => list.classList.remove("cursered"));
-    lists[this.matchedView.curserIndex].classList.add("cursered");
   }
 
   inputViewKeyDownHandler(e) {
@@ -99,16 +58,51 @@ class SearchController {
     }
   }
 
-  inputViewClickHandler(e){
-      e.preventDefault();
-      // inputViewKeyDownHandler의 enter 이벤트와 중복 함수로 처리할것
-      const fetchedValue = this.matchedView.findCurseredValue();
-      this.searchModel.save(fetchedValue);
-      this.inputView.render(fetchedValue);
-      //
-      this.matchedView.hide();
-      this.matchedView.curserIndex = -1;
+  changeIdxInfinite(code, lists) {
+    const [changedIdx, endIdx, initialIdx] =
+      code === "ArrowDown" ? [1, lists.length, 0] : [-1, -1, lists.length - 1];
+    this.matchedView.curserIndex += changedIdx;
+    if (this.matchedView.curserIndex === endIdx) {
+      this.matchedView.curserIndex = initialIdx;
+    }
   }
+
+  curserEffect(lists) {
+    lists.forEach(list => list.classList.remove("cursered"));
+    lists[this.matchedView.curserIndex].classList.add("cursered");
+  }
+
+  inputViewClickHandler(e) {
+    e.preventDefault();
+    // inputViewKeyDownHandler의 enter 이벤트와 중복 함수로 처리할것
+    const fetchedValue = this.matchedView.findCurseredValue();
+    this.searchModel.save(fetchedValue);
+    this.inputView.render(fetchedValue);
+    this.matchedView.hide();
+    this.matchedView.curserIndex = -1;
+  }
+
+  matchedViewMouseDownHandler = ({ target: { innerText } }) => {
+    const fetchedValue = innerText;
+    this.searchModel.save(fetchedValue);
+    this.inputView.render(fetchedValue);
+    this.matchedView.hide();
+    this.matchedView.curserIndex = -1; // initialize index;
+  };
+  
+  matchedViewMouseOverHandler = ({
+    target: {
+      innerText,
+      dataset: { idx }
+    }
+  }) => {
+    const fetchedValue = innerText;
+    const lists = this.matchedView.ul.querySelectorAll("li");
+    lists.forEach(list => list.classList.remove("cursered"));
+    lists[idx].classList.add("cursered");
+    this.inputView.render(fetchedValue);
+  };
+
 }
 
 export default SearchController;

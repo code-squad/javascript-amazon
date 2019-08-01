@@ -3,6 +3,14 @@ class MatchedView {
     this.ul = document.querySelector(matchedUl);
     this.liTemplates = undefined;
     this.curserIndex = -1;
+    this.mousedownHandler = null;
+    this.mouseoverHandler = null;
+    this.initEvents();
+  }
+
+  initEvents() {
+    this.ul.addEventListener("mousedown", e => this.mousedownHandler(e));
+    this.ul.addEventListener("mouseover", e => this.mouseoverHandler(e));
   }
 
   render(data, inputValue) {
