@@ -1,14 +1,23 @@
-export default [
-    {
-        'key' : 'html',
-        'list' : ['html', 'html5', 'html 특수문자', 'html 주석', 'html table', 'html 띄어쓰기', 'html 색상표', 'html 태그', 'html 줄바꿈', 'html css']
-    },
-    {
-        'key' : 'css',
-        'list' : ['css', 'css animation', 'css flex', 'css transition', 'css selector', 'css 선택자', 'css important', 'css position', 'css border', 'css transform']
-    },
-    {
-        'key' : 'javascript',
-        'list' : ['javascript', 'javascript array', 'javascript substring', 'javascript foreach', 'javascript split', 'javascript replace', 'javascript indexof', 'javascript map', 'javascript replaceall', 'javascript settimeout']
+class AutoModel {
+    constructor(url) {
+        this.api = url;
     }
-]
+
+    async fetchKeyword(keyword) {
+        try {
+            let requestKeyword = await fetch(this.api + keyword);
+            let responseData = await requestKeyword.json();
+            let suggestionsData = [];
+
+            suggestionsData = responseData.body.suggestions.map(v => v.value);
+
+            return suggestionsData;
+            
+        } catch(e) {
+            console.log(e);
+            return [];
+        }
+    }
+}
+
+export default AutoModel;

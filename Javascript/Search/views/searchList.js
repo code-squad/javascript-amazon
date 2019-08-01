@@ -5,7 +5,7 @@ class SearchList {
     }
 
     focus(direction) {
-        let itemsCount = this.list.children.length;
+        const itemsCount = this.list.children.length;
         this.list.children[this.currentPointer].classList.remove('focus');
 
         if(direction === 'up') {

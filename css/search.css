@@ -36,9 +36,20 @@
     color: #fff;
 }
 
-.searchBox .recent-list:empty {
+.searchBox .recent-list:empty,
+.searchBox .auto-complete-list:empty {
     border: none;
     background: #febd69;
+}
+
+.searchBox .auto-complete-list:empty::after {
+    content: '! 검색 결과가 없습니다.';
+    display: block;
+    font-weight: normal;
+    color: #fff;
+    font-size: 12px;
+    padding-top: 10px;
+    text-align: center;
 }
 .searchBox .recent-list:empty::after {
     content: '! 최근 검색 결과가 없습니다.';

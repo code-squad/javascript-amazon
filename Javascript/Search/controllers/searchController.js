@@ -1,3 +1,5 @@
+import {debounce} from "../../koon.js";
+
 class SearchController {
     get recentData() {
         return this.recentModel.data;
@@ -11,6 +13,7 @@ class SearchController {
         this.autoModel = autoModel;
         this.eventSetting();
         this.currentList = "recentList";
+        this.searchEvent = debounce(this.searchEvent.bind(this), 300);
     }
 
     eventSetting() {
@@ -60,14 +63,19 @@ class SearchController {
             this.enterEvent()
 
         } else {
-            this.recentList.hide();
-            this.currentList = 'autoList';
-
-            let target = this.searchForm.inputEl.value;
-            let answer = this.checkWord(target);
-            this.autoList.render(target, answer);
- 
+            this.searchEvent();
         }
+    }
+
+    searchEvent() {
+        this.recentList.hide();
+        this.currentList = 'autoList';
+
+        let keyword = this.searchForm.inputEl.value;
+        this.checkWord(keyword)
+            .then((data) => {
+                this.autoList.render(keyword, data);
+            })
     }
 
     arrowEvent(direction) {
@@ -91,17 +99,8 @@ class SearchController {
         this.searchForm.inputEl.value = '';
     }
 
-    checkWord(target) {
-        let answer = undefined;
-        this.autoModel.map((v) => {
-            if(target === v.key || target.includes(v.key)) {
-                answer =  v.list;
-                return;
-            } else {
-                this.autoList.hide();
-            }
-        })
-
+    async checkWord(keyword) {
+        let answer = await this.autoModel.fetchKeyword(keyword);
         return answer;
     };
 }

@@ -16,11 +16,11 @@ class AutoList extends SearchList {
         this.currentInput = data;
         this.list.style.display = 'block';
 
-        let node = data
+        const node = data
             .filter(v => v.includes(target))
             .reduce((acc, cur)  => {
-                cur = `<li>${cur}</li>`;
                 cur = cur.replace(target, `<strong>${target}</strong>`);
+                cur = `<li>${cur}</li>`;
                 acc += cur;
                 return acc;
             }, '')
