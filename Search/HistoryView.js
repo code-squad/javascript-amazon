@@ -8,7 +8,7 @@ class HistoryView {
 
     this.initializeTemplate();
     let historys = data.reverse();
-    historys = historys.slice(0, 5); //  immutable 연습하기 splice나 spread operator를 이용해서 만들 수 있지만 이렇게 해도 되지않나?
+    historys = historys.slice(0, 5);
     this.liTemplates = historys.reduce((accum, cur) => {
       accum += `<li class="results">${cur}</li>`;
       return accum;

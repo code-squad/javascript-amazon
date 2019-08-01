@@ -6,13 +6,11 @@ class SearchController {
     this.matchedView = matchedView;
     this.historyView = historyView;
     this.searchModel = searchModel;
+    this.initService();
   }
 
-  init() {
-    this.registerEvents();
-  }
 
-  registerEvents() {
+  initService() {
     this.inputView.input.addEventListener("input", ({ target: { value } }) =>
       this.inputViewInputHandler(value)
     );
@@ -45,11 +43,11 @@ class SearchController {
 
     this.matchedView.ul.addEventListener(
       "mouseover",
-      ({ target: { innerText } }) => {
+      ({ target: { innerText , dataset : {idx} } }) => {
         const fetchedValue = innerText;
         const lists = this.matchedView.ul.querySelectorAll("li");
         lists.forEach(list => list.classList.remove("cursered"));
-        lists[e.target.dataset.idx].classList.add("cursered");
+        lists[idx].classList.add("cursered");
         this.inputView.render(fetchedValue);
       }
     );
@@ -61,7 +59,7 @@ class SearchController {
     await sleep(300);
 
     const matchedData = await this.searchModel.getData(inputValue);
-    console.log("matchedData", matchedData);
+    // console.log("matchedData", matchedData);
     if (matchedData === undefined) {
       // await 필요한가? 실험해보니 필요 없음.
       this.matchedView.hide();
@@ -102,14 +100,12 @@ class SearchController {
       return;
     }
 
-    // 이건 여기 왜 있는거지...? 엔터는 바로 일어나서 여기있는것같긴한데 리팩토링 가능한가?
     if (code === "Enter") {
       e.preventDefault();
       const fetchedValue = this.matchedView.findCurseredValue();
       this.inputView.render(fetchedValue);
       this.searchModel.save(fetchedValue);
       this.matchedView.hide();
-      // initialize index;
       this.matchedView.curserIndex = -1;
     }
   }

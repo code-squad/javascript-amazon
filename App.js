@@ -45,4 +45,3 @@ const searchController = new SearchController({
   historyView,
   searchModel
 });
-searchController.init();
