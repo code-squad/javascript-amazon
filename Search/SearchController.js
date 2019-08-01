@@ -11,24 +11,13 @@ class SearchController {
 
 
   initService() {
-    this.inputView.input.addEventListener("input", ({ target: { value } }) =>
-      this.inputViewInputHandler(value)
-    );
 
-    this.inputView.input.addEventListener("keydown", e =>
-      this.inputViewKeyDownHandler(e)
-    );
+    // inputViewHandler 함수안에서 call처럼 this를 넘겨주어야하는건 없을까? 
+    this.inputView.inputHandler = this.inputViewInputHandler.bind(this);
+    this.inputView.keyDownHandler = this.inputViewKeyDownHandler.bind(this);
+    this.inputView.clickHandler = this.inputViewClickHandler.bind(this);
 
-    this.inputView.btn.addEventListener("click", e => {
-      e.preventDefault();
-      // inputViewKeyDownHandler의 enter 이벤트와 중복 함수로 처리할것
-      const fetchedValue = this.matchedView.findCurseredValue();
-      this.searchModel.save(fetchedValue);
-      this.inputView.render(fetchedValue);
-      //
-      this.matchedView.hide();
-      this.matchedView.curserIndex = -1;
-    });
+
     // event 버블링으로 미리 등록
     this.matchedView.ul.addEventListener(
       "mousedown",
@@ -108,6 +97,17 @@ class SearchController {
       this.matchedView.hide();
       this.matchedView.curserIndex = -1;
     }
+  }
+
+  inputViewClickHandler(e){
+      e.preventDefault();
+      // inputViewKeyDownHandler의 enter 이벤트와 중복 함수로 처리할것
+      const fetchedValue = this.matchedView.findCurseredValue();
+      this.searchModel.save(fetchedValue);
+      this.inputView.render(fetchedValue);
+      //
+      this.matchedView.hide();
+      this.matchedView.curserIndex = -1;
   }
 }
 
