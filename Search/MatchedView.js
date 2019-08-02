@@ -53,6 +53,10 @@ class MatchedView {
     const lists = this.ul.querySelectorAll("li");
     return lists[this.curserIndex].innerText;
   }
+
+  setCurseredIndex(idx){
+    this.curserIndex = idx;
+  }
 }
 
 export default MatchedView;

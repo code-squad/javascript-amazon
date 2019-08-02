@@ -1,4 +1,4 @@
-import sleep from "./sleep.js";
+import {sleep} from "./myLibrary.js";
 
 class SearchController {
   constructor({ inputView, matchedView, historyView, searchModel }) {
@@ -18,12 +18,7 @@ class SearchController {
   }
 
   async inputViewInputHandler(inputValue) {
-
-    this.matchedView.curserIndex = -1;
-    // await sleep(300);
-
-    // await이 필요한가? 당연히 필요하다. getData가 return 하기전까지 pending상태의 Promise가 반환될것 
-    // 아래 render함수를 matchedData.then으로 처리하면 되게 만들수는 있음. 그래서 typeError가 났던것 
+    this.matchedView.setCurseredIndex(-1);
     const matchedData =   await this.searchModel.getData(inputValue);
     if (matchedData === undefined) {
       this.matchedView.hide();
@@ -56,7 +51,7 @@ class SearchController {
       this.inputView.render(fetchedValue);
       this.searchModel.save(fetchedValue);
       this.matchedView.hide();
-      this.matchedView.curserIndex = -1;
+      this.matchedView.setCurseredIndex(-1);
     }
   }
 
@@ -81,7 +76,7 @@ class SearchController {
     this.searchModel.save(fetchedValue);
     this.inputView.render(fetchedValue);
     this.matchedView.hide();
-    this.matchedView.curserIndex = -1;
+    this.matchedView.setCurseredIndex(-1);
   }
 
   matchedViewMouseDownHandler = ({ target: { innerText } }) => {
@@ -89,7 +84,7 @@ class SearchController {
     this.searchModel.save(fetchedValue);
     this.inputView.render(fetchedValue);
     this.matchedView.hide();
-    this.matchedView.curserIndex = -1; // initialize index;
+    this.matchedView.setCurseredIndex(-1);
   };
 
   matchedViewMouseOverHandler = ({
