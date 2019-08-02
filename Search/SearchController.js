@@ -41,8 +41,8 @@ class SearchController {
     if (!["ArrowDown", "ArrowUp", "Enter"].includes(code)) return;
 
     if (["ArrowDown", "ArrowUp"].includes(code)) {
-      this.changeIdxInfinite(code, lists);
-      const fetchedValue = this.matchedView.findCurseredValue();
+      this.changeMatchedViewIdxInfinite(code, lists);
+      const fetchedValue = this.matchedView.getCurseredValue();
       this.inputView.render(fetchedValue);
       this.curserEffect(lists);
       return;
@@ -50,7 +50,7 @@ class SearchController {
 
     if (code === "Enter") {
       e.preventDefault();
-      const fetchedValue = this.matchedView.findCurseredValue();
+      const fetchedValue = this.matchedView.getCurseredValue();
       this.inputView.render(fetchedValue);
       this.searchModel.save(fetchedValue);
       this.matchedView.hide();
@@ -58,7 +58,7 @@ class SearchController {
     }
   }
 
-  changeIdxInfinite(code, lists) {
+  changeMatchedViewIdxInfinite(code, lists) {
     const [changedIdx, endIdx, initialIdx] =
       code === "ArrowDown" ? [1, lists.length, 0] : [-1, -1, lists.length - 1];
     this.matchedView.curserIndex += changedIdx;
@@ -75,7 +75,7 @@ class SearchController {
   inputViewClickHandler(e) {
     e.preventDefault();
     // inputViewKeyDownHandler의 enter 이벤트와 중복 함수로 처리할것
-    const fetchedValue = this.matchedView.findCurseredValue();
+    const fetchedValue = this.matchedView.getCurseredValue();
     this.searchModel.save(fetchedValue);
     this.inputView.render(fetchedValue);
     this.matchedView.hide();
@@ -89,7 +89,7 @@ class SearchController {
     this.matchedView.hide();
     this.matchedView.curserIndex = -1; // initialize index;
   };
-  
+
   matchedViewMouseOverHandler = ({
     target: {
       innerText,

@@ -49,7 +49,7 @@ class MatchedView {
     }
   }
 
-  findCurseredValue() {
+  getCurseredValue() {
     const lists = this.ul.querySelectorAll("li");
     return lists[this.curserIndex].innerText;
   }
