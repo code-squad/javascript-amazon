@@ -7,26 +7,48 @@ const rawAutoSuggestionData = JSON.parse(
   fs.readFileSync('./public/autoSuggestion.json')
 );
 
-// define the home page route
-router.get('/', function(req, res) {
-  const { prefix } = req.query;
-  const { maxresult } = req.query;
-  console.log(prefix, maxresult);
+const STATUS = {
+  OK: {
+    CODE: 200
+  },
+  NO_ITEM: {
+    CODE: 404,
+    MSG: 'Not fount item'
+  }
+};
 
-  const filteredData = rawAutoSuggestionData
+const getFilteredData = (srcData, query, maxresult = 10) => {
+  return srcData
     .filter(d => {
-      return d.toLowerCase().startsWith(prefix);
+      return d.toLowerCase().startsWith(query);
     })
     .slice(0, Number(maxresult))
     .map(d => {
       return { value: d };
     });
-  let result;
-  if (filteredData.length === 0) {
-    result = { body: 'not found item', statusCode: 404 };
-  } else {
-    result = { body: { suggestions: filteredData }, statusCode: 200 };
+};
+
+const applySchema = (data, query) => {
+  if (data.length === 0) {
+    const { MSG, CODE } = STATUS.NO_ITEM;
+    return { body: MSG, statusCode: CODE };
   }
+  const { CODE } = STATUS.OK;
+  return {
+    statusCode: CODE,
+    body: {
+      prefix: query,
+      suggestions: data
+    }
+  };
+};
+
+router.get('/', function(req, res) {
+  const { query, maxresult } = req.query;
+
+  const filteredData = getFilteredData(rawAutoSuggestionData, query, maxresult);
+  const result = applySchema(filteredData, query);
+
   res.header('Content-Type', 'application/json');
   res.json(result);
 });

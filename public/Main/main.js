@@ -9,7 +9,7 @@ import renderHTML from '../PLib/render.js';
 window.addEventListener('DOMContentLoaded', async () => {
   await renderHTML({
     currentVersion: 1,
-    url: '../static/tpl-src-data.json',
+    url: '/tpl-src-data.json',
     templateFunc: mainTpl
   });
 

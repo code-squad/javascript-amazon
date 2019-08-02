@@ -7,5 +7,5 @@ export default {
   onSelect: 'onSelect',
   debounceDelay: 300,
   throttleDelay: 60,
-  srcUrl: '/auto-suggestion?maxresult=10&prefix='
+  srcUrl: '/auto-suggestion?maxresult=10&query='
 };

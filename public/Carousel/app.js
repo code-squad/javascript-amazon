@@ -6,7 +6,7 @@ import renderHTML from '../PLib/render.js';
 window.addEventListener('DOMContentLoaded', () => {
   renderHTML({
     currentVersion: 1,
-    url: './tpl-src-data.json',
+    url: '/tpl-src-data.json',
     templateFunc: carouselTemplate
   }).then(_ => {
     initCarousel();

@@ -117,9 +117,9 @@ class Controller {
     }
   }
 
-  async getData(srcUrl, prefix) {
+  async getData(srcUrl, query) {
     try {
-      const response = await fetch(srcUrl + prefix);
+      const response = await fetch(srcUrl + query);
       const { statusCode, body } = await response.json();
 
       if (statusCode === 200) {
