@@ -17,6 +17,14 @@
   ],
   "author": "p-iknow",
   "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "node-sass": "^4.12.0"
+  },
+  "devDependencies": {},
   "bugs": {
     "url": "https://github.com/P-iknow/javascript-amazon/issues"
   },
