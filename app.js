@@ -7,7 +7,7 @@ const headerViewer = new RenderTemplate(config.header, template.getHeaderTemplat
 const mainViewer = new RenderTemplate(config.container, template.getMainTempalte);
 
 const getCarouselData = async () => 
-  await fetch('./src/JSON/localData.json').then(data => data.json());
+  await fetch('./public/json/localData.json').then(data => data.json());
 
 window.addEventListener('DOMContentLoaded', () => {
   const localData = getCarouselData();

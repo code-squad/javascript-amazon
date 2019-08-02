@@ -1,0 +1,171 @@
+{
+  "statusCode": 200,
+  "body": {
+    "alias": "aps",
+    "prefix": "i",
+    "suffix": null,
+    "suggestions": [{
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone charger",
+      "refTag": "nb_sb_ss_c_1_1",
+      "scopes": [{
+        "type": "ALIAS",
+        "value": "mobile",
+        "display": "Cell Phones & Accessories"
+      }],
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone charger",
+      "refTag": "nb_sb_ss_c_2_1",
+      "scopes": [{
+        "type": "ALIAS",
+        "value": "electronics",
+        "display": "Electronics"
+      }],
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone 8 plus case",
+      "refTag": "nb_sb_ss_i_3_1",
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone x case",
+      "refTag": "nb_sb_ss_i_4_1",
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone 7 case",
+      "refTag": "nb_sb_ss_i_5_1",
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone 7 plus case",
+      "refTag": "nb_sb_ss_i_6_1",
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone charger cable",
+      "refTag": "nb_sb_ss_i_7_1",
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone 8 case",
+      "refTag": "nb_sb_ss_i_8_1",
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone 6s case",
+      "refTag": "nb_sb_ss_i_9_1",
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }, {
+      "suggType": "KeywordSuggestion",
+      "type": "KEYWORD",
+      "value": "iphone 6 case",
+      "refTag": "nb_sb_ss_i_10_1",
+      "ghost": false,
+      "help": false,
+      "queryUnderstandingFeatures": [{
+        "source": "QU_TOOL",
+        "annotations": []
+      }],
+      "spellCorrected": false,
+      "blackListed": false,
+      "xcatOnly": false,
+      "fallback": false
+    }],
+    "responseId": "16QRWATD2RHRI",
+    "shuffled": false
+  }
+}
