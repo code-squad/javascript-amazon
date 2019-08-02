@@ -5,13 +5,14 @@ class InputView {
     this.inputHandler = null;
     this.keyDownHandler = null;
     this.clickHandler = null;
+    this.timer = null;
     this.initEvents();
   }
 
   initEvents() {
-    this.input.addEventListener("input", ({ target: { value } }) =>
-      this.inputHandler(value)
-    );
+    this.input.addEventListener("input", ({ target: { value } }) =>{
+      this.debounceInputHandler(value);
+    });
 
     this.input.addEventListener("keydown", e => this.keyDownHandler(e));
 
@@ -22,6 +23,13 @@ class InputView {
 
   render(value) {
     this.input.value = value;
+  }
+
+  debounceInputHandler(value){
+    if(this.timer){
+      clearTimeout(this.timer);
+    }
+    this.timer = setTimeout(()=>{this.inputHandler(value)},1200);
   }
 }
 
