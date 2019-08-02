@@ -4,8 +4,8 @@ class CarouselView {
     this.leftBtn = leftBtn;
     this.rightBtn = rightBtn;
     this.countOfCards = undefined;
-    this.animationTime = animationTime;
-  }
+      this.animationTime = animationTime;
+    }
 
   render(contentsData) {
     const contentsTemplate = contentsData.reduce((contentsTemplate, card) => {

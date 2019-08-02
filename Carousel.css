@@ -7,6 +7,71 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 110px;
+  background-color: #232f3e;
+}
+
+.searchbar {
+  position: relative;
+  width: 740px;
+  margin: 0 auto;
+}
+
+.searchbar * {
+  height: 35px;
+}
+
+.searchbar__left {
+  width: 43px;
+}
+
+.searchbar__input {
+  width: 640px;
+}
+
+.searchbar__right {
+  width: 45px;
+}
+
+.content {
+  display: none;
+  position: absolute;
+  left: 46px;
+  width: 640px;
+  z-index: 100;
+  background-color: #fff;
+  border: 1px solid gray;
+}
+
+.render {
+  display: block;
+}
+
+.cursered {
+  background-color: #f1f2f6 !important;
+}
+
+b {
+  font-weight: bold;
+  background-color: gray;
+}
+
+.results {
+  line-height: 35px;
+  background-color: #fff;
+  list-style: none;
+}
+
 .carousel {
   height: 600px;
 }

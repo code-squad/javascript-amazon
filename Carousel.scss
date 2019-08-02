@@ -24,6 +24,65 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 110px;
+  background-color: #232f3e;
+}
+
+.searchbar {
+  position: relative;
+  width: 740px;
+  margin: 0 auto;
+  * { // selector first depth child 
+    height: 35px;
+  }
+  &__left{
+    width: 43px;
+  }
+  &__input{
+    width: 640px;
+  }
+  &__right{
+    width: 45px;
+  }
+  
+}
+
+.content {
+  display: none;
+  position: absolute;
+  left: 46px;
+  width: 640px;
+  z-index: 100;
+  background-color: #fff;
+  // ul태그 전체에 적용안되는 문제 
+  border: 1px solid gray 
+}
+
+.render{
+  display: block;
+}
+
+.cursered{
+  // !important 를 넣어야 배경색이 바뀌는 문제 
+  background-color: rgb(241, 242, 246) !important;
+}
+
+b {
+  font-weight:bold; // 그냥 b태그만 넣으면 작동하지 않음
+  background-color: gray; //확인용으로 넣어놓음
+  
+}
+
+.results {
+  line-height: 35px;
+  background-color: #fff;
+  list-style: none;
+}
+
 .carousel {
   height: 600px;
   &__contents {

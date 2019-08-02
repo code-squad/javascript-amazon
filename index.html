@@ -14,6 +14,22 @@
     <link rel="stylesheet" href="Carousel.css" />
   </head>
   <body>
+    <header>
+      <form class="searchbar" action="">
+        <select class="searchbar__left" name="" id="">
+          <option selected="selected" value="모두">모두</option>
+          <option value="전자기기">전자기기</option>
+          <option value="컴퓨터">컴퓨터</option>
+          <option value="남성패션">남성패션</option>
+          <option value="도서">도서</option>
+          <option value="비디오 게임">비디오 게임</option>
+        </select>
+        <input class="searchbar__input" type="text" />
+        <button class="searchbar__right">button</button>
+        <ul class="content searchbar__match"></ul>
+        <ul class="content searchbar__history"></ul>
+      </form>
+    </header>
     <section class="carousel">
       <div class="title carousel__title"></div>
       <div class="contents carousel__contents">
