@@ -8,17 +8,17 @@ class SearchModel {
     try {
       const response = await fetch(this.fetchURL + input);
       const fetchedData = await response.json(); 
-      if(fetchedData.statusCode === 404) return; // 데이터가 없을때
+      if(fetchedData.statusCode === 404) throw Error('입력한 값에 맞는 데이터가 없습니다.'); 
       return fetchedData; // 있을때
     } catch(error) {
-      console.warn(error); //알수없는 에러 
+      console.warn(error); 
       return; 
     }
   }
 
   save(value) {
     this.historyQueue = this.historyQueue.concat(value);
-  }
+  } 
 }
 
 export default SearchModel;
