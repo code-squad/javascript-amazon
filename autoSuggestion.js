@@ -46,7 +46,11 @@ const applySchema = (data, query) => {
 router.get('/', function(req, res) {
   const { query, maxresult } = req.query;
 
-  const filteredData = getFilteredData(rawAutoSuggestionData, query, maxresult);
+  const filteredData = getFilteredData(
+    rawAutoSuggestionData,
+    query.toLowerCase(),
+    maxresult
+  );
   const result = applySchema(filteredData, query);
 
   res.header('Content-Type', 'application/json');
