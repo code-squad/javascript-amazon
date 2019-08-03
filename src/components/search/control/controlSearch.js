@@ -50,9 +50,9 @@ export default class ControlSearch {
   async showAutocomplete(inputVal) {
     let matchedWords = [];
     try {
-      matchedWords = await this.getMatchedWords(inputVal)
+      matchedWords = await this.getMatchedWords(inputVal);
     } catch(err) {
-      console.log(`${err.name}: ${NO_WORDS}`)
+      console.log(`${err.name}: ${NO_WORDS}`);
     }
     if(!matchedWords) return;
     this.mainView.renderAutocomList(matchedWords, inputVal);

@@ -1,25 +1,15 @@
-import config from './src/components/carousel/helper/config.js';
-import template from './src/components/carousel/helper/template.js';
-import RenderTemplate from './src/components/carousel/renderTemplate.js';
-import Carousel from './src/components/carousel/carousel.js'
+const express = require('express');
+const path = require('path');
+const router = require('./routes/index.js');
 
-const headerViewer = new RenderTemplate(config.header, template.getHeaderTemplate);
-const mainViewer = new RenderTemplate(config.container, template.getMainTempalte);
+const app = express();
 
-const getCarouselData = async () => 
-  await fetch('./public/json/localData.json').then(data => data.json());
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "src")));
+app.use('/', router)
 
-window.addEventListener('DOMContentLoaded', () => {
-  const localData = getCarouselData();
 
-  localData
-    .then(json => {
-      headerViewer.rendering(json.header);
-      mainViewer.rendering(json.main);
-      return json;
-    })
-    .then( () => {
-      const carousel = new Carousel(config);
-      carousel.init();
-    });
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`listening on port ${port}`)
 });

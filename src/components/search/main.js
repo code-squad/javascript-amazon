@@ -17,9 +17,9 @@ const searchModel = new SearchModel(LIMITED_NUM),
       mainView = new MainView({ autocompleteView, recentSearchView, inputBox, searchBar }),
       controlSearch = new ControlSearch({ mainView, searchModel, searchIcon, DELAYED_TIME });
 
-
-window.addEventListener('DOMContentLoaded', () => {
+const executeSearch = () => {
   controlSearch.eventHandler();
-})
+}
 
+export default executeSearch;
 

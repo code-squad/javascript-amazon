@@ -11,7 +11,9 @@ class RenderTemplate {
   rendering(dataArr) {
     dataArr
     .map(data => this.makeTemplate(data))
-    .forEach(template => this.parentElement.insertAdjacentHTML('beforeend', template));
+    .forEach(template => {
+      this.parentElement.insertAdjacentHTML('beforeend', template)
+    });
   }
 }
 
