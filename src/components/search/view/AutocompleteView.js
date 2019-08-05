@@ -25,7 +25,7 @@ export default class AutocompleteView {
     const autocomList = this.attachAutocomList(words, inputVal);
     ut.appendHTMLAtLast(this.autocomplete, autocomList);
   }
-
+  
   attachAutocomList(words, inputVal) {
     return words.reduce((acc, cur, idx) => {
       if(idx > this.limitedNum-1) return acc;

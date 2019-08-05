@@ -1,6 +1,6 @@
 import * as ut from '../../../lib/myUtil/myUtil.js';
 import { AUTOCOM_DATA_URL } from '../helper/config.js';
-import { NO_WORDS, NOT_FOUND, UNEXPECTED_ERROR } from '../helper/message.js'
+import { NOT_FOUND, UNEXPECTED_ERROR } from '../helper/message.js'
 
 
 export default class ControlSearch {
@@ -49,32 +49,34 @@ export default class ControlSearch {
   // autocomplete - 자동완성 화면에 출력
   async showAutocomplete(inputVal) {
     let matchedWords = [];
-    try {
-      matchedWords = await this.getMatchedWords(inputVal);
-    } catch(err) {
-      console.log(`${err.name}: ${NO_WORDS}`);
-    }
+    matchedWords = await this.getMatchedWords(inputVal);
     if(!matchedWords) return;
     this.mainView.renderAutocomList(matchedWords, inputVal);
   }
     
     // model - search model과 의존(x)
     async getMatchedWords(inputVal) {
-      const autocomUrl = AUTOCOM_DATA_URL+inputVal;
+      const autocomUrl = AUTOCOM_DATA_URL+inputVal[0];
       const suggestions = await fetch(autocomUrl)
         .then( res => {
           const properResponse = res.status === 200 || res.status === 201;
           if(properResponse) return res.json();
-          else Promise.reject(res.status);
+          else return Promise.reject(res.status);
         })
         .then( json => json.body.suggestions)
-        .catch( reason => {
-          reason === 400
-            ? console.log(`${reason}: ${NOT_FOUND}`)
+        .catch( ({ name }) => {
+          name === 'TypeError'
+            ? console.log(`${name}: ${NOT_FOUND}`)
             : console.log(`${UNEXPECTED_ERROR}`);
         });
+      if(!suggestions) return;
+      return suggestions
+        .map( ({ value }) => value )
+        .filter( value => this.isMatched({ suggestion: value, input: inputVal }));
+  }
 
-      return suggestions.map( suggestion => suggestion.value);
+  isMatched({ suggestion, input }) {
+    return suggestion.includes(input);
   }
   
   // autocomplete - 자동완성 화면에서 제거
