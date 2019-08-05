@@ -4,6 +4,7 @@
   "description": "레벨3",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "scss": "node-sass --watch src/components/carousel/style/scss --output src/components/carousel/style/css",
     "promise": "node ./mypromise/mypromise.js"
   },
