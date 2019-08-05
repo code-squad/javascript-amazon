@@ -1,4 +1,3 @@
-
   export const DELAYED_TIME = 1200;
   export const LIMITED_NUM =  5;
   export const AUTOCOM_DATA_URL = 'https://ssangq-amazon.herokuapp.com/api?query=';

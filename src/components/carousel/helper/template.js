@@ -1,12 +1,12 @@
-export const getHeaderTemplate = (header) => {
+export const getHeaderTemplate = header => {
   return `
     <li class="carousel__header--item" data-id=${header.id}>
       <p>${header.title}</p>
     </li>
   `
-}
+};
 
-export const getMainTempalte = (main) => {
+export const getMainTemplate = main => {
   return `
     <div class="carousel__item">
       <div class="carousel__item--image">
@@ -20,4 +20,4 @@ export const getMainTempalte = (main) => {
       </div>
     </div>
   `
-}
+};

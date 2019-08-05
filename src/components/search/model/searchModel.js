@@ -14,7 +14,6 @@ export default class searchModel {
     return this.recentSearches;
   }
 
-  // 값을 리턴하고 배열을 변경해주는 걸로 (순수함수)
   manageRecentSearches() {
     this.recentSearches.length = this.limitedNum;
   }
