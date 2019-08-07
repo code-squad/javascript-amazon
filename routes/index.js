@@ -5,12 +5,11 @@ var path = require("path");
 var router = express.Router();
 
 /* GET home page. */
-router.get("/", function(req, res, next) {
-  // res.render('index', { title: 'Express' });
+router.get("/", (req, res, next) => {
   res.render("/index.html");
 });
 
-router.get("/amazon_autocomplete", function(req, res, next) {
+router.get("/amazon_autocomplete", (req, res, next) => {
   const searchKeyword = req.query.suggestion;
   const jsonPath = path.join(
     __dirname,
