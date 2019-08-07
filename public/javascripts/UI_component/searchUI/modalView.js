@@ -1,4 +1,4 @@
-import { $ } from "../../javascripts/Utills/mylibrary.js";
+import { $ } from "../../Utills/mylibrary.js";
 
 class ModalView {
   constructor(inputTag) {

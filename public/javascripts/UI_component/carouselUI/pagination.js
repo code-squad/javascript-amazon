@@ -1,5 +1,5 @@
 "use strict";
-import { $ } from "../../javascripts/Utills/mylibrary.js";
+import { $ } from "../../Utills/mylibrary.js";
 
 class Pagination {
   constructor(inputTag) {
