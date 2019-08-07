@@ -1,0 +1,199 @@
+{
+  "statusCode": 200,
+  "body": {
+    "alias": "aps",
+    "prefix": "java",
+    "suffix": null,
+    "suggestions": [
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java moss",
+        "refTag": "nb_sb_ss_c_1_4",
+        "scopes": [
+          {
+            "type": "ALIAS",
+            "value": "pets",
+            "display": "Pet Supplies"
+          }
+        ],
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript",
+        "refTag": "nb_sb_ss_i_2_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java gel stain",
+        "refTag": "nb_sb_ss_i_3_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java",
+        "refTag": "nb_sb_ss_i_4_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java monster",
+        "refTag": "nb_sb_ss_i_5_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java fern",
+        "refTag": "nb_sb_ss_i_6_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript and jquery",
+        "refTag": "nb_sb_ss_i_7_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java for dummies",
+        "refTag": "nb_sb_ss_i_8_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javapresse",
+        "refTag": "nb_sb_ss_i_9_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java gel stain general finishes",
+        "refTag": "nb_sb_ss_i_10_4",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      }
+    ],
+    "responseId": "27HVTFWNUYNRA",
+    "shuffled": false
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "statusCode": 200,
+  "body": {
+    "alias": "aps",
+    "prefix": "jav",
+    "suffix": null,
+    "suggestions": [
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java moss",
+        "refTag": "nb_sb_ss_c_1_3",
+        "scopes": [
+          {
+            "type": "ALIAS",
+            "value": "pets",
+            "display": "Pet Supplies"
+          }
+        ],
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript",
+        "refTag": "nb_sb_ss_i_2_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java gel stain",
+        "refTag": "nb_sb_ss_i_3_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java",
+        "refTag": "nb_sb_ss_i_4_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javita coffee burn and control",
+        "refTag": "nb_sb_ss_i_5_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java monster",
+        "refTag": "nb_sb_ss_i_6_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java fern",
+        "refTag": "nb_sb_ss_i_7_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript and jquery",
+        "refTag": "nb_sb_ss_i_8_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javelin instant read thermometer",
+        "refTag": "nb_sb_ss_i_9_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "java for dummies",
+        "refTag": "nb_sb_ss_i_10_3",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      }
+    ],
+    "responseId": "3NFGP5MWHPKZX",
+    "shuffled": false
+  }
+}

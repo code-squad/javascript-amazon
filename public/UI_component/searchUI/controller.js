@@ -83,7 +83,8 @@ class Controller {
 
     const mapFunc = {
       entering: inputStr => {
-        const baseUrl = `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query=`;
+        // const baseUrl = `https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete?query=`;
+        const baseUrl = `http://localhost:3000/amazon_autocomplete?suggestion=`;
         this.recentSearchView.hideModalWindow();
         this.requestJsonData(`${baseUrl}${inputStr}`);
       },

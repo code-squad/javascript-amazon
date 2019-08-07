@@ -1,0 +1,206 @@
+{
+  "statusCode": 200,
+  "body": {
+    "alias": "aps",
+    "prefix": "javascrip",
+    "suffix": null,
+    "suggestions": [
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript",
+        "refTag": "nb_sb_ss_c_1_9",
+        "scopes": [
+          {
+            "type": "ALIAS",
+            "value": "stripbooks",
+            "display": "Books"
+          }
+        ],
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript",
+        "refTag": "nb_sb_ss_c_2_9",
+        "scopes": [
+          {
+            "type": "ALIAS",
+            "value": "digital-text",
+            "display": "Kindle Store"
+          }
+        ],
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript and jquery",
+        "refTag": "nb_sb_ss_i_3_9",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript the good parts",
+        "refTag": "nb_sb_ss_i_4_9",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript for dummies 2018",
+        "refTag": "nb_sb_ss_i_5_9",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript for kids",
+        "refTag": "nb_sb_ss_i_6_9",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript and jquery interactive front-end web development",
+        "refTag": "nb_sb_ss_i_7_9",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript ninja",
+        "refTag": "nb_sb_ss_i_8_9",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript patterns",
+        "refTag": "nb_sb_ss_i_9_9",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "javascript the definitive guide",
+        "refTag": "nb_sb_ss_i_10_9",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      }
+    ],
+    "responseId": "1WPB0P0IYCZCO",
+    "shuffled": false
+  }
+}
