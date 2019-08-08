@@ -15,7 +15,7 @@ class Controller {
       completing: "completing"
     };
     this.config = {
-      baseUrl: `http://localhost:3000/amazon_autocomplete?suggestion=`
+      baseUrl: `https://michelle-amazon.herokuapp.com/autocomplete?suggestion=`
     };
   }
 
