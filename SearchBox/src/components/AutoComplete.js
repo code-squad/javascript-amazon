@@ -1,8 +1,8 @@
 import autoCompleteResult from "../templates/auto-complete-result.js";
+// import autoCompleteModel from "../../autoCompleteModel.js";
 
 class AutoComplete {
-  constructor(keyword) {
-    this.keyword = keyword.toLowerCase().trim();
+  constructor(broker) {
     this.items = [
       "iphone 8 plus",
       "iphone xs display",
@@ -16,23 +16,30 @@ class AutoComplete {
       "imac pro",
       "ipods"
     ];
-    this.render();
+    const ul = document.querySelector("#autoComplete");
+    broker.subscribe(ul, "keyword", e => {
+      this.render({
+        keyword: e.detail.toLowerCase().trim()
+      });
+    });
   }
 
-  render() {
+  render({ keyword }) {
     const ul = document.querySelector("#autoComplete");
-    const liAll = this.items
+    ul.innerHTML = "";
+    const liAll = this.makeLiAll(keyword);
+    ul.insertAdjacentHTML("afterbegin", liAll);
+  }
+
+  makeLiAll(keyword) {
+    return this.items
       .map(item => item.toLowerCase())
       .reduce((acc, item) => {
-        if (item.includes(this.keyword)) {
-          acc += autoCompleteResult({
-            item,
-            keyword: this.keyword
-          });
+        if (item.includes(keyword)) {
+          acc += autoCompleteResult({ item, keyword });
         }
         return acc;
       }, "");
-    ul.insertAdjacentHTML("afterbegin", liAll);
   }
 }
 

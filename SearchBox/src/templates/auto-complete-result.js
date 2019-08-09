@@ -1,4 +1,5 @@
 const autoCompleteResult = ({ item, keyword }) => {
+  if (!keyword) return "";
   const title = splitByKeyword(item, keyword);
   return `
     <li>
