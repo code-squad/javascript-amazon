@@ -3,10 +3,18 @@
     <meta charset="UTF-8">
     <meta name="viewport">
     <meta http-equiv="X-UA-Compatible">
-    <link rel="stylesheet" href="src/components/carousel/style/css/style.css">
+    <link type="text/css" rel="stylesheet" href="/style/style.css">
     <title>Amazon UI</title>
 </head>
 <body>
+    <div class='search'>
+        <div class="input__box">
+            <input type="text" class="input__box--search-bar">
+        </div>
+        <div class="search__iconbox">
+            <i class="icon"></i>
+        </div>
+    </div>
     <div class="carousel">
         <ul class="carousel__header">
         </ul>
@@ -14,10 +22,10 @@
             <div class="carousel__container">  
             </div>
         </div>
-        <div class='carousel__buttons'>
+        <div class="carousel__buttons">
             <button class="arrow next" data-name="next"></button>
             <button class="arrow prev" data-name="prev"></button>
         </div>
     </div>
-    <script type ='module' src='app.js'></script>
+    <script type ="module" src="/components/index.js"></script>
 </body>

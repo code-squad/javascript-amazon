@@ -1,6 +1,6 @@
-import ut from '../../../lib/myUtil/myUtil.js';
+import * as ut from '../../../lib/myUtil/myUtil.js';
 import template from './template/Template.js';
-import config from '../helper/config.js';
+import { CLASS_AUTOCOMPLETE, CLASS_AUTOVIEW_LIST } from '../helper/config.js';
 
 export default class AutocompleteView {
   constructor(limitedNum) {
@@ -11,30 +11,27 @@ export default class AutocompleteView {
   }
 
   initRender(autoViewContainer) {
-    const { autocomplete } = config.class;
     this.autoViewContainer = autoViewContainer;
-    this.attachAutocomContainer(autocomplete);
-    this.autocomplete = ut.qrSelectorByClass(autocomplete, this.autoViewContainer);
+    this.attachAutocomContainer(CLASS_AUTOCOMPLETE);
+    this.autocomplete = ut.qsByClass(CLASS_AUTOCOMPLETE, this.autoViewContainer);
   }
 
   attachAutocomContainer(className) {
     const autocomplete = template.createAutoView(className);
-    ut.appendAtLast(this.autoViewContainer, autocomplete);
+    ut.appendHTMLAtLast(this.autoViewContainer, autocomplete);
   }
 
   render(words, inputVal) {
     const autocomList = this.attachAutocomList(words, inputVal);
-    ut.appendAtLast(this.autocomplete, autocomList);
+    ut.appendHTMLAtLast(this.autocomplete, autocomList);
   }
-
+  
   attachAutocomList(words, inputVal) {
-    words = words.sort();
     return words.reduce((acc, cur, idx) => {
       if(idx > this.limitedNum-1) return acc;
       this.dataName = cur;
       const boldText = this.emphasizeLetters(cur, inputVal),
-      autoViewList = config.class.autoViewList;
-      const accumulatedTemplate = acc+template.createAutoViewItem(boldText, this.dataName, autoViewList);
+            accumulatedTemplate = acc+template.createAutoViewItem(boldText, this.dataName, CLASS_AUTOVIEW_LIST);
       return accumulatedTemplate;
     }, '');
   }

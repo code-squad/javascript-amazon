@@ -1,10 +1,17 @@
-export default {
-  appendAtLast(parent, literalTemplate) {
+export const appendHTMLAtLast = (parent, literalTemplate) => {
     parent.insertAdjacentHTML('beforeend', literalTemplate)
-  },
+};
 
-  qrSelectorByClass(className, parent) {
+export const qsByClass = (className, parent) => {
     const elem = parent || document
     return elem.querySelector(`.${className}`);
-  },
+};
+
+export const debounce = (func, delay) => {
+  let timeoutID;
+
+  return (arg) => {
+    clearTimeout(timeoutID);
+    timeoutID = setTimeout(() => func(arg), delay);
+  }
 }

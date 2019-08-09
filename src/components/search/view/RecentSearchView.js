@@ -1,6 +1,6 @@
-import ut from '../../../lib/myUtil/myUtil.js'
+import * as ut from '../../../lib/myUtil/myUtil.js'
 import template from './template/Template.js';
-import config from '../helper/config.js';
+import { CLASS_RECENT_SEARCH,  CLASS_AUTOVIEW_LIST } from '../helper/config.js';
 
 export default class recentSearchView {
   constructor() {
@@ -10,28 +10,26 @@ export default class recentSearchView {
 
   initRender(autoViewContainer) {
     this.autoViewContainer = autoViewContainer;
-    const { recentSearch } = config.class;
-    this.attachAutocomContainer(recentSearch);
-    this.recentSearch = ut.qrSelectorByClass(recentSearch, this.autoViewContainer);
+    this.attachAutocomContainer(CLASS_RECENT_SEARCH);
+    this.recentSearch = ut.qsByClass(CLASS_RECENT_SEARCH, this.autoViewContainer);
   }
   
   attachAutocomContainer(className) {
     const recentSearch = template.createAutoView(className);
-    ut.appendAtLast(this.autoViewContainer, recentSearch);
+    ut.appendHTMLAtLast(this.autoViewContainer, recentSearch);
   }
 
   render(recentSearches) {
-    const { autoViewList } = config.class;
     const recentSearchesTpl = recentSearches.reduce((acc, cur) => {
-      return acc+template.createAutoViewItem(cur, cur, autoViewList);
+      return acc+template.createAutoViewItem(cur, cur, CLASS_AUTOVIEW_LIST);
     },"")
-    ut.appendAtLast(this.recentSearch, recentSearchesTpl);
+    ut.appendHTMLAtLast(this.recentSearch, recentSearchesTpl);
   }
   
   recentSearchViewer(action) {
-    const recentSearhcCL = this.recentSearch.classList;
-    if(action === 'hide') recentSearhcCL.add('hide');
-    else recentSearhcCL.remove('hide');
+    const recentSearchCL = this.recentSearch.classList;
+    if(action === 'hide') recentSearchCL.add('hide');
+    else recentSearchCL.remove('hide');
   }
 
   showAutoView() {

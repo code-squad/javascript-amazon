@@ -1,34 +1,13 @@
 export default class searchModel {
   constructor(limitedNum) {
     this.recentSearches = [];
-    this.autocomData = [
-      'diplomatic',
-      'opposition',
-      'parameter',
-      'understanding',
-      'favorable',
-      'beautiful',
-      'multimedia',
-      'publication',
-      'timetable',
-      'identity',
-      'demonstrator',
-      'manufacture',
-      'minority',
-      'constellation',
-      'legislation',
-      'community',
-      'recovery',
-      'astonishing',
-      'miserable',
-      'motorcycle',
-    ];
-    this.limitedNum = limitedNum
+    this.limitedNum = limitedNum;
   }
 
   setRecentSearches(searchedVal) {
+    // TODO: 로직 함수 구현
     this.recentSearches = [...new Set([searchedVal, ...this.recentSearches])];
-    if(this.recentSearches.length > this.limitedNum) this.manageRecentSearches(this.limitedNum);
+    if(this.recentSearches.length > this.limitedNum) this.manageRecentSearches();
   }
 
   getRecentSearches() {

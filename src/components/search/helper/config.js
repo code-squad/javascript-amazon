@@ -1,32 +1,8 @@
-export default {
-  delayedTime: 300,
-  limitedNum: 5,
-  class: {
-    autoView: 'search__auto-view',
-    recentSearch: 'search__recent-search',
-    autocomplete: 'search__autocomplete',
-    autoViewList: 'search__auto-view--item',
-  },
-  autocompleteData: [
-    'diplomatic',
-    'opposition',
-    'parameter',
-    'understanding',
-    'favorable',
-    'beautiful',
-    'multimedia',
-    'publication',
-    'timetable',
-    'identity',
-    'demonstrator',
-    'manufacture',
-    'minority',
-    'constellation',
-    'legislation',
-    'community',
-    'recovery',
-    'astonishing',
-    'miserable',
-    'motorcycle',
-  ]
-}
+  export const DELAYED_TIME = 1200;
+  export const LIMITED_NUM =  5;
+  export const AUTOCOM_DATA_URL = 'https://ssangq-amazon.herokuapp.com/api?query=';
+  export const CLASS_AUTOVIEW = 'search__auto-view';
+  export const CLASS_RECENT_SEARCH = 'search__recent-search';
+  export const CLASS_AUTOCOMPLETE = 'search__autocomplete';
+  export const CLASS_AUTOVIEW_LIST = 'search__auto-view--item';
+  
