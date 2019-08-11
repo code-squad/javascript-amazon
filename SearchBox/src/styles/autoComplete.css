@@ -1,0 +1,59 @@
+@import url("./reset.css");
+.search-box {
+  width: 30rem;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.search-box__category-select {
+  background-color: #f3f3f3;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border-radius: 0;
+  border-right: 1px solid #ebebeb;
+  padding: 0.5rem 0.75rem;
+}
+
+.search-box__input-box {
+  background-color: transparent;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+  border: none;
+  min-width: 15rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.search-box__submit-btn {
+  background: #febd69;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-left: 1px solid #ebebeb;
+}
+
+.auto-complete li {
+  word-break: break-word;
+}
+
+.auto-complete li span {
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
+}
+
+.auto-complete li strong {
+  font-weight: bold;
+}
+/*# sourceMappingURL=autoComplete.css.map */

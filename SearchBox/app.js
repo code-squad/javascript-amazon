@@ -1,13 +1,17 @@
-import SearchBox from "./src/components/SearchBox.js";
-import AutoComplete from "./src/components/AutoComplete.js";
-import RecentResult from "./src/components/RecentResult.js";
-import EventBroker from "./eventBroker.js";
-
+import InputFormView from "./src/components/InputFormView.js";
+import AutoCompleteView from "./src/components/AutoCompleteView.js";
+import RecentResultView from "./src/components/RecentResultView.js";
+import EventBroker from "./EventBroker.js";
+import SearchBoxController from "./SearchBoxController.js";
+import AutoCompleteModel from "./src/components/AutoCompleteModel.js";
 class App {
   constructor() {
-    const broker = new EventBroker();
-    new SearchBox(broker);
-    new AutoComplete(broker);
+    new SearchBoxController({
+      broker: new EventBroker(),
+      inputFormView: new InputFormView(),
+      autoCompleteView: new AutoCompleteView(),
+      autoCompleteModel: new AutoCompleteModel()
+    });
   }
 }
 

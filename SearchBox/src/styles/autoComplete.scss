@@ -9,6 +9,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 
   &__category-select {
     background-color: #f3f3f3;
@@ -32,5 +33,17 @@
     border: none;
     padding: calcRem(8px) calcRem(12px);
     border-left: 1px solid #ebebeb;
+  }
+}
+
+.auto-complete {
+  li {
+    word-break: break-word;
+    span {
+      flex: auto;
+    }
+    strong {
+      font-weight: bold;
+    }
   }
 }
