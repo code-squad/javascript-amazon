@@ -1,4 +1,4 @@
-import autoCompleteResult from "../templates/auto-complete-result.js";
+import autoCompleteResult from "../templates/autoCompleteResult.js";
 // import autoCompleteModel from "../../autoCompleteModel.js";
 
 class AutoComplete {
@@ -16,8 +16,9 @@ class AutoComplete {
       "imac pro",
       "ipods"
     ];
-    const ul = document.querySelector("#autoComplete");
-    broker.subscribe(ul, "keyword", e => {
+
+    this.ul = document.querySelector("#autoComplete");
+    broker.subscribe(this.ul, "keyword", e => {
       this.render({
         keyword: e.detail.toLowerCase().trim()
       });
@@ -25,13 +26,12 @@ class AutoComplete {
   }
 
   render({ keyword }) {
-    const ul = document.querySelector("#autoComplete");
-    ul.innerHTML = "";
-    const liAll = this.makeLiAll(keyword);
-    ul.insertAdjacentHTML("afterbegin", liAll);
+    this.ul.innerHTML = "";
+    const liItems = this.splitItemsByKeyword(keyword);
+    this.ul.insertAdjacentHTML("afterbegin", liItems);
   }
 
-  makeLiAll(keyword) {
+  splitItemsByKeyword(keyword) {
     return this.items
       .map(item => item.toLowerCase())
       .reduce((acc, item) => {
