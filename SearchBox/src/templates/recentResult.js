@@ -1,8 +1,10 @@
-const recentResult = item => {
-  const li = document.createElement("li");
-  return (li.innerHTML = `
-    <p>${item.title}</p>
-  `);
+const recentResult = ({ item }) => {
+  return `
+    <li>
+      <span>${item.title}</span>
+      <span>${item.timestamp}</span>
+    </li>
+  `;
 };
 
 export default recentResult;
