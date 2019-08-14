@@ -1,12 +1,24 @@
 class RecentResultModel {
-  constructor() {
-    this.items = [
-      { title: "iphone 8 plus", timestamp: "2019-08-19" },
-      { title: "galaxy note 10", timestamp: "2019-08-20" },
-      { title: "lg monitor", timestamp: "2019-08-22" },
-      { title: "galaxy note 10", timestamp: "2019-08-20" },
-      { title: "lg monitor", timestamp: "2019-08-22" }
-    ];
+  constructor(maxNumber) {
+    this.maxNumber = maxNumber;
+    this.items = [];
+  }
+  init() {
+    //fetch data from server and update previous record of recent search
+  }
+
+  addKeyword({ keyword }) {
+    if (!this.items.includes(keyword)) {
+      this.removeKeywordAuto();
+      this.items.unshift(keyword);
+    }
+    console.log(this.items);
+  }
+
+  removeKeywordAuto() {
+    if (this.items.length === this.maxNumber) {
+      this.items.pop();
+    }
   }
 }
 

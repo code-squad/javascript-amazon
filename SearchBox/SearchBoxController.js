@@ -14,10 +14,13 @@ class SearchBoxController {
     this.autoCompleteView = autoCompleteView;
     this.autoCompleteModel = autoCompleteModel;
 
+    this.currentTargetList = undefined;
+
     this.init();
     this.publishBroker();
     this.subscribeBroker();
   }
+
   init() {
     this.autoCompleteView.items = this.autoCompleteModel.items;
     this.recentResultView.items = this.recentResultModel.items;
@@ -25,35 +28,56 @@ class SearchBoxController {
 
   publishBroker() {
     const eventHandler = new EventHandler(this.broker);
-
     const inputBox = document.querySelector("#inputBox");
+    const submitBtn = document.querySelector("#submitBtn");
 
     inputBox.addEventListener("keyup", eventHandler, false);
     inputBox.addEventListener("focus", eventHandler, false);
+    submitBtn.addEventListener(
+      "click",
+      e => {
+        e.preventDefault();
+        const keyword = document.querySelector("#inputBox").value;
+        this.recentResultModel.addKeyword({ keyword });
+      },
+      false
+    );
   }
 
   subscribeBroker() {
+    const searchResult = document.querySelector("#searchResult");
     const recentResult = document.querySelector("#recentResult");
     const autoComplete = document.querySelector("#autoComplete");
 
     this.broker.subscribe(recentResult, "recent", e => {
-      this.toggleDisplayStyle(e.detail);
       if (e.detail === "") {
+        this.toggleResultView(e.detail);
         this.recentResultView.render();
       }
     });
 
     this.broker.subscribe(autoComplete, "keyword", e => {
-      this.toggleDisplayStyle(e.detail);
-      this.autoCompleteView.render({
-        keyword: e.detail.toLowerCase()
-      });
+      this.toggleResultView(e.detail);
+      this.autoCompleteView.render({ keyword: e.detail.toLowerCase() });
+      if (e.detail === "") this.recentResultView.render();
+    });
+
+    this.broker.subscribe(searchResult, "move", e => {
+      this.inputFormView.setList({ currentTargetList: this.currentTargetList });
+      this.inputFormView.move({ keyCode: e.detail });
+      this.inputFormView.toggleStyleOfTarget();
+      this.inputFormView.updateInputValue();
     });
   }
 
-  toggleDisplayStyle(inputValue) {
-    autoComplete.style.display = inputValue ? "block" : "none";
-    recentResult.style.display = inputValue ? "none" : "block";
+  toggleResultView(inputValue) {
+    this.inputFormView.reset();
+    this.currentTargetList = document.querySelector(
+      `#${inputValue ? "autoComplete" : "recentResult"}`
+    );
+    document.querySelector(
+      `#${inputValue ? "recentResult" : "autoComplete"}`
+    ).innerHTML = "";
   }
 }
 
@@ -66,10 +90,11 @@ class EventHandler {
       case "focus":
         this.broker.publish("recent", event.target.value);
         break;
-
       case "keyup":
-        if (event.keyCode === 38 || event.keyCode === 40) {
-        } else this.broker.publish("keyword", event.target.value);
+        if (event.keyCode === 38 || event.keyCode === 40)
+          this.broker.publish("move", event.keyCode);
+        else if (event.keyCode !== 37 && event.keyCode !== 39)
+          this.broker.publish("keyword", event.target.value);
         break;
     }
   }

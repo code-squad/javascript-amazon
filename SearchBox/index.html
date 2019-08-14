@@ -10,25 +10,25 @@
   <body>
     <div id="main">
       <div class="search-box">
-        <form action="/" method="get">
+        <form>
           <select class="search-box__category-select">
             <option value="All">All</option>
           </select>
           <input
-            id="inputBox"
-            class="search-box__input-box"
             type="text"
             placeholder="Search"
             autocomplete="off"
+            id="inputBox"
+            class="search-box__input-box"
           />
           <input
+            type="button"
+            value="검색"
             id="submitBtn"
             class="search-box__submit-btn"
-            type="button"
-            value="submit"
           />
         </form>
-        <div class="search-box__search-result">
+        <div id="searchResult" class="search-box__search-result">
           <div class="search-box__recent-result recent-result">
             <ul id="recentResult"></ul>
           </div>
