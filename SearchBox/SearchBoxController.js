@@ -33,7 +33,7 @@ class SearchBoxController {
 
     inputBox.addEventListener("keyup", eventHandler, false);
     inputBox.addEventListener("focus", eventHandler, false);
-    submitBtn.addEventListener("click", this.onClick, false);
+    submitBtn.addEventListener("click", this.onClick.bind(this), false);
   }
 
   subscribeBroker() {
