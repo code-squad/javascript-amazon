@@ -9,13 +9,13 @@ class RecentResultModel {
 
   addKeyword({ keyword }) {
     if (!this.items.includes(keyword)) {
-      this.removeKeywordAuto();
+      this.removeKeyword();
       this.items.unshift(keyword);
     }
     console.log(this.items);
   }
 
-  removeKeywordAuto() {
+  removeKeyword() {
     if (this.items.length === this.maxNumber) {
       this.items.pop();
     }

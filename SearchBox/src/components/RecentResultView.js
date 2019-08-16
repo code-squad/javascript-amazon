@@ -6,13 +6,18 @@ class RecentResultView {
   }
 
   render() {
-    const ul = document.querySelector("#recentResult");
-    ul.innerHTML = "";
+    const ul = this.clearView();
     const liItems = this.items.reduce((acc, item) => {
       acc += recentResult({ item });
       return acc;
     }, "");
     ul.insertAdjacentHTML("afterbegin", liItems);
+  }
+
+  clearView() {
+    const ul = document.querySelector("#recentResult");
+    ul.innerHTML = "";
+    return ul;
   }
 }
 

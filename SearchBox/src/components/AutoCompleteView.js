@@ -6,10 +6,15 @@ class AutoCompleteView {
   }
 
   render({ keyword }) {
-    const ul = document.querySelector("#autoComplete");
-    ul.innerHTML = "";
+    const ul = this.clearView();
     const liItems = this.splitItemsByKeyword(keyword);
     ul.insertAdjacentHTML("afterbegin", liItems);
+  }
+
+  clearView() {
+    const ul = document.querySelector("#autoComplete");
+    ul.innerHTML = "";
+    return ul;
   }
 
   splitItemsByKeyword(keyword) {

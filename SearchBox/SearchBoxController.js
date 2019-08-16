@@ -33,15 +33,7 @@ class SearchBoxController {
 
     inputBox.addEventListener("keyup", eventHandler, false);
     inputBox.addEventListener("focus", eventHandler, false);
-    submitBtn.addEventListener(
-      "click",
-      e => {
-        e.preventDefault();
-        const keyword = document.querySelector("#inputBox").value;
-        this.recentResultModel.addKeyword({ keyword });
-      },
-      false
-    );
+    submitBtn.addEventListener("click", this.onClick, false);
   }
 
   subscribeBroker() {
@@ -58,12 +50,16 @@ class SearchBoxController {
 
     this.broker.subscribe(autoComplete, "keyword", e => {
       this.toggleResultView(e.detail);
-      this.autoCompleteView.render({ keyword: e.detail.toLowerCase() });
-      if (e.detail === "") this.recentResultView.render();
+      setTimeout(() => {
+        this.autoCompleteView.render({ keyword: e.detail.toLowerCase() });
+        if (e.detail === "") this.recentResultView.render();
+      }, 300);
     });
 
     this.broker.subscribe(searchResult, "move", e => {
-      this.inputFormView.setList({ currentTargetList: this.currentTargetList });
+      this.inputFormView.setTargetList({
+        currentTargetList: this.currentTargetList
+      });
       this.inputFormView.move({ keyCode: e.detail });
       this.inputFormView.toggleStyleOfTarget();
       this.inputFormView.updateInputValue();
@@ -75,9 +71,15 @@ class SearchBoxController {
     this.currentTargetList = document.querySelector(
       `#${inputValue ? "autoComplete" : "recentResult"}`
     );
-    document.querySelector(
-      `#${inputValue ? "recentResult" : "autoComplete"}`
-    ).innerHTML = "";
+    (inputValue ? this.recentResultView : this.autoCompleteView).clearView();
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    const keyword = document.querySelector("#inputBox").value;
+    this.recentResultModel.addKeyword({ keyword });
+    this.recentResultView.clearView();
+    this.autoCompleteView.clearView();
   }
 }
 

@@ -12,7 +12,7 @@ class InputFormView {
     this.initialValue = document.querySelector("#inputBox").value;
   }
 
-  setList({ currentTargetList }) {
+  setTargetList({ currentTargetList }) {
     this.items = currentTargetList.querySelectorAll("li");
   }
 
