@@ -5,6 +5,9 @@ class RecentResultView {
     this.items = [];
   }
 
+  updateItems(items) {
+    this.items = [...items];
+  }
   render() {
     const ul = this.clearView();
     const liItems = this.items.reduce((acc, item) => {

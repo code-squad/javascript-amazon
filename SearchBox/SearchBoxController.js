@@ -8,6 +8,7 @@ class SearchBoxController {
     autoCompleteModel
   }) {
     this.broker = broker;
+    this.timer;
     this.inputFormView = inputFormView;
     this.recentResultView = recentResultView;
     this.recentResultModel = recentResultModel;
@@ -22,16 +23,15 @@ class SearchBoxController {
   }
 
   init() {
-    this.recentResultView.items = this.recentResultModel.items;
+    this.recentResultView.updateItems(this.recentResultModel.getItems());
   }
 
   publishBroker() {
-    const eventHandler = new EventHandler(this.broker);
     const inputBox = document.querySelector("#inputBox");
     const submitBtn = document.querySelector("#submitBtn");
 
-    inputBox.addEventListener("keyup", eventHandler, false);
-    inputBox.addEventListener("focus", eventHandler, false);
+    inputBox.addEventListener("keyup", this.handleEvent.bind(this), false);
+    inputBox.addEventListener("focus", this.handleEvent.bind(this), false);
     submitBtn.addEventListener("click", this.onClick.bind(this), false);
   }
 
@@ -69,29 +69,6 @@ class SearchBoxController {
     });
   }
 
-  toggleResultView(inputValue) {
-    this.inputFormView.reset();
-    this.currentTargetList = document.querySelector(
-      `#${inputValue ? "autoComplete" : "recentResult"}`
-    );
-    (inputValue ? this.recentResultView : this.autoCompleteView).clearView();
-  }
-
-  onClick(e) {
-    e.preventDefault();
-    const keyword = document.querySelector("#inputBox").value;
-    this.recentResultModel.addKeyword({ keyword });
-    this.recentResultView.clearView();
-    this.autoCompleteView.clearView();
-  }
-}
-
-class EventHandler {
-  constructor(broker) {
-    this.broker = broker;
-    this.timer = undefined;
-  }
-
   handleEvent(event) {
     switch (event.type) {
       case "focus":
@@ -112,6 +89,22 @@ class EventHandler {
   debouncer({ callback }) {
     if (this.timer) clearTimeout(this.timer);
     this.timer = setTimeout(callback, 1200);
+  }
+
+  toggleResultView(inputValue) {
+    this.inputFormView.reset();
+    this.currentTargetList = document.querySelector(
+      `#${inputValue ? "autoComplete" : "recentResult"}`
+    );
+    (inputValue ? this.recentResultView : this.autoCompleteView).clearView();
+  }
+
+  onClick(e) {
+    e.preventDefault();
+    const keyword = document.querySelector("#inputBox").value;
+    this.recentResultModel.addKeyword({ keyword });
+    this.recentResultView.clearView();
+    this.autoCompleteView.clearView();
   }
 }
 

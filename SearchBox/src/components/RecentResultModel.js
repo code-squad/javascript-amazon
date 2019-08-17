@@ -7,6 +7,10 @@ class RecentResultModel {
     //fetch data from server and update previous record of recent search
   }
 
+  getItems() {
+    return [...this.items];
+  }
+
   addKeyword({ keyword }) {
     if (!this.items.includes(keyword)) {
       this.removeKeyword();
