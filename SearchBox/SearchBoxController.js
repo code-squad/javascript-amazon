@@ -22,7 +22,6 @@ class SearchBoxController {
   }
 
   init() {
-    this.autoCompleteView.items = this.autoCompleteModel.items;
     this.recentResultView.items = this.recentResultModel.items;
   }
 
@@ -48,12 +47,16 @@ class SearchBoxController {
       }
     });
 
-    this.broker.subscribe(autoComplete, "keyword", e => {
+    this.broker.subscribe(autoComplete, "keyword", async e => {
       this.toggleResultView(e.detail);
-      setTimeout(() => {
-        this.autoCompleteView.render({ keyword: e.detail.toLowerCase() });
-        if (e.detail === "") this.recentResultView.render();
-      }, 300);
+      const keyword = e.detail.toLowerCase();
+      const results = await this.autoCompleteModel.getData({ keyword });
+      this.autoCompleteView.items = this.autoCompleteModel.extractValue({
+        results
+      });
+
+      this.autoCompleteView.render({ keyword });
+      if (e.detail === "") this.recentResultView.render();
     });
 
     this.broker.subscribe(searchResult, "move", e => {
@@ -86,7 +89,9 @@ class SearchBoxController {
 class EventHandler {
   constructor(broker) {
     this.broker = broker;
+    this.timer = undefined;
   }
+
   handleEvent(event) {
     switch (event.type) {
       case "focus":
@@ -96,9 +101,17 @@ class EventHandler {
         if (event.keyCode === 38 || event.keyCode === 40)
           this.broker.publish("move", event.keyCode);
         else if (event.keyCode !== 37 && event.keyCode !== 39)
-          this.broker.publish("keyword", event.target.value);
-        break;
+          this.debouncer({
+            callback: () => {
+              this.broker.publish("keyword", event.target.value);
+            }
+          });
     }
+  }
+
+  debouncer({ callback }) {
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = setTimeout(callback, 1200);
   }
 }
 

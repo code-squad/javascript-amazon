@@ -1,18 +1,29 @@
 class AutoCompleteModel {
   constructor() {
-    this.items = [
-      "iphone 8 plus",
-      "iphone xs display",
-      "iphone xs max battery",
-      "LG monitor 24inch",
-      "Galaxy note 10 plus",
-      "Galaxy fold beta",
-      "Galaxy 10",
-      "ipad pro 3",
-      "air pods 2",
-      "imac pro",
-      "ipods"
-    ];
+    this.URL =
+      "https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/amazon_autocomplete";
+  }
+  async getData({ keyword }) {
+    try {
+      console.log(keyword);
+      const { statusCode, body } = await fetch(
+        `${this.URL}?query=${keyword}`
+      ).then(data => data.json());
+      switch (statusCode) {
+        case 200:
+          return body.suggestions;
+
+        case 404:
+          throw new Error("검색 결과가 없습니다.");
+      }
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
+
+  extractValue({ results }) {
+    return results.map(result => result.value);
   }
 }
 
