@@ -29,9 +29,9 @@ class RecentSearchView extends ModalView {
   makeModalContent() {
     this.removeChildAll();
     this.makeliTemplate();
-    this.showModalWindow();
     this.setAttribute();
     this.initHighlight();
+    this.showModalWindow();
   }
 
   saveRecentKeyword(inputValue) {

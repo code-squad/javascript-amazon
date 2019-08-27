@@ -66,7 +66,6 @@ class ModalView {
         target = el;
       }
     });
-
     let targetText = target.innerHTML;
     this.notify(targetText);
   }
@@ -104,17 +103,20 @@ class ModalView {
     return this.currentHighlightIndex === lastIndex;
   }
 
-  execArrowUp() {
+  execArrowUp(reset = false, lastIndex) {
     this.removeHighlight();
-    this.currentHighlightIndex += this.config.upDirection;
+
+    if (reset) this.currentHighlightIndex = lastIndex;
+    else this.currentHighlightIndex += this.config.upDirection;
 
     if (this.highlightIndexisFirst()) this.initHighlightIndex();
     else this.addHighlight();
   }
 
-  execArrowDown() {
+  execArrowDown(reset = false) {
     this.removeHighlight();
-    this.currentHighlightIndex += this.config.downDirection;
+    if (reset) this.currentHighlightIndex = 0;
+    else this.currentHighlightIndex += this.config.downDirection;
     this.addHighlight();
   }
 
@@ -128,12 +130,14 @@ class ModalView {
 
     if (this.highlightIndexisFirst()) {
       this.currentHighlightIndex += this.config.downDirection;
+      if (keyCode === "ArrowUp") this.execArrowUp(true, lastIndex);
       if (keyCode === "ArrowDown") this.addHighlight();
     } else if (this.highlightIndexisLast(lastIndex)) {
       if (keyCode === "ArrowUp") this.execArrowUp();
+      if (keyCode === "ArrowDown") this.execArrowDown(true);
     } else {
-      if (keyCode === "ArrowDown") this.execArrowDown();
-      else if (keyCode === "ArrowUp") this.execArrowUp();
+      if (keyCode === "ArrowUp") this.execArrowUp();
+      else if (keyCode === "ArrowDown") this.execArrowDown();
     }
   }
 }

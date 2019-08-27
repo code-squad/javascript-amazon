@@ -35,7 +35,8 @@ class SearchView {
       }
 
       this.timer = setTimeout(() => {
-        const target = e.srcElement;
+        const target = e.target;
+
         if (target.value === "") this.notify(this.modeType.pending);
         else this.notify(this.modeType.entering, target.value);
       }, this.duration);

@@ -1,7 +1,6 @@
 class Controller {
   constructor({ searchView, autoCompleteView, recentSearchView }) {
     this.data;
-    this.filterdData = [];
     this.searchView = searchView;
     this.autoCompleteView = autoCompleteView;
     this.recentSearchView = recentSearchView;
@@ -15,7 +14,8 @@ class Controller {
       completing: "completing"
     };
     this.config = {
-      baseUrl: `https://michelle-amazon.herokuapp.com/autocomplete?suggestion=`
+      // baseUrl: `https://michelle-amazon.herokuapp.com/autocomplete?suggestion=`
+      baseUrl: "http://localhost:3000/autocomplete?suggestion="
     };
   }
 
