@@ -1,8 +1,8 @@
-var express = require("express");
-var fs = require("fs");
-var path = require("path");
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
 
-var router = express.Router();
+const router = express.Router();
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
