@@ -1,0 +1,199 @@
+{
+  "statusCode": 200,
+  "body": {
+    "alias": "aps",
+    "prefix": "bicycle",
+    "suffix": null,
+    "suggestions": [
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle pump",
+        "refTag": "nb_sb_ss_c_1_7",
+        "scopes": [
+          {
+            "type": "ALIAS",
+            "value": "outdoor-recreation",
+            "display": "Outdoor Recreation"
+          }
+        ],
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle light",
+        "refTag": "nb_sb_ss_i_2_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle lock",
+        "refTag": "nb_sb_ss_i_3_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle accessories",
+        "refTag": "nb_sb_ss_i_4_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle helmet",
+        "refTag": "nb_sb_ss_i_5_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle bell",
+        "refTag": "nb_sb_ss_i_6_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle phone mount",
+        "refTag": "nb_sb_ss_i_7_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle basket",
+        "refTag": "nb_sb_ss_i_8_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle seat",
+        "refTag": "nb_sb_ss_i_9_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "bicycle cards",
+        "refTag": "nb_sb_ss_i_10_7",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      }
+    ],
+    "responseId": "PT8KYWAIEO4F",
+    "shuffled": false
+  }
+}

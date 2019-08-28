@@ -1,0 +1,199 @@
+{
+  "statusCode": 200,
+  "body": {
+    "alias": "aps",
+    "prefix": "j",
+    "suffix": null,
+    "suggestions": [
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "jansport backpack",
+        "refTag": "nb_sb_ss_c_1_1",
+        "scopes": [
+          {
+            "type": "ALIAS",
+            "value": "fashion-luggage",
+            "display": "Luggage & Travel Gear"
+          }
+        ],
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "jojoba oil",
+        "refTag": "nb_sb_ss_i_2_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "jump rope",
+        "refTag": "nb_sb_ss_i_3_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "jewelry organizer",
+        "refTag": "nb_sb_ss_i_4_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "jade roller",
+        "refTag": "nb_sb_ss_i_5_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "juul charger",
+        "refTag": "nb_sb_ss_i_6_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "jewelry cleaner",
+        "refTag": "nb_sb_ss_i_7_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "jumpsuits for women",
+        "refTag": "nb_sb_ss_i_8_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "journal",
+        "refTag": "nb_sb_ss_i_9_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      },
+      {
+        "suggType": "KeywordSuggestion",
+        "type": "KEYWORD",
+        "value": "juicer",
+        "refTag": "nb_sb_ss_i_10_1",
+        "ghost": false,
+        "help": false,
+        "queryUnderstandingFeatures": [
+          {
+            "source": "QU_TOOL",
+            "annotations": []
+          }
+        ],
+        "spellCorrected": false,
+        "blackListed": false,
+        "xcatOnly": false,
+        "fallback": false
+      }
+    ],
+    "responseId": "16OT7NRD2YNQD",
+    "shuffled": false
+  }
+}
