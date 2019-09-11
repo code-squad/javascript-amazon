@@ -8,5 +8,5 @@ const config = {
   suggestionDelayInMs: 300,
   selectedElementColor: '#f1f2f6',
   maxRecentKeywords: 5
-}
-export default config
+};
+export default config;
