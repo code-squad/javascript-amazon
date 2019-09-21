@@ -1,5 +1,6 @@
-import * as _ from '../../utils/allenibrary.js'
-import Subscriber from '../../utils/subscriber.js'
+/* eslint-disable class-methods-use-this */
+import * as _ from '../../utils/allenibrary.js';
+import Subscriber from '../../utils/subscriber.js';
 
 class SearchBarUI extends Subscriber {
   constructor({ stateManager, config: { inputSelector, buttonSelector } }) {
@@ -15,6 +16,34 @@ class SearchBarUI extends Subscriber {
     this.addKeyupEvent();
     this.addKeydownEvent();
     this.addClickEvent();
+    this.addHoverEvent();
+    this.addMouseOutEvent();
+  }
+
+  addMouseOutEvent() {
+    const funcMap = {
+      suggestions: target => this.handleMouseOut(target),
+      keywords: target => this.handleMouseOut(target)
+    };
+
+    _.delegate(this.inputEl.closest('form'), 'mouseout', 'className', funcMap);
+  }
+
+  handleMouseOut(target) {
+    _.setCssStyle(target, 'all', 'none');
+  }
+
+  addHoverEvent() {
+    const funcMap = {
+      suggestions: target => this.handleHover(target),
+      keywords: target => this.handleHover(target)
+    };
+
+    _.delegate(this.inputEl.closest('form'), 'mouseover', 'className', funcMap);
+  }
+
+  handleHover(target) {
+    _.setCssStyle(target, 'backgroundColor', '#f1f2f6');
   }
 
   addFocusEvent() {
@@ -31,8 +60,10 @@ class SearchBarUI extends Subscriber {
 
   handleKeyup({ target, key }) {
     if (key.length === 1 || key === 'Backspace') {
-      const param = { mode: 'suggestion', currentValue: target.value };
-      _.setDebounce((p) => this.publisher.setState(p), 1200, param);
+      const mode = target.value ? 'suggestion' : 'recentKeywords';
+      const param = { mode, currentInput: target.value };
+
+      _.setDebounce(p => this.publisher.setState(p), 1200, param);
     }
   }
 
@@ -43,35 +74,70 @@ class SearchBarUI extends Subscriber {
   handleKeydown(e) {
     const { target, key } = e;
     const keyMap = {
-      ArrowDown: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'down' }),
-      ArrowUp: () => this.publisher.setState({ mode: 'selection', arrowDirection: 'up' }),
+      ArrowDown: () => {
+        e.preventDefault();
+        this.publisher.setState({ mode: 'selection', arrowDirection: 'down' });
+      },
+      ArrowUp: () => {
+        e.preventDefault();
+        this.publisher.setState({ mode: 'selection', arrowDirection: 'up' });
+      },
       Enter: () => {
         e.preventDefault();
-        if (this.isValidTarget(target)) {
-          this.publisher.setState({ mode: 'waiting', selectedValue: target.textContent, currentValue: target.value });
-        }
+        this.publisher.setState({
+          mode: 'submit',
+          currentInput: target.value
+        });
       }
     };
+
     if (keyMap[key]) keyMap[key]();
   }
 
   isValidTarget(target) {
-    return target.className === 'suggestions' || target.className === 'keywords' || target === this.inputEl;
+    return (
+      target.className === 'suggestions' ||
+      target.className === 'keywords' ||
+      target === this.inputEl
+    );
   }
 
   addClickEvent() {
-    _.on(this.buttonEl, 'click', this.handleClick.bind(this));
+    const funcMap = {
+      keywords: target => this.handleClick(target),
+      suggestions: target => this.handleClick(target),
+      boldedSuggestion: target => this.handleClick(target)
+    };
+
+    _.delegate(this.inputEl.closest('form'), 'click', 'className', funcMap);
+    _.on(this.buttonEl, 'click', this.handleBtnClick.bind(this));
   }
 
-  handleClick(e) {
+  handleClick(target) {
+    if (this.isValidTarget(target)) {
+      this.publisher.setState({
+        mode: 'submit',
+        selectedKeyword: target.textContent
+      });
+    } else {
+      this.publisher.setState({
+        mode: 'submit',
+        selectedKeyword: target.closest('li').textContent
+      });
+    }
+  }
+
+  handleBtnClick(e) {
     e.preventDefault();
-    this.publisher.setState({ mode: 'waiting', currentValue: this.inputEl.value })
+    this.publisher.setState({
+      mode: 'submit',
+      currentInput: this.inputEl.value
+    });
   }
 
-  render({ mode, selectedValue }) {
-    if ((mode !== 'waiting') || !selectedValue) return;
-    this.inputEl.value = selectedValue;
-    this.inputEl.focus();
+  render({ mode, selectedKeyword }) {
+    if (mode === 'selection') this.inputEl.value = selectedKeyword;
+    if (mode === 'submit') this.inputEl.value = '';
   }
 }
 

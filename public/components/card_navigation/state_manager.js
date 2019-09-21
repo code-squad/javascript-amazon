@@ -1,4 +1,5 @@
-import Publisher from '../../utils/publisher.js'
+/* eslint-disable class-methods-use-this */
+import Publisher from '../../utils/publisher.js';
 
 export default class StateManager extends Publisher {
   constructor({ config: { option = { startIdx: 0, quantityToSlide: 1 } } }) {
@@ -24,10 +25,9 @@ export default class StateManager extends Publisher {
       this.updateDirection(this.state);
       this.updateCurrentIdx(this.state);
       super.notify(this.state, 'carousel');
-      this.syncronizeIdx(this.state);
+      this.synchronizeIdx(this.state);
       super.notify(this.state, 'pagination');
-    }
-    else {
+    } else {
       this.updateCurrentIdx(this.state);
       super.notify(this.state);
     }
@@ -35,23 +35,27 @@ export default class StateManager extends Publisher {
 
   updateTargetIdx(state) {
     let { currentIdx, direction, quantityToSlide } = state;
+
     direction = direction === 'prev' ? -1 : 1;
     state.targetIdx = currentIdx + direction * quantityToSlide;
   }
 
   updateDirection(state) {
     const direction = state.targetIdx - state.currentIdx;
+
     state.direction = direction < 0 ? 'prev' : 'next';
   }
 
   updateCurrentIdx(state) {
     const { targetIdx, panelQuantity } = state;
-    state.currentIdx = targetIdx < 0 || targetIdx > panelQuantity - 1
-      ? panelQuantity - Math.abs(targetIdx)
-      : targetIdx;
+
+    state.currentIdx =
+      targetIdx < 0 || targetIdx > panelQuantity - 1
+        ? panelQuantity - Math.abs(targetIdx)
+        : targetIdx;
   }
 
-  syncronizeIdx(state) {
+  synchronizeIdx(state) {
     state.targetIdx = state.currentIdx;
   }
 }

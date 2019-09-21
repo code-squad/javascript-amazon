@@ -41,6 +41,10 @@ header {
   border-radius: 0 5px 5px 0;
 }
 
+.search-icon {
+  width: 2rem;
+}
+
 .search-bar {
   padding: 0.5rem;
   width: 100%;
@@ -51,8 +55,9 @@ header {
 .auto-suggestions,
 .recent-keywords {
   position: absolute;
-  left: 6.1rem;
-  width: 100%;
+  top: 4rem;
+  left: 5.1rem;
+  width: calc(100% - 10.3rem);
   min-width: 40rem;
   z-index: 1;
   list-style-type: none;

@@ -1,10 +1,8 @@
-const $ = (selector) => {
-  return document.querySelector(selector);
-}
+const $ = selector => document.querySelector(selector);
 
 const on = (el, eventType, handler) => {
-  el.addEventListener(eventType, handler);
-}
+	el.addEventListener(eventType, handler);
+};
 
 const getJsonData = url => fetch(url).then(res => res.json());
 
@@ -15,42 +13,44 @@ const getJsonData = url => fetch(url).then(res => res.json());
  * @param  {object} funcMap 이벤트핸들러 함수를 target속성별로 매핑한 객체
  */
 const delegate = (el, eventType, domElProperty, funcMap) => {
-  if (domElProperty === 'classList') {
-    el.addEventListener(eventType, ({ target }) => {
-      target[domElProperty].forEach(className => {
-        if (funcMap[className]) funcMap[className](target);
-      })
-    })
-  }
-  else el.addEventListener(eventType, ({ target }) => {
-    if (funcMap[target[domElProperty]]) funcMap[target[domElProperty]](target);
-  })
-}
+	if (domElProperty === "classList") {
+		el.addEventListener(eventType, ({target}) => {
+			target[domElProperty].forEach(className => {
+				if (funcMap[className]) funcMap[className](target);
+			});
+		});
+	} else {
+		el.addEventListener(eventType, ({target}) => {
+			if (funcMap[target[domElProperty]]) {
+				funcMap[target[domElProperty]](target);
+			}
+		});
+	}
+};
 
-const makeDelay = (timeInMs) => {
-  return new Promise(res => setTimeout(res, timeInMs))
-}
+const makeDelay = timeInMs => new Promise(res => setTimeout(res, timeInMs));
 
 /**
  * @param  {Element} targetEl
  * @param  {string} property
  */
 const setCssStyle = (targetEl, property, value) => {
-  if (property === 'all' && value === 'none') {
-    targetEl.style = {};
-    return;
-  }
-  targetEl.style[property] = value;
-}
+	if (property === "all" && value === "none") {
+		targetEl.style = {};
+		return;
+	}
+	targetEl.style[property] = value;
+};
 
 /**
  * @param  {Function} fn 디바운스를 적용할 함수
  * @param  {number} timeInMs
  */
 let _timer;
+
 function setDebounce(fn, timeInMs, param) {
-  if (_timer) clearTimeout(_timer);
-  _timer = setTimeout(fn, timeInMs, param);
+	if (_timer) clearTimeout(_timer);
+	_timer = setTimeout(fn, timeInMs, param);
 }
 
-export { $, on, delegate, getJsonData, makeDelay, setCssStyle, setDebounce }
+export {$, on, delegate, getJsonData, makeDelay, setCssStyle, setDebounce};

@@ -10,7 +10,9 @@
       "refTag": "nb_sb_ss_i_1_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -21,24 +23,14 @@
       "type": "KEYWORD",
       "value": "iphone charger",
       "refTag": "nb_sb_ss_c_2_5",
-      "scopes": [{ "type": "ALIAS", "value": "electronics", "display": "Electronics" }],
+      "scopes": [
+        { "type": "ALIAS", "value": "electronics", "display": "Electronics" }
+      ],
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
-      "xcatOnly": false,
-      "fallback": false,
-      "blackListed": false,
-      "spellCorrected": false
-    },
-    {
-      "suggType": "KeywordSuggestion",
-      "type": "KEYWORD",
-      "value": "iphone charger",
-      "refTag": "nb_sb_ss_c_3_5",
-      "scopes": [{ "type": "ALIAS", "value": "mobile", "display": "Cell Phones & Accessories" }],
-      "ghost": false,
-      "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -51,7 +43,9 @@
       "refTag": "nb_sb_ss_i_4_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -64,7 +58,9 @@
       "refTag": "nb_sb_ss_i_5_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -77,7 +73,9 @@
       "refTag": "nb_sb_ss_i_6_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -90,7 +88,9 @@
       "refTag": "nb_sb_ss_i_7_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -103,7 +103,9 @@
       "refTag": "nb_sb_ss_i_8_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -116,7 +118,9 @@
       "refTag": "nb_sb_ss_i_9_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -129,7 +133,9 @@
       "refTag": "nb_sb_ss_i_10_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
@@ -142,7 +148,9 @@
       "refTag": "nb_sb_ss_i_11_5",
       "ghost": false,
       "help": false,
-      "queryUnderstandingFeatures": [{ "source": "QU_TOOL", "annotations": [] }],
+      "queryUnderstandingFeatures": [
+        { "source": "QU_TOOL", "annotations": [] }
+      ],
       "xcatOnly": false,
       "fallback": false,
       "blackListed": false,
