@@ -32,7 +32,7 @@ class SuggestionUI extends Subscriber {
   }
 
   renderSuggestion(state) {
-    const prefix = state.query;
+    const prefix = state.userInput;
 
     if (!prefix) {
       this.renderBlank();

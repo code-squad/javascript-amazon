@@ -12,6 +12,7 @@ class StateManager extends Publisher {
       suggestions: {},
       selectedIdx: INITIAL_IDX,
       prevIdx: INITIAL_IDX,
+      userInput: '',
       query: ''
     };
     this.config = {
@@ -56,7 +57,7 @@ class StateManager extends Publisher {
       selectedIdx: initialIdx,
       maxIdx: maxSuggestions - 1
     };
-    const prefix = this.state.query;
+    const prefix = this.state.userInput;
 
     this.hasCachedSuggestion(prefix)
       ? this.notifyCachedSuggestions(config)
@@ -127,11 +128,11 @@ class StateManager extends Publisher {
   }
 
   getquery(state) {
-    const { prevMode, recentKeywords, suggestions, query, selectedIdx } = state;
+    const { prevMode, recentKeywords, suggestions, userInput, selectedIdx } = state;
 
     if (prevMode === 'recentKeywords') return recentKeywords[selectedIdx];
-    if (this.hasCachedSuggestion(query)) return suggestions[query][selectedIdx];
-    return query;
+    if (this.hasCachedSuggestion(userInput)) return suggestions[userInput][selectedIdx];
+    return userInput;
   }
 
   processSelectionMode({ state }) {

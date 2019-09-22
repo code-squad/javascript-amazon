@@ -61,7 +61,7 @@ class SearchBarUI extends Subscriber {
   handleKeyup({ target, key }) {
     if (key.length === 1 || key === 'Backspace') {
       const mode = target.value ? 'suggestion' : 'recentKeywords';
-      const param = { mode, query: target.value };
+      const param = { mode, userInput: target.value };
 
       _.setDebounce(p => this.publisher.setState(p), 1200, param);
     }
