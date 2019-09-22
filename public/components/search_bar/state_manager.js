@@ -12,8 +12,7 @@ class StateManager extends Publisher {
       suggestions: {},
       selectedIdx: INITIAL_IDX,
       prevIdx: INITIAL_IDX,
-      currentInput: '',
-      selectedKeyword: ''
+      query: ''
     };
     this.config = {
       url: config.url,
@@ -57,7 +56,7 @@ class StateManager extends Publisher {
       selectedIdx: initialIdx,
       maxIdx: maxSuggestions - 1
     };
-    const prefix = this.state.currentInput;
+    const prefix = this.state.query;
 
     this.hasCachedSuggestion(prefix)
       ? this.notifyCachedSuggestions(config)
@@ -104,41 +103,42 @@ class StateManager extends Publisher {
     const newState = { ...this.state, ...state };
 
     this.state = this.updateRecentKeywords(newState, maxRecentKeywords);
-    this.state.selectedKeyword = this.getSelectedKeyword(this.state);
     super.notify(this.state);
   }
 
   updateRecentKeywords(state, maxRecentKeywords) {
-    let { selectedKeyword } = state;
+    let { query } = state;
+
+    if (!query) query = this.getquery(state);
     const recents = [...state.recentKeywords];
 
-    if (!selectedKeyword) return state;
+    if (!query) return state;
 
-    selectedKeyword = selectedKeyword.trim();
-    if (recents.includes(selectedKeyword)) {
-      recents.splice(recents.indexOf(selectedKeyword), 1);
+    query = query.trim();
+    if (recents.includes(query)) {
+      recents.splice(recents.indexOf(query), 1);
     }
     if (recents.length >= maxRecentKeywords) {
       recents.pop();
     }
-    recents.unshift(selectedKeyword);
+    recents.unshift(query);
     state.recentKeywords = recents;
     return state;
   }
 
-  getSelectedKeyword(state) {
-    const { prevMode, recentKeywords, suggestions, currentInput, selectedIdx } = state;
+  getquery(state) {
+    const { prevMode, recentKeywords, suggestions, query, selectedIdx } = state;
 
     if (prevMode === 'recentKeywords') return recentKeywords[selectedIdx];
-    if (!this.hasCachedSuggestion(currentInput)) return currentInput;
-    return suggestions[currentInput][selectedIdx];
+    if (this.hasCachedSuggestion(query)) return suggestions[query][selectedIdx];
+    return query;
   }
 
   processSelectionMode({ state }) {
     const newState = { ...this.state, ...state };
 
     this.state = this.updateSelectedIdx(newState);
-    this.state.selectedKeyword = this.getSelectedKeyword(this.state);
+    this.state.query = this.getquery(this.state);
     super.notify(this.state);
   }
 

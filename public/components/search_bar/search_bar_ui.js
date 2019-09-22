@@ -61,7 +61,7 @@ class SearchBarUI extends Subscriber {
   handleKeyup({ target, key }) {
     if (key.length === 1 || key === 'Backspace') {
       const mode = target.value ? 'suggestion' : 'recentKeywords';
-      const param = { mode, currentInput: target.value };
+      const param = { mode, query: target.value };
 
       _.setDebounce(p => this.publisher.setState(p), 1200, param);
     }
@@ -86,7 +86,7 @@ class SearchBarUI extends Subscriber {
         e.preventDefault();
         this.publisher.setState({
           mode: 'submit',
-          currentInput: target.value
+          query: target.value
         });
       }
     };
@@ -117,12 +117,12 @@ class SearchBarUI extends Subscriber {
     if (this.isValidTarget(target)) {
       this.publisher.setState({
         mode: 'submit',
-        selectedKeyword: target.textContent
+        query: target.textContent
       });
     } else {
       this.publisher.setState({
         mode: 'submit',
-        selectedKeyword: target.closest('li').textContent
+        query: target.closest('li').textContent
       });
     }
   }
@@ -131,12 +131,12 @@ class SearchBarUI extends Subscriber {
     e.preventDefault();
     this.publisher.setState({
       mode: 'submit',
-      currentInput: this.inputEl.value
+      query: this.inputEl.value
     });
   }
 
-  render({ mode, selectedKeyword }) {
-    if (mode === 'selection') this.inputEl.value = selectedKeyword;
+  render({ mode, query }) {
+    if (mode === 'selection') this.inputEl.value = query;
     if (mode === 'submit') this.inputEl.value = '';
   }
 }
