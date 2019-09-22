@@ -8,7 +8,7 @@ class StateManager extends Publisher {
     super();
     this.state = {
       mode: 'submit',
-      recentKeywords: [],
+      recentKeywords: config.initialRecentKeywords,
       suggestions: {},
       selectedIdx: INITIAL_IDX,
       prevIdx: INITIAL_IDX,
