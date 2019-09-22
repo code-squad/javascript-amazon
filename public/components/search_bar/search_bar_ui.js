@@ -51,7 +51,7 @@ class SearchBarUI extends Subscriber {
   }
 
   handleFocus() {
-    this.publisher.setState({ mode: 'recentKeywords' });
+    this.publisher.setState({ mode: 'recent' });
   }
 
   addKeyupEvent() {
@@ -60,7 +60,7 @@ class SearchBarUI extends Subscriber {
 
   handleKeyup({ target, key }) {
     if (key.length === 1 || key === 'Backspace') {
-      const mode = target.value ? 'suggestion' : 'recentKeywords';
+      const mode = target.value ? 'suggest' : 'recent';
       const param = { mode, userInput: target.value };
 
       _.setDebounce(p => this.publisher.setState(p), 1200, param);
@@ -76,11 +76,11 @@ class SearchBarUI extends Subscriber {
     const keyMap = {
       ArrowDown: () => {
         e.preventDefault();
-        this.publisher.setState({ mode: 'selection', arrowDirection: 'down' });
+        this.publisher.setState({ mode: 'select', arrowDirection: 'down' });
       },
       ArrowUp: () => {
         e.preventDefault();
-        this.publisher.setState({ mode: 'selection', arrowDirection: 'up' });
+        this.publisher.setState({ mode: 'select', arrowDirection: 'up' });
       },
       Enter: () => {
         e.preventDefault();
@@ -136,7 +136,7 @@ class SearchBarUI extends Subscriber {
   }
 
   render({ mode, query }) {
-    if (mode === 'selection') this.inputEl.value = query;
+    if (mode === 'select') this.inputEl.value = query;
     if (mode === 'submit') this.inputEl.value = '';
   }
 }

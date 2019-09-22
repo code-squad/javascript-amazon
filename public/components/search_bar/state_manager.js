@@ -23,7 +23,7 @@ class StateManager extends Publisher {
   }
 
   setState(state) {
-    if (state.mode === 'suggestion' || state.mode === 'recentKeywords') {
+    if (state.mode === 'suggest' || state.mode === 'recent') {
       this.state.prevMode = state.mode;
     }
     const config = this.config;
@@ -31,16 +31,16 @@ class StateManager extends Publisher {
     const maxSuggestions = MAX_SUGGESTIONS;
 
     const actionMap = {
-      recentKeywords: params => this.processRecentKeywordsMode(params),
-      suggestion: params => this.processSuggestionMode(params),
+      recent: params => this.processRecentMode(params),
+      suggest: params => this.processSuggestMode(params),
       submit: params => this.processSubmitMode(params),
-      selection: params => this.processSelectionMode(params)
+      select: params => this.processSelectMode(params)
     };
 
     actionMap[state.mode]({ state, config, initialIdx, maxSuggestions });
   }
 
-  processRecentKeywordsMode({ state, initialIdx }) {
+  processRecentMode({ state, initialIdx }) {
     this.state = {
       ...this.state,
       ...state,
@@ -50,7 +50,7 @@ class StateManager extends Publisher {
     super.notify(this.state);
   }
 
-  processSuggestionMode({ state, config, initialIdx, maxSuggestions }) {
+  processSuggestMode({ state, config, initialIdx, maxSuggestions }) {
     this.state = {
       ...this.state,
       ...state,
@@ -111,31 +111,31 @@ class StateManager extends Publisher {
     let { query } = state;
 
     if (!query) query = this.getquery(state);
-    const recents = [...state.recentKeywords];
+    const recentKeywords = [...state.recentKeywords];
 
     if (!query) return state;
 
     query = query.trim();
-    if (recents.includes(query)) {
-      recents.splice(recents.indexOf(query), 1);
+    if (recentKeywords.includes(query)) {
+      recentKeywords.splice(recentKeywords.indexOf(query), 1);
     }
-    if (recents.length >= maxRecentKeywords) {
-      recents.pop();
+    if (recentKeywords.length >= maxRecentKeywords) {
+      recentKeywords.pop();
     }
-    recents.unshift(query);
-    state.recentKeywords = recents;
+    recentKeywords.unshift(query);
+    state.recentKeywords = recentKeywords;
     return state;
   }
 
   getquery(state) {
     const { prevMode, recentKeywords, suggestions, userInput, selectedIdx } = state;
 
-    if (prevMode === 'recentKeywords') return recentKeywords[selectedIdx];
+    if (prevMode === 'recent') return recentKeywords[selectedIdx];
     if (this.hasCachedSuggestion(userInput)) return suggestions[userInput][selectedIdx];
     return userInput;
   }
 
-  processSelectionMode({ state }) {
+  processSelectMode({ state }) {
     const newState = { ...this.state, ...state };
 
     this.state = this.updateSelectedIdx(newState);

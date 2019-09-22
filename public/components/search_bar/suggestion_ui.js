@@ -22,9 +22,9 @@ class SuggestionUI extends Subscriber {
 
   render(state) {
     const actionMap = {
-      recentKeywords: () => this.renderBlank(),
-      suggestion: state => this.renderSuggestion(state),
-      selection: state => this.renderSelection(state),
+      recent: () => this.renderBlank(),
+      suggest: state => this.renderSuggestion(state),
+      select: state => this.renderSelection(state),
       submit: () => this.renderBlank()
     };
 

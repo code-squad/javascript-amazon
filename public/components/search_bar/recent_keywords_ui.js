@@ -22,9 +22,9 @@ class RecentKeywordsUI extends Subscriber {
 
   render(state) {
     const actionMap = {
-      recentKeywords: state => this.renderRecentKeywords(state),
-      suggestion: () => this.renderBlank(),
-      selection: state => this.renderSelection(state),
+      recent: state => this.renderRecentKeywords(state),
+      suggest: () => this.renderBlank(),
+      select: state => this.renderSelection(state),
       submit: () => this.renderBlank()
     };
 
