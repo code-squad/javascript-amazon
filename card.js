@@ -16,9 +16,9 @@ class Card {
 
     const cards = lists.reduce(
       (result, data) =>
-        (result += `<li><div><img src=${data.imgSrc}></div><h4>${data.title}</h4><ul>${data.content}</ul><div></div></li>`),
+        (result += `<li class="card"><div><img src=${data.imgSrc}></div><div class="card-contents"><h4>${data.title}</h4><ul>${data.content}</ul></div></li>`),
       ""
     );
-    return `<ul>${cards}</ul>`;
+    return `<ul class="card-wrapper">${cards}</ul>`;
   }
 }
