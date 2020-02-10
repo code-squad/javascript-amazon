@@ -1,12 +1,13 @@
 class Slider {
-    constructor({headerTexts, images, titles, contents}) {
-        this.header = new Header(headerTexts);
-        this.images = images;
-        this.titles = titles;
-        this.contents = contents;
-    }
+  constructor({ headerTexts, cardData }) {
+    this.header = new Header(headerTexts);
+    this.card = new Card(cardData);
+  }
 
-    render(){
-        return this.header.render();
-    }
+  render() {
+    return `
+        ${this.header.render()}
+        ${this.card.render()}
+        `;
+  }
 }
