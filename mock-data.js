@@ -46,5 +46,6 @@ const mockData = {
         "Get exclusive deals and discounts and 30-minute early access to Lightning Deals"
       ]
     }
-  ]
+  ],
+  buttonData: ["prev", "next"]
 };
