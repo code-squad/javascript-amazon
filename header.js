@@ -1,13 +1,13 @@
 class Header {
-    constructor(texts) {
-        this.texts = texts;
-    }
+  constructor(texts) {
+    this.texts = texts;
+  }
 
-    render() {
-        console.log(this.texts);
-        const header = this.texts.reduce((result, text) =>
-            result += `<li class="header-text">${text}</li>`
-        , "");
-        return `<ul>${header}</ul>`
-    }
+  render() {
+    const header = this.texts.reduce(
+      (result, text) => (result += `<li class="header-text">${text}</li>`),
+      ""
+    );
+    return `<ul class="header-wrapper">${header}</ul>`;
+  }
 }

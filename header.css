@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.header-text {
+  text-align: center;
+  width: 256px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.header-text:nth-child(odd) {
+  background-color: #d8bfd8;
+}
+
+.header-text:nth-child(even) {
+  background-color: #6fb5c2;
+}
