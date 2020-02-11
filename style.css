@@ -1,0 +1,179 @@
+.wrap {
+    width: 100%;
+}
+
+.wrap > .card_navigation {
+    width: 930px;
+    height: 360px;
+    margin: 0 auto;
+    box-shadow: 5px 5px 5px 5px black;
+}
+
+.wrap > .card_navigation > .top {
+    width: 100%;
+    height: 110px;
+}
+
+.wrap > .card_navigation > .top > ul {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 110px;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap > .card_navigation > .top > ul > li {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.wrap > .card_navigation > .top > ul > li > button {
+    display: inline-block;
+    width: 145px;
+    height: 54px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 1.2;
+    color: #fff;
+}
+
+.wrap > .card_navigation > .top > ul > li > .selected{
+    display: inline-block;
+    width: 165px;
+    height: 66px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px -10px 0px -10px;
+    line-height: 1.2;
+    color: #fff;
+}
+
+.wrap > .card_navigation > .top > ul > li:nth-child(1) > button {
+    background-color: #337fa1;
+}
+
+.wrap > .card_navigation > .top > ul > li:nth-child(2) > button {
+    background-color: #581e66
+}
+
+.wrap > .card_navigation > .top > ul > li:nth-child(3) > button {
+    background-color: #1e6156
+}
+
+.wrap > .card_navigation > .top > ul > li:nth-child(4) > button {
+    background-color: #eeab54;
+}
+
+.wrap > .card_navigation > .bottom {
+    /* position: relative; */
+    width: 100%;
+    margin: 0 auto;
+}
+
+.wrap > .card_navigation > .bottom > .left {
+    float: left;
+    width: 135px;
+    height: 250px;
+}
+
+.wrap > .card_navigation > .bottom > .left > #card_navigation_bottom_left_button {
+    width: 50px;
+    height: 50px;
+    margin-left: 50px;
+    margin-top: 80px;
+    background-color: #4e5251;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.wrap > .card_navigation > .bottom > .right {
+    float: left;
+    width: 135px;
+    height: 250px;
+}
+
+.wrap > .card_navigation > .bottom > .right > #card_navigation_bottom_right_button {
+    float: right;
+    width: 50px;
+    height: 50px;
+    margin-right: 50px;
+    margin-top: 80px;
+    background-color: #4e5251;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.wrap > .card_navigation > .bottom > .middle {
+    float: left;
+    width: 660px;
+    height: 250px;
+    overflow: hidden;
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul {
+    display: flex;
+    width: 660px;
+    height: 250px;
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul > li {
+    float: left;
+    width: 660px;
+    height: 250px;
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul > li > .content_wrap {
+    width: 660px;
+    height: 250px;
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul > li > .content_wrap > .image {
+    float: left;
+    margin-left: 50px;
+    margin-top: 12px;
+    margin-right: 50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    background-image: url('https://ichef.bbci.co.uk/news/960/cpsprodpb/17C78/production/_110500479_parasiteposter.jpg');
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul > li > .content_wrap > .container  {
+    display: inline-block;
+    width: 360px;
+    height: 250px;
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul > li > .content_wrap > .container > .title {
+    display: block;
+    width: 100%;
+    line-height: 1.39;
+    font-size: 24px;
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul > li > .content_wrap > .container > .description {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul > li > .content_wrap > .container > .description > li { 
+    position: relative;
+    padding-left: 10px;
+}
+
+.wrap > .card_navigation > .bottom > .middle > ul > li > .content_wrap > .container > .description > li::before {
+    position: absolute;
+    top: 10px;
+    left: 2px;
+    content:'';
+    width: 5px;
+    height: 5px;
+    background: #000;
+    border-radius: 50%;
+}
