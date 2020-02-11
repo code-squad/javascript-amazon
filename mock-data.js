@@ -1,5 +1,5 @@
 const mockData = {
-    headerTexts: [
+    headerData: [
         "Fast, Free Delivery",
         "Exclusive deals and offers",
         "Prime Originals, movies and TV shows",
