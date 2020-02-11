@@ -8,12 +8,13 @@
   <title>Document</title>
   <link href="reset.css" rel="stylesheet" type="text/css">
   <link href="navigation.css" rel="stylesheet" type="text/css">
+  <script src="navigation.js"></script>
 </head>
 
 <body>
 <div class="card-navigation-section">
 
-  <div class="card-navigation-list-wrapper">
+  <div class="card-navigation-list-wrapper" id="card-navigation-section">
     <button class="card-navigation-list-item itemA">Fast, Free Delivery</button>
     <button class="card-navigation-list-item itemB">Exclusive deals and offers</button>
     <button class="card-navigation-list-item itemC">Prime Originals, movies and TV shows</button>
@@ -23,6 +24,8 @@
   <div class="card-navigation-details-section">
     <button class="left-button button"> < </button>
     <div class="card-navigation-details-wrapper">
+      <ul>
+        <li id="list">
       <img class="card-navigation-details-image" src="image/sample.jpg" alt="">
       <div class="card-navigation-details-desc-wrapper">
         <div class="card-navigation-details-desc-title">Enjoy exclusive saving and rewards</div>
@@ -33,6 +36,8 @@
           <li class="card-navigation-details-desc-text">Lorem ipsum dolor sit amet..</li>
         </ul>
       </div>
+        </li>
+      </ul>
     </div>
     <button class="right-button button"> > </button>
   </div>
