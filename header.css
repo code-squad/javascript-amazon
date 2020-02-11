@@ -5,30 +5,59 @@
 .header-wrapper {
   display: flex;
   justify-content: space-between;
-  height: 60px;
+  height: 262px;
+  max-width: 1000px;
+  min-width: 1000px;
 }
 
-.header-text {
+.header-list {
   text-align: center;
-  width: 256px;
   display: flex;
+  min-width: 190px;
   justify-content: center;
   align-items: center;
   color: #fff;
+  background-size: 1616px auto, 100% 100%;
+  background-position: 0px -26px, 0px 0px;
+  position: relative;
+  cursor: pointer;
 }
 
-.header-text:nth-child(1) {
-  background-color: #2392c0;
+.header-list:nth-child(1) {
+  background-image: url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png),
+  linear-gradient(30deg, #2C88AE 40%, #00A8E1 90%, #00A8E1 48px);
 }
 
-.header-text:nth-child(2) {
-  background-color: #a90067;
+.header-list:nth-child(2) {
+  background-image: url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_B._CB513285352_.png),
+        linear-gradient(30deg, #CC0C39 40%, #FF6138 90%, #FF6138 48px);       
 }
 
-.header-text:nth-child(3) {
-  background-color: #018577;
+.header-list:nth-child(3) {
+  background-image: url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_C._CB513285352_.png),
+        linear-gradient(30deg, #A90067 40%, #E31F64 90%, #E31F64 48px);
 }
 
-.header-text:nth-child(4) {
-  background-color: #e65d17;
+.header-list:nth-child(4) {
+  background-image: url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_D._CB513285353_.png),
+        linear-gradient(30deg, #008577 40%, #36C2B4 90%, #36C2B4 48px);
+}
+
+.header-list:nth-child(5) {
+  background-image: url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_E._CB513285352_.png),
+        linear-gradient(30deg, #FF6138 40%, #FFC400 90%, #FFC400 48px);
+}
+
+.header-selected {
+  transform: scale(1.2);
+  z-index: 98;
+  overflow: hidden;
+  box-shadow: -1px 0px 10px -1px #000000; 
+}
+
+.header_title {
+  position: absolute;
+  font-size: 24px;
+  font-weight: 300;
+  bottom: 60px;
 }

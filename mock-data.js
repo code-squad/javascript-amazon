@@ -1,9 +1,10 @@
 const mockData = {
     headerData: [
-        "Fast, Free Delivery",
-        "Exclusive deals and offers",
-        "Prime Originals, movies and TV shows",
-        "Over 2 million song ad free"
+        "Ship",
+        "Stream",
+        "Shop",
+        "Read",
+        "More"
     ],
     cardData: [
         {
