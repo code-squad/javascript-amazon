@@ -1,6 +1,6 @@
 class Slider {
-    constructor({ headerData, cardData, buttonData }) {
-        this.header = new Header(headerData);
+    constructor({ headerData, headerCardLength, cardData, buttonData }) {
+        this.header = new Header(headerData, headerCardLength);
         this.card = new Card(cardData);
         this.buttons = new Button(buttonData);
     }

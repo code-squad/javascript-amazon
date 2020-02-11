@@ -1,11 +1,12 @@
 const mockData = {
     headerData: [
-        "Ship",
-        "Stream",
-        "Shop",
-        "Read",
-        "More"
-    ],
+        { title: "Ship", cardLength: 4 },
+        { title: "Stream", cardLength: 5 },
+        { title: "Shop", cardLength: 4 },
+        { title: "Read", cardLength: 2 },
+        { title: "More", cardLength: 2 }
+    ]
+    ,
     cardData: [
         {
             imgSrc: "https://i.postimg.cc/SN5HgSrD/rj.png",
