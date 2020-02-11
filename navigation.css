@@ -61,6 +61,13 @@
   left: 10%;
 }
 
+.carousel-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 630px;
+  overflow: hidden;
+}
+
 .right-button {
   right: 10%;
 }
