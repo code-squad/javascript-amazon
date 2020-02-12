@@ -13,9 +13,17 @@ class SlideService {
 
         this._isAnimationRunning = false;
 
-        this._currentIndex = 1;
-        const generatedNumber = 1 + Math.floor(Math.random() * (this._menuButtons.length - 2));
-        this._setCurrentIndex(generatedNumber);
+        const generatedNumber = 1 + Math.floor(Math.random() * (this._menuButtons.length));
+        this._initElementStatus(generatedNumber);
+    }
+
+    _initElementStatus(index) {
+        this._menuButtons[index - 1].className = 'selected';
+
+        const offsetWidth = -(index * this._bottomContentArea.offsetWidth);
+        this._bottomContentArea.style.marginLeft = offsetWidth + 'px';
+
+        this._currentIndex = index;
     }
 
     _onTransitionEnd(event) {
