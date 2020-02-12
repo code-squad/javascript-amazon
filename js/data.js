@@ -1,14 +1,8 @@
 const DATA = {
-    navCardColors: [
-        "#4691BC",
-        "#9B2165",
-        "#398377",
-        "#D76530",
-    ],
     itemContents: [
         {
-            navTitle: "show me the money",
             imgURL: "./img/img_1.jpg",
+            navTitle: "show me the money",
             headTitle: "SLIDE_1",
             contentText: [
                 "슬라이드",
@@ -16,8 +10,8 @@ const DATA = {
             ]
         },
         {
-            navTitle: "power overwhelming",
             imgURL: "./img/img_2.jpg",
+            navTitle: "power overwhelming",
             headTitle: "SLIDE_2",
             contentText: [
                 "Earn 5% back at Amazon.com with the Amazon Prime Rewards Visa Card",
@@ -25,8 +19,8 @@ const DATA = {
             ]
         },
         {
-            navTitle: "black sheep wall",
             imgURL: "./img/img_3.jpg",
+            navTitle: "black sheep wall",
             headTitle: "SLIDE_3",
             contentText: [
                 "Save on groceries and get an additional 10% off select sale items in all US whole Food Market stores",
@@ -35,8 +29,8 @@ const DATA = {
             ]
         },
         {
-            navTitle: "the gathering",
             imgURL: "./img/img_4.jpg",
+            navTitle: "the gathering",
             headTitle: "SLIDE_4",
             contentText: [
                 "Save on groceries and get an additional 10% off select sale items in all US whole Food Market stores",
@@ -45,8 +39,8 @@ const DATA = {
             ]
         },
         {
-            navTitle: "operation cwal",
             imgURL: "./img/img_1.jpg",
+            navTitle: "operation cwal",
             headTitle: "SLIDE_5",
             contentText: [
                 "테스트 리스트1",
@@ -57,8 +51,8 @@ const DATA = {
             ]
         },
         {
-            navTitle: "Food for thought",
             imgURL: "./img/img_2.jpg",
+            navTitle: "food for thought",
             headTitle: "SLIDE_6",
             contentText: [
                 "디버깅은 즐겁다",

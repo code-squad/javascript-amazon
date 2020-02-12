@@ -1,132 +1,113 @@
-const slideOption = {
-    NAV_CARD_WIDTH: 220,
-    VIEWER_WIDTH: 900,
-    currentItemIndex: 0,
-};
-
-const elementOption = {
-    prev: ".prev_btn",
-    next: ".next_btn",
-    slide_item_wrap: ".slide_item_wrap",
-    slide_items: ".slide_item",
-    slide_nav_li: ".slide_nav li",
-};
-
-navContainer.style.width = `${(slideOption.NAV_CARD_WIDTH * DATA.itemContents.length) + (5 * DATA.itemContents.length)}px`;
-slideContentContainer.style.width = `${slideOption.VIEWER_WIDTH * (DATA.itemContents.length + 2)}px`;
-
 class Slide {
     constructor(option) {
-        this.element = new Element(elementOption);
+        this.el = new Element(OPTION_DATA.elementOption);
         this.VIEWER_WIDTH = option.VIEWER_WIDTH;
-        this.currentItemIndex = option.currentItemIndex;
-        this.itemsCount = this.element.slide_items.length - 1;
-        this.transitionendHandler = this.transitionendHandler.bind(this);
-        this.nextBtnClickHandler = this.nextBtnClickHandler.bind(this);
-        this.prevBtnClickHandler = this.prevBtnClickHandler.bind(this);
+        this.curItem = option.FIRST_ITEM_INDEX;
+        this.itemsCount = this.el.items.length - 1;
+        this.nextHandler = this.nextHandler.bind(this);
+        this.prevHandler = this.prevHandler.bind(this);
+        this.tsEndHandler = this.tsEndHandler.bind(this);
         this.init();
     }
 
     init() {
-        this.element.slide_item_wrap.style.transform = `translateX(${-this.VIEWER_WIDTH}px)`;
-        this.element.slide_nav_li.forEach((node, idx) => {
-            node.addEventListener("click", () => {
-                if (idx === this.currentItemIndex) return;
-                if (!this.element.slide_item_wrap.classList.contains("on-transition")) {
-                    this.element.slide_item_wrap.classList.add("on-transition");
-                }
-                const prevItemIndex = this.currentItemIndex;
-                this.currentItemIndex = idx;
-                this.navScaleCtl(this.currentItemIndex, prevItemIndex);
-                const x = (this.currentItemIndex * -this.VIEWER_WIDTH) - this.VIEWER_WIDTH;
-                this.element.slide_item_wrap.style.transform = `translateX(${x + "px"})`;
-            });
-        });
-        const test = this.element.slide_items[0];
-        const test2 = document.createElement("li");
-        test2.innerHTML = test.innerHTML;
-        test2.classList.add("slide_item");
-        this.element.slide_item_wrap.lastElementChild.after(test2);
-
-        const test3 = this.element.slide_items[this.element.slide_items.length - 1];
-        const test4 = document.createElement("li");
-        test4.innerHTML = test3.innerHTML;
-        test4.classList.add("slide_item");
-        this.element.slide_item_wrap.firstElementChild.before(test4);
+        navContainer.style.width = `${(OPTION_DATA.slideOption.NAV_CARD_WIDTH * DATA.itemContents.length) + (5 * DATA.itemContents.length)}px`;
+        slideContainer.style.width = `${OPTION_DATA.slideOption.VIEWER_WIDTH * (DATA.itemContents.length + 2)}px`;
+        this.el.wrap.style.transform = `translateX(${-this.VIEWER_WIDTH}px)`;
+        this.makeDummy();
     }
 
-    nextBtnClickHandler() {
-        this.element.next.style.transform = "scale(1)";
-        if (this.currentItemIndex === 0 && this.element.slide_item_wrap.style.transform !== `translateX(${(this.currentItemIndex + 1) * -this.VIEWER_WIDTH}px)`) return;
-        if (this.currentItemIndex === this.itemsCount) {
-            this.transitionChecker();
-            this.currentItemIndex = 0;
-            this.navScaleCtl(this.currentItemIndex, this.itemsCount);
+    nextHandler() {
+        this.el.next.style.transform = "scale(1)";
+        if (this.curItem === 0 && this.el.wrap.style.transform !== `translateX(${(this.curItem + 1) * -this.VIEWER_WIDTH}px)`) return;
+        if (this.curItem === this.itemsCount) {
+            this.tsChecker();
+            this.curItem = 0;
+            this.navScaleCtl(this.curItem, this.itemsCount);
             const x = (this.itemsCount + 2) * -this.VIEWER_WIDTH;
-            this.element.slide_item_wrap.style.transform = `translateX(${x + "px"})`;
-            this.element.slide_item_wrap.addEventListener("transitionend", this.transitionendHandler);
+            this.el.wrap.style.transform = `translateX(${x + "px"})`;
+            this.el.wrap.addEventListener("transitionend", this.tsEndHandler);
         } else {
-            this.transitionChecker();
-            this.currentItemIndex++;
-            this.navScaleCtl(this.currentItemIndex, this.currentItemIndex - 1);
-            const x = (this.currentItemIndex * -this.VIEWER_WIDTH) - this.VIEWER_WIDTH;
-            this.element.slide_item_wrap.style.transform = `translateX(${x + "px"})`;
+            this.tsChecker();
+            this.curItem++;
+            this.navScaleCtl(this.curItem, this.curItem - 1);
+            const x = (this.curItem * -this.VIEWER_WIDTH) - this.VIEWER_WIDTH;
+            this.el.wrap.style.transform = `translateX(${x + "px"})`;
         }
     }
 
-    prevBtnClickHandler() {
-        this.element.prev.style.transform = "scale(1)";
-        if (this.currentItemIndex === this.itemsCount && this.element.slide_item_wrap.style.transform !== `translateX(${(this.currentItemIndex + 1) * -this.VIEWER_WIDTH}px)`) return;
-        if (this.currentItemIndex === 0) {
-            this.transitionChecker();
-            this.currentItemIndex = this.itemsCount;
+    prevHandler() {
+        this.el.prev.style.transform = "scale(1)";
+        if (this.curItem === this.itemsCount && this.el.wrap.style.transform !== `translateX(${(this.curItem + 1) * -this.VIEWER_WIDTH}px)`) return;
+        if (this.curItem === 0) {
+            this.tsChecker();
+            this.curItem = this.itemsCount;
             this.navScaleCtl(this.itemsCount, 0);
             const x = 0;
-            this.element.slide_item_wrap.style.transform = `translateX(${x + "px"})`;
-            this.element.slide_item_wrap.addEventListener("transitionend", this.transitionendHandler);
+            this.el.wrap.style.transform = `translateX(${x + "px"})`;
+            this.el.wrap.addEventListener("transitionend", this.tsEndHandler);
         } else {
-            this.transitionChecker();
-            this.currentItemIndex--;
-            this.navScaleCtl(this.currentItemIndex, this.currentItemIndex + 1);
-            const x = (this.currentItemIndex * -this.VIEWER_WIDTH) - this.VIEWER_WIDTH;
-            this.element.slide_item_wrap.style.transform = `translateX(${x + "px"})`;
+            this.tsChecker();
+            this.curItem--;
+            this.navScaleCtl(this.curItem, this.curItem + 1);
+            const x = (this.curItem * -this.VIEWER_WIDTH) - this.VIEWER_WIDTH;
+            this.el.wrap.style.transform = `translateX(${x + "px"})`;
         }
     }
 
-    transitionChecker() {
-        if (!this.element.slide_item_wrap.classList.contains("on-transition")) {
-            this.element.slide_item_wrap.classList.add("on-transition");
+    tsEndHandler() {
+        const x = this.curItem === 0 ? -this.VIEWER_WIDTH : -this.VIEWER_WIDTH * this.el.items.length;
+        this.el.wrap.classList.remove("on-transition");
+        this.el.wrap.style.transform = `translateX(${x + "px"})`;
+        this.el.wrap.removeEventListener("transitionend", this.tsEndHandler);
+    }
+
+    tsChecker() {
+        if (!this.el.wrap.classList.contains("on-transition")) {
+            this.el.wrap.classList.add("on-transition");
         }
     }
 
-    navScaleCtl(currentItemIndex, prevItemIndex) {
-        this.element.slide_nav_li[currentItemIndex].classList.add("slide_nav_selected");
-        this.element.slide_nav_li[prevItemIndex].classList.remove("slide_nav_selected");
+    navScaleCtl(curItem, prevItem) {
+        this.el.cards[curItem].classList.add("slide-nav-selected");
+        this.el.cards[prevItem].classList.remove("slide-nav-selected");
     }
 
-    transitionendHandler() {
-        const x = this.currentItemIndex === 0 ? -this.VIEWER_WIDTH : -this.VIEWER_WIDTH * this.element.slide_items.length;
-        this.element.slide_item_wrap.classList.remove("on-transition");
-        this.element.slide_item_wrap.style.transform = `translateX(${x + "px"})`;
-        this.element.slide_item_wrap.removeEventListener("transitionend", this.transitionendHandler);
+    makeDummy() {
+        const firstItem = this.el.items[0];
+        const lastDummy = _$("li");
+        lastDummy.innerHTML = firstItem.innerHTML;
+        lastDummy.classList.add("slide-item");
+        this.el.wrap.lastElementChild.after(lastDummy);
+
+        const lastItem = this.el.items[this.el.items.length - 1];
+        const firstDummy = _$("li");
+        firstDummy.innerHTML = lastItem.innerHTML;
+        firstDummy.classList.add("slide-item");
+        this.el.wrap.firstElementChild.before(firstDummy);
     }
 
-    run() {
-        this.element.next.addEventListener("click", this.nextBtnClickHandler);
-        this.element.next.addEventListener("mousedown", () => {
-            this.element.next.style.transform = "scale(0.9)";
-        });
-        this.element.next.addEventListener("mouseout", () => {
-            this.element.next.style.transform = "scale(1)";
+    addBtnEvent() {
+        this.el.cards.forEach((node, idx) => {
+            node.addEventListener("click", () => {
+                if (idx === this.curItem) return;
+                this.tsChecker();
+                const prevItem = this.curItem;
+                this.curItem = idx;
+                this.navScaleCtl(this.curItem, prevItem);
+                const x = (this.curItem * -this.VIEWER_WIDTH) - this.VIEWER_WIDTH;
+                this.el.wrap.style.transform = `translateX(${x + "px"})`;
+            });
         });
 
-        this.element.prev.addEventListener("click", this.prevBtnClickHandler);
-        this.element.prev.addEventListener("mousedown", () => {
-            this.element.prev.style.transform = "scale(0.9)";
-        });
-        this.element.prev.addEventListener("mouseout", () => {
-            this.element.prev.style.transform = "scale(1)";
-        });
+        this.el.next.addEventListener("click", this.nextHandler);
+        this.el.prev.addEventListener("click", this.prevHandler);
+
+        this.el.next.addEventListener("mousedown", () => { this.el.next.style.transform = "scale(0.9)" });
+        this.el.prev.addEventListener("mousedown", () => { this.el.prev.style.transform = "scale(0.9)" });
+
+        this.el.next.addEventListener("mouseout", () => { this.el.next.style.transform = "scale(1)" });
+        this.el.prev.addEventListener("mouseout", () => { this.el.prev.style.transform = "scale(1)" });
     }
 }
 
@@ -134,11 +115,11 @@ class Element {
     constructor(option) {
         this.prev = $(option.prev);
         this.next = $(option.next);
-        this.slide_item_wrap = $(option.slide_item_wrap);
-        this.slide_items = $$(option.slide_items);
-        this.slide_nav_li = $$(option.slide_nav_li);
+        this.wrap = $(option.slide_item_wrap);
+        this.items = $$(option.slide_items);
+        this.cards = $$(option.slide_nav_li);
     }
 }
 
-const slide = new Slide(slideOption);
-slide.run();
+const slide = new Slide(OPTION_DATA.slideOption);
+slide.addBtnEvent();
