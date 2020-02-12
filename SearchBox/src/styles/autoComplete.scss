@@ -1,0 +1,49 @@
+@import url("./reset.css");
+@function calcRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+.search-box {
+  width: calcRem(480px);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  &__category-select {
+    background-color: #f3f3f3;
+    appearance: none;
+    border: none;
+    border-radius: 0;
+    border-right: 1px solid #ebebeb;
+    padding: calcRem(8px) calcRem(12px);
+  }
+  &__input-box {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    min-width: calcRem(240px);
+    padding: calcRem(8px) calcRem(12px);
+  }
+  &__submit-btn {
+    background: #febd69;
+    border: none;
+    padding: calcRem(8px) calcRem(12px);
+    border-left: 1px solid #ebebeb;
+  }
+}
+
+.auto-complete {
+  li {
+    word-break: break-word;
+    span {
+      flex: auto;
+    }
+    strong {
+      font-weight: bold;
+    }
+  }
+}

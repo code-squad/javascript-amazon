@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/styles/autoComplete.css" />
+  </head>
+  <body>
+    <div id="main">
+      <div class="search-box">
+        <form>
+          <select class="search-box__category-select">
+            <option value="All">All</option>
+          </select>
+          <input
+            type="text"
+            placeholder="Search"
+            autocomplete="off"
+            id="inputBox"
+            class="search-box__input-box"
+          />
+          <input
+            type="button"
+            value="검색"
+            id="submitBtn"
+            class="search-box__submit-btn"
+          />
+        </form>
+        <div id="searchResult" class="search-box__search-result">
+          <div class="search-box__recent-result recent-result">
+            <ul id="recentResult"></ul>
+          </div>
+          <div class="search-box__auto-complete auto-complete">
+            <ul id="autoComplete"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
