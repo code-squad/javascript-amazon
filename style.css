@@ -38,6 +38,7 @@
     padding-right: 10px;
     line-height: 1.2;
     color: #fff;
+    outline: none;
 }
 
 .top > ul > li > .selected{
@@ -91,6 +92,7 @@
     background-color: #4e5251;
     border-radius: 50%;
     color: #fff;
+    outline: none;
 }
 
 .right {
@@ -108,6 +110,7 @@
     background-color: #4e5251;
     border-radius: 50%;
     color: #fff;
+    outline: none;
 }
 
 .middle {
