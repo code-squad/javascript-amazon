@@ -1,13 +1,13 @@
 function appendMenuData(mockData) {
     const menu = document.querySelector("#menu");
-    const id = 'button';
+    const buttonID = 'button';
 
     for (let i = 0; i < mockData.length; ++i) {
         const menu_element_li = document.createElement("li");
         const menu_element_button = document.createElement("button");
 
         menu_element_button.innerHTML = mockData[i].title;
-        menu_element_button.id = id + i;
+        menu_element_button.id = buttonID + i;
 
         menu_element_li.appendChild(menu_element_button);
         menu.appendChild(menu_element_li);
