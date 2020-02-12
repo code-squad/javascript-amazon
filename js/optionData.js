@@ -13,8 +13,8 @@ const OPTION_DATA = {
     elementOption: {
         prev: ".prev-btn",
         next: ".next-btn",
-        slide_item_wrap: ".slide-item-wrap",
-        slide_items: ".slide-item",
-        slide_nav_li: ".slide-nav li",
+        slideItemWrap: ".slide-item-wrap",
+        slideItem: ".slide-item",
+        slideNav_li: ".slide-nav li",
     }
 }

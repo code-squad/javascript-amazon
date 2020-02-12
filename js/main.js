@@ -76,9 +76,9 @@ class Element {
     constructor(option) {
         this.prev = $(option.prev);
         this.next = $(option.next);
-        this.wrap = $(option.slide_item_wrap);
-        this.items = $$(option.slide_items);
-        this.cards = $$(option.slide_nav_li);
+        this.wrap = $(option.slideItemWrap);
+        this.items = $$(option.slideItem);
+        this.cards = $$(option.slideNav_li);
     }
 }
 
