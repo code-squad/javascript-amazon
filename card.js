@@ -3,22 +3,29 @@ class Card {
         this.cardData = cardData;
     }
 
-    render() {
-        const lists = this.cardData.reduce((newList, data) => {
-            const { content } = data;
-            const result = content.reduce((listString, content) => {
-                listString += `<li>${content}</li>`;
-                return listString;
-            }, "");
-            newList.push({ ...data, content: result });
-            return newList;
-        }, []);
+    makeCard({ imgSrc, title, content }, dummy) {
+        const makeList = contentArr =>
+            contentArr.reduce((list, item) => (list += `<li>${item}</li>`));
+        return `<li class="card ${
+            dummy ? dummy : ""
+        }"><div><img src=${imgSrc}></div><div class="card-contents"><h4>${title}</h4><ul>${makeList(
+            content
+        )}</ul></div></li>`;
+    }
 
-        const cards = lists.reduce(
-            (result, data) =>
-                (result += `<li class="card"><div><img src=${data.imgSrc}></div><div class="card-contents"><h4>${data.title}</h4><ul>${data.content}</ul></div></li>`),
+    render() {
+        const firstCardDummy = this.makeCard(this.cardData[0], "last");
+        const lastCardDummy = this.makeCard(
+            this.cardData[this.cardData.length - 1],
+            "first"
+        );
+        const list = this.cardData.reduce(
+            (list, content) => (list += this.makeCard(content)),
             ""
         );
-        return `<div class="card-wrapper"><ul class="card-list">${cards}</ul></div>`;
+
+        return `<div class="card-wrapper"><ul class="card-list">${lastCardDummy +
+            list +
+            firstCardDummy}</ul></div>`;
     }
 }
