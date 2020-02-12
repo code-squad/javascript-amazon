@@ -15,23 +15,24 @@ class Navigation {
         return `<ul class="nav-list">${navigation}</ul>`;
     }
 
-    updateNav(navMenu, i) {
-        navMenu.forEach(menu => menu.classList.remove("selected"));
-        navMenu[i].classList.add("selected");
-    }
-
-    moveSlide(i) {
-        const cardList = $(".card-list");
-        cardList.style.transform =
-            "translateX(" + `${-this.cardWidth * i}` + "px)";
-    }
-
     onClickEventHandler() {
         const navMenu = $$(".nav-menu");
+        const cardList = $(".card-list");
+
+        const updateNav = i => {
+            navMenu.forEach(menu => menu.classList.remove("selected"));
+            navMenu[i].classList.add("selected");
+        };
+
+        const moveSlide = i => {
+            cardList.style.transform =
+                "translateX(" + `${-this.cardWidth * i}` + "px)";
+        };
+
         navMenu.forEach((menu, i) => {
             menu.addEventListener("click", () => {
-                this.updateNav(navMenu, i);
-                this.moveSlide(i + 1);
+                updateNav(i);
+                moveSlide(i + 1);
             });
         });
     }
