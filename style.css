@@ -62,7 +62,6 @@ h1 {
 }
 
 .slider__container {
-  border: 1px solid red;
   height: 100%;
   margin: 0 5%;
   overflow: hidden;
