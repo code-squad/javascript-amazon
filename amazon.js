@@ -98,7 +98,7 @@ class Carousel {
           counter = index + 1;
           this.navItems[beforePointer].style.transform = "none";
           this.navItems[counter - 1].style.transform = "scale(1.1)";
-          this.carouselSlide.style.transition = "transform 0.4 ease-in-out";
+          this.carouselSlide.style.transition = "transform 0.4s ease-in-out";
           this.carouselSlide.style.transform =
             "translateX(" + -this.size * counter + "px)";
         }
