@@ -3,10 +3,11 @@ class Carousel {
     this.item = document.querySelector(option.item);
     this.offset = this.item.firstElementChild.offsetWidth;
     this.size = this.item.childElementCount - 1;
-    this.index = 0;
+    this.index = option.random ? Math.floor(Math.random() * (this.size + 1)) : 0;
     this.button = document.querySelector(option.button);
     [this.button.prev, this.button.next] = this.button.children;
     this.card = document.querySelectorAll(option.card);
+    this.slideItem();
     this.clickButton();
     this.clickCard();
   }
@@ -50,5 +51,6 @@ window.addEventListener("DOMContentLoaded", () => {
     item: ".slider__list",
     button: ".slider__btn",
     card: ".card-category__card",
+    random: true,
   });
 });
