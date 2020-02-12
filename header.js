@@ -1,12 +1,13 @@
 class Header {
     constructor(headerData) {
         this.headerData = headerData;
+        this.idIndex = 1;
     }
 
     returnCardLengthDivString(length) {
         let result = "";
         for (let i = 0; i < length; i++) {
-            result += `<div class="dot"></div>`
+            result += `<div class="dot" data-id=${this.idIndex++}></div>`
         }
         return result;
     }
