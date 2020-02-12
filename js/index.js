@@ -5,14 +5,16 @@ class AmazonCarousel {
     this.maxIndex = option.maxIndex;
     this.prev = option.prev;
     this.next = option.next;
-    // this.onClickHandler();
+    this.nav = option.nav;
+    console.log(this.nav);
   }
 
   moveSlides() {
     let translate = "translateX(" + -100 * this.currentIndex + "%)";
-    for (let i = 0; i < this.slides.length; i++) {
-      this.slides[i].style.transform = translate;
-    }
+    this.slides.forEach(element => {
+      console.log(element);
+      element.style.transform = translate;
+    });
   }
 
   onClickHandler() {
@@ -31,13 +33,21 @@ class AmazonCarousel {
       }
       this.moveSlides();
     });
+
+    this.nav.forEach((el, index) => {
+      el.addEventListener("click", () => {
+        this.currentIndex = index;
+        this.moveSlides();
+      });
+    });
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const carouselChildren = document.querySelector(".slider").children;
+  const carouselChildren = document.querySelectorAll(".slider > li");
   const buttonPrev = document.querySelector(".prev-btn");
   const buttonNext = document.querySelector(".next-btn");
+  const buttonNav = document.querySelectorAll(".slide-navigation > li");
   let current = 0;
   let total = 4;
 
@@ -46,7 +56,8 @@ window.addEventListener("DOMContentLoaded", () => {
     currentIndex: current,
     maxIndex: total,
     prev: buttonPrev,
-    next: buttonNext
+    next: buttonNext,
+    nav: buttonNav
   });
 
   startMove.onClickHandler();
