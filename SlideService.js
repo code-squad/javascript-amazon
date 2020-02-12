@@ -10,7 +10,8 @@ class SlideService {
         this._registerEventListenerOnDirectionButtons(this._bottomButtons);
 
         this._currentIndex = 0;
-        this._setCurrentIndex(0);
+        const generatedNumber = Math.floor(Math.random() * this._topButtons.length);
+        this._setCurrentIndex(generatedNumber);
     }
 
     _registerEventListenerOnMenuButtons(element) {
