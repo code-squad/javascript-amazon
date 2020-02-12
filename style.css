@@ -1,0 +1,76 @@
+.carousel-wrapper {
+  width:1000px;
+  
+}
+.carousel {
+  width:100%;
+}
+
+.menu__list>a {
+ text-decoration: none;
+}
+
+.menu__list>li:first-child {
+    background-color: #2591C0;
+}
+
+.menu__list>li:nth-child(2) {
+    background-color: #A90067;
+}
+
+.menu__list>li:nth-child(3) {
+    background-color: #008577;
+}
+
+.menu__list>li:nth-child(4 ) {
+    background-color:#E65D16;
+}
+
+.carousel__photo {
+    opacity:1;
+    
+}
+
+.carousel__photo.initial {
+    opacity:1;
+    transition: .5s opacity;
+}
+
+.carousel__button--prev,
+.carousel__button--next {
+  position: absolute;
+  top:50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: #FFF;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background-color:beige;
+  cursor: pointer; 
+  z-index: 1001; /* Sit on top of everything */
+}
+.carousel__button--prev {
+  left:0;
+}
+
+.carousel__button--next {
+  right:0;
+}
+
+.carousel__button--prev::after,
+.carousel__button--next::after {
+  content: " ";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 54%;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.carousel__button--next::after {
+  left: 47%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
