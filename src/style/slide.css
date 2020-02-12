@@ -1,0 +1,29 @@
+.slide { 
+    margin: 100px auto;
+}
+.slide-list {
+    
+}
+.slide-item { 
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+.slide-item.num1{
+    background:burlywood;
+}
+.slide-item.num2 {
+    background:blue;
+}
+.slide-item.num3 {
+    background:blueviolet;
+}
+.slide-item.num4 {
+    background:greenyellow;
+}
+.slide-item.num5 {
+    background:slategray;
+}
+.slide-item.num6 {
+    background:skyblue;
+}
