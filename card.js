@@ -5,10 +5,10 @@ class Card {
 
     makeCard({ imgSrc, title, content }, dummy) {
         const makeList = contentArr =>
-            contentArr.reduce((list, item) => (list += `<li>${item}</li>`));
+            contentArr.reduce((list, item) => (list += `<li>${item}</li>`), "");
         return `<li class="card ${
             dummy ? dummy : ""
-        }"><div><img src=${imgSrc}></div><div class="card-contents"><h4>${title}</h4><ul>${makeList(
+        }"><div class="card-image"><img src=${imgSrc}></div><div class="card-contents"><h4>${title}</h4><ul>${makeList(
             content
         )}</ul></div></li>`;
     }
