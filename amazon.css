@@ -28,7 +28,7 @@ ul {
     justify-content: center;
 }
 
-.menu-list>li>a {
+.menu-list>li>p {
     color: white;
     font-size: 15px;
 }
@@ -52,10 +52,11 @@ ul {
 .content {
     display: flex;
     vertical-align: middle;
-    width: 1000px;
+    width: 929px;
 }
 
 button {
+    line-height: 30px;
     width: 30px;
     height: 30px;
     margin: 0 10px;
@@ -76,19 +77,15 @@ button {
 }
 
 .content__text-parent {
-    width: 550px;
+    width: 500px;
     height: 250px;
     margin-left: 50px;
     overflow: hidden;
 }
 
-.content__text-childs {
-    width: 1100px;
-    height: 500px;
-}
 
 .content__text-child {
-    width: 550px;
+    width: 500px;
     height: 250px;
 }
 
