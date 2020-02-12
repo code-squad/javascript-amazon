@@ -19,6 +19,6 @@ class Card {
                 (result += `<li class="card"><div><img src=${data.imgSrc}></div><div class="card-contents"><h4>${data.title}</h4><ul>${data.content}</ul></div></li>`),
             ""
         );
-        return `<ul class="card-wrapper">${cards}</ul>`;
+        return `<div class="card-wrapper"><ul class="card-list">${cards}</ul></div>`;
     }
 }
