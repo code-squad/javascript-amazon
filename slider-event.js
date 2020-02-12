@@ -5,6 +5,8 @@ class SliderEvent extends MyEvent {
         this.distance = 0;
         this.previousIndex = 0;
         this.currentIndex = 0;
+        this.listLength = 17;
+        this.halfListLength = parseInt(this.listLength / 2);
     }
 
     // From this point, 8 === half of the list length. It needs a change!!
@@ -26,11 +28,11 @@ class SliderEvent extends MyEvent {
     }
 
     getPreviousIndex(index) {
-        return index - 1 === 0 ? 17 : index - 1;
+        return index - 1 === 0 ? this.listLength : index - 1;
     }
 
     getNextIndex(index) {
-        return (index + 1) % 17 === 0 ? 17 : (index + 1) % 17;
+        return (index + 1) % this.listLength === 0 ? this.listLength : (index + 1) % this.listLength;
     }
 
     returnCurrentIndex() {
@@ -108,13 +110,13 @@ class SliderEvent extends MyEvent {
     }
 
     getDistance (middle, target) {
-        if (middle + 8 > 17) {
+        if (middle + this.halfListLength > this.listLength) {
             // right
-            if (middle <= target && target<= 17) {
+            if (middle <= target && target<= this.listLength) {
                 this.distance = (target - middle);
                 return;
             } 
-            if (1 <= target && target <= middle + 8 - 17) {
+            if (1 <= target && target <= middle + this.halfListLength - this.listLength) {
                 this.distance = (17 + target - middle);
                 return;
             }
@@ -122,7 +124,7 @@ class SliderEvent extends MyEvent {
             return;
         }
 
-        if (target <= middle + 8) {
+        if (target <= middle + this.halfListLength) {
             this.distance = target - middle;
             return;
         }
@@ -131,7 +133,7 @@ class SliderEvent extends MyEvent {
             this.distance = (middle - target) * -1;
             return;
         }
-        this.distance = (17 + middle - target) * -1;
+        this.distance = (this.listLength + middle - target) * -1;
         return;
     }
 
