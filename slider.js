@@ -15,7 +15,7 @@ class Slider {
         `;
     }
 
-    attachEvent() {
+    bindEvent() {
         this.navigation.onClickEventHandler();
         this.buttons.onClickEventHandler();
     }
