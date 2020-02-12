@@ -1,7 +1,7 @@
 .clearfix:after {
   display: block;
   clear: both;
-  content: '';
+  content: "";
 }
 
 .br {
@@ -36,7 +36,6 @@
   width: calc(100% / 4);
 }
 
-
 .slider li .img-wrap,
 .slider li .contents-wrap {
   float: left;
@@ -45,7 +44,6 @@
 .slider li .img-wrap {
   width: 30%;
 }
-
 
 .slider li .img-wrap img {
   width: 100%;
@@ -139,7 +137,7 @@
   cursor: pointer;
 }
 
-.slide-btn .prv-btn {
+.slide-btn .prev-btn {
   left: -30px;
 }
 

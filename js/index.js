@@ -1,14 +1,37 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
+const test = () => {
+  const carousel = document.querySelector(".slider");
+  const carouselChildren = carousel.children;
 
-// Change the background color of a class.
-$('.class').style.background="#BADA55";
+  const buttonPrev = document.querySelector(".prev-btn");
+  const buttonNext = document.querySelector(".next-btn");
 
-// Change the inner HTML of an ID.
-$('#id').innerHTML="<span>Cool beans!</span>";
+  let current = 0;
+  let total = 4;
 
-// Select all images on the webpage.
-$$('img')
+  function moveTo() {
+    var translate = "translateX(" + -100 * current + "%)";
+    for (i = 0; i < carouselChildren.length; i++) {
+      carouselChildren[i].style.transform = translate;
+    }
+  }
 
-// Print the image addresses for all the images on a webpage.
-$$('img').forEach(img => console.log(img.src))
+  buttonNext.addEventListener("click", function() {
+    current++;
+    if (current > total - 1) {
+      current = 0;
+    }
+    moveTo();
+  });
+
+  buttonPrev.addEventListener("click", function() {
+    current--;
+    if (current < 0) {
+      current = total - 1;
+    }
+    moveTo();
+  });
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+  test();
+});
