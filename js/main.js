@@ -1,4 +1,5 @@
 const slideOption = {
+    NAV_CARD_WIDTH: 220,
     VIEWER_WIDTH: 900,
     currentItemIndex: 0,
 };
@@ -10,6 +11,9 @@ const elementOption = {
     slide_items: ".slide_item",
     slide_nav_li: ".slide_nav li",
 };
+
+navContainer.style.width = `${(slideOption.NAV_CARD_WIDTH * data.itemContents.length) + (5 * data.itemContents.length)}px`;
+slideContentContainer.style.width = `${slideOption.VIEWER_WIDTH * (data.itemContents.length + 2)}px`;
 
 class Slide {
     constructor(option) {
@@ -24,7 +28,6 @@ class Slide {
     }
 
     init() {
-        this.element.slide_item_wrap.style.width = `${(this.element.slide_items.length + 2) * this.VIEWER_WIDTH}px`;
         this.element.slide_item_wrap.style.transform = `translateX(${-this.VIEWER_WIDTH}px)`;
         this.element.slide_nav_li.forEach((node, idx) => {
             node.addEventListener("click", () => {
@@ -114,19 +117,11 @@ class Slide {
 
 class Element {
     constructor(option) {
-        this.prev = this.$(option.prev);
-        this.next = this.$(option.next);
-        this.slide_item_wrap = this.$(option.slide_item_wrap);
-        this.slide_items = this.$$(option.slide_items);
-        this.slide_nav_li = this.$$(option.slide_nav_li);
-    }
-
-    $(target) {
-        return document.querySelector(target);
-    }
-
-    $$(target) {
-        return document.querySelectorAll(target);
+        this.prev = $(option.prev);
+        this.next = $(option.next);
+        this.slide_item_wrap = $(option.slide_item_wrap);
+        this.slide_items = $$(option.slide_items);
+        this.slide_nav_li = $$(option.slide_nav_li);
     }
 }
 
