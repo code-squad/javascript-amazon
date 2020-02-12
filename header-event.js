@@ -27,6 +27,7 @@ class HeaderEvent extends MyEvent {
             event.target.parentNode.classList.add('header-selected');
             event.target.parentNode.querySelector(".circles").classList.remove("invisible");
             event.target.parentNode.querySelector(".dot").classList.add("selected-dot");
+            event.target.parentNode.querySelector(".dot").click();
             return;
         }
 
@@ -35,6 +36,7 @@ class HeaderEvent extends MyEvent {
             event.target.parentNode.classList.add('header-selected');
             event.target.classList.remove("invisible");
             event.target.querySelector(".dot").classList.add("selected-dot");
+            event.target.querySelector(".dot").click();
             return;
         }
 
@@ -48,6 +50,7 @@ class HeaderEvent extends MyEvent {
 
         // anywhere else
         event.target.querySelector(".dot").classList.add("selected-dot");
+        event.target.querySelector(".dot").click();
         event.target.classList.add('header-selected');
         Array.from(event.target.children).forEach(child => {
             if (child.classList.contains("circles")) {
