@@ -14,26 +14,19 @@ class SlideService {
         this._setCurrentIndex(generatedNumber);
     }
 
-    _registerEventListenerOnMenuButtons(element) {
-        let buttons = element;
-
-        for (let i = 0 ; i < buttons.length ; ++i) {
-            buttons[i].addEventListener('mousedown', e => {
-                this._menuButtonHandler(event, i);
+    _registerEventListenerOnMenuButtons(elements) {
+        elements.forEach((element, index) => {
+            element.addEventListener('mousedown', e => {
+                this._menuButtonHandler(event, index);
             });
-        }
+        });
     }
     
-    _registerEventListenerOnDirectionButtons(element) {
-        let [left, right] = element;
-
-        left.addEventListener('mousedown', e => {
-            this._directionButtonHandler(event, DirectionEnum.left)
-        });
-
-
-        right.addEventListener('mousedown', e => {
-            this._directionButtonHandler(event, DirectionEnum.right)
+    _registerEventListenerOnDirectionButtons(elements) {
+        elements.forEach((element, index) => {
+            element.addEventListener('mousedown', e => {
+                this._directionButtonHandler(event, index);
+            });
         });
     }
 
