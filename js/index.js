@@ -1,37 +1,53 @@
-const test = () => {
-  const carousel = document.querySelector(".slider");
-  const carouselChildren = carousel.children;
+class AmazonCarousel {
+  constructor(option) {
+    this.slides = option.slides;
+    this.currentIndex = option.currentIndex;
+    this.maxIndex = option.maxIndex;
+    this.prev = option.prev;
+    this.next = option.next;
+    // this.onClickHandler();
+  }
 
-  const buttonPrev = document.querySelector(".prev-btn");
-  const buttonNext = document.querySelector(".next-btn");
-
-  let current = 0;
-  let total = 4;
-
-  function moveTo() {
-    var translate = "translateX(" + -100 * current + "%)";
-    for (i = 0; i < carouselChildren.length; i++) {
-      carouselChildren[i].style.transform = translate;
+  moveSlides() {
+    let translate = "translateX(" + -100 * this.currentIndex + "%)";
+    for (let i = 0; i < this.slides.length; i++) {
+      this.slides[i].style.transform = translate;
     }
   }
 
-  buttonNext.addEventListener("click", function() {
-    current++;
-    if (current > total - 1) {
-      current = 0;
-    }
-    moveTo();
-  });
+  onClickHandler() {
+    this.prev.addEventListener("click", () => {
+      this.currentIndex--;
+      if (this.currentIndex < 0) {
+        this.currentIndex = this.maxIndex - 1;
+      }
+      this.moveSlides();
+    });
 
-  buttonPrev.addEventListener("click", function() {
-    current--;
-    if (current < 0) {
-      current = total - 1;
-    }
-    moveTo();
-  });
-};
+    this.next.addEventListener("click", () => {
+      this.currentIndex++;
+      if (this.currentIndex > this.maxIndex - 1) {
+        this.currentIndex = 0;
+      }
+      this.moveSlides();
+    });
+  }
+}
 
 window.addEventListener("DOMContentLoaded", () => {
-  test();
+  const carouselChildren = document.querySelector(".slider").children;
+  const buttonPrev = document.querySelector(".prev-btn");
+  const buttonNext = document.querySelector(".next-btn");
+  let current = 0;
+  let total = 4;
+
+  const startMove = new AmazonCarousel({
+    slides: carouselChildren,
+    currentIndex: current,
+    maxIndex: total,
+    prev: buttonPrev,
+    next: buttonNext
+  });
+
+  startMove.onClickHandler();
 });
