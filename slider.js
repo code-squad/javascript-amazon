@@ -1,9 +1,11 @@
 class Slider {
     constructor({ navData, cardData, buttonData }) {
-        this.navigation = new Navigation(navData, 1080);
+        this.navigation = new Navigation(navData, this.cardWidth);
         this.card = new Card(cardData);
-        this.buttons = new Button(buttonData, 1080);
+        this.buttons = new Button(buttonData, this.cardWidth);
     }
+
+    cardWidth = 1080;
 
     render() {
         return `
