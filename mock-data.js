@@ -47,5 +47,8 @@ const mockData = {
             ]
         }
     ],
-    buttonData: ["prev", "next"]
+    buttonData: [
+        '<i class="fas fa-chevron-left"></i>',
+        '<i class="fas fa-chevron-right"></i>'
+    ]
 };

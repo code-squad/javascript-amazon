@@ -1,11 +1,22 @@
+button {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+button i {
+    font-size: 50px;
+    color: #3d3d3d;
+}
+
 .button1 {
-  position: absolute;
-  top: 57%;
-  left: -80px;
+    position: absolute;
+    top: 57%;
+    left: -80px;
 }
 
 .button2 {
-  position: absolute;
-  top: 57%;
-  right: -80px;
+    position: absolute;
+    top: 57%;
+    right: -80px;
 }
