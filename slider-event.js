@@ -1,49 +1,40 @@
-class SliderEvent {
+class SliderEvent extends MyEvent {
     constructor() {
-
+        super();
+        this.isNext = false;
     }
 
-    selectBoxListener(event) {
-        $$('.header-list').forEach(list => {
-            if (list.classList.contains("header-selected")) {
-                list.classList.remove("header-selected");
-            }
-        })
-
-        $$('.circles').forEach(circle => {
-            if (circle.classList.contains("invisible") === false) {
-                circle.classList.add("invisible");
-            }
-        })
-
-        // headerTitle
-        if (event.target.classList.contains("header_title") === true) {
-            event.target.parentNode.classList.add('header-selected');
-            event.target.parentNode.querySelector(".circles").classList.remove("invisible");
-            return;
-        }
-
-        if (event.target.classList.contains("circles") === true) {
-            event.target.parentNode.classList.add('header-selected');
-            event.target.classList.remove("invisible");
-            return;
-        }
-
-        if (event.target.classList.contains("dot") === true) {
-            event.target.parentNode.parentNode.classList.add('header-selected');
-            event.target.parentNode.parentNode.classList.remove("invisible");
-            return;
-        }
-
-        event.target.classList.add('header-selected');
-        Array.from(event.target.children).forEach(child => {
-            if (child.classList.contains("circles")) {
-                child.classList.remove('invisible');
-            }
-        })
+    previousButtonListener(event) {
+        this.isNext = true;
+        const cardWrapper = $(".card-wrapper");
+        cardWrapper.style.transition = "transform 2s";
+        cardWrapper.style.transform = `translateX(1080px)`;
     }
 
-    addEvent(target, cb) {
-        target.addEventListener('click', cb);
+    nextButtonListener(event) {
+        this.isNext = false;
+        const cardWrapper = $(".card-wrapper");
+        cardWrapper.style.transition = "transform 2s";
+        cardWrapper.style.transform = `translateX(-1080px)`;
     }
+
+
+    transitionEndEvent(event) {
+        const cardWrapper = $(".card-wrapper");
+        cardWrapper.style.transition = 'none';
+        const childeNodes = cardWrapper.children;
+        const firstSlide = childeNodes[0];
+
+        if (this.isNext === false) {
+            firstSlide.remove();
+            cardWrapper.appendChild(firstSlide);
+        } else {
+            const lastSlide = childeNodes[childeNodes.length - 1];
+            lastSlide.remove();
+            cardWrapper.insertBefore(lastSlide, firstSlide);
+        }
+
+        cardWrapper.style.transform = 'translateX(0px)';
+    }
+
 }
