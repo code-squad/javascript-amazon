@@ -7,7 +7,7 @@ class Card {
     sortByCategory(category) {
         return this.cardData
             .filter(data => data.category === category)
-            .reduce((result, data) => (result += `<li class="card" id=card-${this.idIndex++}><div class="card-copy"><span class="card-category ${data.category}">${data.cardCategory}</span><div class="card-headline">${data.cardHeadline}</div><div class="card-body">${data.cardBody}</div><a class="card-cta">${data.cardCta}</a></div></li>`), "")
+            .reduce((result, data) => (result += `<li class="card ${this.idIndex === 1 ? "selected-card" : ""}" id=card-${this.idIndex++}><div class="card-copy"><span class="card-category ${data.category}">${data.cardCategory}</span><div class="card-headline">${data.cardHeadline}</div><div class="card-body">${data.cardBody}</div><a class="card-cta">${data.cardCta}</a></div></li>`), "")
 
     }
 
