@@ -1,14 +1,12 @@
 class TargetInfo {
-    constructor(firstIndex, imgTarget, textTarget, menuList) {
-        this.imgTarget = imgTarget;
-        this.textTarget = textTarget;
+    constructor(firstIndex, containerTarget, menuList) {
+        this.containerTarget = containerTarget;
         this.menuList = menuList;
         this.targetIndex = firstIndex;
     }
 
     handler() {
-        this.imgTarget.style.transform = `translateX(${this.targetIndex * (-250)}px)`;
-        this.textTarget.style.transform = `translateY(${this.targetIndex * (-250)}px)`;
+        this.containerTarget.style.transform = `translateY(${this.targetIndex * (-250)}px)`;
         this.resize();
     }
 
@@ -22,8 +20,8 @@ class TargetInfo {
 
 
 class SlideService {
-    constructor(firstIndex, imgTarget, textTarget, menuList) {
-        this.target = new TargetInfo(firstIndex, imgTarget, textTarget, menuList);
+    constructor(firstIndex, containerTarget, menuList) {
+        this.target = new TargetInfo(firstIndex, containerTarget, menuList);
         this.onButtonHandler();
         this.onMenuHandler();
 
@@ -35,11 +33,13 @@ class SlideService {
         left.addEventListener("mousedown", () => {
             this.target.targetIndex--;
             if (this.target.targetIndex < 0) this.target.targetIndex = 3;
+            console.log("left click!")
             this.target.handler();
         });
         right.addEventListener("mousedown", () => {
             this.target.targetIndex++;
             if (this.target.targetIndex > 3) this.target.targetIndex = 0;
+            console.log("right click!")
             this.target.handler();
         });
     }
@@ -62,13 +62,11 @@ window.addEventListener('DOMContentLoaded', () => {
     let firstIndex = (parseInt(Math.random() * 4));
     console.log(firstIndex);
 
-    const imgTarget = document.querySelector(".content__img-child");
-    const textTarget = document.querySelector(".content__text-childs");
+    const containerTarget = document.querySelector(".content-container-childs");
     const menuList = document.querySelectorAll(".menu-list>li");
 
-    imgTarget.style.transform = `translateX(${firstIndex * (-250)}px)`;
-    textTarget.style.transform = `translateY(${firstIndex * (-250)}px)`;
+    containerTarget.style.transform = `translateY(${firstIndex * (-250)}px)`;
     menuList[firstIndex].style.transform = "scale(1.09, 1.09)";
 
-    const ss = new SlideService(firstIndex, imgTarget, textTarget, menuList);
+    const ss = new SlideService(firstIndex, containerTarget, menuList);
 });

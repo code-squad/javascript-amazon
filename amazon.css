@@ -11,6 +11,7 @@ ul {
     display: flex;
     flex-direction: column;
     padding: 30px 50px;
+    position: relative;
 }
 
 .menu-list {
@@ -30,23 +31,24 @@ ul {
 
 .menu-list>li>p {
     color: white;
-    font-size: 15px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .menu-list>li:nth-child(1) {
-    background-color: #2392C0;
+    background-color: #DE9A24;
 }
 
 .menu-list>li:nth-child(2) {
-    background-color: #A80067;
+    background-color: #FEC7C7;
 }
 
 .menu-list>li:nth-child(3) {
-    background-color: #058475;
+    background-color: #7694B5;
 }
 
 .menu-list>li:nth-child(4) {
-    background-color: #E65D17;
+    background-color: #614C15;
 }
 
 .content {
@@ -65,34 +67,66 @@ button {
     border-radius: 50%;
     background-color: #A9B7B8;
     color: white;
+    position: absolute;
+    top: 100%;
 }
 
-.content__img-parent {
+#left-button {
+    left: 5%;
+}
+
+#right-button {
+    right: 5%;
+}
+
+
+.content-container-parent {
+    position: absolute;
+    left: 8%;
+    display: flex;
+    width: 841px;
+    height: 250px;
+    overflow: hidden;
+}
+
+.content-container-childs{
+    width: 3364px;
+}
+
+.content-container-child{
+    display: flex;
+    width: 841px;
+    justify-content: space-around;
+}
+
+.content-container-child__img {
     width: 250px;
-    overflow: hidden;
-}
-
-.content__img-child {
-    width: 1000px;
-}
-
-.content__text-parent {
-    width: 500px;
     height: 250px;
-    margin-left: 50px;
-    overflow: hidden;
 }
 
-
-.content__text-child {
+.content-container-child__text {
     width: 500px;
     height: 250px;
 }
 
-.content__text-title {
-    font-size: 22px;
+.content-container-child__text-title {
+    font-size: 30px;
+    font-weight: bold;
 }
 
-.content__text > ul > li {
-    list-style-position: inside;
+.content-container-child__text-description {
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.content-container-child__text-list {
+    font-size: 13px;
+}
+
+.content-container-child__text > ul > li {
+    list-style: none;
+    color: #949494;
+    line-height: 20px;
 }
