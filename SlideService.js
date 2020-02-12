@@ -8,15 +8,40 @@ class SlideService {
 
         this._registerEventListenerOnMenuButtons(this._menuButtons);
         this._registerEventListenerOnDirectionButtons(this._directionButtons);
+        this._appendAdditionalElementsForLoop(this._bottomContentArea);
+        this._registerEventListenerOnBottomContentArea(this._bottomContentArea);
 
-        this._currentIndex = 0;
-        const generatedNumber = Math.floor(Math.random() * this._menuButtons.length);
+        this._isAnimationRunning = false;
+
+        this._currentIndex = 1;
+        const generatedNumber = 1 + Math.floor(Math.random() * (this._menuButtons.length - 2));
         this._setCurrentIndex(generatedNumber);
+    }
+
+    _onTransitionEnd(event) {
+        this._bottomContentArea.style.transition = "none";
+        this._bottomContentArea.style.marginLeft = -(this._currentIndex * this._bottomContentArea.offsetWidth) + 'px';
+
+        this._isAnimationRunning = false;
+    }
+
+    _registerEventListenerOnBottomContentArea(element) {
+        element.addEventListener('transitionend', event => {
+            this._onTransitionEnd(event);
+        });
+    }
+
+    _appendAdditionalElementsForLoop(elements) {
+        const clonedFirstElementChild = elements.firstElementChild.cloneNode(true);
+        const clonedLastElementChild = elements.lastElementChild.cloneNode(true);
+
+        elements.appendChild(clonedFirstElementChild);
+        elements.insertBefore(clonedLastElementChild, elements.firstElementChild);
     }
 
     _registerEventListenerOnMenuButtons(elements) {
         elements.forEach((element, index) => {
-            element.addEventListener('mousedown', e => {
+            element.addEventListener('mousedown', event => {
                 this._menuButtonHandler(event, index);
             });
         });
@@ -24,17 +49,23 @@ class SlideService {
     
     _registerEventListenerOnDirectionButtons(elements) {
         elements.forEach((element, index) => {
-            element.addEventListener('mousedown', e => {
+            element.addEventListener('mousedown', event => {
                 this._directionButtonHandler(event, index);
             });
         });
     }
 
     _menuButtonHandler(event, index) {
-        this._setCurrentIndex(index);
+        if (true === this._isAnimationRunning)
+            return;
+
+        this._setCurrentIndex(index + 1);
     }
 
     _directionButtonHandler(event, direction) {
+        if (true === this._isAnimationRunning)
+            return;
+
         if (DirectionEnum.left === direction) {
             this._decreaseCurrentIndex();
         }
@@ -47,7 +78,7 @@ class SlideService {
     }
 
     _increaseCurrentIndex() {
-        if (this._currentIndex < this._menuButtons.length - 1) {
+        if (this._currentIndex < this._menuButtons.length + 1) {
             this._setCurrentIndex(this._currentIndex + 1);
         }
         else {
@@ -65,10 +96,42 @@ class SlideService {
     }
 
     _setCurrentIndex(index) {
-        this._menuButtons[this._currentIndex].className = '';
-        this._currentIndex = index;
+        if (true === this._isAnimationRunning || this._currentIndex === index)
+            return;
+
+        this._isAnimationRunning = true;
+        this._changeButtonStatus(this._currentIndex, index);
+        this._changeContentArea(index);
+        this._currentIndex = this._convertIndex(this._menuButtons.length, index);
+    }
+
+    _changeButtonStatus(currentIndex, nextIndex) {
+        let cvtNextIndex = this._convertIndex(this._menuButtons.length, nextIndex);
+
+        this._menuButtons[currentIndex - 1].className = '';
+        this._menuButtons[cvtNextIndex - 1].className = 'selected';
+    }
+
+    _changeContentArea(index) {
+        this._bottomContentArea.style.transition = "margin-left 0.25s ease";
+
         const offsetWidth = -(index * this._bottomContentArea.offsetWidth);
         this._bottomContentArea.style.marginLeft = offsetWidth + 'px';
-        this._menuButtons[index].className = "selected";
+    }
+
+    _convertIndex(menuCount, index) {
+        let convertedIndex = 0;
+
+        if (menuCount < index) {
+            convertedIndex = 1;
+        }
+        else if (1 > index) {
+            convertedIndex = 4;
+        }
+        else {
+            convertedIndex = index;
+        }
+
+        return convertedIndex;
     }
 }
