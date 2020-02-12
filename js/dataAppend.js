@@ -2,18 +2,19 @@ const navContainer = $(".slide_nav");
 const slideContentContainer = $(".slide_item_wrap");
 
 function navDataAppend() {
-    data.itemContents.forEach((itemContent, idx) => {
+    DATA.itemContents.forEach((itemContent, idx) => {
         const li = _$("li");
         if (idx === 0) {
             li.classList.add("slide_nav_selected");
         }
         li.innerText = itemContent.navTitle;
+        li.style.backgroundColor = DATA.navCardColors[idx % DATA.navCardColors.length];
         navContainer.appendChild(li);
     });
 }
 
 function slideContentDataAppend() {
-    data.itemContents.forEach(itemContent => {
+    DATA.itemContents.forEach(itemContent => {
         const item_box = _$("li");
         item_box.classList.add("slide_item");
 

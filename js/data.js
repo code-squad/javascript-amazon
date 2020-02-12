@@ -1,17 +1,22 @@
-const data = {
+const DATA = {
+    navCardColors: [
+        "#4691BC",
+        "#9B2165",
+        "#398377",
+        "#D76530",
+    ],
     itemContents: [
         {
-            navTitle: "행복한 프론트엔드",
+            navTitle: "show me the money",
             imgURL: "./img/img_1.jpg",
             headTitle: "SLIDE_1",
             contentText: [
                 "슬라이드",
-                "캐러셀",
-                "신난다!"
+                "캐러셀!"
             ]
         },
         {
-            navTitle: "멋진 크롱",
+            navTitle: "power overwhelming",
             imgURL: "./img/img_2.jpg",
             headTitle: "SLIDE_2",
             contentText: [
@@ -20,7 +25,7 @@ const data = {
             ]
         },
         {
-            navTitle: "버그없는 세상",
+            navTitle: "black sheep wall",
             imgURL: "./img/img_3.jpg",
             headTitle: "SLIDE_3",
             contentText: [
@@ -30,7 +35,7 @@ const data = {
             ]
         },
         {
-            navTitle: "오늘 점심",
+            navTitle: "the gathering",
             imgURL: "./img/img_4.jpg",
             headTitle: "SLIDE_4",
             contentText: [
@@ -40,24 +45,24 @@ const data = {
             ]
         },
         {
-            navTitle: "슬라이드 추가",
+            navTitle: "operation cwal",
             imgURL: "./img/img_1.jpg",
             headTitle: "SLIDE_5",
             contentText: [
-                "테스트용 리스트1",
-                "테스트용 리스트2",
-                "테스트용 리스트3",
-                "테스트용 리스트4",
-                "테스트용 리스트5",
+                "테스트 리스트1",
+                "테스트 리스트2",
+                "테스트 리스트3",
+                "테스트 리스트4",
+                "테스트 리스트5",
             ]
         },
         {
-            navTitle: "즐거운 버그 수집",
+            navTitle: "Food for thought",
             imgURL: "./img/img_2.jpg",
             headTitle: "SLIDE_6",
             contentText: [
                 "디버깅은 즐겁다",
-                "사실 거짓말",
+                "정말?",
             ]
         },
     ]

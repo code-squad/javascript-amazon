@@ -12,8 +12,8 @@ const elementOption = {
     slide_nav_li: ".slide_nav li",
 };
 
-navContainer.style.width = `${(slideOption.NAV_CARD_WIDTH * data.itemContents.length) + (5 * data.itemContents.length)}px`;
-slideContentContainer.style.width = `${slideOption.VIEWER_WIDTH * (data.itemContents.length + 2)}px`;
+navContainer.style.width = `${(slideOption.NAV_CARD_WIDTH * DATA.itemContents.length) + (5 * DATA.itemContents.length)}px`;
+slideContentContainer.style.width = `${slideOption.VIEWER_WIDTH * (DATA.itemContents.length + 2)}px`;
 
 class Slide {
     constructor(option) {
@@ -56,6 +56,7 @@ class Slide {
     }
 
     nextBtnClickHandler() {
+        this.element.next.style.transform = "scale(1)";
         if (this.currentItemIndex === 0 && this.element.slide_item_wrap.style.transform !== `translateX(${(this.currentItemIndex + 1) * -this.VIEWER_WIDTH}px)`) return;
         if (this.currentItemIndex === this.itemsCount) {
             this.transitionChecker();
@@ -74,6 +75,7 @@ class Slide {
     }
 
     prevBtnClickHandler() {
+        this.element.prev.style.transform = "scale(1)";
         if (this.currentItemIndex === this.itemsCount && this.element.slide_item_wrap.style.transform !== `translateX(${(this.currentItemIndex + 1) * -this.VIEWER_WIDTH}px)`) return;
         if (this.currentItemIndex === 0) {
             this.transitionChecker();
@@ -111,7 +113,20 @@ class Slide {
 
     run() {
         this.element.next.addEventListener("click", this.nextBtnClickHandler);
+        this.element.next.addEventListener("mousedown", () => {
+            this.element.next.style.transform = "scale(0.9)";
+        });
+        this.element.next.addEventListener("mouseout", () => {
+            this.element.next.style.transform = "scale(1)";
+        });
+
         this.element.prev.addEventListener("click", this.prevBtnClickHandler);
+        this.element.prev.addEventListener("mousedown", () => {
+            this.element.prev.style.transform = "scale(0.9)";
+        });
+        this.element.prev.addEventListener("mouseout", () => {
+            this.element.prev.style.transform = "scale(1)";
+        });
     }
 }
 
