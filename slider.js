@@ -12,6 +12,11 @@ class Carousel {
     this.elem.style.transform = `translateX(-${this.index * this.offset}px)`;
   }
 
+  movetoIndex(count) {
+    this.index = count;
+    this.elem.style.transform = `translateX(-${this.index * this.offset}px)`;
+  }
+
   checkSize(index) {
     if (index < 0) this.index = this.size;
     else if (index > this.size) this.index = 0;
@@ -19,33 +24,34 @@ class Carousel {
 }
 
 class Button {
-  constructor(prevBtn, nextBtn) {
-    this.prevBtn = document.querySelector(prevBtn);
-    this.nextBtn = document.querySelector(nextBtn);
+  constructor(elem) {
+    this.elem = document.querySelector(elem);
   }
 
-  clickPrev() {
-    return -1;
-  }
-
-  clickNext() {
-    return 1;
+  click(target) {
+    if (target.id === "prev") return -1;
+    else if (target.id === "next") return 1;
   }
 }
 
 class Card {
-  constructor() {}
+  constructor(elem) {
+    this.elem = document.querySelectorAll(elem);
+  }
 }
 
 window.addEventListener("DOMContentLoaded", event => {
   const carousel = new Carousel(".slider__list");
-  const button = new Button(".btn__previous", ".btn__next");
+  const button = new Button(".slider__btn");
+  const card = new Card(".card-category__card");
 
-  button.prevBtn.addEventListener("click", e => {
-    carousel.move(button.clickPrev());
+  button.elem.addEventListener("click", e => {
+    carousel.move(button.click(e.target));
   });
 
-  button.nextBtn.addEventListener("click", e => {
-    carousel.move(button.clickNext());
+  card.elem.forEach((target, index) => {
+    card.elem[index].addEventListener("click", () => {
+      carousel.movetoIndex(index);
+    });
   });
 });
