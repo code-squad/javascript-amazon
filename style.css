@@ -6,6 +6,12 @@
   min-width: 950px;
 }
 
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  font-weight: bold;
+}
+
 .card-category {
   margin: 0 5% 20px 5%;
 }
