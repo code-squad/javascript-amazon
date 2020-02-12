@@ -41,11 +41,6 @@
 
 .slide-item-wrap {
     height: 220px;
-    transform: translate(-900px);
-}
-
-.slide-item-wrap.on-transition {
-    transition: 0.4s;
 }
 
 .slide-item {
@@ -101,7 +96,7 @@ button {
     background-color: transparent;
     font-size: 3em;
     z-index: 1;
-    color: lightgray;
+    color: #d4cfcf;
 }
 
 .prev-btn {
