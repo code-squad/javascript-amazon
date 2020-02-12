@@ -1,36 +1,55 @@
+const DirectionEnum = Object.freeze({"left": 0, "right": 1})
+
 class SlideService {
 	constructor(option) {
         this._topButtons = option.topElements.querySelectorAll('button');
         this._bottomButtons = option.bottomElements.querySelectorAll('button');
         this._bottomContent = option.bottomElements.querySelector("#content");
 
-        this._onMenuButtonDownHandler(this._topButtons);
-        this._onDirectionButtonDownHandler(this._bottomButtons);
+        this._registerEventListenerOnMenuButtons(this._topButtons);
+        this._registerEventListenerOnDirectionButtons(this._bottomButtons);
 
         this._currentIndex = 0;
         this._setCurrentIndex(0);
     }
 
-    _onMenuButtonDownHandler(element) {
+    _registerEventListenerOnMenuButtons(element) {
         let buttons = element;
 
         for (let i = 0 ; i < buttons.length ; ++i) {
             buttons[i].addEventListener('mousedown', e => {
-                this._setCurrentIndex(i);
+                this._menuButtonHandler(event, i);
             });
         }
     }
     
-    _onDirectionButtonDownHandler(element) {
+    _registerEventListenerOnDirectionButtons(element) {
         let [left, right] = element;
 
         left.addEventListener('mousedown', e => {
-            this._decreaseCurrentIndex();
+            this._directionButtonHandler(event, DirectionEnum.left)
         });
 
+
         right.addEventListener('mousedown', e => {
-            this._increaseCurrentIndex();
+            this._directionButtonHandler(event, DirectionEnum.right)
         });
+    }
+
+    _menuButtonHandler(event, index) {
+        this._setCurrentIndex(index);
+    }
+
+    _directionButtonHandler(event, direction) {
+        if (DirectionEnum.left === direction) {
+            this._decreaseCurrentIndex();
+        }
+        else if (DirectionEnum.right === direction) {
+            this._increaseCurrentIndex();
+        }
+        else {
+            //Unexpected Flow.
+        }
     }
 
     _increaseCurrentIndex() {
