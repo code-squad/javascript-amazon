@@ -10,8 +10,8 @@ class SliderEvent extends MyEvent {
     }
 
     // From this point, 8 === half of the list length. It needs a change!!
-    isRightWay (distance) {
-       return distance >= 0;
+    isRightWay(distance) {
+        return distance >= 0;
     }
 
     moveByDistance(distance) {
@@ -20,7 +20,7 @@ class SliderEvent extends MyEvent {
             this.isPrevious = false;
             cardWrapper.style.transition = "transform 1s";
             cardWrapper.style.transform = `translateX(${-1080 * distance}px)`;
-            return;    
+            return;
         }
         this.isPrevious = true;
         cardWrapper.style.transition = "transform 1s";
@@ -41,25 +41,28 @@ class SliderEvent extends MyEvent {
         return parseInt(targetId);
     }
 
-    giveSelectedClassToCurrentIndexNode(){
+    giveSelectedClassToCurrentIndexNode() {
         const selectedCard = $('.selected-card');
         selectedCard.classList.remove("selected-card");
-        $(`#card-${this.currentIndex}`).classList.add('selected-card');  
+        $(`#card-${this.currentIndex}`).classList.add('selected-card');
+    }
+
+    setCurrentIndexAsPreviousIndex() {
+        const currentIndex = this.returnCurrentIndex();
+        this.previousIndex = currentIndex;
     }
 
     previousButtonListener(event) {
-        const currentIndex = this.returnCurrentIndex();
-        this.previousIndex = currentIndex;
-        this.currentIndex = this.getPreviousIndex(currentIndex);
+        this.setCurrentIndexAsPreviousIndex()
+        this.currentIndex = this.getPreviousIndex(this.previousIndex);
         this.distance = -1;
         this.moveByDistance(-1);
         this.giveSelectedClassToCurrentIndexNode();
     }
 
     nextButtonListener(event) {
-        const currentIndex = this.returnCurrentIndex();
-        this.previousIndex = currentIndex;
-        this.currentIndex = this.getNextIndex(currentIndex);
+        this.setCurrentIndexAsPreviousIndex();
+        this.currentIndex = this.getNextIndex(this.previousIndex);
         this.distance = 1;
         this.moveByDistance(1);
         this.giveSelectedClassToCurrentIndexNode();
@@ -69,12 +72,12 @@ class SliderEvent extends MyEvent {
         const cardWrapper = $(".card-wrapper");
         cardWrapper.style.transition = 'none';
         const childNodes = Array.from(cardWrapper.children);
-        const firstParitialList = childNodes.slice(0, Math.abs(this.distance)); 
+        const firstParitialList = childNodes.slice(0, Math.abs(this.distance));
         const firstSlide = childNodes[0];
 
         if (this.isPrevious === false) {
             firstParitialList.forEach(node => node.remove());
-            firstParitialList.forEach(node=>cardWrapper.appendChild(node));
+            firstParitialList.forEach(node => cardWrapper.appendChild(node));
         } else {
             const lastParitialList = childNodes.slice(childNodes.length - Math.abs(this.distance));
             lastParitialList.forEach(node => node.remove());
@@ -82,7 +85,7 @@ class SliderEvent extends MyEvent {
         }
 
         this.initializeStatus();
-        
+
         const target = $(`[data-id="${this.currentIndex}"]`);
         target.classList.add("selected-dot");
         target.parentNode.classList.remove("invisible");
@@ -91,13 +94,13 @@ class SliderEvent extends MyEvent {
         cardWrapper.style.transform = 'translateX(0px)';
     }
 
-    getDistance (middle, target) {
+    getDistance(middle, target) {
         if (middle + this.halfListLength > this.listLength) {
             // right
-            if (middle <= target && target<= this.listLength) {
+            if (middle <= target && target <= this.listLength) {
                 this.distance = (target - middle);
                 return;
-            } 
+            }
             if (1 <= target && target <= middle + this.halfListLength - this.listLength) {
                 this.distance = (this.listLength + target - middle);
                 return;
@@ -115,16 +118,17 @@ class SliderEvent extends MyEvent {
             this.distance = (middle - target) * -1;
             return;
         }
+
         this.distance = (this.listLength + middle - target) * -1;
         return;
     }
 
-    dotEventListener (event) {
-        const currentIndex = this.returnCurrentIndex();
-        this.previousIndex = currentIndex;
+    dotEventListener(event) {
+        this.setCurrentIndexAsPreviousIndex();
         const targetIndex = parseInt(event.target.dataset.id);
         this.currentIndex = targetIndex;
-        this.getDistance(currentIndex, targetIndex);
+
+        this.getDistance(this.previousIndex, this.currentIndex);
 
         this.moveByDistance(this.distance);
         this.giveSelectedClassToCurrentIndexNode();
