@@ -14,8 +14,24 @@ class Button {
         return `${buttons}`;
     }
 
+    updateNav(navMenu, i) {
+        navMenu.forEach(menu => menu.classList.remove("selected"));
+        navMenu[i].classList.add("selected");
+    }
+
+    showPrevCard(cardList, i) {
+        cardList.style.transform =
+            "translateX(" + `${i * -(100 / this.numOfCards)}%` + ")";
+    }
+
+    showNextCard(cardList, i) {
+        cardList.style.transform =
+            "translateX(" + `${i * -(100 / this.numOfCards)}%` + ")";
+    }
+
     attachEvent() {
         const cardList = $(".card-list");
+        const navMenu = $$(".nav-menu");
         const [prev, next] = $$(".button1, .button2");
 
         let currentCardIdx = 0;
@@ -23,20 +39,16 @@ class Button {
         prev.addEventListener("click", () => {
             if (currentCardIdx > 0) {
                 currentCardIdx -= 1;
-                cardList.style.transform =
-                    "translateX(" +
-                    `${currentCardIdx * -(100 / this.numOfCards)}%` +
-                    ")";
+                this.updateNav(navMenu, currentCardIdx);
+                this.showPrevCard(cardList, currentCardIdx);
             }
         });
 
         next.addEventListener("click", () => {
             if (currentCardIdx < this.numOfCards - 1) {
                 currentCardIdx += 1;
-                cardList.style.transform =
-                    "translateX(" +
-                    `${currentCardIdx * -(100 / this.numOfCards)}%` +
-                    ")";
+                this.updateNav(navMenu, currentCardIdx);
+                this.showNextCard(cardList, currentCardIdx);
             }
         });
     }

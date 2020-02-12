@@ -1,5 +1,5 @@
 const mockData = {
-    headerData: [
+    navData: [
         "Fast, Free Delivery",
         "Exclusive deals and offers",
         "Prime Originals, movies and TV shows",
