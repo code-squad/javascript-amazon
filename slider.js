@@ -1,8 +1,8 @@
 class Slider {
     constructor({ navData, cardData, buttonData }) {
-        this.navigation = new Navigation(navData, cardData.length);
+        this.navigation = new Navigation(navData, 1080);
         this.card = new Card(cardData);
-        this.buttons = new Button(buttonData, cardData.length);
+        this.buttons = new Button(buttonData, 1080);
     }
 
     render() {
@@ -14,7 +14,7 @@ class Slider {
     }
 
     attachEvent() {
-        this.navigation.attachEvent();
-        this.buttons.attachEvent();
+        this.navigation.onClickEventHandler();
+        this.buttons.onClickEventHandler();
     }
 }

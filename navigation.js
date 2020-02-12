@@ -1,7 +1,7 @@
 class Navigation {
-    constructor(texts, numOfCards) {
+    constructor(texts, cardWidth) {
         this.texts = texts;
-        this.numOfCards = numOfCards;
+        this.cardWidth = cardWidth;
     }
 
     render() {
@@ -20,18 +20,18 @@ class Navigation {
         navMenu[i].classList.add("selected");
     }
 
-    moveCardList(i) {
+    moveSlide(i) {
         const cardList = $(".card-list");
         cardList.style.transform =
-            "translateX(" + `${i * -(100 / this.numOfCards)}%` + ")";
+            "translateX(" + `${-this.cardWidth * i}` + "px)";
     }
 
-    attachEvent() {
+    onClickEventHandler() {
         const navMenu = $$(".nav-menu");
         navMenu.forEach((menu, i) => {
             menu.addEventListener("click", () => {
                 this.updateNav(navMenu, i);
-                this.moveCardList(i);
+                this.moveSlide(i + 1);
             });
         });
     }

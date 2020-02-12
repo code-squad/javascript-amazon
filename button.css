@@ -9,13 +9,13 @@ button i {
     color: #3d3d3d;
 }
 
-.button1 {
+.prev {
     position: absolute;
     top: 57%;
     left: -80px;
 }
 
-.button2 {
+.next {
     position: absolute;
     top: 57%;
     right: -80px;
