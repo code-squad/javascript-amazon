@@ -1,24 +1,23 @@
 class Card {
     constructor(cardData) {
         this.cardData = cardData;
+        this.idIndex = 1;
+    }
+
+    sortByCategory(category) {
+        return this.cardData
+            .filter(data => data.category === category)
+            .reduce((result, data) => (result += `<li class="card" id=card-${this.idIndex++}><div class="card-copy"><span class="card-category ${data.category}">${data.cardCategory}</span><div class="card-headline">${data.cardHeadline}</div><div class="card-body">${data.cardBody}</div><a class="card-cta">${data.cardCta}</a></div></li>`), "")
+
     }
 
     render() {
-        const lists = this.cardData.reduce((newList, data) => {
-            const { content } = data;
-            const result = content.reduce((listString, content) => {
-                listString += `<li>${content}</li>`;
-                return listString;
-            }, "");
-            newList.push({ ...data, content: result });
-            return newList;
-        }, []);
+        const shipList = this.sortByCategory("ship");
+        const streamList = this.sortByCategory("stream");
+        const shopList = this.sortByCategory("shop");
+        const readList = this.sortByCategory("read");
+        const moreList = this.sortByCategory("more");
 
-        const cards = lists.reduce(
-            (result, data) =>
-                (result += `<li class="card"><div><img src=${data.imgSrc}></div><div class="card-contents"><h4>${data.title}</h4><ul>${data.content}</ul></div></li>`),
-            ""
-        );
-        return `<ul class="card-wrapper">${cards}</ul>`;
+        return `<div class="card-block"><ul class="card-wrapper">${shopList}${readList}${moreList}${shipList}${streamList}</ul></div>`;
     }
 }
