@@ -6,7 +6,7 @@ class EventManager{
 
     addEvents() {
         $$(".header-list").forEach(header => {
-            this.headerEvent.addEvent(header, "click", this.headerEvent.selectBoxListener);
+            this.headerEvent.addEvent(header, "click", this.headerEvent.selectBoxListener.bind(this.headerEvent));
         })
         $$(".dot").forEach(dot => {
             this.sliderEvent.addEvent(dot, "click", this.sliderEvent.dotEventListener.bind(this.sliderEvent));

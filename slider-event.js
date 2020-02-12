@@ -65,27 +65,6 @@ class SliderEvent extends MyEvent {
         this.giveSelectedClassToCurrentIndexNode();
     }
 
-    initializeStatus() {
-        $$('.header-list').forEach(list => {
-            if (list.classList.contains("header-selected")) {
-                list.classList.remove("header-selected");
-            }
-        })
-
-        $$('.circles').forEach(circle => {
-            if (circle.classList.contains("invisible") === false) {
-                circle.classList.add("invisible");
-            }
-        })
-
-        $$(".dot").forEach(dot => {
-            if (dot.classList.contains("selected-dot")) {
-                dot.classList.remove("selected-dot");
-            }
-        })
-    }
-
-
     transitionEndEvent(event) {
         const cardWrapper = $(".card-wrapper");
         cardWrapper.style.transition = 'none';

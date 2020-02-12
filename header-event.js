@@ -4,24 +4,9 @@ class HeaderEvent extends MyEvent {
     }
 
     selectBoxListener(event) {
-        $$('.header-list').forEach(list => {
-            if (list.classList.contains("header-selected")) {
-                list.classList.remove("header-selected");
-            }
-        })
 
-        $$('.circles').forEach(circle => {
-            if (circle.classList.contains("invisible") === false) {
-                circle.classList.add("invisible");
-            }
-        })
-
-        $$(".dot").forEach(dot => {
-            if (dot.classList.contains("selected-dot")) {
-                dot.classList.remove("selected-dot");
-            }
-        })
-
+        this.initializeStatus();
+        
         // headerTitle
         if (event.target.classList.contains("header_title") === true) {
             event.target.parentNode.classList.add('header-selected');
