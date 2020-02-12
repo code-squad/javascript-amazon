@@ -41,7 +41,7 @@ class SlideService {
 
     _registerEventListenerOnMenuButtons(elements) {
         elements.forEach((element, index) => {
-            element.addEventListener('mousedown', event => {
+            element.addEventListener('click', event => {
                 this._menuButtonHandler(event, index);
             });
         });
@@ -49,7 +49,7 @@ class SlideService {
     
     _registerEventListenerOnDirectionButtons(elements) {
         elements.forEach((element, index) => {
-            element.addEventListener('mousedown', event => {
+            element.addEventListener('click', event => {
                 this._directionButtonHandler(event, index);
             });
         });
