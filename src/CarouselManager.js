@@ -9,8 +9,13 @@ class CarouselManager {
 
   appendEventListenerToMenuBtn(elements) {
     for (let i = 0; i < elements.length; i++) {
-      elements[i].addEventListener('click', () => {
-        this.calculateCarouselContentStyleToMenu(i);
+      elements[i].addEventListener('mouseover', () => {
+        elements[i].setAttribute( 'id', 'active' );
+        this.calculateCarouselContentStyleToMenu(i); // 하단에 있는 캐로셀의 컨텐츠를 변경하는
+      });
+
+      elements[i].addEventListener('mouseout', () => {
+        elements[i].setAttribute( 'id', 'inActive' );
       })
     }
   }
@@ -29,6 +34,7 @@ class CarouselManager {
 
     const calculatedMarginLeft = -(index * this.carouselFirstElement.offsetWidth) + 'px';
     this.carouselFirstElement.style.marginLeft = calculatedMarginLeft;
+    requestAnimationFrame(this.calculateCarouselContentStyleToMenu);
   }
 
   calculateCarouselContentStyleToArrow(element) {
@@ -42,5 +48,6 @@ class CarouselManager {
     }
 
     this.carouselFirstElement.style.marginLeft = this.calculatedMarginLeftForArrow + 'px'; // 형태변화!
+    requestAnimationFrame(this.calculateCarouselContentStyleToArrow);
   }
 }
