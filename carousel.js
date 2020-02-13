@@ -34,8 +34,7 @@ class Carousel {
     this.card.forEach((eachCard, index) => {
       eachCard.addEventListener("click", () => {
         this.goCardIndex(index);
-        eachCard.classList.remove("active");
-        if (this.index === index) eachCard.classList.add("active");
+        this.activeCard();
       });
     });
   }
