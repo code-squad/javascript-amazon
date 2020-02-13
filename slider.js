@@ -3,29 +3,26 @@ const $ = (selector, all) => {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    const carousel = carouselService();
-    const sliderConst = getSliderConst();
-    const carouselSlider = new CarouselSlider(carousel, sliderConst);
+    const carousel = createCarousel();
+    const carouselSlider = createCarouselSlider(carousel);
+    const carouselCardMenu = createCarouselCardMenu(carousel);
     carouselSlider.getSliderInfo();
     carouselSlider.cloneSlide();
     carouselSlider.setSliderBtns();
-    const cardMenuConst = getCardMenuConst();
-    const carouselCardMenu = new CarouselCardMenu(carousel, cardMenuConst);
     carouselCardMenu.setCardBtns();
 });
 
-function carouselService() {
+const createCarousel = () => {
     const SLIDES = '.slider__list';
     const slides = $(SLIDES);
-    const carousel = new CarouselService({
+    return new Carousel({
         slides: slides,
-        slideIndex: 1
-    })
-    return carousel;
+        slideIndex: 1,
+    });
 }
 
-function getSliderConst() {
-    return {
+const createCarouselSlider = (carousel) => {
+    const constant = {
         FIRSTCLONE: 'slider-firstClone',
         LASTCLONE: 'slider-lastClone',
         SLIDES: '.slider__list',
@@ -34,15 +31,17 @@ function getSliderConst() {
         FIRSTSLIDE_INDEX: 1,
         LASTSLIDE_INDEX: 2,
     }
+    return new CarouselSlider(carousel, constant);
 }
 
-function getCardMenuConst() {
-    return {
+const createCarouselCardMenu = (carousel) => {
+    const constant = {
         CARD_BTN: '.card button',
     }
+    return new CarouselCardMenu(carousel, constant);
 }
 
-class CarouselService {
+class Carousel {
     constructor(sliderData) {
         this.slides = sliderData.slides;
         this.slideIndex = sliderData.slideIndex;
@@ -62,7 +61,8 @@ class CarouselSlider {
 
     getSliderInfo() {
         this.slideItems = $(this.constant.SLIDE_ITEM, true);
-        return this.slideItemlength = this.slideItems.length;
+        this.slideItemlength = this.slideItems.length;
+        return [this.slideItems, this.slideItemlength];
     }
 
     cloneSlide() {
@@ -76,27 +76,29 @@ class CarouselSlider {
         this.carousel.slides.append(firstClone);
         this.carousel.slides.prepend(lastClone);
         this.getSliderInfo();
-        return this.carousel.moveSlides(this.carousel.slideIndex);
+        this.carousel.moveSlides(this.carousel.slideIndex);
+        return [firstClone, lastClone];
     }
 
     setSliderBtns() {
         const [previousBtn, nextBtn] = $(this.constant.SLIDER_BTNS, true);
 
         this.setClickEvent(previousBtn);
-        return this.setClickEvent(nextBtn, 'plus');
+        this.setClickEvent(nextBtn, 'plus');
+        return [previousBtn, nextBtn];
     }
 
     setClickEvent(sliderBtn, plusIndex) {
-        sliderBtn.addEventListener('click', () => {
+        return sliderBtn.addEventListener('click', () => {
             plusIndex ? this.carousel.slideIndex++ : this.carousel.slideIndex--;
             this.carousel.moveSlides(this.carousel.slideIndex);
-            return this.checkBothEndsSlide();
+            this.checkBothEndsSlide();
         });
     }
 
     checkBothEndsSlide() {
         const lastSlideIndex = this.slideItemlength - this.constant.LASTSLIDE_INDEX;
-        let currentSlideId = this.slideItems[this.carousel.slideIndex].id;
+        const currentSlideId = this.slideItems[this.carousel.slideIndex].id;
 
         if (currentSlideId === this.constant.LASTCLONE) {
             this.changeSlideIndex(lastSlideIndex);
@@ -105,32 +107,30 @@ class CarouselSlider {
         if (currentSlideId === this.constant.FIRSTCLONE) {
             this.changeSlideIndex(this.constant.FIRSTSLIDE_INDEX);
         }
-        return;
+        return currentSlideId;
     }
 
     changeSlideIndex(index) {
         this.carousel.slideIndex = index;
-        return this.carousel.moveSlides(this.carousel.slideIndex);
+        this.carousel.moveSlides(this.carousel.slideIndex);
+        return this.carousel.slideIndex;
     }
 }
 
 class CarouselCardMenu {
-    constructor(carousel) {
+    constructor(carousel, constant) {
         this.carousel = carousel,
-
-            this.constant = {
-                CARD_BTN: '.card button',
-            }
+            this.constant = constant
     }
 
     setCardBtns() {
         const cardBtns = $(this.constant.CARD_BTN, true);
-        cardBtns.forEach((btn, index) => {
+        return cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
                 this.carousel.moveSlides(index + 1);
             })
         })
-        return;
+
     }
 }
 
