@@ -7,9 +7,9 @@ class SliderEvent extends MyEvent {
         this.currentIndex = 0;
         this.listLength = 17;
         this.halfListLength = parseInt(this.listLength / 2);
+        this.selectedCard = $('.selected-card');
     }
 
-    // From this point, 8 === half of the list length. It needs a change!!
     isRightWay(distance) {
         return distance >= 0;
     }
@@ -36,15 +36,14 @@ class SliderEvent extends MyEvent {
     }
 
     returnCurrentIndex() {
-        const selectedCard = $('.selected-card');
-        const [_, targetId] = selectedCard.id.split('-');
+        const [_, targetId] = this.selectedCard.id.split('-');
         return parseInt(targetId);
     }
 
     giveSelectedClassToCurrentIndexNode() {
-        const selectedCard = $('.selected-card');
-        selectedCard.classList.remove("selected-card");
-        $(`#card-${this.currentIndex}`).classList.add('selected-card');
+        this.selectedCard.classList.remove("selected-card");
+        this.selectedCard = $(`#card-${this.currentIndex}`);
+        this.selectedCard.classList.add('selected-card');
     }
 
     setCurrentIndexAsPreviousIndex() {
@@ -75,7 +74,7 @@ class SliderEvent extends MyEvent {
         const firstParitialList = childNodes.slice(0, Math.abs(this.distance));
         const firstSlide = childNodes[0];
 
-        if (this.isPrevious === false) {
+        if (!this.isPrevious) {
             firstParitialList.forEach(node => node.remove());
             firstParitialList.forEach(node => cardWrapper.appendChild(node));
         } else {
@@ -94,21 +93,20 @@ class SliderEvent extends MyEvent {
         cardWrapper.style.transform = 'translateX(0px)';
     }
 
-    getDistance(middle, target) {
-        if (middle + this.halfListLength > this.listLength) {
-            // right
-            if (middle <= target && target <= this.listLength) {
-                this.distance = (target - middle);
-                return;
-            }
-            if (1 <= target && target <= middle + this.halfListLength - this.listLength) {
-                this.distance = (this.listLength + target - middle);
-                return;
-            }
-            this.distance = (middle - target) * -1;
+    getDistanceInRevertedOrder(middle, target) {
+        if (middle <= target && target <= this.listLength) {
+            this.distance = (target - middle);
             return;
         }
+        if (1 <= target && target <= middle + this.halfListLength - this.listLength) {
+            this.distance = (this.listLength + target - middle);
+            return;
+        }
+        this.distance = (middle - target) * -1;
+        return;
+    }
 
+    getDistanceInNormalOrder(middle, target) {
         if (target <= middle + this.halfListLength) {
             this.distance = target - middle;
             return;
@@ -123,6 +121,14 @@ class SliderEvent extends MyEvent {
         return;
     }
 
+    getDistance(middle, target) {
+        if (middle + this.halfListLength > this.listLength) {
+            this.getDistanceInRevertedOrder(middle, target);
+        }
+
+        this.getDistanceInNormalOrder(middle, target);
+    }
+
     dotEventListener(event) {
         this.setCurrentIndexAsPreviousIndex();
         const targetIndex = parseInt(event.target.dataset.id);
@@ -135,5 +141,4 @@ class SliderEvent extends MyEvent {
 
         $(`#card-${targetIndex}`).click();
     }
-
 }
