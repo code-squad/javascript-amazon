@@ -4,12 +4,13 @@ const $ = (selector, all) => {
 
 window.addEventListener('DOMContentLoaded', () => {
     const carousel = carouselService();
-    carousel.getSlideSize();
-    const carouselSlider = new CarouselSlider(carousel);
+    const sliderConst = getSliderConst();
+    const carouselSlider = new CarouselSlider(carousel, sliderConst);
     carouselSlider.getSliderInfo();
     carouselSlider.cloneSlide();
     carouselSlider.setSliderBtns();
-    const carouselCardMenu = new CarouselCardMenu(carousel);
+    const cardMenuConst = getCardMenuConst();
+    const carouselCardMenu = new CarouselCardMenu(carousel, cardMenuConst);
     carouselCardMenu.setCardBtns();
 });
 
@@ -23,14 +24,29 @@ function carouselService() {
     return carousel;
 }
 
+function getSliderConst() {
+    return {
+        FIRSTCLONE: 'slider-firstClone',
+        LASTCLONE: 'slider-lastClone',
+        SLIDES: '.slider__list',
+        SLIDE_ITEM: '.slider__item',
+        SLIDER_BTNS: '#slider__btn button',
+        FIRSTSLIDE_INDEX: 1,
+        LASTSLIDE_INDEX: 2,
+    }
+}
+
+function getCardMenuConst() {
+    return {
+        CARD_BTN: '.card button',
+    }
+}
+
 class CarouselService {
     constructor(sliderData) {
         this.slides = sliderData.slides;
         this.slideIndex = sliderData.slideIndex;
-    }
-
-    getSlideSize() {
-        return this.slideSize = this.slides.firstElementChild.clientWidth;
+        this.slideSize = this.slides.firstElementChild.clientWidth;
     }
 
     moveSlides(slideIndex) {
@@ -39,18 +55,9 @@ class CarouselService {
 }
 
 class CarouselSlider {
-    constructor(carousel) {
+    constructor(carousel, constant) {
         this.carousel = carousel,
-
-            this.constant = {
-                FIRSTCLONE: 'slider-firstClone',
-                LASTCLONE: 'slider-lastClone',
-                SLIDES: '.slider__list',
-                SLIDE_ITEM: '.slider__item',
-                SLIDER_BTNS: '#slider__btn button',
-                FIRSTSLIDE_INDEX: 1,
-                LASTSLIDE_INDEX: 2,
-            }
+            this.constant = constant
     }
 
     getSliderInfo() {
@@ -76,16 +83,15 @@ class CarouselSlider {
         const [previousBtn, nextBtn] = $(this.constant.SLIDER_BTNS, true);
 
         this.setClickEvent(previousBtn);
-        return this.setClickEvent(nextBtn, true);
+        return this.setClickEvent(nextBtn, 'plus');
     }
 
     setClickEvent(sliderBtn, plusIndex) {
         sliderBtn.addEventListener('click', () => {
             plusIndex ? this.carousel.slideIndex++ : this.carousel.slideIndex--;
             this.carousel.moveSlides(this.carousel.slideIndex);
-            this.checkBothEndsSlide();
+            return this.checkBothEndsSlide();
         });
-        return;
     }
 
     checkBothEndsSlide() {
