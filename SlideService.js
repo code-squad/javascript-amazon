@@ -143,3 +143,5 @@ class SlideService {
         return convertedIndex;
     }
 }
+
+export default SlideService;

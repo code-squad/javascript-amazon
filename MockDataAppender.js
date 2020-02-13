@@ -57,7 +57,4 @@ function appendContentsData(mockData) {
     }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    appendMenuData(mockData_Menu);
-    appendContentsData(mockData_Contents);
-});
+export {appendMenuData, appendContentsData};
