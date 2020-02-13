@@ -1,5 +1,5 @@
 const mockData = {
-    headerData: [
+    navData: [
         "Fast, Free Delivery",
         "Exclusive deals and offers",
         "Prime Originals, movies and TV shows",
@@ -17,7 +17,7 @@ const mockData = {
             ]
         },
         {
-            imgSrc: "https://i.postimg.cc/SN5HgSrD/rj.png",
+            imgSrc: "https://i.postimg.cc/kXQtWZKX/image.png",
             title: "Enjoy exclusive savings and rewards2",
             content: [
                 "Save on groceries and get an additional 10% off select sale items in all US Whole Food Market stores",
@@ -27,7 +27,7 @@ const mockData = {
             ]
         },
         {
-            imgSrc: "https://i.postimg.cc/SN5HgSrD/rj.png",
+            imgSrc: "https://i.postimg.cc/8zydr9gf/image.png",
             title: "Enjoy exclusive savings and rewards3",
             content: [
                 "Save on groceries and get an additional 10% off select sale items in all US Whole Food Market stores",
@@ -37,7 +37,7 @@ const mockData = {
             ]
         },
         {
-            imgSrc: "https://i.postimg.cc/SN5HgSrD/rj.png",
+            imgSrc: "https://i.postimg.cc/j2VBYC8T/image.png",
             title: "Enjoy exclusive savings and rewards4",
             content: [
                 "Save on groceries and get an additional 10% off select sale items in all US Whole Food Market stores",
@@ -47,5 +47,8 @@ const mockData = {
             ]
         }
     ],
-    buttonData: ["prev", "next"]
+    buttonData: [
+        '<i class="fas fa-chevron-left"></i>',
+        '<i class="fas fa-chevron-right"></i>'
+    ]
 };

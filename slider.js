@@ -1,15 +1,22 @@
 class Slider {
-    constructor({ headerData, cardData, buttonData }) {
-        this.header = new Header(headerData);
+    constructor({ navData, cardData, buttonData }) {
+        this.navigation = new Navigation(navData, this.cardWidth);
         this.card = new Card(cardData);
-        this.buttons = new Button(buttonData);
+        this.buttons = new Button(buttonData, this.cardWidth);
     }
+
+    cardWidth = 1080;
 
     render() {
         return `
-        ${this.header.render()}
+        ${this.navigation.render()}
         ${this.card.render()}
         ${this.buttons.render()}
         `;
+    }
+
+    bindEventListener() {
+        this.navigation.onClickEventHandler();
+        this.buttons.onClickEventHandler();
     }
 }
