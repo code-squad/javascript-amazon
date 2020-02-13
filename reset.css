@@ -449,6 +449,11 @@ a {
   color: inherit;
 }
 
+button {
+  border: 0;
+  outline: 0;
+}
+
 .blind {
   display: block;
   position: absolute;

@@ -4,47 +4,51 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>slide menu</title>
+    <title>carousel</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
     <link rel="stylesheet" href="./style.css" />
     <script type="text/javascript" src="./slider.js"></script>
+
 </head>
 
 <body>
-    <div class="wrap">
-        <div class="card-category">
-            <ul>
-                <li class="card-category__card card">
-                    <a href="#none">
+    <div id="carousel-wrap">
+        <!-- card-menu -->
+        <div id="card-menu">
+            <ul class="card-menu__list">
+                <li class="card-menu__card card">
+                    <button type="button">
                         <span class="card__title">Fast, Free Delivery</span>
-                    </a>
+                    </button>
                 </li>
-                <li class="card-category__card card">
-                    <a href="#none">
+                <li class="card-menu__card card">
+                    <button type="button">
                         <span class="card__title">Exclusive deals and offers</span>
-                    </a>
+                    </button>
                 </li>
-                <li class="card-category__card card">
-                    <a href="#none">
+                <li class="card-menu__card card">
+                    <button type="button">
                         <span class="card__title">Prime Originals, movies and TV shows</span>
-                    </a>
+                    </button>
                 </li>
-                <li class="card-category__card card">
-                    <a href="#none">
+                <li class="card-menu__card card">
+                    <button type="button">
                         <span class="card__title">Over 2 million songs ad free</span>
-                    </a>
+                    </button>
                 </li>
             </ul>
         </div>
-        <div class="slider">
+        <!-- //card-menu -->
+        <!-- slider -->
+        <div id="slider">
             <div class="slider__container">
                 <ul class="slider__list">
-                    <li class="slider__item">
+                    <li class="slider__item 1">
                         <div class="slider__img-area">
-                            <img src="./images/img1.jpg" alt="이동할 사진" />
+                            <img src="./images/img1.png" alt="이동할 사진" />
                         </div>
                         <div class="slider__content">
-                            <h1 style="color: blue">Lorem ipsum dolor sit amet.</h1>
+                            <h2 style="color:blue">Lorem ipsum dolor sit amet.</h2>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. In molestiae vel possimus
                                 ducimus numquam ipsam accusamus fugit animi saepe quisquam. Lorem ipsum dolor sit amet
@@ -52,57 +56,56 @@
                             </p>
                         </div>
                     </li>
-                    <li class="slider__item">
+                    <li class="slider__item 2">
                         <div class="slider__img-area">
-                            <img src="./images/img1.jpg" alt="사진" />
+                            <img src="./images/img2.jpg" alt="사진" />
                         </div>
                         <div class="slider__content">
-                            <h1 style="color: red">Lorem ipsum dolor sit amet.</h1>
+                            <h2 style="color: red">Lorem ipsum dolor sit amet.</h2>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. In molestiae vel possimus
                                 ducimus numquam ipsam accusamus fugit animi saepe quisquam. Lorem ipsum dolor sit amet
-                                consectetur, adipisicing elit. In molestiae vel possimus ducimus
+                                consectetur, adipisicing elit. In molestiae vel possimus ducimus!!
                             </p>
                         </div>
                     </li>
-                    <li class="slider__item">
+                    <li class="slider__item 3">
                         <div class="slider__img-area">
-                            <img src="./images/img1.jpg" alt="이동할 사진" />
+                            <img src="./images/img3.jpg" alt="이동할 사진" />
                         </div>
                         <div class="slider__content">
-                            <h1 style="color: green">Lorem ipsum dolor sit amet.</h1>
+                            <h2 style="color: orange">Lorem ipsum dolor sit amet.</h2>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. In molestiae vel possimus
                                 ducimus numquam ipsam accusamus fugit animi saepe quisquam. Lorem ipsum dolor sit amet
-                                consectetur, adipisicing elit. In molestiae vel possimus ducimus
+                                consectetur, adipisicing elit. In molestiae vel possimus ducimus?
                             </p>
                         </div>
                     </li>
-                    <li class="slider__item">
+                    <li class="slider__item 4">
                         <div class="slider__img-area">
-                            <img src="./images/img1.jpg" alt="이동할 사진" />
+                            <img src="./images/img4.jpg" alt="이동할 사진" />
                         </div>
                         <div class="slider__content">
-                            <h1 style="color: yellow">Lorem ipsum dolor sit amet.</h1>
+                            <h2 style="color: yellow">Lorem ipsum dolor sit amet.</h2>
                             <p>
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. In molestiae vel possimus
                                 ducimus numquam ipsam accusamus fugit animi saepe quisquam. Lorem ipsum dolor sit amet
-                                consectetur, adipisicing elit. In molestiae vel possimus ducimus
+                                consectetur, adipisicing elit. In molestiae vel possimus ducimus~
                             </p>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class="slider__btn btn">
-                <div class="btn__previous">
-                    <a href="#none"><i class="fas fa-chevron-left"><span class="blind">이전</span></i></a>
-                </div>
-                <div class="btn__next">
-                    <a href="#none"><i class="fas fa-chevron-right"><span class="blind">다음</span></i></a>
-                </div>
+            <div id="slider__btn">
+                <button type="button" class="slider__previous-btn"><i class="fas fa-chevron-left">
+                        <span class="blind">이전</span></i></button>
+                <button type="button" class="slider__next-btn"><i class="fas fa-chevron-right">
+                        <span class="blind">다음</span></i></button>
             </div>
         </div>
     </div>
+    <!-- slider -->
 </body>
 
 </html>
