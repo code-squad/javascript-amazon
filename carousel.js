@@ -68,9 +68,9 @@ class Carousel {
 
 window.addEventListener("DOMContentLoaded", () => {
   const carousel = new Carousel({
-    item: ".slider__list",
-    button: ".slider__btn",
-    card: ".card-category__card",
+    item: ".slider-list",
+    button: ".slider-btn",
+    card: ".card-category-card",
     random: false,
   });
 });

@@ -85,46 +85,46 @@ p {
   height: 330px;
 }
 
-.slider__container {
+.slider-container {
   height: 100%;
   margin: 0 5%;
   overflow: hidden;
 }
 
-.slider .slider__list {
+.slider .slider-list {
   height: 100%;
   display: flex;
 }
 
-.slider__list .slider__item {
+.slider-list .slider-item {
   display: flex;
   width: 100%;
 }
 
-.slider__item .slider__img-area {
+.slider-item .slider-img-area {
   margin-right: 3%;
   width: 400px;
 }
 
-.slider__item .slider__img-area > img {
+.slider-item .slider-img-area > img {
   width: 100%;
   height: 100%;
   border-radius: 30px;
   object-fit: cover;
 }
 
-.slider__item .slider__content {
+.slider-item .slider-content {
   padding: 5%;
   width: 900px;
 }
 
-.slider__btn > div {
+.slider-btn > div {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 50px;
 }
 
-.slider__btn .btn__next {
+.slider-btn .btn-next {
   right: 0;
 }
