@@ -2,13 +2,29 @@
 @import url("https://fonts.googleapis.com/css?family=Abel&display=swap");
 
 #carousel-wrap {
-  margin: 30px auto;
+  margin: 0 auto;
   max-width: 1400px;
   min-width: 1400px;
 }
 
+#carousel-wrap .carousel__bg-color1 {
+  background-color: #007bb6;
+}
+
+#carousel-wrap .carousel__bg-color2 {
+  background-color: #ac0169;
+}
+
+#carousel-wrap .carousel__bg-color3 {
+  background-color: #ff6239;
+}
+
+#carousel-wrap .carousel__bg-color4 {
+  background-color: #fec401;
+}
+
 #card-menu {
-  margin: 0 5% 20px 5%;
+  margin: 40px 0;
 }
 
 #card-menu .card-menu__list {
@@ -31,22 +47,6 @@
 #card-menu .card > button {
   width: 100%;
   height: 100%;
-}
-
-#card-menu .card:nth-child(1) > button {
-  background-color: #007bb6;
-}
-
-#card-menu .card:nth-child(2) > button {
-  background-color: #ac0169;
-}
-
-#card-menu .card:nth-child(3) > button {
-  background-color: #ff6239;
-}
-
-#card-menu .card:nth-child(4) > button {
-  background-color: #fec401;
 }
 
 #card-menu .card__title {
@@ -92,12 +92,19 @@
 #slider .slider__content {
   padding: 5%;
   width: 900px;
-  color: #444;
+  color: #333;
+}
+
+#slider .slider__titleBox {
+  padding: 5px 10px;
+  font-weight: bold;
+  color: #fff;
 }
 
 #slider .slider__content > h2 {
-  margin-bottom: 20px;
+  margin: 20px 0;
   font-size: 45px;
+  font-weight: bold;
 }
 
 #slider .slider__content > p {
@@ -115,4 +122,8 @@
 
 #slider__btn .slider__next-btn {
   right: 0;
+}
+
+#slider__btn > button > i {
+  color: #444;
 }
