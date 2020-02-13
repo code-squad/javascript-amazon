@@ -1,4 +1,5 @@
 @import "reset.css";
+@import url("https://fonts.googleapis.com/css?family=Abel&display=swap");
 
 #carousel-wrap {
   margin: 30px auto;
@@ -10,12 +11,12 @@
   margin: 0 5% 20px 5%;
 }
 
-.card-menu__list {
+#card-menu .card-menu__list {
   display: flex;
   justify-content: space-between;
 }
 
-.card-menu__list .card {
+#card-menu .card {
   width: 24%;
   height: 90px;
   text-align: center;
@@ -23,31 +24,32 @@
   transition: all 0.3s ease;
 }
 
-.card-menu__list .card:hover {
+#card-menu .card:hover {
   transform: scale(1.1);
 }
-.card-menu__list .card > button {
+
+#card-menu .card > button {
   width: 100%;
   height: 100%;
 }
 
-.card-menu__list .card:nth-child(1) > button {
+#card-menu .card:nth-child(1) > button {
   background-color: #007bb6;
 }
 
-.card-menu__list .card:nth-child(2) > button {
+#card-menu .card:nth-child(2) > button {
   background-color: #ac0169;
 }
 
-.card-menu__list .card:nth-child(3) > button {
+#card-menu .card:nth-child(3) > button {
   background-color: #ff6239;
 }
 
-.card-menu__list .card:nth-child(4) > button {
+#card-menu .card:nth-child(4) > button {
   background-color: #fec401;
 }
 
-.card-menu__list .card__title {
+#card-menu .card__title {
   font-size: 20px;
   color: #fff;
 }
@@ -58,46 +60,47 @@
   height: 330px;
 }
 
-.slider__container {
+#slider .slider__container {
   height: 100%;
   margin: 0 5%;
   overflow: hidden;
 }
 
-.slider__container .slider__list {
+#slider .slider__list {
   height: 100%;
   display: flex;
 }
 
-.slider__list .slider__item {
+#slider .slider__item {
   display: flex;
   width: 100%;
 }
 
-.slider__item .slider__img-area {
+#slider .slider__img-area {
   margin-left: 1px;
   margin-right: 5%;
   width: 400px;
 }
 
-.slider__item .slider__img-area > img {
+#slider .slider__img-area > img {
   width: 100%;
   height: 100%;
   border-radius: 55%;
   object-fit: cover;
 }
 
-.slider__item .slider__content {
+#slider .slider__content {
   padding: 5%;
   width: 900px;
+  color: #444;
 }
 
-.slider__item .slider__content > h2 {
+#slider .slider__content > h2 {
   margin-bottom: 20px;
   font-size: 45px;
 }
 
-.slider__item .slider__content > p {
+#slider .slider__content > p {
   font-size: 25px;
   line-height: 25px;
 }
