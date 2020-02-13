@@ -1,8 +1,6 @@
 const $ = (selector, all) => {
-    if (all) return document.querySelectorAll(selector);
-    return document.querySelector(selector);
+    return all ? document.querySelectorAll(selector) : document.querySelector(selector);
 }
-
 
 window.addEventListener('DOMContentLoaded', () => {
     const carousel = carouselService();
@@ -15,10 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
     carouselCardMenu.setCardBtns();
 });
 
-
 function carouselService() {
     const SLIDES = '.slider__list';
-
     const slides = $(SLIDES);
     const carousel = new CarouselService({
         slides: slides,
@@ -26,10 +22,6 @@ function carouselService() {
     })
     return carousel;
 }
-
-
-const FIRSTSLIDE = 'slider-firstClone';
-const LASTSLIDE = 'slider-lastClone';
 
 class CarouselService {
     constructor(sliderData) {
@@ -48,12 +40,21 @@ class CarouselService {
 
 class CarouselSlider {
     constructor(carousel) {
-        this.carousel = carousel;
+        this.carousel = carousel,
+
+            this.constant = {
+                FIRSTCLONE = 'slider-firstClone',
+                LASTCLONE = 'slider-lastClone',
+                SLIDES = '.slider__list',
+                SLIDE_ITEM = '.slider__item',
+                SLIDER_BTNS = '#slider__btn button',
+                FIRSTSLIDE_INDEX = 1,
+                LASTSLIDE_INDEX = 2,
+            }
     }
 
     getSliderInfo() {
-        const SLIDE_ITEM = '.slider__item';
-        this.slideItems = $(SLIDE_ITEM, true);
+        this.slideItems = $(this.constant.SLIDE_ITEM, true);
         this.slideItemlength = this.slideItems.length;
     }
 
@@ -62,9 +63,9 @@ class CarouselSlider {
         //위에서 구해놓은 this.slideItems[0]이 좋은지 firstElementChild로 의미를 명확하게 하는게 좋은지
         const lastSlide = this.carousel.slides.lastElementChild;
         const firstClone = firstSlide.cloneNode(true);
-        firstClone.id = FIRSTSLIDE;
+        firstClone.id = FIRSTCLONE;
         const lastClone = lastSlide.cloneNode(true);
-        lastClone.id = LASTSLIDE;
+        lastClone.id = LASTCLONE;
         this.carousel.slides.append(firstClone);
         this.carousel.slides.prepend(lastClone);
         this.getSliderInfo();
@@ -72,39 +73,30 @@ class CarouselSlider {
     }
 
     setSliderBtns() {
-        const SLIDER_BTNS = '#slider__btn button';
-        const [previousBtn, nextBtn] = $(SLIDER_BTNS, true);//클래스 아이디??
+        const [previousBtn, nextBtn] = $(this.constant.SLIDER_BTNS, true);
 
-        previousBtn.addEventListener('click', () => {
-            this.carousel.slideIndex--;
-            this.moveAndCheckSlide();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            this.carousel.slideIndex++;
-            this.moveAndCheckSlide();
-        });
+        this.setClickEvent(previousBtn);
+        this.setClickEvent(nextBtn, true);
     }
 
-    moveAndCheckSlide() {
-        this.carousel.moveSlides(this.carousel.slideIndex);
-        this.checkBothEndsSlide();
+    setClickEvent(sliderBtn, plusIndex) {
+        sliderBtn.addEventListener('click', () => {
+            plusIndex ? this.carousel.slideIndex++ : this.carousel.slideIndex--;
+            this.carousel.moveSlides(this.carousel.slideIndex);
+            this.checkBothEndsSlide();
+        });
     }
-
 
     checkBothEndsSlide() {
-        const FIRSTSLIDE_INDEX = 1;
-        const LASTSLIDE_INDEX = 2;
-        const lastSlideIndex = this.slideItemlength - LASTSLIDE_INDEX;
-
+        const lastSlideIndex = this.slideItemlength - this.constant.LASTSLIDE_INDEX;
         let currentSlideId = this.slideItems[this.carousel.slideIndex].id;
 
-        if (currentSlideId === LASTSLIDE) {
+        if (currentSlideId === LASTCLONE) {
             this.changeSlideIndex(lastSlideIndex);
         }
 
-        if (currentSlideId === FIRSTSLIDE) {
-            this.changeSlideIndex(FIRSTSLIDE_INDEX);
+        if (currentSlideId === FIRSTCLONE) {
+            this.changeSlideIndex(this.constant.FIRSTSLIDE_INDEX);
         }
     }
 
@@ -116,11 +108,15 @@ class CarouselSlider {
 
 class CarouselCardMenu {
     constructor(carousel) {
-        this.carousel = carousel;
+        this.carousel = carousel,
+
+            this.constant = {
+                CARD_BTN = '.card button',
+            }
     }
 
     setCardBtns() {
-        const cardBtns = $('.card button', true);
+        const cardBtns = $(this.CARD_BTN, true);
         cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
                 this.carousel.moveSlides(index + 1);
