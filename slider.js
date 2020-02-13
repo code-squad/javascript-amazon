@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const carousel = createCarousel();
     const carouselSlider = createCarouselSlider(carousel);
     const carouselCardMenu = createCarouselCardMenu(carousel);
+
     carouselSlider.getSliderInfo();
     carouselSlider.cloneSlide();
     carouselSlider.setSliderBtns();
@@ -15,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
 const createCarousel = () => {
     const SLIDES = '.slider__list';
     const slides = $(SLIDES);
+
     return new Carousel({
         slides: slides,
         slideIndex: 1,
@@ -31,6 +33,7 @@ const createCarouselSlider = (carousel) => {
         FIRSTSLIDE_INDEX: 1,
         LASTSLIDE_INDEX: 2,
     }
+
     return new CarouselSlider(carousel, constant);
 }
 
@@ -38,6 +41,7 @@ const createCarouselCardMenu = (carousel) => {
     const constant = {
         CARD_BTN: '.card button',
     }
+
     return new CarouselCardMenu(carousel, constant);
 }
 
@@ -67,11 +71,11 @@ class CarouselSlider {
 
     cloneSlide() {
         const firstSlide = this.carousel.slides.firstElementChild;
-        //위에서 구해놓은 this.slideItems[0]이 좋은지 firstElementChild로 의미를 명확하게 하는게 좋은지
         const lastSlide = this.carousel.slides.lastElementChild;
         const firstClone = firstSlide.cloneNode(true);
-        firstClone.id = this.constant.FIRSTCLONE;
         const lastClone = lastSlide.cloneNode(true);
+
+        firstClone.id = this.constant.FIRSTCLONE;
         lastClone.id = this.constant.LASTCLONE;
         this.carousel.slides.append(firstClone);
         this.carousel.slides.prepend(lastClone);
@@ -125,12 +129,12 @@ class CarouselCardMenu {
 
     setCardBtns() {
         const cardBtns = $(this.constant.CARD_BTN, true);
+
         return cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
                 this.carousel.moveSlides(index + 1);
             })
         })
-
     }
 }
 
