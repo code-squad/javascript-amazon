@@ -15,7 +15,7 @@ class Slider {
         `;
     }
 
-    bindEvent() {
+    bindEventListener() {
         this.navigation.onClickEventHandler();
         this.buttons.onClickEventHandler();
     }
