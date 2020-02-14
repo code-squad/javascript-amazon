@@ -1,44 +1,37 @@
-class Carousel {
-    constructor(sliderData) {
-        this.slides = sliderData.slides;
-        this.slideIndex = sliderData.slideIndex;
-        this.slideSize = this.slides.firstElementChild.clientWidth;
-    }
-
-    moveSlides(slideIndex) {
-        return this.slides.style.transform = 'translateX(' + (-this.slideSize * slideIndex) + 'px)';
-    }
-}
-
 class CarouselSlider {
-    constructor(carousel, constant) {
-        this.carousel = carousel,
-            this.constant = constant
+    constructor(sliderData, selectorName) {
+        this.slides = sliderData.slides,
+            this.slideIndex = sliderData.slideIndex,
+            this.slideSize = this.slides.firstElementChild.clientWidth,
+            this.selectorName = selectorName
     }
 
     getSliderInfo() {
-        this.slideItems = $(this.constant.SLIDE_ITEM, true);
+        this.slideItems = $(this.selectorName.SLIDE_ITEM, true);
         this.slideItemlength = this.slideItems.length;
         return [this.slideItems, this.slideItemlength];
     }
 
     cloneSlide() {
-        const firstSlide = this.carousel.slides.firstElementChild;
-        const lastSlide = this.carousel.slides.lastElementChild;
-        const firstClone = firstSlide.cloneNode(true);
-        const lastClone = lastSlide.cloneNode(true);
+        const { firstElementChild, lastElementChild } = this.slides,
+            firstClone = firstElementChild.cloneNode(true),
+            lastClone = lastElementChild.cloneNode(true);
 
-        firstClone.id = this.constant.FIRSTCLONE;
-        lastClone.id = this.constant.LASTCLONE;
-        this.carousel.slides.append(firstClone);
-        this.carousel.slides.prepend(lastClone);
+        firstClone.id = this.selectorName.FIRSTCLONE;
+        lastClone.id = this.selectorName.LASTCLONE;
+        this.slides.append(firstClone);
+        this.slides.prepend(lastClone);
         this.getSliderInfo();
-        this.carousel.moveSlides(this.carousel.slideIndex);
+        this.moveSlides(this.slideIndex);
         return [firstClone, lastClone];
     }
 
+    moveSlides(slideIndex) {
+        return this.slides.style.transform = 'translateX(' + (-this.slideSize * slideIndex) + 'px)';
+    }
+
     setSliderBtns() {
-        const [previousBtn, nextBtn] = $(this.constant.SLIDER_BTNS, true);
+        const [previousBtn, nextBtn] = $(this.selectorName.SLIDER_BTNS, true);
 
         this.setClickEvent(previousBtn);
         this.setClickEvent(nextBtn, 'plus');
@@ -47,45 +40,48 @@ class CarouselSlider {
 
     setClickEvent(sliderBtn, plusIndex) {
         return sliderBtn.addEventListener('click', () => {
-            plusIndex ? this.carousel.slideIndex++ : this.carousel.slideIndex--;
-            this.carousel.moveSlides(this.carousel.slideIndex);
-            this.checkBothEndsSlide();
+            plusIndex ? this.slideIndex++ : this.slideIndex--;
+            this.moveSlides(this.slideIndex);
+            this.getCurrentSlideId();
         });
     }
 
-    checkBothEndsSlide() {
-        const lastSlideIndex = this.slideItemlength - this.constant.LASTSLIDE_INDEX;
-        const currentSlideId = this.slideItems[this.carousel.slideIndex].id;
+    getCurrentSlideId() {
+        const FIRSTSLIDE_INDEX = 1,
+            LASTSLIDE_INDEX = 2
 
-        if (currentSlideId === this.constant.LASTCLONE) {
+        const lastSlideIndex = this.slideItemlength - LASTSLIDE_INDEX,
+            currentSlideId = this.slideItems[this.slideIndex].id;
+
+        if (currentSlideId === this.selectorName.LASTCLONE) {
             this.changeSlideIndex(lastSlideIndex);
         }
 
-        if (currentSlideId === this.constant.FIRSTCLONE) {
-            this.changeSlideIndex(this.constant.FIRSTSLIDE_INDEX);
+        if (currentSlideId === this.selectorName.FIRSTCLONE) {
+            this.changeSlideIndex(FIRSTSLIDE_INDEX);
         }
         return currentSlideId;
     }
 
     changeSlideIndex(index) {
-        this.carousel.slideIndex = index;
-        this.carousel.moveSlides(this.carousel.slideIndex);
-        return this.carousel.slideIndex;
+        this.slideIndex = index;
+        this.moveSlides(this.slideIndex);
+        return this.slideIndex;
     }
 }
 
 class CarouselCardMenu {
-    constructor(carousel, constant) {
-        this.carousel = carousel,
-            this.constant = constant
+    constructor(sliderData, selectorName) {
+        this.sliderData = sliderData,
+            this.selectorName = selectorName
     }
 
     setCardBtns() {
-        const cardBtns = $(this.constant.CARD_BTN, true);
+        const cardBtns = $(this.selectorName.CARD_BTN, true);
 
         return cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
-                this.carousel.moveSlides(index + 1);
+                this.sliderData.moveSlides(index + 1);
             })
         })
     }

@@ -3,9 +3,8 @@ const $ = (selector, all) => {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    const carousel = createCarousel();
-    const carouselSlider = createCarouselSlider(carousel);
-    const carouselCardMenu = createCarouselCardMenu(carousel);
+    const carouselSlider = createCarouselSlider(),
+        carouselCardMenu = createCarouselCardMenu(carouselSlider);
 
     carouselSlider.getSliderInfo();
     carouselSlider.cloneSlide();
@@ -13,34 +12,29 @@ window.addEventListener('DOMContentLoaded', () => {
     carouselCardMenu.setCardBtns();
 });
 
-const createCarousel = () => {
+const createCarouselSlider = () => {
     const SLIDES = '.slider__list';
-    const slides = $(SLIDES);
 
-    return new Carousel({
+    const slides = $(SLIDES);
+    const sliderData = {
         slides: slides,
         slideIndex: 1,
-    });
-}
-
-const createCarouselSlider = (carousel) => {
-    const constant = {
-        FIRSTCLONE: 'slider-firstClone',
-        LASTCLONE: 'slider-lastClone',
-        SLIDES: '.slider__list',
-        SLIDE_ITEM: '.slider__item',
-        SLIDER_BTNS: '#slider__btn button',
-        FIRSTSLIDE_INDEX: 1,
-        LASTSLIDE_INDEX: 2,
     }
 
-    return new CarouselSlider(carousel, constant);
+    const selectorNames = {
+        FIRSTCLONE: 'slider-firstClone',
+        LASTCLONE: 'slider-lastClone',
+        SLIDE_ITEM: '.slider__item',
+        SLIDER_BTNS: '#slider__btn button',
+    }
+
+    return new CarouselSlider(sliderData, selectorNames);
 }
 
-const createCarouselCardMenu = (carousel) => {
-    const constant = {
+const createCarouselCardMenu = (carouselSliderData) => {
+    const selectorNames = {
         CARD_BTN: '.card button',
     }
 
-    return new CarouselCardMenu(carousel, constant);
+    return new CarouselCardMenu(carouselSliderData, selectorNames);
 }
