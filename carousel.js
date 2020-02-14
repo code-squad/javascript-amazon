@@ -1,9 +1,14 @@
 class Carousel {
-  constructor(option) {
-    this.item = document.querySelector(option.item);
+  constructor(item, button, option) {
+    this.item = document.querySelector(item);
     this.size = this.item.childElementCount - 1;
-    this.index = option.random ? Math.floor(Math.random() * (this.size + 1)) : 0;
-    this.button = document.querySelector(option.button);
+    if (!option.index || option.index > this.size || option.index < 0) {
+      this.index = 0;
+    } else this.index = option.index;
+    if (option.useRandomIndex) {
+      this.index = Math.floor(Math.random() * (this.size + 1));
+    }
+    this.button = document.querySelector(button);
     this.card = document.querySelectorAll(option.card);
     this.slideItem();
     this.activeCard();
@@ -19,10 +24,10 @@ class Carousel {
   clickButton() {
     const [prevBtn, nextBtn] = this.button.children;
     prevBtn.addEventListener("click", () => {
-      this.changePrevIndex();
+      this.index -= 1;
     });
     nextBtn.addEventListener("click", () => {
-      this.changeNextIndex();
+      this.index += 1;
     });
     this.button.addEventListener("click", () => {
       this.goSideIndex(this.index);
@@ -46,14 +51,6 @@ class Carousel {
     });
   }
 
-  changePrevIndex() {
-    this.index -= 1;
-  }
-
-  changeNextIndex() {
-    this.index += 1;
-  }
-
   goSideIndex(currentIndex) {
     if (currentIndex < 0) this.index = this.size;
     else if (currentIndex > this.size) this.index = 0;
@@ -67,10 +64,9 @@ class Carousel {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const carousel = new Carousel({
-    item: ".slider-list",
-    button: ".slider-btn",
+  const carousel = new Carousel(".slider-list", ".slider-btn", {
     card: ".card-category-card",
-    random: false,
+    useRandomIndex: false,
+    index: 1,
   });
 });
