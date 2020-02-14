@@ -1,8 +1,10 @@
+import { $, $$ } from "./selector.js";
+
 class Carousel {
   constructor(item, button, option) {
-    this.item = document.querySelector(item);
-    this.button = document.querySelector(button);
-    this.card = document.querySelectorAll(option.card);
+    this.item = $(item);
+    this.button = $(button);
+    this.card = $$(option.card);
     this.size = this.item.childElementCount - 1;
     this.index = this.setIndex(option.index, option.useRandomIndex);
     this.transition = {
