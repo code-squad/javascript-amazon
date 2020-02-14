@@ -4,11 +4,12 @@ const $ = (selector, all) => {
 
 window.addEventListener('DOMContentLoaded', () => {
     const carouselSlider = createCarouselSlider(),
+        carouselSliderBtn = createSliderBtn(carouselSlider),
         carouselCardMenu = createCarouselCardMenu(carouselSlider);
 
     carouselSlider.getSliderInfo();
     carouselSlider.cloneSlide();
-    carouselSlider.setSliderBtns();
+    carouselSliderBtn.setSliderBtns();
     carouselCardMenu.setCardBtns();
 });
 
@@ -25,16 +26,22 @@ const createCarouselSlider = () => {
         FIRSTCLONE: 'slider-firstClone',
         LASTCLONE: 'slider-lastClone',
         SLIDE_ITEM: '.slider__item',
-        SLIDER_BTNS: '#slider__btn button',
     }
 
     return new CarouselSlider(sliderData, selectorNames);
 }
 
-const createCarouselCardMenu = (carouselSliderData) => {
+const createSliderBtn = (carouselSlider) => {
+    const selectorNames = {
+        SLIDER_BTNS: '#slider__btn button',
+    }
+    return new CarouselSliderBtn(carouselSlider, selectorNames);
+}
+
+const createCarouselCardMenu = (carouselSlider) => {
     const selectorNames = {
         CARD_BTN: '.card button',
     }
 
-    return new CarouselCardMenu(carouselSliderData, selectorNames);
+    return new CarouselCardMenu(carouselSlider, selectorNames);
 }

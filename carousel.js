@@ -23,45 +23,16 @@ class CarouselSlider {
         this.slides.prepend(lastClone);
         this.getSliderInfo();
         this.moveSlides(this.slideIndex);
-        return [firstClone, lastClone];
     }
 
     moveSlides(slideIndex) {
         return this.slides.style.transform = 'translateX(' + (-this.slideSize * slideIndex) + 'px)';
     }
 
-    setSliderBtns() {
-        const [previousBtn, nextBtn] = $(this.selectorName.SLIDER_BTNS, true);
-
-        this.setPreviousBtn(previousBtn);
-        this.setPNextBtn(nextBtn);
-        return [previousBtn, nextBtn];
-    }
-
-    setPreviousBtn(previousBtn) {
-        previousBtn.addEventListener('click', () => {
-            if (this.slideIndex <= 0) return;
-            this.slideIndex--;
-            this.setClickEvent();
-        })
-    }
-
-    setPNextBtn(nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            if (this.slideIndex >= this.slideItemlength - 1) return;
-            this.slideIndex++;
-            this.setClickEvent();
-        })
-    }
-
-
-    setClickEvent(sliderBtn, plusIndex) {
-        // return sliderBtn.addEventListener('click', () => {
-        // plusIndex ? this.slideIndex++ : this.slideIndex--;
+    setTransition() {
         this.slides.style.transition = 'all 0.4s ease-in-out';
         this.moveSlides(this.slideIndex);
         this.getCurrentSlideId();
-        // });
     }
 
     getCurrentSlideId() {
@@ -71,33 +42,56 @@ class CarouselSlider {
 
             const lastSlideIndex = this.slideItemlength - LASTSLIDE_INDEX,
                 currentSlideId = this.slideItems[this.slideIndex].id;
-            console.log(1, this.slideIndex)
-
 
             if (currentSlideId === this.selectorName.LASTCLONE) {
-                this.changeSlideIndex(lastSlideIndex);
+                this.removeTransition(lastSlideIndex);
             }
 
             if (currentSlideId === this.selectorName.FIRSTCLONE) {
-                this.changeSlideIndex(FIRSTSLIDE_INDEX);
+                this.removeTransition(FIRSTSLIDE_INDEX);
             }
             return currentSlideId;
         })
     }
 
-
-    changeSlideIndex(index) {
+    removeTransition(index) {
         this.slides.style.transition = 'none';
         this.slideIndex = index;
-        console.log(2, this.slideIndex)
         this.moveSlides(this.slideIndex);
-        return this.slideIndex;
     }
 }
 
+class CarouselSliderBtn {
+    constructor(carouselSlider, selectorName) {
+        this.slider = carouselSlider,
+            this.selectorName = selectorName
+    }
+
+    setSliderBtns() {
+        const [previousBtn, nextBtn] = $(this.selectorName.SLIDER_BTNS, true);
+        this.setPreviousBtn(previousBtn);
+        this.setNextBtn(nextBtn);
+    }
+
+    setPreviousBtn(previousBtn) {
+        previousBtn.addEventListener('click', () => {
+            if (this.slider.slideIndex <= 0) return;
+            this.slider.slideIndex--;
+            this.slider.setTransition();
+        })
+    }
+
+    setNextBtn(nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (this.slider.slideIndex >= this.slider.slideItemlength - 1) return;
+            this.slider.slideIndex++;
+            this.slider.setTransition();
+        })
+    }
+}
 class CarouselCardMenu {
-    constructor(sliderData, selectorName) {
-        this.sliderData = sliderData,
+    constructor(carouselSlider, selectorName) {
+        this.slider = carouselSlider,
             this.selectorName = selectorName
     }
 
@@ -106,7 +100,8 @@ class CarouselCardMenu {
 
         return cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
-                this.sliderData.moveSlides(index + 1);
+                this.slider.setTransition();
+                this.slider.moveSlides(index + 1);
             })
         })
     }
