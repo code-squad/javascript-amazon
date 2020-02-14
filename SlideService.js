@@ -1,42 +1,58 @@
+import Slide from "./Slide.js";
+
 const DirectionEnum = Object.freeze({"left": 0, "right": 1})
 
-class SlideService {
-	constructor(option) {
-        this._menuButtons = option.topElements.querySelectorAll('button');
-        this._directionButtons = option.bottomElements.querySelectorAll('button');
-        this._bottomContentArea = option.bottomElements.querySelector("#content");
+class SlideService extends Slide {
+    constructor(contentArea) {
+        super();
 
-        this._registerEventListenerOnMenuButtons(this._menuButtons);
-        this._registerEventListenerOnDirectionButtons(this._directionButtons);
-        this._appendAdditionalElementsForLoop(this._bottomContentArea);
-        this._registerEventListenerOnBottomContentArea(this._bottomContentArea);
-
+        this._currentIndex = 0;
         this._isAnimationRunning = false;
+        this._contentArea = contentArea;
+        this._contentCount = this._contentArea.children.length;
 
-        const generatedNumber = 1 + Math.floor(Math.random() * (this._menuButtons.length));
-        this._initElementStatus(generatedNumber);
+        this._appendAdditionalElementsForLoop(this._contentArea);
+        this._registerEventListenerOnBottomContentArea(this._contentArea);
+
+        const generatedNumber = 1 + Math.floor(Math.random() * (this._contentCount));
+        this._setCurrentIndex(generatedNumber);
     }
 
-    _initElementStatus(index) {
-        this._menuButtons[index - 1].className = 'selected';
-
-        const offsetWidth = -(index * this._bottomContentArea.offsetWidth);
-        this._bottomContentArea.style.marginLeft = offsetWidth + 'px';
-
-        this._currentIndex = index;
+    mediate(message, index) {
+        if ('increaseCurrentIndex' === message) {
+            this._increaseCurrentIndex();
+        }
+        else if ('decreaseCurrentIndex' === message) {
+            this._decreaseCurrentIndex();
+        }
+        else if ('changeCurrentIndex' === message) {
+            this._changeCurrentIndex(index);
+        }
+        else {
+            throw new Error("Undefined Interface");
+        }
     }
 
-    _onTransitionEnd(event) {
-        this._bottomContentArea.style.transition = "none";
-        this._bottomContentArea.style.marginLeft = -(this._currentIndex * this._bottomContentArea.offsetWidth) + 'px';
+    _increaseCurrentIndex() {
+        if (this._currentIndex < this._contentCount + 1) {
+            this._setCurrentIndex(this._currentIndex + 1);
+        }
+        else {
+            this._setCurrentIndex(0);
+        }
+     }
 
-        this._isAnimationRunning = false;
+    _decreaseCurrentIndex() {
+        if (this._currentIndex > 0) {
+            this._setCurrentIndex(this._currentIndex - 1);
+        }
+        else {
+            this._setCurrentIndex(this._contentCount - 1);
+        }
     }
 
-    _registerEventListenerOnBottomContentArea(element) {
-        element.addEventListener('transitionend', event => {
-            this._onTransitionEnd(event);
-        });
+    _changeCurrentIndex(index) {
+        this._setCurrentIndex(index + 1);
     }
 
     _appendAdditionalElementsForLoop(elements) {
@@ -47,84 +63,25 @@ class SlideService {
         elements.insertBefore(clonedLastElementChild, elements.firstElementChild);
     }
 
-    _registerEventListenerOnMenuButtons(elements) {
-        elements.forEach((element, index) => {
-            element.addEventListener('click', event => {
-                this._menuButtonHandler(event, index);
-            });
+    _registerEventListenerOnBottomContentArea(element) {
+        element.addEventListener('transitionstart', event => {
+            this._onTransitionStart(event);
         });
-    }
-    
-    _registerEventListenerOnDirectionButtons(elements) {
-        elements.forEach((element, index) => {
-            element.addEventListener('click', event => {
-                this._directionButtonHandler(event, index);
-            });
+
+        element.addEventListener('transitionend', event => {
+            this._onTransitionEnd(event);
         });
-    }
-
-    _menuButtonHandler(event, index) {
-        if (true === this._isAnimationRunning)
-            return;
-
-        this._setCurrentIndex(index + 1);
-    }
-
-    _directionButtonHandler(event, direction) {
-        if (true === this._isAnimationRunning)
-            return;
-
-        if (DirectionEnum.left === direction) {
-            this._decreaseCurrentIndex();
-        }
-        else if (DirectionEnum.right === direction) {
-            this._increaseCurrentIndex();
-        }
-        else {
-            //Unexpected Flow.
-        }
-    }
-
-    _increaseCurrentIndex() {
-        if (this._currentIndex < this._menuButtons.length + 1) {
-            this._setCurrentIndex(this._currentIndex + 1);
-        }
-        else {
-            this._setCurrentIndex(0);
-        }
-    }
-
-    _decreaseCurrentIndex() {
-        if (this._currentIndex > 0) {
-            this._setCurrentIndex(this._currentIndex - 1);
-        }
-        else {
-            this._setCurrentIndex(this._menuButtons.length - 1);
-        }
     }
 
     _setCurrentIndex(index) {
-        if (true === this._isAnimationRunning || this._currentIndex === index)
+        if (this._isAnimationRunning || this._currentIndex === index)
             return;
 
-        this._isAnimationRunning = true;
-        this._changeButtonStatus(this._currentIndex, index);
+        this._components.forEach(element => {
+            element.onNotifyIndexChanged(this._convertIndex(this._contentCount, index) - 1);
+        });
         this._changeContentArea(index);
-        this._currentIndex = this._convertIndex(this._menuButtons.length, index);
-    }
-
-    _changeButtonStatus(currentIndex, nextIndex) {
-        let cvtNextIndex = this._convertIndex(this._menuButtons.length, nextIndex);
-
-        this._menuButtons[currentIndex - 1].className = '';
-        this._menuButtons[cvtNextIndex - 1].className = 'selected';
-    }
-
-    _changeContentArea(index) {
-        this._bottomContentArea.style.transition = "margin-left 0.25s ease";
-
-        const offsetWidth = -(index * this._bottomContentArea.offsetWidth);
-        this._bottomContentArea.style.marginLeft = offsetWidth + 'px';
+        this._currentIndex = this._convertIndex(this._contentCount, index);
     }
 
     _convertIndex(menuCount, index) {
@@ -134,13 +91,31 @@ class SlideService {
             convertedIndex = 1;
         }
         else if (1 > index) {
-            convertedIndex = 4;
+            convertedIndex = menuCount;
         }
         else {
             convertedIndex = index;
         }
 
         return convertedIndex;
+    }
+
+    _changeContentArea(index) {
+        this._contentArea.style.transition = "margin-left 0.25s ease";
+
+        const offsetWidth = -(index * this._contentArea.offsetWidth);
+        this._contentArea.style.marginLeft = offsetWidth + 'px';
+    }
+
+    _onTransitionStart(event) {
+        this._isAnimationRunning = true;
+    }
+
+    _onTransitionEnd(event) {
+        this._contentArea.style.transition = "none";
+        this._contentArea.style.marginLeft = -(this._currentIndex * this._contentArea.offsetWidth) + 'px';
+
+        this._isAnimationRunning = false;
     }
 }
 
