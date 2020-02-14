@@ -1,8 +1,9 @@
 class CarouselSlider {
-    constructor(sliderData, selectorName) {
+    constructor(sliderData, transitionProperty, selectorName) {
         this.slides = sliderData.slides,
             this.slideIndex = sliderData.slideIndex,
             this.slideSize = this.slides.firstElementChild.clientWidth,
+            this.transitionProperty = transitionProperty,
             this.selectorName = selectorName
     }
 
@@ -30,7 +31,8 @@ class CarouselSlider {
     }
 
     setTransition() {
-        this.slides.style.transition = 'all 0.4s ease-in-out';
+        const { name, duration, timingFunc } = this.transitionProperty;
+        this.slides.style.transition = `${name} ${duration} ${timingFunc}`;
         this.moveSlides(this.slideIndex);
         this.getCurrentSlideId();
     }
@@ -64,7 +66,7 @@ class CarouselSlider {
 class CarouselSliderBtn {
     constructor(carouselSlider, selectorName) {
         this.slider = carouselSlider,
-            this.selectorName = selectorName
+            this.selectorName = selectorName;
     }
 
     setSliderBtns() {

@@ -1,8 +1,4 @@
-const $ = (selector, all) => {
-    return all ? document.querySelectorAll(selector) : document.querySelector(selector);
-}
-
-window.addEventListener('DOMContentLoaded', () => {
+const init = () => {
     const carouselSlider = createCarouselSlider(),
         carouselSliderBtn = createSliderBtn(carouselSlider),
         carouselCardMenu = createCarouselCardMenu(carouselSlider);
@@ -11,37 +7,48 @@ window.addEventListener('DOMContentLoaded', () => {
     carouselSlider.cloneSlide();
     carouselSliderBtn.setSliderBtns();
     carouselCardMenu.setCardBtns();
-});
+};
 
 const createCarouselSlider = () => {
     const SLIDES = '.slider__list';
 
-    const slides = $(SLIDES);
-    const sliderData = {
-        slides: slides,
-        slideIndex: 1,
-    }
+    const slides = $(SLIDES),
+        sliderData = {
+            slides: slides,
+            slideIndex: 1,
+        },
 
-    const selectorNames = {
-        FIRSTCLONE: 'slider-firstClone',
-        LASTCLONE: 'slider-lastClone',
-        SLIDE_ITEM: '.slider__item',
-    }
+        transitionProperty = {
+            name: 'all',
+            duration: '.4s',
+            timingFunc: 'ease-in-out'
+        },
 
-    return new CarouselSlider(sliderData, selectorNames);
+        selectorNames = {
+            FIRSTCLONE: 'slider-firstClone',
+            LASTCLONE: 'slider-lastClone',
+            SLIDE_ITEM: '.slider__item',
+        }
+
+    return new CarouselSlider(sliderData, transitionProperty, selectorNames);
 }
 
 const createSliderBtn = (carouselSlider) => {
-    const selectorNames = {
+    const selectorName = {
         SLIDER_BTNS: '#slider__btn button',
     }
-    return new CarouselSliderBtn(carouselSlider, selectorNames);
+    return new CarouselSliderBtn(carouselSlider, selectorName);
 }
 
 const createCarouselCardMenu = (carouselSlider) => {
-    const selectorNames = {
+    const selectorName = {
         CARD_BTN: '.card button',
     }
 
-    return new CarouselCardMenu(carouselSlider, selectorNames);
+    return new CarouselCardMenu(carouselSlider, selectorName);
 }
+
+const $ = (selector, all) => {
+    return all ? document.querySelectorAll(selector) : document.querySelector(selector);
+}
+window.addEventListener('DOMContentLoaded', init);
