@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>carousel</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="text/javascript" src="./main.js"></script>
+    <script type="text/javascript" src="./carousel.js"></script>
+
+</head>
+
+<body>
+    <div id="carousel-wrap">
+        <!-- card-menu -->
+        <div id="card-menu">
+            <ul class="card-menu__list">
+                <li class="card-menu__card card">
+                    <button type="button" class="carousel__bg-color1">
+                        <span class="card__title">Fast, Free Delivery</span>
+                    </button>
+                </li>
+                <li class="card-menu__card card">
+                    <button type="button" class="carousel__bg-color2">
+                        <span class="card__title">Exclusive deals and offers</span>
+                    </button>
+                </li>
+                <li class="card-menu__card card">
+                    <button type="button" class="carousel__bg-color3">
+                        <span class="card__title">Prime Originals, movies and TV shows</span>
+                    </button>
+                </li>
+                <li class="card-menu__card card">
+                    <button type="button" class="carousel__bg-color4">
+                        <span class="card__title">Over 2 million songs ad free</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- //card-menu -->
+        <!-- slider -->
+        <div id="slider">
+            <div class="slider__container">
+                <ul class="slider__list">
+                    <li class="slider__item">
+                        <div class="slider__img-area">
+                            <img src="./images/img1.png" alt="이동할 사진" />
+                        </div>
+                        <div class="slider__content">
+                            <span class="slider__titleBox carousel__bg-color1">Lorem ipsum dolor sit</span>
+                            <h2>Lorem ipsum dolor sit amet.</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. In molestiae vel possimus
+                                ducimus numquam ipsam accusamus fugit animi saepe quisquam. Lorem ipsum dolor sit amet
+                                consectetur, adipisicing elit. In molestiae vel possimus ducimus
+                            </p>
+                        </div>
+                    </li>
+                    <li class="slider__item">
+                        <div class="slider__img-area">
+                            <img src="./images/img2.jpg" alt="사진" />
+                        </div>
+                        <div class="slider__content">
+                            <span class="slider__titleBox carousel__bg-color2">Lorem ipsum dolor sit</span>
+                            <h2>Lorem ipsum dolor sit amet.</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. In molestiae vel possimus
+                                ducimus numquam ipsam accusamus fugit animi saepe quisquam. Lorem ipsum dolor sit amet
+                                consectetur, adipisicing elit. In molestiae vel possimus ducimus!!
+                            </p>
+                        </div>
+                    </li>
+                    <li class="slider__item">
+                        <div class="slider__img-area">
+                            <img src="./images/img3.jpg" alt="이동할 사진" />
+                        </div>
+                        <div class="slider__content">
+                            <span class="slider__titleBox carousel__bg-color3">Lorem ipsum dolor sit</span>
+                            <h2>Lorem ipsum dolor sit amet.</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. In molestiae vel possimus
+                                ducimus numquam ipsam accusamus fugit animi saepe quisquam. Lorem ipsum dolor sit amet
+                                consectetur, adipisicing elit. In molestiae vel possimus ducimus?
+                            </p>
+                        </div>
+                    </li>
+                    <li class="slider__item">
+                        <div class="slider__img-area">
+                            <img src="./images/img4.jpg" alt="이동할 사진" />
+                        </div>
+                        <div class="slider__content">
+                            <span class="slider__titleBox carousel__bg-color4">Lorem ipsum dolor sit</span>
+                            <h2>Lorem ipsum dolor sit amet.</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. In molestiae vel possimus
+                                ducimus numquam ipsam accusamus fugit animi saepe quisquam. Lorem ipsum dolor sit amet
+                                consectetur, adipisicing elit. In molestiae vel possimus ducimus~
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="slider__btn">
+                <button type="button" class="slider__previous-btn"><i class="fas fa-chevron-left">
+                        <span class="blind">이전</span></i></button>
+                <button type="button" class="slider__next-btn"><i class="fas fa-chevron-right">
+                        <span class="blind">다음</span></i></button>
+            </div>
+        </div>
+    </div>
+    <!-- slider -->
+</body>
+
+</html>
