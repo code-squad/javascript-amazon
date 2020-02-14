@@ -33,38 +33,63 @@ class CarouselSlider {
     setSliderBtns() {
         const [previousBtn, nextBtn] = $(this.selectorName.SLIDER_BTNS, true);
 
-        this.setClickEvent(previousBtn);
-        this.setClickEvent(nextBtn, 'plus');
+        this.setPreviousBtn(previousBtn);
+        this.setPNextBtn(nextBtn);
         return [previousBtn, nextBtn];
     }
 
+    setPreviousBtn(previousBtn) {
+        previousBtn.addEventListener('click', () => {
+            if (this.slideIndex <= 0) return;
+            this.slideIndex--;
+            this.setClickEvent();
+        })
+    }
+
+    setPNextBtn(nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (this.slideIndex >= this.slideItemlength - 1) return;
+            this.slideIndex++;
+            this.setClickEvent();
+        })
+    }
+
+
     setClickEvent(sliderBtn, plusIndex) {
-        return sliderBtn.addEventListener('click', () => {
-            plusIndex ? this.slideIndex++ : this.slideIndex--;
-            this.moveSlides(this.slideIndex);
-            this.getCurrentSlideId();
-        });
+        // return sliderBtn.addEventListener('click', () => {
+        // plusIndex ? this.slideIndex++ : this.slideIndex--;
+        this.slides.style.transition = 'all 0.4s ease-in-out';
+        this.moveSlides(this.slideIndex);
+        this.getCurrentSlideId();
+        // });
     }
 
     getCurrentSlideId() {
-        const FIRSTSLIDE_INDEX = 1,
-            LASTSLIDE_INDEX = 2
+        this.slides.addEventListener('transitionend', () => {
+            const FIRSTSLIDE_INDEX = 1,
+                LASTSLIDE_INDEX = 2
 
-        const lastSlideIndex = this.slideItemlength - LASTSLIDE_INDEX,
-            currentSlideId = this.slideItems[this.slideIndex].id;
+            const lastSlideIndex = this.slideItemlength - LASTSLIDE_INDEX,
+                currentSlideId = this.slideItems[this.slideIndex].id;
+            console.log(1, this.slideIndex)
 
-        if (currentSlideId === this.selectorName.LASTCLONE) {
-            this.changeSlideIndex(lastSlideIndex);
-        }
 
-        if (currentSlideId === this.selectorName.FIRSTCLONE) {
-            this.changeSlideIndex(FIRSTSLIDE_INDEX);
-        }
-        return currentSlideId;
+            if (currentSlideId === this.selectorName.LASTCLONE) {
+                this.changeSlideIndex(lastSlideIndex);
+            }
+
+            if (currentSlideId === this.selectorName.FIRSTCLONE) {
+                this.changeSlideIndex(FIRSTSLIDE_INDEX);
+            }
+            return currentSlideId;
+        })
     }
 
+
     changeSlideIndex(index) {
+        this.slides.style.transition = 'none';
         this.slideIndex = index;
+        console.log(2, this.slideIndex)
         this.moveSlides(this.slideIndex);
         return this.slideIndex;
     }
