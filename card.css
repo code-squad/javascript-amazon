@@ -1,0 +1,173 @@
+.card-block {
+    overflow: hidden;   
+}
+
+.card-wrapper {
+    display: flex;
+    height: 370px;
+    margin-top: 20px;
+    position: relative;
+    left: calc(-1080px * 8);
+}
+
+#card-1 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A01._CB514650866_.jpg);
+    background-position: top right;
+}
+
+#card-2 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A02._CB514650866_.jpg);
+    background-position: top right;
+}
+
+#card-3 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A03._CB514650829_.jpg);
+    background-position: top right;
+}
+
+#card-4 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_A04._CB494909365_.jpg);
+    background-position: top right;
+}
+
+#card-5 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_B01._CB514650828_.jpg);
+    background-position: top right;
+}
+
+#card-6 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_B02._CB513839286_.jpg);
+    background-position: top right;
+}
+
+#card-7 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_B03._CB513839286_.jpg);
+    background-position: top right;
+}
+
+#card-8 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/digital/video/merch/2018/Other/AVD12272_PrimeContentUpdate/Card_B04_AVD12272_PrimeContentUpdate_1280x400_en_US._CB474157036_.jpg);
+    background-position: top right;
+}
+
+#card-9 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_B05._CB514650828_.jpg);
+    background-position: top right;
+}
+
+#card-10 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_C06._CB495022579_.jpg);
+    background-position: top right;
+}
+
+#card-11 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_C01_revised._CB502880131_.jpg);
+    background-position: top right;
+}
+
+#card-12 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_C03._CB511882458_.jpg);
+    background-position: top right;
+}
+
+#card-13 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_C04._CB514650828_.jpg);
+    background-position: top right;
+}
+
+#card-14 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_D01._CB514706473_.jpg);
+    background-position: top right;
+}
+
+#card-15 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_D02._CB513839283_.jpg);
+    background-position: top right;
+}
+
+#card-16 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_E03._CB513839888_.jpg);
+    background-position: top right;
+}
+
+#card-17 {
+    background: linear-gradient(to right, #FFF, #FFF 15px, rgba(255,255,255,0) 45px), url(https://web.archive.org/web/20180717213726im_/https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/Card_E01._CB513839282_.jpg);
+    background-position: top right;
+}
+
+.card {
+    min-width: 1080px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.card img {
+    border-radius: 50%;
+}
+
+.card-copy {
+    width: 500px;
+    margin-top: 30px;
+    position: absolute;
+    right: 0;
+}
+
+.card-copy > h4 {
+    font-size: 32px;
+}
+
+
+.card-copy li {
+    line-height: 2;
+}
+
+.card-category {
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 15px;
+    line-height: 30px;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.ship {
+    background-color: #00A8E1;
+}
+
+.stream {
+    background-color: #FF6138;
+}
+
+.shop {
+    background-color: #E31F64;
+}
+
+.read {
+    background-color: #36C2B4;
+}
+
+.more {
+    background-color: #FFC400;
+}
+
+.card-headline {
+    font-size: 38px;
+    line-height: 32px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.card-cta {
+    font-size: 18px;
+    color: #002F36;
+    cursor: pointer;
+}
