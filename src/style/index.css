@@ -38,6 +38,10 @@
   transition: all 0.5s;
 }
 
+#change-carousel-first-item {
+  transition: all 0s;
+}
+
 .itemB {
   margin-right: 20px;
   background-color: #6f8038;
@@ -89,6 +93,7 @@
 .card-navigation-details-wrapper {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .card-navigation-details-image {
   width: 200px;

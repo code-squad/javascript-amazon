@@ -1,10 +1,21 @@
 class CarouselManager {
+  menuCount;
+  carouselFirstElement;
+  calculatedMarginLeftForArrow;
+
   constructor(props) {
     this.appendEventListenerToMenuBtn(props.menuBtnElements);
     this.appendEventListenerToArrowBtn(props.arrowBtnElements);
-    this.menuCount = props.menuBtnElements.length - 1;
+    this.menuCount = props.menuBtnElements.length + 1;
     this.carouselFirstElement = props.carouselFirstElement;
     this.calculatedMarginLeftForArrow = 0; //  캐로우셀의 현재 마진값 상황
+
+    const carouselWrapperNode = document.querySelector('.carousel-wrapper');
+    const clonedFirstNode = this.carouselFirstElement.cloneNode();
+    const clonedFirstNodeInnerHTML = this.carouselFirstElement.innerHTML;
+
+    clonedFirstNode.innerHTML = clonedFirstNodeInnerHTML;
+    carouselWrapperNode.append(clonedFirstNode);
   }
 
   appendEventListenerToMenuBtn(elements) {
@@ -38,13 +49,19 @@ class CarouselManager {
   }
 
   calculateCarouselContentStyleToArrow(element) {
-    const maxMarginLeft = -this.menuCount * this.carouselFirstElement.offsetWidth; // const -> 변하는 값이 아니다
-    // console.log(this.calculatedMarginLeftForArrow, maxMarginLeft);
+    const maxMarginLeft = -((this.menuCount - 1) * this.carouselFirstElement.offsetWidth); // const -> 변하는 값이 아니다
 
-    if ((this.calculatedMarginLeftForArrow !== 0) && (element.classList[0] === 'left-button')) {
+    if (element.classList[0] === 'left-button') {
       this.calculatedMarginLeftForArrow = (this.calculatedMarginLeftForArrow + this.carouselFirstElement.offsetWidth);
-    } else if ((this.calculatedMarginLeftForArrow > maxMarginLeft) && (element.classList[0] === 'right-button')) {
+    } else if (element.classList[0] === 'right-button') {
       this.calculatedMarginLeftForArrow = (this.calculatedMarginLeftForArrow - this.carouselFirstElement.offsetWidth);
+
+      if(this.calculatedMarginLeftForArrow === maxMarginLeft) {
+        this.carouselFirstElement.removeAttribute('id', 'carousel-first-item');
+        this.carouselFirstElement.setAttribute('id', 'change-carousel-first-item');
+        this.calculatedMarginLeftForArrow = 0;
+        this.carouselFirstElement.style.marginLeft = 0 + 'px';
+      }
     }
 
     this.carouselFirstElement.style.marginLeft = this.calculatedMarginLeftForArrow + 'px'; // 형태변화!
