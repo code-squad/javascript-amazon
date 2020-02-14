@@ -1,70 +1,108 @@
 class CarouselManager {
-  menuCount;
-  carouselFirstElement;
-  calculatedMarginLeftForArrow;
+  carouselList = [
+    {
+      imageSrc: 'src/image/sample1.jpg',
+      title: 'A Carousel',
+      description: 'save on groceries and an additional 10% off select sale items',
+      link: 'https://www.naver.com',
+      linkContent: 'Click here',
+    },
+    {
+      imageSrc: 'src/image/sample2.jpg',
+      title: 'B Carousel',
+      description: 'save on groceries and an additional 10% off select sale items',
+      link: 'https://www.naver.com',
+      linkContent: 'Click here',
+    },
+    {
+      imageSrc: 'src/image/sample3.jpg',
+      title: 'C Carousel',
+      description: 'save on groceries and an additional 10% off select sale items',
+      link: 'https://www.naver.com',
+      linkContent: 'Click here',
+    },
+    {
+      imageSrc: 'src/image/sample4.jpg',
+      title: 'D Carousel',
+      description: 'save on groceries and an additional 10% off select sale items',
+      link: 'https://www.naver.com',
+      linkContent: 'Click here',
+    },
+  ];
+  currentIndex = 0;
+  carouselWrapperElement;
 
   constructor(props) {
-    this.appendEventListenerToMenuBtn(props.menuBtnElements);
-    this.appendEventListenerToArrowBtn(props.arrowBtnElements);
-    this.menuCount = props.menuBtnElements.length + 1;
-    this.carouselFirstElement = props.carouselFirstElement;
-    this.calculatedMarginLeftForArrow = 0; //  캐로우셀의 현재 마진값 상황
+    this.carouselWrapperElement = props.carouselWrapperElement;
 
-    const carouselWrapperNode = document.querySelector('.carousel-wrapper');
-    const clonedFirstNode = this.carouselFirstElement.cloneNode();
-    const clonedFirstNodeInnerHTML = this.carouselFirstElement.innerHTML;
+    [this.carouselList[this.carouselList.length - 1], ...this.carouselList, this.carouselList[0]] // [{..},{..}...{..}] (4 1234 1)
+      .forEach((carousel) => this.carouselWrapperElement.appendChild(new Carousel(carousel).render())); // carouselWrapperElement = <div>...</div> 6개들어감
 
-    clonedFirstNode.innerHTML = clonedFirstNodeInnerHTML;
-    carouselWrapperNode.append(clonedFirstNode);
-  }
+    const leftCarousel = document.querySelector('.card-navigation-details-wrapper'); // 위에서 새로넣은 div들중 한개의 width 630px 샘플 잡음
+    this.carouselWrapperElement.style.transform = `translate3d(-${leftCarousel.offsetWidth * (this.currentIndex + 1)}px, 0px, 0px)`; // 4가가려진 처음상태(-630*(0+1)) = -630px
+    const menu = document.querySelector('.card-navigation-list-item'); // 첫쨰꺼만 잡아옴..
+    menu.style.transform = 'scale(1.2)'; // A메뉴 큰상태로 초기셋
 
-  appendEventListenerToMenuBtn(elements) {
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].addEventListener('mouseover', () => {
-        elements[i].setAttribute( 'id', 'active' );
-        this.calculateCarouselContentStyleToMenu(i); // 하단에 있는 캐로셀의 컨텐츠를 변경하는
-      });
+    props.menuBtnElements.forEach((element, index) => element.addEventListener('click', this.calculateCarouselContentStyleToMenu.bind(this, index)));
+    // 메뉴버튼 클릭시 이벤트발생
+    // foreach의 인자들공부해라(두번쨰 인자는 무조건 인덱스) //원래는 두번쨰인자로 arrow function이 들어가지만 arrow function바로 넣는 대신 콜백함수 넣고.bind로 결합해주기 (bind공부하기)!
+    props.arrowBtnElements.forEach((element) => element.addEventListener('click', this.calculateCarouselContentStyleToArrow.bind(this, element)));
+  } // 화살표 클릭시 이벤트 발생 // 화살표버튼은 인덱스정보다 필요없음
 
-      elements[i].addEventListener('mouseout', () => {
-        elements[i].setAttribute( 'id', 'inActive' );
-      })
+  calculateCarouselContentStyleToMenu(index) { // (46줄참고) 메뉴버튼 클릭시 오른쪽, 왼쪽 이동수 계산
+    const rightCount = index > this.currentIndex ? index - this.currentIndex : this.carouselList.length - this.currentIndex + index; // 새로 메뉴누르면 오른쪽으로 몇칸가야하는지 계산
+    const leftCount = index < this.currentIndex ? this.currentIndex - index : this.currentIndex + this.carouselList.length - index; // 새로 메뉴누르면 왼쪽으로 몇칸가야하는지 계산
+    const delta = rightCount > leftCount ? -1 : 1; // delta로 이동방향 설정(1 오른쪽이동 -1 왼쪽이동)
+
+    while (this.currentIndex !== index) {
+      this.currentIndex += delta;
+      this.printCarouselList();  // 최단방향찾았으니 적용할 이동량 계산해서 transform 주는 함수 돌리기
     }
-  }
 
-  appendEventListenerToArrowBtn(elements) {
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].addEventListener('click', () => {
-        this.calculateCarouselContentStyleToArrow(elements[i]);
-      })
-    }
-  }
-
-  calculateCarouselContentStyleToMenu(index) {
-    this.calculatedMarginLeftForArrow = -(index * this.carouselFirstElement.offsetWidth);
-    // 메뉴를 누르다가 화살표를 누르면 현재상태에서 누른화살표에 따라 이동해야하기 때문에 !
-
-    const calculatedMarginLeft = -(index * this.carouselFirstElement.offsetWidth) + 'px';
-    this.carouselFirstElement.style.marginLeft = calculatedMarginLeft;
-    requestAnimationFrame(this.calculateCarouselContentStyleToMenu);
+    this.printMenu(index); // 즉 46줄에서
   }
 
   calculateCarouselContentStyleToArrow(element) {
-    const maxMarginLeft = -((this.menuCount - 1) * this.carouselFirstElement.offsetWidth); // const -> 변하는 값이 아니다
+    if (element.classList[0] === 'left-button') this.currentIndex--;
+    else if (element.classList[0] === 'right-button') this.currentIndex++;
 
-    if (element.classList[0] === 'left-button') {
-      this.calculatedMarginLeftForArrow = (this.calculatedMarginLeftForArrow + this.carouselFirstElement.offsetWidth);
-    } else if (element.classList[0] === 'right-button') {
-      this.calculatedMarginLeftForArrow = (this.calculatedMarginLeftForArrow - this.carouselFirstElement.offsetWidth);
+    this.printCarouselList();
+    this.printMenu(this.currentIndex);
+  }
 
-      if(this.calculatedMarginLeftForArrow === maxMarginLeft) {
-        this.carouselFirstElement.removeAttribute('id', 'carousel-first-item');
-        this.carouselFirstElement.setAttribute('id', 'change-carousel-first-item');
-        this.calculatedMarginLeftForArrow = 0;
-        this.carouselFirstElement.style.marginLeft = 0 + 'px';
-      }
+  printCarouselList() { // 적용할 이동량 계산해서 transform 주는 함수
+    const leftCarousel = document.querySelector('.card-navigation-details-wrapper');
+
+    this.carouselWrapperElement.style.transition = 'all 0.2s'; // long paper 의 이동속도
+    this.carouselWrapperElement.style.transform = `translate3d(-${leftCarousel.offsetWidth * (this.currentIndex + 1)}px, 0px, 0px)`; // long paper 의 이동량
+
+    if (this.currentIndex === -1) { // long paper 에서 carousel 로 보이는 인덱스부분이 *4*12341 일때
+      this.currentIndex = this.carouselList.length - 1; // 4123*4*1인덱스로 변경 ( 반대쪽 끝 4로 !)
+
+      setTimeout(() => { // 변경된 인덱스를 setTimeout 적용해서 트릭 걸기!
+        this.carouselWrapperElement.style.transition = '0s'; // 속도0초
+        this.carouselWrapperElement.style.transform = `translate3d(-${leftCarousel.offsetWidth * (this.currentIndex + 1)}px, 0px, 0px)`; // long paper 에서 carousel 로 보이는 인덱스부분이 4123*4*1 가되게 width값 계산
+      }, 201);
     }
 
-    this.carouselFirstElement.style.marginLeft = this.calculatedMarginLeftForArrow + 'px'; // 형태변화!
-    requestAnimationFrame(this.calculateCarouselContentStyleToArrow);
+    if (this.currentIndex === this.carouselList.length) { // long paper 에서 carousel 로 보이는 인덱스부분이 41234*1* 일때
+      this.currentIndex = 0; // 4*1*2341인덱스로 변경 ( 반대쪽 앞 1로 !)
+
+      setTimeout(() => { // 변경된 인덱스를 setTimeout 적용해서 트릭 걸기!
+        this.carouselWrapperElement.style.transition = '0s';
+        this.carouselWrapperElement.style.transform = `translate3d(-${leftCarousel.offsetWidth * (this.currentIndex + 1)}px, 0px, 0px)`;  // long paper 에서 carousel 로 보이는 인덱스부분이 4*1*2341 가되게 width값 계산
+      }, 201);
+    }
+  }
+
+  printMenu(index) { // 46에서 받은 클릭한 버튼 인덱스를 찾아서 1.2배 확대 (나머지는 기존크기로 두고)
+    const menus = document.querySelectorAll('.card-navigation-list-item'); // 모든 메뉴버튼 태그들이 배열로 담긴다.
+    menus.forEach((element, i) => {
+      element.style.transform = 'scale(1)';
+
+      if (i === index) {
+        element.style.transform = 'scale(1.2)';
+      }
+    });
   }
 }
