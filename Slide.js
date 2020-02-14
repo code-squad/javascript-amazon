@@ -1,6 +1,10 @@
 class Slide {
 	constructor() {
         this._components = [];
+        this._currentIndex = 0;
+        this._contentCount = 0;
+        this._isAnimationRunning = false;
+        this._contentArea = null;
     }
 
     registerComponent(component) {

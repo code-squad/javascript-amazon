@@ -19,4 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const menuButtonManager = new MenuButtonManager(slideService, menuButtons);
     const directionButtonManager = new DirectionButtonManager(slideService, directionButtons);
+
+    slideService.registerComponent(menuButtonManager);
+    slideService.registerComponent(directionButtonManager);
 });

@@ -5,7 +5,6 @@ const DirectionEnum = Object.freeze({"left": 0, "right": 1})
 class DirectionButtonManager extends SlideComponent {
 	constructor(slideService, buttons) {
         super(slideService, buttons);
-        slideService.registerComponent(this);
     }
 
     //Override
