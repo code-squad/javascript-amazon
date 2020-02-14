@@ -1,2 +1,1 @@
-# javascript-amazon
-레벨3
+# Amazon Card UI Clone
