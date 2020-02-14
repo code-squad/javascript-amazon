@@ -1,11 +1,11 @@
-function $(target) {
+export function $(target) {
     return document.querySelector(target);
 }
 
-function $$(target) {
+export function $$(target) {
     return document.querySelectorAll(target);
 }
 
-function _$(tag) {
+export function _$(tag) {
     return document.createElement(tag);
 }

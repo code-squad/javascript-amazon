@@ -1,4 +1,4 @@
-const DATA = {
+export const DATA = {
     itemContents: [
         {
             imgURL: "./img/img_1.jpg",
@@ -60,4 +60,20 @@ const DATA = {
             ]
         },
     ]
+};
+
+export const OPTION_DATA = {
+    navCardColors: [
+        "#4691BC",
+        "#9B2165",
+        "#398377",
+        "#D76530",
+    ],
+    slideOption: {
+        NAV_CARD_WIDTH: 220,
+        CARD_GAP: 5,
+        VIEWER_WIDTH: 900,
+        CUR_ITEM_INDEX: 0,
+        ITEM_COUNT: 0,
+    },
 };
