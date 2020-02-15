@@ -1,10 +1,10 @@
 class CarouselSlider {
     constructor(sliderData, transitionProperty, selectorName) {
-        this.slides = sliderData.slides,
-            this.slideIndex = sliderData.slideIndex,
-            this.slideSize = this.slides.firstElementChild.clientWidth,
-            this.transitionProperty = transitionProperty,
-            this.selectorName = selectorName
+        this.slides = sliderData.slides;
+        this.slideIndex = sliderData.slideIndex;
+        this.slideSize = this.slides.firstElementChild.clientWidth;
+        this.transitionProperty = transitionProperty;
+        this.selectorName = selectorName;
     }
 
     getSliderInfo() {
@@ -26,18 +26,18 @@ class CarouselSlider {
         this.moveSlides(this.slideIndex);
     }
 
-    moveSlides(slideIndex) {
-        return this.slides.style.transform = 'translateX(' + (-this.slideSize * slideIndex) + 'px)';
+    moveSlides() {
+        return this.slides.style.transform = 'translateX(' + (-this.slideSize * this.slideIndex) + 'px)';
     }
 
     setTransition() {
         const { name, duration, timingFunc } = this.transitionProperty;
         this.slides.style.transition = `${name} ${duration} ${timingFunc}`;
-        this.moveSlides(this.slideIndex);
-        this.getCurrentSlideId();
+        this.moveSlides();
+        this.checkCurrentSlideId();
     }
 
-    getCurrentSlideId() {
+    checkCurrentSlideId() {
         this.slides.addEventListener('transitionend', () => {
             const FIRSTSLIDE_INDEX = 1,
                 LASTSLIDE_INDEX = 2
@@ -59,14 +59,14 @@ class CarouselSlider {
     removeTransition(index) {
         this.slides.style.transition = 'none';
         this.slideIndex = index;
-        this.moveSlides(this.slideIndex);
+        this.moveSlides();
     }
 }
 
 class CarouselSliderBtn {
     constructor(carouselSlider, selectorName) {
-        this.slider = carouselSlider,
-            this.selectorName = selectorName;
+        this.slider = carouselSlider;
+        this.selectorName = selectorName;
     }
 
     setSliderBtns() {
@@ -93,8 +93,8 @@ class CarouselSliderBtn {
 }
 class CarouselCardMenu {
     constructor(carouselSlider, selectorName) {
-        this.slider = carouselSlider,
-            this.selectorName = selectorName
+        this.slider = carouselSlider;
+        this.selectorName = selectorName;
     }
 
     setCardBtns() {
@@ -103,7 +103,8 @@ class CarouselCardMenu {
         return cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
                 this.slider.setTransition();
-                this.slider.moveSlides(index + 1);
+                this.slider.slideIndex = index + 1;
+                this.slider.moveSlides();
             })
         })
     }

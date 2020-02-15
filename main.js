@@ -24,13 +24,13 @@ const createCarouselSlider = () => {
             timingFunc: 'ease-in-out'
         },
 
-        selectorNames = {
+        selectorName = {
             FIRSTCLONE: 'slider-firstClone',
             LASTCLONE: 'slider-lastClone',
             SLIDE_ITEM: '.slider__item',
         }
 
-    return new CarouselSlider(sliderData, transitionProperty, selectorNames);
+    return new CarouselSlider(sliderData, transitionProperty, selectorName);
 }
 
 const createSliderBtn = (carouselSlider) => {
