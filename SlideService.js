@@ -6,6 +6,7 @@ class SlideService extends Slide {
     constructor(contentArea) {
         super();
 
+        this._components = [];
         this._currentIndex = 0;
         this._isAnimationRunning = false;
         this._contentArea = contentArea;
@@ -16,6 +17,11 @@ class SlideService extends Slide {
 
         const generatedNumber = 1 + Math.floor(Math.random() * (this._contentCount));
         this._setCurrentIndex(generatedNumber);
+    }
+
+    registerComponent(component) {
+        this._components.push(component);
+        component.onNotifyIndexChanged(this._convertIndex(this._contentCount, this._currentIndex) - 1);
     }
 
     mediate(message, index) {
