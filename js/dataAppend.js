@@ -1,5 +1,5 @@
 import { DATA, OPTION_DATA } from './data.js';
-import { $, _$ } from './util.js';
+import { $, $$, _$ } from './util.js';
 
 class DataAppend {
     constructor() {
@@ -12,6 +12,7 @@ class DataAppend {
             const li = _$("li");
             li.innerText = item.navTitle;
             li.style.backgroundColor = OPTION_DATA.navCardColors[idx % OPTION_DATA.navCardColors.length];
+            li.style.width = `${OPTION_DATA.slideOption.NAV_CARD_WIDTH}px`;
             this.navContainer.appendChild(li);
         });
     }
@@ -59,14 +60,32 @@ class DataAppend {
         return item_text_box;
     }
 
+    makeDummy() {
+        const items = $$(".slide-item");
+
+        const firstItem = items[0];
+        const lastDummy = _$("li");
+        lastDummy.innerHTML = firstItem.innerHTML;
+        lastDummy.classList.add("slide-item");
+        this.slideContainer.lastElementChild.after(lastDummy);
+
+        const lastItem = items[items.length - 1];
+        const firstDummy = _$("li");
+        firstDummy.innerHTML = lastItem.innerHTML;
+        firstDummy.classList.add("slide-item");
+        this.slideContainer.firstElementChild.before(firstDummy);
+    }
+
     setNav() {
         this.navContainer.style.width = `${(OPTION_DATA.slideOption.NAV_CARD_WIDTH * DATA.itemContents.length) + (OPTION_DATA.slideOption.CARD_GAP * DATA.itemContents.length)}px`;
         this.navDataAppend();
     }
 
     setSlide() {
-        this.slideContainer.style.width = `${OPTION_DATA.slideOption.VIEWER_WIDTH * DATA.itemContents.length}px`;
+        const dummyCount = 2;
+        this.slideContainer.style.width = `${OPTION_DATA.slideOption.VIEWER_WIDTH * (DATA.itemContents.length + dummyCount)}px`;
         this.slideDataAppend();
+        this.makeDummy();
     }
 }
 
