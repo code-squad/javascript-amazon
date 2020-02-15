@@ -26,10 +26,6 @@ class Slider {
             'px';
         this.contentsEl.style.transform =
             'translateX(' + -this.itemEl.offsetWidth * this.VIEW + 'px)';
-
-        for (let i = 0; i < this.navLiEl.length; i++) {
-            this.navLiEl[i].dataset.item = [i];
-        }
     }
     cloneEl() {
         const count = this.VIEW;
