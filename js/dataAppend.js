@@ -10,7 +10,6 @@ class DataAppend {
     navDataAppend() {
         DATA.itemContents.forEach((item, idx) => {
             const li = _$("li");
-            if (idx === OPTION_DATA.slideOption.CUR_ITEM_INDEX) { li.classList.add("slide-nav-selected") }
             li.innerText = item.navTitle;
             li.style.backgroundColor = OPTION_DATA.navCardColors[idx % OPTION_DATA.navCardColors.length];
             this.navContainer.appendChild(li);

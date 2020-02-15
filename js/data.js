@@ -73,7 +73,7 @@ export const OPTION_DATA = {
         NAV_CARD_WIDTH: 220,
         CARD_GAP: 5,
         VIEWER_WIDTH: 900,
-        CUR_ITEM_INDEX: 0,
+        FIRST_ITEM_INDEX: 0,
         ITEM_COUNT: 0,
     },
 };

@@ -1,18 +1,18 @@
 import { OPTION_DATA } from './data.js';
 import { $, $$, _$ } from './util.js';
 
-let curItem = OPTION_DATA.slideOption.CUR_ITEM_INDEX;
+let curItem;
 
 class Slide {
     constructor(option, obj) {
-        this.prev = $(".prev-btn");
-        this.next = $(".next-btn");
+        curItem = OPTION_DATA.slideOption.FIRST_ITEM_INDEX;
         this.wrap = $(".slide-item-wrap");
         this.itemsCount = option.ITEM_COUNT;
         this.viewerWidth = option.VIEWER_WIDTH;
         this.prevHandler = this.prevHandler.bind(this);
         this.nextHandler = this.nextHandler.bind(this);
         this.objList = obj;
+        this.moveWrap();
     }
 
     nextHandler() {
@@ -45,8 +45,10 @@ class Slide {
     }
 
     run() {
-        this.prev.addEventListener("click", this.prevHandler);
-        this.next.addEventListener("click", this.nextHandler);
+        const prev = $(".prev-btn");
+        const next = $(".next-btn");
+        prev.addEventListener("click", this.prevHandler);
+        next.addEventListener("click", this.nextHandler);
     }
 }
 
@@ -65,6 +67,7 @@ export class NavCard {
 
     setCardNavEvent() {
         this.cards.forEach((node, idx) => {
+            if (idx === OPTION_DATA.slideOption.FIRST_ITEM_INDEX) { node.classList.add("slide-nav-selected") }
             node.addEventListener("click", () => {
                 if (idx === curItem) return;
                 const prevItem = curItem;
