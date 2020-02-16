@@ -1,81 +1,80 @@
 
-class TargetInfo {
-    constructor(firstIndex, containerTarget, menuList) {
-        this.CONTAINER_WIDTH = -containerTarget.clientWidth / 6;
-        this.containerTarget = containerTarget;
+class MenuHandler {
+    constructor(slideIndex, menuList) {
+        this.slideIndex = slideIndex;
         this.menuList = menuList;
-        this.targetIndex = firstIndex;
-    }
+        }
 
-    handler() {
-        this.containerTarget.style.transform = `translateX(${(this.targetIndex + 1) * this.CONTAINER_WIDTH}px)`;
-        //this.containerTarget.style.transform = `translateX(${this.targetIndex * ()}px)`;
-        //console.log(this.containerTarget.style.width / 4);
-        this.resize();
-    }
-
-    resize() {
+    changeSize() {
         this.menuList.forEach(element => {
             element.style.transform = "scale(1, 1)";
         })
-        this.menuList[this.targetIndex - 1].style.transform = "scale(1.09, 1.09)";
+        this.menuList[this.slideIndex-1].style.transform = "scale(1.09, 1.09)";
     }
+
+    onMenuHandler(changePosition) {
+        for (let i = 0; i < menuList.length; i++) {
+            menuList[i].addEventListener("mousedown", () => {
+                this.slideIndex = i;
+            });
+        }
+        changePosition(this.slideIndex);
+    }
+
 }
 
-
-class SlideService {
-    constructor(firstIndex, containerTarget, menuList) {
-        this.target = new TargetInfo(firstIndex, containerTarget, menuList);
-        this.onButtonHandler();
-        this.onMenuHandler();
-
+class ButtonHandler {
+    constructor(slideIndex, buttonList) {
+        this.slideIndex = slideIndex;
+        this.buttonList = buttonList
     }
 
     onButtonHandler() {
-        let [left, right] = document.querySelectorAll("button");
-
-        left.addEventListener("mousedown", () => {
-            this.target.targetIndex--;
-            if (this.target.targetIndex < 0) this.target.targetIndex = 3;
-            this.target.handler();
-        });
-        right.addEventListener("mousedown", () => {
-            this.target.targetIndex++;
-            if (this.target.targetIndex > 5) {
-                this.target.targetIndex = 1;
-
+        buttonList[0].addEventListener("mousedown", () => {
+            this.slideIndex--;
+            if (this.slideIndex < 0) {
+                this.slideIndex = 4;
             }
-            this.target.handler();
-
+        });
+        buttonList[1].addEventListener("mousedown", () => {
+            this.slideIndex++;
+            if (this.slideIndex > 5) {
+                this.slideIndex = 1;
+            }
         });
     }
+}
 
-    onMenuHandler() {
-        let menuList = document.querySelectorAll(".menu-list>li")
+class SlideHandler {
+    constructor(slideIndex, slide, CONTAINER_WIDTH) {
+        this.slideIndex = slideIndex;
+        this.slide = slide;
+        this.CONTAINER_WIDTH = CONTAINER_WIDTH;
+        this.changePosition();
+    }
 
-        for (let i = 0; i < menuList.length; i++) {
-            menuList[i].addEventListener("mousedown", () => {
-                this.target.targetIndex = i;
-                this.target.handler();
-            });
-        }
+    changePosition() {
+        console.log(this.slideIndex);
+        this.slide.style.transform = `translateX(${this.slideIndex * this.CONTAINER_WIDTH}px)`;
+        console.log(this.CONTAINER_WIDTH);
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed');
+    
+    const slideIndex = (parseInt(Math.random() * 4));
 
-    let firstIndex = (parseInt(Math.random() * 4));
-    console.log(firstIndex);
-
-    const containerTarget = document.querySelector(".content-container-childs");
     const menuList = document.querySelectorAll(".menu-list>li");
-    const CONTAINER_WIDTH = -containerTarget.clientWidth / 6;
+    const buttonList = document.querySelectorAll("button");
+    const slide = document.querySelector(".content-container-childs");
+    const CONTAINER_WIDTH = -document.querySelector(".content-container-child").clientWidth;
 
+    const menuHandler = new MenuHandler(slideIndex, menuList);
+    const buttonHandler = new ButtonHandler(slideIndex, buttonList);
+    const slideHandler = new SlideHandler(slideIndex, slide, CONTAINER_WIDTH);
 
+    const applyMenuEvent = function(change) {
+        change();
+    }
 
-    containerTarget.style.transform = `translateX(${(firstIndex + 1) * CONTAINER_WIDTH}px)`;
-    menuList[firstIndex].style.transform = "scale(1.09, 1.09)";
-
-    const ss = new SlideService(firstIndex, containerTarget, menuList);
 });

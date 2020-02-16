@@ -92,7 +92,6 @@ button {
 .content-container-childs{
     width: 5046px;
     display: flex;
-    transition-duration: 1s;
 }
 
 .content-container-child{
