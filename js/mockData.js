@@ -3,6 +3,7 @@ import { mock } from "./data.js";
 const addElement = element => {
   addNavTitle(element);
   addSlide(element);
+  addDummySlide(element);
 };
 
 const addNavTitle = titles => {
@@ -61,6 +62,28 @@ const addSlide = slideContents => {
 
     newContentsWrap.appendChild(sentenceUl);
   });
+};
+
+const addDummySlide = () => {
+  const slides = document.querySelector(".slider");
+
+  let firstChild = slides.firstElementChild;
+  // firstChild.style.transform = "translateX(-100%)";
+  let lastChild = slides.lastElementChild;
+  // lastChild.style.transform = "translateX(-100%)";
+  let clonedFirst = firstChild.cloneNode(true);
+  clonedFirst.className = "firstClone";
+  let clonedLast = lastChild.cloneNode(true);
+  clonedLast.className = "lastClone";
+
+  slides.appendChild(clonedFirst);
+  slides.insertBefore(clonedLast, slides.firstElementChild);
+
+  // slides.forEach(el => {
+  //   el.style.transform = "translateX(-100%)";
+  // });
+  // slides.style.transform = "translateX(-100%)";
+  // slides.firstElementChild.style.transform = "translateX(-200%)";
 };
 
 addElement(mock);
