@@ -47,7 +47,7 @@ class CarouselSlider {
                 currentSlideId = this.slideItems[this.slideIndex].id;
 
             if (currentSlideId === this.selectorName.LAST_CLONE)
-                this.removeTransitio(lastSlideIndex);
+                this.removeTransition(lastSlideIndex);
 
             if (currentSlideId === this.selectorName.FIRST_CLONE)
                 this.removeTransition(FIRST_SLIDE_INDEX);
