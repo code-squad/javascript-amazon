@@ -77,6 +77,6 @@ export const OPTION_DATA = {
         FIRST_ITEM_INDEX: 0,
         ITEM_COUNT: 0,
         SLIDE_SPEED: 0.25,
-        AUTO_SLIDE_INTERVAL: 6000,
+        AUTO_SLIDE_INTERVAL: 4500,
     },
 };
