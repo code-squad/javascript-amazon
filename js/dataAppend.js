@@ -3,8 +3,8 @@ import { $, $$, _$ } from './util.js';
 
 class DataAppend {
     constructor() {
-        this.navContainer = $(".slide-nav");
-        this.slideContainer = $(".slide-item-wrap");
+        this.navWrap = $(".slide-nav");
+        this.slideWrap = $(".slide-item-wrap");
     }
 
     navDataAppend() {
@@ -13,7 +13,7 @@ class DataAppend {
             li.innerText = item.navTitle;
             li.style.backgroundColor = OPTION_DATA.navCardColors[idx % OPTION_DATA.navCardColors.length];
             li.style.width = `${OPTION_DATA.slideOption.NAV_CARD_WIDTH}px`;
-            this.navContainer.appendChild(li);
+            this.navWrap.appendChild(li);
         });
     }
 
@@ -25,7 +25,7 @@ class DataAppend {
 
             item_box.appendChild(item_img);
             item_box.appendChild(item_text_box);
-            this.slideContainer.appendChild(item_box);
+            this.slideWrap.appendChild(item_box);
             OPTION_DATA.slideOption.ITEM_COUNT++;
         });
     }
@@ -67,23 +67,23 @@ class DataAppend {
         const lastDummy = _$("li");
         lastDummy.innerHTML = firstItem.innerHTML;
         lastDummy.classList.add("slide-item");
-        this.slideContainer.lastElementChild.after(lastDummy);
+        this.slideWrap.lastElementChild.after(lastDummy);
 
         const lastItem = items[items.length - 1];
         const firstDummy = _$("li");
         firstDummy.innerHTML = lastItem.innerHTML;
         firstDummy.classList.add("slide-item");
-        this.slideContainer.firstElementChild.before(firstDummy);
+        this.slideWrap.firstElementChild.before(firstDummy);
     }
 
     setNav() {
-        this.navContainer.style.width = `${(OPTION_DATA.slideOption.NAV_CARD_WIDTH * DATA.itemContents.length) + (OPTION_DATA.slideOption.CARD_GAP * DATA.itemContents.length)}px`;
+        this.navWrap.style.width = `${(OPTION_DATA.slideOption.NAV_CARD_WIDTH * DATA.itemContents.length) + (OPTION_DATA.slideOption.CARD_GAP * DATA.itemContents.length)}px`;
         this.navDataAppend();
     }
 
     setSlide() {
         const dummyCount = 2;
-        this.slideContainer.style.width = `${OPTION_DATA.slideOption.VIEWER_WIDTH * (DATA.itemContents.length + dummyCount)}px`;
+        this.slideWrap.style.width = `${OPTION_DATA.slideOption.VIEWER_WIDTH * (DATA.itemContents.length + dummyCount)}px`;
         this.slideDataAppend();
         this.makeDummy();
     }

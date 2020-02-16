@@ -2,6 +2,7 @@ import { OPTION_DATA } from './data.js';
 import { $, $$, _$ } from './util.js';
 
 let curItem;
+let autoSlide;
 
 class Slide {
     constructor(option, obj) {
@@ -11,15 +12,18 @@ class Slide {
         this.slideSpeed = option.SLIDE_SPEED;
         this.objList = obj;
         this.isSliding = false;
+        this.autoSlideTime = option.AUTO_SLIDE_TIME;
         this.init();
     }
 
     init() {
         curItem = OPTION_DATA.slideOption.FIRST_ITEM_INDEX;
         this.moveWrap(curItem);
+        autoSlide = setTimeout(this.nextHandler.bind(this), this.autoSlideTime);
     }
 
     nextHandler() {
+        clearTimeout(autoSlide);
         if (this.isSliding) return;
         this.slideAnimOn();
         if (curItem === this.maxItemIndex) {
@@ -34,6 +38,7 @@ class Slide {
     }
 
     prevHandler() {
+        clearTimeout(autoSlide);
         if (this.isSliding) return;
         this.slideAnimOn();
         if (curItem === 0) {
@@ -51,6 +56,7 @@ class Slide {
         this.wrap.style.transition = "none";
         this.isSliding = false;
         this.moveWrap(curItem);
+        autoSlide = setTimeout(this.nextHandler.bind(this), this.autoSlideTime);
     }
 
     slideAnimOn() {
@@ -91,6 +97,7 @@ export class NavCard {
             if (idx === OPTION_DATA.slideOption.FIRST_ITEM_INDEX) { node.classList.add("slide-nav-selected") }
             node.addEventListener("click", () => {
                 if (idx === curItem) return;
+                clearTimeout(autoSlide);
                 this.wrap.style.transition = `${this.slideSpeed}s`;
                 const prevItem = curItem;
                 curItem = idx;
