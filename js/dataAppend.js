@@ -9,11 +9,11 @@ class DataAppend {
 
     navDataAppend() {
         DATA.itemContents.forEach((item, idx) => {
-            const li = _$("li");
-            li.innerText = item.navTitle;
-            li.style.backgroundColor = OPTION_DATA.navCardColors[idx % OPTION_DATA.navCardColors.length];
-            li.style.width = `${OPTION_DATA.slideOption.NAV_CARD_WIDTH}px`;
-            this.navWrap.appendChild(li);
+            const card = _$("li");
+            card.innerText = item.navTitle;
+            card.style.backgroundColor = OPTION_DATA.navCardColors[idx % OPTION_DATA.navCardColors.length];
+            card.style.width = `${OPTION_DATA.slideOption.NAV_CARD_WIDTH}px`;
+            this.navWrap.appendChild(card);
         });
     }
 
@@ -21,10 +21,10 @@ class DataAppend {
         DATA.itemContents.forEach(item => {
             const item_box = this.makeItemBox();
             const item_img = this.makeItemImg(item);
-            const item_text_box = this.makeItemTextBox(item);
+            const item_text = this.makeItemText(item);
 
             item_box.appendChild(item_img);
-            item_box.appendChild(item_text_box);
+            item_box.appendChild(item_text);
             this.slideWrap.appendChild(item_box);
             OPTION_DATA.slideOption.ITEM_COUNT++;
         });
@@ -42,7 +42,7 @@ class DataAppend {
         return item_img;
     }
 
-    makeItemTextBox(item) {
+    makeItemText(item) {
         const item_text_box = _$("div");
         item_text_box.classList.add("slide-item-text");
 
