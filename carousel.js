@@ -4,32 +4,31 @@ class Carousel {
   constructor(item, button, option) {
     this.item = $(item);
     this.button = $(button);
-    this.card = $$(option.card);
-    this.size = this.item.childElementCount - 1;
+    this.cardBtn = $$(option.cardBtn);
+    this.size = this.item.childElementCount - 2;
     this.index = this.setIndex(option.index, option.useRandomIndex);
-    this.transition = {
-      duration: option.transitionDuration,
-      timingFunction: option.transitionTimingFunction,
+    this.slide = {
+      duration: option.slideDuration || 0.4,
+      timingFunction: option.slideTimingFunction || `ease`,
     };
+    this.slideTransition = `transform ${this.slide.duration}s ${this.slide.timingFunction}`;
     this.setup();
   }
 
   setup() {
     this.slideItem();
-    this.setAnimation(this.slideItem().offset, this.transition.duration, this.transition.timingFunction);
     this.addEventClickBtn();
-    if (this.card) {
-      this.displayActiveCard();
-      this.addEventClickCard();
-    }
+    this.cycleCarousel();
+    this.displayActiveCard();
+    this.addEventClickCard();
   }
 
-  setIndex(index = 0, randomIndexOption = false) {
+  setIndex(index = 1, randomIndexOption = false) {
     if (randomIndexOption) {
-      return Math.floor(Math.random() * (this.size + 1));
+      return Math.floor(Math.random() * this.size) + 1;
     }
-    if (index > this.size || index < 0) {
-      return 0;
+    if (index > this.size || index < 1) {
+      return 1;
     }
     return index;
   }
@@ -37,63 +36,67 @@ class Carousel {
   slideItem() {
     this.offset = this.index * this.item.firstElementChild.offsetWidth;
     this.item.style.transform = `translateX(-${this.offset}px)`;
-    return { offset: `translateX(-${this.offset}px)` };
-  }
-
-  setAnimation(currentTransformOffset, duration = 0.5, timingFunction = `ease`) {
-    if (this.item.style.transform === currentTransformOffset) {
-      this.item.style.transition = `transform ${duration}s ${timingFunction}`;
-    }
   }
 
   addEventClickBtn() {
     const [prevBtn, nextBtn] = this.button.children;
     prevBtn.addEventListener("click", () => {
       this.index -= 1;
+      if (this.index < 0) this.index = 0;
     });
     nextBtn.addEventListener("click", () => {
       this.index += 1;
+      if (this.index > this.size + 1) this.index = this.size + 1;
     });
     this.button.addEventListener("click", () => {
-      this.goSideIndex(this.index);
+      this.item.style.transition = this.slideTransition;
+      this.slideItem();
+    });
+  }
+
+  cycleCarousel() {
+    this.item.addEventListener("transitionend", () => {
+      if (this.item.children[this.index].id === "last-clone") {
+        this.item.style.transition = "none";
+        this.index = this.size;
+        this.slideItem();
+      }
+      if (this.item.children[this.index].id === "first-clone") {
+        this.item.style.transition = "none";
+        this.index = 1;
+        this.slideItem();
+      }
       this.displayActiveCard();
     });
   }
 
   addEventClickCard() {
-    this.card.forEach((eachCard, index) => {
+    if (!this.cardBtn) return;
+    this.cardBtn.forEach((eachCard, index) => {
       eachCard.addEventListener("click", () => {
-        this.goCardIndex(index);
-        this.displayActiveCard();
+        this.index = index + 1;
+        this.slideItem();
+        this.item.style.transition = this.slideTransition;
       });
     });
   }
 
   displayActiveCard() {
-    this.card.forEach((eachCard, index) => {
+    if (!this.cardBtn) return;
+    const activeCardIndex = this.index - 1;
+    this.cardBtn.forEach((eachCard, index) => {
       eachCard.classList.remove("active");
-      if (this.index === index) eachCard.classList.add("active");
+      if (activeCardIndex === index) {
+        eachCard.classList.add("active");
+      }
     });
-  }
-
-  goSideIndex(currentIndex) {
-    if (currentIndex < 0) this.index = this.size;
-    else if (currentIndex > this.size) this.index = 0;
-    this.slideItem();
-  }
-
-  goCardIndex(index) {
-    this.index = index;
-    this.slideItem();
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   const carousel = new Carousel(".slider-list", ".slider-btn", {
-    card: ".card-category-card",
-    index: 1,
+    cardBtn: ".card-category-card",
+    index: 2,
     useRandomIndex: false,
-    transitionDuration: 1,
-    transitionTimingFunction: `ease`,
   });
 });
