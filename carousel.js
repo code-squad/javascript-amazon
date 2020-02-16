@@ -10,7 +10,7 @@ class CarouselSlider {
     getSliderInfo() {
         this.slideItems = $(this.selectorName.SLIDE_ITEM, true);
         this.slideLength = this.slideItems.length;
-        return [this.slideItems, this.slideLength];
+        this.lastSlideIndex = this.slideItems.length - 1
     }
 
     cloneSlide() {
@@ -18,8 +18,8 @@ class CarouselSlider {
             firstClone = firstElementChild.cloneNode(true),
             lastClone = lastElementChild.cloneNode(true);
 
-        firstClone.id = this.selectorName.FIRSTCLONE;
-        lastClone.id = this.selectorName.LASTCLONE;
+        firstClone.id = this.selectorName.FIRST_CLONE;
+        lastClone.id = this.selectorName.LAST_CLONE;
         this.slides.append(firstClone);
         this.slides.prepend(lastClone);
         this.getSliderInfo();
@@ -27,33 +27,30 @@ class CarouselSlider {
     }
 
     moveSlides() {
-        this.slides.style.transform = 'translateX(' + (-this.slideSize * this.slideIndex) + 'px)';
+        return this.slides.style.transform = 'translateX(' + (-this.slideSize * this.slideIndex) + 'px)';
     }
 
     addTransition() {
-        const { name, duration, timingFunc } = this.transitionProperty;
+        const { NAME, DURATION, TIMING_FUNC } = this.transitionProperty;
 
-        this.slides.style.transition = `${name} ${duration} ${timingFunc}`;
+        this.slides.style.transition = `${NAME} ${DURATION} ${TIMING_FUNC}`;
         this.moveSlides();
         this.checkCurrentSlideId();
     }
 
     checkCurrentSlideId() {
         this.slides.addEventListener('transitionend', () => {
-            const FIRSTSLIDE_INDEX = 1,
-                LASTSLIDE_INDEX = 2
+            const FIRST_SLIDE_INDEX = 1,
+                LAST_SLIDE_INDEX = 2
 
-            const lastSlideIndex = this.slideLength - LASTSLIDE_INDEX,
+            const lastSlideIndex = this.slideLength - LAST_SLIDE_INDEX,
                 currentSlideId = this.slideItems[this.slideIndex].id;
 
-            if (currentSlideId === this.selectorName.LASTCLONE) {
-                this.removeTransition(lastSlideIndex);
-            }
+            if (currentSlideId === this.selectorName.LAST_CLONE)
+                this.removeTransitio(lastSlideIndex);
 
-            if (currentSlideId === this.selectorName.FIRSTCLONE) {
-                this.removeTransition(FIRSTSLIDE_INDEX);
-            }
-            return currentSlideId;
+            if (currentSlideId === this.selectorName.FIRST_CLONE)
+                this.removeTransition(FIRST_SLIDE_INDEX);
         })
     }
 
@@ -75,7 +72,7 @@ class CarouselCardMenu {
         const cardBtns = $(this.selectorName.CARD_BTN, true);
 
         this.setCardBtnIndex();
-        return cardBtns.forEach((btn, index) => {
+        cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
                 this.slider.slideIndex = index + 1;
                 this.addScaleEffect(btn);
@@ -85,20 +82,15 @@ class CarouselCardMenu {
     }
 
     setCardBtnIndex() {
-        const FIRSTINDEX = 0,
-            lastCardIndex = this.cards.length - 1,
-            lastSlideIndex = this.slider.slideLength - 1;
+        const FIRST_INDEX = 0,
+            lastCardIndex = this.cards.length - 1;
+
         this.cardIndices = [];
 
         this.slider.slideItems.forEach((_, index) => {
-            if (index === FIRSTINDEX) {
-                this.cardIndices[index] = lastCardIndex;
-            } else if (index === lastSlideIndex) {
-                this.cardIndices[index] = FIRSTINDEX
-            }
-            else {
-                this.cardIndices[index] = index - 1
-            }
+            if (index === FIRST_INDEX) this.cardIndices[index] = lastCardIndex;
+            else if (index === this.slider.lastSlideIndex) this.cardIndices[index] = FIRST_INDEX;
+            else this.cardIndices[index] = index - 1;
         })
     }
 
@@ -120,6 +112,7 @@ class CarouselSliderBtn {
 
     setSliderBtns() {
         const [previousBtn, nextBtn] = $(this.selectorName.SLIDER_BTNS, true);
+
         this.setPreviousBtn(previousBtn);
         this.setNextBtn(nextBtn);
     }
@@ -128,7 +121,6 @@ class CarouselSliderBtn {
         previousBtn.addEventListener('click', () => {
             if (this.slider.slideIndex <= 0) return;
             this.slider.slideIndex--;
-
             this.slider.addTransition();
             this.cardMenu.addScaleEffect();
         })
@@ -136,9 +128,8 @@ class CarouselSliderBtn {
 
     setNextBtn(nextBtn) {
         nextBtn.addEventListener('click', () => {
-            if (this.slider.slideIndex >= this.slider.slideLength - 1) return;
+            if (this.slider.slideIndex >= this.slider.lastSlideIndex) return;
             this.slider.slideIndex++;
-            console.log(this.slider.slideIndex)
             this.slider.addTransition();
             this.cardMenu.addScaleEffect();
         })

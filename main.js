@@ -19,14 +19,14 @@ const createCarouselSlider = () => {
         },
 
         transitionProperty = {
-            name: 'all',
-            duration: '.4s',
-            timingFunc: 'ease-in-out'
+            NAME: 'all',
+            DURATION: '.4s',
+            TIMING_FUNC: 'ease-in-out'
         },
 
         selectorName = {
-            FIRSTCLONE: 'slider-firstClone',
-            LASTCLONE: 'slider-lastClone',
+            FIRST_CLONE: 'slider-firstClone',
+            LAST_CLONE: 'slider-lastClone',
             SLIDE_ITEM: '.slider__item',
         }
 
