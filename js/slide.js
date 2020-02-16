@@ -6,84 +6,73 @@ let autoSlide;
 
 class Slide {
     constructor(option, obj) {
-        this.wrap = $(".slide-item-wrap");
+        this.slideWrap = $(".slide-item-wrap");
         this.maxItemIndex = option.ITEM_COUNT - 1;
         this.viewerWidth = option.VIEWER_WIDTH;
         this.slideSpeed = option.SLIDE_SPEED;
+        this.autoSlideTime = option.AUTO_SLIDE_INTERVAL;
         this.objList = obj;
         this.isSliding = false;
-        this.autoSlideTime = option.AUTO_SLIDE_TIME;
         this.init();
     }
 
     init() {
         curItem = OPTION_DATA.slideOption.FIRST_ITEM_INDEX;
-        this.moveWrap(curItem);
-        autoSlide = setTimeout(this.nextHandler.bind(this), this.autoSlideTime);
+        this.moveSlideWrap(curItem);
+        autoSlide = setTimeout(() => { this.buttonClickHandler(true) }, this.autoSlideTime);
     }
 
-    nextHandler() {
+    buttonClickHandler(isNextBtn) {
         clearTimeout(autoSlide);
         if (this.isSliding) return;
         this.slideAnimOn();
-        if (curItem === this.maxItemIndex) {
-            curItem = 0;
-            this.objList.forEach(obj => obj.run({ curItem: curItem, prevItem: this.maxItemIndex }));
-            this.moveWrap(this.maxItemIndex + 1);
+        if ((curItem === this.maxItemIndex && isNextBtn) || (curItem === 0 && !isNextBtn)) {
+            curItem = isNextBtn ? 0 : this.maxItemIndex;
+            this.objList.forEach(obj => obj.run({ curItem: isNextBtn ? curItem : this.maxItemIndex, prevItem: isNextBtn ? this.maxItemIndex : 0 }));
+            this.moveSlideWrap(isNextBtn ? this.maxItemIndex + 1 : -1);
         } else {
-            curItem++;
-            this.objList.forEach(obj => obj.run({ curItem: curItem, prevItem: curItem - 1 }));
-            this.moveWrap(curItem);
-        }
-    }
-
-    prevHandler() {
-        clearTimeout(autoSlide);
-        if (this.isSliding) return;
-        this.slideAnimOn();
-        if (curItem === 0) {
-            curItem = this.maxItemIndex;
-            this.objList.forEach(obj => obj.run({ curItem: this.maxItemIndex, prevItem: 0 }));
-            this.moveWrap(-1);
-        } else {
-            curItem--;
-            this.objList.forEach(obj => obj.run({ curItem: curItem, prevItem: curItem + 1 }));
-            this.moveWrap(curItem);
+            isNextBtn ? curItem++ : curItem--;
+            this.objList.forEach(obj => obj.run({ curItem: curItem, prevItem: isNextBtn ? curItem - 1 : curItem + 1 }));
+            this.moveSlideWrap(curItem);
         }
     }
 
     slideAnimEndHandler() {
-        this.wrap.style.transition = "none";
+        this.slideWrap.style.transition = "none";
         this.isSliding = false;
-        this.moveWrap(curItem);
-        autoSlide = setTimeout(this.nextHandler.bind(this), this.autoSlideTime);
+        this.moveSlideWrap(curItem);
+        autoSlide = setTimeout(() => { this.buttonClickHandler(true) }, this.autoSlideTime);
     }
 
     slideAnimOn() {
         this.isSliding = true;
-        this.wrap.style.transition = `${this.slideSpeed}s`;
+        this.slideWrap.style.transition = `${this.slideSpeed}s`;
     }
 
-    moveWrap(curItem) {
+    moveSlideWrap(curItem) {
         const x = (curItem + 1) * -this.viewerWidth;
-        this.wrap.style.transform = `translateX(${x + "px"})`;
+        this.slideWrap.style.transform = `translateX(${x + "px"})`;
     }
 
     run() {
-        this.wrap.addEventListener("transitionend", this.slideAnimEndHandler.bind(this));
+        this.slideWrap.addEventListener("transitionend", this.slideAnimEndHandler.bind(this));
         const prev = $(".prev-btn");
         const next = $(".next-btn");
-        prev.addEventListener("click", this.prevHandler.bind(this));
-        next.addEventListener("click", this.nextHandler.bind(this));
+        prev.addEventListener("click", () => this.buttonClickHandler(false));
+        next.addEventListener("click", () => this.buttonClickHandler(true));
     }
 }
 
 export class NavCard {
     constructor(option) {
-        this.wrap = $(".slide-item-wrap");
+        this.slideWrap = $(".slide-item-wrap");
         this.cards = $$(".slide-nav li");
         this.viewerWidth = option.VIEWER_WIDTH;
         this.slideSpeed = option.SLIDE_SPEED;
+        this.init();
+    }
+
+    init() {
         this.setCardNavEvent();
     }
 
@@ -93,19 +82,24 @@ export class NavCard {
     }
 
     setCardNavEvent() {
-        this.cards.forEach((node, idx) => {
-            if (idx === OPTION_DATA.slideOption.FIRST_ITEM_INDEX) { node.classList.add("slide-nav-selected") }
-            node.addEventListener("click", () => {
-                if (idx === curItem) return;
-                clearTimeout(autoSlide);
-                this.wrap.style.transition = `${this.slideSpeed}s`;
-                const prevItem = curItem;
-                curItem = idx;
-                this.navScaleCtl(curItem, prevItem);
-                const x = (curItem + 1) * -this.viewerWidth;
-                this.wrap.style.transform = `translateX(${x + "px"})`;
+        this.cards.forEach((card, idx) => {
+            if (idx === OPTION_DATA.slideOption.FIRST_ITEM_INDEX) card.classList.add("slide-nav-selected");
+            card.addEventListener("click", () => {
+                const cardIdx = idx;
+                this.cardClickHandler(cardIdx);
             });
         });
+    }
+
+    cardClickHandler(cardIdx) {
+        if (cardIdx === curItem) return;
+        clearTimeout(autoSlide);
+        this.slideWrap.style.transition = `${this.slideSpeed}s`;
+        const prevItem = curItem;
+        curItem = cardIdx;
+        this.navScaleCtl(curItem, prevItem);
+        const x = (curItem + 1) * -this.viewerWidth;
+        this.slideWrap.style.transform = `translateX(${x + "px"})`;
     }
 
     run(option) {
