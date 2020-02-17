@@ -35,3 +35,5 @@ const mockData_Menu = [
         'title': 'Menu4',
     }
 ]
+
+export default {mockData_Contents, mockData_Menu};
