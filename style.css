@@ -8,19 +8,19 @@
 }
 
 #carousel-wrap .carousel__bg-color1 {
-  background-color: #007bb6;
+  background-color: #ffcd30;
 }
 
 #carousel-wrap .carousel__bg-color2 {
-  background-color: #ac0169;
+  background-color: #ff5e4d;
 }
 
 #carousel-wrap .carousel__bg-color3 {
-  background-color: #ff6239;
+  background-color: #49b5f3;
 }
 
 #carousel-wrap .carousel__bg-color4 {
-  background-color: #fec401;
+  background-color: #5f85c4;
 }
 
 #card-menu {
@@ -32,25 +32,24 @@
   justify-content: space-between;
 }
 
-#card-menu .card {
+#card-menu .card-menu__card {
   width: 24%;
-  height: 90px;
+  height: 98px;
   text-align: center;
-  line-height: 1.3;
-  transition: all 0.3s ease;
 }
 
-#card-menu .card:hover {
-  transform: scale(1.1);
+#card-menu .card-menu__card.card-menu__selected {
+  transform: scale(1.2);
+  transition: all 0.4s ease;
 }
 
-#card-menu .card > button {
+#card-menu .card-menu__card > button {
   width: 100%;
   height: 100%;
 }
 
 #card-menu .card__title {
-  font-size: 20px;
+  font-size: 23px;
   color: #fff;
 }
 
@@ -85,31 +84,35 @@
 #slider .slider__img-area > img {
   width: 100%;
   height: 100%;
-  border-radius: 55%;
   object-fit: cover;
 }
 
 #slider .slider__content {
-  padding: 5%;
+  padding: 2% 3%;
   width: 900px;
   color: #333;
 }
 
 #slider .slider__titleBox {
-  padding: 5px 10px;
+  display: inline-block;
+  padding: 4px 24px;
   font-weight: bold;
+  text-align: center;
+  line-height: 28px;
+  font-size: 23px;
+
   color: #fff;
 }
 
 #slider .slider__content > h2 {
-  margin: 20px 0;
+  margin: 17px 0;
   font-size: 45px;
   font-weight: bold;
 }
 
 #slider .slider__content > p {
   font-size: 25px;
-  line-height: 25px;
+  line-height: 26px;
 }
 
 #slider__btn > button {
