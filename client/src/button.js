@@ -1,3 +1,5 @@
+import css from "./button.css";
+
 class Button {
     constructor(buttonData) {
         this.buttonData = buttonData;

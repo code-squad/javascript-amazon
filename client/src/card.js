@@ -1,3 +1,5 @@
+import css from "./card.css";
+
 class Card {
     constructor(cardData) {
         this.cardData = cardData;

@@ -1,3 +1,5 @@
+import css from "./header.css";
+
 class Header {
     constructor(headerData) {
         this.headerData = headerData;
