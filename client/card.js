@@ -21,3 +21,5 @@ class Card {
         return `<div class="card-block"><ul class="card-wrapper">${shopList}${readList}${moreList}${shipList}${streamList}</ul></div>`;
     }
 }
+
+export default Card;

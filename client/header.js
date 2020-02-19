@@ -24,3 +24,5 @@ class Header {
         return `<ul class="header-wrapper">${header}</ul>`;
     }
 }
+
+export default Header;

@@ -1,3 +1,5 @@
+import { $, $$ } from "./util.js";
+
 class MyEvent {
     constructor() {
 
@@ -27,3 +29,5 @@ class MyEvent {
         })
     }
 }
+
+export default MyEvent;

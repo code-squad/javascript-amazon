@@ -1,3 +1,9 @@
+import EventManager from "./event-manager.js";
+import Slider from "./slider.js";
+import mockData from "./mock-data.js";
+import { $, $$ } from "./util.js";
+
+
 const addEvents = () => {
     const eventManager = new EventManager();
     eventManager.addEvents();

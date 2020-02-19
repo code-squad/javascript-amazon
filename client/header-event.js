@@ -1,3 +1,5 @@
+import MyEvent from "./my-event.js";
+
 class HeaderEvent extends MyEvent {
     constructor() {
         super();
@@ -60,3 +62,5 @@ class HeaderEvent extends MyEvent {
         this.handleAnywhereElse(target);
     }
 }
+
+export default HeaderEvent;

@@ -1,4 +1,8 @@
-class EventManager{
+import HeaderEvent from "./header-event.js";
+import SliderEvent from "./slider-event.js";
+import { $, $$ } from "./util.js";
+
+class EventManager {
     constructor() {
         this.headerEvent = new HeaderEvent();
         this.sliderEvent = new SliderEvent();
@@ -16,3 +20,5 @@ class EventManager{
         this.sliderEvent.addEvent($(".card-wrapper"), "transitionend", this.sliderEvent.transitionEndEvent.bind(this.sliderEvent));
     }
 }
+
+export default EventManager;

@@ -1,3 +1,8 @@
+import Button from "./button.js";
+import Card from "./card.js";
+import Header from "./header.js";
+import { $, $$ } from "./util.js";
+
 class Slider {
     constructor({ headerData, headerCardLength, cardData, buttonData }) {
         this.header = new Header(headerData, headerCardLength);
@@ -13,3 +18,5 @@ class Slider {
         `;
     }
 }
+
+export default Slider;

@@ -1,3 +1,6 @@
+import MyEvent from "./my-event.js";
+import { $, $$ } from "./util.js";
+
 class SliderEvent extends MyEvent {
     constructor() {
         super();
@@ -142,3 +145,5 @@ class SliderEvent extends MyEvent {
         $(`#card-${targetIndex}`).click();
     }
 }
+
+export default SliderEvent;
