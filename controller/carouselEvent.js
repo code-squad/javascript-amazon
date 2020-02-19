@@ -1,15 +1,15 @@
-class SlideEvent {
+class Event {
   constructor() {
     this.menuBtn = $$(".nav-container li")
     this.dirBtn = $$("#slide button")
     this.contentArea = $(".contents")
     this.ListArea = $(".contents li")
-    this.slideStart()
+    this.init()
   }
 
-  slideStart() {
+  init() {
     this.cloneEl()
-    this.init(1)
+    this.settingCss(1)
     this.menuAddEvnet(this.menuBtn)
     this.btnAddEvent(this.dirBtn)
     this.contentEvent(this.contentArea)
@@ -25,7 +25,7 @@ class SlideEvent {
     this.contentArea.insertBefore(lastClone, this.contentArea.firstElementChild).classList.add('cloned')
   }
 
-  init(index) {
+  settingCss(index) {
     this.menuBtn[index - 1].classList.add("selected")
     const listCount = this.contentArea.childElementCount
     const offsetWidth = listCount * this.ListArea.offsetWidth;
@@ -95,7 +95,7 @@ class SlideEvent {
   convertIndex(menuLength, index) {
     let convertedIndex = 0;
     if (menuLength < index) { convertedIndex = 1; }
-    else if (1 > index) { convertedIndex = 4; }
+    else if (1 > index) { convertedIndex = this.menuBtn.length; }
     else { convertedIndex = index; }
     return convertedIndex;
   }
@@ -113,4 +113,4 @@ class SlideEvent {
   }
 }
 
-export default SlideEvent
+export default Event
