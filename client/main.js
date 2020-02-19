@@ -9,9 +9,11 @@ const addEvents = () => {
 }
 
 const constructHTML = async () => {
-    const data = await Slider.getCardData();
-    console.log("data is ", typeof data);
-    const slider = new Slider(data);
+    const slider = new Slider();
+    if (!slider.doesCardDataExist()) {
+        const cardData = await slider.fetchCardData();
+        slider.setCardData(cardData);
+    }
     $("#slider").innerHTML = slider.render();
 }
 
