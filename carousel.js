@@ -1,10 +1,10 @@
 class CarouselSlider {
-    constructor(sliderData, transitionProperty, selectorName) {
-        this.slides = sliderData.slides;
-        this.slideIndex = sliderData.slideIndex;
+    constructor(sliderInfo) {
+        this.slides = sliderInfo.sliderData.slides;
+        this.slideIndex = sliderInfo.sliderData.slideIndex;
         this.slideSize = this.slides.firstElementChild.clientWidth;
-        this.transitionProperty = transitionProperty;
-        this.selectorName = selectorName;
+        this.transitionProperty = sliderInfo.transitionProperty;
+        this.selectorName = sliderInfo.selectorName;
     }
 
     getSliderInfo() {
@@ -62,9 +62,9 @@ class CarouselSlider {
 }
 
 class CarouselCardMenu {
-    constructor(carouselSlider, selectorName) {
-        this.slider = carouselSlider;
-        this.selectorName = selectorName;
+    constructor(option) {
+        this.slider = option.carouselSlider;
+        this.selectorName = option.selectorName;
         this.cards = $(this.selectorName.CARD, true);
     }
 
@@ -104,10 +104,10 @@ class CarouselCardMenu {
 }
 
 class CarouselSliderBtn {
-    constructor(carouselSlider, carouselCardMenu, selectorName) {
-        this.slider = carouselSlider;
-        this.cardMenu = carouselCardMenu;
-        this.selectorName = selectorName;
+    constructor(option) {
+        this.slider = option.carouselSlider;
+        this.cardMenu = option.carouselCardMenu;
+        this.selectorName = option.selectorName;
     }
 
     setSliderBtns() {
@@ -135,15 +135,3 @@ class CarouselSliderBtn {
         })
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

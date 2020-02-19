@@ -10,45 +10,54 @@ const init = () => {
 };
 
 const createCarouselSlider = () => {
-    const SLIDES = '.slider__list';
+    const SLIDES_CLASS_NAME = '.slider__list';
+    const slides = $(SLIDES_CLASS_NAME);
 
-    const slides = $(SLIDES),
-        sliderData = {
+    const sliderInfo = {
+        sliderData: {
             slides: slides,
             slideIndex: 1,
         },
 
-        transitionProperty = {
+        transitionProperty: {
             NAME: 'all',
             DURATION: '.4s',
             TIMING_FUNC: 'ease-in-out'
         },
 
-        selectorName = {
+        selectorName: {
             FIRST_CLONE: 'slider-firstClone',
             LAST_CLONE: 'slider-lastClone',
             SLIDE_ITEM: '.slider__item',
         }
+    }
 
-    return new CarouselSlider(sliderData, transitionProperty, selectorName);
+    return new CarouselSlider(sliderInfo);
 }
 
 const createCarouselCardMenu = (carouselSlider) => {
-    const selectorName = {
-        CARD: '.card-menu__card',
-        CARD_BTN: '.card-menu__card button',
-        SELECTED: 'card-menu__selected'
+    const option = {
+        carouselSlider,
+        selectorName: {
+            CARD: '.card-menu__card',
+            CARD_BTN: '.card-menu__card button',
+            SELECTED: 'card-menu__selected'
+        }
     }
 
-    return new CarouselCardMenu(carouselSlider, selectorName);
+    return new CarouselCardMenu(option);
 }
 
 const createSliderBtn = (carouselSlider, carouselCardMenu) => {
-    const selectorName = {
-        SLIDER_BTNS: '#slider__btn button',
+    const option = {
+        carouselSlider,
+        carouselCardMenu,
+        selectorName: {
+            SLIDER_BTNS: '#slider__btn button',
+        }
     }
 
-    return new CarouselSliderBtn(carouselSlider, carouselCardMenu, selectorName);
+    return new CarouselSliderBtn(option);
 }
 
 const $ = (selector, all) => {
