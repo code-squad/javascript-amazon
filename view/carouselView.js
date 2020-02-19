@@ -1,10 +1,12 @@
-class Slide {
-  constructor({navData, contentData, buttonData}) {
-    this.nav = new Nav(navData)
-    this.content = new Content(contentData)
-    this.button = new Button(buttonData)
+class Carousel {
+  constructor({nav, content, button}) {
+    this.nav = nav
+    this.content = content
+    this.button = button
+      
+    $("#slide").innerHTML = this.templateRendering()
   }
-  template() {
+  templateRendering() {
     return `
       ${this.nav.template()}
       ${this.content.template()}
@@ -55,4 +57,4 @@ class Button {
   }
 }
 
-export default Slide
+export {Carousel, Nav, Content, Button}
