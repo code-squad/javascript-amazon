@@ -1,4 +1,4 @@
-import { $, $$ } from "./util.js";
+import { $$ } from "./util.js";
 
 class MyEvent {
     constructor() {

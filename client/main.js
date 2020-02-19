@@ -1,7 +1,6 @@
 import EventManager from "./event-manager.js";
 import Slider from "./slider.js";
-import mockData from "./mock-data.js";
-import { $, $$ } from "./util.js";
+import { $ } from "./util.js";
 
 
 const addEvents = () => {
@@ -9,8 +8,10 @@ const addEvents = () => {
     eventManager.addEvents();
 }
 
-const constructHTML = () => {
-    const slider = new Slider(mockData);
+const constructHTML = async () => {
+    const data = await Slider.getCardData();
+    console.log("data is ", typeof data);
+    const slider = new Slider(data);
     $("#slider").innerHTML = slider.render();
 }
 
@@ -21,8 +22,8 @@ const initializeSettings = () => {
     firstHeader.querySelector(".dot").classList.add("selected-dot");
 }
 
-const init = () => {
-    constructHTML();
+const init = async () => {
+    await constructHTML();
     addEvents();
     initializeSettings();
 };

@@ -1,5 +1,5 @@
 import MyEvent from "./my-event.js";
-import { $, $$ } from "./util.js";
+import { $ } from "./util.js";
 
 class SliderEvent extends MyEvent {
     constructor() {
