@@ -85,7 +85,8 @@ class SliderEvent extends CoreEvent {
     transitionEndEvent(event) {
         const cardWrapper = $(".card-wrapper");
         cardWrapper.style.transition = 'none';
-        const childNodes = Array.from(cardWrapper.children);
+        console.log(cardWrapper.children);
+        const childNodes = [...cardWrapper.children];
         const firstParitialList = childNodes.slice(0, Math.abs(this.distance));
         const firstSlide = childNodes[0];
 
