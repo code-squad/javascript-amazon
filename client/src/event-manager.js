@@ -4,8 +4,11 @@ import { $, $$ } from "./util.js";
 
 class EventManager {
     constructor() {
-        this.headerEvent = new HeaderEvent();
-        this.sliderEvent = new SliderEvent();
+        this.isEventEnded = {
+            ended: true
+        };
+        this.headerEvent = new HeaderEvent(this.isEventEnded);
+        this.sliderEvent = new SliderEvent(this.isEventEnded);
     }
 
     addEvents() {

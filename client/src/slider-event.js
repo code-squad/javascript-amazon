@@ -2,7 +2,7 @@ import MyEvent from "./my-event.js";
 import { $ } from "./util.js";
 
 class SliderEvent extends MyEvent {
-    constructor() {
+    constructor(isEventEnded) {
         super();
         this.isPrevious = false;
         this.distance = 0;
@@ -11,6 +11,8 @@ class SliderEvent extends MyEvent {
         this.listLength = 17;
         this.halfListLength = parseInt(this.listLength / 2);
         this.selectedCard = $('.selected-card');
+        this.movedFinished = true;
+        this.isEventEnded = isEventEnded;
     }
 
     isRightWay(distance) {
@@ -55,6 +57,11 @@ class SliderEvent extends MyEvent {
     }
 
     previousButtonListener(event) {
+        if (this.isEventEnded.ended === false) {
+            return;
+        }
+        this.isEventEnded.ended =  false;
+
         this.setCurrentIndexAsPreviousIndex()
         this.currentIndex = this.getPreviousIndex(this.previousIndex);
         this.distance = -1;
@@ -63,6 +70,11 @@ class SliderEvent extends MyEvent {
     }
 
     nextButtonListener(event) {
+        if (this.isEventEnded.ended === false) {
+            return;
+        }
+        this.isEventEnded.ended =  false;
+
         this.setCurrentIndexAsPreviousIndex();
         this.currentIndex = this.getNextIndex(this.previousIndex);
         this.distance = 1;
@@ -74,6 +86,7 @@ class SliderEvent extends MyEvent {
         const cardWrapper = $(".card-wrapper");
         cardWrapper.style.transition = 'none';
         const childNodes = Array.from(cardWrapper.children);
+        console.log(`childeNodes are`, childNodes);
         const firstParitialList = childNodes.slice(0, Math.abs(this.distance));
         const firstSlide = childNodes[0];
 
@@ -94,6 +107,8 @@ class SliderEvent extends MyEvent {
         target.parentNode.parentNode.classList.add('header-selected');
 
         cardWrapper.style.transform = 'translateX(0px)';
+        
+        this.isEventEnded.ended = true;
     }
 
     getDistanceInRevertedOrder(middle, target) {
@@ -133,6 +148,11 @@ class SliderEvent extends MyEvent {
     }
 
     dotEventListener(event) {
+        if (this.isEventEnded.ended === false) {
+            return;
+        }
+        this.isEventEnded.ended =  false;
+
         this.setCurrentIndexAsPreviousIndex();
         const targetIndex = parseInt(event.target.dataset.id);
         this.currentIndex = targetIndex;

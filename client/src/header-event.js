@@ -1,8 +1,9 @@
 import MyEvent from "./my-event.js";
 
 class HeaderEvent extends MyEvent {
-    constructor() {
+    constructor(isEventEnded) {
         super();
+        this.isEventEnded = isEventEnded;
     }
 
 
@@ -39,6 +40,10 @@ class HeaderEvent extends MyEvent {
 
     selectBoxListener(event) {
 
+        if (this.isEventEnded.ended === false) {
+            return;
+        }
+        
         const { target } = event;
 
         this.initializeStatus();
