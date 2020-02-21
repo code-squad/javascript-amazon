@@ -14,7 +14,6 @@ router.get('/', (ctx, next) => {
 
 app.use(router.routes())
 
-
 const port = 4000
 app.listen(port, () => {
   console.log('listen to port %d', port)

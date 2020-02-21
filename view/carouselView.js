@@ -1,8 +1,8 @@
 class Carousel {
-  constructor({nav, content, button}) {
-    this.nav = nav
-    this.content = content
-    this.button = button
+  constructor({navData, contentData, buttonData}) {
+    this.nav = navData
+    this.content = contentData
+    this.button = buttonData
       
     $("#slide").innerHTML = this.templateRendering()
   }
@@ -32,13 +32,13 @@ class Content {
     this.items = contentData
   }
   template() {
-    const modify = this.items.reduce((item, data) => {
+    const modifyListArray = this.items.reduce((item, data) => {
       const {content} = data
       const li = content.map(list => `<li>${list}</li>`).join("")
       item.push({...data, content: li})
       return item
     }, [])
-    const contents = modify.reduce((render, list) => 
+    const contents = modifyListArray.reduce((render, list) => 
       (render += `<li class="content"><div><img src=${list.imgUrl}></div><div class="contents-content"><h4>${list.title}</h4><ul>${list.content}</ul></div></li>`), ""
     )
     return `<div class="contents-container"><ul class="contents">${contents}</ul></div>`;
