@@ -5,3 +5,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const carouselManager = new CarouselManager({menuBtnElements, arrowBtnElements, carouselWrapperElement});
 });
+
+//

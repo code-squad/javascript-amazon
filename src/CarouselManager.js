@@ -1,40 +1,30 @@
 class CarouselManager {
-  carouselList = [
-    {
-      imageSrc: 'src/image/sample1.jpg',
-      title: 'A Carousel',
-      description: 'save on groceries and an additional 10% off select sale items',
-      link: 'https://www.naver.com',
-      linkContent: 'Click here',
-    },
-    {
-      imageSrc: 'src/image/sample2.jpg',
-      title: 'B Carousel',
-      description: 'save on groceries and an additional 10% off select sale items',
-      link: 'https://www.naver.com',
-      linkContent: 'Click here',
-    },
-    {
-      imageSrc: 'src/image/sample3.jpg',
-      title: 'C Carousel',
-      description: 'save on groceries and an additional 10% off select sale items',
-      link: 'https://www.naver.com',
-      linkContent: 'Click here',
-    },
-    {
-      imageSrc: 'src/image/sample4.jpg',
-      title: 'D Carousel',
-      description: 'save on groceries and an additional 10% off select sale items',
-      link: 'https://www.naver.com',
-      linkContent: 'Click here',
-    },
-  ];
+  carouselList = [];
   currentIndex = 0;
   carouselWrapperElement;
 
   constructor(props) {
     this.carouselWrapperElement = props.carouselWrapperElement;
 
+    if(!localStorage.getItem('carouselJson')) {
+      console.log("!!!!!");
+      fetch('http://127.0.0.1:8080/')
+        .then((response) => response.json())
+        .then((carouselList) => {
+          this.carouselList = carouselList;
+          localStorage.setItem('carouselJson', JSON.stringify(this.carouselList));
+          this.settingCarousel(props);
+        });
+    } else {
+      console.log('??????');
+      const carouselJson = localStorage.getItem('carouselJson');
+      this.carouselList = JSON.parse(carouselJson);
+      this.settingCarousel(props);
+    }
+
+  } // 화살표 클릭시 이벤트 발생 // 화살표버튼은 인덱스정보다 필요없음
+
+  settingCarousel(props) {
     [this.carouselList[this.carouselList.length - 1], ...this.carouselList, this.carouselList[0]] // [{..},{..}...{..}] (4 1234 1)
       .forEach((carousel) => this.carouselWrapperElement.appendChild(new Carousel(carousel).render())); // carouselWrapperElement = <div>...</div> 6개들어감
 
@@ -44,10 +34,11 @@ class CarouselManager {
     menu.style.transform = 'scale(1.2)'; // A메뉴 큰상태로 초기셋
 
     props.menuBtnElements.forEach((element, index) => element.addEventListener('click', this.calculateCarouselContentStyleToMenu.bind(this, index)));
-    // 메뉴버튼 클릭시 이벤트발생
-    // foreach의 인자들공부해라(두번쨰 인자는 무조건 인덱스) //원래는 두번쨰인자로 arrow function이 들어가지만 arrow function바로 넣는 대신 콜백함수 넣고.bind로 결합해주기 (bind공부하기)!
+  // 메뉴버튼 클릭시 이벤트발생
+  // foreach (두번쨰 인자는 인덱스) //원래는 두번쨰인자로 arrow function이 들어가지만 arrow function바로 넣는 대신 콜백함수 넣고.bind로 결합해주기 (bind공부하기)!
     props.arrowBtnElements.forEach((element) => element.addEventListener('click', this.calculateCarouselContentStyleToArrow.bind(this, element)));
-  } // 화살표 클릭시 이벤트 발생 // 화살표버튼은 인덱스정보다 필요없음
+  }
+
 
   calculateCarouselContentStyleToMenu(index) { // (46줄참고) 메뉴버튼 클릭시 오른쪽, 왼쪽 이동수 계산
     const rightCount = index > this.currentIndex ? index - this.currentIndex : this.carouselList.length - this.currentIndex + index; // 새로 메뉴누르면 오른쪽으로 몇칸가야하는지 계산
@@ -106,3 +97,4 @@ class CarouselManager {
     });
   }
 }
+//
