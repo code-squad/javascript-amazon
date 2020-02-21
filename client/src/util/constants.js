@@ -1,3 +1,8 @@
 export const URL = {
-    SERVER: "http://localhost:8080/cards"
+    DEV : {API_SERVER: {
+        ADDRESS: "http://localhost:8080/cards"
+    }},
+    PROD:{API_SERVER: {
+        ADDRESS: "http://not_existed"
+    }}
 }
