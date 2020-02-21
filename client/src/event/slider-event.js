@@ -2,13 +2,15 @@ import CoreEvent from "./core-event.js";
 import { $ } from "../util/util.js";
 
 class SliderEvent extends CoreEvent {
-    constructor(isEventEnded) {
+    constructor(isEventEnded, defaultOption = { defaultCurrentIndex : 1, defaultListLength : 17}) {
         super();
+
+        const { defaultCurrentIndex, defaultListLength } = defaultOption;
         this.isPrevious = false;
         this.distance = 0;
         this.previousIndex = 0;
-        this.currentIndex = 1;
-        this.listLength = 17;
+        this.currentIndex = defaultCurrentIndex;
+        this.listLength = defaultListLength;
         this.halfListLength = parseInt(this.listLength / 2);
         this.selectedCard = $('.selected-card');
         this.movedFinished = true;
@@ -85,7 +87,6 @@ class SliderEvent extends CoreEvent {
     transitionEndEvent(event) {
         const cardWrapper = $(".card-wrapper");
         cardWrapper.style.transition = 'none';
-        console.log(cardWrapper.children);
         const childNodes = [...cardWrapper.children];
         const firstParitialList = childNodes.slice(0, Math.abs(this.distance));
         const firstSlide = childNodes[0];
