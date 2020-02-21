@@ -68,7 +68,7 @@ class SliderEvent extends CoreEvent {
         this.setCurrentIndexAsPreviousIndex()
         this.currentIndex = this.getPreviousIndex(this.previousIndex);
         this.distance = -1;
-        this.moveByDistance(-1);
+        this.moveByDistance(this.distance);
         this.giveSelectedClassToCurrentIndexNode();
     }
 
@@ -81,7 +81,7 @@ class SliderEvent extends CoreEvent {
         this.setCurrentIndexAsPreviousIndex();
         this.currentIndex = this.getNextIndex(this.previousIndex);
         this.distance = 1;
-        this.moveByDistance(1);
+        this.moveByDistance(this.distance);
         this.giveSelectedClassToCurrentIndexNode();
     }
 
