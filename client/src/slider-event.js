@@ -7,7 +7,7 @@ class SliderEvent extends MyEvent {
         this.isPrevious = false;
         this.distance = 0;
         this.previousIndex = 0;
-        this.currentIndex = 0;
+        this.currentIndex = 1;
         this.listLength = 17;
         this.halfListLength = parseInt(this.listLength / 2);
         this.selectedCard = $('.selected-card');
@@ -86,7 +86,6 @@ class SliderEvent extends MyEvent {
         const cardWrapper = $(".card-wrapper");
         cardWrapper.style.transition = 'none';
         const childNodes = Array.from(cardWrapper.children);
-        console.log(`childeNodes are`, childNodes);
         const firstParitialList = childNodes.slice(0, Math.abs(this.distance));
         const firstSlide = childNodes[0];
 
@@ -116,10 +115,11 @@ class SliderEvent extends MyEvent {
             this.distance = (target - middle);
             return;
         }
-        if (1 <= target && target <= middle + this.halfListLength - this.listLength) {
+        if (1 <= target && target <= middle + this.halfListLength - this.listLength) {    
             this.distance = (this.listLength + target - middle);
             return;
         }
+
         this.distance = (middle - target) * -1;
         return;
     }
@@ -142,12 +142,22 @@ class SliderEvent extends MyEvent {
     getDistance(middle, target) {
         if (middle + this.halfListLength > this.listLength) {
             this.getDistanceInRevertedOrder(middle, target);
+            return;
         }
 
         this.getDistanceInNormalOrder(middle, target);
     }
 
+    hasClickedSameIndex(target) {
+        return parseInt(target.dataset.id) === this.currentIndex;
+    }
+
     dotEventListener(event) {
+        if (this.hasClickedSameIndex(event.target) === true) {
+            this.isEventEnded === true;
+            return;
+        }
+        
         if (this.isEventEnded.ended === false) {
             return;
         }
