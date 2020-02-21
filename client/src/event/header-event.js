@@ -1,6 +1,6 @@
-import MyEvent from "./my-event.js";
+import CoreEvent from "./core-event.js";
 
-class HeaderEvent extends MyEvent {
+class HeaderEvent extends CoreEvent {
     constructor(isEventEnded) {
         super();
         this.isEventEnded = isEventEnded;

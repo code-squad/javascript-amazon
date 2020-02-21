@@ -1,7 +1,7 @@
-import MyEvent from "./my-event.js";
+import CoreEvent from "./core-event.js";
 import { $ } from "../util/util.js";
 
-class SliderEvent extends MyEvent {
+class SliderEvent extends CoreEvent {
     constructor(isEventEnded) {
         super();
         this.isPrevious = false;
