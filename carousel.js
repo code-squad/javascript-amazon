@@ -1,4 +1,4 @@
-import { $, $$ } from "./selector.js";
+import { $, $$ } from "./util.js";
 
 class Carousel {
   constructor(item, button, option) {
@@ -51,6 +51,7 @@ class Carousel {
     this.button.addEventListener("click", () => {
       this.item.style.transition = this.slideTransition;
       this.slideItem();
+      this.displayActiveCard();
     });
   }
 
@@ -66,7 +67,6 @@ class Carousel {
         this.index = 1;
         this.slideItem();
       }
-      this.displayActiveCard();
     });
   }
 
@@ -83,7 +83,9 @@ class Carousel {
 
   displayActiveCard() {
     if (!this.cardBtn) return;
-    const activeCardIndex = this.index - 1;
+    let activeCardIndex = this.index - 1;
+    if (this.index > this.size) activeCardIndex = 0;
+    else if (activeCardIndex < 0) activeCardIndex = this.size - 1;
     this.cardBtn.forEach((eachCard, index) => {
       eachCard.classList.remove("active");
       if (activeCardIndex === index) {
