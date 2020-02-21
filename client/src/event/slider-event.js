@@ -155,7 +155,7 @@ class SliderEvent extends CoreEvent {
         return parseInt(target.dataset.id) === this.currentIndex;
     }
 
-    dotEventListener(event) {
+    smallBoxIndexEventListener(event) {
         if (this.hasClickedSameIndex(event.target) === true) {
             this.isEventEnded === true;
             return;
