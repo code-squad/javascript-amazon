@@ -110,7 +110,7 @@ class SliderEvent extends MyEvent {
         this.isEventEnded.ended = true;
     }
 
-    getDistanceInRevertedOrder(middle, target) {
+    setDistanceInRevertedOrder(middle, target) {
         if (middle <= target && target <= this.listLength) {
             this.distance = (target - middle);
             return;
@@ -124,7 +124,7 @@ class SliderEvent extends MyEvent {
         return;
     }
 
-    getDistanceInNormalOrder(middle, target) {
+    setDistanceInNormalOrder(middle, target) {
         if (target <= middle + this.halfListLength) {
             this.distance = target - middle;
             return;
@@ -139,13 +139,13 @@ class SliderEvent extends MyEvent {
         return;
     }
 
-    getDistance(middle, target) {
+    setDistance(middle, target) {
         if (middle + this.halfListLength > this.listLength) {
-            this.getDistanceInRevertedOrder(middle, target);
+            this.setDistanceInRevertedOrder(middle, target);
             return;
         }
 
-        this.getDistanceInNormalOrder(middle, target);
+        this.setDistanceInNormalOrder(middle, target);
     }
 
     hasClickedSameIndex(target) {
@@ -167,7 +167,7 @@ class SliderEvent extends MyEvent {
         const targetIndex = parseInt(event.target.dataset.id);
         this.currentIndex = targetIndex;
 
-        this.getDistance(this.previousIndex, this.currentIndex);
+        this.setDistance(this.previousIndex, this.currentIndex);
 
         this.moveByDistance(this.distance);
         this.giveSelectedClassToCurrentIndexNode();
