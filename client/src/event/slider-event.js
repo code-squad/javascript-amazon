@@ -2,10 +2,10 @@ import CoreEvent from "./core-event.js";
 import { $ } from "../util/util.js";
 
 class SliderEvent extends CoreEvent {
-    constructor(isEventEnded, defaultOption = { defaultCurrentIndex : 1, defaultListLength : 17}) {
+    constructor(isEventEnded, defaultOption = { defaultCurrentIndex : 1, defaultListLength : 17, defaultCardLength : 1080}) {
         super();
 
-        const { defaultCurrentIndex, defaultListLength } = defaultOption;
+        const { defaultCurrentIndex, defaultListLength, defaultCardLength } = defaultOption;
         this.isPrevious = false;
         this.distance = 0;
         this.previousIndex = 0;
@@ -15,6 +15,7 @@ class SliderEvent extends CoreEvent {
         this.selectedCard = $('.selected-card');
         this.movedFinished = true;
         this.isEventEnded = isEventEnded;
+        this.cardLength = defaultCardLength;
     }
 
     isRightWay(distance) {
@@ -26,12 +27,12 @@ class SliderEvent extends CoreEvent {
         if (this.isRightWay(distance) === true) {
             this.isPrevious = false;
             cardWrapper.style.transition = "transform 1s";
-            cardWrapper.style.transform = `translateX(${-1080 * distance}px)`;
+            cardWrapper.style.transform = `translateX(${-this.cardLength * distance}px)`;
             return;
         }
         this.isPrevious = true;
         cardWrapper.style.transition = "transform 1s";
-        cardWrapper.style.transform = `translateX(${1080 * -distance}px)`;
+        cardWrapper.style.transform = `translateX(${this.cardLength * -distance}px)`;
     }
 
     getPreviousIndex(index) {
