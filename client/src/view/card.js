@@ -3,13 +3,13 @@ import css from "./card.css";
 class Card {
     constructor(cardData) {
         this.cardData = cardData;
-        this.idIndex = 1;
+        this.cardIndex = 1;
     }
 
     sortByCategory(category) {
         return this.cardData
             .filter(data => data.category === category)
-            .reduce((result, data) => (result += `<li class="card ${this.idIndex === 1 ? "selected-card" : ""}" id=card-${this.idIndex++}><div class="card-copy"><span class="card-category ${data.category}">${data.cardCategory}</span><div class="card-headline">${data.cardHeadline}</div><div class="card-body">${data.cardBody}</div><a class="card-cta">${data.cardCta}</a></div></li>`), "")
+            .reduce((result, data) => (result += `<li class="card ${this.cardIndex === 1 ? "selected-card" : ""}" id=card-${this.cardIndex++}><div class="card-copy"><span class="card-category ${data.category}">${data.cardCategory}</span><div class="card-headline">${data.cardHeadline}</div><div class="card-body">${data.cardBody}</div><a class="card-cta">${data.cardCta}</a></div></li>`), "")
 
     }
 

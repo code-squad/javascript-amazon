@@ -1,6 +1,6 @@
 import HeaderEvent from "./header-event.js";
 import SliderEvent from "./slider-event.js";
-import { $, $$ } from "./util.js";
+import { $, $$ } from "../util/util.js";
 
 class EventManager {
     constructor() {

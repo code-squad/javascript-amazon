@@ -1,9 +1,11 @@
 import Button from "./button.js";
 import Card from "./card.js";
 import Header from "./header.js";
-import { URL } from "../util/constants.js/index.js";
+
 import sliderCSS from "./slider.css";
 import resetCSS from "./reset.css";
+
+import { URL } from "../util/constants.js";
 
 class Slider {
     constructor() {

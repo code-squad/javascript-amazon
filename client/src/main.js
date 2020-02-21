@@ -1,6 +1,6 @@
-import EventManager from "./event-manager.js";
-import Slider from "./slider.js";
-import { $ } from "./util.js";
+import EventManager from "./event/event-manager.js";
+import Slider from "./view/slider.js";
+import { $ } from "./util/util.js";
 
 
 const addEvents = () => {
