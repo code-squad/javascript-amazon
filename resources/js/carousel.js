@@ -77,6 +77,7 @@ class Carousel {
         this.index = index + 1;
         this.slideItem();
         this.item.style.transition = this.slideTransition;
+        this.displayActiveCard();
       });
     });
   }
