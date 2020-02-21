@@ -1,3 +1,5 @@
+import { $ } from '../utlis.js'
+
 class Carousel {
   constructor({navData, contentData, buttonData}) {
     this.nav = navData

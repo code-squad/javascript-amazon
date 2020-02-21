@@ -1,3 +1,5 @@
+import {$, $$} from '../utlis.js'
+
 class CarouselEvent {
   constructor() {
     this.menuBtn = $$(".nav-container li")
@@ -40,8 +42,8 @@ class CarouselEvent {
   }
 
   addMenuEvent(directBtn) {
-    directBtn.forEach((el, index) => {
-      el.addEventListener('click', () => {
+    directBtn.forEach((target, index) => {
+      target.addEventListener('click', () => {
         this.menuHandler(index);
       })
     })
