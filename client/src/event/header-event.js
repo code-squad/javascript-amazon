@@ -48,7 +48,6 @@ class HeaderEvent extends CoreEvent {
 
         this.initializeStatus();
 
-
         if (target.classList.contains("header_title") === true) {
             this.handleHeaderPart(target);
             return;
