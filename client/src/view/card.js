@@ -6,8 +6,8 @@ class Card {
         this.cardIndex = 1;
     }
 
-    sortByCategory(category) {
-        return this.cardData
+    sortByCategory(categoryList) {
+        const sort = (category) =>  this.cardData
             .filter(data => data.category === category)
             .reduce((result, data) => (result += `<li class="card ${this.cardIndex === 1 ? "selected-card" : ""}" id=card-${this.cardIndex++}>
                                                     <div class="card-copy">
@@ -26,14 +26,11 @@ class Card {
                                                     </div>
                                                 </li>`), "")
 
+        return categoryList.map(category => sort(category))
     }
 
     render() {
-        const shipList = this.sortByCategory("ship");
-        const streamList = this.sortByCategory("stream");
-        const shopList = this.sortByCategory("shop");
-        const readList = this.sortByCategory("read");
-        const moreList = this.sortByCategory("more");
+        const [shipList, streamList, shopList, readList, moreList ] = this.sortByCategory(["ship", "stream", "shop", "read", "more"]);
 
         return `<div class="card-block"><ul class="card-wrapper">${shopList}${readList}${moreList}${shipList}${streamList}</ul></div>`;
     }
