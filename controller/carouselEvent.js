@@ -1,19 +1,24 @@
-class Event {
+class CarouselEvent {
   constructor() {
     this.menuBtn = $$(".nav-container li")
     this.dirBtn = $$("#slide button")
     this.contentArea = $(".contents")
     this.ListArea = $(".contents li")
+    this.STARTINDEX = 1
     this.init()
   }
 
   init() {
     this.cloneEl()
-    this.settingCss(1)
-    this.menuAddEvnet(this.menuBtn)
-    this.btnAddEvent(this.dirBtn)
-    this.contentEvent(this.contentArea)
+    this.setCss(this.STARTINDEX)
+    this.onEvent()
     this.isTransition = false
+  }
+
+  onEvent() {
+    this.addMenuEvent(this.menuBtn)
+    this.addButtonEvent(this.dirBtn)
+    this.contentEvent(this.contentArea)
   }
 
   cloneEl() {
@@ -22,10 +27,10 @@ class Event {
     const firstClone = firstChild.cloneNode(true)
     const lastClone = lastChild.cloneNode(true)
     this.contentArea.appendChild(firstClone).classList.add('cloned')
-    this.contentArea.insertBefore(lastClone, this.contentArea.firstElementChild).classList.add('cloned')
+    this.contentArea.insertBefore(lastClone, firstChild).classList.add('cloned')
   }
 
-  settingCss(index) {
+  setCss(index) {
     this.menuBtn[index - 1].classList.add("selected")
     const listCount = this.contentArea.childElementCount
     const offsetWidth = listCount * this.ListArea.offsetWidth;
@@ -34,8 +39,8 @@ class Event {
     this.currentIndex = index
   }
 
-  menuAddEvnet(el) {
-    el.forEach((el, index) => {
+  addMenuEvent(directBtn) {
+    directBtn.forEach((el, index) => {
       el.addEventListener('click', () => {
         this.menuHandler(index);
       })
@@ -47,7 +52,7 @@ class Event {
     this.setCurrentIndex(index + 1)
   }
 
-  btnAddEvent(el) {
+  addButtonEvent(el) {
     el.forEach((el, index) => {
       el.addEventListener('click', () => {
         this.btnHandler(index)
@@ -113,4 +118,4 @@ class Event {
   }
 }
 
-export default Event
+export default CarouselEvent
