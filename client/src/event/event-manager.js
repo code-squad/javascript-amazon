@@ -1,6 +1,6 @@
 import HeaderEvent from "./header-event.js";
 import SliderEvent from "./slider-event.js";
-import { $, $$ } from "../util/util.js";
+import { $, $$ as SelectAll} from "../util/util.js";
 
 class EventManager {
     constructor() {
@@ -12,10 +12,10 @@ class EventManager {
     }
 
     addEvents() {
-        $$(".header-list").forEach(header => {
+        SelectAll(".header-list").forEach(header => {
             this.headerEvent.addEvent(header, "click", this.headerEvent.selectBoxListener.bind(this.headerEvent));
         })
-        $$(".dot").forEach(dot => {
+        SelectAll(".dot").forEach(dot => {
             this.sliderEvent.addEvent(dot, "click", this.sliderEvent.smallBoxIndexEventListener.bind(this.sliderEvent));
         })
         this.sliderEvent.addEvent($(".button2"), "click", this.sliderEvent.nextButtonListener.bind(this.sliderEvent));
