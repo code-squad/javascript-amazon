@@ -63,4 +63,5 @@ const createSliderBtn = (carouselSlider, carouselCardMenu) => {
 const $ = (selector, all) => {
     return all ? document.querySelectorAll(selector) : document.querySelector(selector);
 }
+
 window.addEventListener('DOMContentLoaded', init);
