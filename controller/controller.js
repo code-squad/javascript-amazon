@@ -3,6 +3,7 @@ import carouselEvent from './carouselEvent.js'
 
 class Controller {
   constructor() {
+    this.LOCALHOST_URL = 'http://127.0.0.1:4000'
     this.init()
   }
 
@@ -13,33 +14,29 @@ class Controller {
   fetchData() {
     if(localStorage.getItem('renderData')) {
       this.renderTemplate(JSON.parse(JSON.parse(localStorage.getItem('renderData'))))
-      this.eventload()
+      new carouselEvent()
     } else {
-      fetch('http://127.0.0.1:4000')
+      fetch(this.LOCALHOST_URL)
         .then(response => response.json())
         .then(responseData => {
           this.renderTemplate(responseData)
           this.setLocalstorageData(JSON.stringify(responseData))
           return responseData
         })
-        .then(() => this.eventload())
+        .then(() => new carouselEvent())
     }
   }
 
   renderTemplate(renderData) {
     new Carousel({
-      "nav": new Nav(renderData.navData),
-      "content": new Content(renderData.contentData),
-      "button" : new Button(renderData.buttonData)
+      "navData": new Nav(renderData.navData),
+      "contentData": new Content(renderData.contentData),
+      "buttonData" : new Button(renderData.buttonData)
     })
   }
 
   setLocalstorageData(data) {
     localStorage.setItem("renderData", JSON.stringify(data))
-  }
-
-  eventload() {
-    new carouselEvent()
   }
 }
 
