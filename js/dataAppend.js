@@ -1,89 +1,76 @@
-import { DATA, OPTION_DATA } from './data.js';
-import { $, $$, _$ } from './util.js';
+import { OPTION_DATA } from './data.js';
+import { $, $$ } from './util.js';
 
 class DataAppend {
-    constructor() {
+    constructor(option, dataJson) {
         this.navWrap = $(".slide-nav");
         this.slideWrap = $(".slide-item-wrap");
+        this.navColors = option.navCardColors;
+        this.navWidth = option.slideOption.NAV_CARD_WIDTH;
+        this.dataJson = dataJson;
     }
 
     navDataAppend() {
-        DATA.itemContents.forEach((item, idx) => {
-            const card = _$("li");
-            card.innerText = item.navTitle;
-            card.style.backgroundColor = OPTION_DATA.navCardColors[idx % OPTION_DATA.navCardColors.length];
-            card.style.width = `${OPTION_DATA.slideOption.NAV_CARD_WIDTH}px`;
-            this.navWrap.appendChild(card);
+        let navWrapInnerHTML = "";
+        this.dataJson.itemContents.forEach((item, idx) => {
+            const temp = `<li style="background-color: ${this.navColors[idx % this.navColors.length]}; width: ${this.navWidth}px">${item.navTitle}</li>`;
+            navWrapInnerHTML += temp;
         });
+        this.navWrap.innerHTML = navWrapInnerHTML;
     }
 
     slideDataAppend() {
-        DATA.itemContents.forEach(item => {
-            const item_box = this.makeItemBox();
-            const item_img = this.makeItemImg(item);
-            const item_text = this.makeItemText(item);
-
-            item_box.appendChild(item_img);
-            item_box.appendChild(item_text);
-            this.slideWrap.appendChild(item_box);
+        let slideWrapInnerHTML = "";
+        this.dataJson.itemContents.forEach(item => {
+            const temp = `<li class="slide-item">${this.makeItemImg(item)}${this.makeItemText(item)}</li>`;
+            slideWrapInnerHTML += temp;
             OPTION_DATA.slideOption.ITEM_COUNT++;
         });
-    }
-
-    makeItemBox() {
-        const item_box = _$("li");
-        item_box.classList.add("slide-item");
-        return item_box;
+        this.slideWrap.innerHTML = slideWrapInnerHTML;
     }
 
     makeItemImg(item) {
-        const item_img = _$("img");
-        item_img.setAttribute("src", item.imgURL);
-        return item_img;
+        const temp = `<img src=" ${item.imgURL}">`;
+        return temp;
     }
 
     makeItemText(item) {
-        const item_text_box = _$("div");
-        item_text_box.classList.add("slide-item-text");
-
-        const item_text_title = _$("h2");
-        item_text_title.innerText = item.headTitle;
-        item_text_box.appendChild(item_text_title);
-
-        const item_text_ul = _$("ul");
+        let contentTextTemp = "";
         for (let i = 0; i < item.contentText.length; i++) {
-            const item_text_li = _$("li");
-            item_text_li.innerText = item.contentText[i];
-            item_text_ul.appendChild(item_text_li);
+            const temp = `<li>${item.contentText[i]}</li>`;
+            contentTextTemp += temp;
         }
-        item_text_box.appendChild(item_text_ul);
-        return item_text_box;
+        const temp = `<div class="slide-item-text"><h2>${item.headTitle}</h2><ul>${contentTextTemp}</ul></div>`;
+        return temp;
     }
 
     makeDummy() {
         const items = $$(".slide-item");
 
         const firstItem = items[0];
-        const lastDummy = _$("li");
-        lastDummy.innerHTML = firstItem.innerHTML;
-        lastDummy.classList.add("slide-item");
-        this.slideWrap.lastElementChild.after(lastDummy);
-
         const lastItem = items[items.length - 1];
-        const firstDummy = _$("li");
-        firstDummy.innerHTML = lastItem.innerHTML;
+
+        const firstDummy = document.createElement("li");
+        const lastDummy = document.createElement("li");
+
         firstDummy.classList.add("slide-item");
+        lastDummy.classList.add("slide-item");
+
+        firstDummy.innerHTML = lastItem.innerHTML;
+        lastDummy.innerHTML = firstItem.innerHTML;
+
         this.slideWrap.firstElementChild.before(firstDummy);
+        this.slideWrap.lastElementChild.after(lastDummy);
     }
 
     setNav() {
-        this.navWrap.style.width = `${(OPTION_DATA.slideOption.NAV_CARD_WIDTH * DATA.itemContents.length) + (OPTION_DATA.slideOption.CARD_GAP * DATA.itemContents.length)}px`;
+        this.navWrap.style.width = `${(OPTION_DATA.slideOption.NAV_CARD_WIDTH * this.dataJson.itemContents.length) + (OPTION_DATA.slideOption.CARD_GAP * this.dataJson.itemContents.length)}px`;
         this.navDataAppend();
     }
 
     setSlide() {
         const dummyCount = 2;
-        this.slideWrap.style.width = `${OPTION_DATA.slideOption.VIEWER_WIDTH * (DATA.itemContents.length + dummyCount)}px`;
+        this.slideWrap.style.width = `${OPTION_DATA.slideOption.VIEWER_WIDTH * (this.dataJson.itemContents.length + dummyCount)}px`;
         this.slideDataAppend();
         this.makeDummy();
     }

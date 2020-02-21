@@ -5,7 +5,3 @@ export function $(target) {
 export function $$(target) {
     return document.querySelectorAll(target);
 }
-
-export function _$(tag) {
-    return document.createElement(tag);
-}

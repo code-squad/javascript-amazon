@@ -1,5 +1,5 @@
 import { OPTION_DATA } from './data.js';
-import { $, $$, _$ } from './util.js';
+import { $, $$ } from './util.js';
 
 let curItem;
 let autoSlide;
