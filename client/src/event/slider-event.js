@@ -118,8 +118,11 @@ class SliderEvent extends CoreEvent {
             this.distance = (target - middle);
             return;
         }
-        if (1 <= target && target <= middle + this.halfListLength - this.listLength) {    
-            this.distance = (this.listLength + target - middle);
+        
+        const distanceFromMiddle = middle - this.listLength;
+
+        if (1 <= target && target <=  this.halfListLength + distanceFromMiddle) {    
+            this.distance = target - distanceFromMiddle;
             return;
         }
 
