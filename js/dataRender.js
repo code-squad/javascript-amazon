@@ -1,7 +1,7 @@
-import { OPTION_DATA } from './data.js';
+import { OPTION_DATA } from './optionData.js';
 import { $, $$ } from './util.js';
 
-class DataAppend {
+class DataRender {
     constructor(option, dataJson) {
         this.navWrap = $(".slide-nav");
         this.slideWrap = $(".slide-item-wrap");
@@ -76,4 +76,4 @@ class DataAppend {
     }
 }
 
-export default DataAppend;
+export default DataRender;

@@ -1,4 +1,4 @@
-import { OPTION_DATA } from './data.js';
+import { OPTION_DATA } from './optionData.js';
 import { $, $$ } from './util.js';
 
 let curItem;
