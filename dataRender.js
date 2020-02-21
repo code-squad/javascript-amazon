@@ -69,17 +69,15 @@ class SliderContent {
     }
 }
 
+function templateCarousel(carouselData) {
+    const DATA_AREA = '#carousel-wrap';
+    const carouselDataArea = $(DATA_AREA);
 
-function init1() {
-    const carouselDataArea = $('#carousel-wrap');
-    const cardMenuData = new CardMunu(MENU_DATA);
-    const sliderContentsData = new SliderContent(CONTENTS_DATA);
+    const cardMenuData = new CardMunu(carouselData.menuData);
+    const sliderContentsData = new SliderContent(carouselData.contentData);
 
     let datas = '';
     datas += cardMenuData.render();
     datas += sliderContentsData.render();
     carouselDataArea.innerHTML += datas;
 }
-
-window.addEventListener('DOMContentLoaded', init1);
-
