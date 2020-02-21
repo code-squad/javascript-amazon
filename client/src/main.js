@@ -8,7 +8,7 @@ const addEvents = () => {
     eventManager.addEvents();
 }
 
-const constructHTML = async () => {
+const renderHTML = async () => {
     const slider = new Slider();
     let cards = window.localStorage.getItem('cards');
     if (!cards) {
@@ -31,7 +31,7 @@ const initializeSettings = () => {
 }
 
 const init = async () => {
-    await constructHTML();
+    await renderHTML();
     addEvents();
     initializeSettings();
 };
