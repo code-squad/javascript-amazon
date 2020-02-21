@@ -1,0 +1,30 @@
+[
+  {
+    "imageSrc": "src/image/sample1.jpg",
+    "title" : "A Carousel",
+    "description": "save on groceries and an additional 10% off select sale items",
+    "link": "https://www.naver.com",
+    "linkContent": "Click here"
+  },
+  {
+    "imageSrc": "src/image/sample2.jpg",
+    "title": "B Carousel",
+    "description": "save on groceries and an additional 10% off select sale items",
+    "link": "https://www.naver.com",
+    "linkContent": "Click here"
+  },
+  {
+    "imageSrc": "src/image/sample3.jpg",
+    "title": "C Carousel",
+    "description": "save on groceries and an additional 10% off select sale items",
+    "link": "https://www.naver.com",
+    "linkContent": "Click here"
+  },
+  {
+    "imageSrc": "src/image/sample4.jpg",
+    "title": "D Carousel",
+    "description": "save on groceries and an additional 10% off select sale items",
+    "link": "https://www.naver.com",
+    "linkContent": "Click here"
+  }
+]
