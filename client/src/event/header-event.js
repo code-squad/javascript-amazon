@@ -6,19 +6,20 @@ class HeaderEvent extends CoreEvent {
         this.isEventEnded = isEventEnded;
     }
 
-
     handleHeaderPart(target) {
+        const dotNode = target.parentNode.querySelector(".dot");
         target.parentNode.classList.add('header-selected');
         target.parentNode.querySelector(".circles").classList.remove("invisible");
-        target.parentNode.querySelector(".dot").classList.add("selected-dot");
-        target.parentNode.querySelector(".dot").click();
+        dotNode.classList.add("selected-dot");
+        dotNode.click();
     }
 
     handleCirclesPart(target) {
+        const dotNode = target.parentNode.querySelector(".dot");
         target.parentNode.classList.add('header-selected');
         target.classList.remove("invisible");
-        target.querySelector(".dot").classList.add("selected-dot");
-        target.querySelector(".dot").click();
+        dotNode.classList.add("selected-dot");
+        dotNode.click();
     }
 
     handleDotPart(target) {
@@ -28,8 +29,9 @@ class HeaderEvent extends CoreEvent {
     }
 
     handleAnywhereElse(target) {
-        target.querySelector(".dot").classList.add("selected-dot");
-        target.querySelector(".dot").click();
+        const dotNode = target.querySelector(".dot");
+        dotNode.classList.add("selected-dot");
+        dotNode.click();
         target.classList.add('header-selected');
         Array.from(target.children).forEach(child => {
             if (child.classList.contains("circles")) {
