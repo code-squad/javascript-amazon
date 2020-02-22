@@ -1,4 +1,5 @@
 import SlideComponent from "./SlideComponent.js";
+import SlideEnum from "./SlideEnum.js";
 
 const DirectionEnum = Object.freeze({"left": 0, "right": 1})
 
@@ -20,10 +21,10 @@ class DirectionButtonManager extends SlideComponent {
 
     _directionButtonHandler(event, slideService, direction) {
         if (DirectionEnum.left === direction) {
-            slideService.mediate('decreaseCurrentIndex');
+            slideService.mediate(SlideEnum.DECREASE_CURRENT_INDEX);
         }
         else if (DirectionEnum.right === direction) {
-            slideService.mediate('increaseCurrentIndex');
+            slideService.mediate(SlideEnum.INCREASE_CURRENT_INDEX);
         }
         else {
             throw new Error("Undefined button.");

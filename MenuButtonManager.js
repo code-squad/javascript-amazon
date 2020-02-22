@@ -1,4 +1,5 @@
 import SlideComponent from "./SlideComponent.js";
+import SlideEnum from "./SlideEnum.js";
 
 const DirectionEnum = Object.freeze({"left": 0, "right": 1})
 
@@ -19,7 +20,7 @@ class MenuButtonManager extends SlideComponent {
     }
 
     _menuButtonHandler(event, slideService, index) {
-        slideService.mediate('changeCurrentIndex', index);
+        slideService.mediate(SlideEnum.CHANGE_CURRENT_INDEX, index);
     }
 
     //Override
