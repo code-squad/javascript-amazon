@@ -1,0 +1,15 @@
+.wrapper {
+  margin: 30px 0;
+}
+
+.post-id {
+  color: red;
+}
+
+.id {
+  color: blue;
+}
+
+.name {
+  color: orange;
+}
