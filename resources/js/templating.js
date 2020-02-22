@@ -1,3 +1,5 @@
+import { $, $$ } from "./util.js";
+
 window.addEventListener("DOMContentLoaded", () => {
   fetch("../data/localData.json")
     .then(res => res.json())
@@ -32,9 +34,15 @@ window.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      function renderSlider(strObj, data) {
-        let resultHTML = "";
+      console.log(renderSlider(makeClassName("slider"), item, 4));
+
+      function renderSlider(className, data, size) {
         let cardItem = "";
+        for (let i = 0; i < size; i++) {
+          cardItem += `<li class="${className.li}"><div class="${className.imgArea}"><img src="${data.imgSrc[i]}"/></div><div class="${className.content}"><h1>${data.title[i]}</h1><p>${data.desc[i]}</p></div></li>`;
+        }
+        let resultHTML = `<div class="${className.name}><div class="${className.container}"><ul class="${className.ul}">${cardItem}</ul></div></div>`;
+        return resultHTML;
       }
     });
 });
