@@ -40,7 +40,9 @@ class SlideService extends Slide {
     }
 
     _initialize(slideData) {
-        this._setSlideData(JSON.parse(JSON.parse(slideData)));
+        const parsedData = JSON.parse(JSON.parse(slideData));
+        this._setSlideData(parsedData);
+        this._template(parsedData);
 
         this._currentIndex = 0;
         this._isAnimationRunning = false;
@@ -63,7 +65,9 @@ class SlideService extends Slide {
         this._components.forEach(element => {
             element.onNotifyDataChanged(slideData);
         });
+    }
 
+    _template(slideData) {
         const result = this._menuButtonManager.render() + this._render() + this._directionButtonManager.render();
 
         const temp = document.querySelector(".card_navigation");
