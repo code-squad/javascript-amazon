@@ -1,22 +1,6 @@
-import MockData from './mockData.js'
-import {appendMenuData, appendContentsData} from './MockDataAppender.js';
 import SlideService from './SlideService.js';
-import DirectionButtonManager from './DirectionButtonManager.js';
-import MenuButtonManager from './MenuButtonManager.js';
 
 window.addEventListener('DOMContentLoaded', () => {
-    appendMenuData(MockData.mockData_Menu);
-    appendContentsData(MockData.mockData_Contents);
-
-    const contentArea = document.querySelector("#content");
-    const slideService = new SlideService(contentArea);
-
-    const menuButtons = document.querySelector("#menu").querySelectorAll('button');
-    const menuButtonManager = new MenuButtonManager(slideService, menuButtons);
-
-    const directionButtons = document.querySelectorAll(".card_navigation_button");
-    const directionButtonManager = new DirectionButtonManager(slideService, directionButtons);
-
-    slideService.registerComponent(menuButtonManager);
-    slideService.registerComponent(directionButtonManager);
+    const url = 'http://127.0.0.1:8080';
+    const slideService = new SlideService(url);
 });
