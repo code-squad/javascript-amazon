@@ -24,16 +24,16 @@ p {
   line-height: 1.4;
 }
 
-.card-category {
+.card-container {
   margin: 0 5% 40px 5%;
 }
 
-.card-category > ul {
+.card-container > ul {
   display: flex;
   justify-content: space-between;
 }
 
-.card-category .card {
+.card-container > ul > li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,31 +50,31 @@ p {
   box-shadow: 9px 9px 18px #c6c6c6, -9px -9px 18px #fff;
 }
 
-.card-category .card:hover,
-.card.active {
+.card-container li:hover,
+.card-container li.active {
   color: #fff;
 }
 
-.card-category .card:nth-child(1):hover,
-.card:nth-child(1).active {
+.card-container li:nth-child(1):hover,
+.card-container li:nth-child(1).active {
   background: #007bb6;
   box-shadow: inset 9px 9px 18px #006697, inset -9px -9px 18px #0090d5;
 }
 
-.card-category .card:nth-child(2):hover,
-.card:nth-child(2).active {
+.card-container li:nth-child(2):hover,
+.card-container li:nth-child(2).active {
   background: #ac0169;
   box-shadow: inset 9px 9px 18px #8f0157, inset -9px -9px 18px #c9017b;
 }
 
-.card-category .card:nth-child(3):hover,
-.card:nth-child(3).active {
+.card-container li:nth-child(3):hover,
+.card-container li:nth-child(3).active {
   background: #ff6239;
   box-shadow: inset 9px 9px 18px #d4512f, inset -9px -9px 18px #ff7343;
 }
 
-.card-category .card:nth-child(4):hover,
-.card:nth-child(4).active {
+.card-container li:nth-child(4):hover,
+.card-container li:nth-child(4).active {
   background: #fec401;
   box-shadow: inset 9px 9px 18px #d3a301, inset -9px -9px 18px #ffe501;
 }
@@ -118,13 +118,13 @@ p {
   width: 900px;
 }
 
-.slider-btn > div {
+.btn > div {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 50px;
 }
 
-.slider-btn .btn-next {
+.btn .btn-next {
   right: 0;
 }

@@ -26,6 +26,24 @@
   },
 
   {
+    "name": "button",
+    "list": [
+      {
+        "id": "prev",
+        "img-class": "fas fa-chevron-left",
+        "text": "이전",
+        "href": "#none"
+      },
+      {
+        "id": "next",
+        "img-class": "fas fa-chevron-right",
+        "text": "다음",
+        "href": "#none"
+      }
+    ]
+  },
+
+  {
     "name": "card",
     "list": [
       {
@@ -42,24 +60,6 @@
       },
       {
         "title": "Over 2 million songs ad free",
-        "href": "#none"
-      }
-    ]
-  },
-
-  {
-    "name": "button",
-    "list": [
-      {
-        "id": "prev",
-        "img-class": "fas fa-chevron-left",
-        "text": "이전",
-        "href": "#none"
-      },
-      {
-        "id": "next",
-        "img-class": "fas fa-chevron-right",
-        "text": "다음",
         "href": "#none"
       }
     ]
