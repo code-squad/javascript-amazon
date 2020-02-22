@@ -26,26 +26,37 @@ class SlideService extends Slide {
     }
 
     _fetchSlideData(url) {
-        fetch(url)
-        .then(response => response.json())
-        .then(json => {
-            this._setLocalstorageData(json);
-            this._setSlideData(json);
+        if(localStorage.getItem('slideData')) {
+            this._initialize(localStorage.getItem('slideData'));
+        }
+        else {
+            fetch(url)
+                .then(response => response.json())
+                .then(slideData => {
+                    this._setLocalstorageData(JSON.stringify(slideData));
+                    this._initialize(slideData);
+                });
+        }
+    }
 
-            this._currentIndex = 0;
-            this._isAnimationRunning = false;
-            this._contentArea = document.querySelector("#content");
-            this._contentCount = this._contentArea.children.length;
-            this._appendAdditionalElementsForLoop(this._contentArea);
-            this._registerEventListenerOnBottomContentArea(this._contentArea);
+    _initialize(slideData) {
+        this._setSlideData(JSON.parse(JSON.parse(slideData)));
 
-            const generatedNumber = 1 + Math.floor(Math.random() * (this._contentCount));
-            this._setCurrentIndex(generatedNumber);
-        })
+        this._currentIndex = 0;
+        this._isAnimationRunning = false;
+        this._contentArea = document.querySelector("#content");
+        this._contentCount = this._contentArea.children.length;
+        this._appendAdditionalElementsForLoop(this._contentArea);
+        this._registerEventListenerOnBottomContentArea(this._contentArea);
+
+        const generatedNumber = 1 + Math.floor(Math.random() * (this._contentCount));
+        this._setCurrentIndex(generatedNumber);
     }
 
     _setLocalstorageData(slideData) {
-        localStorage.setItem("slideData", JSON.stringify(slideData))
+        console.log("Wfewf");
+        console.log(JSON.stringify(slideData));
+        localStorage.setItem("slideData", JSON.stringify(slideData));
     }
 
     _setSlideData(slideData) {
