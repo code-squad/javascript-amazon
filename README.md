@@ -10,4 +10,5 @@
     * style Directory : css files
     * Carousel.js : class Carousel 
     * CarouselManager.js : class CarouselManager (fetchAPI로 서버에 데이터 요청)
+    * CarouselManagerWithComment.js : class CarouselManager With comment(코드들에 대해 정리 및 복습)
 
