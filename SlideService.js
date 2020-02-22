@@ -2,6 +2,7 @@ import Slide from "./Slide.js";
 import DirectionButtonManager from './DirectionButtonManager.js';
 import MenuButtonManager from './MenuButtonManager.js';
 import SlideComponent from "./SlideComponent.js";
+import SlideEnum from "./SlideEnum.js";
 
 class SlideService extends Slide {
     constructor(url) {
@@ -72,13 +73,13 @@ class SlideService extends Slide {
     }
 
     mediate(message, index) {
-        if ('increaseCurrentIndex' === message) {
+        if (SlideEnum.INCREASE_CURRENT_INDEX === message) {
             this._increaseCurrentIndex();
         }
-        else if ('decreaseCurrentIndex' === message) {
+        else if (SlideEnum.DECREASE_CURRENT_INDEX === message) {
             this._decreaseCurrentIndex();
         }
-        else if ('changeCurrentIndex' === message) {
+        else if (SlideEnum.CHANGE_CURRENT_INDEX === message) {
             this._changeCurrentIndex(index);
         }
         else {
