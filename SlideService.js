@@ -72,14 +72,14 @@ class SlideService extends Slide {
         this._components.push(component);
     }
 
-    mediate(message, index) {
-        if (SlideEnum.INCREASE_CURRENT_INDEX === message) {
+    mediate(target, index) {
+        if (SlideEnum.INCREASE_CURRENT_INDEX === target) {
             this._increaseCurrentIndex();
         }
-        else if (SlideEnum.DECREASE_CURRENT_INDEX === message) {
+        else if (SlideEnum.DECREASE_CURRENT_INDEX === target) {
             this._decreaseCurrentIndex();
         }
-        else if (SlideEnum.CHANGE_CURRENT_INDEX === message) {
+        else if (SlideEnum.CHANGE_CURRENT_INDEX === target) {
             this._changeCurrentIndex(index);
         }
         else {
