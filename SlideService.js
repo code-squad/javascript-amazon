@@ -1,27 +1,70 @@
 import Slide from "./Slide.js";
-
-const DirectionEnum = Object.freeze({"left": 0, "right": 1})
+import DirectionButtonManager from './DirectionButtonManager.js';
+import MenuButtonManager from './MenuButtonManager.js';
 
 class SlideService extends Slide {
-    constructor(contentArea) {
+    constructor(url) {
         super();
 
         this._components = [];
+        this._data = null;
+
+        this._menuButtonManager = new MenuButtonManager(this);
+        this.registerComponent(this._menuButtonManager);
+
+        this._directionButtonManager = new DirectionButtonManager(this);
+        this.registerComponent(this._directionButtonManager);
+
         this._currentIndex = 0;
         this._isAnimationRunning = false;
-        this._contentArea = contentArea;
-        this._contentCount = this._contentArea.children.length;
+        this._contentArea = null;
+        this._contentCount = 0;
 
-        this._appendAdditionalElementsForLoop(this._contentArea);
-        this._registerEventListenerOnBottomContentArea(this._contentArea);
+        this._fetchSlideData(url);
+    }
 
-        const generatedNumber = 1 + Math.floor(Math.random() * (this._contentCount));
-        this._setCurrentIndex(generatedNumber);
+    _fetchSlideData(url) {
+        fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            this._setLocalstorageData(json);
+            this._setSlideData(json);
+
+            this._currentIndex = 0;
+            this._isAnimationRunning = false;
+            this._contentArea = document.querySelector("#content");
+            this._contentCount = this._contentArea.children.length;
+            this._appendAdditionalElementsForLoop(this._contentArea);
+            this._registerEventListenerOnBottomContentArea(this._contentArea);
+
+            const generatedNumber = 1 + Math.floor(Math.random() * (this._contentCount));
+            this._setCurrentIndex(generatedNumber);
+        })
+    }
+
+    _setLocalstorageData(slideData) {
+        localStorage.setItem("slideData", JSON.stringify(slideData))
+    }
+
+    _setSlideData(slideData) {
+        this._data = slideData.contentData;
+
+        this._components.forEach(element => {
+            element.onNotifyDataChanged(slideData);
+        });
+
+        const result = this._menuButtonManager.render() + this._render() + this._directionButtonManager.render();
+
+        const temp = document.querySelector(".card_navigation");
+        temp.innerHTML += result;
+
+        this._components.forEach(element => {
+            element.onNotifyRenderFinished(slideData);
+        });
     }
 
     registerComponent(component) {
         this._components.push(component);
-        component.onNotifyIndexChanged(this._convertIndex(this._contentCount, this._currentIndex) - 1);
     }
 
     mediate(message, index) {
@@ -122,6 +165,24 @@ class SlideService extends Slide {
         this._contentArea.style.marginLeft = -(this._currentIndex * this._contentArea.offsetWidth) + 'px';
 
         this._isAnimationRunning = false;
+    }
+
+    _render() {
+        let result = `<div class="content-container"><ul id="content">`;
+
+        this._data.forEach(element => {
+            result += `<li><div class="content_wrap"><div class="image" style="background-image:Url('${element.imageUrl}'")></div><div class="container"><div class="title">${element.title}</div><ul class="description">`
+
+            element.contents.forEach(element => {
+                result += `<li>${element}</li>`
+            });
+
+            result += `</ul></div></div></li>`;            
+        });
+
+        result += `</ul></div>`;
+
+        return result;
     }
 }
 

@@ -3,8 +3,10 @@ import SlideComponent from "./SlideComponent.js";
 const DirectionEnum = Object.freeze({"left": 0, "right": 1})
 
 class DirectionButtonManager extends SlideComponent {
-	constructor(slideService, buttons) {
-        super(slideService, buttons);
+    constructor(slideService) {
+        super(slideService);
+
+        this._slideService = slideService;
     }
 
     //Override
@@ -26,6 +28,22 @@ class DirectionButtonManager extends SlideComponent {
         else {
             throw new Error("Undefined button.");
         }
+    }
+
+    onNotifyDataChanged(data) {
+        this._data = data.menuData;
+    }
+
+    onNotifyRenderFinished() {
+        this._elements = document.querySelector(".card_navigation").querySelectorAll('.card_navigation_button');
+        this._registerEventListenerOnElements(this._slideService, this._elements);
+    }
+
+    render() {
+        let result = `<button id="card_navigation_button_left" class="card_navigation_button">&#60;</button>`;
+        result += `<button id="card_navigation_button_right" class="card_navigation_button">&#62;</button>`;
+
+        return result;
     }
 }
 
