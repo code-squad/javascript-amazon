@@ -5,13 +5,13 @@ let curItem;
 let autoSlide;
 
 class Slide {
-    constructor(option, obj) {
+    constructor(addOn) {
         this.slideWrap = $(".slide-item-wrap");
-        this.maxItemIndex = option.ITEM_COUNT - 1;
-        this.viewerWidth = option.VIEWER_WIDTH;
-        this.slideSpeed = option.SLIDE_SPEED;
-        this.autoSlideTime = option.AUTO_SLIDE_INTERVAL;
-        this.objList = obj;
+        this.maxItemIndex = OPTION_DATA.slideOption.ITEM_COUNT - 1;
+        this.viewerWidth = OPTION_DATA.slideOption.VIEWER_WIDTH;
+        this.slideSpeed = OPTION_DATA.slideOption.SLIDE_SPEED;
+        this.autoSlideTime = OPTION_DATA.slideOption.AUTO_SLIDE_INTERVAL;
+        this.addOnList = addOn;
         this.isSliding = false;
         this.init();
     }
@@ -28,11 +28,11 @@ class Slide {
         this.slideAnimOn();
         if ((curItem === this.maxItemIndex && isNextBtn) || (curItem === 0 && !isNextBtn)) {
             curItem = isNextBtn ? 0 : this.maxItemIndex;
-            this.objList.forEach(obj => obj.run({ curItem: isNextBtn ? curItem : this.maxItemIndex, prevItem: isNextBtn ? this.maxItemIndex : 0 }));
+            this.addOnList.forEach(obj => obj.run({ curItem: isNextBtn ? curItem : this.maxItemIndex, prevItem: isNextBtn ? this.maxItemIndex : 0 }));
             this.moveSlideWrap(isNextBtn ? this.maxItemIndex + 1 : -1);
         } else {
             isNextBtn ? curItem++ : curItem--;
-            this.objList.forEach(obj => obj.run({ curItem: curItem, prevItem: isNextBtn ? curItem - 1 : curItem + 1 }));
+            this.addOnList.forEach(obj => obj.run({ curItem: curItem, prevItem: isNextBtn ? curItem - 1 : curItem + 1 }));
             this.moveSlideWrap(curItem);
         }
     }
@@ -64,11 +64,11 @@ class Slide {
 }
 
 export class NavCard {
-    constructor(option) {
+    constructor() {
         this.slideWrap = $(".slide-item-wrap");
         this.cards = $$(".slide-nav li");
-        this.viewerWidth = option.VIEWER_WIDTH;
-        this.slideSpeed = option.SLIDE_SPEED;
+        this.viewerWidth = OPTION_DATA.slideOption.VIEWER_WIDTH;
+        this.slideSpeed = OPTION_DATA.slideOption.SLIDE_SPEED;
         this.init();
     }
 
@@ -76,7 +76,7 @@ export class NavCard {
         this.setCardNavEvent();
     }
 
-    navScaleCtl(curItem, prevItem) {
+    navScaleController(curItem, prevItem) {
         this.cards[curItem].classList.add("slide-nav-selected");
         this.cards[prevItem].classList.remove("slide-nav-selected");
     }
@@ -97,13 +97,13 @@ export class NavCard {
         this.slideWrap.style.transition = `${this.slideSpeed}s`;
         const prevItem = curItem;
         curItem = cardIdx;
-        this.navScaleCtl(curItem, prevItem);
+        this.navScaleController(curItem, prevItem);
         const x = (curItem + 1) * -this.viewerWidth;
         this.slideWrap.style.transform = `translateX(${x + "px"})`;
     }
 
     run(option) {
-        this.navScaleCtl(option.curItem, option.prevItem);
+        this.navScaleController(option.curItem, option.prevItem);
     }
 }
 

@@ -18,14 +18,14 @@ function main() {
 }
 
 function startSlideService(data) {
-    const dataRender = new DataRender(OPTION_DATA, data);
+    const dataRender = new DataRender(data);
     dataRender.setNav();
     dataRender.setSlide();
 
     OPTION_DATA.slideOption.FIRST_ITEM_INDEX = Math.floor(Math.random() * OPTION_DATA.slideOption.ITEM_COUNT);
 
-    const navCard = new NavCard(OPTION_DATA.slideOption);
-    const slide = new Slide(OPTION_DATA.slideOption, [navCard]);
+    const navCard = new NavCard();
+    const slide = new Slide([navCard]);
     slide.run();
 }
 

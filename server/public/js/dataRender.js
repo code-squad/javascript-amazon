@@ -2,11 +2,11 @@ import { OPTION_DATA } from './optionData.js';
 import { $, $$ } from './util.js';
 
 class DataRender {
-    constructor(option, dataJson) {
+    constructor(dataJson) {
         this.navWrap = $(".slide-nav");
         this.slideWrap = $(".slide-item-wrap");
-        this.navColors = option.navCardColors;
-        this.navWidth = option.slideOption.NAV_CARD_WIDTH;
+        this.navColors = OPTION_DATA.navCardColors;
+        this.navWidth = OPTION_DATA.slideOption.NAV_CARD_WIDTH;
         this.dataJson = dataJson;
     }
 
