@@ -54,8 +54,6 @@ class SlideService extends Slide {
     }
 
     _setLocalstorageData(slideData) {
-        console.log("Wfewf");
-        console.log(JSON.stringify(slideData));
         localStorage.setItem("slideData", JSON.stringify(slideData));
     }
 
