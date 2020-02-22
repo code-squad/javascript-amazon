@@ -1,6 +1,7 @@
 import Slide from "./Slide.js";
 import DirectionButtonManager from './DirectionButtonManager.js';
 import MenuButtonManager from './MenuButtonManager.js';
+import SlideComponent from "./SlideComponent.js";
 
 class SlideService extends Slide {
     constructor(url) {
@@ -64,6 +65,9 @@ class SlideService extends Slide {
     }
 
     registerComponent(component) {
+        if (!component instanceof SlideComponent)
+            return;
+
         this._components.push(component);
     }
 
