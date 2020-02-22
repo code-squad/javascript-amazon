@@ -1,8 +1,6 @@
 import SlideComponent from "./SlideComponent.js";
 import SlideEnum from "./SlideEnum.js";
 
-const DirectionEnum = Object.freeze({"left": 0, "right": 1})
-
 class MenuButtonManager extends SlideComponent {
     constructor(slideService) {
         super(slideService);
