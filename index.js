@@ -6,8 +6,7 @@ const URL = "http://localhost:8080/amazon/slider.json";
 
 let dataForSlider = JSON.parse(localStorage.getItem("slider"));
 
-const fetchData = () => {
-  if (dataForSlider) return;
+if (!dataForSlider) {
   fetch(URL)
     .then(res => res.json())
     .then(data => {
@@ -15,7 +14,7 @@ const fetchData = () => {
       localStorage.setItem("slider", JSON.stringify(data));
     })
     .catch(err => console.log(err));
-};
+}
 
 const renderSlider = () => {
   const carouselSlider = new Carousel(dataForSlider, CARDWIDTH);
@@ -23,5 +22,4 @@ const renderSlider = () => {
   carouselSlider.activateSlideAnimation();
 };
 
-window.addEventListener("DOMContentLoaded", fetchData);
 window.addEventListener("load", renderSlider);
