@@ -96,10 +96,4 @@ class Carousel {
   }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  const carousel = new Carousel(".slider-list", ".btn", {
-    cardBtn: ".card-item",
-    index: 2,
-    useRandomIndex: false,
-  });
-});
+export { Carousel };
