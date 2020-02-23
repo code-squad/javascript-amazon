@@ -14,9 +14,17 @@ class SlideComponent {
     }
 
     _registerEventListenerOnElements(elements) {
+        elements.forEach((element, index) => {
+            element.addEventListener('click', event => {
+                this._appendButtonHandler(event, this._slideService, index);
+            });
+        });
     }
 
     render() {
+    }
+
+    _appendButtonHandler() {
     }
 }
 

@@ -10,16 +10,7 @@ class DirectionButtonManager extends SlideComponent {
         this._slideService = slideService;
     }
 
-    //Override
-    _registerEventListenerOnElements(slideService, elements) {
-        elements.forEach((element, index) => {
-            element.addEventListener('click', event => {
-                this._directionButtonHandler(event, slideService, index);
-            });
-        });
-    }
-
-    _directionButtonHandler(event, slideService, direction) {
+    _appendButtonHandler(event, slideService, direction) {
         if (DirectionEnum.left === direction) {
             slideService.mediate(SlideEnum.DECREASE_CURRENT_INDEX);
         }
@@ -37,7 +28,7 @@ class DirectionButtonManager extends SlideComponent {
 
     onNotifyRenderFinished() {
         this._elements = document.querySelector(".card_navigation").querySelectorAll('.card_navigation_button');
-        this._registerEventListenerOnElements(this._slideService, this._elements);
+        this._registerEventListenerOnElements(this._elements);
     }
 
     render() {

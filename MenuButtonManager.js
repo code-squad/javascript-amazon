@@ -8,16 +8,7 @@ class MenuButtonManager extends SlideComponent {
         this._slideService = slideService;
     }
 
-    //Override
-    _registerEventListenerOnElements(slideService, elements) {
-        elements.forEach((element, index) => {
-            element.addEventListener('click', event => {
-                this._menuButtonHandler(event, slideService, index);
-            });
-        });
-    }
-
-    _menuButtonHandler(event, slideService, index) {
+    _appendButtonHandler(event, slideService, index) {
         slideService.mediate(SlideEnum.CHANGE_CURRENT_INDEX, index);
     }
 
@@ -34,7 +25,7 @@ class MenuButtonManager extends SlideComponent {
 
     onNotifyRenderFinished() {
         this._elements = document.querySelector("#menu").querySelectorAll('button');
-        this._registerEventListenerOnElements(this._slideService, this._elements);
+        this._registerEventListenerOnElements(this._elements);
     }
 
     render() {
