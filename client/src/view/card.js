@@ -1,4 +1,4 @@
-import css from "./card.css";
+import css from "./card.scss";
 
 class Card {
     constructor(cardData) {

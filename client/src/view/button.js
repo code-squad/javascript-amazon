@@ -1,4 +1,4 @@
-import css from "./button.css";
+import css from "./button.scss";
 
 class Button {
     constructor(buttonData) {

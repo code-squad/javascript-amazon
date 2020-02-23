@@ -1,4 +1,4 @@
-import css from "./header.css";
+import css from "./header.scss";
 
 class Header {
     constructor(headerData) {
