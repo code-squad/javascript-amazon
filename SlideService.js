@@ -34,13 +34,13 @@ class SlideService extends Slide {
                 .then(response => response.json())
                 .then(slideData => {
                     this._setLocalstorageData(JSON.stringify(slideData));
-                    this._initialize(slideData);
+                    this._initialize(JSON.stringify(slideData));
                 });
         }
     }
 
     _initialize(slideData) {
-        const parsedData = JSON.parse(JSON.parse(slideData));
+        const parsedData = JSON.parse(slideData);
         this._setSlideData(parsedData);
         this._template(parsedData);
 
@@ -56,7 +56,7 @@ class SlideService extends Slide {
     }
 
     _setLocalstorageData(slideData) {
-        localStorage.setItem("slideData", JSON.stringify(slideData));
+        localStorage.setItem("slideData", slideData);
     }
 
     _setSlideData(slideData) {
