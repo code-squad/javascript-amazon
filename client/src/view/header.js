@@ -18,7 +18,14 @@ class Header {
         const header = this.headerData.reduce(
             (result, data) => {
                 const cardString = this.returnCardLengthDivString(data.cardLength);
-                (result += `<li class="header-list"><div class="header_title">${data.title}</div><div class="circles invisible">${cardString}</div></li>`)
+                (result += `<li class="header-list">
+                                <div class="header_title">
+                                    ${data.title}
+                                </div>
+                                <div class="circles invisible">
+                                    ${cardString}
+                                </div>
+                            </li>`)
                 return result;
             },
             ""

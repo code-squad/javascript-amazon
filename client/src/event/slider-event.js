@@ -26,12 +26,12 @@ class SliderEvent extends CoreEvent {
         const cardWrapper = $(".card-wrapper");
         if (this.isRightWay(distance) === true) {
             this.isPrevious = false;
-            cardWrapper.style.transition = "transform 1s";
+            cardWrapper.style.transition = "transform 0.5s";
             cardWrapper.style.transform = `translateX(${-this.cardLength * distance}px)`;
             return;
         }
         this.isPrevious = true;
-        cardWrapper.style.transition = "transform 1s";
+        cardWrapper.style.transition = "transform 0.5s";
         cardWrapper.style.transform = `translateX(${this.cardLength * -distance}px)`;
     }
 
