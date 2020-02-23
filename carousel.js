@@ -1,6 +1,21 @@
+class CarouselManager {
+    constructor(option) {
+        this.carouselSlider = new CarouselSlider(option.sliderInfo);
+        this.carouselCardMenu = new CarouselCardMenu(this.carouselSlider, option.cardMenuInfo);
+        this.carouselSliderBtn = new CarouselSliderBtn(this.carouselSlider, this.carouselCardMenu, option.sliderBtnInfo);
+    }
+
+    init() {
+        this.carouselSlider.getSliderInfo();
+        this.carouselSlider.cloneSlide();
+        this.carouselCardMenu.setCardBtns();
+        this.carouselSliderBtn.setSliderBtns();
+    }
+}
+
 class CarouselSlider {
     constructor(sliderInfo) {
-        this.slides = sliderInfo.sliderData.slides;
+        this.slides = $(sliderInfo.sliderData.slides);
         this.slideIndex = sliderInfo.sliderData.slideIndex;
         this.slideSize = this.slides.firstElementChild.clientWidth;
         this.transitionProperty = sliderInfo.transitionProperty;
@@ -62,9 +77,9 @@ class CarouselSlider {
 }
 
 class CarouselCardMenu {
-    constructor(option) {
-        this.slider = option.carouselSlider;
-        this.selectorName = option.selectorName;
+    constructor(carouselSlider, cardMenuInfo) {
+        this.slider = carouselSlider;
+        this.selectorName = cardMenuInfo.selectorName;
         this.cards = $(this.selectorName.CARD, true);
     }
 
@@ -104,10 +119,10 @@ class CarouselCardMenu {
 }
 
 class CarouselSliderBtn {
-    constructor(option) {
-        this.slider = option.carouselSlider;
-        this.cardMenu = option.carouselCardMenu;
-        this.selectorName = option.selectorName;
+    constructor(carouselSlider, carouselCardMenu, sliderBtnInfo) {
+        this.slider = carouselSlider;
+        this.cardMenu = carouselCardMenu;
+        this.selectorName = sliderBtnInfo.selectorName;
     }
 
     setSliderBtns() {

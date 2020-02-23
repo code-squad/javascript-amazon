@@ -1,6 +1,19 @@
-// import { MENU_DATA, CONTENTS_DATA } from './mockData.js';
+class TemplateManager {
+    constructor({ carouselData, templateOption }) {
+        this.dataArea = $(templateOption.DATA_AREA);
+        this.cardMenuData = new CardMunuTemplate(carouselData.menuData);
+        this.sliderData = new SliderTemplate(carouselData.contentData);
+    }
 
-class CardMunu {
+    init() {
+        let data = '';
+        data += this.cardMenuData.render();
+        data += this.sliderData.render();
+        this.dataArea.innerHTML += data;
+    }
+}
+
+class CardMunuTemplate {
     constructor(menuData) {
         this.menuData = menuData;
     }
@@ -24,7 +37,7 @@ class CardMunu {
     }
 }
 
-class SliderContent {
+class SliderTemplate {
     constructor(contentData) {
         this.contentData = contentData;
     }
@@ -52,7 +65,7 @@ class SliderContent {
               <ul class="slider__list">${sliderItems}</ul>
            </div>`;
 
-        return this.appendSliderBtn(sliderContent)
+        return this.appendSliderBtn(sliderContent);
     }
 
     appendSliderBtn(sliderContent) {
@@ -69,15 +82,17 @@ class SliderContent {
     }
 }
 
-function templateCarousel(carouselData) {
-    const DATA_AREA = '#carousel-wrap';
-    const carouselDataArea = $(DATA_AREA);
 
-    const cardMenuData = new CardMunu(carouselData.menuData);
-    const sliderContentsData = new SliderContent(carouselData.contentData);
 
-    let datas = '';
-    datas += cardMenuData.render();
-    datas += sliderContentsData.render();
-    carouselDataArea.innerHTML += datas;
-}
+// const appendCarouselData = (carouselData) => {
+//     const DATA_AREA = '#carousel-wrap';
+//     const carouselDataArea = $(DATA_AREA);
+
+//     const cardMenuData = new CardMunuTemplate(carouselData.menuData);
+//     const sliderContentsData = new SliderTemplate(carouselData.contentData);
+
+//     let data = '';
+//     data += cardMenuData.render();
+//     data += sliderContentsData.render();
+//     carouselDataArea.innerHTML += data;
+// }
