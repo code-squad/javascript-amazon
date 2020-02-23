@@ -110,5 +110,4 @@ temp/
 
 # End of https://www.gitignore.io/api/node
 
-json-data.json
 package-lock.json
