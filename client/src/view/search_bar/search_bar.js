@@ -6,17 +6,27 @@ import css from "./search_bar.scss";
 class SearchBar {
     constructor(searchList) {
         this.searchList = searchList;
+        this.timer = null;
     }
 
+    // 참고: https://www.zerocho.com/category/JavaScript/post/59a8e9cb15ac0000182794fa
     inputEventListener(event) {
         const targetString = event.target.value;
+
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+
         if (targetString === "") {
             $(".hitlist-wrapper").style.display = "none";
             return;
         }
-        fetch(URL.DEV.API_SERVER_SEARCH.ADDRESS + targetString)
-            .then(res => res.json())
-            .then(titles => this.searchList.setTargetTitle(titles));
+
+        this.timer = setTimeout(function () {
+            fetch(URL.DEV.API_SERVER_SEARCH.ADDRESS + targetString)
+                .then(res => res.json())
+                .then(titles => this.searchList.setTargetTitle(titles));
+        }.bind(this), 200);
     }
 
     addInputEvent() {
