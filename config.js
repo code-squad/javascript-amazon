@@ -1,4 +1,4 @@
-const carouselOption = {
+export const carouselOption = {
     sliderInfo: {
         sliderData: {
             slides: '.slider__list',
@@ -33,6 +33,6 @@ const carouselOption = {
     }
 }
 
-const templateOption = {
+export const templateOption = {
     DATA_AREA: '#carousel-wrap'
 }

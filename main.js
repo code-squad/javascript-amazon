@@ -1,48 +1,44 @@
-const setCarouselSlider = () => {
-    const carouselSlider = createCarouselSlider(),
-        carouselCardMenu = createCarouselCardMenu(carouselSlider),
-        carouselSliderBtn = createSliderBtn(carouselSlider, carouselCardMenu);
+import { carouselOption, templateOption } from './config.js';
+import { $ } from '/util.js';
+import { CarouselService } from './fetch.js'
+import { CarouselSlider } from './carousel/slider.js'
+import { CarouselCardMenu } from './carousel/cardMenu.js'
+import { CarouselSliderBtn } from './carousel/sliderBtn.js'
+import { CardMenuTemplate } from './template/cardMenu.js';
+import { SliderTemplate } from './template/slider.js';
+
+const init = () => {
+    const DATA_URL = 'http://127.0.0.1:8080/';
+    const carouselService = new CarouselService(DATA_URL);
+
+    carouselService.fetchData()
+        .then(carouselData => initTemplate(carouselData, templateOption))
+        .then(() => initCarouselSlider(carouselOption))
+}
+
+const initTemplate = (carouselData, templateOption) => {
+    const dataArea = $(templateOption.DATA_AREA);
+    const cardMenuData = new CardMenuTemplate(carouselData.menuData);
+    const sliderData = new SliderTemplate(carouselData.contentData);
+
+    let data = '';
+    data += cardMenuData.render();
+    data += sliderData.render();
+    dataArea.innerHTML += data;
+}
+
+const initCarouselSlider = (option) => {
+    const cardMenuInfo = option.cardMenuInfo;
+    const sliderBtnInfo = option.sliderBtnInfo;
+
+    const carouselSlider = new CarouselSlider(option.sliderInfo);
+    const carouselCardMenu = new CarouselCardMenu({ carouselSlider, cardMenuInfo });
+    const carouselSliderBtn = new CarouselSliderBtn({ carouselSlider, carouselCardMenu, sliderBtnInfo });
 
     carouselSlider.getSliderInfo();
     carouselSlider.cloneSlide();
     carouselCardMenu.setCardBtns();
     carouselSliderBtn.setSliderBtns();
-};
-
-const createCarouselSlider = () => {
-    const SLIDES_CLASS_NAME = '.slider__list';
-    const slides = $(SLIDES_CLASS_NAME);
-
-    return new CarouselSlider(carouselOption.sliderInfo);
 }
 
-const createCarouselCardMenu = (carouselSlider) => {
-    // const option = {
-    //     carouselSlider,
-    //     selectorName: {
-    //         CARD: '.card-menu__card',
-    //         CARD_BTN: '.card-menu__card button',
-    //         SELECTED: 'card-menu__selected'
-    //     }
-    // }
-
-    return new CarouselCardMenu(carouselSlider,carouselOption.cardMenuInfo);
-}
-
-const createSliderBtn = (carouselSlider, carouselCardMenu) => {
-    // const option = {
-    //     carouselSlider,
-    //     carouselCardMenu,
-    //     selectorName: {
-    //         SLIDER_BTNS: '#slider__btn button',
-    //     }
-    // }
-
-    return new CarouselSliderBtn(carouselSlider,carouselCardMenu,carouselOption.sliderBtnInfo);
-}
-
-const $ = (selector, all) => {
-    return all ? document.querySelectorAll(selector) : document.querySelector(selector);
-}
-
-// window.addEventListener('DOMContentLoaded', init);
+window.addEventListener("DOMContentLoaded", init);
