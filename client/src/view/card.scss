@@ -1,3 +1,6 @@
+$card-length: 1080px;
+$card-count: 8;
+
 .card-block {
     overflow: hidden;   
 }
@@ -7,7 +10,7 @@
     height: 370px;
     margin-top: 20px;
     position: relative;
-    left: calc(-1080px * 8);
+    left: -$card-length * $card-count;
 }
 
 #card-1 {
@@ -96,14 +99,14 @@
 }
 
 .card {
-    min-width: 1080px;
+    min-width: $card-length;
     display: flex;
     justify-content: space-between;
     position: relative;
-}
 
-.card img {
-    border-radius: 50%;
+    img {
+        border-radius: 50%;
+    }
 }
 
 .card-copy {
@@ -111,15 +114,14 @@
     margin-top: 30px;
     position: absolute;
     right: 0;
-}
 
-.card-copy > h4 {
-    font-size: 32px;
-}
+    h4 {
+        font-size: 32px;
+    }
 
-
-.card-copy li {
-    line-height: 2;
+    li {
+        line-height: 2;
+    }
 }
 
 .card-category {

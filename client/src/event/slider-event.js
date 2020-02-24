@@ -1,13 +1,21 @@
-class SliderEvent extends MyEvent {
-    constructor() {
+import CoreEvent from "./core-event.js";
+import { $ } from "../util/util.js";
+
+class SliderEvent extends CoreEvent {
+    constructor(isEventEnded, defaultOption = { defaultCurrentIndex : 1, defaultListLength : 17, defaultCardLength : 1080}) {
         super();
+
+        const { defaultCurrentIndex, defaultListLength, defaultCardLength } = defaultOption;
         this.isPrevious = false;
         this.distance = 0;
         this.previousIndex = 0;
-        this.currentIndex = 0;
-        this.listLength = 17;
+        this.currentIndex = defaultCurrentIndex;
+        this.listLength = defaultListLength;
         this.halfListLength = parseInt(this.listLength / 2);
         this.selectedCard = $('.selected-card');
+        this.movedFinished = true;
+        this.isEventEnded = isEventEnded;
+        this.cardLength = defaultCardLength;
     }
 
     isRightWay(distance) {
@@ -18,13 +26,13 @@ class SliderEvent extends MyEvent {
         const cardWrapper = $(".card-wrapper");
         if (this.isRightWay(distance) === true) {
             this.isPrevious = false;
-            cardWrapper.style.transition = "transform 1s";
-            cardWrapper.style.transform = `translateX(${-1080 * distance}px)`;
+            cardWrapper.style.transition = "transform 0.5s";
+            cardWrapper.style.transform = `translateX(${-this.cardLength * distance}px)`;
             return;
         }
         this.isPrevious = true;
-        cardWrapper.style.transition = "transform 1s";
-        cardWrapper.style.transform = `translateX(${1080 * -distance}px)`;
+        cardWrapper.style.transition = "transform 0.5s";
+        cardWrapper.style.transform = `translateX(${this.cardLength * -distance}px)`;
     }
 
     getPreviousIndex(index) {
@@ -52,25 +60,35 @@ class SliderEvent extends MyEvent {
     }
 
     previousButtonListener(event) {
+        if (this.isEventEnded.ended === false) {
+            return;
+        }
+        this.isEventEnded.ended =  false;
+
         this.setCurrentIndexAsPreviousIndex()
         this.currentIndex = this.getPreviousIndex(this.previousIndex);
         this.distance = -1;
-        this.moveByDistance(-1);
+        this.moveByDistance(this.distance);
         this.giveSelectedClassToCurrentIndexNode();
     }
 
     nextButtonListener(event) {
+        if (this.isEventEnded.ended === false) {
+            return;
+        }
+        this.isEventEnded.ended =  false;
+
         this.setCurrentIndexAsPreviousIndex();
         this.currentIndex = this.getNextIndex(this.previousIndex);
         this.distance = 1;
-        this.moveByDistance(1);
+        this.moveByDistance(this.distance);
         this.giveSelectedClassToCurrentIndexNode();
     }
 
     transitionEndEvent(event) {
         const cardWrapper = $(".card-wrapper");
         cardWrapper.style.transition = 'none';
-        const childNodes = Array.from(cardWrapper.children);
+        const childNodes = [...cardWrapper.children];
         const firstParitialList = childNodes.slice(0, Math.abs(this.distance));
         const firstSlide = childNodes[0];
 
@@ -91,22 +109,28 @@ class SliderEvent extends MyEvent {
         target.parentNode.parentNode.classList.add('header-selected');
 
         cardWrapper.style.transform = 'translateX(0px)';
+        
+        this.isEventEnded.ended = true;
     }
 
-    getDistanceInRevertedOrder(middle, target) {
+    setDistanceInRevertedOrder(middle, target) {
         if (middle <= target && target <= this.listLength) {
             this.distance = (target - middle);
             return;
         }
-        if (1 <= target && target <= middle + this.halfListLength - this.listLength) {
-            this.distance = (this.listLength + target - middle);
+        
+        const distanceFromMiddle = middle - this.listLength;
+
+        if (1 <= target && target <=  this.halfListLength + distanceFromMiddle) {    
+            this.distance = target - distanceFromMiddle;
             return;
         }
+
         this.distance = (middle - target) * -1;
         return;
     }
 
-    getDistanceInNormalOrder(middle, target) {
+    setDistanceInNormalOrder(middle, target) {
         if (target <= middle + this.halfListLength) {
             this.distance = target - middle;
             return;
@@ -121,20 +145,35 @@ class SliderEvent extends MyEvent {
         return;
     }
 
-    getDistance(middle, target) {
+    setDistance(middle, target) {
         if (middle + this.halfListLength > this.listLength) {
-            this.getDistanceInRevertedOrder(middle, target);
+            this.setDistanceInRevertedOrder(middle, target);
+            return;
         }
 
-        this.getDistanceInNormalOrder(middle, target);
+        this.setDistanceInNormalOrder(middle, target);
     }
 
-    dotEventListener(event) {
+    hasClickedSameIndex(target) {
+        return parseInt(target.dataset.id) === this.currentIndex;
+    }
+
+    smallBoxIndexEventListener(event) {
+        if (this.hasClickedSameIndex(event.target) === true) {
+            this.isEventEnded === true;
+            return;
+        }
+        
+        if (this.isEventEnded.ended === false) {
+            return;
+        }
+        this.isEventEnded.ended =  false;
+
         this.setCurrentIndexAsPreviousIndex();
         const targetIndex = parseInt(event.target.dataset.id);
         this.currentIndex = targetIndex;
 
-        this.getDistance(this.previousIndex, this.currentIndex);
+        this.setDistance(this.previousIndex, this.currentIndex);
 
         this.moveByDistance(this.distance);
         this.giveSelectedClassToCurrentIndexNode();
@@ -142,3 +181,5 @@ class SliderEvent extends MyEvent {
         $(`#card-${targetIndex}`).click();
     }
 }
+
+export default SliderEvent;

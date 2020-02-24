@@ -130,3 +130,5 @@ const mockData = {
     ],
     buttonData: ["prev", "next"]
 };
+
+export default mockData;

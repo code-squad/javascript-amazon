@@ -1,21 +1,25 @@
-class HeaderEvent extends MyEvent {
-    constructor() {
+import CoreEvent from "./core-event.js";
+
+class HeaderEvent extends CoreEvent {
+    constructor(isEventEnded) {
         super();
+        this.isEventEnded = isEventEnded;
     }
 
-
     handleHeaderPart(target) {
+        const dotNode = target.parentNode.querySelector(".dot");
         target.parentNode.classList.add('header-selected');
         target.parentNode.querySelector(".circles").classList.remove("invisible");
-        target.parentNode.querySelector(".dot").classList.add("selected-dot");
-        target.parentNode.querySelector(".dot").click();
+        dotNode.classList.add("selected-dot");
+        dotNode.click();
     }
 
     handleCirclesPart(target) {
+        const dotNode = target.parentNode.querySelector(".dot");
         target.parentNode.classList.add('header-selected');
         target.classList.remove("invisible");
-        target.querySelector(".dot").classList.add("selected-dot");
-        target.querySelector(".dot").click();
+        dotNode.classList.add("selected-dot");
+        dotNode.click();
     }
 
     handleDotPart(target) {
@@ -25,8 +29,9 @@ class HeaderEvent extends MyEvent {
     }
 
     handleAnywhereElse(target) {
-        target.querySelector(".dot").classList.add("selected-dot");
-        target.querySelector(".dot").click();
+        const dotNode = target.querySelector(".dot");
+        dotNode.classList.add("selected-dot");
+        dotNode.click();
         target.classList.add('header-selected');
         Array.from(target.children).forEach(child => {
             if (child.classList.contains("circles")) {
@@ -37,10 +42,13 @@ class HeaderEvent extends MyEvent {
 
     selectBoxListener(event) {
 
+        if (this.isEventEnded.ended === false) {
+            return;
+        }
+        
         const { target } = event;
 
         this.initializeStatus();
-
 
         if (target.classList.contains("header_title") === true) {
             this.handleHeaderPart(target);
@@ -60,3 +68,5 @@ class HeaderEvent extends MyEvent {
         this.handleAnywhereElse(target);
     }
 }
+
+export default HeaderEvent;

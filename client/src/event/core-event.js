@@ -1,4 +1,6 @@
-class MyEvent {
+import { $$ } from "../util/util.js";
+
+class CoreEvent {
     constructor() {
 
     }
@@ -27,3 +29,5 @@ class MyEvent {
         })
     }
 }
+
+export default CoreEvent;

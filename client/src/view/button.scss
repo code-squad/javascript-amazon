@@ -1,0 +1,14 @@
+$top-margin-percent: 57%;
+$margin-from-end: 80px;
+
+.button1 {
+  position: absolute;
+  top: $top-margin-percent;
+  left: -$margin-from-end;
+}
+
+.button2 {
+  position: absolute;
+  top: $top-margin-percent;
+  right: -$margin-from-end;
+}

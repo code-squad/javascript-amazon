@@ -1,3 +1,5 @@
+import css from "./header.scss";
+
 class Header {
     constructor(headerData) {
         this.headerData = headerData;
@@ -16,7 +18,14 @@ class Header {
         const header = this.headerData.reduce(
             (result, data) => {
                 const cardString = this.returnCardLengthDivString(data.cardLength);
-                (result += `<li class="header-list"><div class="header_title">${data.title}</div><div class="circles invisible">${cardString}</div></li>`)
+                (result += `<li class="header-list">
+                                <div class="header_title">
+                                    ${data.title}
+                                </div>
+                                <div class="circles invisible">
+                                    ${cardString}
+                                </div>
+                            </li>`)
                 return result;
             },
             ""
@@ -24,3 +33,5 @@ class Header {
         return `<ul class="header-wrapper">${header}</ul>`;
     }
 }
+
+export default Header;
