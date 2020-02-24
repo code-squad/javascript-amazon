@@ -7,7 +7,6 @@ class SearchList {
     }
 
     setTargetTitle(titles) {
-        console.log("titles is ", titles);
         this.model.titles = titles;
     }
 
