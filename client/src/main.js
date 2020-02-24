@@ -1,5 +1,6 @@
 import EventManager from "./event/event-manager.js";
 import Slider from "./view/slider.js";
+import SearchBar from "./view/search_bar/search_bar.js";
 import { $ } from "./util/util.js";
 
 
@@ -9,6 +10,7 @@ const addEvents = () => {
 }
 
 const renderHTML = async () => {
+    const searchBar = new SearchBar();
     const slider = new Slider();
     let cards = window.localStorage.getItem('cards');
     if (!cards) {
@@ -21,6 +23,7 @@ const renderHTML = async () => {
     }
     slider.setCardData(JSON.parse(cards));
     $("#slider").innerHTML = slider.render();
+    $("#search-bar").innerHTML = searchBar.render();
 }
 
 const initializeSettings = () => {
