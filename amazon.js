@@ -3,13 +3,13 @@ class MenuHandler {
     constructor(slideIndex, menuList) {
         this.slideIndex = slideIndex;
         this.menuList = menuList;
-        }
+    }
 
     changeSize() {
         this.menuList.forEach(element => {
             element.style.transform = "scale(1, 1)";
         })
-        this.menuList[this.slideIndex-1].style.transform = "scale(1.09, 1.09)";
+        this.menuList[this.slideIndex - 1].style.transform = "scale(1.09, 1.09)";
     }
 
     onMenuHandler(changePosition) {
@@ -47,21 +47,21 @@ class ButtonHandler {
 
 class SlideHandler {
     constructor(slideIndex, slide, CONTAINER_WIDTH) {
-        this.slideIndex = slideIndex;
+        //this.slideIndex = slideIndex;
         this.slide = slide;
         this.CONTAINER_WIDTH = CONTAINER_WIDTH;
-        this.changePosition();
+        this.changePosition(slideIndex);
     }
 
-    changePosition() {
-        console.log(this.slideIndex);
-        this.slide.style.transform = `translateX(${this.slideIndex * this.CONTAINER_WIDTH}px)`;
+    changePosition(slideIndex) {
+        console.log(slideIndex);
+        this.slide.style.transform = `translateX(${slideIndex * this.CONTAINER_WIDTH}px)`;
         console.log(this.CONTAINER_WIDTH);
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    
+
     const slideIndex = (parseInt(Math.random() * 4));
 
     const menuList = document.querySelectorAll(".menu-list>li");
@@ -73,8 +73,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const buttonHandler = new ButtonHandler(slideIndex, buttonList);
     const slideHandler = new SlideHandler(slideIndex, slide, CONTAINER_WIDTH);
 
-    const applyMenuEvent = function(change) {
-        change();
-    }
+    // const applyMenuEvent = function(change) {
+    //     change();
+    // }
+
+    menuHandler.onMenuHandler(slideHandler.changePosition());
 
 });
