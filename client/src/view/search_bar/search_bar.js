@@ -1,8 +1,21 @@
+import { $ } from "../../util/util.js";
+import { URL } from "../../util/constants.js";
+
 import css from "./search_bar.scss";
 
 class SearchBar {
-    constructor() {
+    constructor(searchList) {
+        this.searchList = searchList;
+    }
 
+    inputEventListener(event) {
+        fetch(URL.DEV.API_SERVER_SEARCH.ADDRESS + event.target.value)
+            .then(res => res.json())
+            .then(titles => this.searchList.setTargetTitle(titles));
+    }
+
+    addInputEvent() {
+        $('#search-bar-input').addEventListener('input', this.inputEventListener.bind(this));
     }
 
     render() {
@@ -23,18 +36,7 @@ class SearchBar {
                     </div>
                     <div class="input-wrapper">
                         <input id="search-bar-input" type="text"></input>
-                        <div class="hitlist-wrapper">
-                            <ul>
-                                <li>Lincoln</li>
-                                <li>Lincoln</li>
-                                <li>Lincoln</li>
-                                <li>Lincoln</li>
-                                <li>Lincoln</li>
-                                <li>Lincoln</li>
-                                <li>Lincoln</li>
-                                <li>Lincoln</li>
-                            </ul>
-                        </div>
+                        <div class="hitlist-wrapper"></div>
                     </div>
                     <div class="icon-wrapper">
                         <div class="search-bar-icon">
