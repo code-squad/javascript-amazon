@@ -5,8 +5,8 @@ export const fetchOption = {
 export const carouselOption = {
     sliderInfo: {
         sliderData: {
-            slides: '.slider__list',
-            slideIndex: 1,
+            SLIDES_CLASSNAME: '.slider__list',
+            SLIDE_INDEX: 1,
         },
 
         transitionProperty: {
@@ -19,7 +19,7 @@ export const carouselOption = {
             FIRST_CLONE: 'slider-firstClone',
             LAST_CLONE: 'slider-lastClone',
             SLIDE_ITEM: '.slider__item',
-        }
+        },
     },
 
     cardMenuInfo: {
@@ -27,14 +27,14 @@ export const carouselOption = {
             CARD: '.card-menu__card',
             CARD_BTN: '.card-menu__card button',
             SELECTED: 'card-menu__selected'
-        }
+        },
     },
 
     sliderBtnInfo: {
         selectorName: {
             SLIDER_BTNS: '#slider__btn button',
-        }
-    }
+        },
+    },
 }
 
 export const templateOption = {

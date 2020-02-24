@@ -11,12 +11,12 @@ const init = () => {
     const carouselService = new DataFetch(fetchOption.DATA_URL);
 
     carouselService.fetchData()
-        .then(carouselData => initTemplate(carouselData, templateOption))
-        .then(() => initCarouselCardSlider(carouselOption))
+        .then(carouselData => initTemplate(carouselData))
+        .then(() => initCarouselCardSlider())
         .catch((err) => console.error(err));
 }
 
-const initTemplate = (carouselData, templateOption) => {
+const initTemplate = (carouselData) => {
     const dataArea = $(templateOption.DATA_AREA);
     const cardMenuData = new CardMenuTemplate(carouselData.menuData);
     const sliderData = new SliderTemplate(carouselData.contentData);
@@ -24,14 +24,14 @@ const initTemplate = (carouselData, templateOption) => {
     let data = '';
     data += cardMenuData.render();
     data += sliderData.render();
-    dataArea.innerHTML += data;
+    dataArea.innerHTML = data;
 }
 
-const initCarouselCardSlider = (option) => {
-    const cardMenuInfo = option.cardMenuInfo;
-    const sliderBtnInfo = option.sliderBtnInfo;
+const initCarouselCardSlider = () => {
+    const cardMenuInfo = carouselOption.cardMenuInfo;
+    const sliderBtnInfo = carouselOption.sliderBtnInfo;
 
-    const carouselSlider = new CarouselSlider(option.sliderInfo);
+    const carouselSlider = new CarouselSlider(carouselOption.sliderInfo);
     const carouselCardMenu = new CarouselCardMenu({ carouselSlider, cardMenuInfo });
     const carouselSliderBtn = new CarouselSliderBtn({ carouselSlider, carouselCardMenu, sliderBtnInfo });
 

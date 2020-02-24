@@ -19,7 +19,7 @@ export class DataFetch {
 
         if (!localStorageCarouselData) {
             return fetch(this.dataUrl)
-                .then(response => response.json())
+                .then(res => res.json())
                 .then(carouselData => {
                     localStorage.setItem(CAROUSEL_DATA, JSON.stringify(carouselData));
                     return carouselData
