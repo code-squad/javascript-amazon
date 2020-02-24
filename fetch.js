@@ -1,6 +1,7 @@
 export class DataFetch {
-    constructor(dataUrl) {
-        this.dataUrl = dataUrl;
+    constructor({ DATA_URL, LOCAL_STORAGE_KEY }) {
+        this.dataUrl = DATA_URL;
+        this.localStorageKey = LOCAL_STORAGE_KEY;
     }
 
     getLocalStorageData(localStorageCarouselData) {
@@ -14,18 +15,17 @@ export class DataFetch {
     }
 
     fetchData() {
-        const CAROUSEL_DATA = 'carouselData';
-        const localStorageCarouselData = localStorage.getItem(CAROUSEL_DATA);
+        const localStorageValue = localStorage.getItem(this.localStorageKey);
 
-        if (!localStorageCarouselData) {
+        if (!localStorageValue) {
             return fetch(this.dataUrl)
                 .then(res => res.json())
-                .then(carouselData => {
-                    localStorage.setItem(CAROUSEL_DATA, JSON.stringify(carouselData));
-                    return carouselData
+                .then(data => {
+                    localStorage.setItem(this.localStorageKey, JSON.stringify(data));
+                    return data
                 })
         } else {
-            return this.getLocalStorageData(localStorageCarouselData);
+            return this.getLocalStorageData(localStorageValue);
         }
     }
 }

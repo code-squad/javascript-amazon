@@ -8,7 +8,7 @@ import { CardMenuTemplate } from './template/cardMenu.js';
 import { SliderTemplate } from './template/slider.js';
 
 const init = () => {
-    const carouselService = new DataFetch(fetchOption.DATA_URL);
+    const carouselService = new DataFetch(fetchOption);
 
     carouselService.fetchData()
         .then(carouselData => initTemplate(carouselData))

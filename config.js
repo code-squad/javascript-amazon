@@ -1,5 +1,6 @@
 export const fetchOption = {
-    DATA_URL: 'http://127.0.0.1:8080/'
+    DATA_URL: 'http://127.0.0.1:8080/',
+    LOCAL_STORAGE_KEY: 'carouselData',
 }
 
 export const carouselOption = {

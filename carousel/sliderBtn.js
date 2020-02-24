@@ -10,25 +10,21 @@ export class CarouselSliderBtn {
     setSliderBtns() {
         const [previousBtn, nextBtn] = $(this.selectorName.SLIDER_BTNS, true);
 
-        this.setPreviousBtn(previousBtn);
-        this.setNextBtn(nextBtn);
+        previousBtn.addEventListener('click', this.setPreviousBtn.bind(this))
+        nextBtn.addEventListener('click', this.setNextBtn.bind(this))
     }
 
-    setPreviousBtn(previousBtn) {
-        previousBtn.addEventListener('click', () => {
-            if (this.slider.slideIndex <= 0) return;
-            this.slider.slideIndex--;
-            this.slider.addTransition();
-            this.cardMenu.addScaleEffect();
-        })
+    setPreviousBtn() {
+        if (this.slider.slideIndex <= 0) return;
+        this.slider.slideIndex--;
+        this.slider.addTransition();
+        this.cardMenu.addScaleEffect();
     }
 
-    setNextBtn(nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            if (this.slider.slideIndex >= this.slider.lastSlideIndex) return;
-            this.slider.slideIndex++;
-            this.slider.addTransition();
-            this.cardMenu.addScaleEffect();
-        })
+    setNextBtn() {
+        if (this.slider.slideIndex >= this.slider.lastSlideIndex) return;
+        this.slider.slideIndex++;
+        this.slider.addTransition();
+        this.cardMenu.addScaleEffect();
     }
 }
