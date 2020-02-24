@@ -9,9 +9,10 @@ export const OPTION_DATA = {
         NAV_CARD_WIDTH: 180,
         CARD_GAP: 8,
         VIEWER_WIDTH: 900,
-        FIRST_ITEM_INDEX: 0,
+        CUR_ITEM: 0,
         ITEM_COUNT: 0,
         SLIDE_SPEED: 0.25,
+        AUTO_SLIDE: null,
         AUTO_SLIDE_INTERVAL: 4500,
     },
 };

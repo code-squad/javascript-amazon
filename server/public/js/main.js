@@ -1,6 +1,7 @@
 import { OPTION_DATA } from './optionData.js';
 import DataRender from './dataRender.js';
-import Slide, { NavCard } from './slide.js';
+import Slide from './slide.js';
+import NavCard from './navCard.js';
 
 
 function main() {
@@ -22,7 +23,7 @@ function startSlideService(data) {
     dataRender.setNav();
     dataRender.setSlide();
 
-    OPTION_DATA.slideOption.FIRST_ITEM_INDEX = Math.floor(Math.random() * OPTION_DATA.slideOption.ITEM_COUNT);
+    OPTION_DATA.slideOption.CUR_ITEM = Math.floor(Math.random() * OPTION_DATA.slideOption.ITEM_COUNT);
 
     const navCard = new NavCard();
     const slide = new Slide([navCard]);
