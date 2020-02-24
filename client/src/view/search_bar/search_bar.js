@@ -9,7 +9,12 @@ class SearchBar {
     }
 
     inputEventListener(event) {
-        fetch(URL.DEV.API_SERVER_SEARCH.ADDRESS + event.target.value)
+        const targetString = event.target.value;
+        if (targetString === "") {
+            $(".hitlist-wrapper").style.display = "none";
+            return;
+        }
+        fetch(URL.DEV.API_SERVER_SEARCH.ADDRESS + targetString)
             .then(res => res.json())
             .then(titles => this.searchList.setTargetTitle(titles));
     }
