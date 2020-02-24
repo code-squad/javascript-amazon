@@ -1,6 +1,6 @@
-import { carouselOption, templateOption } from './config.js';
+import { fetchOption, carouselOption, templateOption } from './config.js';
 import { $ } from '/util.js';
-import { CarouselService } from './fetch.js'
+import { DataFetch } from './fetch.js'
 import { CarouselSlider } from './carousel/slider.js'
 import { CarouselCardMenu } from './carousel/cardMenu.js'
 import { CarouselSliderBtn } from './carousel/sliderBtn.js'
@@ -8,12 +8,12 @@ import { CardMenuTemplate } from './template/cardMenu.js';
 import { SliderTemplate } from './template/slider.js';
 
 const init = () => {
-    const DATA_URL = 'http://127.0.0.1:8080/';
-    const carouselService = new CarouselService(DATA_URL);
+    const carouselService = new DataFetch(fetchOption.DATA_URL);
 
     carouselService.fetchData()
         .then(carouselData => initTemplate(carouselData, templateOption))
         .then(() => initCarouselSlider(carouselOption))
+        .catch((err) => console.error(err));
 }
 
 const initTemplate = (carouselData, templateOption) => {
