@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const bookList = require("../public/json/book_list.json");
+const titleData = require("../public/json/title_data.json");
 
 router.get('/:target', function (req, res, next) {
     const { target } = req.params;
-    const { books } = bookList;
+    const { titles } = titleData;
 
     const hitList = [];
 
-    books.reduce((acc, cur) => {
-        if (cur.toLowerCase().startsWith(target.toLowerCase())) {
-            acc.push(cur);
+    titles.reduce((acc, title) => {
+        if (title.toLowerCase().startsWith(target.toLowerCase())) {
+            acc.push(title);
         }
         return acc;
     }, hitList);
