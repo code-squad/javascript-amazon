@@ -1,0 +1,88 @@
+.nav {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+.nav div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 70px;
+  font-weight: bold;
+}
+.nav div:nth-child(1) {
+  transform: scale(1.1);
+  background-color: tomato;
+}
+
+.nav div:nth-child(2) {
+  margin-left: 10px;
+  margin-right: 5px;
+  background-color: lawngreen;
+}
+
+.nav div:nth-child(3) {
+  margin-left: 5px;
+  margin-right: 10px;
+  background-color: teal;
+}
+.nav div:nth-child(4) {
+  background-color: cyan;
+}
+.nav_item {
+  cursor: pointer;
+  background-color: cadetblue;
+}
+.carousel {
+  position: relative;
+  overflow: hidden;
+  width: 835px;
+  height: 320px;
+}
+
+.under {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.carousel_slide {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 5000px;
+}
+.item {
+  display: flex;
+  align-items: center;
+  width: 835px;
+  height: 300px;
+  background-color: palevioletred;
+}
+.carousel_slide img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.button_prev {
+  position: absolute;
+  z-index: 10;
+  left: 10%;
+  top: 41%;
+  font-size: 30px;
+  color: black;
+  cursor: pointer;
+}
+.button_next {
+  position: absolute;
+  z-index: 10;
+  right: 10%;
+  top: 41%;
+  font-size: 30px;
+  color: black;
+  cursor: pointer;
+}
