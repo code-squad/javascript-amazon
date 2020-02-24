@@ -1,13 +1,30 @@
 class SlideComponent {
-	constructor(slideService, elements) {
-        this._elements = elements;
-        this._registerEventListenerOnElements(slideService, elements);
+    constructor(slideService) {
+        this._elements = null;
+        this._data = null;
     }
 
     onNotifyIndexChanged(index) {
     }
 
+    onNotifyDataChanged(data) {
+    }
+
+    onNotifyRenderFinished() {
+    }
+
     _registerEventListenerOnElements(elements) {
+        elements.forEach((element, index) => {
+            element.addEventListener('click', event => {
+                this._appendButtonHandler(event, this._slideService, index);
+            });
+        });
+    }
+
+    render() {
+    }
+
+    _appendButtonHandler() {
     }
 }
 
