@@ -1,0 +1,36 @@
+.header {
+    position: relative;
+    text-align: center;
+    height: 100px;
+    background-color: #233040;
+}
+
+.searchbar {
+    display: inline-block;
+    position: absolute;
+    width: 400px;
+    top: 20%;
+    font-size: 0;
+}
+
+select, input, button {
+    margin : 0;
+    padding: 0;
+    border-style: none;
+    height: 30px;
+}
+
+select {
+    width: 50px;
+    border-radius: 10% 0% 0% 10%;
+}
+
+input {
+    width: 300px;
+}
+
+button {
+    background-color: #FFBD69;
+    width: 50px;
+    border-radius: 0% 10% 10% 0%;
+}
