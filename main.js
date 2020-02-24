@@ -12,7 +12,7 @@ const init = () => {
 
     carouselService.fetchData()
         .then(carouselData => initTemplate(carouselData, templateOption))
-        .then(() => initCarouselSlider(carouselOption))
+        .then(() => initCarouselCardSlider(carouselOption))
         .catch((err) => console.error(err));
 }
 
@@ -27,7 +27,7 @@ const initTemplate = (carouselData, templateOption) => {
     dataArea.innerHTML += data;
 }
 
-const initCarouselSlider = (option) => {
+const initCarouselCardSlider = (option) => {
     const cardMenuInfo = option.cardMenuInfo;
     const sliderBtnInfo = option.sliderBtnInfo;
 
