@@ -4,16 +4,6 @@ export class DataFetch {
         this.localStorageKey = LOCAL_STORAGE_KEY;
     }
 
-    getLocalStorageData(localStorageValue) {
-        return new Promise((resolve, reject) => {
-            try {
-                resolve(JSON.parse(localStorageValue));
-            } catch {
-                reject('localStorage에 저장된 무언가는 있지만 실패..');
-            }
-        })
-    }
-
     fetchData() {
         const localStorageValue = localStorage.getItem(this.localStorageKey);
 
@@ -27,5 +17,15 @@ export class DataFetch {
         } else {
             return this.getLocalStorageData(localStorageValue);
         }
+    }
+
+    getLocalStorageData(localStorageValue) {
+        return new Promise((resolve, reject) => {
+            try {
+                resolve(JSON.parse(localStorageValue));
+            } catch {
+                reject('localStorage에 저장된 무언가는 있지만 실패..');
+            }
+        })
     }
 }
