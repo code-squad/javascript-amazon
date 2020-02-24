@@ -4,10 +4,10 @@ export class DataFetch {
         this.localStorageKey = LOCAL_STORAGE_KEY;
     }
 
-    getLocalStorageData(localStorageCarouselData) {
+    getLocalStorageData(localStorageValue) {
         return new Promise((resolve, reject) => {
             try {
-                resolve(JSON.parse(localStorageCarouselData));
+                resolve(JSON.parse(localStorageValue));
             } catch {
                 reject('localStorage에 저장된 무언가는 있지만 실패..');
             }
