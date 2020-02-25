@@ -1,0 +1,25 @@
+{
+  "name": "javascript-amazon",
+  "version": "1.0.0",
+  "description": "레벨3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reesekimm/javascript-amazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reesekimm/javascript-amazon/issues"
+  },
+  "homepage": "https://github.com/reesekimm/javascript-amazon#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  }
+}
