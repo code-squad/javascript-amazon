@@ -25,7 +25,7 @@ class SearchBar {
         this.timer = setTimeout(function () {
             fetch(URL.DEV.API_SERVER_SEARCH.ADDRESS + targetString)
                 .then(res => res.json())
-                .then(titles => this.searchList.setTargetTitle(titles));
+                .then(titles => this.searchList.setTargetTitle(targetString, titles));
         }.bind(this), 200);
     }
 

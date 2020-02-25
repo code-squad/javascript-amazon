@@ -4,18 +4,20 @@ import { $ } from "../../util/util.js";
 class SearchList {
     constructor() {
         this.model = new Model(this.onChanges.bind(this));
+        this.targetString = "";
     }
 
-    setTargetTitle(titles) {
-        console.log("title is ", titles);
+    setTargetTitle(targetString, titles) {
+        this.targetString = targetString;
         this.model.titles = titles;
     }
 
     onChanges(titles) {
         const { hitList } = titles;
+        const targetLength = this.targetString.length;
 
         const liHTML = hitList && hitList.reduce((htmlTemplates, title) => {
-            htmlTemplates += `<li>${title}</li>`
+            htmlTemplates += `<li><span class="target-word">${title.substring(0, targetLength)}</span><span>${title.substring(targetLength)}</span></li>`
             return htmlTemplates;
         }, "");
 
