@@ -14,7 +14,7 @@ class DataRender {
         const navColors = options.navCardColors;
         let navWrapInnerHTML = "";
         this.dataJson.itemContents.forEach((item, idx) => {
-            const temp = `<li style="background-color: ${navColors[idx % navColors.length]}; width: ${option.cardWidth}px">${item.navTitle}</li>`;
+            const temp = `<li class=${idx} style="background-color: ${navColors[idx % navColors.length]}; width: ${option.cardWidth}px">${item.navTitle}</li>`;
             navWrapInnerHTML += temp;
         });
         this.navWrap.innerHTML = navWrapInnerHTML;

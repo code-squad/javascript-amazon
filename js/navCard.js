@@ -12,32 +12,28 @@ class NavCard {
     }
 
     init() {
-        this.setCardNavEvent();
+        this.navScaleController();
+        this.setNavEvent();
     }
 
-    navScaleController(curItem, prevItem) {
-        this.cards[curItem].classList.add("slide-nav-selected");
+    navScaleController(curItem = option.curItem, prevItem = 0) {
         this.cards[prevItem].classList.remove("slide-nav-selected");
+        this.cards[curItem].classList.add("slide-nav-selected");
     }
 
-    setCardNavEvent() {
-        this.cards.forEach((card, idx) => {
-            if (idx === option.curItem) card.classList.add("slide-nav-selected");
-            card.addEventListener("click", () => {
-                const cardIdx = idx;
-                this.cardClickHandler(cardIdx);
-            });
-        });
+    setNavEvent() {
+        this.navWrap.addEventListener("click", this.navEventDelegate.bind(this));
     }
 
-    // setCardNavEvent() {
-    //     this.navWrap.addEventListener("click", function (evt) {
-    //         console.log(evt.target);
-    //     })
-    // }
+    navEventDelegate(evt) {
+        const target = evt.target;
+        if (target.tagName === "LI") {
+            const navIndex = parseInt(target.classList[0]);
+            this.navClickHandler(navIndex);
+        }
+    }
 
-
-    cardClickHandler(cardIdx) {
+    navClickHandler(cardIdx) {
         if (cardIdx === option.curItem) return;
         clearTimeout(option.autoSlide);
         this.slideWrap.style.transition = `${option.slideSpeed}s`;

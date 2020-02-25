@@ -22,7 +22,7 @@ class Slide {
         clearTimeout(option.autoSlide);
         if (this.isSliding) return;
         this.slideAnimOn();
-        if ((option.curItem === this.maxItemIndex && isNextBtn) || (option.curItem === 0 && !isNextBtn)) {
+        if (this.itemPositionCheck(option.curItem, isNextBtn)) {
             option.curItem = isNextBtn ? 0 : this.maxItemIndex;
             this.addOnList.forEach(obj => obj.run({ curItem: isNextBtn ? option.curItem : this.maxItemIndex, prevItem: isNextBtn ? this.maxItemIndex : 0 }));
             this.moveSlideWrap(isNextBtn ? this.maxItemIndex + 1 : -1);
@@ -31,6 +31,13 @@ class Slide {
             this.addOnList.forEach(obj => obj.run({ curItem: option.curItem, prevItem: isNextBtn ? option.curItem - 1 : option.curItem + 1 }));
             this.moveSlideWrap(option.curItem);
         }
+    }
+
+    itemPositionCheck(curItem, isNextBtn) {
+        if ((curItem === this.maxItemIndex && isNextBtn) || (curItem === 0 && !isNextBtn)) {
+            return true;
+        }
+        return false;
     }
 
     slideAnimEndHandler() {
