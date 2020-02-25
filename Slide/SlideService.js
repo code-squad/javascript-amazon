@@ -71,7 +71,7 @@ class SlideService extends Slide {
         const result = this._menuButtonManager.render() + this._render() + this._directionButtonManager.render();
 
         const temp = document.querySelector(".card_navigation");
-        temp.innerHTML += result;
+        temp.insertAdjacentHTML('afterbegin', result);
 
         this._components.forEach(element => {
             element.onNotifyRenderFinished(slideData);
