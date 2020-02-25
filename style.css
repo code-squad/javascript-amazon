@@ -1,5 +1,76 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 .wrap {
     width: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+  background: #f2f2f2;
+}
+
+.searchBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    z-index: 1;
+    opacity: 0.4;
+    visibility: hidden;
+}
+
+.searchBox {
+  width: 80%;
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.searchSuggestion {
+    height: auto;
+    padding: 0px;
+    position:absolute;
+    width: 80%;
+    z-index: 200;
+    margin: auto;
+    top: 37px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+}
+
+.searchSuggestion > li{
+    padding-left: 10px;
+    /* display: none; */
 }
 
 .wrap > .card_navigation {
