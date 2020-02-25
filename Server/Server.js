@@ -21,11 +21,16 @@ app.listen(port, () => console.log(`App listening on port ${port}!`));
 function extractSuggestionWord(userInputText) {
     const extractedWords = [];
 
-    words.forEach(element => {
-        if (element.indexOf(userInputText) === 0) {
-            extractedWords.push(element);
+    for (let index = 0 ; index < words.length ; ++index) {
+        if (extractedWords.length >= 10)
+            break;
+
+        const currentWord = words[index];
+
+        if (currentWord.indexOf(userInputText) === 0) {
+            extractedWords.push(currentWord);    
         }
-    });
+    }
 
     return extractedWords;
 }
