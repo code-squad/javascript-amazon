@@ -13,3 +13,8 @@ export const URL = {
         }
     }
 }
+
+export const ARROW_UP = 38;
+export const ARROW_DOWN = 40;
+export const DIRECTION_UP = -1;
+export const DIRECTION_DOWN = 1;

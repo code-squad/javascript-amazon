@@ -1,5 +1,5 @@
-import { $ } from "../../util/util.js";
-import { URL } from "../../util/constants.js";
+import { $, $$ } from "../../util/util.js";
+import { URL, ARROW_UP, ARROW_DOWN, DIRECTION_UP, DIRECTION_DOWN } from "../../util/constants.js";
 
 import css from "./search_bar.scss";
 
@@ -13,6 +13,7 @@ class SearchBar {
     inputEventListener(event) {
         const targetString = event.target.value;
 
+        console.log("input is called");
         if (this.timer) {
             clearTimeout(this.timer);
         }
@@ -29,8 +30,74 @@ class SearchBar {
         }.bind(this), 200);
     }
 
+    isArrow(keyCode) {
+        return keyCode === ARROW_UP || keyCode === ARROW_DOWN;
+    }
+
+    isHitListOn() {
+        const hitListSytle = $(".hitlist-wrapper").style.display
+        return hitListSytle === "block";
+    }
+
+
+    giveSelectedWordToTarget(toNode, fromNode, parentNode, direction) {
+        fromNode.classList.remove("selected-word");
+        if (toNode === null) {
+            if (direction === DIRECTION_DOWN) {
+                parentNode[0].classList.add("selected-word");
+                return;
+            }
+            parentNode[parentNode.length - 1].classList.add("selected-word");
+            return;
+
+        }
+        toNode.classList.add("selected-word");
+    }
+
+    handleKeyMovement(arrowDirection) {
+        if (this.isHitListOn() === false) {
+            return;
+        }
+
+        const selected = $(".hitlist-wrapper .selected-word");
+        const liDOMS = [...$(".hitlist-wrapper ul").children];
+
+        console.log("selected is ", selected);
+        if (!selected) {
+            console.log("First");
+            liDOMS[0].classList.add("selected-word");
+            return;
+        }
+
+        if (arrowDirection === DIRECTION_DOWN) {
+            const nextTarget = selected.nextSibling;
+            this.giveSelectedWordToTarget(nextTarget, selected, liDOMS, DIRECTION_DOWN);
+            return;
+        }
+
+        const previousTarget = selected.previousSibling;
+        this.giveSelectedWordToTarget(previousTarget, selected, liDOMS, DIRECTION_UP);
+    }
+
+    keyDownEventListener(event) {
+        const { keyCode } = event;
+        if (this.isArrow(keyCode) === false) {
+            return;
+        }
+
+        if (keyCode === ARROW_UP) {
+            this.handleKeyMovement(DIRECTION_UP);
+            return;
+        }
+
+        if (keyCode === ARROW_DOWN) {
+            this.handleKeyMovement(DIRECTION_DOWN);
+        }
+    }
+
     addInputEvent() {
         $('#search-bar-input').addEventListener('input', this.inputEventListener.bind(this));
+        $($('#search-bar-input').addEventListener('keydown', this.keyDownEventListener.bind(this)));
     }
 
     render() {
