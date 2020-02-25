@@ -27,7 +27,7 @@ body{
   z-index: 2;
 }
 
-.searchTerm {
+.searchInputField {
   width: 100%;
   border: 3px solid #00B4CC;
   border-right: none;
@@ -38,7 +38,7 @@ body{
   color: #9DBFAF;
 }
 
-.searchTerm:focus{
+.searchInputField:focus{
   color: black;
 }
 

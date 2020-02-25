@@ -1,5 +1,11 @@
+import SearchEnum from "./SearchEnum.js";
+
 class SearchController {
-    constructor() {
+    constructor(model, view) {
+        this.model = model;
+        this.view = view;
+
+        this.view.render();
     }
 }
 
