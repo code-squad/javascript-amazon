@@ -1,37 +1,37 @@
-import { OPTION_DATA } from './optionData.js';
+import options from './options.js';
 import { $, $$ } from './util.js';
+
+const { slideOption: option } = options;
 
 class DataRender {
     constructor(dataJson) {
         this.navWrap = $(".slide-nav");
         this.slideWrap = $(".slide-item-wrap");
-        this.navColors = OPTION_DATA.navCardColors;
-        this.navWidth = OPTION_DATA.slideOption.NAV_CARD_WIDTH;
         this.dataJson = dataJson;
     }
 
-    navDataAppend() {
+    navDataRender() {
+        const navColors = options.navCardColors;
         let navWrapInnerHTML = "";
         this.dataJson.itemContents.forEach((item, idx) => {
-            const temp = `<li style="background-color: ${this.navColors[idx % this.navColors.length]}; width: ${this.navWidth}px">${item.navTitle}</li>`;
+            const temp = `<li style="background-color: ${navColors[idx % navColors.length]}; width: ${option.cardWidth}px">${item.navTitle}</li>`;
             navWrapInnerHTML += temp;
         });
         this.navWrap.innerHTML = navWrapInnerHTML;
     }
 
-    slideDataAppend() {
+    slideDataRender() {
         let slideWrapInnerHTML = "";
         this.dataJson.itemContents.forEach(item => {
             const temp = `<li class="slide-item">${this.makeItemImg(item)}${this.makeItemText(item)}</li>`;
             slideWrapInnerHTML += temp;
-            OPTION_DATA.slideOption.ITEM_COUNT++;
+            option.itemsCount++;
         });
         this.slideWrap.innerHTML = slideWrapInnerHTML;
     }
 
     makeItemImg(item) {
-        const temp = `<img src=" ${item.imgURL}">`;
-        return temp;
+        return `<img src=" ${item.imgURL}">`;
     }
 
     makeItemText(item) {
@@ -48,12 +48,11 @@ class DataRender {
         const items = $$(".slide-item");
 
         const firstItem = items[0];
-        const lastItem = items[items.length - 1];
-
         const firstDummy = document.createElement("li");
-        const lastDummy = document.createElement("li");
-
         firstDummy.classList.add("slide-item");
+
+        const lastItem = items[items.length - 1];
+        const lastDummy = document.createElement("li");
         lastDummy.classList.add("slide-item");
 
         firstDummy.innerHTML = lastItem.innerHTML;
@@ -64,14 +63,14 @@ class DataRender {
     }
 
     setNav() {
-        this.navWrap.style.width = `${(OPTION_DATA.slideOption.NAV_CARD_WIDTH * this.dataJson.itemContents.length) + (OPTION_DATA.slideOption.CARD_GAP * this.dataJson.itemContents.length)}px`;
-        this.navDataAppend();
+        this.navWrap.style.width = `${(option.cardWidth * this.dataJson.itemContents.length) + (option.carGap * this.dataJson.itemContents.length)}px`;
+        this.navDataRender();
     }
 
     setSlide() {
         const dummyCount = 2;
-        this.slideWrap.style.width = `${OPTION_DATA.slideOption.VIEWER_WIDTH * (this.dataJson.itemContents.length + dummyCount)}px`;
-        this.slideDataAppend();
+        this.slideWrap.style.width = `${option.viewerWidth * (this.dataJson.itemContents.length + dummyCount)}px`;
+        this.slideDataRender();
         this.makeDummy();
     }
 }

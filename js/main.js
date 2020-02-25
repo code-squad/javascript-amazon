@@ -1,8 +1,7 @@
-import { OPTION_DATA } from './optionData.js';
+import options from './options.js';
 import DataRender from './dataRender.js';
 import Slide from './slide.js';
 import NavCard from './navCard.js';
-
 
 function main() {
     const realMadridData = localStorage.getItem('REAL-MADRID');
@@ -23,7 +22,7 @@ function startSlideService(data) {
     dataRender.setNav();
     dataRender.setSlide();
 
-    OPTION_DATA.slideOption.CUR_ITEM = Math.floor(Math.random() * OPTION_DATA.slideOption.ITEM_COUNT);
+    options.slideOption.curItem = Math.floor(Math.random() * options.slideOption.itemsCount);
 
     const navCard = new NavCard();
     const slide = new Slide([navCard]);

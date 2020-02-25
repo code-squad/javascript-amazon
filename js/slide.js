@@ -1,52 +1,52 @@
-import { OPTION_DATA } from './optionData.js';
+import options from './options.js';
 import { $ } from './util.js';
+
+const { slideOption: option } = options;
 
 class Slide {
     constructor(addOn) {
         this.slideWrap = $(".slide-item-wrap");
-        this.maxItemIndex = OPTION_DATA.slideOption.ITEM_COUNT - 1;
-        this.viewerWidth = OPTION_DATA.slideOption.VIEWER_WIDTH;
-        this.slideSpeed = OPTION_DATA.slideOption.SLIDE_SPEED;
-        this.autoSlideTime = OPTION_DATA.slideOption.AUTO_SLIDE_INTERVAL;
+        this.maxItemIndex = option.itemsCount - 1;
+        this.autoSlideTime = option.audoSlideInterval;
         this.addOnList = addOn;
         this.isSliding = false;
         this.init();
     }
 
     init() {
-        this.moveSlideWrap(OPTION_DATA.slideOption.CUR_ITEM);
-        OPTION_DATA.slideOption.AUTO_SLIDE = setTimeout(() => { this.buttonClickHandler(true) }, this.autoSlideTime);
+        this.moveSlideWrap(option.curItem);
+        option.autoSlide = setTimeout(() => { this.buttonClickHandler(true) }, this.autoSlideTime);
     }
 
     buttonClickHandler(isNextBtn) {
-        clearTimeout(OPTION_DATA.slideOption.AUTO_SLIDE);
+        clearTimeout(option.autoSlide);
         if (this.isSliding) return;
         this.slideAnimOn();
-        if ((OPTION_DATA.slideOption.CUR_ITEM === this.maxItemIndex && isNextBtn) || (OPTION_DATA.slideOption.CUR_ITEM === 0 && !isNextBtn)) {
-            OPTION_DATA.slideOption.CUR_ITEM = isNextBtn ? 0 : this.maxItemIndex;
-            this.addOnList.forEach(obj => obj.run({ curItem: isNextBtn ? OPTION_DATA.slideOption.CUR_ITEM : this.maxItemIndex, prevItem: isNextBtn ? this.maxItemIndex : 0 }));
+        if ((option.curItem === this.maxItemIndex && isNextBtn) || (option.curItem === 0 && !isNextBtn)) {
+            option.curItem = isNextBtn ? 0 : this.maxItemIndex;
+            this.addOnList.forEach(obj => obj.run({ curItem: isNextBtn ? option.curItem : this.maxItemIndex, prevItem: isNextBtn ? this.maxItemIndex : 0 }));
             this.moveSlideWrap(isNextBtn ? this.maxItemIndex + 1 : -1);
         } else {
-            isNextBtn ? OPTION_DATA.slideOption.CUR_ITEM++ : OPTION_DATA.slideOption.CUR_ITEM--;
-            this.addOnList.forEach(obj => obj.run({ curItem: OPTION_DATA.slideOption.CUR_ITEM, prevItem: isNextBtn ? OPTION_DATA.slideOption.CUR_ITEM - 1 : OPTION_DATA.slideOption.CUR_ITEM + 1 }));
-            this.moveSlideWrap(OPTION_DATA.slideOption.CUR_ITEM);
+            isNextBtn ? option.curItem++ : option.curItem--;
+            this.addOnList.forEach(obj => obj.run({ curItem: option.curItem, prevItem: isNextBtn ? option.curItem - 1 : option.curItem + 1 }));
+            this.moveSlideWrap(option.curItem);
         }
     }
 
     slideAnimEndHandler() {
         this.slideWrap.style.transition = "none";
         this.isSliding = false;
-        this.moveSlideWrap(OPTION_DATA.slideOption.CUR_ITEM);
-        OPTION_DATA.slideOption.AUTO_SLIDE = setTimeout(() => { this.buttonClickHandler(true) }, this.autoSlideTime);
+        this.moveSlideWrap(option.curItem);
+        option.autoSlide = setTimeout(() => { this.buttonClickHandler(true) }, this.autoSlideTime);
     }
 
     slideAnimOn() {
         this.isSliding = true;
-        this.slideWrap.style.transition = `${this.slideSpeed}s`;
+        this.slideWrap.style.transition = `${option.slideSpeed}s`;
     }
 
     moveSlideWrap(curItem) {
-        const x = (curItem + 1) * -this.viewerWidth;
+        const x = (curItem + 1) * -option.viewerWidth;
         this.slideWrap.style.transform = `translateX(${x + "px"})`;
     }
 
