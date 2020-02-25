@@ -63,13 +63,25 @@ class SearchBar {
         if (toNode === null) {
             if (direction === DIRECTION_DOWN) {
                 parentNode[0].classList.add("selected-word");
+                $('.hitlist-wrapper').scrollTop = 0;
                 return;
             }
             parentNode[parentNode.length - 1].classList.add("selected-word");
+            $('.hitlist-wrapper').scrollTop = 1500;
             return;
         }
 
         toNode.classList.add("selected-word");
+    }
+
+    scrollUpAndDown(direction) {
+        const hitList = $('.hitlist-wrapper');
+        const scorllDistanceFromTop = hitList.scrollTop;
+        if (direction === DIRECTION_DOWN) {
+            hitList.scrollTop = scorllDistanceFromTop + 20;
+            return;
+        }
+        hitList.scrollTop = scorllDistanceFromTop - 20;
     }
 
     handleKeyMovement(arrowDirection) {
@@ -88,11 +100,13 @@ class SearchBar {
         if (arrowDirection === DIRECTION_DOWN) {
             const nextTarget = selected.nextSibling;
             this.giveSelectedWordToTarget(nextTarget, selected, liDOMS, DIRECTION_DOWN);
+            this.scrollUpAndDown(DIRECTION_DOWN);
             return;
         }
 
         const previousTarget = selected.previousSibling;
         this.giveSelectedWordToTarget(previousTarget, selected, liDOMS, DIRECTION_UP);
+        this.scrollUpAndDown(DIRECTION_UP);
     }
 
     movedSelectedWordToInputBox() {

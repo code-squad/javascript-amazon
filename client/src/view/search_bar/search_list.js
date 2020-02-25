@@ -27,6 +27,7 @@ class SearchList {
     initializeHTML() {
         $('.hitlist-wrapper').style.display = "block";
         $('.hitlist-wrapper').innerHTML = "";
+        $('.hitlist-wrapper').scrollTop = 0;
     }
 
     render(liHTML) {
