@@ -91,7 +91,6 @@ $width: 650px;
         &:focus{
             border: 1px solid #008ABF;
             transition: 0.35s ease;
-            color: #008ABF;
 
             &::-webkit-input-placeholder{
             transition: opacity 0.45s ease; 
@@ -117,28 +116,45 @@ $width: 650px;
         background-color: #fff;
         width: 100%;
         height: 300px;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
         border-right: 1px solid #000;
         border-left: 1px solid #000;
         border-bottom: 1px solid #000;
         padding: 18px;
         display: none;
 
+        //참고: https://codepen.io/devstreak/pen/dMYgeO
+        &::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        &::-webkit-scrollbar
+        {
+            width: 8px;
+            background-color: #F5F5F5;
+        }
+
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: rgb(243, 163, 14);
+        }
+
         ul li {
             margin-bottom: 10px;
             transition: background-color 0.1s linear;
             font-size: 17px;
-            
-            &:hover{
-                background-color: #f9f7f4;
-            }
         }
     }
 }
 
 .selected-word {
-   // background-color:  #f9f7f4;
-   background-color: red;
+   background-color: #fde4c5;
 }
 
 .icon-wrapper {
@@ -162,5 +178,5 @@ $width: 650px;
 }
 
 .target-word {
-    color: rgb(254, 189, 103);
+    color: rgb(240, 141, 12);
 }
