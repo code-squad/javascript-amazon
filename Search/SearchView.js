@@ -6,10 +6,21 @@ import SearchEnum from "./SearchEnum.js";
 
 class SearchView {
     constructor() {
+        this.view = [];
+
         this.searchInputView = new SearchInputView();
         this.searchAutocompletionView = new SearchAutocompletionView();
         this.searchBackgroundView = new SearchBackgroundView();
         this.searchRecentlyView = new SearchRecentlyView();
+
+        this._registerView(this.searchInputView);
+        this._registerView(this.searchAutocompletionView);
+        this._registerView(this.searchBackgroundView);
+        this._registerView(this.searchRecentlyView);
+    }
+
+    _registerView(view) {
+        this.view.push(view);
     }
 
     render() {
@@ -18,8 +29,32 @@ class SearchView {
                         this.searchInputView.render() + 
                         this.searchAutocompletionView.render() + 
                         '</div>';
-                        
+
         document.querySelector(".wrap").insertAdjacentHTML('afterbegin', result);
+    }
+
+    onNotifyRenderFinished() {
+        this.view.forEach(element => {
+            element.onNotifyRenderFinished();
+        });
+    }
+
+    onNotifySuggestionChanged(suggestion) {
+        this.view.forEach(element => {
+            element.onNotifySuggestionChanged(suggestion);
+        });
+    }
+
+    onNotifyBackgroundClicked() {
+        this.view.forEach(element => {
+            element.onNotifyBackgroundClicked();
+        });
+    }
+
+    onNotifyListElementClicked(target) {
+        this.view.forEach(element => {
+            element.onNotifyListElementClicked(target);
+        });
     }
 }
 

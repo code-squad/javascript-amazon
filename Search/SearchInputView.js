@@ -1,5 +1,6 @@
 class SearchInputView {
     constructor() {
+        this.searchInputView = null;
     }
 
     render() {
@@ -11,6 +12,20 @@ class SearchInputView {
             </button>
         </div>
         `
+    }
+
+    onNotifyRenderFinished() {
+        this.searchInputView = document.querySelector(".searchInputField");
+    }
+
+    onNotifySuggestionChanged(suggestion) {
+    }
+
+    onNotifyBackgroundClicked() {
+    }
+
+    onNotifyListElementClicked(target) {
+        this.searchInputView.value = target.innerHTML;
     }
 }
 
