@@ -7,13 +7,13 @@ class SearchBar {
     constructor(searchList) {
         this.searchList = searchList;
         this.timer = null;
+        this.hitList = null;
     }
 
     // 참고: https://www.zerocho.com/category/JavaScript/post/59a8e9cb15ac0000182794fa
     inputEventListener(event) {
         const targetString = event.target.value;
 
-        console.log("input is called");
         if (this.timer) {
             clearTimeout(this.timer);
         }
@@ -30,13 +30,24 @@ class SearchBar {
         }.bind(this), 200);
     }
 
-    isArrow(keyCode) {
+    isArrowKeyCode(keyCode) {
         return keyCode === ARROW_UP || keyCode === ARROW_DOWN;
     }
 
+    shutDownSearchList() {
+        if (this.hitList === null) {
+            this.hitList = $(".hitlist-wrapper");
+        }
+
+        this.hitList.style.display = "none";
+    }
+
     isHitListOn() {
-        const hitListSytle = $(".hitlist-wrapper").style.display
-        return hitListSytle === "block";
+        if (this.hitList === null) {
+            this.hitList = $(".hitlist-wrapper");
+        }
+
+        return this.hitList.style.display === "block";
     }
 
 
@@ -49,8 +60,8 @@ class SearchBar {
             }
             parentNode[parentNode.length - 1].classList.add("selected-word");
             return;
-
         }
+
         toNode.classList.add("selected-word");
     }
 
@@ -62,9 +73,7 @@ class SearchBar {
         const selected = $(".hitlist-wrapper .selected-word");
         const liDOMS = [...$(".hitlist-wrapper ul").children];
 
-        console.log("selected is ", selected);
         if (!selected) {
-            console.log("First");
             liDOMS[0].classList.add("selected-word");
             return;
         }
@@ -81,7 +90,7 @@ class SearchBar {
 
     keyDownEventListener(event) {
         const { keyCode } = event;
-        if (this.isArrow(keyCode) === false) {
+        if (this.isArrowKeyCode(keyCode) === false) {
             return;
         }
 
@@ -97,7 +106,9 @@ class SearchBar {
 
     addInputEvent() {
         $('#search-bar-input').addEventListener('input', this.inputEventListener.bind(this));
-        $($('#search-bar-input').addEventListener('keydown', this.keyDownEventListener.bind(this)));
+        $('#search-bar-input').addEventListener('keydown', this.keyDownEventListener.bind(this));
+        $('.icon-wrapper').addEventListener("click", this.shutDownSearchList.bind(this));
+        $('body').addEventListener("click", this.shutDownSearchList.bind(this));
     }
 
     render() {
