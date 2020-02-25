@@ -31,7 +31,7 @@ class SearchList {
         this.initializeHTML();
 
         if (!liHTML) {
-            $('.hitlist-wrapper').insertAdjacentHTML("beforeend", "No Results Matched");
+            $('.hitlist-wrapper').insertAdjacentHTML("beforeend", "<ul><li>No Results Matched</li></ul>");
             return;
         }
 

@@ -34,7 +34,8 @@ class SearchBar {
     }
 
     render() {
-        return `<div class="search-bar-wrapper">
+        return `<div id="amazon-logo"></div>
+                <div class="search-bar-wrapper">
                     <div class="category-wrapper">
                         <div class="search-bar-category">
                             <select name="category">
@@ -58,7 +59,8 @@ class SearchBar {
                             <i class="fas fa-search"></i>
                         </div>
                     </div>
-                </div>`;
+                </div>
+                `;
     }
 }
 

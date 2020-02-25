@@ -1,5 +1,23 @@
 $width: 650px;
 
+#search-bar {
+    background-color: #232f3e;
+    display: flex;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#amazon-logo {
+    display: inline-block;
+    background-image: url(https://web.archive.org/web/20180717213726/https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-2x_optimized._CB474516457_.png);
+    background-position: -10px -51px;
+    background-size: 350px;
+    width: 97px;
+    height: 30px;
+    position: absolute;
+}
+
 .search-bar-wrapper {
     font-size: 0;
     margin: 0 auto;
@@ -21,6 +39,7 @@ $width: 650px;
         background: #2c3e50;
         overflow: hidden;
         font-size: 10px;
+
         select {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -35,6 +54,7 @@ $width: 650px;
             color: #000;
             cursor: pointer;
         }
+
         &::after {
             content: '\25BC';
             position: absolute;
@@ -48,6 +68,7 @@ $width: 650px;
             -o-transition: .25s all ease;
             transition: .25s all ease;
         }
+
         &:hover::after {
             color: #fff;
         }
@@ -57,6 +78,7 @@ $width: 650px;
 /*참고: https://codepen.io/AustinAuth/pen/iksxo*/
 .input-wrapper {
     position: relative;
+
     input {
         margin: 0 auto;
         width: 500px;
@@ -65,18 +87,22 @@ $width: 650px;
         font-size: 12px;
         border: 1px solid #D0CFCE;
         outline: none;
+
         &:focus{
             border: 1px solid #008ABF;
             transition: 0.35s ease;
             color: #008ABF;
+
             &::-webkit-input-placeholder{
             transition: opacity 0.45s ease; 
             opacity: 0;
             }
+
             &::-moz-placeholder {
             transition: opacity 0.45s ease; 
             opacity: 0;
             }
+
             &:-ms-placeholder {
             transition: opacity 0.45s ease; 
             opacity: 0;
@@ -90,6 +116,8 @@ $width: 650px;
         z-index: 100;
         background-color: #fff;
         width: 100%;
+        height: 300px;
+        overflow: scroll;
         border-right: 1px solid #000;
         border-left: 1px solid #000;
         border-bottom: 1px solid #000;
@@ -100,6 +128,7 @@ $width: 650px;
             margin-bottom: 10px;
             transition: background-color 0.1s linear;
             font-size: 17px;
+            
             &:hover{
                 background-color: #f9f7f4;
             }
@@ -109,8 +138,9 @@ $width: 650px;
 
 .icon-wrapper {
     float: right;
-    background-color: #febd69;
+    background-color: rgb(254, 189, 103);
     cursor: pointer;
+
     &:hover {
         background-color: rgba(254, 189, 105, 0.9);
     }
