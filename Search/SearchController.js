@@ -7,6 +7,7 @@ class SearchController {
 
         this.view.render();
         this.view.onNotifyRenderFinished();
+        
         this._appendEventHandler();
         this._appendBind();
     }
@@ -41,7 +42,6 @@ class SearchController {
             this.view.onNotifySearchButtonClicked();
         }
         else if (event.target === document.querySelector('.searchInputField')) {
-
         }
         else if (event.target === document.querySelector('.search')) {
         }
@@ -53,7 +53,7 @@ class SearchController {
     _fetchExtractedWords(inputFieldText) {
         const data = {userInputText: inputFieldText};
 
-        fetch('http://220.78.96.186:8080', {
+        fetch(SearchEnum.URL, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
