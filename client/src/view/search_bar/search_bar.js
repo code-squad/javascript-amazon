@@ -1,5 +1,12 @@
 import { $, $$ } from "../../util/util.js";
-import { URL, ARROW_UP, ARROW_DOWN, DIRECTION_UP, DIRECTION_DOWN } from "../../util/constants.js";
+import {
+    URL,
+    ARROW_UP,
+    ARROW_DOWN,
+    DIRECTION_UP,
+    DIRECTION_DOWN,
+    ENTER_KEY
+} from "../../util/constants.js";
 
 import css from "./search_bar.scss";
 
@@ -88,8 +95,34 @@ class SearchBar {
         this.giveSelectedWordToTarget(previousTarget, selected, liDOMS, DIRECTION_UP);
     }
 
+    movedSelectedWordToInputBox() {
+        const selected = $(".hitlist-wrapper .selected-word");
+
+        if (!selected) {
+            return;
+        }
+
+        const text = [...selected.querySelectorAll('span')]
+            .reduce((acc, spanTag) => {
+                acc += spanTag.innerHTML;
+                return acc;
+            }, "");
+
+        if (text === "") {
+            return;
+        }
+
+        $("#search-bar-input").value = text;
+    }
+
     keyDownEventListener(event) {
         const { keyCode } = event;
+
+        if (keyCode === ENTER_KEY) {
+            this.movedSelectedWordToInputBox();
+            return;
+        }
+
         if (this.isArrowKeyCode(keyCode) === false) {
             return;
         }
