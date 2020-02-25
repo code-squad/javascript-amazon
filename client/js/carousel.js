@@ -1,4 +1,4 @@
-class NavigationBar {
+class Carousel {
   constructor(setting) {
     this.slideAll = setting.slideAll;
     this.slideChildren = setting.slideChildren;
@@ -8,7 +8,7 @@ class NavigationBar {
     this.next = setting.next;
     this.nav = setting.nav;
 
-    this.navigationHandler();
+    this.buttonHandler();
   }
 
   moveSlides() {
@@ -19,30 +19,36 @@ class NavigationBar {
     this.slideAll.style.transition = transitionOption;
   }
 
-  navigationHandler() {
+  buttonHandler() {
     const width = 760;
     this.slideAll.style.transform = `translateX(${-width * this.currentIndex}px)`;
 
-    this.nav.forEach((el, index) => {
-      el.addEventListener("click", () => {
-        if (index + 1 === this.currentIndex) return;
-        this.currentIndex = index + 1;
-        this.moveSlides();
-      });
+    this.prev.addEventListener("click", () => {
+      console.log("prevvvv", this.currentIndex);
+      this.currentIndex--;
+      this.moveSlides();
+    });
+
+    this.next.addEventListener("click", () => {
+      console.log("nexttttt", this.currentIndex);
+      this.currentIndex++;
+      this.moveSlides();
     });
 
     this.slideAll.addEventListener("transitionend", () => {
-      if (this.slideChildren[this.currentIndex].className === "lastClone") {
+      if (this.currentIndex === 0) {
         this.slideAll.style.transition = "none";
-        this.currentIndex = this.slideChildren.length - 2;
+        this.currentIndex = 4;
+        console.log("", this.currentIndex);
         this.slideAll.style.transform = `translateX(${-width * this.currentIndex}px)`;
-      } else if (this.slideChildren[this.currentIndex].className === "firstClone") {
+      } else if (this.currentIndex === this.maxIndex - 1) {
         this.slideAll.style.transition = "none";
-        this.currentIndex = this.slideChildren.length - this.currentIndex;
+        this.currentIndex = 1;
+        console.log("", this.currentIndex);
         this.slideAll.style.transform = `translateX(${-width * this.currentIndex}px)`;
       }
     });
   }
 }
 
-export { NavigationBar };
+export { Carousel };

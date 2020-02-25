@@ -1,9 +1,11 @@
-import { setting } from "./slideSetting.js";
+import { setting } from "./config.js";
 import { NavigationBar } from "./navigationBar.js";
 import { Carousel } from "./carousel.js";
+import { fetchData } from "./fetchData.js";
 
 class Main {
   constructor() {
+    fetchData();
     this.run();
   }
 
