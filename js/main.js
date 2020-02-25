@@ -1,17 +1,33 @@
-import { OPTION_DATA } from './data.js';
-import DataAppend from './dataAppend.js';
-import Slide, { NavCard } from './slide.js';
+import { OPTION_DATA } from './optionData.js';
+import DataRender from './dataRender.js';
+import Slide from './slide.js';
+import NavCard from './navCard.js';
 
-function startSlideService() {
-    const dataAppend = new DataAppend();
-    dataAppend.setNav();
-    dataAppend.setSlide();
 
-    OPTION_DATA.slideOption.FIRST_ITEM_INDEX = Math.floor(Math.random() * OPTION_DATA.slideOption.ITEM_COUNT);
+function main() {
+    const realMadridData = localStorage.getItem('REAL-MADRID');
+    if (realMadridData) {
+        startSlideService(JSON.parse(realMadridData));
+    } else {
+        fetch("http://localhost:8080/json/localData.json")
+            .then(response => response.json())
+            .then(json => {
+                localStorage.setItem('REAL-MADRID', JSON.stringify(json));
+                startSlideService(json);
+            });
+    }
+}
 
-    const navCard = new NavCard(OPTION_DATA.slideOption);
-    const slide = new Slide(OPTION_DATA.slideOption, [navCard]);
+function startSlideService(data) {
+    const dataRender = new DataRender(data);
+    dataRender.setNav();
+    dataRender.setSlide();
+
+    OPTION_DATA.slideOption.CUR_ITEM = Math.floor(Math.random() * OPTION_DATA.slideOption.ITEM_COUNT);
+
+    const navCard = new NavCard();
+    const slide = new Slide([navCard]);
     slide.run();
 }
 
-startSlideService();
+main();
