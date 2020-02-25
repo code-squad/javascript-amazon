@@ -26,5 +26,7 @@ app.get('/', (req, res) => {
 app.get('/app', (req,res)=>{
     res.render('index')
 })
-
+app.get('/search', (req,res)=>{
+    res.render('search')
+})
 app.listen(8080);
