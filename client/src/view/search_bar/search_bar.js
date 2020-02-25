@@ -113,6 +113,7 @@ class SearchBar {
         }
 
         $("#search-bar-input").value = text;
+        this.shutDownSearchList();
     }
 
     keyDownEventListener(event) {
