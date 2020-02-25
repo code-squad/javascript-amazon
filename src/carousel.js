@@ -1,39 +1,9 @@
 class Slide {
-  constructor () {
+  constructor() {
     this.currentPosition = -900;
     this.DEFALT_POSITION = 900;
-    this.isPrev = false;
     this.cloneNodeLength = 2;
-    this.isTransition = false;
-    this.pageCard = {};
     this.slideIndex = 1;
-  }
-
-  clickPrevNext () {
-    if(!this.isTransition) {
-      this.countSlideIndex();
-      this.isTransition = true;
-      this.isPrev ? this.currentPosition += this.DEFALT_POSITION : this.currentPosition -= this.DEFALT_POSITION;
-
-      this.pageCard.setScale();
-      this.pageCard.addActiveLiClass(this.slideIndex - 1);
-      this.moveEventHooks(true);
-      this.setPosition();
-    }
-  }
-
-  countSlideIndex () {
-    if(this.isPrev) {
-      this.slideIndex--;
-    }else {
-      this.slideIndex++;
-    }
-
-    if(!this.slideIndex) {
-      this.slideIndex = 4;
-    }else if(this.slideIndex > 4) {
-      this.slideIndex = 1;
-    }
   }
 
   setPosition () {
@@ -46,49 +16,26 @@ class Slide {
     if(isLast) {
       this.currentPosition = this.DEFALT_POSITION * -1;
     }
-
-    $$._slideWrap.addEventListener('transitionend', () => this.moveEventHooks(false));
   }
 
-  moveEventHooks (isBeforeEvent) {
-    if(isBeforeEvent) {
-      $$._slideWrap.style.transition = `all 0.3s ease-in-out`;
-    }else {
-      $$._slideWrap.style.transition = 'none';
-      this.isTransition = false;
-    }
-
+  setBeforeMoveEvent () {
+    $$._slideWrap.style.transition = `all 0.3s ease-in-out`;
     $$._slideWrap.style.transform = `translate(${this.currentPosition}px, 0)`;
   }
 
-  setCard (card) {
-    this.pageCard = card;
-  }
+  setAfterMoveEvent (isTransition) {
+    $$._slideWrap.style.transition = 'none';
+    isTransition = false;
+    $$._slideWrap.style.transform = `translate(${this.currentPosition}px, 0)`;
 
-  cardClickRender (clickIdx) {
-    let beforeIdx = this.slideIndex - 1;
-
-    if(beforeIdx > clickIdx) {
-      this.currentPosition += this.DEFALT_POSITION * (beforeIdx - clickIdx);
-      this.slideIndex = clickIdx + 1;
-    }else if(beforeIdx < clickIdx) {
-      this.currentPosition -= this.DEFALT_POSITION * (clickIdx - beforeIdx);
-      this.slideIndex = clickIdx + 1;
-    }else {
-      return;
-    }
-
-    if(!this.isTransition) {
-      this.moveEventHooks(true);
-      this.setPosition();
-    }
+    return isTransition;
   }
 
   render () {
     let carouselDataHTML = '';
-    let myLocalStorage = localStorage.getItem("myJson");
+    let cardData = localStorage.getItem("cardList");
 
-    JSON.parse(myLocalStorage).cardList.forEach((ele) => {
+    JSON.parse(cardData).cardList.forEach((ele) => {
       carouselDataHTML +=
         `<li class="${ele.id}">
           <img src="https://kiyoesjh.github.io/amazon/images/${ele.imgURL}" alt="">
@@ -106,6 +53,38 @@ class Slide {
   }
 }
 
+class Button {
+  constructor() {
+    this.slideIndex = 1
+  }
+
+  clickPrev (opsition) {
+    let { currentPosition, DEFALT_POSITION } = opsition;
+    this.slideIndex--;
+    this.setSlideIndex();
+    currentPosition += DEFALT_POSITION;
+
+    return currentPosition;
+  }
+
+  clickNext (opsition) {
+    let { currentPosition, DEFALT_POSITION } = opsition;
+    this.slideIndex++;
+    this.setSlideIndex();
+    currentPosition -= DEFALT_POSITION;
+
+    return currentPosition;
+  }
+
+  setSlideIndex () {
+    if(!this.slideIndex) {
+      this.slideIndex = 4;
+    }else if(this.slideIndex > 4) {
+      this.slideIndex = 1;
+    }
+  }
+}
+
 class Card {
   constructor() {
     this.scale = 1.08;
@@ -119,5 +98,20 @@ class Card {
 
   addActiveLiClass (idx) {
     $$._pageNavi[idx].classList.add('active');
+  }
+
+  setClickCard (options) {
+    let { clickIndex, slideIndex, currentPosition, DEFALT_POSITION } = options;
+    let beforeIdx = slideIndex - 1;
+
+    if(beforeIdx > clickIndex) {
+      currentPosition += DEFALT_POSITION * (beforeIdx - clickIndex);
+      slideIndex = clickIndex + 1;
+    }else if(beforeIdx < clickIndex) {
+      currentPosition -= DEFALT_POSITION * (clickIndex - beforeIdx);
+      slideIndex = clickIndex + 1;
+    }
+
+    return [currentPosition, slideIndex];
   }
 }

@@ -1,8 +1,9 @@
 class EventController {
-  constructor(carousel, card) {
+  constructor(carousel, card, button) {
     this.carousel = carousel;
     this.card = card;
-    this.slideIndex = 1;
+    this.button = button;
+    this.isTransition = false;
   }
 
   setUpDom () {
@@ -14,46 +15,81 @@ class EventController {
     $$._pageNavi[0].classList.add('active');
   }
 
-  init () {
+  paintDom () {
     this.carousel.render();
     this.setUpDom();
-    this.slideMoveHandler();
-    this.carousel.setCard(this.card);
   }
 
   setLoad () {
-    $$._pageNavi.forEach((element, idx) => {
-      element.addEventListener('click', () => {
-        this.card.setScale();
-        this.card.addActiveLiClass(idx);
-        this.carousel.cardClickRender(idx);
-      });
-    });
-
-    if(!localStorage.getItem("myJson")) {
+    this.clickCardEventListener();
+    this.clickButtonEventListener();
+    if(!localStorage.getItem("cardList")) {
       const that = this;
       fetch('./localData.json')
       .then(function(response) {
         return response.json();
       })
-      .then(function(myJson) {
-        localStorage.setItem("myJson", JSON.stringify(myJson));
-        that.init();
+      .then(function(cardList) {
+        localStorage.setItem("cardList", JSON.stringify(cardList));
+        that.paintDom();
       });
 
       return;
     }
-    this.init();
+    this.paintDom();
   }
 
-  slideMoveHandler () {
-    $$._prevBtn.addEventListener('click', () => {
-      this.carousel.isPrev = true;
-      this.carousel.clickPrevNext();
+  clickCardEventHandler (idx) {
+    this.card.setScale();
+    this.card.addActiveLiClass(idx);
+
+    [this.carousel.currentPosition, this.button.slideIndex] = this.card.setClickCard({
+      clickIndex : idx,
+      slideIndex : this.button.slideIndex,
+      currentPosition : this.carousel.currentPosition,
+      DEFALT_POSITION : this.carousel.DEFALT_POSITION
     });
-    $$._nextBtn.addEventListener('click', () => {
-      this.carousel.isPrev = false;
-      this.carousel.clickPrevNext();
+
+    if(!this.isTransition) {
+      this.carousel.setBeforeMoveEvent(this.carousel.currentPosition);
+      this.carousel.setPosition();
+    }
+  }
+
+  clickCardEventListener () {
+    $$._pageNavi.forEach((element, idx) => {
+      element.addEventListener('click', () => this.clickCardEventHandler(idx));
     });
+  }
+
+  transitionEndListener () {
+    $$._slideWrap.addEventListener('transitionend', () => {
+      this.isTransition = this.carousel.setAfterMoveEvent(this.isTransition);
+    });
+  }
+
+  clickButtonEventHandler (isPrev) {
+    const options = {
+      currentPosition : this.carousel.currentPosition,
+      DEFALT_POSITION : this.carousel.DEFALT_POSITION
+    }
+    if(!this.isTransition) {
+      this.isTransition = true;
+      if(isPrev) {
+        this.carousel.currentPosition = this.button.clickPrev(options);
+      }else {
+        this.carousel.currentPosition = this.button.clickNext(options);
+      }
+      this.carousel.setBeforeMoveEvent(this.currentPosition);
+      this.carousel.setPosition();
+      this.card.setScale();
+      this.card.addActiveLiClass(this.button.slideIndex - 1);
+      this.transitionEndListener();
+    }
+  }
+
+  clickButtonEventListener () {
+    $$._prevBtn.addEventListener('click', () => this.clickButtonEventHandler(true));
+    $$._nextBtn.addEventListener('click', () => this.clickButtonEventHandler(false));
   }
 }
