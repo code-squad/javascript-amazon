@@ -1,0 +1,95 @@
+class EventController {
+  constructor(carousel, card, button) {
+    this.carousel = carousel;
+    this.card = card;
+    this.button = button;
+    this.isTransition = false;
+  }
+
+  setUpDom () {
+    const firstSlideClone = __.slideLi[0].cloneNode(true);
+    const lastSlideClone = __.slideLi[__.slideLi.length - 1].cloneNode(true);
+    __.slideWrap.prepend(lastSlideClone);
+    __.slideWrap.append(firstSlideClone);
+
+    __.pageNavi[0].classList.add('active');
+  }
+
+  renderDOM () {
+    this.carousel.render();
+    this.setUpDom();
+  }
+
+  setLoad () {
+    this.clickCardEventListener();
+    this.clickButtonEventListener();
+    if(!localStorage.getItem("cardList")) {
+      const render = this.renderDOM.bind(this);
+      fetch('./localData.json')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(cardList) {
+        localStorage.setItem("cardList", JSON.stringify(cardList));
+        render();
+      });
+
+      return;
+    }
+    this.renderDOM();
+  }
+
+  clickCardEventHandler (idx) {
+    this.card.setScale();
+    this.card.addActiveLiClass(idx);
+
+    [this.carousel.currentPosition, this.button.slideIndex] = this.card.setClickCard({
+      clickIndex : idx,
+      slideIndex : this.button.slideIndex,
+      currentPosition : this.carousel.currentPosition,
+      DEFALT_POSITION : this.carousel.DEFALT_POSITION
+    });
+
+    if(this.isTransition) return;
+
+    this.carousel.setBeforeMoveEvent(this.carousel.currentPosition);
+    this.carousel.setPosition();
+  }
+
+  clickCardEventListener () {
+    __.pageNavi.forEach((element, idx) => {
+      element.addEventListener('click', () => this.clickCardEventHandler(idx));
+    });
+  }
+
+  transitionEndListener () {
+    __.slideWrap.addEventListener('transitionend', () => {
+      this.isTransition = this.carousel.setAfterMoveEvent(this.isTransition);
+    });
+  }
+
+  clickButtonEventHandler (isPrev) {
+    const options = {
+      currentPosition : this.carousel.currentPosition,
+      DEFALT_POSITION : this.carousel.DEFALT_POSITION
+    }
+    if(!this.isTransition) {
+      this.isTransition = true;
+      if(isPrev) {
+        this.carousel.currentPosition = this.button.clickPrev(options);
+      }else {
+        this.carousel.currentPosition = this.button.clickNext(options);
+      }
+      this.carousel.setBeforeMoveEvent(this.currentPosition);
+      this.carousel.setPosition();
+      this.card.setScale();
+      this.card.addActiveLiClass(this.button.slideIndex - 1);
+      this.transitionEndListener();
+    }
+  }
+
+  clickButtonEventListener () {
+    __.prevBtn.addEventListener('click', () => this.clickButtonEventHandler(true));
+    __.nextBtn.addEventListener('click', () => this.clickButtonEventHandler(false));
+  }
+}

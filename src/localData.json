@@ -1,0 +1,50 @@
+{
+  "cardList" : [
+    {
+      "id" : "card1",
+      "title" : "Enjoy exclusive saving and rewards1",
+      "desc": [
+        "Save on groceries and get an additional 10% off select sale items in all US whole Food Market stores",
+        "Save 20% off diapers, baby food, and more",
+        "Earn 5% back at Amazon.com with the Amazon Prime Rewards Visa Card",
+        "Get exclusive deals and discounts and 30-minute early access to Lightning Deals"
+      ],
+      "imgURL" : "01.jpg"
+    },
+    {
+      "id" : "card2",
+      "title" : "Enjoy exclusive saving and rewards22",
+      "desc": [
+        "Save on groceries and get an additional 10% off select sale items in all US whole Food Market stores",
+        "Save 20% off diapers, baby food, and more",
+        "Earn 5% back at Amazon.com with the Amazon Prime Rewards Visa Card",
+        "Get exclusive deals and discounts and 30-minute early access to Lightning Deals",
+        "Get exclusive deals and discounts and 30-minute early access to Lightning Deals",
+        "Get exclusive deals and discounts and 30-minute early access to Lightning Deals"
+      ],
+      "imgURL" : "cat2.jpeg"
+    },
+    {
+      "id" : "card3",
+      "title" : "Enjoy exclusive saving and rewards333",
+      "desc": [
+        "Get exclusive deals and discounts and 30-minute early access to Lightning Deals",
+        "Save on groceries and get an additional 10% off select sale items in all US whole Food Market stores",
+        "Save 20% off diapers, baby food, and more",
+        "Earn 5% back at Amazon.com with the Amazon Prime Rewards Visa Card",
+        "Earn 5% back at Amazon.com with the Amazon Prime Rewards Visa Card"
+      ],
+      "imgURL" : "cat3.jpg"
+    },
+    {
+      "id" : "card4",
+      "title" : "Enjoy exclusive saving and rewards4444",
+      "desc": [
+        "Get exclusive deals and discounts and 30-minute early access to Lightning Deals",
+        "Save on groceries and get an additional 10% off select sale items in all US whole Food Market stores",
+        "Save 20% off diapers, baby food, and more"
+      ],
+      "imgURL" : "prime_img01.jpg"
+    }
+  ]
+}
