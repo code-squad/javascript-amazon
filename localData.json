@@ -1,0 +1,35 @@
+{  
+   "menuData" : [
+       "Fast, Free Delivery",
+       "Exclusive deals and offers",
+       "Prime Originals, movies and TV shows",
+       "Over 2 million song ad free"
+   ],
+   "contentData" : [{
+        "id" : "1",
+        "imgUrl" : "https://placedog.net/200/250?id=8",
+        "title" :"Enjoy exclusive savings and rewards",
+        "desc" :  ["Fast, Free Delivery",
+        "Exclusive deals and offers","Prime Originals, movies and TV shows","Over 2 million song ad free"]
+   },{
+        "id" : "2",
+        "imgUrl" : "https://placedog.net/200/250?id=12",
+        "title" :"Code Squad is awesome place",
+        "desc" :  ["Code, Feel JS",
+        "Do you want to be Front Engeneer?","Come to us Master,Good People","Waiting For you!"]
+   },{
+        "id" : "3",
+        "imgUrl" :"https://placedog.net/200/250?id=14",
+        "title" :"Learning With practice and enthusiastic people",
+        "desc" :  ["React to ur Mind",
+        "Es6 class is good for you","We will find answer","As we've done so far"]
+   },{
+        "id" : "4",
+        "imgUrl" : "https://placedog.net/200/250?id=15",
+        "title" :"Watching Dog makes inner-peace",
+        "desc" :  ["It was hard Day.",
+        "Do you feel exhausted?","Come to Our good puppy","puppy would be with you"]
+    }
+  ]
+}
+ 

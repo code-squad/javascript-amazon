@@ -1,59 +1,71 @@
-const menuNav =document.querySelector('.menu__list');
-const carouselSlider = document.querySelector('.carousel__container') 
-const prevBtn = document.querySelector('.carousel__button--prev');
-const nextBtn = document.querySelector('.carousel__button--next');
-
-const menuList = Array.from(menuNav.children);
-const menuListWidth = menuList[0].getBoundingClientRect().width;
-
-const sliderList = Array.from(carouselSlider.children);
-const sliderListWidth= sliderList[0].getBoundingClientRect().width;
-
-
-let targetIndex;
-
 class Carousel {
-    constructor(targetIndex) {
-        this.targetIndex = targetIndex;
-        this.moveCarouselMenu(this.targetIndex);
+    constructor (menuData,contentData) {
+        this.menuData=menuData;
+        this.contentData=contentData;
+        this.makingMenuList();
+        this.makingSlider();
         this.btnHandler();
+        this.count = 0;
     }
-    moveCarouselTarget =(index)=>{
-        carouselSlider.style.transform = `translateX(-${sliderListWidth*index}px)`;
+    changeLocation (element,index) {
+        this.count = index;
+        const width = element.children[0].getBoundingClientRect().width;
+        element.style.transform = `translateX(${-this.count*width}px)`;
     }
-    moveCarouselMenu =(targetIndex)=>{ 
-        this.moveMenuItem(targetIndex);
-        menuList.forEach((li,index)=>{
-            li.addEventListener('click',()=>{ 
-                this.moveMenuItem(index)
-                this.moveCarouselTarget(index);
-            }); 
-        });
+    scaleMenu (element,index) {
+        this.count = index;
+        Array.from(element.parentNode.children).forEach((element)=>element.style.transform=`scale(0.99)`)
+        element.parentNode.children[this.count].style.transform = 'scale(1.1)';
     }
-    moveMenuItem = (targetIndex)=>{
-        menuList.forEach((item)=>{
-            item.style.transform='scale(1)';
+    btnHandler () {
+        const left =document.querySelector('div.carousel__button--prev');
+        const right =document.querySelector('div.carousel__button--next');
+        [left,right].forEach((btn,index)=>{
+            btn.addEventListener('click',()=>{
+                index === 0 ? this.count-- : this.count++;
+                if (this.count >3) this.count =0;
+                if (this.count<0)  this.count =3;
+                const el = document.querySelector('.carousel__container');
+                this.changeLocation(el,this.count);
+                this.scaleMenu(document.querySelector('.menu__list>li'),this.count);
+            });
         })
-        menuList[targetIndex].style.transform = 'scale(1.1)';
-    }   
-    btnHandler() {
-        prevBtn.addEventListener('click',(e)=>{
-            this.targetIndex--;
-            if (this.targetIndex <0) this.targetIndex=3;
-            this.moveCarouselTarget(this.targetIndex);
-            this.moveMenuItem(this.targetIndex); 
+    }
+    makingMenuList () {
+        const menuConatiner=document.querySelector('.menu__list')
+        this.menuData.forEach((data)=>{
+            menuConatiner.innerHTML +=`
+            <li><a href='#'>${data}</a></li>`
         })
-        nextBtn.addEventListener('click',(e)=>{
-            this.targetIndex++; 
-            if (this.targetIndex>3) this.targetIndex=0;
-            this.moveCarouselTarget(this.targetIndex)
-            this.moveMenuItem(this.targetIndex)
+        Array.from(menuConatiner.children).forEach((li,index)=>{
+            li.addEventListener('click',()=>{
+                this.scaleMenu(li,index);
+                this.changeLocation(document.querySelector('.carousel__container'),index);
+            })
         })
+    }
+    makingSlider () {
+        const carouselContainer = document.querySelector('.carousel__container');
+            carouselContainer.innerHTML=this.contentData.map((data,index)=>`              
+                <div class='carousel__contents'>
+                    <div class='carousel__text'>
+                        <ul>
+                            <h3>${data.title}</h3>
+                            ${data.desc.map((desc)=>`<li>${desc}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class='carousel__img'>
+                        <img src=${data.imgUrl} />
+                    </div>
+                </div>`).join('');
     }
 }
-window.addEventListener('DOMContentLoaded',(e)=>{
-    targetIndex=Math.floor(Math.random()*menuList.length);
-    carouselSlider.style.transform=`translateX(-${sliderListWidth*targetIndex}px)`;
-    menuList[targetIndex].style.transform ='scale(1.1)';  
-    new Carousel(targetIndex);
-})
+
+window.addEventListener('DOMContentLoaded',()=>{
+    fetch('./localData.json')
+    .then((data)=>data.json())
+    .then((data)=>{
+        const {menuData,contentData}=data;
+        const carousel=new Carousel(menuData,contentData);
+    })
+});
