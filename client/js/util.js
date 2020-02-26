@@ -1,10 +1,10 @@
-const cssTransform = (target, width, currentIndex) => {
+const setTransform = (target, width, currentIndex) => {
   let transformOption = `translateX(${-width * currentIndex}px)`;
   target.style.transform = transformOption;
 };
 
-const cssTransition = (target, option) => {
+const setTransition = (target, option) => {
   target.style.transition = option;
 };
 
-export { cssTransform, cssTransition };
+export { setTransform, setTransition };
