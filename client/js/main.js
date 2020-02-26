@@ -1,5 +1,4 @@
-import { EventHandler } from "./eventHandler.js";
-import { CarouselMovement } from "./carouselMovement.js";
+import { Carousel } from "./carousel.js";
 import { TemplateData } from "./templateData.js";
 
 const carousel = { slideAll: document.querySelector(".slider") };
@@ -17,8 +16,7 @@ const run = () => {
       const templateData = new TemplateData(mockData);
     })
     .then(() => {
-      // const carouselMovement = new CarouselMovement(config);
-      const eventHandler = new EventHandler(config);
+      const carousel = new Carousel(config);
     });
 };
 

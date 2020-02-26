@@ -1,17 +1,13 @@
-import { CarouselMovement } from "./carouselMovement.js";
 import { cssTransform, cssTransition } from "./util.js";
 
-class EventHandler {
+class Carousel {
   constructor(config) {
-    this.carouselMovement = new CarouselMovement(config);
     this.config = config;
     this.slideAll = config.slideAll;
     this.width = config.MAX_PANEL_SIZE;
     this.currentIndex = config.START_CAROUSEL_INDEX;
     this.isMoveFinished = config.isMoveFinished;
     this.nav = document.querySelectorAll(".slide-navigation > li");
-    console.log("nnav", this.nav);
-
     this.init();
   }
 
@@ -25,17 +21,41 @@ class EventHandler {
     cssTransition(this.slideAll, option);
   }
 
+  clickEvent(index) {
+    if (this.isMoveFinished === false) return;
+    this.isMoveFinished = false;
+
+    const transitionOption = `transform 0.4s ease-in-out`;
+    let prevIndex = this.currentIndex - 1;
+    let nextIndex = this.currentIndex + 1;
+    this.currentIndex = index === 0 ? prevIndex : nextIndex;
+    this.moveSlides(transitionOption);
+  }
+
+  transitionendEvent() {
+    const transitionOption = "none";
+    const minIndex = this.config.START_CAROUSEL_INDEX;
+    const maxIndex = this.config.MAX_CAROUSEL_SIZE;
+
+    if (this.currentIndex === minIndex - 1) {
+      this.currentIndex = maxIndex - 1;
+      this.moveSlides(transitionOption);
+    } else if (this.currentIndex === maxIndex) {
+      this.currentIndex = minIndex;
+      this.moveSlides(transitionOption);
+    }
+    this.isMoveFinished = true;
+  }
+
   buttonHandler() {
     const buttons = this.config.buttons;
     cssTransform(this.slideAll, this.currentIndex, this.width);
 
     buttons.forEach((element, index) => {
-      element.addEventListener("click", () => this.carouselMovement.clickEvent(index));
+      element.addEventListener("click", () => this.clickEvent(index));
     });
 
-    this.slideAll.addEventListener("transitionend", () =>
-      this.carouselMovement.transitionendEvent()
-    );
+    this.slideAll.addEventListener("transitionend", () => this.transitionendEvent());
   }
 
   navigationHandler() {
@@ -46,11 +66,10 @@ class EventHandler {
       el.addEventListener("click", () => {
         if (index + 1 === this.currentIndex) return;
         this.currentIndex = index + 1;
-        console.log("index", this.currentIndex);
         this.moveSlides(transitionOption);
       });
     });
   }
 }
 
-export { EventHandler };
+export { Carousel };
