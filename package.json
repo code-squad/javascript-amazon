@@ -1,0 +1,27 @@
+{
+  "name": "javascript-amazon",
+  "version": "1.0.0",
+  "description": "![image](https://user-images.githubusercontent.com/30427711/74309139-5b9e3f80-4dad-11ea-82d3-1b1991534711.png)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/choisohyun/javascript-amazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/choisohyun/javascript-amazon/issues"
+  },
+  "homepage": "https://github.com/choisohyun/javascript-amazon#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
