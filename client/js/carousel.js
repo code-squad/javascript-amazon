@@ -1,4 +1,4 @@
-import { cssTransform, cssTransition } from "./util.js";
+import { setTransform, setTransition } from "./util.js";
 
 class Carousel {
   constructor(config) {
@@ -17,8 +17,8 @@ class Carousel {
   }
 
   moveSlides(option) {
-    cssTransform(this.slideAll, this.currentIndex, this.width);
-    cssTransition(this.slideAll, option);
+    setTransform(this.slideAll, this.currentIndex, this.width);
+    setTransition(this.slideAll, option);
   }
 
   clickEvent(index) {
@@ -49,7 +49,7 @@ class Carousel {
 
   buttonHandler() {
     const buttons = this.config.buttons;
-    cssTransform(this.slideAll, this.currentIndex, this.width);
+    setTransform(this.slideAll, this.currentIndex, this.width);
 
     buttons.forEach((element, index) => {
       element.addEventListener("click", () => this.clickEvent(index));
@@ -60,7 +60,7 @@ class Carousel {
 
   navigationHandler() {
     const transitionOption = `transform 0.4s ease-in-out`;
-    cssTransform(this.slideAll, this.currentIndex, this.width);
+    setTransform(this.slideAll, this.currentIndex, this.width);
 
     this.nav.forEach((el, index) => {
       el.addEventListener("click", () => {
