@@ -1,4 +1,4 @@
-let library = {
+let util = {
   $: function(name) {
     return document.querySelector(name);
   },
@@ -10,4 +10,4 @@ let library = {
   }
 };
 
-export default library;
+export default util;
