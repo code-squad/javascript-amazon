@@ -29,5 +29,6 @@ export default class Carousel {
 
     this.navigation.onClickEventHandler();
     this.buttons.onClickEventHandler();
+    this.cards.onTransitionEndHandler(1);
   }
 }

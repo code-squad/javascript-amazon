@@ -1,8 +1,12 @@
+import { $querySelector, $addListener } from "../util.js";
+
 export default class Cards {
   constructor(data, width) {
     this.name = "cards";
     this.data = data;
     this.cardWidth = width;
+    this.slideAnimMediator = null;
+    this.elements = null;
   }
 
   render() {
@@ -21,5 +25,31 @@ export default class Cards {
       `${cardWidth}` +
       `px);">${cards}</div></div>`
     );
+  }
+
+  move(index) {
+    const { elements: cardList, cardWidth } = this;
+    cardList.style.transform = "translateX(" + `${-cardWidth * index}` + "px)";
+  }
+
+  onTransitionEndHandler(index) {
+    this.elements = $querySelector(".card-list");
+    const { slideAnimMediator, elements: cardList } = this;
+    const cards = cardList.children;
+    const that = this;
+    $addListener(cardList, "transitionend", () => {
+      if (cards[index].classList.contains("first")) {
+        cardList.style.transition = "none";
+        index = cards.length - 2;
+        that.move(index);
+        slideAnimMediator.updateCardIndex(index);
+      } else if (cards[index].classList.contains("last")) {
+        cardList.style.transition = "none";
+        index = 1;
+        that.move(index);
+        slideAnimMediator.updateCardIndex(index);
+      }
+    });
+    cardList.style.transition = "transform .5s ease-in-out";
   }
 }
