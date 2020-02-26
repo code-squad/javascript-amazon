@@ -18,10 +18,9 @@ class SearchList {
         const targetLength = this.targetString.length;
 
         const liHTML = hitList && hitList.reduce((htmlTemplates, title) => {
-            htmlTemplates += `<li><span class="target-word">${title.substring(0, targetLength)}</span><span>${title.substring(targetLength)}</span></li>`
+            htmlTemplates += `<li class="search-list-word"><span class="target-word">${title.substring(0, targetLength)}</span><span class="rest-word">${title.substring(targetLength)}</span></li>`
             return htmlTemplates;
         }, "");
-
         this.render(liHTML);
     }
 
@@ -35,11 +34,10 @@ class SearchList {
         this.initializeHTML();
 
         if (!liHTML) {
-            $('.hitlist-wrapper').insertAdjacentHTML("beforeend", "<ul><li>No Results Matched</li></ul>");
+            $('.hitlist-wrapper').insertAdjacentHTML("beforeend", `<ul class="search-list-words"><li class="search-list-word">No Results Matched</li></ul>`);
             return;
         }
-
-        const searchListHTML = `<ul>${liHTML}</ul>`;
+        const searchListHTML = `<ul class="search-list-words">${liHTML}</ul>`;
         $('.hitlist-wrapper').insertAdjacentHTML("beforeend", searchListHTML);
     }
 }

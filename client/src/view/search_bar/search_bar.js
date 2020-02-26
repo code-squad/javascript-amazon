@@ -44,7 +44,20 @@ class SearchBar {
         return keyCode === ARROW_UP || keyCode === ARROW_DOWN;
     }
 
-    shutDownSearchList(event) {
+    isSearchListArea(target) {
+        const inspectionClassList = ["hitlist-wrapper", "search-list-words", "search-list-word", "target-word", "rest-word"];
+        return inspectionClassList.some(inspectionCandidate => target.classList.contains(inspectionCandidate));
+    }
+
+    clickAnywereElse(event) {
+        const { target } = event;
+        if (this.isSearchListArea(target)) {
+            return;
+        }
+        this.shutDownSearchList();
+    }
+
+    shutDownSearchList() {
         if (this.hitList === null) {
             this.hitList = $(".hitlist-wrapper");
         }
@@ -160,7 +173,7 @@ class SearchBar {
         $('#search-bar-input').addEventListener('input', this.inputEventListener.bind(this));
         $('#search-bar-input').addEventListener('keydown', this.keyDownEventListener.bind(this));
         $('.icon-wrapper').addEventListener("click", this.shutDownSearchList.bind(this));
-        $('body').addEventListener("click", this.shutDownSearchList.bind(this));
+        $('body').addEventListener("click", this.clickAnywereElse.bind(this));
     }
 
     render() {
