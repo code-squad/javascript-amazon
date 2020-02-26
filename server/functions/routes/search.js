@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const titleData = require("../public/json/title_data.json");
+const titleData = require("../assets/title_data.json");
 
 router.get('/:target', function (req, res, next) {
     const { target } = req.params;
