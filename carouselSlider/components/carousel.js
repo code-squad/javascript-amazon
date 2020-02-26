@@ -1,6 +1,6 @@
-import Navigation from "./navigation.js";
-import Cards from "./cards.js";
-import Buttons from "./buttons.js";
+import Navigation from "./navigation.js.js";
+import Cards from "./cards.js.js";
+import Buttons from "./buttons.js.js";
 import SlideAnimationMediator from "../slideAnimationMediator.js";
 
 export default class Carousel {
