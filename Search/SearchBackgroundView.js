@@ -27,8 +27,12 @@ class SearchBackgroundView {
         this._changeVisibility("hidden");
     }
 
-    onNotifyListElementClicked(target) {
+    onNotifyListElementSelected(text) {
         this._changeVisibility("hidden");
+    }
+
+    onNotifyCurrentIndexChanged(currentIndex) {
+        
     }
 }
 

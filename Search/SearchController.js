@@ -17,10 +17,12 @@ class SearchController {
 
         search.addEventListener('input', event => this._handleInputEvent(event));
         search.addEventListener('click', event => this._handleClickEvent(event));
+        search.addEventListener('keydown', event => this._handleKeyEvent(event));
     }
 
     _appendBind() {
         this.model.bindSuggestionChanged(this.onSuggestionChanged.bind(this));
+        this.model.bindCurrentIndexChanged(this.onCurrentIndexChanged.bind(this));
     }
 
     _handleInputEvent(event) {
@@ -46,7 +48,22 @@ class SearchController {
         else if (event.target === document.querySelector('.search')) {
         }
         else {
-            this.view.onNotifyListElementClicked(event.target);
+            this.view.onNotifyListElementSelected(event.target.innerHTML);
+        }
+    }
+
+    _handleKeyEvent(event) {
+        if (event.key === 'ArrowUp') {
+            this.model.decreaseCurrentIndex();
+            event.preventDefault();
+        }
+        else if (event.key === 'ArrowDown') {
+            this.model.increaseCurrentIndex();
+            event.preventDefault();
+        }
+        else if (event.key === 'Enter') {
+            const focusedElement = (document.querySelector(".searchSuggestion").querySelectorAll("li"))[this.model.getCurrentIndex()];
+            focusedElement.click();
         }
     }
     
@@ -74,6 +91,10 @@ class SearchController {
 
     onSuggestionChanged(extractedWords) {
         this.view.onNotifySuggestionChanged(extractedWords);
+    }
+
+    onCurrentIndexChanged(currentIndex) {
+        this.view.onNotifyCurrentIndexChanged(currentIndex);
     }
 }
 

@@ -14,7 +14,10 @@ class SearchRecentlyView {
     onNotifyBackgroundClicked() {
     }
 
-    onNotifyListElementClicked(target) {
+    onNotifyListElementSelected(text) {
+    }
+
+    onNotifyCurrentIndexChanged(currentIndex) {
     }
 }
 

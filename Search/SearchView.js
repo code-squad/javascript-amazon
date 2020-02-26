@@ -51,9 +51,15 @@ class SearchView {
         });
     }
 
-    onNotifyListElementClicked(target) {
+    onNotifyListElementSelected(text, index = null) {
         this.view.forEach(element => {
-            element.onNotifyListElementClicked(target);
+            element.onNotifyListElementSelected(text);
+        });
+    }
+
+    onNotifyCurrentIndexChanged(currentIndex) {
+        this.view.forEach(element => {
+            element.onNotifyCurrentIndexChanged(currentIndex);
         });
     }
 }

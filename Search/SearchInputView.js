@@ -24,8 +24,11 @@ class SearchInputView {
     onNotifyBackgroundClicked() {
     }
 
-    onNotifyListElementClicked(target) {
-        this.searchInputView.value = target.innerHTML;
+    onNotifyListElementSelected(text) {
+        this.searchInputView.value = text;
+    }
+
+    onNotifyCurrentIndexChanged(currentIndex) {
     }
 }
 

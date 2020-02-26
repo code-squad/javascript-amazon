@@ -51,8 +51,23 @@ class SearchAutoCompletionView {
         this._changeVisibility("hidden");
     }
 
-    onNotifyListElementClicked(target) {
+    onNotifyListElementSelected(target) {
         this._changeVisibility("hidden");
+    }
+
+    onNotifyCurrentIndexChanged(currentIndex) {
+        let listElements = this.searchSuggestion.querySelectorAll("li");
+
+        if (currentIndex !== null) {
+            listElements.forEach((element, index) => {
+                element.className = currentIndex === index ? 'selected' : '';
+            });
+        }
+        else {
+            listElements.forEach((element, index) => {
+                element.className = '';
+            });
+        }
     }
 }
 
