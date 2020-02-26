@@ -7,10 +7,11 @@ const SearchList = function () {
 SearchList.prototype = {
     constructor: SearchList,
 
-    renderList(data) {
+    renderList(data, input = "") {
         let temp = "";
         data.forEach(word => {
-            temp += `<li>${word}</li>`
+            const restWord = word.substr(input.length);
+            temp += `<li><span style="color:#F90;">${input}</span>${restWord}</li>`
         });
         this.searchResult.innerHTML = temp;
         this.searchResultOn();

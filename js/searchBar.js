@@ -39,12 +39,11 @@ SearchBar.prototype = {
             .then(rep => rep.json())
             .then(json => {
                 if (json.length > 0) {
-                    classAdd(this.serachBlind, "on");
-                    this.searchList.renderList(json);
+                    this.searchList.renderList(json, input);
                 } else {
-                    classRemove(this.serachBlind, "on");
-                    this.searchList.searchResultOff();
+                    this.searchList.renderList(["결과가 없습니다."]);
                 }
+                classAdd(this.serachBlind, "on");
             });
     },
 
