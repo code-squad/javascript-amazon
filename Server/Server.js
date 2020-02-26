@@ -5,6 +5,12 @@ const app = express();
 const fs = require('fs');
 const data = fs.readFileSync('localData.json', 'utf8');
 const words = require('./words.js').words;
+const https = require('https');
+
+const options = {
+	key: fs.readFileSync('./ello.dlinkddns.com-key.pem'),
+	cert: fs.readFileSync('./ello.dlinkddns.com-crt.pem')
+};
 
 app.use(cors());
 app.use(express.json());
@@ -21,7 +27,9 @@ app.post('/', function(req, res) {
     res.send(suggestionData);
 });
 
-app.listen(port, () => console.log(`App listening on port ${port}!`));
+https.createServer(options, app).listen(port, function(){
+    console.log(`App listening on port ${port}!`)
+});
 
 function extractSuggestionWord(userInputText) {
     const extractedWords = [];
