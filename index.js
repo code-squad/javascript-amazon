@@ -1,4 +1,4 @@
-import { $qs } from "./util.js";
+import { $querySelector } from "./util.js";
 import Carousel from "./components/carousel.js";
 
 const CARD_WIDTH = 1080;
@@ -20,7 +20,7 @@ const fetchData = () => {
 
 const renderSlider = data => {
   const carouselSlider = new Carousel(data, CARD_WIDTH);
-  $qs("#carousel-slider").innerHTML = carouselSlider.render();
+  $querySelector("#carousel-slider").innerHTML = carouselSlider.render();
   carouselSlider.activateSlideAnimation();
 };
 

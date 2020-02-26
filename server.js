@@ -6,7 +6,7 @@ const path = require("path");
 
 const PORT = 8080;
 const PATH_SLIDER = "/amazon/slider.json";
-const JSON_PATH_SLIDER = "json-data.json";
+const JSON_PATH_SLIDER = "jsonData.json";
 
 const app = express();
 

@@ -1,6 +1,6 @@
-const $qs = target => document.querySelector(target);
-const $qsa = target => document.querySelectorAll(target);
-const $ael = (target, type, listener, options) =>
+const $querySelector = target => document.querySelector(target);
+const $querySelectorAll = target => document.querySelectorAll(target);
+const $addListener = (target, type, listener, options) =>
   target.addEventListener(type, listener, options);
 
-export { $qs, $qsa, $ael };
+export { $querySelector, $querySelectorAll, $addListener };

@@ -1,24 +1,24 @@
-import { $qs, $ael } from "./util.js";
+import { $querySelector, $addListener } from "./util.js";
 
 export default function() {
   const components = {};
 
-  const cardList = $qs(".card-list");
+  const cardList = $querySelector(".card-list");
   const cards = cardList.children;
 
   let navIdx = 0;
   let cardIdx = 1;
 
-  const register = function(comp) {
-    components[comp.name] = comp;
-    comp.slideAnimMediator = this;
+  const registerComponent = function(component) {
+    components[component.name] = component;
+    component.slideAnimMediator = this;
   };
 
-  const slide = function(comp, index) {
-    _updateState(comp, index);
+  const processSlideAnimation = function(component, index) {
+    _updateState(component, index);
     components.navigation.update(navIdx);
     _moveCardList();
-    $ael(cardList, "transitionend", () => {
+    $addListener(cardList, "transitionend", () => {
       if (cards[cardIdx].classList.contains("first")) {
         cardList.style.transition = "none";
         cardIdx = cards.length - 2;
@@ -31,16 +31,16 @@ export default function() {
     });
   };
 
-  const _updateState = function(comp, index) {
-    if (comp === "button") {
-      _updateState_btn(index);
-    } else if (comp === "navigation") {
-      _updateState_nav(index);
+  const _updateState = function(component, index) {
+    if (component === "button") {
+      _updateStateBtn(index);
+    } else if (component === "navigation") {
+      _updateStateNav(index);
     }
     cardList.style.transition = "transform .5s ease-in-out";
   };
 
-  const _updateState_btn = function(index) {
+  const _updateStateBtn = function(index) {
     const navElements = components.navigation.elements;
     if (index === 0) {
       cardIdx -= 1;
@@ -51,7 +51,7 @@ export default function() {
     }
   };
 
-  const _updateState_nav = function(index) {
+  const _updateStateNav = function(index) {
     cardIdx = index + 1;
     navIdx = index;
   };
@@ -63,7 +63,7 @@ export default function() {
   };
 
   return {
-    register: register,
-    slide: slide
+    register: registerComponent,
+    slide: processSlideAnimation
   };
 }
