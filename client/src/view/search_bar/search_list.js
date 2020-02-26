@@ -1,9 +1,10 @@
 import Model from "./model.js";
 import { $ } from "../../util/util.js";
+import { SCROLL_TOP_START } from "../../util/constants.js";
 
 class SearchList {
     constructor() {
-        this.model = new Model(this.onChanges.bind(this));
+        this.model = new Model(this.onInput.bind(this));
         this.targetString = "";
     }
 
@@ -12,7 +13,7 @@ class SearchList {
         this.model.titles = titles;
     }
 
-    onChanges(titles) {
+    onInput(titles) {
         const { hitList } = titles;
         const targetLength = this.targetString.length;
 
@@ -27,7 +28,7 @@ class SearchList {
     initializeHTML() {
         $('.hitlist-wrapper').style.display = "block";
         $('.hitlist-wrapper').innerHTML = "";
-        $('.hitlist-wrapper').scrollTop = 0;
+        $('.hitlist-wrapper').scrollTop = SCROLL_TOP_START;
     }
 
     render(liHTML) {
@@ -38,8 +39,8 @@ class SearchList {
             return;
         }
 
-        const text = `<ul>${liHTML}</ul>`;
-        $('.hitlist-wrapper').insertAdjacentHTML("beforeend", text);
+        const searchListHTML = `<ul>${liHTML}</ul>`;
+        $('.hitlist-wrapper').insertAdjacentHTML("beforeend", searchListHTML);
     }
 }
 

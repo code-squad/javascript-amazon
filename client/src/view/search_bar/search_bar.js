@@ -5,7 +5,10 @@ import {
     ARROW_DOWN,
     DIRECTION_UP,
     DIRECTION_DOWN,
-    ENTER_KEY
+    ENTER_KEY,
+    ONE_SCROLL_UNIT,
+    SCROLL_TOP_START,
+    SCROLL_BOTTOM_END
 } from "../../util/constants.js";
 
 import css from "./search_bar.scss";
@@ -60,14 +63,15 @@ class SearchBar {
 
     giveSelectedWordToTarget(toNode, fromNode, parentNode, direction) {
         fromNode.classList.remove("selected-word");
+
         if (toNode === null) {
             if (direction === DIRECTION_DOWN) {
                 parentNode[0].classList.add("selected-word");
-                $('.hitlist-wrapper').scrollTop = 0;
+                $('.hitlist-wrapper').scrollTop = SCROLL_TOP_START;
                 return;
             }
             parentNode[parentNode.length - 1].classList.add("selected-word");
-            $('.hitlist-wrapper').scrollTop = 1500;
+            $('.hitlist-wrapper').scrollTop = SCROLL_BOTTOM_END;
             return;
         }
 
@@ -78,10 +82,10 @@ class SearchBar {
         const hitList = $('.hitlist-wrapper');
         const scorllDistanceFromTop = hitList.scrollTop;
         if (direction === DIRECTION_DOWN) {
-            hitList.scrollTop = scorllDistanceFromTop + 20;
+            hitList.scrollTop = scorllDistanceFromTop + ONE_SCROLL_UNIT;
             return;
         }
-        hitList.scrollTop = scorllDistanceFromTop - 20;
+        hitList.scrollTop = scorllDistanceFromTop - ONE_SCROLL_UNIT;
     }
 
     handleKeyMovement(arrowDirection) {
@@ -116,17 +120,17 @@ class SearchBar {
             return;
         }
 
-        const text = [...selected.querySelectorAll('span')]
+        const selectedWord = [...selected.querySelectorAll('span')]
             .reduce((acc, spanTag) => {
                 acc += spanTag.innerHTML;
                 return acc;
             }, "");
 
-        if (text === "") {
+        if (selectedWord === "") {
             return;
         }
 
-        $("#search-bar-input").value = text;
+        $("#search-bar-input").value = selectedWord;
         this.shutDownSearchList();
     }
 
