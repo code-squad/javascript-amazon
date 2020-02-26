@@ -63,9 +63,11 @@ class Carousel {
     setTransform(this.slideAll, this.currentIndex, this.width);
 
     this.nav.forEach((el, index) => {
+      let nextIndex = index + 1;
+
       el.addEventListener("click", () => {
-        if (index + 1 === this.currentIndex) return;
-        this.currentIndex = index + 1;
+        if (nextIndex === this.currentIndex) return;
+        this.currentIndex = nextIndex;
         this.moveSlides(transitionOption);
       });
     });
