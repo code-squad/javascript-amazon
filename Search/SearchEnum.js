@@ -1,5 +1,5 @@
 const SEARCH_ENUM = {
-    URL: 'http://220.78.96.186:8080',
+    URL: 'https://ello.dlinkddns.com:8080',
 }
 
 export default SEARCH_ENUM;
