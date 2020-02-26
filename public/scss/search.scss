@@ -1,0 +1,18 @@
+@import 'reset';
+
+#search {
+    position: relative;
+    width: 600px;
+    margin: 100px auto;
+    button {
+        position: absolute;
+        top:0;
+        right:0;
+        width:40px;
+        height:40px;
+        color:#fff;
+        border:0;
+        border-radius: 4px;
+        background:#febd68;
+    }
+}
