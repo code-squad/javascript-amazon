@@ -1,0 +1,57 @@
+html,
+body,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  line-height: 0; }
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+input,
+textarea:focus {
+  outline: none; }
+
+html,
+body {
+  height: 100%;
+  font-family: "Helevtica"; }
+
+html body div.wrap {
+  display: flex;
+  height: 100%;
+  transform: translateY(-30%);
+  justify-content: center;
+  align-items: center; }
+  html body div.wrap div.search {
+    display: flex;
+    width: 30%;
+    min-width: 300px;
+    height: 3rem;
+    background-color: #fff;
+    border-radius: 3rem;
+    border: 1px solid #e0e0e0;
+    padding: 0.8rem;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    html body div.wrap div.search:hover {
+      box-shadow: 0 1px 3px rgba(106, 69, 69, 0.12), 0 1px 6px rgba(0, 0, 0, 0.24); }
+    html body div.wrap div.search input,
+    html body div.wrap div.search button {
+      height: 100%; }
+    html body div.wrap div.search input.search-input {
+      width: 0px;
+      margin-left: 2rem;
+      margin-right: 1rem;
+      flex: 1 100px;
+      font-size: 1.5rem; }
+    html body div.wrap div.search button.search-btn {
+      flex: 0 3rem;
+      margin-right: -1.5rem; }
+      html body div.wrap div.search button.search-btn .material-icons.md-36 {
+        font-size: 36px;
+        color: #888; }

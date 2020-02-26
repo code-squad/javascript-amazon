@@ -1,0 +1,27 @@
+html,
+body,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  line-height: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input,
+textarea:focus {
+  outline: none;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: "Helevtica";
+}

@@ -1,0 +1,50 @@
+@import "./reset.scss";
+
+$white: #fff;
+$light-gray: #e0e0e0;
+$gray: #888;
+
+html {
+  body {
+    div.wrap {
+      display: flex;
+      height: 100%;
+      transform: translateY(-30%);
+      justify-content: center;
+      align-items: center;
+      div.search {
+        display: flex;
+        width: 30%;
+        min-width: 300px;
+        height: 3rem;
+        background-color: $white;
+        border-radius: 3rem;
+        border: 1px solid $light-gray;
+        padding: 0.8rem;
+        transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        &:hover {
+          box-shadow: 0 1px 3px rgba(106, 69, 69, 0.12), 0 1px 6px rgba(0, 0, 0, 0.24);
+        }
+        input,
+        button {
+          height: 100%;
+        }
+        input.search-input {
+          width: 0px;
+          margin-left: 2rem;
+          margin-right: 1rem;
+          flex: 1 100px;
+          font-size: 1.5rem;
+        }
+        button.search-btn {
+          flex: 0 3rem;
+          margin-right: -1.5rem;
+          .material-icons.md-36 {
+            font-size: 36px;
+            color: $gray;
+          }
+        }
+      }
+    }
+  }
+}
