@@ -169,11 +169,50 @@ class SearchBar {
         }
     }
 
+    handleMouseClickLiTag(inputBox, target) {
+        inputBox.value = [...target.querySelectorAll('span')]
+            .reduce((acc, spanTag) => {
+                acc += spanTag.innerHTML;
+                return acc;
+            }, "");
+    }
+
+    changeInputValue(event) {
+        if (this.isHitListOn() === false) {
+            return;
+        }
+        const { target } = event;
+
+        if (target.classList.contains("search-list-words") || target.classList.contains("hitlist-wrapper")) {
+            return;
+        }
+
+        const inputBox = $("#search-bar-input");
+
+        if (target.classList.contains("search-list-word")) {
+            if (target.innerHTML === "No Results Matched") {
+                return;
+            }
+            this.handleMouseClickLiTag(inputBox, target);
+        }
+
+        if (target.classList.contains("target-word")) {
+            inputBox.value = target.innerHTML + target.nextSibling.innerHTML;
+        }
+
+        if (target.classList.contains("rest-word")) {
+            inputBox.value = target.previousSibling.innerHTML + target.innerHTML;
+        }
+
+        this.shutDownSearchList();
+    }
+
     addInputEvent() {
         $('#search-bar-input').addEventListener('input', this.inputEventListener.bind(this));
         $('#search-bar-input').addEventListener('keydown', this.keyDownEventListener.bind(this));
         $('.icon-wrapper').addEventListener("click", this.shutDownSearchList.bind(this));
         $('body').addEventListener("click", this.clickAnywereElse.bind(this));
+        $(".hitlist-wrapper").addEventListener("click", this.changeInputValue.bind(this));
     }
 
     render() {

@@ -149,6 +149,10 @@ $width: 650px;
             margin-bottom: 10px;
             transition: background-color 0.1s linear;
             font-size: 17px;
+
+            &:hover{
+                cursor:pointer;
+            }
         }
     }
 }
