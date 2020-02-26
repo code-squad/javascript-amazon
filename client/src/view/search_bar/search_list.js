@@ -25,9 +25,7 @@ class SearchList {
     }
 
     initializeHTML() {
-        $('.hitlist-wrapper').style.display = "block";
-        $('.hitlist-wrapper').innerHTML = "";
-        $('.hitlist-wrapper').scrollTop = SCROLL_TOP_START;
+        $('.hitlist-wrapper').show().html('').setScrollTop(SCROLL_TOP_START);
     }
 
     render(liHTML) {

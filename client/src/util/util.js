@@ -17,6 +17,6 @@ Element.prototype.html = function (innerHTML) {
 }
 
 Element.prototype.setScrollTop = function (scrollUnit) {
-    this.style.scrollTop = scrollUnit;
+    this.scrollTop = scrollUnit;
     return this;
 }

@@ -29,7 +29,7 @@ class SearchBar {
         }
 
         if (targetString === "") {
-            $(".hitlist-wrapper").style.display = "none";
+            $(".hitlist-wrapper").hide();
             return;
         }
 
@@ -62,7 +62,7 @@ class SearchBar {
             this.hitList = $(".hitlist-wrapper");
         }
 
-        this.hitList.style.display = "none";
+        this.hitList.hide();
     }
 
     isHitListOn() {
@@ -70,7 +70,7 @@ class SearchBar {
             this.hitList = $(".hitlist-wrapper");
         }
 
-        return this.hitList.style.display === "block";
+        return this.hitList.show();
     }
 
 
@@ -80,11 +80,11 @@ class SearchBar {
         if (toNode === null) {
             if (direction === DIRECTION_DOWN) {
                 parentNode[0].classList.add("selected-word");
-                $('.hitlist-wrapper').scrollTop = SCROLL_TOP_START;
+                $('.hitlist-wrapper').setScrollTop(SCROLL_TOP_START);
                 return;
             }
             parentNode[parentNode.length - 1].classList.add("selected-word");
-            $('.hitlist-wrapper').scrollTop = SCROLL_BOTTOM_END;
+            $('.hitlist-wrapper').setScrollTop(SCROLL_BOTTOM_END);
             return;
         }
 
@@ -94,11 +94,12 @@ class SearchBar {
     scrollUpAndDown(direction) {
         const hitList = $('.hitlist-wrapper');
         const scorllDistanceFromTop = hitList.scrollTop;
+
         if (direction === DIRECTION_DOWN) {
-            hitList.scrollTop = scorllDistanceFromTop + ONE_SCROLL_UNIT;
+            hitList.setScrollTop(scorllDistanceFromTop + ONE_SCROLL_UNIT);
             return;
         }
-        hitList.scrollTop = scorllDistanceFromTop - ONE_SCROLL_UNIT;
+        hitList.setScrollTop(scorllDistanceFromTop - ONE_SCROLL_UNIT);
     }
 
     handleKeyMovement(arrowDirection) {
