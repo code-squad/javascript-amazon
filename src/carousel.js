@@ -3,14 +3,13 @@ class Slide {
     this.currentPosition = -900;
     this.DEFALT_POSITION = 900;
     this.cloneNodeLength = 2;
-    this.slideIndex = 1;
   }
 
   setPosition () {
-    const isLast = this.currentPosition === -($$._slideLi.length - 1) * this.DEFALT_POSITION;
+    const isLast = this.currentPosition === -(__.slideLi.length - 1) * this.DEFALT_POSITION;
 
     if(!this.currentPosition) {
-      this.currentPosition = -1 * this.DEFALT_POSITION * ($$._slideLi.length - this.cloneNodeLength);
+      this.currentPosition = -1 * this.DEFALT_POSITION * (__.slideLi.length - this.cloneNodeLength);
     }
 
     if(isLast) {
@@ -19,14 +18,14 @@ class Slide {
   }
 
   setBeforeMoveEvent () {
-    $$._slideWrap.style.transition = `all 0.3s ease-in-out`;
-    $$._slideWrap.style.transform = `translate(${this.currentPosition}px, 0)`;
+    __.slideWrap.style.transition = `all 0.3s ease-in-out`;
+    __.slideWrap.style.transform = `translate(${this.currentPosition}px, 0)`;
   }
 
   setAfterMoveEvent (isTransition) {
-    $$._slideWrap.style.transition = 'none';
+    __.slideWrap.style.transition = 'none';
     isTransition = false;
-    $$._slideWrap.style.transform = `translate(${this.currentPosition}px, 0)`;
+    __.slideWrap.style.transform = `translate(${this.currentPosition}px, 0)`;
 
     return isTransition;
   }
@@ -49,7 +48,7 @@ class Slide {
           </div>
         </li>`;
     });
-    $$._slideWrap.innerHTML = carouselDataHTML;
+    __.slideWrap.innerHTML = carouselDataHTML;
   }
 }
 
@@ -58,8 +57,7 @@ class Button {
     this.slideIndex = 1
   }
 
-  clickPrev (opsition) {
-    let { currentPosition, DEFALT_POSITION } = opsition;
+  clickPrev ({ currentPosition, DEFALT_POSITION }) {
     this.slideIndex--;
     this.setSlideIndex();
     currentPosition += DEFALT_POSITION;
@@ -67,8 +65,7 @@ class Button {
     return currentPosition;
   }
 
-  clickNext (opsition) {
-    let { currentPosition, DEFALT_POSITION } = opsition;
+  clickNext ({ currentPosition, DEFALT_POSITION }) {
     this.slideIndex++;
     this.setSlideIndex();
     currentPosition -= DEFALT_POSITION;
@@ -91,17 +88,16 @@ class Card {
   }
 
   setScale () {
-    $$._pageNavi.forEach((element) => {
+    __.pageNavi.forEach((element) => {
       element.classList.remove('active');
     });
   }
 
   addActiveLiClass (idx) {
-    $$._pageNavi[idx].classList.add('active');
+    __.pageNavi[idx].classList.add('active');
   }
 
-  setClickCard (options) {
-    let { clickIndex, slideIndex, currentPosition, DEFALT_POSITION } = options;
+  setClickCard ({ clickIndex, slideIndex, currentPosition, DEFALT_POSITION }) {
     let beforeIdx = slideIndex - 1;
 
     if(beforeIdx > clickIndex) {

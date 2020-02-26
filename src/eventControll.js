@@ -7,15 +7,15 @@ class EventController {
   }
 
   setUpDom () {
-    const firstSlideClone = $$._slideLi[0].cloneNode(true);
-    const lastSlideClone = $$._slideLi[$$._slideLi.length - 1].cloneNode(true);
-    $$._slideWrap.prepend(lastSlideClone);
-    $$._slideWrap.append(firstSlideClone);
+    const firstSlideClone = __.slideLi[0].cloneNode(true);
+    const lastSlideClone = __.slideLi[__.slideLi.length - 1].cloneNode(true);
+    __.slideWrap.prepend(lastSlideClone);
+    __.slideWrap.append(firstSlideClone);
 
-    $$._pageNavi[0].classList.add('active');
+    __.pageNavi[0].classList.add('active');
   }
 
-  paintDom () {
+  renderDOM () {
     this.carousel.render();
     this.setUpDom();
   }
@@ -24,19 +24,19 @@ class EventController {
     this.clickCardEventListener();
     this.clickButtonEventListener();
     if(!localStorage.getItem("cardList")) {
-      const that = this;
+      const render = this.renderDOM.bind(this);
       fetch('./localData.json')
       .then(function(response) {
         return response.json();
       })
       .then(function(cardList) {
         localStorage.setItem("cardList", JSON.stringify(cardList));
-        that.paintDom();
+        render();
       });
 
       return;
     }
-    this.paintDom();
+    this.renderDOM();
   }
 
   clickCardEventHandler (idx) {
@@ -50,20 +50,20 @@ class EventController {
       DEFALT_POSITION : this.carousel.DEFALT_POSITION
     });
 
-    if(!this.isTransition) {
-      this.carousel.setBeforeMoveEvent(this.carousel.currentPosition);
-      this.carousel.setPosition();
-    }
+    if(this.isTransition) return;
+
+    this.carousel.setBeforeMoveEvent(this.carousel.currentPosition);
+    this.carousel.setPosition();
   }
 
   clickCardEventListener () {
-    $$._pageNavi.forEach((element, idx) => {
+    __.pageNavi.forEach((element, idx) => {
       element.addEventListener('click', () => this.clickCardEventHandler(idx));
     });
   }
 
   transitionEndListener () {
-    $$._slideWrap.addEventListener('transitionend', () => {
+    __.slideWrap.addEventListener('transitionend', () => {
       this.isTransition = this.carousel.setAfterMoveEvent(this.isTransition);
     });
   }
@@ -89,7 +89,7 @@ class EventController {
   }
 
   clickButtonEventListener () {
-    $$._prevBtn.addEventListener('click', () => this.clickButtonEventHandler(true));
-    $$._nextBtn.addEventListener('click', () => this.clickButtonEventHandler(false));
+    __.prevBtn.addEventListener('click', () => this.clickButtonEventHandler(true));
+    __.nextBtn.addEventListener('click', () => this.clickButtonEventHandler(false));
   }
 }
