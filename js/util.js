@@ -5,3 +5,11 @@ export function $(target) {
 export function $$(target) {
     return document.querySelectorAll(target);
 }
+
+export function classAdd(target, className) {
+    target.classList.add(className);
+}
+
+export function classRemove(target, className) {
+    target.classList.remove(className);
+}
