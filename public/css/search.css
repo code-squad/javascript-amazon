@@ -194,3 +194,24 @@ select {
   border-radius: 4px;
   background: #febd68;
 }
+
+#search .keyword-list {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  width: 100%;
+}
+
+#search .keyword-list.open {
+  border: 1px solid #d5d2d2;
+}
+
+#search .keyword-list.open > div {
+  padding: 10px 20px;
+  background: #fff;
+}
+
+#search .keyword-list.open > div:hover {
+  font-weight: bold;
+  background: #f5f5f5;
+}
