@@ -31,7 +31,7 @@ class SearchBar {
         }
 
         this.timer = setTimeout(function () {
-            fetch(URL.DEV.API_SERVER_SEARCH.ADDRESS + targetString)
+            fetch(URL.PROD.API_SERVER_SEARCH.ADDRESS + targetString)
                 .then(res => res.json())
                 .then(titles => this.searchList.setTargetTitle(targetString, titles));
         }.bind(this), 200);
@@ -41,7 +41,7 @@ class SearchBar {
         return keyCode === ARROW_UP || keyCode === ARROW_DOWN;
     }
 
-    shutDownSearchList() {
+    shutDownSearchList(event) {
         if (this.hitList === null) {
             this.hitList = $(".hitlist-wrapper");
         }

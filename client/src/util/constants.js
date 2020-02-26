@@ -8,8 +8,11 @@ export const URL = {
         }
     },
     PROD: {
-        API_SERVER: {
-            ADDRESS: "http://not_existed"
+        API_SERVER_CARD: {
+            ADDRESS: "https://ui-f5602.firebaseapp.com/cards"
+        },
+        API_SERVER_SEARCH: {
+            ADDRESS: "https://ui-f5602.firebaseapp.com/search/"
         }
     }
 }

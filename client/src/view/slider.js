@@ -34,7 +34,7 @@ class Slider {
     }
 
     fetchCardData() {
-        return fetch(URL.DEV.API_SERVER_CARD.ADDRESS)
+        return fetch(URL.PROD.API_SERVER_CARD.ADDRESS)
             .then(response => response.json())
             .then(cardData => {
                 this.cardData = cardData;
