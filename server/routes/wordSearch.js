@@ -4,15 +4,15 @@ const wordData = require('../public/json/wordData.json');
 
 router.post('/', function (req, res, next) {
     const input = req.body;
-    if (input === "") return;
-    console.log(input);
 
-    const result = wordData.words.reduce((acc, cur) => {
-        if (cur.startsWith(input)) {
-            acc.push(cur);
+    const result = [];
+    const maximum = 10;
+    for (let i = 0; i < wordData.words.length; i++) {
+        if (result.length >= maximum) break;
+        if (wordData.words[i].startsWith(input)) {
+            result.push(wordData.words[i]);
         }
-        return acc;
-    }, []);
+    }
     res.json(result);
 });
 

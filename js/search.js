@@ -5,9 +5,11 @@ let time;
 function init() {
     const input = $("input");
     input.addEventListener("input", function (evt) {
-        const input = evt.target.value;
         clearTimeout(time);
-        time = setTimeout(fetchTest, 300, input);
+        const input = evt.target.value;
+        if (input !== "") {
+            time = setTimeout(fetchTest, 300, input);
+        }
     });
 }
 
