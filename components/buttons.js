@@ -13,8 +13,15 @@ export default class Buttons {
 
   onClickEventHandler() {
     this.elements = $querySelectorAll(".prev, .next");
+    let clicked = false;
     this.elements.forEach((button, i) =>
-      $addListener(button, "click", () => this._requestSlideAnimation(i))
+      $addListener(button, "click", () => {
+        if (!clicked) {
+          clicked = true;
+          this._requestSlideAnimation(i);
+          setTimeout(() => (clicked = false), 600);
+        }
+      })
     );
   }
 
