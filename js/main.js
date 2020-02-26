@@ -3,6 +3,7 @@ import DataRender from './dataRender.js';
 import Slide from './slide.js';
 import NavCard from './navCard.js';
 import SearchBar from './searchBar.js';
+import SearchList from './searchList.js';
 
 function main() {
     const realMadridData = localStorage.getItem('REAL-MADRID');
@@ -27,12 +28,13 @@ function startSlideService(data) {
     options.slideOption.curItem = Math.floor(Math.random() * options.slideOption.itemsCount);
 
     const navCard = new NavCard();
-    const slide = new Slide([navCard]);
+    const slide = new Slide(navCard);
     slide.run();
 }
 
 function startSeachBarSevice() {
-    const searchBar = new SearchBar();
+    const searchList = new SearchList();
+    const searchBar = new SearchBar(searchList);
     searchBar.run();
 }
 

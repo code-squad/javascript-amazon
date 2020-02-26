@@ -1,9 +1,9 @@
 import { $, classAdd, classRemove } from './util.js';
 
-const SearchBar = function (serachList) {
+const SearchBar = function (searchList) {
     this.searchBar = $(".search-bar");
-    this.searchInput = $(".search-input");
     this.serachBlind = $(".search-blind");
+    this.searchList = searchList;
     this.timer = null;
 }
 
@@ -17,12 +17,14 @@ SearchBar.prototype = {
     searchInputFocusout() {
         classRemove(this.searchBar, "on");
         classRemove(this.serachBlind, "on");
+        this.searchList.searchResultOff();
     },
 
     serachInputInsertData(evt) {
         clearTimeout(this.timer);
         const input = evt.target.value;
         if (input === "") {
+            this.searchList.searchResultOff();
             classRemove(this.serachBlind, "on");
         } else {
             this.timer = setTimeout(this.wordDataRequest.bind(this), 300, input);
@@ -38,17 +40,19 @@ SearchBar.prototype = {
             .then(json => {
                 if (json.length > 0) {
                     classAdd(this.serachBlind, "on");
-                    console.log(json);
+                    this.searchList.renderList(json);
                 } else {
                     classRemove(this.serachBlind, "on");
+                    this.searchList.searchResultOff();
                 }
             });
     },
 
     run() {
-        this.searchInput.addEventListener("focus", this.searchInputFocus.bind(this));
-        this.searchInput.addEventListener("focusout", this.searchInputFocusout.bind(this));
-        this.searchInput.addEventListener("input", this.serachInputInsertData.bind(this));
+        const searchInput = $(".search-input");
+        searchInput.addEventListener("focus", this.searchInputFocus.bind(this));
+        searchInput.addEventListener("focusout", this.searchInputFocusout.bind(this));
+        searchInput.addEventListener("input", this.serachInputInsertData.bind(this));
     }
 }
 

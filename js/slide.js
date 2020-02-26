@@ -4,11 +4,11 @@ import { $ } from './util.js';
 const { slideOption: option } = options;
 
 class Slide {
-    constructor(addOn) {
+    constructor(navCard) {
         this.slideWrap = $(".slide-item-wrap");
         this.maxItemIndex = option.itemsCount - 1;
         this.autoSlideTime = option.audoSlideInterval;
-        this.addOnList = addOn;
+        this.navCard = navCard;
         this.isSliding = false;
         this.init();
     }
@@ -24,11 +24,11 @@ class Slide {
         this.slideAnimOn();
         if (this.itemPositionCheck(option.curItem, isNextBtn)) {
             option.curItem = isNextBtn ? 0 : this.maxItemIndex;
-            this.addOnList.forEach(obj => obj.run({ curItem: isNextBtn ? option.curItem : this.maxItemIndex, prevItem: isNextBtn ? this.maxItemIndex : 0 }));
+            this.navCard.run({ curItem: isNextBtn ? option.curItem : this.maxItemIndex, prevItem: isNextBtn ? this.maxItemIndex : 0 });
             this.moveSlideWrap(isNextBtn ? this.maxItemIndex + 1 : -1);
         } else {
             isNextBtn ? option.curItem++ : option.curItem--;
-            this.addOnList.forEach(obj => obj.run({ curItem: option.curItem, prevItem: isNextBtn ? option.curItem - 1 : option.curItem + 1 }));
+            this.navCard.run({ curItem: option.curItem, prevItem: isNextBtn ? option.curItem - 1 : option.curItem + 1 });
             this.moveSlideWrap(option.curItem);
         }
     }
