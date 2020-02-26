@@ -28,10 +28,12 @@ class SearchController {
     _handleInputEvent(event) {
         if (event.target === document.querySelector('.searchInputField')) {
             if (0 === event.target.value.length) {
+                this.model.setCurrentText(event.target.value)
                 this.model.setSuggestion([]);
             }
             else {
-                this._fetchExtractedWords(event.target.value);    
+                this.model.setCurrentText(event.target.value)
+                this._fetchExtractedWords(event.target.value);
             }
         }
     }
@@ -80,13 +82,18 @@ class SearchController {
             body: JSON.stringify(data)
         })
         .then(response => response.json())
-        .then(extractedWords => {
-            this._onExtractedWordsReceived(extractedWords)
+        .then(suggestionData => {
+            setTimeout(() => {
+                this._onExtractedWordsReceived(suggestionData)
+            }, 300);
         });
     }
 
-    _onExtractedWordsReceived(extractedWords) {
-        this.model.setSuggestion(extractedWords);
+    _onExtractedWordsReceived(suggestionData) {
+        if (this.model.getCurrentText() !== suggestionData.userInputText) 
+            return;
+
+        this.model.setSuggestion(suggestionData.suggestionList);
     }
 
     onSuggestionChanged(extractedWords) {

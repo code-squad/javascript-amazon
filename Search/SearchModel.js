@@ -4,9 +4,18 @@ class SearchModel {
     constructor() {
         this._suggestion = [];
         this._currentIndex = null;
+        this._currentText = '';
 
         this._onSuggestionChanged = null;
         this._onCurrentIndexChanged = null;
+    }
+
+    setCurrentText(text) {
+        this._currentText = text;
+    }
+
+    getCurrentText() {
+        return this._currentText;
     }
 
     setSuggestion(suggestion) {

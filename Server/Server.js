@@ -14,7 +14,11 @@ app.get('/', (req, res) => res.send(data));
 app.post('/', function(req, res) {
     const extractedWords = extractSuggestionWord(req.body.userInputText);
     extractedWords.reverse();
-    res.send(extractedWords);
+    const suggestionData = {
+        userInputText: req.body.userInputText,
+        suggestionList: extractedWords
+    };
+    res.send(suggestionData);
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
