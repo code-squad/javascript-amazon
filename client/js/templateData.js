@@ -11,74 +11,70 @@ class TemplateData {
   }
 
   addNavTitle() {
+    let navButtons = ``;
+
     this.cardList.forEach(element => {
-      const title = element.title;
-
-      const newLi = document.createElement("li");
-      const newBtn = document.createElement("button");
-      newBtn.type = "button";
-      const newTitle = document.createTextNode(title);
-
-      newLi.appendChild(newBtn);
-      newBtn.appendChild(newTitle);
-
-      const current = document.querySelector(".slide-navigation");
-      current.appendChild(newLi);
+      navButtons += `<li><button type="button">${element.title}</button></li>`;
     });
+
+    const slideNav = document.querySelector(".slide-navigation");
+    slideNav.innerHTML = navButtons;
   }
 
   addSlide() {
+    let slides = ``;
+
     this.cardList.forEach(element => {
       const img = element.image;
       const header = element.header;
       const sentence = element.contents;
 
-      const current = document.querySelector(".slider");
-
-      const newLi = document.createElement("li");
-      const newImgWrap = document.createElement("div");
-      newImgWrap.className = "img-wrap";
-
-      const newImg = document.createElement("img");
-      newImg.setAttribute("src", img);
-
-      const newContentsWrap = document.createElement("div");
-      newContentsWrap.className = "contents-wrap";
-
-      const newHeader = document.createElement("h2");
-      const newTitle = document.createTextNode(header);
-
-      const sentenceUl = document.createElement("ul");
-      const sentenceLi = document.createElement("li");
-      const newSentence = document.createTextNode(sentence);
-
-      newLi.appendChild(newImgWrap);
-      newImgWrap.appendChild(newImg);
-
-      newContentsWrap.appendChild(newHeader);
-      newHeader.appendChild(newTitle);
-
-      current.appendChild(newLi);
-      newLi.appendChild(newContentsWrap);
-
-      sentenceUl.appendChild(sentenceLi);
-      sentenceLi.appendChild(newSentence);
-
-      newContentsWrap.appendChild(sentenceUl);
+      slides += `
+      <li>
+        ${this.addImgWrap(img)}
+        ${this.addContentsWrap(header, sentence)}
+      </li>`;
     });
+
+    const sliderWrap = document.querySelector(".slider");
+    sliderWrap.innerHTML = slides;
+  }
+
+  addImgWrap(img) {
+    let imgWrap = `
+    <div class="img-wrap">
+      <img src="${img}">
+    </div>`;
+
+    return imgWrap;
+  }
+
+  addContentsWrap(header, sentences) {
+    let sentenceList = ``;
+    sentences.forEach(el => (sentenceList += `<li>${el}</li>`));
+
+    let contentsWrap = `
+    <div class="contents-wrap">
+      <h2>${header}</h2>
+      <ul>
+        ${sentenceList}
+      </ul>
+    </div>`;
+
+    return contentsWrap;
   }
 
   addDummySlide() {
-    const slides = document.querySelector(".slider");
+    const sliderWrap = document.querySelector(".slider");
 
-    let firstChild = slides.firstElementChild;
-    let lastChild = slides.lastElementChild;
+    let firstChild = sliderWrap.firstElementChild;
+    let lastChild = sliderWrap.lastElementChild;
 
     let clonedFirst = firstChild.cloneNode(true);
     let clonedLast = lastChild.cloneNode(true);
 
-    slides.appendChild(clonedFirst);
-    slides.insertBefore(clonedLast, slides.firstElementChild);
+    sliderWrap.appendChild(clonedFirst);
+    sliderWrap.insertBefore(clonedLast, sliderWrap.firstElementChild);
   }
 }
 
