@@ -7,12 +7,13 @@ const searchList = (el,arr) => {
     const inputValue = e => {
         const value = e.target.value;
         const result = [];
-        
-        arr.forEach(str => {
-            if (str.slice(0, value.length) === value) {
-                result.push(str);
-            }
-        });
+        if(value !== ''){
+            arr.forEach(str => {
+                if (str.slice(0, value.length) === value) {
+                    result.push(str);
+                }
+            });
+        };
         return createEl.innerHTML = result;
     };
 
