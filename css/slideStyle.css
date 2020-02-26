@@ -1,9 +1,13 @@
+.container {
+    position: relative;
+    padding-top: 60px;
+}
+
 .slide-wrap {
     position: relative;
     width: 1500px;
     height: 450px;
     margin: 0 auto;
-    top: 60px;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2);
 }
