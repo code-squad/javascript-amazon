@@ -7,7 +7,7 @@ Element.prototype.show = function () {
 }
 
 Element.prototype.hide = function () {
-    this.style.display = "hidden";
+    this.style.display = "none";
     return this;
 }
 

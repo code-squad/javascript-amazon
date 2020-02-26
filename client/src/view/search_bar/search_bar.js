@@ -22,21 +22,21 @@ class SearchBar {
 
     // 참고: https://www.zerocho.com/category/JavaScript/post/59a8e9cb15ac0000182794fa
     inputEventListener(event) {
-        const targetString = event.target.value;
+        const { target: { value } } = event;
 
         if (this.timer) {
             clearTimeout(this.timer);
         }
 
-        if (targetString === "") {
+        if (value === "") {
             $(".hitlist-wrapper").hide();
             return;
         }
 
         this.timer = setTimeout(function () {
-            fetch(URL.PROD.API_SERVER_SEARCH.ADDRESS + targetString)
+            fetch(URL.PROD.API_SERVER_SEARCH.ADDRESS + value)
                 .then(res => res.json())
-                .then(titles => this.searchList.setTargetTitle(targetString, titles));
+                .then(titles => this.searchList.setTargetTitle(value, titles));
         }.bind(this), 200);
     }
 
@@ -103,7 +103,7 @@ class SearchBar {
     }
 
     handleKeyMovement(arrowDirection) {
-        if (this.isHitListOn() === false) {
+        if (!this.isHitListOn()) {
             return;
         }
 
@@ -184,6 +184,10 @@ class SearchBar {
         }
         const { target } = event;
 
+        if (target.innerHTML === "No Results Matched") {
+            return;
+        }
+
         if (target.classList.contains("search-list-words") || target.classList.contains("hitlist-wrapper")) {
             return;
         }
@@ -191,9 +195,6 @@ class SearchBar {
         const inputBox = $("#search-bar-input");
 
         if (target.classList.contains("search-list-word")) {
-            if (target.innerHTML === "No Results Matched") {
-                return;
-            }
             this.handleMouseClickLiTag(inputBox, target);
         }
 
