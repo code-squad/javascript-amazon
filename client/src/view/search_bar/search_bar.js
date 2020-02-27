@@ -1,5 +1,5 @@
 import { $, $$ } from "../../util/util.js";
-import { URL, KEY_CODE, DIRECTION, SCROLL } from "../../util/constants.js";
+import { URL, KEY_CODE, DIRECTION, SCROLL, CSS_CLASS } from "../../util/constants.js";
 
 import css from "./search_bar.scss";
 
@@ -35,7 +35,7 @@ class SearchBar {
     }
 
     isSearchListArea(target) {
-        const inspectionClassList = ["hitlist-wrapper", "search-list-words", "search-list-word", "target-word", "rest-word"];
+        const inspectionClassList = Object.values(CSS_CLASS);
         return inspectionClassList.some(inspectionCandidate => target.classList.contains(inspectionCandidate));
     }
 

@@ -33,3 +33,11 @@ export const SCROLL = {
     BOTTOM_END: 1500,
     ONE_UNIT: 20
 }
+
+export const CSS_CLASS = {
+    SEARCH_BAR_DIV: 'hitlist-wrapper',
+    SEARCH_LIST_UL: 'search-list-words',
+    SEARCH_LIST_LI: 'search-list-word',
+    SEARCH_LIST_TARGET_WORD: 'target-word',
+    SEARCH_LIST_REST_WORD: 'rest-word'
+}
