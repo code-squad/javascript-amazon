@@ -15,22 +15,22 @@
 }
 .nav div:nth-child(1) {
   transform: scale(1.1);
-  background-color: tomato;
+  background-color: #00bfff;
 }
 
 .nav div:nth-child(2) {
   margin-left: 10px;
   margin-right: 5px;
-  background-color: lawngreen;
+  background-color: #ffb400;
 }
 
 .nav div:nth-child(3) {
   margin-left: 5px;
   margin-right: 10px;
-  background-color: teal;
+  background-color: #32b2b2;
 }
 .nav div:nth-child(4) {
-  background-color: cyan;
+  background-color: #ff46c5;
 }
 .nav_item {
   cursor: pointer;
@@ -51,38 +51,43 @@
 .carousel_slide {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-
   width: 5000px;
 }
-.item {
-  display: flex;
-  align-items: center;
-  width: 835px;
-  height: 300px;
-  background-color: palevioletred;
-}
 .carousel_slide img {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 .button_prev {
   position: absolute;
   z-index: 10;
   left: 10%;
-  top: 41%;
+  top: 24%;
   font-size: 30px;
-  color: black;
+  color: #111111;
   cursor: pointer;
 }
 .button_next {
   position: absolute;
   z-index: 10;
   right: 10%;
-  top: 41%;
+  top: 24%;
   font-size: 30px;
-  color: black;
+  color: #111111;
   cursor: pointer;
+}
+.item {
+  display: flex;
+
+  width: 835px;
+  height: 300px;
+}
+
+.item_text h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.item_text {
+  margin-left: 30px;
+  line-height: 1.5;
 }
