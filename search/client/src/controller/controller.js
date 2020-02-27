@@ -23,7 +23,7 @@ Controller.prototype = {
       const connectModel = async () => {
         try {
           await this.searchModel.fetchData(message);
-          await new autoCompleteView(this.searchModel.matchingItem);
+          await new autoCompleteView(this.searchModel.matchingItem, message);
         } catch (err) {
           console.log(err);
         }

@@ -1,5 +1,6 @@
-function autoCompleteView(autoCompleteData) {
+function autoCompleteView(autoCompleteData, inputValue) {
   this.autoCompleteData = autoCompleteData
+  this.inputValue = inputValue
 
   $('.autoList').innerHTML = this.render()
 }
@@ -8,7 +9,7 @@ function autoCompleteView(autoCompleteData) {
 autoCompleteView.prototype = {
   render() {
     const autoCompleteList = this.autoCompleteData.reduce((template, autoItem) => 
-    (template += `<li>${autoItem}</li>`) , "")
+    (template += `<li><span style="color: #42B883">${autoItem.substring(0, this.inputValue.length)}</span>${autoItem.substring(this.inputValue.length)}</li>`) , "")
     
     return  `<ul class="searchList">${autoCompleteList}</ul>`
   }
