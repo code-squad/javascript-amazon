@@ -1,6 +1,6 @@
 function Controller() {
   this.searchInput = $("#searchInput");
-  this.autoList = $(".autoList")
+  this.autoList = $(".autoList");
   this.searchModel = new SearchModel();
   this.init();
 }
@@ -19,7 +19,7 @@ Controller.prototype = {
     let pattern = /^[a-zA-Z]+$/;
     this.validateInput = message.length > 0 && pattern.test(message) === true;
     if (this.validateInput === true) {
-      this.autoList.style.display = 'block'
+      this.autoList.style.display = 'block';
       const connectModel = async () => {
         try {
           await this.searchModel.fetchData(message);
@@ -30,7 +30,7 @@ Controller.prototype = {
       };
       connectModel();
     } else {
-      this.autoList.style.display = 'none'
+      this.autoList.style.display = 'none';
     }
   }
 };
