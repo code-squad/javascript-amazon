@@ -22,28 +22,42 @@ class SearchController {
         this._view.render();
         this._view.onNotifyRenderFinished();
     }
+
+    _setLocalstorageData(text, suggestionList) {
+        localStorage.setItem(text, suggestionList);
+    }
    
     _fetchExtractedWords(inputFieldText) {
         const data = {userInputText: inputFieldText};
+        const cachedData = localStorage.getItem(inputFieldText);
 
-        fetch(SEARCH_AJAX_INFORMATION.URL, {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(suggestionData => {
+        if (cachedData) {
             setTimeout(() => {
-                this._onExtractedWordsReceived(suggestionData)
+                this._onExtractedWordsReceived(JSON.parse(cachedData))
             }, 300);
-        });
+        }
+        else {
+            fetch(SEARCH_AJAX_INFORMATION.URL, {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(suggestionData => {
+                setTimeout(() => {
+                    this._onExtractedWordsReceived(suggestionData)
+                }, 300);
+            });
+        }
     }
 
     _onExtractedWordsReceived(suggestionData) {
+        this._setLocalstorageData(suggestionData.userInputText, JSON.stringify(suggestionData));
+
         if (this._model.getCurrentText() !== suggestionData.userInputText) 
             return;
 
