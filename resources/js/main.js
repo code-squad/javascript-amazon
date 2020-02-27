@@ -33,9 +33,8 @@ window.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then(data => {
-        setTimeout(() => {
-          console.log(this.pickWord(str, data));
-        }, 300);
+        console.log(str);
+        // console.log(this.pickWord(str, data));
       });
     fn();
     // json 데이터를 가져오는 과정
@@ -52,9 +51,13 @@ window.addEventListener("DOMContentLoaded", () => {
   SearchController.prototype.initialize = function initialize() {
     const inputClass = ".search-input";
     const targetClassList = [".search", ".line", ".search-list"];
+    let timeout = null;
 
-    _$(inputClass).addEventListener("keypress", evt => {
-      this.inputCallback(evt, targetClassList);
+    _$(inputClass).addEventListener("input", evt => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        this.inputCallback(evt, targetClassList);
+      }, 300);
     });
 
     _$(inputClass).addEventListener("focusout", () => {
@@ -64,11 +67,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   SearchController.prototype.inputCallback = function inputCallback(evt, targetClassList) {
     const currentText = evt.target.value;
-
     if (!currentText) this.searchView.removeClass("active", targetClassList);
-    else this.searchView.addClass("active", targetClassList);
-
-    this.searchModel.getList(currentText, this.showList.bind(this));
+    else {
+      this.searchView.addClass("active", targetClassList);
+      this.searchModel.getList(currentText, this.showList.bind(this));
+    }
   };
 
   SearchController.prototype.showList = function showList(searchModelData) {
