@@ -1,13 +1,11 @@
 import util from "./util.js";
 
-const carouselSlide = util.$(".carousel_slide");
-
 class CarouselElement {
   constructor(carouselSlide) {
     this.carouselSlide = carouselSlide;
   }
 
-  createCarouselElement() {
+  createCarouselItemStructure() {
     const item = util.createElement("div");
     const itemImg = util.createElement("div");
     const img = util.createElement("img");
@@ -37,7 +35,6 @@ class CarouselElement {
 
   calculateCarouselSlideWidth() {
     const carouselItems = util.$$(".item");
-    console.log(carouselItems);
 
     const getdisappearPx = 2;
 
@@ -64,9 +61,9 @@ class CarouselElement {
     carouselItems[lastIndex].after(firstCloneNode);
   }
 
-  renderItems(localData) {
+  createCarouselElement(localData) {
     localData.carouselData.forEach(el => {
-      const carouselElement = this.createCarouselElement();
+      const carouselElement = this.createCarouselItemStructure();
 
       this.settingElementProperty(carouselElement, el);
       this.attachElement(carouselElement);
@@ -79,18 +76,6 @@ class CarouselElement {
     this.cloneCarouselItem();
     this.calculateCarouselSlideWidth();
   }
-
-  fetch(url) {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        this.renderItems(data);
-      });
-  }
-  render() {
-    this.fetch("http://localhost:8080/JSON/localData.json");
-  }
 }
 
-const test = new CarouselElement(carouselSlide);
-test.render();
+export default CarouselElement;
