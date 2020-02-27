@@ -4,73 +4,25 @@ const SEARCH_STATUS = SEARCH_ENUM.SEARCH_STATUS;
 
 class SearchController {
     constructor(model, view) {
+        this._currentStatus = SEARCH_STATUS.NORMAL;
+
         this._model = model;
         this._view = view;
 
+        this._view.appendHandler({
+            keyInputHandler: this._handleKeyInput.bind(this),
+            dimmedBackgroundClickHandler: this._handleDimmedBackgroundClick.bind(this),
+            suggestionClickHandler: this._handleSuggestionClick.bind(this),
+            searchButtonClickHandler: this._handleSearchButtonClick.bind(this),
+            arrowUpPressHandler: this._handleArrowUpPress.bind(this),
+            arrowDownPressHandler: this._handleArrowDownPress.bind(this),
+            suggestionEnterHandler: this._handleSuggestionEnter.bind(this),
+        });
+
         this._view.render();
         this._view.onNotifyRenderFinished();
-        
-        this._appendEventHandler();
-        this._appendBind();
     }
-
-    _appendEventHandler() {
-        const search = document.querySelector('.search');
-
-        search.addEventListener('input', event => this._handleInputEvent(event));
-        search.addEventListener('click', event => this._handleClickEvent(event));
-        search.addEventListener('keydown', event => this._handleKeyEvent(event));
-    }
-
-    _appendBind() {
-        this._model.bindSuggestionChanged(this.onSuggestionChanged.bind(this));
-        this._model.bindCurrentIndexChanged(this.onCurrentIndexChanged.bind(this));
-    }
-
-    _handleInputEvent(event) {
-        if (event.target === document.querySelector('.searchInputField')) {
-            if (0 === event.target.value.length) {
-                this._model.setCurrentText(event.target.value)
-                this._model.setSuggestion([]);
-            }
-            else {
-                this._model.setCurrentText(event.target.value)
-                this._fetchExtractedWords(event.target.value);
-            }
-        }
-    }
-
-    _handleClickEvent(event) {
-        if (event.target === document.querySelector('.searchBackground')) {
-            this._view.onNotifyBackgroundClicked();
-        }
-        else if (event.target === document.querySelector('.searchButton')) {
-            this._view.onNotifySearchButtonClicked();
-        }
-        else if (event.target === document.querySelector('.searchInputField')) {
-        }
-        else if (event.target === document.querySelector('.search')) {
-        }
-        else {
-            this._view.onNotifyListElementSelected(event.target.innerHTML);
-        }
-    }
-
-    _handleKeyEvent(event) {
-        if (event.key === 'ArrowUp') {
-            this._model.decreaseCurrentIndex();
-            event.preventDefault();
-        }
-        else if (event.key === 'ArrowDown') {
-            this._model.increaseCurrentIndex();
-            event.preventDefault();
-        }
-        else if (event.key === 'Enter') {
-            const focusedElement = (document.querySelector(".searchSuggestion").querySelectorAll("li"))[this._model.getCurrentIndex()];
-            focusedElement.click();
-        }
-    }
-    
+   
     _fetchExtractedWords(inputFieldText) {
         const data = {userInputText: inputFieldText};
 
@@ -95,15 +47,55 @@ class SearchController {
         if (this._model.getCurrentText() !== suggestionData.userInputText) 
             return;
 
+        if (suggestionData.suggestionList.length) {
             this._model.setSuggestion(suggestionData.suggestionList);
-    }
-
-    onSuggestionChanged(extractedWords) {
-        this._view.onNotifySuggestionChanged(extractedWords);
+            this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.AUTOCOMPLETION);
+        }
+        else {
+            this._model.setSuggestion({});
+            this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.NORMAL);
+        }
     }
 
     onCurrentIndexChanged(currentIndex) {
         this._view.onNotifyCurrentIndexChanged(currentIndex);
+    }
+
+    _handleDimmedBackgroundClick(event) {
+        this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.NORMAL);
+    }
+
+    _handleSuggestionClick(event) {
+        this._model.setCurrentText(event.target.innerHTML);
+        this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.NORMAL);
+    }
+
+    _handleSearchButtonClick(event) {
+    }
+
+    _handleArrowUpPress(event) {
+        this._model.decreaseCurrentIndex();
+    }
+
+    _handleArrowDownPress(event) {
+        this._model.increaseCurrentIndex();
+    }
+
+    _handleSuggestionEnter(event) {
+        const focusedElement = (document.querySelector(".searchSuggestion").querySelectorAll("li"))[this._model.getCurrentIndex()];
+        focusedElement.click();
+    }
+
+    _handleKeyInput(event) {
+        if (0 === event.target.value.length) {
+            this._model.setCurrentText(event.target.value)
+            this._model.setSuggestion([]);
+            this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.NORMAL);
+        }
+        else {
+            this._model.setCurrentText(event.target.value)
+            this._fetchExtractedWords(event.target.value);
+        }
     }
 }
 

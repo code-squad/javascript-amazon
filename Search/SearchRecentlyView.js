@@ -1,3 +1,6 @@
+import SEARCH_ENUM from "./SearchEnum.js";
+const SEARCH_STATUS = SEARCH_ENUM.SEARCH_STATUS;
+
 class SearchRecentlyView {
     constructor() {
     }
@@ -8,16 +11,13 @@ class SearchRecentlyView {
     onNotifyRenderFinished() {
     }
 
-    onNotifySuggestionChanged(suggestion) {
-    }
-
-    onNotifyBackgroundClicked() {
-    }
-
-    onNotifyListElementSelected(text) {
-    }
-
     onNotifyCurrentIndexChanged(currentIndex) {
+    }
+
+    onNotifyRecentSearchChanged(listElements) {
+    }
+
+    onNotifyCurrentStatusChanged(currentStatus) {
     }
 }
 

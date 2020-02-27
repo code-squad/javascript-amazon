@@ -1,17 +1,17 @@
 import SearchEnum from "./SearchEnum.js";
 
 class SearchModel {
-    constructor() {
+    constructor(view) {
+        this._view = view;
         this._suggestion = [];
         this._currentIndex = null;
         this._currentText = '';
-
-        this._onSuggestionChanged = null;
-        this._onCurrentIndexChanged = null;
     }
 
     setCurrentText(text) {
         this._currentText = text;
+
+        this._view.onNotifyCurrentTextChanged(text);
     }
 
     getCurrentText() {
@@ -21,15 +21,12 @@ class SearchModel {
     setSuggestion(suggestion) {
         this._clearCurrentIndex();
         this._suggestion = suggestion;
-        this._onSuggestionChanged(this._suggestion);
+
+        this._view.onNotifySuggestionListChanged(suggestion);
     }
 
     getSuggestion() {
         return this._suggestion;
-    }
-
-    bindSuggestionChanged(callback) {
-        this._onSuggestionChanged = callback;
     }
 
     getCurrentIndex() {
@@ -47,7 +44,7 @@ class SearchModel {
             this._currentIndex = null;
         }
 
-        this._onCurrentIndexChanged(this._currentIndex);
+        this._view.onNotifyCurrentIndexChanged(this._currentIndex);
     }
 
     decreaseCurrentIndex() {
@@ -61,17 +58,13 @@ class SearchModel {
             this._currentIndex = null;
         }
 
-        this._onCurrentIndexChanged(this._currentIndex);
+        this._view.onNotifyCurrentIndexChanged(this._currentIndex);
     }
 
     _clearCurrentIndex() {
         this._currentIndex = null;
 
-        this._onCurrentIndexChanged(this._currentIndex);
-    }
-
-    bindCurrentIndexChanged(callback) {
-        this._onCurrentIndexChanged = callback;
+        this._view.onNotifyCurrentIndexChanged(this._currentIndex);
     }
 }
 

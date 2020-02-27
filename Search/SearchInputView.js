@@ -1,6 +1,12 @@
+import SEARCH_ENUM from "./SearchEnum.js";
+const SEARCH_STATUS = SEARCH_ENUM.SEARCH_STATUS;
+
 class SearchInputView {
     constructor() {
-        this.searchInputView = null;
+        this.searchInput = null;
+
+        this._onArrowKeyPressed = null;
+        this._onKeyInputted = null;
     }
 
     render() {
@@ -14,21 +20,39 @@ class SearchInputView {
         `
     }
 
+    appendHandler(callbacks) {
+        this._onArrowKeyPressed = callbacks.onArrowKeyPressed;
+        this._onKeyInputted = callbacks.onKeyInputted;
+        this._onSuggestionEntered = callbacks.onSuggestionEntered;
+    }
+
     onNotifyRenderFinished() {
-        this.searchInputView = document.querySelector(".searchInputField");
+        this.searchBox = document.querySelector(".searchBox");
+        this.searchInput = document.querySelector(".searchInputField");
+        
+        this._appendEventHandler()
     }
 
-    onNotifySuggestionChanged(suggestion) {
+    _appendEventHandler() {
+        this.searchBox.addEventListener('input', event => this._onKeyInputted(event));
+        this.searchBox.addEventListener('keydown', event => {
+            if (event.code === 'Enter') {
+                this._onSuggestionEntered(event);
+            }
+            else {
+                this._onArrowKeyPressed(event);    
+            }
+        });
     }
 
-    onNotifyBackgroundClicked() {
-    }
-
-    onNotifyListElementSelected(text) {
-        this.searchInputView.value = text;
+    onNotifyCurrentTextChanged(text) {
+        this.searchInput.value = text;
     }
 
     onNotifyCurrentIndexChanged(currentIndex) {
+    }
+
+    onNotifyCurrentStatusChanged(currentStatus) {
     }
 }
 
