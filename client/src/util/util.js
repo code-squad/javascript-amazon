@@ -20,3 +20,7 @@ Element.prototype.setScrollTop = function (scrollUnit) {
     this.scrollTop = scrollUnit;
     return this;
 }
+
+Array.prototype.doesElementExist = function (target) {
+    return this.indexOf(target) !== -1;
+}

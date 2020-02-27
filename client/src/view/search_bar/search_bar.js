@@ -188,21 +188,23 @@ class SearchBar {
             return;
         }
 
-        if (target.classList.contains("search-list-words") || target.classList.contains("hitlist-wrapper")) {
+        const targetClassList = [...target.classList];
+
+        if (targetClassList.doesElementExist("search-list-words") || targetClassList.doesElementExist("hitlist-wrapper")) {
             return;
         }
 
         const inputBox = $("#search-bar-input");
 
-        if (target.classList.contains("search-list-word")) {
+        if (targetClassList.doesElementExist("search-list-word")) {
             this.handleMouseClickLiTag(inputBox, target);
         }
 
-        if (target.classList.contains("target-word")) {
+        if (targetClassList.doesElementExist("target-word")) {
             inputBox.value = target.innerHTML + target.nextSibling.innerHTML;
         }
 
-        if (target.classList.contains("rest-word")) {
+        if (targetClassList.doesElementExist("rest-word")) {
             inputBox.value = target.previousSibling.innerHTML + target.innerHTML;
         }
 
