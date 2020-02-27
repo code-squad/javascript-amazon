@@ -3,6 +3,7 @@ function Controller() {
   this.autoList = $(".autoList");
   this.searchModel = new SearchModel();
   this.autoListIndex = 0;
+  this.validateInput = false;
   this.init();
 }
 
@@ -41,25 +42,40 @@ Controller.prototype = {
     })();
   },
 
-  inputKeyupEvent(e) {
-    this.searchList = $(".searchList")
-
+  inputKeyupEvent(e) { //  일단 작동은 됨, 로직이 엉망.. 다 구현 후 코드 정리
     if(e.keyCode !== KEYUP) return
+    if(!this.validateInput) return this.initScroll()
     
+    this.searchList = $(".searchList")
+    if(this.autoListIndex === 0) {
+      this.autoListIndex = this.searchList.childElementCount
+      this.autoList.scrollTop = this.autoList.scrollHeight
+      this.selectClass(this.autoListIndex, 'add')
+    } else if (this.autoListIndex > 1 && this.autoListIndex <= this.searchList.childElementCount) {
+      this.autoListIndex--
+      this.selectClass(this.autoListIndex+1, 'remove')
+      this.selectClass(this.autoListIndex, 'add')
+      this.scrollDownControl()
+    } else if (this.autoListIndex === 1) {
+      this.autoListIndex--
+      this.selectClass(this.autoListIndex+1, 'remove')
+      this.scrollDownControl()
+    }
   },
 
   inputKeydownEvent(e) { //  일단 작동은 됨, 로직이 엉망.. 다 구현 후 코드 정리
-    this.searchList = $(".searchList")
-
     if(e.keyCode !== KEYDOWN) return
+    if(!this.validateInput) return this.initScroll()
+    
+    this.searchList = $(".searchList")
     if(this.autoListIndex === 0) {
       this.autoListIndex++
       this.selectClass(this.autoListIndex, 'add')
     } else if (this.autoListIndex > 0 && this.autoListIndex < this.searchList.childElementCount) {
       this.autoListIndex++
-      this.selectClass(this.autoListIndex, 'add')
       this.selectClass(this.autoListIndex-1, 'remove')
-      this.scrollControl()
+      this.selectClass(this.autoListIndex, 'add')
+      this.scrollUpControl()
     } else if (this.autoListIndex === this.searchList.childElementCount) {
       this.selectClass(this.autoListIndex, 'remove')
       this.autoListIndex = 0
@@ -77,8 +93,16 @@ Controller.prototype = {
     }  
   },
   
-  scrollControl() {
+  scrollUpControl() {
     this.autoList.scrollTop += 18 // 일단 구현부터...
-  }
+  },
+
+  scrollDownControl() {
+    this.autoList.scrollTop -= 18 // 일단 구현부터...
+  },
   
+  initScroll() {
+    this.autoListIndex = 0,
+    this.autoList.scrollTop = 0
+  }
 };
