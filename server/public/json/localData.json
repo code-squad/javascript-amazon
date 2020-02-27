@@ -1,7 +1,7 @@
 {
     "itemContents": [
         {
-            "imgURL": "./img/img_1.jpg",
+            "imgURL": "./src/img/img_1.jpg",
             "navTitle": "Ramos",
             "headTitle": "Sergio Ramos Garcia",
             "contentText": [
@@ -11,7 +11,7 @@
             ]
         },
         {
-            "imgURL": "./img/img_2.jpg",
+            "imgURL": "./src/img/img_2.jpg",
             "navTitle": "Kroos",
             "headTitle": "Toni Kroos",
             "contentText": [
@@ -21,7 +21,7 @@
             ]
         },
         {
-            "imgURL": "./img/img_3.jpg",
+            "imgURL": "./src/img/img_3.jpg",
             "navTitle": "Hazard",
             "headTitle": "Eden Hazard",
             "contentText": [
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "imgURL": "./img/img_4.jpg",
+            "imgURL": "./src/img/img_4.jpg",
             "navTitle": "Marcelo",
             "headTitle": "Marcelo Vieira da Silva Junior",
             "contentText": [
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "imgURL": "./img/img_5.jpg",
+            "imgURL": "./src/img/img_5.jpg",
             "navTitle": "Benzema",
             "headTitle": "Karim Benzema",
             "contentText": [
@@ -51,7 +51,7 @@
             ]
         },
         {
-            "imgURL": "./img/img_6.jpg",
+            "imgURL": "./src/img/img_6.jpg",
             "navTitle": "Rodrygo",
             "headTitle": "Rodrygo Silva de Goes",
             "contentText": [

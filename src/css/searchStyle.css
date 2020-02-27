@@ -60,7 +60,9 @@
     background-color: #f1f1f1;
     color: #111;
     height: auto;
-    padding: 0;
+    padding: 0 11px;
+    -webkit-appearance: none;
+    border-radius: 0;
 }
 
 .search-select option {

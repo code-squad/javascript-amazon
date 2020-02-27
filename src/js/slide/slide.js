@@ -1,11 +1,11 @@
 import options from './options.js';
-import { $ } from './util.js';
+import { taek$ } from '../lib/util.js';
 
 const { slideOption: option } = options;
 
 class Slide {
     constructor(navCard) {
-        this.slideWrap = $(".slide-item-wrap");
+        this.slideWrap = taek$(".slide-item-wrap");
         this.maxItemIndex = option.itemsCount - 1;
         this.autoSlideTime = option.audoSlideInterval;
         this.navCard = navCard;
@@ -59,8 +59,8 @@ class Slide {
 
     run() {
         this.slideWrap.addEventListener("transitionend", this.slideAnimEndHandler.bind(this));
-        const prev = $(".prev-btn");
-        const next = $(".next-btn");
+        const prev = taek$(".prev-btn");
+        const next = taek$(".next-btn");
         prev.addEventListener("click", () => this.buttonClickHandler(false));
         next.addEventListener("click", () => this.buttonClickHandler(true));
     }

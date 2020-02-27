@@ -1,13 +1,13 @@
 import options from './options.js';
-import { $, $$ } from './util.js';
+import { taek$, taek$$ } from '../lib/util.js';
 
 const { slideOption: option } = options;
 
 class NavCard {
     constructor() {
-        this.navWrap = $(".slide-nav");
-        this.slideWrap = $(".slide-item-wrap");
-        this.cards = $$(".slide-nav li");
+        this.navWrap = taek$(".slide-nav");
+        this.slideWrap = taek$(".slide-item-wrap");
+        this.cards = taek$$(".slide-nav li");
         this.init();
     }
 
@@ -25,8 +25,7 @@ class NavCard {
         this.navWrap.addEventListener("click", this.navEventDelegate.bind(this));
     }
 
-    navEventDelegate(evt) {
-        const target = evt.target;
+    navEventDelegate({ target }) {
         if (target.tagName === "LI") {
             const navIndex = parseInt(target.classList[0]);
             this.navClickHandler(navIndex);
@@ -44,8 +43,8 @@ class NavCard {
         this.slideWrap.style.transform = `translateX(${x + "px"})`;
     }
 
-    run(option) {
-        this.navScaleController(option.curItem, option.prevItem);
+    run({ curItem, prevItem }) {
+        this.navScaleController(curItem, prevItem);
     }
 }
 

@@ -1,7 +1,7 @@
-import { $, classAdd, classRemove } from './util.js';
+import { taek$, classAdd, classRemove } from '../lib/util.js';
 
 const SearchList = function () {
-    this.searchResult = $(".search-result-list");
+    this.searchResult = taek$(".search-result-list");
 }
 
 SearchList.prototype = {

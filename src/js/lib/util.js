@@ -1,8 +1,8 @@
-export function $(target) {
+export function taek$(target) {
     return document.querySelector(target);
 }
 
-export function $$(target) {
+export function taek$$(target) {
     return document.querySelectorAll(target);
 }
 

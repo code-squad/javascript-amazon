@@ -1,12 +1,12 @@
 import options from './options.js';
-import { $, $$ } from './util.js';
+import { taek$, taek$$ } from '../lib/util.js';
 
 const { slideOption: option } = options;
 
 class DataRender {
     constructor(dataJson) {
-        this.navWrap = $(".slide-nav");
-        this.slideWrap = $(".slide-item-wrap");
+        this.navWrap = taek$(".slide-nav");
+        this.slideWrap = taek$(".slide-item-wrap");
         this.dataJson = dataJson;
     }
 
@@ -45,7 +45,7 @@ class DataRender {
     }
 
     makeDummy() {
-        const items = $$(".slide-item");
+        const items = taek$$(".slide-item");
 
         const firstItem = items[0];
         const firstDummy = document.createElement("li");

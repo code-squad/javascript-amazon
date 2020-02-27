@@ -1,8 +1,8 @@
-import { $, classAdd, classRemove } from './util.js';
+import { taek$, classAdd, classRemove } from '../lib/util.js';
 
 const SearchBar = function (searchList) {
-    this.searchBar = $(".search-bar");
-    this.serachBlind = $(".search-blind");
+    this.searchBar = taek$(".search-bar");
+    this.serachBlind = taek$(".search-blind");
     this.searchList = searchList;
     this.timer = null;
 }
@@ -20,9 +20,9 @@ SearchBar.prototype = {
         this.searchList.searchResultOff();
     },
 
-    serachInputInsertData(evt) {
+    serachInputInsertData({ target }) {
         clearTimeout(this.timer);
-        const input = evt.target.value;
+        const input = target.value;
         if (input === "") {
             this.searchList.searchResultOff();
             classRemove(this.serachBlind, "on");
@@ -48,7 +48,7 @@ SearchBar.prototype = {
     },
 
     run() {
-        const searchInput = $(".search-input");
+        const searchInput = taek$(".search-input");
         searchInput.addEventListener("focus", this.searchInputFocus.bind(this));
         searchInput.addEventListener("focusout", this.searchInputFocusout.bind(this));
         searchInput.addEventListener("input", this.serachInputInsertData.bind(this));
