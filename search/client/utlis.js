@@ -1,5 +1,6 @@
 const $ = el => document.querySelector(el);
 const $$ = el => document.querySelectorAll(el);
+const sleep = ms => new Promise(resolve  => setTimeout(resolve, ms));
 
 const KEYUP = 38;
 const KEYDOWN = 40;

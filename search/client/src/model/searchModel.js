@@ -4,11 +4,11 @@ function SearchModel() {
 }
 
 SearchModel.prototype = {
+  constructor: SearchModel,
   async fetchData(inputValue){
     const response = await fetch(this.LOCALHOST_URL);
     const matchingData = await response.json();
-    const sleep = ms => new Promise(resolve  => setTimeout(resolve, ms));
-    await sleep(300);
+    await fetchTimeout(300);
     this.matchArray(matchingData, inputValue);
   },
 
@@ -20,6 +20,4 @@ SearchModel.prototype = {
       }    
     })
   },
-
-  
 }
