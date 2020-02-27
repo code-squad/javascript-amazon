@@ -87,7 +87,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-autoListOn {
+/* .autoListOn {
   display: none;
-}
+} */
 
+.selected {
+  background-color: blanchedalmond;
+}
