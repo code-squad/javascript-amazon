@@ -46,7 +46,8 @@ html {
         border: 1px solid $lighter-gray;
         border-radius: $searchbar-border-radius;
         padding: $searchbar-padding;
-        &:hover {
+        &:hover,
+        &.focus {
           border: none;
           box-shadow: $searchbar-box-shadow;
         }
@@ -90,9 +91,9 @@ html {
           }
         }
         div.list {
-          visibility: hidden;
+          display: none;
           &.active {
-            visibility: visible;
+            display: block;
           }
         }
         div.search-list {

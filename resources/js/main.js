@@ -1,24 +1,38 @@
 import { _$, _$$ } from "./util.js";
 
 window.addEventListener("DOMContentLoaded", () => {
-  const SearchView = function SearchView(element) {
-    this.listElement = element;
+  const SearchView = function SearchView(option) {
+    this.searchBar = option.searchBar || ".search";
+    this.searchList = option.searchList || ".search-list";
+    this.searchInput = option.searchInput || ".search-input";
+    this.line = option.line || ".line";
+    this.allElement = [this.searchBar, this.searchList, this.line];
   };
 
-  SearchView.prototype.addClass = function addClass(statement, classNameArr) {
-    classNameArr.forEach(eachClass => {
-      _$(eachClass).classList.add(statement);
+  SearchView.prototype.addClass = function addClass(statement, className = this.allElement) {
+    if (Array.isArray(className)) {
+      className.forEach(eachClass => {
+        _$(eachClass).classList.add(statement);
+      });
+    } else _$(className).classList.add(statement);
+  };
+
+  SearchView.prototype.removeClass = function removeClass(statement, className = this.allElement) {
+    if (Array.isArray(className)) {
+      className.forEach(eachClass => {
+        _$(eachClass).classList.remove(statement);
+      });
+    } else _$(className).classList.remove(statement);
+  };
+
+  SearchView.prototype.templateList = function templateList(wordsFromModel, currentText) {
+    let newHTML = "";
+    wordsFromModel.forEach(eachWord => {
+      const wordArr = eachWord.split(currentText);
+      const boldedWord = wordArr[1];
+      newHTML += `<li><span>${currentText}<b>${boldedWord}</b></span></li>`;
     });
-  };
-
-  SearchView.prototype.removeClass = function removeClass(statement, classNameArr) {
-    classNameArr.forEach(eachClass => {
-      _$(eachClass).classList.remove(statement);
-    });
-  };
-
-  SearchView.prototype.templateList = function templateList(viewModel) {
-    // 가져온 viewModel 내용을 바탕으로 innerHTML 객체를 변경
+    _$(this.searchList).innerHTML = `<ul>${newHTML}</ul>`;
   };
 
   // Model
@@ -33,14 +47,21 @@ window.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then(data => {
-        console.log(str);
-        // console.log(this.pickWord(str, data));
+        const regex = new RegExp(`^(${str})(?:W*)(.*)?$`);
+        fn(this.pickWord(regex, data.list), str);
       });
-    fn();
-    // json 데이터를 가져오는 과정
   };
 
-  SearchModel.prototype.pickWord = function pickWord(str, data) {};
+  SearchModel.prototype.pickWord = function pickWord(regex, wordArray) {
+    const word = [];
+    const MAX_SIZE = 10;
+    wordArray.forEach(eachWord => {
+      if (eachWord.match(regex)) word.push(eachWord);
+    });
+    if (word.length >= MAX_SIZE) word.length = MAX_SIZE;
+    return word;
+  };
+
   // Controller
 
   const SearchController = function SearchController(searchView, searchModel) {
@@ -49,39 +70,47 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   SearchController.prototype.initialize = function initialize() {
-    const inputClass = ".search-input";
-    const targetClassList = [".search", ".line", ".search-list"];
-    let timeout = null;
+    const inputClass = this.searchView.searchInput;
+    const activeClassName = "active";
 
-    _$(inputClass).addEventListener("input", evt => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        this.inputCallback(evt, targetClassList);
-      }, 300);
-    });
+    this.addTimerEventListener("input", inputClass, activeClassName);
 
     _$(inputClass).addEventListener("focusout", () => {
-      this.searchView.removeClass("active", targetClassList);
+      this.searchView.removeClass(activeClassName);
     });
   };
 
-  SearchController.prototype.inputCallback = function inputCallback(evt, targetClassList) {
-    const currentText = evt.target.value;
-    if (!currentText) this.searchView.removeClass("active", targetClassList);
-    else {
-      this.searchView.addClass("active", targetClassList);
+  SearchController.prototype.addTimerEventListener = function addTimerEventListener(eventName, inputClass, activeClassName) {
+    let timeout = null;
+    const DELAY_TIME = 300;
+    _$(inputClass).addEventListener(eventName, evt => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        const currentText = evt.target.value;
+        this.inputCallback(currentText, activeClassName);
+      }, DELAY_TIME);
+    });
+  };
+
+  SearchController.prototype.inputCallback = function inputCallback(currentText, activeClassName) {
+    if (!currentText) {
+      this.searchView.removeClass(activeClassName);
+    } else {
       this.searchModel.getList(currentText, this.showList.bind(this));
+      this.searchView.addClass(activeClassName);
     }
   };
 
-  SearchController.prototype.showList = function showList(searchModelData) {
-    // 모델에서 데이터를 가져와 뷰가 이해할 수 있는 객체로 변경
-    // 뷰가 계산과정을 마치고 렌더링하도록 뷰에 지시
-    // this.searchView.templateList(searchModelData);
+  SearchController.prototype.showList = function showList(wordsFromModel, inputText) {
+    this.searchView.templateList(wordsFromModel, inputText);
   };
 
-  const targetElement = _$(".search-list");
-  const searchView = new SearchView(targetElement);
+  const searchView = new SearchView({
+    searchBar: ".search",
+    searchInput: ".search-input",
+    searchList: ".search-list",
+    line: ".line",
+  });
   const searchModel = new SearchModel("../data/localData.json");
   const searchController = new SearchController(searchView, searchModel);
   searchController.initialize();

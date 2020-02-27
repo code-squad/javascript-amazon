@@ -42,7 +42,7 @@ html {
       border: 1px solid #e0e0e0;
       border-radius: calc(3rem * 0.85);
       padding: 1rem; }
-      html body div.wrap div.search:hover {
+      html body div.wrap div.search:hover, html body div.wrap div.search.focus {
         border: none;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 6px rgba(0, 0, 0, 0.24); }
       html body div.wrap div.search.active {
@@ -72,9 +72,9 @@ html {
         html body div.wrap div.search button.search-btn:hover .material-icons.md-36 {
           color: #4285f4; }
       html body div.wrap div.search div.list {
-        visibility: hidden; }
+        display: none; }
         html body div.wrap div.search div.list.active {
-          visibility: visible; }
+          display: block; }
       html body div.wrap div.search div.search-list {
         background-color: #fff;
         position: absolute;
