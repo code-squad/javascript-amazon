@@ -1,32 +1,85 @@
-// Controller : 뷰와 모델 사이에서 컨트롤. 이벤트 처리를 담당. 모델로부터 데이터를 가져와서 뷰에게 전달한다.
-// View: DOM을 조작하는 모든 일을 도맡아서 한다.
-// Model: 서버에서 JSON 데이터를 가져오는 일을 한다.
+import { _$, _$$ } from "./util.js";
 
-const SearchController = function SearchController(searchView, searchModel) {
-  this.searchiew = searchView;
-  this.searchModel = searchModel;
-};
+window.addEventListener("DOMContentLoaded", () => {
+  const SearchView = function SearchView(element) {
+    this.listElement = element;
+  };
 
-SearchController.prototype.initialize = function initialize() {
-  // 키보드 입력 이벤트 등록
-};
+  SearchView.prototype.addClass = function addClass(statement, classNameArr) {
+    classNameArr.forEach(eachClass => {
+      _$(eachClass).classList.add(statement);
+    });
+  };
 
-SearchController.prototype.showList = function showList(searchModelData) {
-  // 모델에서 데이터를 가져와 뷰가 이해할 수 있는 객체로 변경
-  // 뷰가 계산과정을 마치고 렌더링하도록 뷰에 지시
-  this.searchiew.render(searchModelData);
-};
+  SearchView.prototype.removeClass = function removeClass(statement, classNameArr) {
+    classNameArr.forEach(eachClass => {
+      _$(eachClass).classList.remove(statement);
+    });
+  };
 
-const SearchView = function SearchView(element) {
-  this.element = element;
-};
+  SearchView.prototype.templateList = function templateList(viewModel) {
+    // 가져온 viewModel 내용을 바탕으로 innerHTML 객체를 변경
+  };
 
-SearchView.prototype.render = function render(viewModel) {
-  // 가져온 viewModel 내용을 바탕으로 innerHTML 객체를 변경
-};
+  // Model
 
-const SearchModel = function SearchModel() {};
+  const SearchModel = function SearchModel(src) {
+    this.src = src;
+  };
 
-SearchModel.prototype.getList = function getList() {
-  // json 데이터를 가져오는 과정
-};
+  SearchModel.prototype.getList = function getList(str, fn) {
+    fetch(this.src)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        setTimeout(() => {
+          console.log(this.pickWord(str, data));
+        }, 300);
+      });
+    fn();
+    // json 데이터를 가져오는 과정
+  };
+
+  SearchModel.prototype.pickWord = function pickWord(str, data) {};
+  // Controller
+
+  const SearchController = function SearchController(searchView, searchModel) {
+    this.searchView = searchView;
+    this.searchModel = searchModel;
+  };
+
+  SearchController.prototype.initialize = function initialize() {
+    const inputClass = ".search-input";
+    const targetClassList = [".search", ".line", ".search-list"];
+
+    _$(inputClass).addEventListener("keypress", evt => {
+      this.inputCallback(evt, targetClassList);
+    });
+
+    _$(inputClass).addEventListener("focusout", () => {
+      this.searchView.removeClass("active", targetClassList);
+    });
+  };
+
+  SearchController.prototype.inputCallback = function inputCallback(evt, targetClassList) {
+    const currentText = evt.target.value;
+
+    if (!currentText) this.searchView.removeClass("active", targetClassList);
+    else this.searchView.addClass("active", targetClassList);
+
+    this.searchModel.getList(currentText, this.showList.bind(this));
+  };
+
+  SearchController.prototype.showList = function showList(searchModelData) {
+    // 모델에서 데이터를 가져와 뷰가 이해할 수 있는 객체로 변경
+    // 뷰가 계산과정을 마치고 렌더링하도록 뷰에 지시
+    // this.searchView.templateList(searchModelData);
+  };
+
+  const targetElement = _$(".search-list");
+  const searchView = new SearchView(targetElement);
+  const searchModel = new SearchModel("../data/localData.json");
+  const searchController = new SearchController(searchView, searchModel);
+  searchController.initialize();
+});
