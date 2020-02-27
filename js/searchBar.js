@@ -41,7 +41,7 @@ SearchBar.prototype = {
                 if (json.length > 0) {
                     this.searchList.renderList(json, input);
                 } else {
-                    this.searchList.renderList(["결과가 없습니다."]);
+                    this.searchList.renderList(["일치하는 결과가 없습니다"]);
                 }
                 classAdd(this.serachBlind, "on");
             });

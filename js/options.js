@@ -7,8 +7,8 @@ const options = {
     ],
     slideOption: {
         viewerWidth: 900,
-        cardWidth: 180,
-        carGap: 8,
+        cardWidth: 140,
+        carGap: 9,
         curItem: 0,
         itemsCount: 0,
         slideSpeed: 0.25,

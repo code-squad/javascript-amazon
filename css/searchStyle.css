@@ -13,8 +13,19 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+#amazon-logo {
+    background-image: url('../img/logo.png');
+    background-position: -10px -51px;
+    background-size: 350px;
+    width: 97px;
+    height: 30px;
+    position: absolute;
+    left: 3%;
+}
+
 .search-wrap {
     position: relative;
+    z-index: 20;
 }
 
 .search-bar-wrap {
@@ -91,7 +102,6 @@
     transform: translateX(-244px);
     width: 495px;
     border: 1px solid #CDCDCD;
-    z-index: 20;
     background-color: #fff;
     box-sizing: border-box;
     display: none;

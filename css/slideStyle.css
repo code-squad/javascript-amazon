@@ -1,6 +1,6 @@
 .container {
     position: relative;
-    padding-top: 60px;
+    padding-top: 20px;
 }
 
 .slide-wrap {
@@ -9,7 +9,7 @@
     height: 450px;
     margin: 0 auto;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2);
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 .slide-wrap::after {
@@ -125,6 +125,7 @@ button {
     font-size: 4.5em;
     z-index: 1;
     color: #4E5251;
+    opacity: 0.2;
 }
 
 .prev-btn {

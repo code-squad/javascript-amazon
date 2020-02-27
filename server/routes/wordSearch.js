@@ -4,7 +4,7 @@ const wordData = require('../public/json/wordData.json');
 
 router.post('/', function (req, res, next) {
     const input = req.body;
-
+    console.log(input);
     const result = [];
     const maximum = 10;
     for (let i = 0; i < wordData.words.length; i++) {
