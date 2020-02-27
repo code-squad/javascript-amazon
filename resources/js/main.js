@@ -25,12 +25,10 @@ window.addEventListener("DOMContentLoaded", () => {
     } else _$(className).classList.remove(statement);
   };
 
-  SearchView.prototype.templateList = function templateList(wordsFromModel, currentText) {
+  SearchView.prototype.templateList = function templateList(wordsFromModel) {
     let newHTML = "";
     wordsFromModel.forEach(eachWord => {
-      const wordArr = eachWord.split(currentText);
-      const boldedWord = wordArr[1];
-      newHTML += `<li><span>${currentText}<b>${boldedWord}</b></span></li>`;
+      newHTML += `<li><span>${eachWord.restSpell}<b>${eachWord.boldSpell}</b></span></li>`;
     });
     _$(this.searchList).innerHTML = `<ul>${newHTML}</ul>`;
   };
@@ -47,8 +45,8 @@ window.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then(data => {
-        const regex = new RegExp(`^(${str})(?:W*)(.*)?$`);
-        fn(this.pickWord(regex, data.list), str);
+        const regex = new RegExp(`^(${str})(?:\W*)(.*)?$`);
+        fn(this.pickWord(regex, data.list));
       });
   };
 
@@ -56,7 +54,12 @@ window.addEventListener("DOMContentLoaded", () => {
     const word = [];
     const MAX_SIZE = 10;
     wordArray.forEach(eachWord => {
-      if (eachWord.match(regex)) word.push(eachWord);
+      if (eachWord.match(regex)) {
+        word.push({
+          boldSpell: eachWord.match(regex)[2] || "",
+          restSpell: eachWord.match(regex)[1] || "",
+        });
+      }
     });
     if (word.length >= MAX_SIZE) word.length = MAX_SIZE;
     return word;
@@ -70,12 +73,12 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   SearchController.prototype.initialize = function initialize() {
-    const inputClass = this.searchView.searchInput;
+    const inputClass = _$(this.searchView.searchInput);
     const activeClassName = "active";
 
     this.addTimerEventListener("input", inputClass, activeClassName);
 
-    _$(inputClass).addEventListener("focusout", () => {
+    inputClass.addEventListener("focusout", () => {
       this.searchView.removeClass(activeClassName);
     });
   };
@@ -83,7 +86,7 @@ window.addEventListener("DOMContentLoaded", () => {
   SearchController.prototype.addTimerEventListener = function addTimerEventListener(eventName, inputClass, activeClassName) {
     let timeout = null;
     const DELAY_TIME = 300;
-    _$(inputClass).addEventListener(eventName, evt => {
+    inputClass.addEventListener(eventName, evt => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         const currentText = evt.target.value;
@@ -101,8 +104,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  SearchController.prototype.showList = function showList(wordsFromModel, inputText) {
-    this.searchView.templateList(wordsFromModel, inputText);
+  SearchController.prototype.showList = function showList(wordsFromModel) {
+    this.searchView.templateList(wordsFromModel);
   };
 
   const searchView = new SearchView({
@@ -111,6 +114,7 @@ window.addEventListener("DOMContentLoaded", () => {
     searchList: ".search-list",
     line: ".line",
   });
+
   const searchModel = new SearchModel("../data/localData.json");
   const searchController = new SearchController(searchView, searchModel);
   searchController.initialize();
