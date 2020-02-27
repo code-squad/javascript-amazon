@@ -1,4 +1,6 @@
-import SearchEnum from "./SearchEnum.js";
+import SEARCH_ENUM from "./SearchEnum.js";
+const SEARCH_AJAX_INFORMATION = SEARCH_ENUM.SEARCH_AJAX_INFORMATION;
+const SEARCH_STATUS = SEARCH_ENUM.SEARCH_STATUS;
 
 class SearchController {
     constructor(model, view) {
@@ -72,7 +74,7 @@ class SearchController {
     _fetchExtractedWords(inputFieldText) {
         const data = {userInputText: inputFieldText};
 
-        fetch(SearchEnum.URL, {
+        fetch(SEARCH_AJAX_INFORMATION.URL, {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
