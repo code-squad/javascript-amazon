@@ -2,11 +2,11 @@ import SearchEnum from "./SearchEnum.js";
 
 class SearchController {
     constructor(model, view) {
-        this.model = model;
-        this.view = view;
+        this._model = model;
+        this._view = view;
 
-        this.view.render();
-        this.view.onNotifyRenderFinished();
+        this._view.render();
+        this._view.onNotifyRenderFinished();
         
         this._appendEventHandler();
         this._appendBind();
@@ -21,18 +21,18 @@ class SearchController {
     }
 
     _appendBind() {
-        this.model.bindSuggestionChanged(this.onSuggestionChanged.bind(this));
-        this.model.bindCurrentIndexChanged(this.onCurrentIndexChanged.bind(this));
+        this._model.bindSuggestionChanged(this.onSuggestionChanged.bind(this));
+        this._model.bindCurrentIndexChanged(this.onCurrentIndexChanged.bind(this));
     }
 
     _handleInputEvent(event) {
         if (event.target === document.querySelector('.searchInputField')) {
             if (0 === event.target.value.length) {
-                this.model.setCurrentText(event.target.value)
-                this.model.setSuggestion([]);
+                this._model.setCurrentText(event.target.value)
+                this._model.setSuggestion([]);
             }
             else {
-                this.model.setCurrentText(event.target.value)
+                this._model.setCurrentText(event.target.value)
                 this._fetchExtractedWords(event.target.value);
             }
         }
@@ -40,31 +40,31 @@ class SearchController {
 
     _handleClickEvent(event) {
         if (event.target === document.querySelector('.searchBackground')) {
-            this.view.onNotifyBackgroundClicked();
+            this._view.onNotifyBackgroundClicked();
         }
         else if (event.target === document.querySelector('.searchButton')) {
-            this.view.onNotifySearchButtonClicked();
+            this._view.onNotifySearchButtonClicked();
         }
         else if (event.target === document.querySelector('.searchInputField')) {
         }
         else if (event.target === document.querySelector('.search')) {
         }
         else {
-            this.view.onNotifyListElementSelected(event.target.innerHTML);
+            this._view.onNotifyListElementSelected(event.target.innerHTML);
         }
     }
 
     _handleKeyEvent(event) {
         if (event.key === 'ArrowUp') {
-            this.model.decreaseCurrentIndex();
+            this._model.decreaseCurrentIndex();
             event.preventDefault();
         }
         else if (event.key === 'ArrowDown') {
-            this.model.increaseCurrentIndex();
+            this._model.increaseCurrentIndex();
             event.preventDefault();
         }
         else if (event.key === 'Enter') {
-            const focusedElement = (document.querySelector(".searchSuggestion").querySelectorAll("li"))[this.model.getCurrentIndex()];
+            const focusedElement = (document.querySelector(".searchSuggestion").querySelectorAll("li"))[this._model.getCurrentIndex()];
             focusedElement.click();
         }
     }
@@ -90,18 +90,18 @@ class SearchController {
     }
 
     _onExtractedWordsReceived(suggestionData) {
-        if (this.model.getCurrentText() !== suggestionData.userInputText) 
+        if (this._model.getCurrentText() !== suggestionData.userInputText) 
             return;
 
-        this.model.setSuggestion(suggestionData.suggestionList);
+            this._model.setSuggestion(suggestionData.suggestionList);
     }
 
     onSuggestionChanged(extractedWords) {
-        this.view.onNotifySuggestionChanged(extractedWords);
+        this._view.onNotifySuggestionChanged(extractedWords);
     }
 
     onCurrentIndexChanged(currentIndex) {
-        this.view.onNotifyCurrentIndexChanged(currentIndex);
+        this._view.onNotifyCurrentIndexChanged(currentIndex);
     }
 }
 
