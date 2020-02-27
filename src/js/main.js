@@ -5,7 +5,7 @@ import NavCard from './slide/navCard.js';
 import SearchBar from './search/searchBar.js';
 import SearchList from './search/searchList.js';
 
-const realMadridDataKey = "REAL-MADRID";
+const SLIDE_DATA_KEY = "SLIDE_DATA_RM";
 
 function main() {
     slideDataParse();
@@ -14,6 +14,20 @@ function main() {
 
 main();
 
+
+function slideDataParse() {
+    const data = localStorage.getItem(SLIDE_DATA_KEY);
+    if (data) {
+        startSlideService(JSON.parse(data));
+    } else {
+        fetch("http://localhost:8080/json/localData.json")
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem(SLIDE_DATA_KEY, JSON.stringify(data));
+                startSlideService(data);
+            });
+    }
+}
 
 function startSlideService(data) {
     const dataRender = new DataRender(data);
@@ -25,20 +39,6 @@ function startSlideService(data) {
     const navCard = new NavCard();
     const slide = new Slide(navCard);
     slide.run();
-}
-
-function slideDataParse() {
-    const realMadridData = localStorage.getItem(realMadridDataKey);
-    if (realMadridData) {
-        startSlideService(JSON.parse(realMadridData));
-    } else {
-        fetch("http://localhost:8080/json/localData.json")
-            .then(response => response.json())
-            .then(json => {
-                localStorage.setItem(realMadridDataKey, JSON.stringify(json));
-                startSlideService(json);
-            });
-    }
 }
 
 function startSeachBarSevice() {
