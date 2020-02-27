@@ -1,6 +1,6 @@
 import Model from "./model.js";
 import { $ } from "../../util/util.js";
-import { SCROLL_TOP_START } from "../../util/constants.js";
+import { SCROLL } from "../../util/constants.js";
 
 class SearchList {
     constructor() {
@@ -25,7 +25,7 @@ class SearchList {
     }
 
     initializeHTML() {
-        $('.hitlist-wrapper').show().html('').setScrollTop(SCROLL_TOP_START);
+        $('.hitlist-wrapper').show().html('').setScrollTop(SCROLL.TOP_START);
     }
 
     render(liHTML) {

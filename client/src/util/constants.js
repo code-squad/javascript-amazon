@@ -17,11 +17,19 @@ export const URL = {
     }
 }
 
-export const ARROW_UP = 38;
-export const ARROW_DOWN = 40;
-export const ENTER_KEY = 13;
-export const ONE_SCROLL_UNIT = 20;
-export const SCROLL_TOP_START = 0;
-export const SCROLL_BOTTOM_END = 1500;
-export const DIRECTION_UP = -1;
-export const DIRECTION_DOWN = 1;
+export const KEY_CODE = {
+    ARROW_UP: 38,
+    ARROW_DOWN: 40,
+    ENTER_KEY: 13
+}
+
+export const DIRECTION = {
+    UP: -1,
+    DOWN: 1
+}
+
+export const SCROLL = {
+    TOP_START: 0,
+    BOTTOM_END: 1500,
+    ONE_UNIT: 20
+}

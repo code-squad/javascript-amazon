@@ -1,15 +1,5 @@
 import { $, $$ } from "../../util/util.js";
-import {
-    URL,
-    ARROW_UP,
-    ARROW_DOWN,
-    DIRECTION_UP,
-    DIRECTION_DOWN,
-    ENTER_KEY,
-    ONE_SCROLL_UNIT,
-    SCROLL_TOP_START,
-    SCROLL_BOTTOM_END
-} from "../../util/constants.js";
+import { URL, KEY_CODE, DIRECTION, SCROLL } from "../../util/constants.js";
 
 import css from "./search_bar.scss";
 
@@ -41,7 +31,7 @@ class SearchBar {
     }
 
     isArrowKeyCode(keyCode) {
-        return keyCode === ARROW_UP || keyCode === ARROW_DOWN;
+        return keyCode === KEY_CODE.ARROW_UP || keyCode === KEY_CODE.ARROW_DOWN;
     }
 
     isSearchListArea(target) {
@@ -78,13 +68,13 @@ class SearchBar {
         fromNode.classList.remove("selected-word");
 
         if (toNode === null) {
-            if (direction === DIRECTION_DOWN) {
+            if (direction === DIRECTION.DOWN) {
                 parentNode[0].classList.add("selected-word");
-                $('.hitlist-wrapper').setScrollTop(SCROLL_TOP_START);
+                $('.hitlist-wrapper').setScrollTop(SCROLL.TOP_START);
                 return;
             }
             parentNode[parentNode.length - 1].classList.add("selected-word");
-            $('.hitlist-wrapper').setScrollTop(SCROLL_BOTTOM_END);
+            $('.hitlist-wrapper').setScrollTop(SCROLL.BOTTOM_END);
             return;
         }
 
@@ -95,11 +85,11 @@ class SearchBar {
         const hitList = $('.hitlist-wrapper');
         const scorllDistanceFromTop = hitList.scrollTop;
 
-        if (direction === DIRECTION_DOWN) {
-            hitList.setScrollTop(scorllDistanceFromTop + ONE_SCROLL_UNIT);
+        if (direction === DIRECTION.DOWN) {
+            hitList.setScrollTop(scorllDistanceFromTop + SCROLL.ONE_UNIT);
             return;
         }
-        hitList.setScrollTop(scorllDistanceFromTop - ONE_SCROLL_UNIT);
+        hitList.setScrollTop(scorllDistanceFromTop - SCROLL.ONE_UNIT);
     }
 
     handleKeyMovement(arrowDirection) {
@@ -115,16 +105,16 @@ class SearchBar {
             return;
         }
 
-        if (arrowDirection === DIRECTION_DOWN) {
+        if (arrowDirection === DIRECTION.DOWN) {
             const nextTarget = selected.nextSibling;
-            this.giveSelectedWordToTarget(nextTarget, selected, liDOMS, DIRECTION_DOWN);
-            this.scrollUpAndDown(DIRECTION_DOWN);
+            this.giveSelectedWordToTarget(nextTarget, selected, liDOMS, DIRECTION.DOWN);
+            this.scrollUpAndDown(DIRECTION.DOWN);
             return;
         }
 
         const previousTarget = selected.previousSibling;
-        this.giveSelectedWordToTarget(previousTarget, selected, liDOMS, DIRECTION_UP);
-        this.scrollUpAndDown(DIRECTION_UP);
+        this.giveSelectedWordToTarget(previousTarget, selected, liDOMS, DIRECTION.UP);
+        this.scrollUpAndDown(DIRECTION.UP);
     }
 
     movedSelectedWordToInputBox() {
@@ -151,7 +141,7 @@ class SearchBar {
     keyDownEventListener(event) {
         const { keyCode } = event;
 
-        if (keyCode === ENTER_KEY) {
+        if (keyCode === KEY_CODE.ENTER_KEY) {
             this.movedSelectedWordToInputBox();
             return;
         }
@@ -160,13 +150,13 @@ class SearchBar {
             return;
         }
 
-        if (keyCode === ARROW_UP) {
-            this.handleKeyMovement(DIRECTION_UP);
+        if (keyCode === KEY_CODE.ARROW_UP) {
+            this.handleKeyMovement(DIRECTION.UP);
             return;
         }
 
-        if (keyCode === ARROW_DOWN) {
-            this.handleKeyMovement(DIRECTION_DOWN);
+        if (keyCode === KEY_CODE.ARROW_DOWN) {
+            this.handleKeyMovement(DIRECTION.DOWN);
         }
     }
 
