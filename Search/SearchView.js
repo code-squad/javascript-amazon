@@ -1,6 +1,5 @@
 import SearchInputView from "./SearchInputView.js";
 import SearchAutoCompletionView from "./SearchAutoCompletionView.js";
-import SearchRecentlyView from "./SearchRecentlyView.js";
 import SEARCH_ENUM from "./SearchEnum.js";
 const SEARCH_STATUS = SEARCH_ENUM.SEARCH_STATUS;
 
@@ -10,11 +9,9 @@ class SearchView {
 
         this.searchInputView = new SearchInputView();
         this.searchAutoCompletionView = new SearchAutoCompletionView();
-        this.searchRecentlyView = new SearchRecentlyView();
 
         this._registerView(this.searchInputView);
         this._registerView(this.searchAutoCompletionView);
-        this._registerView(this.searchRecentlyView);
 
         this._dimmedBackgroundClickHandler = null;
         this._suggestionClickHandler = null;
@@ -23,6 +20,8 @@ class SearchView {
         this._arrowDownPressHandler = null;
         this._suggestionEnterHandler = null;
         this._keyInputHandler = null;
+        this._inputFieldClickHandler = null;
+        
     }
 
     _registerView(view) {
@@ -46,6 +45,7 @@ class SearchView {
         this._arrowDownPressHandler = callbacks.arrowDownPressHandler;
         this._suggestionEnterHandler = callbacks.suggestionEnterHandler;
         this._keyInputHandler = callbacks.keyInputHandler;
+        this._inputFieldClickHandler = callbacks.inputFieldClickHandler;
 
         this.searchAutoCompletionView.appendHandler({
             onDimmedBackgroundClicked: this._onDimmedBackgroundClicked.bind(this),
@@ -55,7 +55,9 @@ class SearchView {
         this.searchInputView.appendHandler({
             onArrowKeyPressed: this._onArrowKeyPressed.bind(this),
             onKeyInputted: this._onKeyInputted.bind(this),
-            onSuggestionEntered: this._onSuggestionEntered.bind(this)
+            onSuggestionEntered: this._onSuggestionEntered.bind(this),
+            onSearchButtonClicked: this._onSearchButtonClicked.bind(this),
+            onInputFieldClicked: this._onInputFieldClicked.bind(this)
         });
     }
 
@@ -86,10 +88,6 @@ class SearchView {
         this.searchAutoCompletionView.onNotifySuggestionListChanged(listElements);
     }
 
-    onNotifyRecentlyListChanged(listElements) {
-        this.searchRecentlyView.onNotifyRecentSearchChanged(listElements);
-    }
-
     //Notify to controller
     _onDimmedBackgroundClicked(event) {
         this._dimmedBackgroundClickHandler(event);
@@ -117,7 +115,14 @@ class SearchView {
     _onSuggestionEntered(event) {
         this._suggestionEnterHandler(event);
     }
-    //
+
+    _onSearchButtonClicked(event) {
+        this._searchButtonClickHandler(event);
+    }
+
+    _onInputFieldClicked(event) {
+        this._inputFieldClickHandler(event);
+    }
 }
 
 export default SearchView;

@@ -76,7 +76,12 @@ class SearchAutoCompletionView {
         if (listElements.length) {
             this._clearList();
             this._appendList(listElements);
-            this._changeHeight(this._searchSuggestion.childElementCount * parseInt(getComputedStyle(this._searchSuggestion.firstElementChild, null).getPropertyValue("height")));
+            
+            const listElementCount = this._searchSuggestion.childElementCount;
+            const childElementStyle = getComputedStyle(this._searchSuggestion.firstElementChild, null)
+            const listElementHeight = parseInt(childElementStyle.getPropertyValue("height"));
+
+            this._changeHeight(listElementCount * listElementHeight);
         }
         else {
             this._clearList();
@@ -84,7 +89,8 @@ class SearchAutoCompletionView {
     }
 
     onNotifyCurrentStatusChanged(currentStatus) {
-        if (SEARCH_STATUS.AUTOCOMPLETION === currentStatus) {
+        if (SEARCH_STATUS.AUTOCOMPLETION === currentStatus || 
+            SEARCH_STATUS.RECENT_SEARCH === currentStatus) {
             this._changeVisibility("visible");
         }
         else {

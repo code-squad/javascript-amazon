@@ -1,6 +1,7 @@
 import SEARCH_ENUM from "./SearchEnum.js";
 const SEARCH_AJAX_INFORMATION = SEARCH_ENUM.SEARCH_AJAX_INFORMATION;
 const SEARCH_STATUS = SEARCH_ENUM.SEARCH_STATUS;
+const SEARCH_TIMEOUT = SEARCH_ENUM.SEARCH_TIMEOUT;
 
 class SearchController {
     constructor(model, view) {
@@ -8,6 +9,8 @@ class SearchController {
 
         this._model = model;
         this._view = view;
+
+        this._deboundTimer = null;
 
         this._view.appendHandler({
             keyInputHandler: this._handleKeyInput.bind(this),
@@ -17,41 +20,72 @@ class SearchController {
             arrowUpPressHandler: this._handleArrowUpPress.bind(this),
             arrowDownPressHandler: this._handleArrowDownPress.bind(this),
             suggestionEnterHandler: this._handleSuggestionEnter.bind(this),
+            inputFieldClickHandler: this._handleInputFieldClicked.bind(this)
         });
 
         this._view.render();
         this._view.onNotifyRenderFinished();
     }
 
+    _setCurrentStauts(currentStatus) {
+        this._currentStatus = currentStatus;
+
+        this._view.onNotifyCurrentStatusChanged(this._currentStatus);
+    }
+
     _setLocalstorageData(text, suggestionList) {
         localStorage.setItem(text, suggestionList);
+    }
+
+    _appendLocalstorageRecentData(text) {
+        let cachedData = JSON.parse(localStorage.getItem("<cached-data>"));
+
+        if (!cachedData) {
+            cachedData = [];
+        }
+
+        for (let index = 0 ; index < cachedData.length ; ++index) {
+            if (text === cachedData[index]) {
+                cachedData.splice(index, 1);
+                break;
+            }
+        }
+
+        if (cachedData.length >= 10) {
+            cachedData.splice(cachedData.length - 1), 1;
+        }
+
+        cachedData.push(text);
+        localStorage.setItem("<cached-data>", JSON.stringify(cachedData));
     }
    
     _fetchExtractedWords(inputFieldText) {
         const data = {userInputText: inputFieldText};
         const cachedData = localStorage.getItem(inputFieldText);
 
+        clearTimeout(this._deboundTimer);
+
         if (cachedData) {
-            setTimeout(() => {
+            this._deboundTimer = setTimeout(() => {
                 this._onExtractedWordsReceived(JSON.parse(cachedData))
-            }, 300);
+            }, SEARCH_TIMEOUT.CACHED);
         }
         else {
-            fetch(SEARCH_AJAX_INFORMATION.URL, {
-                method: 'POST',
-                mode: 'cors',
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(suggestionData => {
-                setTimeout(() => {
+            this._deboundTimer = setTimeout(() => {
+                fetch(SEARCH_AJAX_INFORMATION.URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(suggestionData => {
                     this._onExtractedWordsReceived(suggestionData)
-                }, 300);
-            });
+                });
+            }, SEARCH_TIMEOUT.REQUEST);
         }
     }
 
@@ -63,11 +97,11 @@ class SearchController {
 
         if (suggestionData.suggestionList.length) {
             this._model.setSuggestion(suggestionData.suggestionList);
-            this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.AUTOCOMPLETION);
+            this._setCurrentStauts(SEARCH_STATUS.AUTOCOMPLETION);
         }
         else {
             this._model.setSuggestion({});
-            this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.NORMAL);
+            this._setCurrentStauts(SEARCH_STATUS.NORMAL);
         }
     }
 
@@ -76,15 +110,17 @@ class SearchController {
     }
 
     _handleDimmedBackgroundClick(event) {
-        this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.NORMAL);
+        this._setCurrentStauts(SEARCH_STATUS.NORMAL);
     }
 
     _handleSuggestionClick(event) {
         this._model.setCurrentText(event.target.innerHTML);
-        this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.NORMAL);
+        this._setCurrentStauts(SEARCH_STATUS.NORMAL);
     }
 
     _handleSearchButtonClick(event) {
+        this._setCurrentStauts(SEARCH_STATUS.NORMAL);
+        this._appendLocalstorageRecentData(event.currentTarget.firstElementChild.value);
     }
 
     _handleArrowUpPress(event) {
@@ -96,19 +132,43 @@ class SearchController {
     }
 
     _handleSuggestionEnter(event) {
-        const focusedElement = (document.querySelector(".searchSuggestion").querySelectorAll("li"))[this._model.getCurrentIndex()];
+        const listElements = document.querySelector(".searchSuggestion").querySelectorAll("li");
+        const focusedElement = listElements[this._model.getCurrentIndex()];
         focusedElement.click();
     }
 
     _handleKeyInput(event) {
         if (0 === event.target.value.length) {
             this._model.setCurrentText(event.target.value)
-            this._model.setSuggestion([]);
-            this._view.onNotifyCurrentStatusChanged(SEARCH_STATUS.NORMAL);
+            const cachedData = JSON.parse(localStorage.getItem("<cached-data>"));
+
+            if (cachedData) {
+                this._model.setSuggestion(cachedData);
+                this._setCurrentStauts(SEARCH_STATUS.RECENT_SEARCH);
+            }
+            else {
+                this._setCurrentStauts(SEARCH_STATUS.NORMAL);
+            }
         }
         else {
             this._model.setCurrentText(event.target.value)
             this._fetchExtractedWords(event.target.value);
+        }
+    }
+
+    _handleInputFieldClicked(event) {
+        const cachedData = JSON.parse(localStorage.getItem("<cached-data>"));
+
+        if (this._currentStatus === SEARCH_STATUS.NORMAL && 
+            !this._model.getCurrentText()) {
+
+            if (cachedData) {
+                this._model.setSuggestion(cachedData);
+                this._setCurrentStauts(SEARCH_STATUS.RECENT_SEARCH);
+            }
+            else {
+                this._setCurrentStauts(SEARCH_STATUS.NORMAL);
+            }
         }
     }
 }
