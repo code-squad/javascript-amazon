@@ -91,7 +91,7 @@ html {
           padding-right: calc(1rem + 1rem);
           padding-left: calc(1rem + 1.5rem); }
           html body div.wrap div.search div.search-list ul li.active {
-            background-color: #e0e0e0; }
+            background-color: #eee; }
           html body div.wrap div.search div.search-list ul li:first-child {
             margin-top: calc(6px / 2); }
           html body div.wrap div.search div.search-list ul li:last-child {

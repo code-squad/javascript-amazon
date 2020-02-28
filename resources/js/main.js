@@ -6,32 +6,34 @@ window.addEventListener("DOMContentLoaded", () => {
       searchBar: ".search",
       searchList: ".search-list",
       searchInput: ".search-input",
+      searchBtn: ".search-btn",
       line: ".line",
       activeClassName: "active",
     },
   ) {
-    this.searchBar = option.searchBar;
-    this.searchList = option.searchList;
-    this.searchInput = option.searchInput;
-    this.line = option.line;
+    this.searchBar = _$(option.searchBar);
+    this.searchList = _$(option.searchList);
+    this.searchInput = _$(option.searchInput);
+    this.searchBtn = _$(option.searchBtn);
+    this.line = _$(option.line);
     this.activeClassName = option.activeClassName;
     this.allElement = [this.searchBar, this.searchList, this.line];
   };
 
-  SearchView.prototype.addClass = function addClass(statement, className = this.allElement) {
-    if (Array.isArray(className)) {
-      className.forEach(eachClass => {
-        _$(eachClass).classList.add(statement);
+  SearchView.prototype.addClass = function addClass(targetElement = this.allElement, className = this.activeClassName) {
+    if (Array.isArray(targetElement)) {
+      targetElement.forEach(eachElem => {
+        eachElem.classList.add(className);
       });
-    } else _$(className).classList.add(statement);
+    } else targetElement.classList.add(className);
   };
 
-  SearchView.prototype.removeClass = function removeClass(statement, className = this.allElement) {
-    if (Array.isArray(className)) {
-      className.forEach(eachClass => {
-        _$(eachClass).classList.remove(statement);
+  SearchView.prototype.removeClass = function removeClass(targetElement = this.allElement, className = this.activeClassName) {
+    if (Array.isArray(targetElement)) {
+      targetElement.forEach(eachElem => {
+        eachElem.classList.remove(className);
       });
-    } else _$(className).classList.remove(statement);
+    } else targetElement.classList.remove(className);
   };
 
   SearchView.prototype.templateList = function templateList(wordsFromModel) {
@@ -39,7 +41,22 @@ window.addEventListener("DOMContentLoaded", () => {
     wordsFromModel.forEach(eachWord => {
       newHTML += `<li><span>${eachWord.restSpell}<b>${eachWord.boldSpell}</b></span></li>`;
     });
-    _$(this.searchList).innerHTML = `<ul>${newHTML}</ul>`;
+    this.searchList.innerHTML = `<ul>${newHTML}</ul>`;
+  };
+
+  SearchView.prototype.highlightList = function highlightList(listElem, currentIndex) {
+    if (!listElem[currentIndex]) return;
+    for (let index = 0; index < listElem.length; index += 1) {
+      if (index === currentIndex) {
+        this.addClass(listElem[index]);
+        this.changeInputText(listElem[index].innerText);
+      } else this.removeClass(listElem[index]);
+    }
+  };
+
+  SearchView.prototype.changeInputText = function changeInputText(str) {
+    const targetListText = str;
+    this.searchInput.value = targetListText;
   };
 
   // Model
@@ -83,38 +100,72 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   SearchController.prototype.initialize = function initialize() {
-    const inputElem = _$(this.searchView.searchInput);
-    const { activeClassName } = this.searchView;
+    const searchBarElem = this.searchView.searchBar;
+    const searchBtnElem = this.searchView.searchBtn;
+    const inputElem = this.searchView.searchInput;
+    let index = -1;
 
-    this.addTimerEventListener("input", inputElem, activeClassName);
+    this.addTimerEventListener("input", inputElem);
 
     inputElem.addEventListener("focusout", () => {
-      this.searchView.removeClass(activeClassName);
+      this.searchView.removeClass();
+    });
+
+    searchBtnElem.addEventListener("click", () => {
+      this.searchView.removeClass();
+    });
+
+    searchBarElem.addEventListener("keydown", evt => {
+      this.keyDownCallback(evt, index);
+      index = this.keyDownCallback(evt, index).index;
     });
   };
 
-  SearchController.prototype.addTimerEventListener = function addTimerEventListener(eventName, inputElem, activeClassName) {
+  SearchController.prototype.keyDownCallback = function keyDownCallback(evt, index) {
+    let listIndex = index;
+    const [ARROW_UP, ARROW_DOWN, ENTER] = ["ArrowUp", "ArrowDown", "Enter"];
+    const listArray = this.searchView.searchList.children[0].children;
+    switch (evt.key) {
+      case ARROW_UP:
+        listIndex -= 1;
+        if (listIndex < 0) listIndex = listArray.length - 1;
+        this.searchView.highlightList(listArray, listIndex);
+        break;
+      case ARROW_DOWN:
+        listIndex += 1;
+        if (listIndex > listArray.length - 1) listIndex = 0;
+        this.searchView.highlightList(listArray, listIndex);
+        break;
+      case ENTER:
+        this.searchView.removeClass();
+        break;
+      default:
+        break;
+    }
+    return { index: listIndex };
+  };
+
+  SearchController.prototype.addTimerEventListener = function addTimerEventListener(eventName, inputElem) {
     let timeout = null;
     const DELAY_TIME = 300;
     inputElem.addEventListener(eventName, evt => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
-        const currentText = evt.target.value;
-        this.inputCallback(currentText, activeClassName);
+        this.inputCallback(evt);
       }, DELAY_TIME);
     });
   };
 
-  SearchController.prototype.inputCallback = function inputCallback(currentText, activeClassName) {
-    if (!currentText) this.searchView.removeClass(activeClassName);
+  SearchController.prototype.inputCallback = function inputCallback(evt) {
+    const currentText = evt.target.value;
+    if (!currentText) this.searchView.removeClass();
     else this.searchModel.getList(currentText, this.showList.bind(this));
   };
 
   SearchController.prototype.showList = function showList(wordsFromModel) {
-    const { activeClassName } = this.searchView;
     this.searchView.templateList(wordsFromModel);
-    if (wordsFromModel.length > 0) this.searchView.addClass(activeClassName);
-    else this.searchView.removeClass(activeClassName);
+    if (wordsFromModel.length > 0) this.searchView.addClass();
+    else this.searchView.removeClass();
   };
 
   const searchView = new SearchView();

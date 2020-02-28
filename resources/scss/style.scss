@@ -8,6 +8,7 @@ $white: #fff;
 $lighter-gray: #e0e0e0;
 $light-gray: #9e9e9e;
 $gray: #888;
+$ligher-gray-2: #eee;
 $blue: #4285f4;
 
 // Size
@@ -115,7 +116,7 @@ html {
                 left: calc(#{$searchbar-padding} + #{$searchbar-margin-left});
               }
               &.active {
-                background-color: $lighter-gray;
+                background-color: $ligher-gray-2;
               }
               &:first-child {
                 margin-top: calc(#{$searchbar-visual-offset} / 2);
