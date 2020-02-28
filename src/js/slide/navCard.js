@@ -12,11 +12,11 @@ class NavCard {
     }
 
     init() {
-        this.navScaleController();
+        this.navScaleControl();
         this.setNavEvent();
     }
 
-    navScaleController(curItem = option.curItem, prevItem = 0) {
+    navScaleControl(curItem = option.curItem, prevItem = 0) {
         this.cards[prevItem].classList.remove("slide-nav-selected");
         this.cards[curItem].classList.add("slide-nav-selected");
     }
@@ -38,13 +38,13 @@ class NavCard {
         this.slideWrap.style.transition = `${option.slideSpeed}s`;
         const prevItem = option.curItem;
         option.curItem = cardIdx;
-        this.navScaleController(option.curItem, prevItem);
+        this.navScaleControl(option.curItem, prevItem);
         const x = (option.curItem + 1) * -option.viewerWidth;
         this.slideWrap.style.transform = `translateX(${x + "px"})`;
     }
 
     run({ curItem, prevItem }) {
-        this.navScaleController(curItem, prevItem);
+        this.navScaleControl(curItem, prevItem);
     }
 }
 

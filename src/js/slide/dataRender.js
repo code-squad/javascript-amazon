@@ -62,8 +62,8 @@ class DataRender {
     placeDummy() {
         const items = taek$$(".slide-item");
         const option = { tagName: "li", className: "slide-item" }
-        this.slideWrap.firstElementChild.before(this.makeDummy(items[0], option));
-        this.slideWrap.lastElementChild.after(this.makeDummy(items[items.length - 1], option));
+        this.slideWrap.firstElementChild.before(this.makeDummy(items[items.length - 1], option));
+        this.slideWrap.lastElementChild.after(this.makeDummy(items[0], option));
     }
 
     setNav() {

@@ -18,7 +18,6 @@ async function startSlideService() {
     dataRender.setSlide();
 
     options.slideOption.curItem = Math.floor(Math.random() * options.slideOption.itemsCount);
-
     const navCard = new NavCard();
     const slide = new Slide(navCard);
     slide.run();

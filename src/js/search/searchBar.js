@@ -44,7 +44,7 @@ SearchBar.prototype = {
 
     searchDataDeliver(data) {
         if (data.length > 0) {
-            this.searchList.searchListRender(data, this.userInput);
+            this.searchList.searchListRender(data, this.userInput, true);
         } else {
             this.searchList.searchListRender(["일치하는 결과가 없습니다"]);
         }
