@@ -1,3 +1,73 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.wrap-back {
+  height: 100px;
+  background: #232f3e;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa-search:before {
+  content: "\f002";
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.search-term {
+  width: 100%;
+  border-right: none;
+  height: 40px;
+  padding-left: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.search-term:focus {
+  color: #111;
+}
+
+.search-button {
+  width: 45px;
+  border: none;
+  background: #febd69;
+  text-align: center;
+  color: #111;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.wrap-search {
+  width: 40%;
+}
+
+.fa-search {
+  background-image: url("../images/search.png");
+  color: #fff;
+}
+
+.nav_active {
+  box-shadow: 0 0 0 2px #f90, 0 0 0 3px rgba(255, 153, 0, 0.5);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.search-rec {
+  position: relative;
+  width: 30%;
+  background-color: #fff;
+  transform: translate(-50%, 20%);
+  left: 50%;
+}
+
 .clearfix:after {
   display: block;
   clear: both;
