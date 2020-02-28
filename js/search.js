@@ -1,13 +1,14 @@
-const $$ = target => document.querySelector(target);
-const search = $$('#search');
-const searchInput = $$('#search input');
+import {$,$$} from './util.js';
+
+const search = $('#search');
+const searchInput = $('#search input');
 let keywordListIndex = -1;
 const INIT_INDEX = -1;
 
 const localStorageJson = () => {
     const keywordDATA = localStorage.getItem('keywordDATA');
     if (!keywordDATA) {
-        const apiServer = 'http://localhost:8081/keyword';
+        const apiServer = 'https://baekcode.github.io/codesquad-FE/day4_search/keyword.json';
         fetch(apiServer)
             .then(res => res.text())
             .then(body => {
@@ -48,7 +49,7 @@ const searchList = (el, arr) => {
 searchList(searchInput, localStorageJson());
 
 searchInput.addEventListener('keydown', e => {
-    const list = $$('.keyword-list.open');
+    const list = $('.keyword-list.open');
     if (e.keyCode === 40) {
         const listChild = Array.from(list.children);
         if (keywordListIndex === listChild.length - 1) return false;

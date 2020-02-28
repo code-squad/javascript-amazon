@@ -1,0 +1,19 @@
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 15px 0;
+  background: #243040;
+}
+
+.nav-logo a {
+  display: block;
+  text-indent: -999em;
+  width: 110px;
+  height: 40px;
+  background: url(../img/nav_icon.png);
+  background-size: 395px;
+  background-position: -10px -51px;
+}
