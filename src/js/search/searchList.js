@@ -1,28 +1,26 @@
 import { taek$, classAdd, classRemove } from '../lib/util.js';
 
 const SearchList = function () {
-    this.searchResult = taek$(".search-result-list");
+    this.searchList = taek$(".search-result-list");
 }
 
 SearchList.prototype = {
     constructor: SearchList,
 
-    renderList(data, input = "") {
-        let temp = "";
-        data.forEach(word => {
-            const restWord = word.substr(input.length);
-            temp += `<li><span style="color:#F90;">${input}</span>${restWord}</li>`
-        });
-        this.searchResult.innerHTML = temp;
-        this.searchResultOn();
+    searchListRender(data, userInput = "") {
+        this.searchList.innerHTML = data.reduce((acc, word) => {
+            const restWord = word.substr(userInput.length);
+            return acc + `<li><span style="color:#F90;">${userInput}</span>${restWord}</li>`;
+        }, "");
+        this.searchListOn();
     },
 
-    searchResultOn() {
-        classAdd(this.searchResult, "on");
+    searchListOn() {
+        classAdd(this.searchList, "on");
     },
 
-    searchResultOff() {
-        classRemove(this.searchResult, "on");
+    searchListOff() {
+        classRemove(this.searchList, "on");
     }
 }
 

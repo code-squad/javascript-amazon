@@ -1,9 +1,11 @@
+import URL from '../common/url.js';
 import { taek$, classAdd, classRemove } from '../lib/util.js';
 
 const SearchBar = function (searchList) {
     this.searchBar = taek$(".search-bar");
     this.serachBlind = taek$(".search-blind");
     this.searchList = searchList;
+    this.userInput = "";
     this.timer = null;
 }
 
@@ -17,34 +19,36 @@ SearchBar.prototype = {
     searchInputFocusout() {
         classRemove(this.searchBar, "on");
         classRemove(this.serachBlind, "on");
-        this.searchList.searchResultOff();
+        this.searchList.searchListOff();
     },
 
     serachInputInsertData({ target }) {
         clearTimeout(this.timer);
-        const input = target.value;
-        if (input === "") {
-            this.searchList.searchResultOff();
+        this.userInput = target.value;
+        if (this.userInput === "") {
+            this.searchList.searchListOff();
             classRemove(this.serachBlind, "on");
         } else {
-            this.timer = setTimeout(this.wordDataRequest.bind(this), 300, input);
+            this.timer = setTimeout(this.wordDataRequest.bind(this), 300, this.userInput);
         }
     },
 
-    wordDataRequest(input) {
-        fetch("http://localhost:8080/wordSearch", {
+    wordDataRequest(userInput) {
+        fetch(URL.DEV.SEARCH_DATA_API, {
             method: 'POST',
-            body: input
+            body: userInput
         })
             .then(rep => rep.json())
-            .then(json => {
-                if (json.length > 0) {
-                    this.searchList.renderList(json, input);
-                } else {
-                    this.searchList.renderList(["일치하는 결과가 없습니다"]);
-                }
-                classAdd(this.serachBlind, "on");
-            });
+            .then(this.searchDataDeliver.bind(this));
+    },
+
+    searchDataDeliver(data) {
+        if (data.length > 0) {
+            this.searchList.searchListRender(data, this.userInput);
+        } else {
+            this.searchList.searchListRender(["일치하는 결과가 없습니다"]);
+        }
+        classAdd(this.serachBlind, "on");
     },
 
     run() {

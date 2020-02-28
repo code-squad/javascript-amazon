@@ -32,22 +32,16 @@ class DataRender {
 
     navDataRender() {
         const navColors = options.navCardColors;
-        let navWrapInnerHTML = "";
-        this.data.itemContents.forEach((item, idx) => {
-            const temp = `<li class=${idx} style="background-color: ${navColors[idx % navColors.length]}; width: ${option.cardWidth}px">${item.navTitle}</li>`;
-            navWrapInnerHTML += temp;
-        });
-        this.navWrap.innerHTML = navWrapInnerHTML;
+        this.navWrap.innerHTML = this.data.itemContents.reduce((acc, item, idx) => {
+            return acc + `<li class=${idx} style="background-color: ${navColors[idx % navColors.length]}; width: ${option.cardWidth}px">${item.navTitle}</li>`;
+        }, "");
     }
 
     slideDataRender() {
-        let slideWrapInnerHTML = "";
-        this.data.itemContents.forEach(item => {
-            const temp = `<li class="slide-item">${this.makeItemImg(item)}${this.makeItemText(item)}</li>`;
-            slideWrapInnerHTML += temp;
+        this.slideWrap.innerHTML = this.data.itemContents.reduce((acc, item) => {
             option.itemsCount++;
-        });
-        this.slideWrap.innerHTML = slideWrapInnerHTML;
+            return acc + `<li class="slide-item">${this.makeItemImg(item)}${this.makeItemText(item)}</li>`;
+        }, "");
     }
 
     makeItemImg(item) {
@@ -55,31 +49,24 @@ class DataRender {
     }
 
     makeItemText(item) {
-        let contentTextTemp = "";
-        for (let i = 0; i < item.contentText.length; i++) {
-            const temp = `<li>${item.contentText[i]}</li>`;
-            contentTextTemp += temp;
-        }
-        const temp = `<div class="slide-item-text"><h2>${item.headTitle}</h2><ul>${contentTextTemp}</ul></div>`;
-        return temp;
+        const contentTextTemp = item.contentText.reduce((acc, text) => {
+            return acc + `<li>${text}</li>`;
+        }, "");
+        return `<div class="slide-item-text"><h2>${item.headTitle}</h2><ul>${contentTextTemp}</ul></div>`;
     }
 
-    makeDummy() {
+    makeDummy(item, option) {
+        const dummy = document.createElement(option.tagName);
+        dummy.classList.add(option.className);
+        dummy.innerHTML = item.innerHTML;
+        return dummy;
+    }
+
+    placeDummy() {
         const items = taek$$(".slide-item");
-
-        const firstItem = items[0];
-        const firstDummy = document.createElement("li");
-        firstDummy.classList.add("slide-item");
-
-        const lastItem = items[items.length - 1];
-        const lastDummy = document.createElement("li");
-        lastDummy.classList.add("slide-item");
-
-        firstDummy.innerHTML = lastItem.innerHTML;
-        lastDummy.innerHTML = firstItem.innerHTML;
-
-        this.slideWrap.firstElementChild.before(firstDummy);
-        this.slideWrap.lastElementChild.after(lastDummy);
+        const option = { tagName: "li", className: "slide-item" }
+        this.slideWrap.firstElementChild.before(this.makeDummy(items[0], option));
+        this.slideWrap.lastElementChild.after(this.makeDummy(items[items.length - 1], option));
     }
 
     setNav() {
@@ -91,7 +78,7 @@ class DataRender {
         const dummyCount = 2;
         this.slideWrap.style.width = `${option.viewerWidth * (this.data.itemContents.length + dummyCount)}px`;
         this.slideDataRender();
-        this.makeDummy();
+        this.placeDummy();
     }
 }
 

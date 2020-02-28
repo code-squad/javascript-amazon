@@ -5,11 +5,10 @@ import NavCard from './slide/navCard.js';
 import SearchBar from './search/searchBar.js';
 import SearchList from './search/searchList.js';
 
-function main() {
+(function main() {
     startSlideService();
     startSeachBarSevice();
-}
-main();
+})();
 
 
 function startSlideService() {
