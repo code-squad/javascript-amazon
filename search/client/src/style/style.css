@@ -77,6 +77,10 @@
   text-indent: 10px;
 }
 
+.searchList > li:hover {
+  background-color: #febd69;
+}
+
 .searchBtn {
   display: inline-block;
   position: absolute;
