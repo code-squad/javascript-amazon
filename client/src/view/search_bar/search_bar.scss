@@ -1,0 +1,186 @@
+$width: 650px;
+
+#search-bar {
+    background-color: #232f3e;
+    display: flex;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#amazon-logo {
+    display: inline-block;
+    background-image: url(https://web.archive.org/web/20180717213726/https://images-na.ssl-images-amazon.com/images/G/01/gno/sprites/nav-sprite-global_bluebeacon-V3-2x_optimized._CB474516457_.png);
+    background-position: -10px -51px;
+    background-size: 350px;
+    width: 97px;
+    height: 30px;
+    position: absolute;
+}
+
+.search-bar-wrapper {
+    font-size: 0;
+    margin: 0 auto;
+    width: $width;
+
+    > div {
+        display: inline-block;
+        font-size: 20px;
+        height: 30px;
+    }
+
+    /*참고: https://codepen.io/raubaca/pen/VejpQP*/
+    .search-bar-category{
+        position: relative;
+        display: flex;
+        width: 120px;
+        height: 30px;
+        line-height: 3;
+        background: #2c3e50;
+        overflow: hidden;
+        font-size: 10px;
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: 0;
+            box-shadow: none;
+            background: #f3f3f3;
+            background-image: none;
+            flex: 1;
+            padding: 0 10px;
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        &::after {
+            content: '\25BC';
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 10px;
+            background: #dddddd;
+            cursor: pointer;
+            pointer-events: none;
+            -webkit-transition: .25s all ease;
+            -o-transition: .25s all ease;
+            transition: .25s all ease;
+        }
+
+        &:hover::after {
+            color: #fff;
+        }
+    }
+}
+
+/*참고: https://codepen.io/AustinAuth/pen/iksxo*/
+.input-wrapper {
+    position: relative;
+
+    input {
+        margin: 0 auto;
+        width: 500px;
+        height: 30px;      
+        padding: 0 20px;
+        font-size: 12px;
+        border: 1px solid #D0CFCE;
+        outline: none;
+
+        &:focus{
+            border: 1px solid #008ABF;
+            transition: 0.35s ease;
+
+            &::-webkit-input-placeholder{
+            transition: opacity 0.45s ease; 
+            opacity: 0;
+            }
+
+            &::-moz-placeholder {
+            transition: opacity 0.45s ease; 
+            opacity: 0;
+            }
+
+            &:-ms-placeholder {
+            transition: opacity 0.45s ease; 
+            opacity: 0;
+            }    
+        }
+    }
+
+    .hitlist-wrapper {
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 100;
+        background-color: #fff;
+        width: 100%;
+        height: 300px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        border-right: 1px solid #000;
+        border-left: 1px solid #000;
+        border-bottom: 1px solid #000;
+        padding: 18px;
+        display: none;
+
+        //참고: https://codepen.io/devstreak/pen/dMYgeO
+        &::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        &::-webkit-scrollbar
+        {
+            width: 8px;
+            background-color: #F5F5F5;
+        }
+
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: rgb(243, 163, 14);
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            transition: background-color 0.1s linear;
+            font-size: 17px;
+
+            &:hover{
+                cursor:pointer;
+            }
+        }
+    }
+}
+
+.selected-word {
+   background-color: #fde4c5;
+}
+
+.icon-wrapper {
+    float: right;
+    background-color: rgb(254, 189, 103);
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(254, 189, 105, 0.9);
+    }
+
+    .search-bar-icon {
+        display: flex;
+        width: 30px;
+        max-height: 30px;
+        min-height: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+.target-word {
+    color: rgb(240, 141, 12);
+}

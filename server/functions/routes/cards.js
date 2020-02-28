@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const localData = require("../public/json/localData.json");
+const localData = require("../assets/localData.json");
 
 router.get('/', function (req, res, next) {
   res.contentType('application/json');
