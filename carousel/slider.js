@@ -1,16 +1,16 @@
-import { $ } from '/util.js';
+import { _$ } from '/util.js';
 
 export class CarouselSlider {
     constructor(sliderInfo) {
-        this.slides = $(sliderInfo.sliderData.SLIDES_CLASSNAME);
+        this.slides = _$(sliderInfo.sliderData.SLIDES_CLASSNAME);
         this.slideIndex = sliderInfo.sliderData.SLIDE_INDEX;
         this.slideSize = this.slides.firstElementChild.clientWidth;
         this.transitionProperty = sliderInfo.transitionProperty;
-        this.selectorName = sliderInfo.selectorName;
+        this.selector = sliderInfo.selector;
     }
 
     getSliderInfo() {
-        this.slideItems = $(this.selectorName.SLIDE_ITEM, true);
+        this.slideItems = _$(this.selector.SLIDE_ITEM, true);
         this.slideLength = this.slideItems.length;
         this.lastSlideIndex = this.slideItems.length - 1
     }
@@ -20,8 +20,8 @@ export class CarouselSlider {
             firstClone = firstElementChild.cloneNode(true),
             lastClone = lastElementChild.cloneNode(true);
 
-        firstClone.id = this.selectorName.FIRST_CLONE;
-        lastClone.id = this.selectorName.LAST_CLONE;
+        firstClone.id = this.selector.FIRST_CLONE;
+        lastClone.id = this.selector.LAST_CLONE;
         this.slides.append(firstClone);
         this.slides.prepend(lastClone);
         this.getSliderInfo();
@@ -42,16 +42,16 @@ export class CarouselSlider {
 
     checkCurrentSlideId() {
         this.slides.addEventListener('transitionend', () => {
-            const FIRST_SLIDE_INDEX = 1,
-                LAST_SLIDE_INDEX = 2
+            const FIRST_SLIDE_INDEX = 1
+            const currentSlideId = this.slideItems[this.slideIndex].id;
 
-            const lastSlideIndex = this.slideLength - LAST_SLIDE_INDEX,
-                currentSlideId = this.slideItems[this.slideIndex].id;
+            let lastSlideIndex = 2;
+            lastSlideIndex = this.slideLength - lastSlideIndex;
 
-            if (currentSlideId === this.selectorName.LAST_CLONE)
+            if (currentSlideId === this.selector.LAST_CLONE)
                 this.removeTransition(lastSlideIndex);
 
-            if (currentSlideId === this.selectorName.FIRST_CLONE)
+            if (currentSlideId === this.selector.FIRST_CLONE)
                 this.removeTransition(FIRST_SLIDE_INDEX);
         })
     }

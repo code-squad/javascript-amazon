@@ -1,5 +1,5 @@
 import { fetchOption, carouselOption, templateOption } from './config.js';
-import { $ } from '/util.js';
+import { _$ } from '/util.js';
 import { DataFetch } from './fetch.js'
 import { CarouselSlider } from './carousel/slider.js'
 import { CarouselCardMenu } from './carousel/cardMenu.js'
@@ -17,7 +17,7 @@ const init = () => {
 }
 
 const initTemplate = (carouselData) => {
-    const dataArea = $(templateOption.DATA_AREA);
+    const dataArea = _$(templateOption.DATA_AREA);
     const cardMenuData = new CardMenuTemplate(carouselData.menuData);
     const sliderData = new SliderTemplate(carouselData.contentData);
 

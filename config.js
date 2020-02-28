@@ -16,7 +16,7 @@ export const carouselOption = {
             TIMING_FUNC: 'ease-in-out'
         },
 
-        selectorName: {
+        selector: {
             FIRST_CLONE: 'slider-firstClone',
             LAST_CLONE: 'slider-lastClone',
             SLIDE_ITEM: '.slider__item',
@@ -24,7 +24,7 @@ export const carouselOption = {
     },
 
     cardMenuInfo: {
-        selectorName: {
+        selector: {
             CARD: '.card-menu__card',
             CARD_BTN: '.card-menu__card button',
             SELECTED: 'card-menu__selected'
@@ -32,12 +32,12 @@ export const carouselOption = {
     },
 
     sliderBtnInfo: {
-        selectorName: {
+        selector: {
             SLIDER_BTNS: '#slider__btn button',
         },
     },
 }
 
 export const templateOption = {
-    DATA_AREA: '#carousel-wrap'
+    DATA_AREA: '#carousel'
 }

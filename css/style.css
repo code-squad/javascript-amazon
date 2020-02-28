@@ -1,25 +1,26 @@
 @import "reset.css";
+@import "search.css";
 @import url("https://fonts.googleapis.com/css?family=Abel&display=swap");
 
-#carousel-wrap {
+#carousel {
   margin: 0 auto;
-  max-width: 1200px;
-  min-width: 1200px;
+  max-width: 1000px;
+  min-width: 1000px;
 }
 
-#carousel-wrap .carousel__bg-color1 {
+#carousel .carousel__bg-color1 {
   background-color: #ffcd30;
 }
 
-#carousel-wrap .carousel__bg-color2 {
+#carousel .carousel__bg-color2 {
   background-color: #ff5e4d;
 }
 
-#carousel-wrap .carousel__bg-color3 {
+#carousel .carousel__bg-color3 {
   background-color: #49b5f3;
 }
 
-#carousel-wrap .carousel__bg-color4 {
+#carousel .carousel__bg-color4 {
   background-color: #5f85c4;
 }
 
@@ -49,7 +50,7 @@
 }
 
 #card-menu .card__title {
-  font-size: 23px;
+  font-size: 18px;
   color: #fff;
 }
 
@@ -77,8 +78,7 @@
 
 #slider .slider__img-area {
   margin-left: 1px;
-  margin-right: 5%;
-  width: 400px;
+  width: 430px;
 }
 
 #slider .slider__img-area > img {
@@ -88,7 +88,7 @@
 }
 
 #slider .slider__content {
-  padding: 2% 3%;
+  padding: 2% 4%;
   width: 900px;
   color: #333;
 }
@@ -99,7 +99,7 @@
   font-weight: bold;
   text-align: center;
   line-height: 28px;
-  font-size: 23px;
+  font-size: 17px;
 
   color: #fff;
 }
@@ -111,7 +111,7 @@
 }
 
 #slider .slider__content > p {
-  font-size: 25px;
+  font-size: 18px;
   line-height: 26px;
 }
 

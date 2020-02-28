@@ -1,14 +1,14 @@
-import { $ } from '/util.js';
+import { _$ } from '/util.js';
 
 export class CarouselCardMenu {
     constructor({ carouselSlider, cardMenuInfo }) {
         this.slider = carouselSlider;
-        this.selectorName = cardMenuInfo.selectorName;
-        this.cards = $(this.selectorName.CARD, true);
+        this.selector = cardMenuInfo.selector;
+        this.cards = _$(this.selector.CARD, true);
     }
 
     setCardBtns() {
-        const cardBtns = $(this.selectorName.CARD_BTN, true);
+        const cardBtns = _$(this.selector.CARD_BTN, true);
 
         this.setCardBtnIndex();
         cardBtns.forEach((btn, index) => {
@@ -21,8 +21,8 @@ export class CarouselCardMenu {
     }
 
     setCardBtnIndex() {
-        const FIRST_INDEX = 0,
-            lastCardIndex = this.cards.length - 1;
+        const FIRST_INDEX = 0
+        const lastCardIndex = this.cards.length - 1;
 
         this.cardIndices = [];
 
@@ -34,10 +34,10 @@ export class CarouselCardMenu {
     }
 
     addScaleEffect() {
-        const selected = $(`.${this.selectorName.SELECTED}`),
+        const selected = _$(`.${this.selector.SELECTED}`),
             selectedCardIndex = this.cardIndices[this.slider.slideIndex];
 
-        selected.classList.remove(this.selectorName.SELECTED);
-        this.cards[selectedCardIndex].classList.add(this.selectorName.SELECTED);
+        selected.classList.remove(this.selector.SELECTED);
+        this.cards[selectedCardIndex].classList.add(this.selector.SELECTED);
     }
 }
