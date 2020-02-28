@@ -2,6 +2,7 @@ import SEARCH_ENUM from "./SearchEnum.js";
 const SEARCH_AJAX_INFORMATION = SEARCH_ENUM.SEARCH_AJAX_INFORMATION;
 const SEARCH_STATUS = SEARCH_ENUM.SEARCH_STATUS;
 const SEARCH_TIMEOUT = SEARCH_ENUM.SEARCH_TIMEOUT;
+const SEARCH_CACHE_INFORMATION = SEARCH_ENUM.SEARCH_CACHE_INFORMATION;
 
 class SearchController {
     constructor(model, view) {
@@ -38,7 +39,8 @@ class SearchController {
     }
 
     _appendLocalstorageRecentData(text) {
-        let cachedData = JSON.parse(localStorage.getItem("<cached-data>"));
+        let cachedData = JSON.parse(localStorage.getItem(SEARCH_CACHE_INFORMATION.KEY));
+        const spliceCount = 1;
 
         if (!cachedData) {
             cachedData = [];
@@ -46,17 +48,17 @@ class SearchController {
 
         for (let index = 0 ; index < cachedData.length ; ++index) {
             if (text === cachedData[index]) {
-                cachedData.splice(index, 1);
+                cachedData.splice(index, spliceCount);
                 break;
             }
         }
 
-        if (cachedData.length >= 10) {
-            cachedData.splice(cachedData.length - 1), 1;
+        if (cachedData.length >= SEARCH_CACHE_INFORMATION.MAX_CACHE_COUNT) {
+            cachedData.splice(cachedData.length - 1), spliceCount;
         }
 
         cachedData.push(text);
-        localStorage.setItem("<cached-data>", JSON.stringify(cachedData));
+        localStorage.setItem(SEARCH_CACHE_INFORMATION.KEY, JSON.stringify(cachedData));
     }
    
     _fetchExtractedWords(inputFieldText) {
@@ -140,7 +142,7 @@ class SearchController {
     _handleKeyInput(event) {
         if (0 === event.target.value.length) {
             this._model.setCurrentText(event.target.value)
-            const cachedData = JSON.parse(localStorage.getItem("<cached-data>"));
+            const cachedData = JSON.parse(localStorage.getItem(SEARCH_CACHE_INFORMATION.KEY));
 
             if (cachedData) {
                 this._model.setSuggestion(cachedData);
@@ -157,7 +159,7 @@ class SearchController {
     }
 
     _handleInputFieldClicked(event) {
-        const cachedData = JSON.parse(localStorage.getItem("<cached-data>"));
+        const cachedData = JSON.parse(localStorage.getItem(SEARCH_CACHE_INFORMATION.KEY));
 
         if (this._currentStatus === SEARCH_STATUS.NORMAL && 
             !this._model.getCurrentText()) {
