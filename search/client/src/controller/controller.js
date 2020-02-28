@@ -12,12 +12,22 @@ Controller.prototype = {
   constrouctor: Controller,
   init() {
     this.inputHandler();
+    this.eventHandler();
+  },
+
+  eventHandler() {
+    this.searchBackground.addEventListener("click", this.searchBackgroundClickedEvent.bind(this))
   },
 
   inputHandler() {
     this.searchInput.addEventListener("input", this.validationInput.bind(this));
     this.searchInput.addEventListener("keyup", this.inputKeyupEvent.bind(this));
     this.searchInput.addEventListener("keydown", this.inputKeydownEvent.bind(this));
+  },
+
+  searchBackgroundClickedEvent() {
+    this.autoList.style.display = 'none';
+    this.searchBackground.style.visibility = 'hidden';
   },
 
   validationInput(e) {
