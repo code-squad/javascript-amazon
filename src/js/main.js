@@ -11,8 +11,9 @@ import SearchList from './search/searchList.js';
 })();
 
 
-function startSlideService() {
+async function startSlideService() {
     const dataRender = new DataRender();
+    await dataRender.getData();
     dataRender.setNav();
     dataRender.setSlide();
 

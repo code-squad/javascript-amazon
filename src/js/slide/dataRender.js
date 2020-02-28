@@ -9,11 +9,6 @@ class DataRender {
         this.navWrap = taek$(".slide-nav");
         this.slideWrap = taek$(".slide-item-wrap");
         this.data = null;
-        this.init();
-    }
-
-    init() {
-        this.getData();
     }
 
     getData() {
@@ -21,12 +16,14 @@ class DataRender {
         if (lacalStorageData) {
             this.data = JSON.parse(lacalStorageData);
         } else {
-            fetch(URL.DEV.SLIDE_DATA_API)
-                .then(response => response.json())
-                .then(data => {
-                    localStorage.setItem(option.slideDataKey, JSON.stringify(data));
-                    this.data = data;
-                });
+            return new Promise(resolve => {
+                resolve(fetch(URL.DEV.SLIDE_DATA_API)
+                    .then(response => response.json())
+                    .then(data => {
+                        localStorage.setItem(option.slideDataKey, JSON.stringify(data));
+                        this.data = data;
+                    }));
+            });
         }
     }
 
