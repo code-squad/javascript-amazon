@@ -12,7 +12,7 @@ let maxIndex = { MAX_CAROUSEL_SIZE: 5 };
 
 const config = Object.assign(carousel, arrowButtons, width, currentIndex, maxIndex);
 
-const run = () => {
+(() => {
   fetch(jsonFileUrl)
     .then(response => response.json())
     .then(mockData => {
@@ -24,6 +24,4 @@ const run = () => {
     .then(() => {
       const carousel = new Carousel(config);
     });
-};
-
-run();
+})();
