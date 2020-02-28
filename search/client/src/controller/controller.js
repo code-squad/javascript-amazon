@@ -113,14 +113,16 @@ Controller.prototype = {
     }
   },
 
-  selectClass(index, method) { // Prototype로 util에 만들어 놓기.. Array.prototype.addOrRemove = function(...){}
-    if(method === 'add') {
-      $(`li:nth-child(${index})`).classList.add('selected')
-    } else if(method === 'remove') {
-      $(`li:nth-child(${index})`).classList.remove('selected')
-    } else {
-      return
-    }  
+  selectClass(index, method) {
+    switch(method) {
+      case 'add' :
+        $(`li:nth-child(${index})`).classList.add('selected');
+        break;
+      case 'remove' :
+        $(`li:nth-child(${index})`).classList.remove('selected')
+      default:
+        break;
+    }
   },
   
   scrollUpControl() {
