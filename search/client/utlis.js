@@ -4,6 +4,7 @@ const sleep = ms => new Promise(resolve  => setTimeout(resolve, ms));
 
 const KEYUP = 38;
 const KEYDOWN = 40;
+const ENTER = 13;
 
 // classList li용도... 
 Array.prototype.selectClassList = function ({targetClass, method, addClassName, index}) {

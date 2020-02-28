@@ -17,12 +17,14 @@ Controller.prototype = {
 
   eventHandler() {
     this.searchBackground.addEventListener("click", this.searchBackgroundClickedEvent.bind(this))
+    this.autoList.addEventListener("click", this.insertInputValueEvent.bind(this))
   },
 
   inputHandler() {
     this.searchInput.addEventListener("input", this.validationInput.bind(this));
     this.searchInput.addEventListener("keyup", this.inputKeyupEvent.bind(this));
     this.searchInput.addEventListener("keydown", this.inputKeydownEvent.bind(this));
+    this.searchInput.addEventListener("keypress", this.searchInputEnterEvent.bind(this))
   },
 
   searchBackgroundClickedEvent() {
@@ -30,11 +32,23 @@ Controller.prototype = {
     this.searchBackground.style.visibility = 'hidden';
   },
 
+  insertInputValueEvent(e) {
+    this.searchInput.value = e.target.innerText
+    this.searchBackgroundClickedEvent()
+  },
+
+  searchInputEnterEvent(e) {
+    if(e.keyCode !== ENTER || this.searchList.childElementCount === 0) return
+    this.searchInput.value = $('.searchList .selected').innerText
+    this.searchBackgroundClickedEvent()
+  },
+
   validationInput(e) {
     let message = e.target.value;
     let pattern = /^[a-zA-Z]+$/;
     this.validateInput = message.length > 0 && pattern.test(message) === true;
     if (this.validateInput) {
+      this.autoListIndex = 0
       this.searchBackground.style.visibility = 'visible';
       this.autoList.style.display = 'block';
       this.connectModel(message)
@@ -59,9 +73,9 @@ Controller.prototype = {
   },
 
   inputKeyupEvent(e) { //  일단 작동은 됨, 로직이 엉망.. 다 구현 후 코드 정리
-    if(e.keyCode !== KEYUP) return
+    if(e.keyCode !== KEYUP || this.searchList.childElementCount === 0) return
     if(!this.validateInput) return this.initScroll()
-    
+
     this.searchList = $(".searchList")
     if(this.autoListIndex === 0) {
       this.autoListIndex = this.searchList.childElementCount
@@ -80,10 +94,10 @@ Controller.prototype = {
   },
 
   inputKeydownEvent(e) { //  일단 작동은 됨, 로직이 엉망.. 다 구현 후 코드 정리
-    if(e.keyCode !== KEYDOWN) return
+    this.searchList = $(".searchList")
+    if(e.keyCode !== KEYDOWN || this.searchList.childElementCount === 0) return
     if(!this.validateInput) return this.initScroll()
     
-    this.searchList = $(".searchList")
     if(this.autoListIndex === 0) {
       this.autoListIndex++
       this.selectClass(this.autoListIndex, 'add')
