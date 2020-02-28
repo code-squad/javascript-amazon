@@ -1,11 +1,20 @@
 import { _$, _$$ } from "./util.js";
 
 window.addEventListener("DOMContentLoaded", () => {
-  const SearchView = function SearchView(option) {
-    this.searchBar = option.searchBar || ".search";
-    this.searchList = option.searchList || ".search-list";
-    this.searchInput = option.searchInput || ".search-input";
-    this.line = option.line || ".line";
+  const SearchView = function SearchView(
+    option = {
+      searchBar: ".search",
+      searchList: ".search-list",
+      searchInput: ".search-input",
+      line: ".line",
+      activeClassName: "active",
+    },
+  ) {
+    this.searchBar = option.searchBar;
+    this.searchList = option.searchList;
+    this.searchInput = option.searchInput;
+    this.line = option.line;
+    this.activeClassName = option.activeClassName;
     this.allElement = [this.searchBar, this.searchList, this.line];
   };
 
@@ -45,12 +54,13 @@ window.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then(data => {
-        const regex = new RegExp(`^(${str})(?:\W*)(.*)?$`);
-        fn(this.pickWord(regex, data.list));
+        const regex = new RegExp(`^(${str})(?:W*)(.*)?$`);
+        const matchedWord = this.matchWord(regex, data.list);
+        fn(matchedWord);
       });
   };
 
-  SearchModel.prototype.pickWord = function pickWord(regex, wordArray) {
+  SearchModel.prototype.matchWord = function matchWord(regex, wordArray) {
     const word = [];
     const MAX_SIZE = 10;
     wordArray.forEach(eachWord => {
@@ -73,20 +83,20 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   SearchController.prototype.initialize = function initialize() {
-    const inputClass = _$(this.searchView.searchInput);
-    const activeClassName = "active";
+    const inputElem = _$(this.searchView.searchInput);
+    const { activeClassName } = this.searchView;
 
-    this.addTimerEventListener("input", inputClass, activeClassName);
+    this.addTimerEventListener("input", inputElem, activeClassName);
 
-    inputClass.addEventListener("focusout", () => {
+    inputElem.addEventListener("focusout", () => {
       this.searchView.removeClass(activeClassName);
     });
   };
 
-  SearchController.prototype.addTimerEventListener = function addTimerEventListener(eventName, inputClass, activeClassName) {
+  SearchController.prototype.addTimerEventListener = function addTimerEventListener(eventName, inputElem, activeClassName) {
     let timeout = null;
     const DELAY_TIME = 300;
-    inputClass.addEventListener(eventName, evt => {
+    inputElem.addEventListener(eventName, evt => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         const currentText = evt.target.value;
@@ -96,25 +106,18 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   SearchController.prototype.inputCallback = function inputCallback(currentText, activeClassName) {
-    if (!currentText) {
-      this.searchView.removeClass(activeClassName);
-    } else {
-      this.searchModel.getList(currentText, this.showList.bind(this));
-      this.searchView.addClass(activeClassName);
-    }
+    if (!currentText) this.searchView.removeClass(activeClassName);
+    else this.searchModel.getList(currentText, this.showList.bind(this));
   };
 
   SearchController.prototype.showList = function showList(wordsFromModel) {
+    const { activeClassName } = this.searchView;
     this.searchView.templateList(wordsFromModel);
+    if (wordsFromModel.length > 0) this.searchView.addClass(activeClassName);
+    else this.searchView.removeClass(activeClassName);
   };
 
-  const searchView = new SearchView({
-    searchBar: ".search",
-    searchInput: ".search-input",
-    searchList: ".search-list",
-    line: ".line",
-  });
-
+  const searchView = new SearchView();
   const searchModel = new SearchModel("../data/localData.json");
   const searchController = new SearchController(searchView, searchModel);
   searchController.initialize();
