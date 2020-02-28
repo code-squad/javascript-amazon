@@ -18,8 +18,13 @@ input {
   appearance: none;
 }
 
-input,
 textarea:focus {
+  outline: none;
+}
+button:focus {
+  outline: none;
+}
+input:focus {
   outline: none;
 }
 
