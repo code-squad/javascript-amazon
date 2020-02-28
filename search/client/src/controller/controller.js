@@ -1,6 +1,7 @@
 function Controller() {
   this.searchInput = $("#searchInput");
   this.autoList = $(".autoList");
+  this.searchBackground = $(".searchBackground")
   this.searchModel = new SearchModel();
   this.autoListIndex = 0;
   this.validateInput = false;
@@ -24,10 +25,15 @@ Controller.prototype = {
     let pattern = /^[a-zA-Z]+$/;
     this.validateInput = message.length > 0 && pattern.test(message) === true;
     if (this.validateInput) {
+      this.searchBackground.style.visibility = 'visible';
       this.autoList.style.display = 'block';
       this.connectModel(message)
+      this.autoList.scrollTop = 0
     } else {
+      this.searchBackground.style.visibility = 'hidden';
       this.autoList.style.display = 'none';
+      this.autoListIndex = 0
+      this.validateInput = false
     }
   },
 
