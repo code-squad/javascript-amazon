@@ -12,8 +12,9 @@ const options = {
         curItem: 0,
         itemsCount: 0,
         slideSpeed: 0.25,
-        audoSlideInterval: 4500,
+        autoSlideInterval: 4500,
         autoSlide: null,
+        slideDataKey: "SLIDE_DATA_RM",
     },
 };
 

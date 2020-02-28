@@ -1,19 +1,39 @@
 import options from './options.js';
+import URL from '../common/url.js';
 import { taek$, taek$$ } from '../lib/util.js';
 
 const { slideOption: option } = options;
 
 class DataRender {
-    constructor(dataJson) {
+    constructor() {
         this.navWrap = taek$(".slide-nav");
         this.slideWrap = taek$(".slide-item-wrap");
-        this.dataJson = dataJson;
+        this.data = null;
+        this.init();
+    }
+
+    init() {
+        this.getData();
+    }
+
+    getData() {
+        const lacalStorageData = localStorage.getItem(option.slideDataKey);
+        if (lacalStorageData) {
+            this.data = JSON.parse(lacalStorageData);
+        } else {
+            fetch(URL.DEV.SLIDE_DATA_API)
+                .then(response => response.json())
+                .then(data => {
+                    localStorage.setItem(option.slideDataKey, JSON.stringify(data));
+                    this.data = data;
+                });
+        }
     }
 
     navDataRender() {
         const navColors = options.navCardColors;
         let navWrapInnerHTML = "";
-        this.dataJson.itemContents.forEach((item, idx) => {
+        this.data.itemContents.forEach((item, idx) => {
             const temp = `<li class=${idx} style="background-color: ${navColors[idx % navColors.length]}; width: ${option.cardWidth}px">${item.navTitle}</li>`;
             navWrapInnerHTML += temp;
         });
@@ -22,7 +42,7 @@ class DataRender {
 
     slideDataRender() {
         let slideWrapInnerHTML = "";
-        this.dataJson.itemContents.forEach(item => {
+        this.data.itemContents.forEach(item => {
             const temp = `<li class="slide-item">${this.makeItemImg(item)}${this.makeItemText(item)}</li>`;
             slideWrapInnerHTML += temp;
             option.itemsCount++;
@@ -63,13 +83,13 @@ class DataRender {
     }
 
     setNav() {
-        this.navWrap.style.width = `${(option.cardWidth * this.dataJson.itemContents.length) + (option.carGap * this.dataJson.itemContents.length)}px`;
+        this.navWrap.style.width = `${(option.cardWidth * this.data.itemContents.length) + (option.carGap * this.data.itemContents.length)}px`;
         this.navDataRender();
     }
 
     setSlide() {
         const dummyCount = 2;
-        this.slideWrap.style.width = `${option.viewerWidth * (this.dataJson.itemContents.length + dummyCount)}px`;
+        this.slideWrap.style.width = `${option.viewerWidth * (this.data.itemContents.length + dummyCount)}px`;
         this.slideDataRender();
         this.makeDummy();
     }

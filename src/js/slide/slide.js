@@ -7,7 +7,7 @@ class Slide {
     constructor(navCard) {
         this.slideWrap = taek$(".slide-item-wrap");
         this.maxItemIndex = option.itemsCount - 1;
-        this.autoSlideTime = option.audoSlideInterval;
+        this.autoSlideTime = option.autoSlideInterval;
         this.navCard = navCard;
         this.isSliding = false;
         this.init();
