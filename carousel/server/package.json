@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "axios": "^0.19.2",
+    "esm": "^3.2.25",
+    "koa": "^2.11.0",
+    "koa-router": "^8.0.8",
+    "nodemon": "^2.0.2",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "start": "node -r esm src",
+    "start:dev": "nodemon --watch src/ -r esm src/index.js"
+  }
+}

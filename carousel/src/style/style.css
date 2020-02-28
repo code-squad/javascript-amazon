@@ -1,0 +1,133 @@
+#wrap {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#slide {
+  width: 800px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.nav-container {
+  width: 100%;
+  overflow: hidden;
+  height: 80px;
+  padding: 20px;
+  
+}
+
+.nav-content {
+  float: left;
+  width: 180px;
+  margin: 15px 5px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+  border-radius: 2px;
+}
+
+.nav-content:nth-child(1) {
+  background-color: #4691bc;
+  margin-left: 25px;
+}
+.nav-content:nth-child(2) {
+  background-color: #9b2165;
+}
+.nav-content:nth-child(3) {
+  background-color: #398377;
+}
+.nav-content:nth-child(4) {
+  background-color: #d76530;
+}
+
+.contents-container {
+  overflow: hidden;
+  margin-top: 20px;
+  width: 800px;
+}
+
+.contents-container .contents {
+}
+
+.contents-container .contents .content {
+  float: left;
+  width: 800px;
+}
+
+.contents-container .contents .content div {
+  float: left;
+}
+
+.contents-container .contents .content div:last-child {
+  margin-left: 30px;
+}
+
+.contents-container .contents img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.contents-content > h4 {
+  font-size: 32px;
+  margin: 20px 0;
+}
+
+.contents-content > ul > li {
+  font-size: 13px;
+  margin-top: 5px;
+  position: relative;
+}
+
+.contents-content > ul > li::before {
+  position: absolute;
+  top: 7px;
+  left: -10px;
+  border-radius: 50%;
+  content: '';
+  width: 5px;
+  height: 5px;
+  background-color: #000000;
+}
+
+.prevBtn {
+  position: absolute;
+  left: -80px;
+  top: 150px;
+}
+
+.nextBtn {
+  position: absolute;
+  right: -80px;
+  top: 150px;
+}
+
+.prevBtn:before {
+  content: "\f053";
+  padding-right: 10px;
+  font-size: 30px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nextBtn:before {
+  content: "\f054";
+  padding-right: 10px;
+  font-size: 30px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.selected {
+  transform: scale(1.3);
+}
