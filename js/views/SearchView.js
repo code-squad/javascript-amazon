@@ -10,8 +10,8 @@ export default {
         return this;
     },
     emit(event, data) {
-        const evt = new CustomEvent(event, { detail: data });
-        this.el.dispatchEvent(evt);
+        const customEvent = new CustomEvent(event, { detail: data });
+        this.el.dispatchEvent(customEvent);
         return this;
     },
     onEvent() {
