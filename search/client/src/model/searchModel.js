@@ -14,10 +14,8 @@ SearchModel.prototype = {
 
   matchArray(matchingData, inputValue) {
     this.matchingItem = [];
-    matchingData.searchData.forEach((matchingWord) => {
-      if(matchingWord.indexOf(inputValue)=== 0) {
-        this.matchingItem.push(matchingWord);
-      }    
-    })
+    matchingData.searchData
+      .filter(matchWord => matchWord.indexOf(inputValue)=== 0)
+      .map((word) => this.matchingItem.push(word))
   },
 }
