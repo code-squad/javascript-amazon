@@ -1,10 +1,8 @@
-function Controller() {
-  this.searchInput = $("#searchInput");
-  this.autoList = $(".autoList");
-  this.searchBackground = $(".searchBackground")
-  this.searchModel = new SearchModel();
-  this.autoListIndex = 0;
-  this.validateInput = false;
+function Controller({searchModel, searchInput, autoList, searchBackground}) {
+  this.searchInput = searchInput
+  this.autoList = autoList
+  this.searchBackground = searchBackground
+  this.searchModel = searchModel
   this.init();
 }
 
@@ -13,6 +11,8 @@ Controller.prototype = {
   init() {
     this.inputHandler();
     this.eventHandler();
+    this.autoListIndex = 0;
+    this.validateInput = false;
   },
 
   eventHandler() {
@@ -22,41 +22,21 @@ Controller.prototype = {
 
   inputHandler() {
     this.searchInput.addEventListener("input", this.validationInput.bind(this));
-    this.searchInput.addEventListener("keyup", this.inputKeyupEvent.bind(this));
-    this.searchInput.addEventListener("keydown", this.inputKeydownEvent.bind(this));
-    this.searchInput.addEventListener("keypress", this.searchInputEnterEvent.bind(this))
-  },
-
-  searchBackgroundClickedEvent() {
-    this.autoList.style.display = 'none';
-    this.searchBackground.style.visibility = 'hidden';
-  },
-
-  insertInputValueEvent(e) {
-    this.searchInput.value = e.target.innerText
-    this.searchBackgroundClickedEvent()
-  },
-
-  searchInputEnterEvent(e) {
-    if(e.keyCode !== ENTER || this.searchList.childElementCount === 0) return
-    this.searchInput.value = $('.searchList .selected').innerText
-    this.searchBackgroundClickedEvent()
+    this.searchInput.addEventListener("keydown", this.inputEvent.bind(this));
   },
 
   validationInput(e) {
     let message = e.target.value;
     let pattern = /^[a-zA-Z]+$/;
     this.validateInput = message.length > 0 && pattern.test(message) === true;
+    this.initScroll()
     if (this.validateInput) {
-      this.autoListIndex = 0
+      this.connectModel(message)
       this.searchBackground.style.visibility = 'visible';
       this.autoList.style.display = 'block';
-      this.connectModel(message)
-      this.autoList.scrollTop = 0
     } else {
       this.searchBackground.style.visibility = 'hidden';
       this.autoList.style.display = 'none';
-      this.autoListIndex = 0
       this.validateInput = false
     }
   },
@@ -72,11 +52,39 @@ Controller.prototype = {
     })();
   },
 
-  inputKeyupEvent(e) { //  일단 작동은 됨, 로직이 엉망.. 다 구현 후 코드 정리
-    if(e.keyCode !== KEYUP || this.searchList.childElementCount === 0) return
-    if(!this.validateInput) return this.initScroll()
-
+  inputEvent(e) {
     this.searchList = $(".searchList")
+    const { keyCode } = e
+    switch(keyCode) {
+      case ENTER :
+        this.searchInputEnterEvent()
+        break;
+      case KEYUP :
+        this.inputKeyupEvent()
+        break
+      case KEYDOWN :
+        this.inputKeydownEvent()
+        break 
+    }
+  },
+
+  searchBackgroundClickedEvent() {
+    this.autoList.style.display = 'none';
+    this.searchBackground.style.visibility = 'hidden';
+  },
+
+  insertInputValueEvent(e) {
+    this.searchInput.value = e.target.innerText
+    this.searchBackgroundClickedEvent()
+  },
+
+  searchInputEnterEvent(e) {
+    this.searchInput.value = $('.searchList .selected').innerText
+    this.searchBackgroundClickedEvent()
+  },
+
+  inputKeyupEvent() { //  일단 작동은 됨, 로직이 엉망.. 다 구현 후 코드 정리
+    if(this.searchList.childElementCount === 0) return
     if(this.autoListIndex === 0) {
       this.autoListIndex = this.searchList.childElementCount
       this.autoList.scrollTop = this.autoList.scrollHeight
@@ -94,10 +102,7 @@ Controller.prototype = {
   },
 
   inputKeydownEvent(e) { //  일단 작동은 됨, 로직이 엉망.. 다 구현 후 코드 정리
-    this.searchList = $(".searchList")
-    if(e.keyCode !== KEYDOWN || this.searchList.childElementCount === 0) return
-    if(!this.validateInput) return this.initScroll()
-    
+    if(this.searchList.childElementCount === 0) return
     if(this.autoListIndex === 0) {
       this.autoListIndex++
       this.selectClass(this.autoListIndex, 'add')
