@@ -8,7 +8,7 @@ SearchModel.prototype = {
   async fetchData(inputValue){
     const response = await fetch(this.LOCALHOST_URL);
     const matchingData = await response.json();
-    await sleep(300);
+    await sleep(100);
     this.matchArray(matchingData, inputValue);
   },
 
