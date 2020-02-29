@@ -1,6 +1,6 @@
 import { $, $$ } from '../Util.js';
 import SearchView from '../views/SearchView.js';
-import KeywordModel from '../models/KeywordModel.js'
+import SearchModel from '../models/SearchModel.js'
 
 export default {
     init() {
@@ -22,6 +22,6 @@ export default {
         console.log('keyup');
     },
     onSearch(input) {
-        KeywordModel.find(input)
+        SearchModel.find(input)
     }
 };
