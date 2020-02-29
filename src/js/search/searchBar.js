@@ -34,7 +34,7 @@ SearchBar.prototype = {
     },
 
     wordDataRequest(userInput) {
-        fetch(URL.DEV.SEARCH_DATA_API, {
+        fetch(URL.PROD.SEARCH_DATA_API, {
             method: 'POST',
             body: userInput
         })

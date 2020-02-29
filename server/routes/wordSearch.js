@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const wordData = require('../public/json/wordData.json');
+const wordData = require('./json/wordData.json');
 
 router.post('/', function (req, res) {
     const input = req.body;
