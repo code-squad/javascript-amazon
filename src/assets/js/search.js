@@ -29,29 +29,53 @@ SearchUI.prototype = {
       ".search__auto-box"
     );
     this.formUI = new FormUI();
-    this.autoCompeleUI = new AutoCompleteUI();
+    this.autoCompleteUI = new AutoCompleteUI();
   },
-  bindEventListeners: function() {}
+  bindEventListeners: function() {
+    this.formElement.addEventListener("submit", this.formUI.onSubmitHandler);
+    this.inputElement.addEventListener(
+      "input",
+      this.formUI.onInputHandler.bind(this)
+    );
+  }
 };
 
 const FormUI = function() {};
 
 FormUI.prototype = {
-  onSubmitHandler: function() {},
-  onChangeHandler: function() {},
+  onSubmitHandler: function(e) {
+    e.preventDefault();
+    // this.autoCompeleUI.hide();
+  },
+  onInputHandler: function() {
+    const inputValue = this.inputElement.value;
+    const URL = `http://localhost:8080/amazon/search?term=${inputValue}`;
+    fetch(URL)
+      .then(res => res.json())
+      .then(data => {
+        this.autoCompleteUI.updateSuggestions(data);
+      });
+  },
   onKeydownHandler: function() {},
-  updateInput: function() {}
+  updateInput: function(value) {}
 };
 
 const AutoCompleteUI = function() {};
 
 AutoCompleteUI.prototype = {
-  show: function() {},
-  updateSuggestions: function() {},
+  updateSuggestions: function(data) {
+    console.log(data);
+    // this.show();
+  },
+  show: function() {
+    this.autoCompleteElement.classList.remove("hide");
+  },
   onKeydownHandler: function() {},
   onSelectedHandler: function() {},
   highlightSuggestion: function() {},
-  hide: function() {}
+  hide: function() {
+    this.autoCompleteElement.classList.add("hide");
+  }
 };
 
 $addListener(document, "DOMContentLoaded", () => {
