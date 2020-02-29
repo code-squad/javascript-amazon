@@ -12,6 +12,7 @@ SearchList.prototype = {
 
     init() {
         this.searchInput.addEventListener("keydown", this.searchListMove.bind(this));
+        this.searchList.addEventListener("mousedown", this.searchListClick.bind(this));
     },
 
     listInit() {
@@ -21,41 +22,58 @@ SearchList.prototype = {
         this.nextList = null;
     },
 
-    searchListMove({ key }) {
+    searchListMove(evt) {
         if (!this.isListOn) return
-        switch (key) {
+        switch (evt.key) {
             case "ArrowDown": {
-                if (this.curList === this.searchList.lastElementChild || this.curList === null) this.curList = this.searchList.firstElementChild;
-                else {
-                    this.prevList = this.curList;
-                    this.curList = this.nextList;
-                }
-                this.listHighlightControl(this.curList, this.curList.previousElementSibling);
-                this.nextList = this.curList.nextElementSibling;
+                evt.preventDefault();
+                this.listMove(true);
             }
                 break;
             case "ArrowUp": {
-                if (this.curList === this.searchList.firstElementChild || this.curList === null) this.curList = this.searchList.lastElementChild;
-                else {
-                    this.nextList = this.curList;
-                    this.curList = this.prevList;
-                }
-                this.listHighlightControl(this.curList, this.curList.nextElementSibling);
-                this.prevList = this.curList.previousElementSibling;
+                evt.preventDefault();
+                this.listMove(false);
             }
                 break;
             case "Enter": {
-                this.searchInput.value = this.curList.innerText;
-                classRemove(taek$(".search-blind"), "on");
-                this.searchListOff();
-                this.listInit();
+                if (this.curList !== null) {
+                    this.searchInput.value = this.curList.innerText;
+                    classRemove(taek$(".search-blind"), "on");
+                    this.searchListOff();
+                    this.listInit();
+                }
             }
                 break;
         }
     },
 
-    listHighlightControl(curList, prevList) {
-        if (prevList !== null) classRemove(prevList, "on");
+    listMove(isKeyDown) {
+        if (this.curListStateCheck(isKeyDown)) {
+            this.curList = isKeyDown ? this.searchList.firstElementChild : this.searchList.lastElementChild;
+        } else {
+            this.curList = isKeyDown ? this.nextList : this.prevList;
+            this.prevList = this.curList;
+            this.nextList = this.curList;
+        }
+        this.listHighlightControl(this.curList, isKeyDown ? this.curList.previousElementSibling : this.curList.nextElementSibling);
+        this.nextList = this.curList.nextElementSibling;
+        this.prevList = this.curList.previousElementSibling;
+    },
+
+    curListStateCheck(isKeyDown) {
+        if (this.curList === this.searchList.firstElementChild && !isKeyDown) return true
+        if (this.curList === this.searchList.lastElementChild && isKeyDown) return true
+        if (this.curList === null) return true
+        return false
+    },
+
+    searchListClick({ target }) {
+        if (!this.isListOn) return
+        this.searchInput.value = target.innerText;
+    },
+
+    listHighlightControl(curList, prev) {
+        if (prev !== null) classRemove(prev, "on");
         else {
             classRemove(this.searchList.firstElementChild, "on");
             classRemove(this.searchList.lastElementChild, "on");
@@ -68,7 +86,7 @@ SearchList.prototype = {
         this.isListOn = isListOn;
         this.searchList.innerHTML = data.reduce((acc, word) => {
             const restWord = word.substr(userInput.length);
-            return acc + `<li><span style="color:#F90;">${userInput}</span>${restWord}</li>`;
+            return acc + `<li ${isListOn ? '' : 'style="color:#a7a7a7;'}><span style="color:#F90;">${userInput}</span>${restWord}</li>`;
         }, "");
         this.searchListOn();
     },

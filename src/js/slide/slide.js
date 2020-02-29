@@ -34,10 +34,8 @@ class Slide {
     }
 
     itemPositionCheck(curItem, isNextBtn) {
-        if ((curItem === this.maxItemIndex && isNextBtn) || (curItem === 0 && !isNextBtn)) {
-            return true;
-        }
-        return false;
+        if ((curItem === this.maxItemIndex && isNextBtn) || (curItem === 0 && !isNextBtn)) return true
+        return false
     }
 
     slideAnimEndHandler() {
