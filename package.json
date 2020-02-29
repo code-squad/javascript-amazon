@@ -2,11 +2,10 @@
   "name": "javascript-amazon",
   "version": "1.0.0",
   "description": "레벨3",
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node app.js"
+    "start": "nodemon --exec babel-node src/app.js",
+    "build": "webpack --config src/webpack.config.cjs"
   },
   "repository": {
     "type": "git",
@@ -21,10 +20,18 @@
   "dependencies": {
     "@babel/core": "^7.8.4",
     "@babel/node": "^7.8.4",
+    "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
+    "babel-loader": "^8.0.6",
     "core-js": "^3.6.4",
+    "cors": "^2.8.5",
+    "css-loader": "^3.4.2",
     "express": "^4.17.1",
-    "morgan": "^1.9.1"
+    "mini-css-extract-plugin": "^0.9.0",
+    "morgan": "^1.9.1",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-middleware": "^3.7.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
