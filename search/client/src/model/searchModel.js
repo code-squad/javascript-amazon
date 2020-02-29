@@ -1,6 +1,6 @@
-function SearchModel() {
+function SearchModel({LOCALHOST_URL}) {
   this.matchingItem = [];
-  this.LOCALHOST_URL = "http://127.0.0.1:4000";
+  this.LOCALHOST_URL = LOCALHOST_URL;
 }
 
 SearchModel.prototype = {
