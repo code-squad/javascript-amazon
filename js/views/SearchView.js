@@ -2,21 +2,28 @@ export default {
     setup(el) {
         this.el = el;
         this.inputElement = el.querySelector('[type=text]');
-        this.bindEvent();
+        this.onEvent();
         return this;
     },
-    bindEvent() {
+    on(event, handler) {
+        this.el.addEventListener(event, handler);
+        return this;
+    },
+    emit(event, data) {
+        const evt = new CustomEvent(event, { detail: data });
+        this.el.dispatchEvent(evt);
+        return this;
+    },
+    onEvent() {
         this.inputElement.addEventListener('input', e => {
             const value = e.target.value;
-            console.log(value);
+            this.emit('@input', { input: value });
         });
         this.inputElement.addEventListener('keydown', e => {
-            if (e.keyCode === 40) {
-                console.log('방향키 다운');
-            }
-            if (e.keyCode === 38) {
-                console.log('방향키 업');
-            }
+            const arrowDownKeyCode = 40;
+            const arrowUpKeyCode = 38;
+            if (e.keyCode === arrowDownKeyCode) this.emit('@keydown');
+            if (e.keyCode === arrowUpKeyCode) this.emit('@keyup');
         });
     }
 };
