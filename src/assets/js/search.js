@@ -8,7 +8,7 @@ Template functions
 
 const searchBar = (_, ...args) =>
   `<form class="${args[0]}" action="#none" method="get"><input class="${args[1]}" type="text" name="term" autocomplete="none" /><button class="${args[2]}">🔍</button></form>`;
-const autoCompeleArea = (_, ...args) =>
+const autoCompeleList = (_, ...args) =>
   `<ul class="${args[0]}" style="display: none;"><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li></ul>`;
 
 /*
@@ -28,16 +28,16 @@ SearchUI.prototype = {
     const CLASSNAME_FORM = "search__form";
     const CLASSNAME_INPUT = "search__input";
     const CLASSNAME_BTN = "search__btn";
-    const CLASSNAME_AUTO_BOX = "search__auto-box";
-    const CLASSNAME_AUTO_ITEM = "search__auto-item";
+    const CLASSNAME_AUTO_BOX = "search__list";
+    const CLASSNAME_AUTO_ITEM = "search__list-item";
     container.innerHTML += searchBar`${CLASSNAME_FORM} ${CLASSNAME_INPUT} ${CLASSNAME_BTN}}`;
-    container.innerHTML += autoCompeleArea`${CLASSNAME_AUTO_BOX} ${CLASSNAME_AUTO_ITEM}`;
+    container.innerHTML += autoCompeleList`${CLASSNAME_AUTO_BOX} ${CLASSNAME_AUTO_ITEM}`;
   },
   setElements: function(container) {
     this.searchElement = container;
     this.formElement = this.searchElement.querySelector(".search__form");
     this.inputElement = this.searchElement.querySelector(".search__input");
-    this.autoCompleteElement = this.searchElement.querySelector(".search__auto-box");
+    this.autoCompleteElement = this.searchElement.querySelector(".search__list");
     this.formUI = new FormUI();
     this.autoCompleteUI = new AutoCompleteUI();
   },
@@ -59,12 +59,12 @@ const FormUI = function() {};
 FormUI.prototype = {
   onSubmitHandler: function(e) {
     e.preventDefault();
-    this.autoCompleteUI.hide.call(this);
+    this.autoCompleteUI.hideList.call(this);
   },
   onInputHandler: function(e) {
     const inputValue = e.target.value;
     if (!inputValue) {
-      this.autoCompleteUI.hide.call(this);
+      this.autoCompleteUI.hideList.call(this);
       return;
     }
     const that = this;
@@ -72,7 +72,7 @@ FormUI.prototype = {
     fetch(URL)
       .then(res => res.json())
       .then(function(data) {
-        that.autoCompleteUI.updateSuggestions.call(that, data);
+        that.autoCompleteUI.updateList.call(that, data);
       });
   }
 };
@@ -86,15 +86,21 @@ AutoCompleteUI
 const AutoCompleteUI = function() {};
 
 AutoCompleteUI.prototype = {
-  updateSuggestions: function(data) {
-    const listItems = this.autoCompleteElement.children;
-    [...listItems].forEach((item, i) => (item.textContent = data[i]));
-    this.autoCompleteUI.show.call(this);
+  updateList: function(data) {
+    const { autoCompleteElement: list, autoCompleteUI } = this;
+    [...list.children].forEach((item, i) => (item.textContent = data[i]));
+    autoCompleteUI.showList.call(this);
   },
-  show: function() {
+  showList: function() {
     const { autoCompleteElement: list } = this;
     list.firstElementChild.classList.add("selected");
-    list.style.display = "inherit";
+    list.style.display = "inline";
+  },
+  hideList: function() {
+    const { autoCompleteElement: list } = this;
+    [...list.children].forEach(item => item.classList.remove("selected"));
+    list.firstElementChild.classList.add("selected");
+    list.style.display = "none";
   },
   onKeydownHandler: function(e) {
     const { autoCompleteElement: list, inputElement } = this;
@@ -129,12 +135,6 @@ AutoCompleteUI.prototype = {
       default:
         return;
     }
-  },
-  hide: function() {
-    const { autoCompleteElement: list } = this;
-    [...list.children].forEach(item => item.classList.remove("selected"));
-    list.firstElementChild.classList.add("selected");
-    list.style.display = "none";
   }
 };
 
