@@ -10,23 +10,6 @@ module.exports = {
     },
 
     entry: [
-        './src/webfonts/fa-brands-400.eot',
-        './src/webfonts/fa-brands-400.svg',
-        './src/webfonts/fa-brands-400.ttf',
-        './src/webfonts/fa-brands-400.woff',
-        './src/webfonts/fa-brands-400.woff2',
-        './src/webfonts/fa-regular-400.eot',
-        './src/webfonts/fa-regular-400.svg',
-        './src/webfonts/fa-regular-400.ttf',
-        './src/webfonts/fa-regular-400.woff',
-        './src/webfonts/fa-regular-400.woff2',
-        './src/webfonts/fa-solid-900.eot',
-        './src/webfonts/fa-solid-900.svg',
-        './src/webfonts/fa-solid-900.ttf',
-        './src/webfonts/fa-solid-900.woff',
-        './src/webfonts/fa-solid-900.woff2',
-        './src/img/logo.png',
-        './src/img/RM.png',
         './src/js/main.js',
         './src/css/reset.css',
         './src/css/all.css',
@@ -71,6 +54,6 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].bundle.js',
-        publicPath: '/dist/',
+        publicPath: './dist/',
     },
 };
