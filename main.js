@@ -4,7 +4,7 @@ import SearchView from './Search/SearchView.js'
 import SearchModel from './Search/SearchModel.js'
 
 window.addEventListener('DOMContentLoaded', () => {
-    const url = 'https://ello.dlinkddns.com:8080';
+    const url = 'https://us-central1-example-29f86.cloudfunctions.net/api1/';
 
     const searchView = new SearchView();
     const searchModel = new SearchModel(searchView);

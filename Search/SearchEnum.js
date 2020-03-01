@@ -1,5 +1,5 @@
 const SEARCH_AJAX_INFORMATION = Object.freeze({
-    URL: 'https://ello.dlinkddns.com:8080',
+    URL: 'https://us-central1-example-29f86.cloudfunctions.net/api1/',
 });
 
 const SEARCH_STATUS = Object.freeze({
@@ -14,7 +14,7 @@ const SEARCH_TIMEOUT = Object.freeze({
 });
 
 const SEARCH_CACHE_INFORMATION = Object.freeze({
-    KEY: '<cached-data>',
+    KEY: 0,
     MAX_CACHE_COUNT: 5,
 });
 

@@ -54,7 +54,7 @@ class SearchController {
         }
 
         if (cachedData.length >= SEARCH_CACHE_INFORMATION.MAX_CACHE_COUNT) {
-            cachedData.splice(cachedData.length - 1), spliceCount;
+            cachedData.splice(cachedData.length - 1, spliceCount);
         }
 
         cachedData.push(text);
@@ -121,6 +121,9 @@ class SearchController {
     }
 
     _handleSearchButtonClick(event) {
+        if (this._model.getCurrentText() === '') 
+            return;
+
         this._setCurrentStauts(SEARCH_STATUS.NORMAL);
         this._appendLocalstorageRecentData(event.currentTarget.firstElementChild.value);
     }

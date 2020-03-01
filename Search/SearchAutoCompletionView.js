@@ -78,7 +78,7 @@ class SearchAutoCompletionView {
             this._appendList(listElements);
             
             const listElementCount = this._searchSuggestion.childElementCount;
-            const childElementStyle = getComputedStyle(this._searchSuggestion.firstElementChild, null)
+            const childElementStyle = getComputedStyle(this._searchSuggestion.firstElementChild)
             const listElementHeight = parseInt(childElementStyle.getPropertyValue("height"));
 
             this._changeHeight(listElementCount * listElementHeight);
