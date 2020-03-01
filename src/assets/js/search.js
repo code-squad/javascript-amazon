@@ -7,9 +7,9 @@ Template functions
 */
 
 const searchBar = (_, ...args) =>
-  `<form class="${args[0]}" action="#none" method="get"><input class="${args[1]}" type="text" name="term" /><button class="${args[2]}">🔍</button></form>`;
+  `<form class="${args[0]}" action="#none" method="get"><input class="${args[1]}" type="text" name="term" autocomplete="none" /><button class="${args[2]}">🔍</button></form>`;
 const autoCompeleArea = (_, ...args) =>
-  `<ul class="${args[0]}" style="display: none;"><li cass="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li></ul>`;
+  `<ul class="${args[0]}" style="display: none;"><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li></ul>`;
 
 /*
 
@@ -34,16 +34,17 @@ SearchUI.prototype = {
     container.innerHTML += autoCompeleArea`${CLASSNAME_AUTO_BOX} ${CLASSNAME_AUTO_ITEM}`;
   },
   setElements: function(container) {
-    this.container = container;
-    this.formElement = this.container.querySelector(".search__form");
-    this.inputElement = this.container.querySelector(".search__input");
-    this.autoCompleteElement = this.container.querySelector(".search__auto-box");
+    this.searchElement = container;
+    this.formElement = this.searchElement.querySelector(".search__form");
+    this.inputElement = this.searchElement.querySelector(".search__input");
+    this.autoCompleteElement = this.searchElement.querySelector(".search__auto-box");
     this.formUI = new FormUI();
     this.autoCompleteUI = new AutoCompleteUI();
   },
   bindEventListeners: function() {
     this.formElement.addEventListener("submit", this.formUI.onSubmitHandler.bind(this));
     this.formElement.addEventListener("input", this.formUI.onInputHandler.bind(this));
+    this.searchElement.addEventListener("keydown", this.autoCompleteUI.onKeydownHandler.bind(this));
   }
 };
 
@@ -73,9 +74,7 @@ FormUI.prototype = {
       .then(function(data) {
         that.autoCompleteUI.updateSuggestions.call(that, data);
       });
-  },
-  onKeydownHandler: function() {},
-  updateInput: function(value) {}
+  }
 };
 
 /*
@@ -93,13 +92,49 @@ AutoCompleteUI.prototype = {
     this.autoCompleteUI.show.call(this);
   },
   show: function() {
-    this.autoCompleteElement.style.display = "inherit";
+    const { autoCompleteElement: list } = this;
+    list.firstElementChild.classList.add("selected");
+    list.style.display = "inherit";
   },
-  onKeydownHandler: function() {},
-  onSelectedHandler: function() {},
-  highlightSuggestion: function() {},
+  onKeydownHandler: function(e) {
+    const { autoCompleteElement: list, inputElement } = this;
+    if (list.style.display === "none") return;
+    const firstItem = list.firstElementChild;
+    const lastItem = list.lastElementChild;
+    const SELECTED = "selected";
+    let selectedItem = list.querySelector(".selected") || firstItem;
+    selectedItem.classList.remove(SELECTED);
+    switch (e.keyCode) {
+      case 38:
+        if (selectedItem === firstItem) {
+          lastItem.classList.add(SELECTED);
+          selectedItem = lastItem;
+        } else {
+          selectedItem.previousElementSibling.classList.add(SELECTED);
+          selectedItem = selectedItem.previousElementSibling;
+        }
+        break;
+      case 40:
+        if (selectedItem === lastItem) {
+          firstItem.classList.add(SELECTED);
+          selectedItem = firstItem;
+        } else {
+          selectedItem.nextElementSibling.classList.add(SELECTED);
+          selectedItem = selectedItem.nextElementSibling;
+        }
+        break;
+      case 13:
+        inputElement.value = selectedItem.textContent;
+        break;
+      default:
+        return;
+    }
+  },
   hide: function() {
-    this.autoCompleteElement.style.display = "none";
+    const { autoCompleteElement: list } = this;
+    [...list.children].forEach(item => item.classList.remove("selected"));
+    list.firstElementChild.classList.add("selected");
+    list.style.display = "none";
   }
 };
 

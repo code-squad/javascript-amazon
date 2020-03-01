@@ -1,3 +1,12 @@
-#search {
-  border: 3px solid tomato;
+.search__auto-box {
+  width: 200px;
+  background: lightgrey;
+}
+
+.hide {
+  display: none;
+}
+
+.selected {
+  background: wheat;
 }
