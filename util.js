@@ -1,27 +1,27 @@
-export function _$(selector, all) {
-    return all ? document.querySelectorAll(selector) : document.querySelector(selector);
+export function _$(selector, all, target = document) {
+    return all ? target.querySelectorAll(selector) : document.querySelector(selector);
 }
 
-export function _$on(target, event, func) {
-    target.addEventListener(event, func)
-}
-
-export function _$d(delayTime, func) {
-    let timer;
-
-    if (!timer) {
-        timer = setTimeout(() => {
-            timer = null;
-            func();
-        }, delayTime)
+export const _$c = {
+    add(target, className) {
+        target.classList.add(className);
+    },
+    remove(target, className) {
+        target.classList.remove(className);
     }
 }
 
-export function _$ca(target, className) {
-    target.classList.add(className);
-}
+export const _$e = {
+    timer: null,
 
-export function _$cr(target, className) {
-    target.classList.remove(className);
-}
+    on(target, event, func) {
+        target.addEventListener(event, func);
+    },
 
+    debounce(delayTime, funcThis, func) {
+        if (this.timer) clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            func.call(funcThis);
+        }, delayTime);
+    }
+}

@@ -6,6 +6,7 @@ export function SearchAutoCompleteView() {
 SearchAutoCompleteView.prototype = {
     render(words) {
         this.resultArea.style.display = 'block';
+
         this.resultArea.innerHTML = words.reduce((wordList, word) => {
             return wordList += `<li>${word}</li>`
         }, '')

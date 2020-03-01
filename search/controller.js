@@ -1,4 +1,4 @@
-import { _$, _$on, _$ca, _$cr } from '/util.js';
+import { _$, _$e, _$c } from '/util.js';
 // import { searchFetchOption } from '/config.js';
 
 export function SearchController({ model, inputView, autoCompleteView, controllerOption }) {
@@ -6,36 +6,22 @@ export function SearchController({ model, inputView, autoCompleteView, controlle
     // this.inputVeiw = inputView;
     this.autoCompleteView = autoCompleteView;
     // this.option = controllerOption;
-    // this.oldValue = null;
-    this.timer = null;
 }
 
 SearchController.prototype = {
 
-
     onAutoCompleteEvent() {
         const searchInput = _$('#search__input');
         const searchField = _$('.search__container')
-        _$on(searchInput, 'click', () => _$ca(searchField, 'active'));
-        _$on(searchInput, 'blur', () => _$cr(searchField, 'active'));
-        _$on(searchInput, 'input', () => this.debouncing(200, this.getSearchWords));
-
-        // searchInput.addEventListener('input', () => this.debouncing(200, this.getSearchWords))
-        // searchInput.addEventListener('click', () => searchField.classList.add('active'))
-        // searchInput.addEventListener('blur', () => searchField.classList.remove('active'))
+        _$e.on(searchInput, 'click', () => _$c.add(searchField, 'active'));
+        _$e.on(searchInput, 'blur', () => _$c.remove(searchField, 'active'));
+        _$e.on(searchInput, 'input', () => _$e.debounce(300, this, this.getSearchWords));
     },
-
-    debouncing(delayTime, func) {
-        if (this.timer) clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-            func.call(this);
-        }, delayTime)
-    },
-
 
     getSearchWords() {
         const searchInput = _$('#search__input');
         const searchWord = searchInput.value;
+
         if (!searchWord) return this.autoCompleteView.onDisplayNone();
 
         const words = this.model.findMatchingWords(searchWord);
@@ -43,7 +29,6 @@ SearchController.prototype = {
             if (words.length === 0) return this.autoCompleteView.onDisplayNone();
             this.autoCompleteView.render(words);
         })
-
     }
 }
 
