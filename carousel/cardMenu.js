@@ -1,4 +1,4 @@
-import { _$, _$index } from '/util.js';
+import { _$ } from '/util.js';
 
 export class CarouselCardMenu {
     constructor({ carouselSlider, cardMenuInfo }) {
