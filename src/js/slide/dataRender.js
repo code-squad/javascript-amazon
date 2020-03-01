@@ -17,7 +17,7 @@ class DataRender {
             this.data = JSON.parse(lacalStorageData);
         } else {
             return new Promise(resolve => {
-                resolve(fetch(URL.PROD.SLIDE_DATA_API, { method: 'POST' })
+                resolve(fetch(URL.PROD.SLIDE_DATA_API)
                     .then(response => response.json())
                     .then(data => {
                         localStorage.setItem(option.slideDataKey, JSON.stringify(data));

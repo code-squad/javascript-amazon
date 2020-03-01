@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const slideData = require('./json/slideData.json');
 
-router.post('/', function (req, res) {
+router.get('/', function (req, res) {
     res.send(slideData);
 });
 
