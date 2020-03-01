@@ -14,6 +14,7 @@ SearchBar.prototype = {
 
     searchInputFocus() {
         classAdd(this.searchBar, "on");
+        this.searchList.showRecentSearchList();
     },
 
     searchInputFocusout() {
@@ -56,6 +57,7 @@ SearchBar.prototype = {
         searchInput.addEventListener("focus", this.searchInputFocus.bind(this));
         searchInput.addEventListener("focusout", this.searchInputFocusout.bind(this));
         searchInput.addEventListener("input", this.serachInputInsertData.bind(this));
+        this.searchBar.addEventListener("submit", this.searchList.cacheRecentSearchList.bind(this.searchList));
     }
 }
 

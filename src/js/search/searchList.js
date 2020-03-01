@@ -1,3 +1,4 @@
+import options from './options.js';
 import { taek$, classAdd, classRemove } from '../lib/util.js';
 
 const SearchList = function () {
@@ -37,6 +38,7 @@ SearchList.prototype = {
                 break;
             case "Enter": {
                 if (this.curList !== null) {
+                    evt.preventDefault();
                     this.searchInput.value = this.curList.innerText;
                     classRemove(taek$(".search-blind"), "on");
                     this.searchListOff();
@@ -97,6 +99,21 @@ SearchList.prototype = {
 
     searchListOff() {
         classRemove(this.searchList, "on");
+    },
+
+    cacheRecentSearchList() {
+        let recentSearchList = JSON.parse(localStorage.getItem(options.resentSearchListKey));
+        if (!recentSearchList) recentSearchList = [];
+        if (recentSearchList.length >= options.maximumCacheLength) recentSearchList.pop();
+        if (this.searchInput.value) {
+            recentSearchList.unshift(this.searchInput.value);
+            localStorage.setItem(options.resentSearchListKey, JSON.stringify(recentSearchList));
+        }
+    },
+
+    showRecentSearchList() {
+        const recentSearchList = JSON.parse(localStorage.getItem(options.resentSearchListKey));
+        if (recentSearchList) this.searchListRender(recentSearchList, "", true);
     }
 }
 
