@@ -14,9 +14,9 @@ SearchUI.prototype = {
     const CLASSNAME_AUTO_BOX = "search__auto-box";
     const CLASSNAME_AUTO_ITEM = "search__auto-item";
     const searchBar = (_, ...args) =>
-      `<form class="${args[0]}" method="get"><input class="${args[1]}" type="text" name="term" /><button class="${args[2]}">🔍</button></form>`;
+      `<form class="${args[0]}" action="#none" method="get"><input class="${args[1]}" type="text" name="term" /><button class="${args[2]}">🔍</button></form>`;
     const autoCompeleArea = (_, ...args) =>
-      `<ul class="${args[0]}" action="#none" style="display: none;"><li cass="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li></ul>`;
+      `<ul class="${args[0]}" style="display: none;"><li cass="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li><li class="${args[1]}"></li></ul>`;
 
     container.innerHTML += searchBar`${CLASSNAME_FORM} ${CLASSNAME_INPUT} ${CLASSNAME_BTN}}`;
     container.innerHTML += autoCompeleArea`${CLASSNAME_AUTO_BOX} ${CLASSNAME_AUTO_ITEM}`;
@@ -32,8 +32,11 @@ SearchUI.prototype = {
     this.autoCompleteUI = new AutoCompleteUI();
   },
   bindEventListeners: function() {
-    this.formElement.addEventListener("submit", this.formUI.onSubmitHandler);
-    this.inputElement.addEventListener(
+    this.formElement.addEventListener(
+      "submit",
+      this.formUI.onSubmitHandler.bind(this)
+    );
+    this.formElement.addEventListener(
       "input",
       this.formUI.onInputHandler.bind(this)
     );
@@ -45,15 +48,20 @@ const FormUI = function() {};
 FormUI.prototype = {
   onSubmitHandler: function(e) {
     e.preventDefault();
-    // this.autoCompeleUI.hide();
+    this.autoCompleteUI.hide.call(this);
   },
-  onInputHandler: function() {
-    const inputValue = this.inputElement.value;
+  onInputHandler: function(e) {
+    const inputValue = e.target.value;
+    if (!inputValue) {
+      this.autoCompleteUI.hide.call(this);
+      return;
+    }
+    const that = this;
     const URL = `http://localhost:8080/amazon/search?term=${inputValue}`;
     fetch(URL)
       .then(res => res.json())
-      .then(data => {
-        this.autoCompleteUI.updateSuggestions(data);
+      .then(function(data) {
+        that.autoCompleteUI.updateSuggestions.call(that, data);
       });
   },
   onKeydownHandler: function() {},
@@ -64,17 +72,18 @@ const AutoCompleteUI = function() {};
 
 AutoCompleteUI.prototype = {
   updateSuggestions: function(data) {
-    console.log(data);
-    // this.show();
+    const listItems = this.autoCompleteElement.children;
+    [...listItems].forEach((item, i) => (item.textContent = data[i]));
+    this.autoCompleteUI.show.call(this);
   },
   show: function() {
-    this.autoCompleteElement.classList.remove("hide");
+    this.autoCompleteElement.style.display = "inherit";
   },
   onKeydownHandler: function() {},
   onSelectedHandler: function() {},
   highlightSuggestion: function() {},
   hide: function() {
-    this.autoCompleteElement.classList.add("hide");
+    this.autoCompleteElement.style.display = "none";
   }
 };
 
