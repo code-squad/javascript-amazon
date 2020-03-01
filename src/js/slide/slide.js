@@ -14,6 +14,8 @@ class Slide {
     }
 
     init() {
+        option.curItem = Math.floor(Math.random() * option.itemsCount);
+        this.navCard.navScaleControl();
         this.moveSlideWrap(option.curItem);
         option.autoSlide = setTimeout(() => { this.buttonClickHandler(true) }, this.autoSlideTime);
     }

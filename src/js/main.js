@@ -1,4 +1,3 @@
-import options from './slide/options.js';
 import DataRender from './slide/dataRender.js';
 import Slide from './slide/slide.js';
 import NavCard from './slide/navCard.js';
@@ -17,7 +16,6 @@ async function startSlideService() {
     dataRender.setNav();
     dataRender.setSlide();
 
-    options.slideOption.curItem = Math.floor(Math.random() * options.slideOption.itemsCount);
     const navCard = new NavCard();
     const slide = new Slide(navCard);
     slide.run();

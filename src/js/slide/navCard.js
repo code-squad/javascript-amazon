@@ -12,7 +12,6 @@ class NavCard {
     }
 
     init() {
-        this.navScaleControl();
         this.setNavEvent();
     }
 
