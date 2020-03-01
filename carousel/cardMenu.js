@@ -1,4 +1,4 @@
-import { _$ } from '/util.js';
+import { _$, _$index } from '/util.js';
 
 export class CarouselCardMenu {
     constructor({ carouselSlider, cardMenuInfo }) {
@@ -8,36 +8,37 @@ export class CarouselCardMenu {
     }
 
     setCardBtns() {
-        const cardBtns = _$(this.selector.CARD_BTN, true);
+        this.pushClonedSlideCard();
+        this.addScaleEffect();
+        this.onCardBtns();
+    }
 
-        this.setCardBtnIndex();
+    pushClonedSlideCard() {
+        const firstCardIndex = 0;
+        const lastCardIndex = this.cards.length - 1;
+
+        this.cards = Array.from(this.cards);
+        this.cards.push(this.cards[firstCardIndex]);
+        this.cards.unshift(this.cards[lastCardIndex]);
+    }
+
+    addScaleEffect(removal) {
+        if (removal) {
+            const selected = _$(`.${this.selector.SELECTED}`);
+            selected.classList.remove(this.selector.SELECTED);
+        }
+
+        this.cards[this.slider.slideIndex].classList.add(this.selector.SELECTED);
+    }
+
+    onCardBtns() {
+        const cardBtns = _$(this.selector.CARD_BTN, true);
         cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
                 this.slider.slideIndex = index + 1;
-                this.addScaleEffect(btn);
+                this.addScaleEffect(true);
                 this.slider.addTransition();
             })
         })
-    }
-
-    setCardBtnIndex() {
-        const FIRST_INDEX = 0
-        const lastCardIndex = this.cards.length - 1;
-
-        this.cardIndices = [];
-
-        this.slider.slideItems.forEach((_, index) => {
-            if (index === FIRST_INDEX) this.cardIndices[index] = lastCardIndex;
-            else if (index === this.slider.lastSlideIndex) this.cardIndices[index] = FIRST_INDEX;
-            else this.cardIndices[index] = index - 1;
-        })
-    }
-
-    addScaleEffect() {
-        const selected = _$(`.${this.selector.SELECTED}`),
-            selectedCardIndex = this.cardIndices[this.slider.slideIndex];
-
-        selected.classList.remove(this.selector.SELECTED);
-        this.cards[selectedCardIndex].classList.add(this.selector.SELECTED);
     }
 }

@@ -10,7 +10,7 @@ export class CardMenuTemplate {
     render() {
         const menuList = this.menuData.reduce((cards, title, index) => {
             cards += `
-                 <li class="card-menu__card ${this.addSelectedClassName(index)}">
+                 <li class="card-menu__card">
                     <button class="carousel__bg-color${index + 1}">
                         <span class="card__title">${title}</span>
                      </button>

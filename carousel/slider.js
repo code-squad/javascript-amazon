@@ -2,11 +2,11 @@ import { _$ } from '/util.js';
 
 export class CarouselSlider {
     constructor(sliderInfo) {
-        this.slides = _$(sliderInfo.sliderData.SLIDES_CLASSNAME);
-        this.slideIndex = sliderInfo.sliderData.SLIDE_INDEX;
+        this.slideIndex = 1;
+        this.selector = sliderInfo.selector;
+        this.slides = _$(this.selector.SLIDES);
         this.slideSize = this.slides.firstElementChild.clientWidth;
         this.transitionProperty = sliderInfo.transitionProperty;
-        this.selector = sliderInfo.selector;
     }
 
     getSliderInfo() {
