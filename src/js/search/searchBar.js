@@ -1,3 +1,4 @@
+import options from './options.js';
 import URL from '../common/url.js';
 import { taek$, classAdd, classRemove } from '../lib/util.js';
 
@@ -30,7 +31,7 @@ SearchBar.prototype = {
             this.searchList.searchListOff();
             classRemove(this.serachBlind, "on");
         } else {
-            this.timer = setTimeout(this.wordDataRequest.bind(this), 300, this.userInput);
+            this.timer = setTimeout(this.wordDataRequest.bind(this), options.searchDelayTime, this.userInput);
         }
     },
 
