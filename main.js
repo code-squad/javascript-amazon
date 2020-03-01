@@ -7,16 +7,15 @@ import { CarouselSliderBtn } from './carousel/sliderBtn.js'
 import { CardMenuTemplate } from './template/cardMenu.js';
 import { SliderTemplate } from './template/slider.js';
 
-const init = () => {
+export function init() {
     const carouselService = new DataFetch(fetchOption);
-
     carouselService.fetchData()
         .then(carouselData => initTemplate(carouselData))
         .then(() => initCarouselCardSlider())
         .catch((err) => console.error(err));
 }
 
-const initTemplate = (carouselData) => {
+function initTemplate(carouselData) {
     const dataArea = _$(templateOption.DATA_AREA);
     const cardMenuData = new CardMenuTemplate(carouselData.menuData);
     const sliderData = new SliderTemplate(carouselData.contentData);
@@ -27,7 +26,7 @@ const initTemplate = (carouselData) => {
     dataArea.innerHTML = data;
 }
 
-const initCarouselCardSlider = () => {
+function initCarouselCardSlider() {
     const cardMenuInfo = carouselOption.cardMenuInfo;
     const sliderBtnInfo = carouselOption.sliderBtnInfo;
 
