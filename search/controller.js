@@ -15,12 +15,12 @@ SearchController.prototype = {
 
     onAutoCompleteEvent() {
         const searchInput = _$('#search__input');
-        const searchField = _$('.search__container');
+        const searchField = _$('#search');
 
         __$(searchInput).on('click', () => _$c(searchField).add('active'));
         __$(searchInput).on('blur', () => {
             _$c(searchField).remove('active')
-            this.autoCompleteView.onDisplayNone()
+            this.autoCompleteView.hideSuggestions()
         });
         __$(searchInput).on('input', () => _$e.debounce(300, this, this.getSearchTerms));
 
@@ -52,11 +52,11 @@ SearchController.prototype = {
         const searchInput = _$('#search__input');
         const searchTerm = searchInput.value;
         this.keyDownCount = 0;
-        if (!searchTerm) return this.autoCompleteView.onDisplayNone();
+        if (!searchTerm) return this.autoCompleteView.hideSuggestions();
 
         const terms = this.model.findMatchingTerms(searchTerm);
         terms.then(terms => {
-            if (terms.length === 0) return this.autoCompleteView.onDisplayNone();
+            if (terms.length === 0) return this.autoCompleteView.hideSuggestions();
             const slicedTerms = terms.slice(0, 9);
 
             //해당하는 문자 색바꾸기 

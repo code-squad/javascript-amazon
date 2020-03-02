@@ -1,11 +1,11 @@
-#search {
+header {
   display: flex;
   align-items: center;
   height: 100px;
   background-color: #232f3e;
 }
 
-#search .search__container {
+#search {
   margin: 0 auto;
   min-width: 950px;
   border-radius: 5px;
@@ -13,7 +13,7 @@
   font-size: 18px;
 }
 
-#search .search__container.active {
+#search.active {
   border: 3px solid #f90;
   box-sizing: content-box;
 }
@@ -58,14 +58,14 @@
   z-index: 1;
 }
 
-#wrap .on {
-  display: block;
-}
-
 #search .search__autoComplete li.selected {
   background-color: #eee;
 }
 
 #search .search__autoComplete li > strong {
   color: #12cad6;
+}
+
+#wrap .on-block {
+  display: block;
 }

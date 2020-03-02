@@ -9,9 +9,6 @@ export function _$c(target) {
         },
         remove(className) {
             target.classList.remove(className);
-        },
-        c(className) {
-            target.classList.contains(className);
         }
     }
 }
@@ -20,6 +17,12 @@ export function __$(target) {
     return {
         on(event, func) {
             target.addEventListener(event, func);
+        },
+        show(className = 'on-block') {
+            _$c(target).add(className);
+        },
+        hide(className = 'on-block') {
+            _$c(target).remove(className);
         }
     }
 }

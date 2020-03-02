@@ -461,3 +461,7 @@ button {
   left: 0;
   overflow: hidden;
 }
+
+body {
+  height: 100%;
+}

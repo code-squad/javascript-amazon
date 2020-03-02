@@ -1,25 +1,32 @@
-import { _$, _$c } from '/util.js';
+import { _$, _$c, __$ } from '/util.js';
 
 export function SearchAutoCompleteView() {
-    this.resultArea = _$('.search__autoComplete');
+    this.suggestionsBox = _$('.search__autoComplete');
 }
+
 SearchAutoCompleteView.prototype = {
     render(terms, length) {
-        _$c(this.resultArea).add('on');
-        _$c(_$('.bg')).add('on')
+        this.showSuggestions();
 
-        this.resultArea.innerHTML = terms.reduce((termList, term) => {
+        this.suggestionsBox.innerHTML = terms.reduce((termList, term) => {
             const start = term.slice(0, length)
             const end = term.slice(length)
             return termList += `<li><strong>${start}</strong>${end}</li>`
         }, '')
     },
 
-    onDisplayNone() {
-        _$c(this.resultArea).remove('on');
-        _$c(_$('.bg')).remove('on')
+    hideSuggestions() {
+        const backGround = _$('.bg');
 
+        __$(this.suggestionsBox).hide();
+        __$(backGround).hide();
+    },
 
+    showSuggestions() {
+        const backGround = _$('.bg');
+
+        __$(this.suggestionsBox).show();
+        __$(backGround).show();
     },
 
     showSelected(selectedTerm) {
@@ -35,8 +42,7 @@ SearchAutoCompleteView.prototype = {
 
     SelecteSearchTerm(searchBox, selectedTerm) {
         searchBox.value = selectedTerm.textContent;
-        this.onDisplayNone();
+        this.hideSuggestions();
     }
-
 
 }
