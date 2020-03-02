@@ -9,6 +9,8 @@ export function SearchController({ model, inputView, autoCompleteView, controlle
     this.keyDownCount = 0;
 }
 
+// 클릭시 백그라운드 컬러 변경
+
 SearchController.prototype = {
 
     onAutoCompleteEvent() {
@@ -16,7 +18,10 @@ SearchController.prototype = {
         const searchField = _$('.search__container');
 
         __$(searchInput).on('click', () => _$c(searchField).add('active'));
-        __$(searchInput).on('blur', () => _$c(searchField).remove('active'));
+        __$(searchInput).on('blur', () => {
+            _$c(searchField).remove('active')
+            this.autoCompleteView.onDisplayNone()
+        });
         __$(searchInput).on('input', () => _$e.debounce(300, this, this.getSearchTerms));
 
         __$(searchField).on('keydown', (e) => {
@@ -39,7 +44,6 @@ SearchController.prototype = {
             } else if (e.keyCode === 13) {
                 e.preventDefault();
                 this.autoCompleteView.SelecteSearchTerm(e.target, a[this.keyDownCount - 1])
-
             }
         });
     },
@@ -54,7 +58,13 @@ SearchController.prototype = {
         terms.then(terms => {
             if (terms.length === 0) return this.autoCompleteView.onDisplayNone();
             const slicedTerms = terms.slice(0, 9);
-            this.autoCompleteView.render(slicedTerms);
+
+            //해당하는 문자 색바꾸기 
+            const length = searchTerm.length
+            ///
+            console.log(length)
+            this.autoCompleteView.render(slicedTerms, length);
+
         })
     }
 }

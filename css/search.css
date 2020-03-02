@@ -65,3 +65,7 @@
 #search .search__autoComplete li.selected {
   background-color: #eee;
 }
+
+#search .search__autoComplete li > strong {
+  color: #12cad6;
+}

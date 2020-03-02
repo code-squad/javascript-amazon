@@ -4,11 +4,13 @@ export function SearchAutoCompleteView() {
     this.resultArea = _$('.search__autoComplete');
 }
 SearchAutoCompleteView.prototype = {
-    render(terms) {
+    render(terms, length) {
         _$c(this.resultArea).add('on');
 
         this.resultArea.innerHTML = terms.reduce((termList, term) => {
-            return termList += `<li>${term}</li>`
+            const start = term.slice(0, length)
+            const end = term.slice(length)
+            return termList += `<li><strong>${start}</strong>${end}</li>`
         }, '')
     },
 
@@ -30,7 +32,5 @@ SearchAutoCompleteView.prototype = {
         searchBox.value = selectedTerm.textContent;
         this.onDisplayNone();
     },
-
-
 
 }
