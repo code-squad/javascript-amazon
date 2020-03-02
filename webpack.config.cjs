@@ -1,7 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
+const ENTRY_FILE = path.resolve(__dirname, "src", "assets", "js", "main.js");
 const OUTPUT_DIR = path.join(__dirname, "build");
 
 const config = {
@@ -20,7 +20,8 @@ const config = {
     rules: [
       {
         test: /\.js$/,
-        use: "babel-loader"
+        use: "babel-loader",
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,

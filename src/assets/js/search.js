@@ -112,7 +112,7 @@ AutoCompleteUI.prototype = {
     }
     switch (e.keyCode) {
       case 38:
-        if (selectedItem === firstItem) {
+        if (!selectedItem || selectedItem === firstItem) {
           lastItem.classList.add(SELECTED);
           selectedItem = lastItem;
         } else {
