@@ -93,13 +93,11 @@ AutoCompleteUI.prototype = {
   },
   showList: function() {
     const { autoCompleteElement: list } = this;
-    list.firstElementChild.classList.add("selected");
     list.style.display = "inline";
   },
   hideList: function() {
     const { autoCompleteElement: list } = this;
     [...list.children].forEach(item => item.classList.remove("selected"));
-    list.firstElementChild.classList.add("selected");
     list.style.display = "none";
   },
   onKeydownHandler: function(e) {
@@ -108,8 +106,10 @@ AutoCompleteUI.prototype = {
     const firstItem = list.firstElementChild;
     const lastItem = list.lastElementChild;
     const SELECTED = "selected";
-    let selectedItem = list.querySelector(".selected") || firstItem;
-    selectedItem.classList.remove(SELECTED);
+    let selectedItem = list.querySelector(".selected");
+    if (selectedItem) {
+      selectedItem.classList.remove(SELECTED);
+    }
     switch (e.keyCode) {
       case 38:
         if (selectedItem === firstItem) {
@@ -121,7 +121,7 @@ AutoCompleteUI.prototype = {
         }
         break;
       case 40:
-        if (selectedItem === lastItem) {
+        if (!selectedItem || selectedItem === lastItem) {
           firstItem.classList.add(SELECTED);
           selectedItem = firstItem;
         } else {
