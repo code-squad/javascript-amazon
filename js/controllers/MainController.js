@@ -5,6 +5,7 @@ import SearchModel from '../models/SearchModel.js';
 
 export default {
     init() {
+        this.resultList = -1;
         SearchModel.localStorageJson();
         SearchView.setup($('#search'))
             .on('@input', e => this.onInput(e.detail.input))
@@ -13,13 +14,32 @@ export default {
         ResultView.setup($('#search'));
     },
     onInput(input) {
+        this.resultList = -1;
         return this.onSearch(input);
     },
     onKeyDown() {
-        console.log('keydown');
+        const list = $('.keyword-list.open');
+        const listChild = Array.from(list.children);
+        if (this.resultList === listChild.length - 1) return false;
+        listChild.forEach(v => {
+            if (v.classList.contains('on')) {
+                v.classList.remove('on');
+            }
+        });
+        this.resultList++;
+        list.children[this.resultList].classList.add('on');
     },
     onKeyUp() {
-        console.log('keyup');
+        const list = $('.keyword-list.open');
+        if (this.resultList === 0) return false;
+        const listChild = Array.from(list.children);
+        listChild.forEach(v => {
+            if (v.classList.contains('on')) {
+                v.classList.remove('on');
+            }
+        });
+        this.resultList--;
+        list.children[this.resultList].classList.add('on');
     },
     onSearch(input) {
         if (!input) return this.onResultReset();
