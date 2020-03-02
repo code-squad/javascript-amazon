@@ -6,13 +6,13 @@ export function SearchModel(modelOption) {
 }
 
 SearchModel.prototype = {
-    findMatchingWords(searchWord) {
-        const userSearchWord = searchWord.toLowerCase();
-        const searchWords = new DataFetch(this.modelOption);
+    findMatchingTerms(searchTerm) {
+        const userSearchTerm = searchTerm.toLowerCase();
+        const searchTerms = new DataFetch(this.modelOption);
 
-        return searchWords.fetchData()
-            .then(words => words.searchData
-                .filter(word => word.startsWith(userSearchWord))
+        return searchTerms.fetchData()
+            .then(terms => terms.searchData
+                .filter(term => term.startsWith(userSearchTerm))
             )
     }
 }

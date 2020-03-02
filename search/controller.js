@@ -17,7 +17,7 @@ SearchController.prototype = {
 
         __$(searchInput).on('click', () => _$c(searchField).add('active'));
         __$(searchInput).on('blur', () => _$c(searchField).remove('active'));
-        __$(searchInput).on('input', () => _$e.debounce(300, this, this.getSearchWords));
+        __$(searchInput).on('input', () => _$e.debounce(300, this, this.getSearchTerms));
 
         __$(searchField).on('keydown', (e) => {
             const a = e.currentTarget.childNodes[3].childNodes
@@ -36,22 +36,25 @@ SearchController.prototype = {
                     return this.keyDownCount = aLength + 1;
                 }
                 this.autoCompleteView.showSelected(a[this.keyDownCount - 1]);
+            } else if (e.keyCode === 13) {
+                e.preventDefault();
+                this.autoCompleteView.SelecteSearchTerm(e.target, a[this.keyDownCount - 1])
+
             }
         });
     },
 
-    getSearchWords() {
+    getSearchTerms() {
         const searchInput = _$('#search__input');
-        const searchWord = searchInput.value;
+        const searchTerm = searchInput.value;
         this.keyDownCount = 0;
+        if (!searchTerm) return this.autoCompleteView.onDisplayNone();
 
-        if (!searchWord) return this.autoCompleteView.onDisplayNone();
-
-        const words = this.model.findMatchingWords(searchWord);
-        words.then(words => {
-            if (words.length === 0) return this.autoCompleteView.onDisplayNone();
-            const slicedWords = words.slice(0, 9);
-            this.autoCompleteView.render(slicedWords);
+        const terms = this.model.findMatchingTerms(searchTerm);
+        terms.then(terms => {
+            if (terms.length === 0) return this.autoCompleteView.onDisplayNone();
+            const slicedTerms = terms.slice(0, 9);
+            this.autoCompleteView.render(slicedTerms);
         })
     }
 }

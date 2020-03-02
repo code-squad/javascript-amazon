@@ -29,7 +29,7 @@
 }
 
 #search #search__input,
-#search .search__result {
+#search .search__autoComplete {
   text-indent: 15px;
   font-weight: bold;
 }
@@ -44,7 +44,7 @@
   background-color: #f3a847;
 }
 
-#search .search__result {
+#search .search__autoComplete {
   display: none;
   position: absolute;
   width: 950px;
@@ -58,10 +58,10 @@
   z-index: 1;
 }
 
-#search .search__result.on {
+#search .search__autoComplete.on {
   display: block;
 }
 
-#search .search__result li.selected {
+#search .search__autoComplete li.selected {
   background-color: #eee;
 }
