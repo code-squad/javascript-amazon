@@ -58,7 +58,7 @@
   z-index: 1;
 }
 
-#search .search__autoComplete.on {
+#wrap .on {
   display: block;
 }
 

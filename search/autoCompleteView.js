@@ -6,6 +6,7 @@ export function SearchAutoCompleteView() {
 SearchAutoCompleteView.prototype = {
     render(terms, length) {
         _$c(this.resultArea).add('on');
+        _$c(_$('.bg')).add('on')
 
         this.resultArea.innerHTML = terms.reduce((termList, term) => {
             const start = term.slice(0, length)
@@ -15,12 +16,16 @@ SearchAutoCompleteView.prototype = {
     },
 
     onDisplayNone() {
-        return _$c(this.resultArea).remove('on');
+        _$c(this.resultArea).remove('on');
+        _$c(_$('.bg')).remove('on')
+
+
     },
 
     showSelected(selectedTerm) {
         this.hideSelected();
         _$c(selectedTerm).add('selected');
+
     },
 
     hideSelected() {
@@ -31,6 +36,7 @@ SearchAutoCompleteView.prototype = {
     SelecteSearchTerm(searchBox, selectedTerm) {
         searchBox.value = selectedTerm.textContent;
         this.onDisplayNone();
-    },
+    }
+
 
 }

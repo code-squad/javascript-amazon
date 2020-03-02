@@ -2,6 +2,22 @@
 @import "search.css";
 @import url("https://fonts.googleapis.com/css?family=Abel&display=swap");
 
+main {
+  position: relative;
+  padding: 40px;
+  height: 100vh;
+}
+
+.bg {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 #carousel {
   margin: 0 auto;
   max-width: 1000px;
@@ -22,10 +38,6 @@
 
 #carousel .carousel__bg-color4 {
   background-color: #5f85c4;
-}
-
-#card-menu {
-  margin: 40px 0;
 }
 
 #card-menu .card-menu__list {
@@ -56,18 +68,15 @@
 
 #slider {
   position: relative;
-  width: 100%;
-  height: 330px;
+  padding: 40px 0;
 }
 
 #slider .slider__container {
-  height: 100%;
   margin: 0 5%;
   overflow: hidden;
 }
 
 #slider .slider__list {
-  height: 100%;
   display: flex;
 }
 
