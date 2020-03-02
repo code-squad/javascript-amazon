@@ -1,22 +1,31 @@
 export function _$(selector, all, target = document) {
-    return all ? target.querySelectorAll(selector) : document.querySelector(selector);
+    return all ? target.querySelectorAll(selector) : document.querySelector(selector)
 }
 
-export const _$c = {
-    add(target, className) {
-        target.classList.add(className);
-    },
-    remove(target, className) {
-        target.classList.remove(className);
+export function _$c(target) {
+    return {
+        add(className) {
+            target.classList.add(className);
+        },
+        remove(className) {
+            target.classList.remove(className);
+        },
+        c(className) {
+            target.classList.contains(className);
+        }
+    }
+}
+
+export function __$(target) {
+    return {
+        on(event, func) {
+            target.addEventListener(event, func);
+        }
     }
 }
 
 export const _$e = {
     timer: null,
-
-    on(target, event, func) {
-        target.addEventListener(event, func);
-    },
 
     debounce(delayTime, funcThis, func) {
         if (this.timer) clearTimeout(this.timer);

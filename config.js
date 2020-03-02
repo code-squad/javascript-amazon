@@ -3,11 +3,6 @@ export const fetchOption = {
     LOCAL_STORAGE_KEY: 'carouselData',
 }
 
-export const SearchModelOption = {
-    DATA_URL: 'http://127.0.0.1:8080/search/',
-    LOCAL_STORAGE_KEY: 'searchData',
-}
-
 export const carouselOption = {
     sliderInfo: {
         transitionProperty: {

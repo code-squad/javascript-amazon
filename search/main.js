@@ -1,14 +1,15 @@
-import { SearchModelOption } from '/config.js';
+import { modelConfig } from './config.js';
 import { SearchModel } from './model.js';
 import { SearchController } from './controller.js';
 import { SearchAutoCompleteView } from './autoCompleteView.js';
+// const inputView = new SearchInputView(viewOption.input);
+// inputView, controllerOption 
 
-export function SearchInit() {
-    const model = new SearchModel(SearchModelOption);
-    // const inputView = new SearchInputView(viewOption.input);
+export function initSearch() {
+    const model = new SearchModel(modelConfig);
     const autoCompleteView = new SearchAutoCompleteView();
     const controller = new SearchController({ model, autoCompleteView });
-    // inputView, autoCompleteView, controllerOption 
     controller.onAutoCompleteEvent();
 }
-SearchInit() 
+
+initSearch() 

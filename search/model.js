@@ -12,7 +12,8 @@ SearchModel.prototype = {
 
         return searchWords.fetchData()
             .then(words => words.searchData
-                .filter(word => word.startsWith(userSearchWord)))
+                .filter(word => word.startsWith(userSearchWord))
+            )
     }
 }
 
