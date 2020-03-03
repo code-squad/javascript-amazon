@@ -7,46 +7,43 @@ SearchController.prototype.initialize = function initialize() {
   const searchBarElem = this.searchView.searchBar;
   const searchBtnElem = this.searchView.searchBtn;
   const inputElem = this.searchView.searchInput;
-  let index = -1;
 
   this.addTimerEventListener("input", inputElem);
 
   inputElem.addEventListener("focusout", () => {
-    this.searchView.removeClass();
+    this.searchView.clearList();
   });
 
   searchBtnElem.addEventListener("click", () => {
-    this.searchView.removeClass();
+    this.searchView.clearList();
   });
 
   searchBarElem.addEventListener("keydown", evt => {
-    this.keyDownCallback(evt, index);
-    index = this.keyDownCallback(evt, index).index;
+    this.keyDownCallback(evt);
   });
 };
 
-SearchController.prototype.keyDownCallback = function keyDownCallback(evt, index) {
-  let listIndex = index;
-  const [ARROW_UP, ARROW_DOWN, ENTER] = ["ArrowUp", "ArrowDown", "Enter"];
+SearchController.prototype.keyDownCallback = function keyDownCallback(evt) {
   const listArray = this.searchView.searchList.children[0].children;
+  if (!listArray.length) return;
+  const [ARROW_UP, ARROW_DOWN, ENTER] = ["ArrowUp", "ArrowDown", "Enter"];
   switch (evt.key) {
     case ARROW_UP:
-      listIndex -= 1;
-      if (listIndex < 0) listIndex = listArray.length - 1;
-      this.searchView.highlightList(listArray, listIndex);
+      this.searchView.listIndex -= 1;
+      if (this.searchView.listIndex < 0) this.searchView.listIndex = listArray.length - 1;
+      this.searchView.highlightList(listArray);
       break;
     case ARROW_DOWN:
-      listIndex += 1;
-      if (listIndex > listArray.length - 1) listIndex = 0;
-      this.searchView.highlightList(listArray, listIndex);
+      this.searchView.listIndex += 1;
+      if (this.searchView.listIndex > listArray.length - 1) this.searchView.listIndex = 0;
+      this.searchView.highlightList(listArray);
       break;
     case ENTER:
-      this.searchView.removeClass();
+      this.searchView.clearList();
       break;
     default:
       break;
   }
-  return { index: listIndex };
 };
 
 SearchController.prototype.addTimerEventListener = function addTimerEventListener(eventName, inputElem) {
@@ -62,14 +59,16 @@ SearchController.prototype.addTimerEventListener = function addTimerEventListene
 
 SearchController.prototype.inputCallback = function inputCallback(evt) {
   const currentText = evt.target.value;
-  if (!currentText) this.searchView.removeClass();
-  else this.searchModel.getList(currentText, this.showList.bind(this));
+  if (!currentText) this.searchView.clearList();
+  else this.searchModel.fetchList(currentText, this.showList.bind(this));
 };
 
 SearchController.prototype.showList = function showList(wordsFromModel) {
   this.searchView.templateList(wordsFromModel);
-  if (wordsFromModel.length > 0) this.searchView.addClass();
-  else this.searchView.removeClass();
+  if (wordsFromModel.length > 0) {
+    this.searchView.addClass();
+    this.searchView.listIndex = this.searchView.LI_INIT_VAL;
+  } else this.searchView.clearList();
 };
 
 export default SearchController;

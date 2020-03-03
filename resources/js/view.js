@@ -17,6 +17,8 @@ const SearchView = function SearchView(
   this.line = _$(option.line);
   this.activeClassName = option.activeClassName;
   this.allElement = [this.searchBar, this.searchList, this.line];
+  this.LI_INIT_VAL = -1;
+  this.listIndex = this.LI_INIT_VAL;
 };
 
 SearchView.prototype.addClass = function addClass(targetElement = this.allElement, className = this.activeClassName) {
@@ -35,6 +37,12 @@ SearchView.prototype.removeClass = function removeClass(targetElement = this.all
   } else targetElement.classList.remove(className);
 };
 
+SearchView.prototype.clearList = function clearList() {
+  this.removeClass();
+  this.listIndex = this.LI_INIT_VAL;
+  this.searchList.innerHTML = `<ul></ul>`;
+};
+
 SearchView.prototype.templateList = function templateList(wordsFromModel) {
   let newHTML = "";
   wordsFromModel.forEach(eachWord => {
@@ -43,7 +51,8 @@ SearchView.prototype.templateList = function templateList(wordsFromModel) {
   this.searchList.innerHTML = `<ul>${newHTML}</ul>`;
 };
 
-SearchView.prototype.highlightList = function highlightList(listElem, currentIndex) {
+SearchView.prototype.highlightList = function highlightList(listElem) {
+  const currentIndex = this.listIndex;
   if (!listElem[currentIndex]) return;
   for (let index = 0; index < listElem.length; index += 1) {
     if (index === currentIndex) {

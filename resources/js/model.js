@@ -2,31 +2,33 @@ const SearchModel = function SearchModel(src) {
   this.src = src;
 };
 
-SearchModel.prototype.getList = function getList(str, fn) {
+SearchModel.prototype.fetchList = function fetchList(str, callback = null) {
   fetch(this.src)
     .then(response => {
       return response.json();
     })
     .then(data => {
+      if (typeof callback !== "function") throw new Error(`${callback} is not function.`);
       const regex = new RegExp(`^(${str})(?:W*)(.*)?$`);
-      const matchedWord = this.matchWord(regex, data.list);
-      fn(matchedWord);
+      const matchedWords = this.matchWord(regex, data.list);
+      callback(matchedWords);
     });
 };
 
 SearchModel.prototype.matchWord = function matchWord(regex, wordArray) {
-  const word = [];
+  const words = [];
   const MAX_SIZE = 10;
   wordArray.forEach(eachWord => {
-    if (eachWord.match(regex)) {
-      word.push({
-        boldSpell: eachWord.match(regex)[2] || "",
-        restSpell: eachWord.match(regex)[1] || "",
+    const matchedWord = eachWord.match(regex);
+    if (matchedWord) {
+      words.push({
+        boldSpell: matchedWord[2] || "",
+        restSpell: matchedWord[1] || "",
       });
     }
   });
-  if (word.length >= MAX_SIZE) word.length = MAX_SIZE;
-  return word;
+  if (words.length > MAX_SIZE) words.length = MAX_SIZE;
+  return words;
 };
 
 export default SearchModel;
