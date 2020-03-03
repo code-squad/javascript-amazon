@@ -1,4 +1,5 @@
 import { $getById, $addListener } from "./util.js";
+import axios from "axios";
 
 /*
 
@@ -68,11 +69,15 @@ FormUI.prototype = {
       return;
     }
     const that = this;
-    const URL = `http://localhost:${process.env.PORT || 3000}/amazon/search?term=${inputValue}`;
+    const URL = `/amazon/search?term=${inputValue}`;
     fetch(URL)
       .then(res => res.json())
       .then(function(data) {
         that.autoCompleteUI.updateList.call(that, data);
+      })
+      .catch(err => {
+        console.log(err);
+        this.autoCompleteUI.hideList.call(this);
       });
   }
 };

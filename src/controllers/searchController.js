@@ -9,6 +9,12 @@ export const getSearchData = (req, res) => {
   const ABSOLUTE_PATH = ["src", "db", "search", `${prefix}.json`];
   const jsonPath = path.join(__dirname, ...ABSOLUTE_PATH);
   fs.readFile(jsonPath, "utf8", (err, data) => {
-    err ? console.log(err) : res.end(data);
+    if (err) {
+      console.log(err);
+      res.status(400);
+      res.end();
+    } else {
+      res.end(data);
+    }
   });
 };

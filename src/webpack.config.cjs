@@ -3,12 +3,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
-const ENTRY_FILE = path.resolve(__dirname, "src", "assets", "js", "main.js");
-const OUTPUT_DIR = path.join(__dirname, "src", "build");
+const MODE = process.env.WEBPACK_ENV;
+const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
+const OUTPUT_DIR = path.join(__dirname, "static");
 
 const config = {
   entry: ENTRY_FILE,
-  mode: "production",
+  mode: MODE,
   output: {
     path: OUTPUT_DIR,
     filename: "bundle.js"
@@ -18,7 +19,7 @@ const config = {
       filename: "style.css"
     }),
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "./index.html"
     }),
     new webpack.DefinePlugin({
       "process.env": {

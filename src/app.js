@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors());
 app.use(logger("dev"));
-app.use(express.static(path.join(path.resolve(), "src", "build")));
+app.use(express.static(path.join(path.resolve(), "src", "static")));
 app.use(routes.amazon, router);
 
 export default app;

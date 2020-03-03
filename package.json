@@ -2,12 +2,15 @@
   "name": "javascript-amazon",
   "version": "1.0.0",
   "description": "레벨3",
-  "type": "module",
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/init.js",
-    "start": "node --experimental-modules src/init.js",
-    "prebuild": "rm -rf src/build",
-    "build": "cross-env webpack --config webpack.config.cjs"
+    "dev:server": "nodemon --exec babel-node src/init.js --ignore 'static'",
+    "dev:assets": "cd src && cross-env WEBPACK_ENV=development webpack --config webpack.config.cjs -w",
+    "build:server": "babel src --out-dir build --ignore 'src/assets','src/static','src/webpack.config.js'",
+    "build:assets": "cd src && cross-env WEBPACK_ENV=production webpack --config webpack.config.cjs",
+    "copy": "cp -R src/static build && cp -R src/db build",
+    "build": "npm run build:server && npm run build:assets && npm run copy",
+    "prebuild": "rm -rf build",
+    "start": "node build/init.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +23,11 @@
   },
   "homepage": "https://github.com/reesekimm/javascript-amazon#readme",
   "dependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
     "@babel/node": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
+    "axios": "^0.19.2",
     "babel-loader": "^8.0.6",
     "core-js": "^3.6.4",
     "cors": "^2.8.5",
