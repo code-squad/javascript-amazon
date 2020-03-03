@@ -11,7 +11,8 @@ export default {
         return this;
     },
     find() {
-        const getDataParse = JSON.parse(this.keywordDATA).keyword;
+        const getData = this.keywordDATA;
+        const getDataParse = JSON.parse(getData).keyword;
         return new Promise((resolve, reject) => resolve(getDataParse));
     }
 };
