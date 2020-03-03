@@ -44,8 +44,8 @@ SearchAutoCompleteView.prototype = {
             _$c(selectedTerm).remove(this.selectedTermClassName);
     },
 
-    selecteSearchTerm(searchBar, selectedTerm) {
-        searchBar.value = selectedTerm.textContent;
+    selecteSearchTerm(searchInput, selectedTerm) {
+        searchInput.value = selectedTerm.textContent;
         this.hideSuggestions();
     }
 }

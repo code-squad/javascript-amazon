@@ -7,64 +7,93 @@ export function SearchController({ model, inputView, autoCompleteView, controlle
     this.autoCompleteView = autoCompleteView;
     // this.option = controllerConfig;
     this.keyDownCount = 0;
+    this.maxSearchTerms = 9; //옵션
+    this.searchField = _$('#search') // 옵션
+    this.searchInput = _$('#search__input') //옵션
 }
-
-// 클릭시 백그라운드 컬러 변경
 
 SearchController.prototype = {
 
     onAutoCompleteEvent() {
-        const searchInput = _$('#search__input');
-        const searchField = _$('#search');
-
-        __$(searchInput).on('click', () => _$c(searchField).add('active'));
-        __$(searchInput).on('blur', () => {
-            _$c(searchField).remove('active')
+        //옵션기능
+        __$(this.searchInput).on('click', () => _$c(this.searchField).add('active'));
+        __$(this.searchInput).on('blur', () => {
+            _$c(this.searchField).remove('active')
             this.autoCompleteView.hideSuggestions()
         });
-        __$(searchInput).on('input', () => _$e.debounce(300, this, this.getSearchTerms));
+        /////
+        ///300옵션기능
+        __$(this.searchInput).on('input', () => _$e.debounce(300, this, this.getSearchTerms));
 
-        __$(searchField).on('keydown', (e) => {
-            const a = e.currentTarget.childNodes[3].childNodes
-            const aLength = e.currentTarget.childNodes[3].childNodes.length
-            if (e.keyCode === 40) {
-                this.keyDownCount++;
-                if (!a[this.keyDownCount - 1] || aLength < this.keyDownCount) {
-                    this.autoCompleteView.removeSelectedTerm();
-                    return this.keyDownCount = 0;
-                }
-                this.autoCompleteView.paintSelectedTerm(a[this.keyDownCount - 1]);
-            } else if (e.keyCode === 38) {
-                this.keyDownCount--;
-                if (!a[this.keyDownCount - 1]) {
-                    this.autoCompleteView.removeSelectedTerm();
-                    return this.keyDownCount = aLength + 1;
-                }
-                this.autoCompleteView.paintSelectedTerm(a[this.keyDownCount - 1]);
-            } else if (e.keyCode === 13) {
-                e.preventDefault();
-                this.autoCompleteView.selecteSearchTerm(e.target, a[this.keyDownCount - 1])
-            }
-        });
+        __$(this.searchField).on('keydown', this.onKeydownHandler.bind(this), false);
+        //세번째 인자 알아보기
+
+    },
+
+    onKeydownHandler(event) {
+        const suggestions = event.currentTarget.childNodes[3].childNodes;
+        const suggestionLength = suggestions.length;
+
+        switch (event.keyCode) {
+            case 13:
+                this.prssEnter(suggestions, event.target);
+                break;
+
+            case 38:
+                this.pressUpArrow(suggestions, suggestionLength);
+                break;
+
+            case 40:
+                this.pressDownArrow(suggestions, suggestionLength);
+                break;
+        }
+    },
+
+    pressUpArrow(suggestions, suggestionLength) {
+        const lastKeyCount = suggestionLength + 1;
+
+        this.keyDownCount--;
+        this.controlSelectedTerm(suggestions, lastKeyCount);
+    },
+
+    pressDownArrow(suggestions, suggestionLength) {
+        const firstKeyCount = 0;
+        const conditionToRemoveSelected = suggestionLength < this.keyDownCount;
+
+        this.keyDownCount++;
+        this.controlSelectedTerm(suggestions, firstKeyCount, conditionToRemoveSelected);
+    },
+
+    controlSelectedTerm(suggestions, keyCountInit, condition) {
+        const currentSelectedTerm = suggestions[this.keyDownCount - 1];
+
+        event.preventDefault();
+        if (!currentSelectedTerm || condition) {
+            this.autoCompleteView.removeSelectedTerm();
+            return this.keyDownCount = keyCountInit;
+        }
+
+        this.autoCompleteView.paintSelectedTerm(currentSelectedTerm);
+    },
+
+    pressEnter(suggestions, searchInput) {
+        const currentSelectedTerm = suggestions[this.keyDownCount - 1];
+
+        event.preventDefault();
+        this.autoCompleteView.selecteSearchTerm(searchInput, currentSelectedTerm);
     },
 
     getSearchTerms() {
-        const searchInput = _$('#search__input');
-        const searchTerm = searchInput.value;
+        const searchTerm = this.searchInput.value;
+
         this.keyDownCount = 0;
         if (!searchTerm) return this.autoCompleteView.hideSuggestions();
-
-        const terms = this.model.findMatchingTerms(searchTerm);
-        terms.then(terms => {
-            if (terms.length === 0) return this.autoCompleteView.hideSuggestions();
-            const slicedTerms = terms.slice(0, 9);
-
-            //해당하는 문자 색바꾸기 
-            const length = searchTerm.length
-            ///
-            this.autoCompleteView.render(slicedTerms, length);
-
+        const searchTermLength = searchTerm.length;
+        const matchingTerms = this.model.findMatchingTerms(searchTerm);
+        matchingTerms.then(terms => {
+            if (!terms.length) return this.autoCompleteView.hideSuggestions();
+            const suggestedTerms = terms.slice(0, this.maxSearchTerms);
+            this.autoCompleteView.render(suggestedTerms, searchTermLength);
         })
     }
 }
-
