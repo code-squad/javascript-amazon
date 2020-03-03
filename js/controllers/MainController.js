@@ -6,7 +6,7 @@ import SearchModel from '../models/SearchModel.js';
 export default {
     init() {
         this.resultList = -1;
-        SearchModel.localStorageJson();
+        SearchModel.setup();
         SearchView.setup($('#search'))
             .on('@input', e => this.onInput(e.detail.input))
             .on('@keydown', () => this.onKeyDown())
