@@ -4,7 +4,7 @@ export class CarouselCardMenu {
     constructor({ carouselSlider, cardMenuInfo }) {
         this.slider = carouselSlider;
         this.selector = cardMenuInfo.selector;
-        this.cards = _$(this.selector.CARD, true);
+        this.cards = _$(this.selector.card, true);
     }
 
     setCardBtns() {
@@ -24,15 +24,15 @@ export class CarouselCardMenu {
 
     addScaleEffect(removal) {
         if (removal) {
-            const selected = _$(`.${this.selector.SELECTED}`);
-            selected.classList.remove(this.selector.SELECTED);
+            const selected = _$(`.${this.selector.selected}`);
+            selected.classList.remove(this.selector.selected);
         }
 
-        this.cards[this.slider.slideIndex].classList.add(this.selector.SELECTED);
+        this.cards[this.slider.slideIndex].classList.add(this.selector.selected);
     }
 
     onCardBtns() {
-        const cardBtns = _$(this.selector.CARD_BTN, true);
+        const cardBtns = _$(this.selector.cardBtn, true);
         cardBtns.forEach((btn, index) => {
             btn.addEventListener('click', () => {
                 this.slider.slideIndex = index + 1;

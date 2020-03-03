@@ -30,20 +30,20 @@ SearchController.prototype = {
             if (e.keyCode === 40) {
                 this.keyDownCount++;
                 if (!a[this.keyDownCount - 1] || aLength < this.keyDownCount) {
-                    this.autoCompleteView.hideSelected();
+                    this.autoCompleteView.removeSelectedTerm();
                     return this.keyDownCount = 0;
                 }
-                this.autoCompleteView.showSelected(a[this.keyDownCount - 1]);
+                this.autoCompleteView.paintSelectedTerm(a[this.keyDownCount - 1]);
             } else if (e.keyCode === 38) {
                 this.keyDownCount--;
                 if (!a[this.keyDownCount - 1]) {
-                    this.autoCompleteView.hideSelected();
+                    this.autoCompleteView.removeSelectedTerm();
                     return this.keyDownCount = aLength + 1;
                 }
-                this.autoCompleteView.showSelected(a[this.keyDownCount - 1]);
+                this.autoCompleteView.paintSelectedTerm(a[this.keyDownCount - 1]);
             } else if (e.keyCode === 13) {
                 e.preventDefault();
-                this.autoCompleteView.SelecteSearchTerm(e.target, a[this.keyDownCount - 1])
+                this.autoCompleteView.selecteSearchTerm(e.target, a[this.keyDownCount - 1])
             }
         });
     },
@@ -62,7 +62,6 @@ SearchController.prototype = {
             //해당하는 문자 색바꾸기 
             const length = searchTerm.length
             ///
-            console.log(length)
             this.autoCompleteView.render(slicedTerms, length);
 
         })

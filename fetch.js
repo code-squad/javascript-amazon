@@ -1,7 +1,7 @@
 export class DataFetch {
-    constructor({ DATA_URL, LOCAL_STORAGE_KEY }) {
-        this.dataUrl = DATA_URL;
-        this.localStorageKey = LOCAL_STORAGE_KEY;
+    constructor({ dataUrl, localStorageKey }) {
+        this.dataUrl = dataUrl;
+        this.localStorageKey = localStorageKey;
     }
 
     fetchData() {

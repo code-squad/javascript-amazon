@@ -8,7 +8,7 @@ export class CarouselSliderBtn {
     }
 
     setSliderBtns() {
-        const [previousBtn, nextBtn] = _$(this.selector.SLIDER_BTNS, true);
+        const [previousBtn, nextBtn] = _$(this.selector.sliderBtns, true);
 
         previousBtn.addEventListener('click', this.setPreviousBtn.bind(this));
         nextBtn.addEventListener('click', this.setNextBtn.bind(this));

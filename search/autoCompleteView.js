@@ -1,48 +1,51 @@
 import { _$, _$c, __$ } from '/util.js';
 
 export function SearchAutoCompleteView() {
-    this.suggestionsBox = _$('.search__autoComplete');
+    this.suggestionBox = _$('.search__autoComplete');
 }
 
 SearchAutoCompleteView.prototype = {
-    render(terms, length) {
+    render(terms, searchTermLength) {
         this.showSuggestions();
 
-        this.suggestionsBox.innerHTML = terms.reduce((termList, term) => {
-            const start = term.slice(0, length)
-            const end = term.slice(length)
-            return termList += `<li><strong>${start}</strong>${end}</li>`
+        const resultList = terms.reduce((termList, term) => {
+            const matchingTerm = term.slice(0, searchTermLength);
+            const restTerm = term.slice(searchTermLength);
+
+            return termList +=
+                `<li><strong>${matchingTerm}</strong>${restTerm}</li>`
         }, '')
+
+        this.suggestionBox.innerHTML = resultList;
     },
 
     hideSuggestions() {
         const backGround = _$('.bg');
 
-        __$(this.suggestionsBox).hide();
+        __$(this.suggestionBox).hide();
         __$(backGround).hide();
     },
 
     showSuggestions() {
         const backGround = _$('.bg');
 
-        __$(this.suggestionsBox).show();
+        __$(this.suggestionBox).show();
         __$(backGround).show();
     },
 
-    showSelected(selectedTerm) {
-        this.hideSelected();
+    paintSelectedTerm(selectedTerm) {
+        this.removeSelectedTerm();
         _$c(selectedTerm).add('selected');
 
     },
 
-    hideSelected() {
-        const selected = _$('.selected');
-        if (selected) _$c(selected).remove('selected');
+    removeSelectedTerm() {
+        const selectedTerm = _$('.selected');
+        if (selectedTerm) _$c(selectedTerm).remove('selected');
     },
 
-    SelecteSearchTerm(searchBox, selectedTerm) {
-        searchBox.value = selectedTerm.textContent;
+    selecteSearchTerm(searchBar, selectedTerm) {
+        searchBar.value = selectedTerm.textContent;
         this.hideSuggestions();
     }
-
 }

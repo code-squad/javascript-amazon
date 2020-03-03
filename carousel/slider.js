@@ -4,13 +4,13 @@ export class CarouselSlider {
     constructor(sliderInfo) {
         this.slideIndex = 1;
         this.selector = sliderInfo.selector;
-        this.slides = _$(this.selector.SLIDES);
+        this.slides = _$(this.selector.slides);
         this.slideSize = this.slides.firstElementChild.clientWidth;
         this.transitionProperty = sliderInfo.transitionProperty;
     }
 
     getSliderInfo() {
-        this.slideItems = _$(this.selector.SLIDE_ITEM, true);
+        this.slideItems = _$(this.selector.slideItem, true);
         this.slideLength = this.slideItems.length;
         this.lastSlideIndex = this.slideItems.length - 1
     }
@@ -20,8 +20,8 @@ export class CarouselSlider {
             firstClone = firstElementChild.cloneNode(true),
             lastClone = lastElementChild.cloneNode(true);
 
-        firstClone.id = this.selector.FIRST_CLONE;
-        lastClone.id = this.selector.LAST_CLONE;
+        firstClone.id = this.selector.firstClone;
+        lastClone.id = this.selector.lastClone;
         this.slides.append(firstClone);
         this.slides.prepend(lastClone);
         this.getSliderInfo();
@@ -33,9 +33,9 @@ export class CarouselSlider {
     }
 
     addTransition() {
-        const { NAME, DURATION, TIMING_FUNC } = this.transitionProperty;
+        const { name, duration, timingFunc } = this.transitionProperty;
 
-        this.slides.style.transition = `${NAME} ${DURATION} ${TIMING_FUNC}`;
+        this.slides.style.transition = `${name} ${duration} ${timingFunc}`;
         this.moveSlides();
         this.checkCurrentSlideId();
     }
@@ -48,10 +48,10 @@ export class CarouselSlider {
             let lastSlideIndex = 2;
             lastSlideIndex = this.slideLength - lastSlideIndex;
 
-            if (currentSlideId === this.selector.LAST_CLONE)
+            if (currentSlideId === this.selector.lastClone)
                 this.removeTransition(lastSlideIndex);
 
-            if (currentSlideId === this.selector.FIRST_CLONE)
+            if (currentSlideId === this.selector.firstClone)
                 this.removeTransition(FIRST_SLIDE_INDEX);
         })
     }
