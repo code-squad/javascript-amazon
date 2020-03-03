@@ -20,7 +20,8 @@ class Search {
             this.autoCompleteItems = document.createElement('div');
             this.autoCompleteItems.classList.add('autocomplete-items')
             this.autoComplete.appendChild(this.autoCompleteItems);
-            this.data.forEach((dataValue)=>{
+            const addList =()=>{
+                this.data.forEach((dataValue)=>{
                 if (dataValue.substring(0,value.length).toUpperCase()===value.toUpperCase()) {
                     const contentDiv = document.createElement('div');
                     contentDiv.innerHTML=`<strong>${dataValue.substring(0,value.length)}</strong>${dataValue.substring(value.length)}<input type='hidden' value='${dataValue}'>`
@@ -29,7 +30,11 @@ class Search {
                         this.input.value = e.target.querySelector('input').value;
                     })
                 }
-            })
+                })
+            }
+            setTimeout(()=>{
+               addList();
+            },300)
         })
     }
     closeAllList () {
@@ -45,13 +50,16 @@ class Search {
     handleKeyDown () {
         this.input.addEventListener('keydown',(e)=>{
             if (e.which === 40) {
-               this.currentTargetIndex++;
-               if (!this.autoCompleteItems) return;
-               let checkOutOfListIndex=this.currentTargetIndex >= this.autoCompleteItems.children.length;
-               if (checkOutOfListIndex) this.currentTargetIndex=0;
-               Array.from(this.autoCompleteItems.children).forEach((item)=>{
-                   item.classList.remove('autocomplete-active')});
-               this.autoCompleteItems.children[this.currentTargetIndex].classList.add('autocomplete-active');
+                this.currentTargetIndex++;
+                if (!this.autoCompleteItems) return;
+                let checkOutOfListIndex=this.currentTargetIndex >= this.autoCompleteItems.children.length;
+                if (checkOutOfListIndex) this.currentTargetIndex=0;
+                Array.from(this.autoCompleteItems.children).forEach((item)=>{
+                    item.classList.remove('autocomplete-active')});
+                let choosedTarget =this.autoCompleteItems.children[this.currentTargetIndex];
+                choosedTarget=this.autoCompleteItems.children[this.currentTargetIndex];
+                choosedTarget.classList.add('autocomplete-active');
+                this.input.value = choosedTarget.querySelector('input').value
             } else if (e.which === 38) {
                 this.currentTargetIndex--;
                 if (!this.autoCompleteItems) return;
@@ -59,7 +67,10 @@ class Search {
                 if (checkOutOfListIndex) this.currentTargetIndex=this.autoCompleteItems.children.length-1;
                 Array.from(this.autoCompleteItems.children).forEach((item)=>{
                    item.classList.remove('autocomplete-active')});
-                this.autoCompleteItems.children[this.currentTargetIndex].classList.add('autocomplete-active');
+                let choosedTarget =this.autoCompleteItems.children[this.currentTargetIndex];
+                choosedTarget=this.autoCompleteItems.children[this.currentTargetIndex];
+                choosedTarget.classList.add('autocomplete-active');
+                this.input.value = choosedTarget.querySelector('input').value
             } else if (e.which === 13) {
                 e.preventDefault();
                 if (this.currentTargetIndex > -1) {                    
