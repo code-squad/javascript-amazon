@@ -1,15 +1,18 @@
 import { _$, _$c, __$ } from '/util.js';
 
-export function SearchAutoCompleteView() {
-    this.suggestionBox = _$('.search__autoComplete');
+export function SearchAutoCompleteView({ suggestionBox, dargBackground, selectedTerm }) {
+    this.suggestionBox = _$(suggestionBox);
+    this.dargBackground = _$(dargBackground);
+    this.selectedTermClassName = selectedTerm;
 }
 
 SearchAutoCompleteView.prototype = {
     render(terms, searchTermLength) {
+        const FIRST_TERM_INDEX = 0;
         this.showSuggestions();
 
         const resultList = terms.reduce((termList, term) => {
-            const matchingTerm = term.slice(0, searchTermLength);
+            const matchingTerm = term.slice(FIRST_TERM_INDEX, searchTermLength);
             const restTerm = term.slice(searchTermLength);
 
             return termList +=
@@ -20,28 +23,25 @@ SearchAutoCompleteView.prototype = {
     },
 
     hideSuggestions() {
-        const backGround = _$('.bg');
-
+        if (this.dargBackground) __$(this.dargBackground).hide();
         __$(this.suggestionBox).hide();
-        __$(backGround).hide();
     },
 
     showSuggestions() {
-        const backGround = _$('.bg');
-
+        if (this.dargBackground) __$(this.dargBackground).show();
         __$(this.suggestionBox).show();
-        __$(backGround).show();
     },
 
     paintSelectedTerm(selectedTerm) {
         this.removeSelectedTerm();
-        _$c(selectedTerm).add('selected');
-
+        _$c(selectedTerm).add(this.selectedTermClassName);
     },
 
     removeSelectedTerm() {
-        const selectedTerm = _$('.selected');
-        if (selectedTerm) _$c(selectedTerm).remove('selected');
+        const selectedTerm = _$('.' + this.selectedTermClassName);
+
+        if (selectedTerm)
+            _$c(selectedTerm).remove(this.selectedTermClassName);
     },
 
     selecteSearchTerm(searchBar, selectedTerm) {

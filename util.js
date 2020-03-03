@@ -19,10 +19,10 @@ export function __$(target) {
             target.addEventListener(event, func);
         },
         show(className = 'on-block') {
-            _$c(target).add(className);
+            target.classList.add(className);
         },
         hide(className = 'on-block') {
-            _$c(target).remove(className);
+            target.classList.remove(className);
         }
     }
 }
