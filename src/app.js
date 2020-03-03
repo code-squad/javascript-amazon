@@ -11,8 +11,7 @@ const app = express();
 
 app.use(cors());
 app.use(logger("dev"));
-app.use("/build", express.static(path.join(path.resolve(), "build")));
-
+app.use(express.static(path.join(path.resolve(), "src", "build")));
 app.use(routes.amazon, router);
 
 const handleListening = () => console.log(`Listening on http://localhost:${PORT}...`);

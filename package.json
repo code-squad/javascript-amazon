@@ -4,8 +4,9 @@
   "description": "레벨3",
   "type": "module",
   "scripts": {
-    "start": "nodemon --exec babel-node src/app.js",
-    "prebuild": "rm -rf build",
+    "dev:server": "nodemon --exec babel-node src/app.js",
+    "start": "node --experimental-modules src/app.js",
+    "prebuild": "rm -rf src/build",
     "build": "webpack --config webpack.config.cjs"
   },
   "repository": {
@@ -34,6 +35,7 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
     "nodemon": "^2.0.2"
   }
 }

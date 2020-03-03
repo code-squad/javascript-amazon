@@ -1,12 +1,13 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const ENTRY_FILE = path.resolve(__dirname, "src", "assets", "js", "main.js");
-const OUTPUT_DIR = path.join(__dirname, "build");
+const OUTPUT_DIR = path.join(__dirname, "src", "build");
 
 const config = {
   entry: ENTRY_FILE,
-  mode: "development",
+  mode: "production",
   output: {
     path: OUTPUT_DIR,
     filename: "bundle.js"
@@ -14,6 +15,9 @@ const config = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "style.css"
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html"
     })
   ],
   module: {
