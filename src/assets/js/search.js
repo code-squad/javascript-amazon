@@ -68,7 +68,7 @@ FormUI.prototype = {
       return;
     }
     const that = this;
-    const URL = `http://localhost:8080/amazon/search?term=${inputValue}`;
+    const URL = `http://localhost:${process.env.PORT || 3000}/amazon/search?term=${inputValue}`;
     fetch(URL)
       .then(res => res.json())
       .then(function(data) {
