@@ -1,23 +1,17 @@
-const port = 8080;
+const functions = require('firebase-functions');
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const fs = require('fs');
-const data = fs.readFileSync('localData.json', 'utf8');
+const data = require('./localData.json');
 const words = require('./words.js').words;
-const https = require('https');
-
-const options = {
-	key: fs.readFileSync('./ello.dlinkddns.com-key.pem'),
-	cert: fs.readFileSync('./ello.dlinkddns.com-crt.pem')
-};
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.get('/', (req, res) => res.send(data));
-app.post('/', function(req, res) {
+app.post('/', (req, res) => {
     const extractedWords = extractSuggestionWord(req.body.userInputText);
     extractedWords.reverse();
     const suggestionData = {
@@ -25,10 +19,6 @@ app.post('/', function(req, res) {
         suggestionList: extractedWords
     };
     res.send(suggestionData);
-});
-
-https.createServer(options, app).listen(port, function(){
-    console.log(`App listening on port ${port}!`)
 });
 
 function extractSuggestionWord(userInputText) {
@@ -51,4 +41,10 @@ function extractSuggestionWord(userInputText) {
     }
 
     return extractedWords;
+}
+
+const api1 = functions.https.onRequest(app)
+
+module.exports = {
+  api1
 }

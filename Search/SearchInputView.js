@@ -7,6 +7,9 @@ class SearchInputView {
 
         this._onArrowKeyPressed = null;
         this._onKeyInputted = null;
+        this._onSuggestionEntered = null;
+        this._onSearchButtonClicked = null;
+        this._onInputFieldClicked = null;
     }
 
     render() {
@@ -24,6 +27,8 @@ class SearchInputView {
         this._onArrowKeyPressed = callbacks.onArrowKeyPressed;
         this._onKeyInputted = callbacks.onKeyInputted;
         this._onSuggestionEntered = callbacks.onSuggestionEntered;
+        this._onSearchButtonClicked = callbacks.onSearchButtonClicked;
+        this._onInputFieldClicked = callbacks.onInputFieldClicked;
     }
 
     onNotifyRenderFinished() {
@@ -43,6 +48,14 @@ class SearchInputView {
                 this._onArrowKeyPressed(event);    
             }
         });
+        this.searchBox.addEventListener('click', event => {
+            if (event.target.className === 'searchInputField') {
+                this._onInputFieldClicked(event);
+            }
+            else {
+                this._onSearchButtonClicked(event);
+            }
+        })
     }
 
     onNotifyCurrentTextChanged(text) {
