@@ -1,21 +1,21 @@
 {
-  "name": "server",
+  "name": "amazon_test",
   "version": "1.0.0",
   "description": "",
-  "main": "node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r esm src"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@koa/cors": "^2.2.3",
+    "@koa/cors": "^3.0.0",
     "axios": "^0.19.2",
     "esm": "^3.2.25",
+    "firebase-admin": "^8.9.2",
+    "firebase-functions": "^3.3.0",
     "koa": "^2.11.0",
-    "koa-router": "^8.0.8",
-    "nodemon": "^2.0.2",
-    "path": "^0.12.7"
-  },
-  "scripts": {
-    "start": "node -r esm src",
-    "start:dev": "nodemon --watch src/ -r esm src/index.js"
+    "koa-firebase-functions": "^1.0.1",
+    "koa-router": "^8.0.8"
   }
 }
