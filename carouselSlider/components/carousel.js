@@ -1,7 +1,7 @@
-import Navigation from "./navigation.js";
-import Cards from "./cards.js";
-import Buttons from "./buttons.js";
-import SlideAnimationMediator from "../slide-anim-mediator.js";
+import Navigation from "./navigation.js.js";
+import Cards from "./cards.js.js";
+import Buttons from "./buttons.js.js";
+import SlideAnimationMediator from "../slideAnimationMediator.js";
 
 export default class Carousel {
   constructor(data, width) {
@@ -29,5 +29,6 @@ export default class Carousel {
 
     this.navigation.onClickEventHandler();
     this.buttons.onClickEventHandler();
+    this.cards.onTransitionEndHandler(1);
   }
 }

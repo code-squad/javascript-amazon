@@ -1,4 +1,4 @@
-import { $qsa, $ael } from "../util.js";
+import { $querySelectorAll, $addListener } from "../util.js";
 
 export default class Navigation {
   constructor(data) {
@@ -31,13 +31,13 @@ export default class Navigation {
   }
 
   onClickEventHandler() {
-    this.elements = $qsa(".nav-menu");
+    this.elements = $querySelectorAll(".nav-menu");
     this.elements.forEach((menu, i) =>
-      $ael(menu, "click", () => this._requestSlideAnim(i))
+      $addListener(menu, "click", () => this._requestSlideAnimation(i))
     );
   }
 
-  _requestSlideAnim(index) {
+  _requestSlideAnimation(index) {
     this.slideAnimMediator.slide(this.name, index);
   }
 
