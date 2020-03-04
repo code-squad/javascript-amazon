@@ -7,7 +7,19 @@ const jsonFileUrl = "../../../server/productData.json";
 const data = localStorage.getItem("mockData");
 
 const controllData = data => {
-  new SearchBox();
+  const searchBox = new SearchBox();
+  const autoComplete = new AutoComplete(JSON.parse(data));
+  const searchTerm = document.querySelector(".search-term");
+
+  searchTerm.addEventListener("input", event => {
+    let timer;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      let input = event.target.value;
+      searchBox.inputEvent(input);
+      autoComplete.searchChar(input);
+    }, 300);
+  });
 };
 
 (() => {
@@ -16,10 +28,6 @@ const controllData = data => {
     .then(mockData => {
       localStorage.setItem("mockData", JSON.stringify(mockData));
     })
-    .then(() => {
-      new TemplateData();
-    })
-    .then(() => {
-      controllData(data);
-    });
+    .then(() => new TemplateData())
+    .then(() => controllData(data));
 })();
