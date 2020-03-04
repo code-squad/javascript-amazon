@@ -77,24 +77,23 @@ SearchController.prototype = {
     },
 
     pressUpArrow(suggestionsList, suggestionLength) {
+        this.keyDownCount--;
         const outOfRange = this.keyDownCount < 0;
 
-        this.keyDownCount--;
         if(outOfRange) this.keyDownCount = suggestionLength;
         this.controlSelectedTerm(suggestionsList);
     },
 
     pressDownArrow(suggestionsList, suggestionLength) {
+        this.keyDownCount++;
         const outOfRange = this.keyDownCount > suggestionLength;
 
-        this.keyDownCount++;
         if(outOfRange) this.keyDownCount = 0;
         this.controlSelectedTerm(suggestionsList);
     },
 
     controlSelectedTerm(suggestionsList) {
-        const offScreen = this.keyDownCount <= 0;
-        debugger
+        const offScreen = this.keyDownCount <= 0 ;
         if(offScreen) return this.autoCompleteView.removeSelectedTerm();
 
         const currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
