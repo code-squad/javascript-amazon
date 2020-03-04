@@ -3,10 +3,13 @@ import SearchView from '../views/SearchView.js';
 import ResultView from '../views/ResultView.js';
 import SearchModel from '../models/SearchModel.js';
 
+const JSON_DATA_URL =
+    'https://baekcode.github.io/codesquad-FE/day4_search/keyword.json';
+
 export default {
     init() {
         this.resultList = -1;
-        SearchModel.setup();
+        SearchModel.setup(JSON_DATA_URL);
         SearchView.setup($('#search'))
             .on('@input', e => this.onInput(e.detail.input))
             .on('@keydown', () => this.onKeyDown())
@@ -43,15 +46,11 @@ export default {
     },
     onSearch(input) {
         if (!input) return this.onResultReset();
-        SearchModel.find().then(data => {
-            const list = [];
-            data.forEach(str => {
-                if (str.slice(0, input.length) === input) {
-                    list.push(str);
-                }
-            });
-            this.onSearchResult(list);
+        const resultList = [];
+        SearchModel.getData().forEach(str => {
+            if (str.slice(0, input.length) === input) resultList.push(str);
         });
+        this.onSearchResult(resultList);
     },
     onSearchResult(list) {
         ResultView.render(list);

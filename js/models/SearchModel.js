@@ -1,18 +1,19 @@
 export default {
-    setup() {
-        this.keywordDATA = localStorage.getItem('keywordDATA');
-        if (!this.keywordDATA) {
-            const apiServer =
-                'https://baekcode.github.io/codesquad-FE/day4_search/keyword.json';
-            fetch(apiServer)
-                .then(res => res.text())
-                .then(body => localStorage.setItem('keywordDATA', body));
+    setup(jsonDataUrl) {
+        if (!this.getLocalStorageData) {
+            this.onFetch(jsonDataUrl);
         }
+        this.getLocalStorageData = localStorage.getItem('keyword_json');
         return this;
     },
-    find() {
-        const getData = this.keywordDATA;
-        const getDataParse = JSON.parse(getData).keyword;
-        return new Promise((resolve, reject) => resolve(getDataParse));
+    onFetch(url) {
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+                localStorage.setItem('keyword_json', data);
+            });
+    },
+    getData() {
+        return JSON.parse(localStorage.getItem('keyword_json')).keyword;
     }
 };
