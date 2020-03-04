@@ -109,3 +109,7 @@ tmp/
 temp/
 
 # End of https://www.gitignore.io/api/node
+
+# firebase
+.firebase/
+.firebaserc
