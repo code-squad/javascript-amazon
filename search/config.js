@@ -15,10 +15,11 @@ export const autoCompleteConfig = {
 }
 
 export const controllerConfig = {
+    option : {
         maxSuggestionLength: 9,
         delayTime: 300,
-        inputFocus: true,
-    
+        inputFocus: false,
+    },
     searchField: '#search',
     searchInput: '#search__input',
 }

@@ -1,31 +1,23 @@
 import { _$, _$e, _$c, __$ } from '/util.js';
-// import { searchFetchOption } from '/config.js';
+import { controllerConfig } from './config.js';
 
-export function SearchController({ model, inputView, autoCompleteView, controllerConfig }) {
+export function SearchController({ model, inputView, autoCompleteView }) {
     this.model = model;
     // this.inputVeiw = inputView;
     this.autoCompleteView = autoCompleteView;
     this.keyDownCount = 0;
-    // this.option = controllerConfig.option;
-    this.maxSuggestionLength = controllerConfig.maxSuggestionLength;
     this.searchField = _$(controllerConfig.searchField);
     this.searchInput = _$(controllerConfig.searchInput);
-    this.delayTime = controllerConfig.delayTime;
-    this.inputFocus = controllerConfig.inputFocus;
-    this.keyCode = {
-        enter: 13,
-        upArrow: 38,
-        downArrow: 40
-    };
-
+    this.option = controllerConfig.option;
+    this.maxSuggestionLength = this.option.maxSuggestionLength;
 }
 
 SearchController.prototype = {
 
     onAutoCompleteEvent() {
-        if (this.inputFocus) this.onInputFocusEvent();
+        if (this.option.inputFocus) this.onInputFocusEvent();
         __$(this.searchInput)
-            .on('input', () => _$e.debounce(this.delayTime, this, this.getMatchingTerms));
+            .on('input', () => _$e.debounce(this.option.delayTime, this, this.getMatchingTerms));
 
         __$(this.searchField)
             .on('keydown', (event) => this.onKeydownHandler(event));
@@ -53,17 +45,17 @@ SearchController.prototype = {
 
         switch (event.keyCode) {
 
-            case this.keyCode.enter:
+            case keyCode.enter:
                 event.preventDefault();
                 this.pressEnter(suggestionsList, event.target);
                 break;
 
-            case this.keyCode.upArrow:
+            case keyCode.upArrow:
                 event.preventDefault();
                 this.pressUpArrow(suggestionsList, suggestionLength);
                 break;
 
-            case this.keyCode.downArrow:
+            case keyCode.downArrow:
                 event.preventDefault();
                 this.pressDownArrow(suggestionsList, suggestionLength);
                 break;
@@ -71,37 +63,36 @@ SearchController.prototype = {
     },
 
     pressEnter(suggestionsList, searchInput) {
-        const currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
+        const offScreen = this.keyDownCount <= 0 ;
+        if( offScreen ) return this.autoCompleteView.hideSuggestionBox();
 
+        const currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
         this.autoCompleteView.selecteSearchTerm(searchInput, currentSelectedTerm);
     },
 
     pressUpArrow(suggestionsList, suggestionLength) {
         this.keyDownCount--;
         const outOfRange = this.keyDownCount < 0;
-
         if(outOfRange) this.keyDownCount = suggestionLength;
+
         this.controlSelectedTerm(suggestionsList);
     },
 
     pressDownArrow(suggestionsList, suggestionLength) {
         this.keyDownCount++;
         const outOfRange = this.keyDownCount > suggestionLength;
-
         if(outOfRange) this.keyDownCount = 0;
+
         this.controlSelectedTerm(suggestionsList);
     },
 
     controlSelectedTerm(suggestionsList) {
-        const offScreen = this.keyDownCount <= 0 ;
+        const offScreen = this.keyDownCount <= 0;
         if(offScreen) return this.autoCompleteView.removeSelectedTerm();
 
         const currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
-
         this.autoCompleteView.paintSelectedTerm(currentSelectedTerm);
     },
-
-
 
     getMatchingTerms() {
         const searchTerm = this.searchInput.value;
