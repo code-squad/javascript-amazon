@@ -8,14 +8,13 @@ class CarouselAnimation {
   setTransition() {
     this.carouselSlide.style.transition = "transform 0.4s ease-in-out";
   }
-
   removeTransition() {
     this.carouselSlide.style.transition = "none";
   }
-
   moveCarouselSlideTranslateX(counter) {
-    const moveTranslateXValue = this.itemWidth * counter;
-    this.carouselSlide.style.transform = `translateX(${-moveTranslateXValue}px)`;
+    this.carouselSlide.style.transform = `translateX(${-(
+      this.itemWidth * counter
+    )}px)`;
   }
 }
 

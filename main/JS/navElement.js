@@ -13,6 +13,16 @@ class NavElement {
       nav.appendChild(navItem);
     });
   }
+  fetch(url) {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        this.createNavElement(data);
+      });
+  }
+  render() {
+    this.fetch("http://localhost:8080/JSON/localData.json");
+  }
 }
 
 export default NavElement;
