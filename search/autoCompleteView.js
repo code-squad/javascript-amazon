@@ -1,10 +1,10 @@
 import { _$, _$c, __$ } from '/util.js';
 
-export function SearchAutoCompleteView({ suggestionBox, darkBackground, selectedTerm, inputFocus }) {
+export function SearchAutoCompleteView({ suggestionBox, darkBackground, selectedTermClassName, inputFocusClassName }) {
     this.suggestionBox = _$(suggestionBox);
     this.darkBackground = _$(darkBackground);
-    this.selectedTermClassName = selectedTerm;
-    this.inputFocusClassName = inputFocus;
+    this.selectedTermClassName = selectedTermClassName;
+    this.inputFocusClassName = inputFocusClassName;
 }
 
 SearchAutoCompleteView.prototype = {

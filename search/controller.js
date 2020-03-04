@@ -1,23 +1,23 @@
 import { _$, _$e, _$c, __$ } from '/util.js';
 // import { searchFetchOption } from '/config.js';
 
-export function SearchController({ model, inputView, autoCompleteView, controllerOption }) {
+export function SearchController({ model, inputView, autoCompleteView, controllerConfig }) {
     this.model = model;
     // this.inputVeiw = inputView;
     this.autoCompleteView = autoCompleteView;
-    // this.option = controllerConfig;
     this.keyDownCount = 0;
-    this.maxSuggestions = 9; //옵션
-    this.searchField = _$('#search') // 옵션
-    this.searchInput = _$('#search__input') //옵션
-    this.delayTime = 300;//옵션
-    this.inputFocus = true;//옵션
-    this.keyDownCount = 0;
+    // this.option = controllerConfig.option;
+    this.maxSuggestionLength = controllerConfig.maxSuggestionLength;
+    this.searchField = _$(controllerConfig.searchField);
+    this.searchInput = _$(controllerConfig.searchInput);
+    this.delayTime = controllerConfig.delayTime;
+    this.inputFocus = controllerConfig.inputFocus;
     this.keyCode = {
         enter: 13,
         upArrow: 38,
         downArrow: 40
     };
+
 }
 
 SearchController.prototype = {
@@ -25,7 +25,7 @@ SearchController.prototype = {
     onAutoCompleteEvent() {
         if (this.inputFocus) this.onInputFocusEvent();
         __$(this.searchInput)
-            .on('input', () => _$e.debounce(this.delayTime, this, this.getmatchingTerms));
+            .on('input', () => _$e.debounce(this.delayTime, this, this.getMatchingTerms));
 
         __$(this.searchField)
             .on('keydown', (event) => this.onKeydownHandler(event));
@@ -45,6 +45,11 @@ SearchController.prototype = {
         const suggestionBoxIndex = searchChildren.indexOf(this.autoCompleteView.suggestionBox);
         const suggestionsList = searchChildren[suggestionBoxIndex].children;
         const suggestionLength = suggestionsList.length;
+        const keyCode = {
+            enter: 13,
+            upArrow: 38,
+            downArrow: 40
+        };
 
         switch (event.keyCode) {
 
@@ -89,6 +94,7 @@ SearchController.prototype = {
 
     controlSelectedTerm(suggestionsList) {
         const offScreen = this.keyDownCount <= 0;
+        debugger
         if(offScreen) return this.autoCompleteView.removeSelectedTerm();
 
         const currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
@@ -96,7 +102,9 @@ SearchController.prototype = {
         this.autoCompleteView.paintSelectedTerm(currentSelectedTerm);
     },
 
-    getmatchingTerms() {
+
+
+    getMatchingTerms() {
         const searchTerm = this.searchInput.value;
         if (!searchTerm) return this.autoCompleteView.hideSuggestionBox();
 
@@ -109,7 +117,7 @@ SearchController.prototype = {
 
     makeSuggestionList(terms, searchTermLength) {
         if (!terms.length) return this.autoCompleteView.hideSuggestionBox();
-        const suggestions = terms.slice(0, this.maxSuggestions);
+        const suggestions = terms.slice(0, this.maxSuggestionLength);
 
         this.autoCompleteView.render(suggestions, searchTermLength);
     }

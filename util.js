@@ -1,5 +1,5 @@
 export function _$(selector, all, target = document) {
-    return all ? target.querySelectorAll(selector) : document.querySelector(selector)
+    return all ? target.querySelectorAll(selector) : target.querySelector(selector);
 }
 
 export function _$c(target) {

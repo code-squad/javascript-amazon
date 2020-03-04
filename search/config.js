@@ -5,9 +5,21 @@ export const modelConfig = {
 }
 
 export const autoCompleteConfig = {
+ 
+        // darkBackground: {use: true, className:'.bg'},
+        darkBackground:'.bg',
+        inputFocusClassName: 'active',
+    
     suggestionBox: '.search__autoComplete',
-    darkBackground: '.bg', //필요 없을시 false
-    selectedTerm: 'selected',
-    inputFocus: 'active'
+    selectedTermClassName: 'selected',
+}
+
+export const controllerConfig = {
+        maxSuggestionLength: 9,
+        delayTime: 300,
+        inputFocus: true,
+    
+    searchField: '#search',
+    searchInput: '#search__input',
 }
 

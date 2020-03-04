@@ -48,9 +48,6 @@ header {
   display: none;
   position: absolute;
   width: 950px;
-  height: auto;
-  max-height: 310px;
-  overflow: hidden;
   border: 1px solid #bbb;
   background-color: #fff;
   border-radius: 3px;
