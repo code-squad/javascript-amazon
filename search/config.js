@@ -6,7 +6,8 @@ export const modelConfig = {
 
 export const autoCompleteConfig = {
     suggestionBox: '.search__autoComplete',
-    dargBackground: '.bg', //필요 없을시 false
-    selectedTerm: 'selected'
+    darkBackground: '.bg', //필요 없을시 false
+    selectedTerm: 'selected',
+    inputFocus: 'active'
 }
 

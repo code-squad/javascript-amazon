@@ -7,93 +7,117 @@ export function SearchController({ model, inputView, autoCompleteView, controlle
     this.autoCompleteView = autoCompleteView;
     // this.option = controllerConfig;
     this.keyDownCount = 0;
-    this.maxSearchTerms = 9; //옵션
+    this.maxSuggestions = 9; //옵션
     this.searchField = _$('#search') // 옵션
     this.searchInput = _$('#search__input') //옵션
+    this.delayTime = 300;//옵션
+    this.inputFocus = true;//옵션
+    this.keyCode = {
+        enter: 13,
+        upArrow: 38,
+        downArrow: 40
+    };
 }
 
 SearchController.prototype = {
 
     onAutoCompleteEvent() {
-        //옵션기능
-        __$(this.searchInput).on('click', () => _$c(this.searchField).add('active'));
-        __$(this.searchInput).on('blur', () => {
-            _$c(this.searchField).remove('active')
-            this.autoCompleteView.hideSuggestions()
-        });
-        /////
-        ///300옵션기능
-        __$(this.searchInput).on('input', () => _$e.debounce(300, this, this.getSearchTerms));
+        if (this.inputFocus) this.onInputFocusEvent();
+        __$(this.searchInput)
+            .on('input', () => _$e.debounce(this.delayTime, this, this.getmatchingTerms));
 
-        __$(this.searchField).on('keydown', this.onKeydownHandler.bind(this), false);
-        //세번째 인자 알아보기
+        __$(this.searchField)
+            .on('keydown', (event) => this.onKeydownHandler(event));
+    },
 
+    onInputFocusEvent() {
+        __$(this.searchInput)
+            .on('focus', this.autoCompleteView.focusInputBorder
+                .bind(this.autoCompleteView, this.searchField));
+        __$(this.searchInput)
+            .on('blur', this.autoCompleteView.blurInputBorder
+                .bind(this.autoCompleteView, this.searchField));
     },
 
     onKeydownHandler(event) {
-        const suggestions = event.currentTarget.childNodes[3].childNodes;
-        const suggestionLength = suggestions.length;
+        const searchChildren = [...event.currentTarget.children];
+
+        const suggestionBoxIndex = searchChildren.indexOf(this.autoCompleteView.suggestionBox);
+        const suggestionsList = searchChildren[suggestionBoxIndex].children;
+        const suggestionLength = suggestionsList.length;
 
         switch (event.keyCode) {
-            case 13:
-                this.prssEnter(suggestions, event.target);
+
+            case this.keyCode.enter:
+                event.preventDefault();
+                this.pressEnter(suggestionsList, event.target);
                 break;
 
-            case 38:
-                this.pressUpArrow(suggestions, suggestionLength);
+            case this.keyCode.upArrow:
+                event.preventDefault();
+                this.pressUpArrow(suggestionsList, suggestionLength);
                 break;
 
-            case 40:
-                this.pressDownArrow(suggestions, suggestionLength);
+            case this.keyCode.downArrow:
+                event.preventDefault();
+                this.pressDownArrow(suggestionsList, suggestionLength);
                 break;
         }
     },
 
-    pressUpArrow(suggestions, suggestionLength) {
+    pressEnter(suggestionsList, searchInput) {
+        const currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
+
+        this.autoCompleteView.selecteSearchTerm(searchInput, currentSelectedTerm);
+    },
+
+    pressUpArrow(suggestionsList, suggestionLength) {
         const lastKeyCount = suggestionLength + 1;
+        // const conditionToRemoveSelected = suggestionLength < this.keyDownCount;
 
         this.keyDownCount--;
-        this.controlSelectedTerm(suggestions, lastKeyCount);
+        this.controlSelectedTerm(suggestionsList, lastKeyCount);
     },
 
-    pressDownArrow(suggestions, suggestionLength) {
+
+    pressDownArrow(suggestionsList, suggestionLength) {
         const firstKeyCount = 0;
-        const conditionToRemoveSelected = suggestionLength < this.keyDownCount;
+        const conditionToRemoveSelected = this.keyDownCount < 0;
 
         this.keyDownCount++;
-        this.controlSelectedTerm(suggestions, firstKeyCount, conditionToRemoveSelected);
+        this.controlSelectedTerm(suggestionsList, firstKeyCount);
     },
 
-    controlSelectedTerm(suggestions, keyCountInit, condition) {
-        const currentSelectedTerm = suggestions[this.keyDownCount - 1];
+    controlSelectedTerm(suggestionsList, keyCountInit, condition) {
+        // if(condition) return this.keyDownCount = suggestionsList.length
 
-        event.preventDefault();
+        let currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
+        console.log(this.keyDownCount)
         if (!currentSelectedTerm || condition) {
             this.autoCompleteView.removeSelectedTerm();
             return this.keyDownCount = keyCountInit;
         }
+        currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
 
         this.autoCompleteView.paintSelectedTerm(currentSelectedTerm);
     },
 
-    pressEnter(suggestions, searchInput) {
-        const currentSelectedTerm = suggestions[this.keyDownCount - 1];
-
-        event.preventDefault();
-        this.autoCompleteView.selecteSearchTerm(searchInput, currentSelectedTerm);
-    },
-
-    getSearchTerms() {
+    getmatchingTerms() {
         const searchTerm = this.searchInput.value;
+        if (!searchTerm) return this.autoCompleteView.hideSuggestionBox();
 
         this.keyDownCount = 0;
-        if (!searchTerm) return this.autoCompleteView.hideSuggestions();
         const searchTermLength = searchTerm.length;
-        const matchingTerms = this.model.findMatchingTerms(searchTerm);
-        matchingTerms.then(terms => {
-            if (!terms.length) return this.autoCompleteView.hideSuggestions();
-            const suggestedTerms = terms.slice(0, this.maxSearchTerms);
-            this.autoCompleteView.render(suggestedTerms, searchTermLength);
-        })
+
+        this.model.findMatchingTerms(searchTerm)
+            .then(matchingTerms => this.makeSuggestionList(matchingTerms, searchTermLength))
+    },
+
+    makeSuggestionList(terms, searchTermLength) {
+        if (!terms.length) return this.autoCompleteView.hideSuggestionBox();
+        const suggestions = terms.slice(0, this.maxSuggestions);
+
+        this.autoCompleteView.render(suggestions, searchTermLength);
     }
+
 }

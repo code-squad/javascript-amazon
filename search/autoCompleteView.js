@@ -1,17 +1,18 @@
 import { _$, _$c, __$ } from '/util.js';
 
-export function SearchAutoCompleteView({ suggestionBox, dargBackground, selectedTerm }) {
+export function SearchAutoCompleteView({ suggestionBox, darkBackground, selectedTerm, inputFocus }) {
     this.suggestionBox = _$(suggestionBox);
-    this.dargBackground = _$(dargBackground);
+    this.darkBackground = _$(darkBackground);
     this.selectedTermClassName = selectedTerm;
+    this.inputFocusClassName = inputFocus;
 }
 
 SearchAutoCompleteView.prototype = {
-    render(terms, searchTermLength) {
+    render(suggestions, searchTermLength) {
         const FIRST_TERM_INDEX = 0;
-        this.showSuggestions();
+        this.showSuggestionBox();
 
-        const resultList = terms.reduce((termList, term) => {
+        const suggestionList = suggestions.reduce((termList, term) => {
             const matchingTerm = term.slice(FIRST_TERM_INDEX, searchTermLength);
             const restTerm = term.slice(searchTermLength);
 
@@ -19,16 +20,16 @@ SearchAutoCompleteView.prototype = {
                 `<li><strong>${matchingTerm}</strong>${restTerm}</li>`
         }, '')
 
-        this.suggestionBox.innerHTML = resultList;
+        this.suggestionBox.innerHTML = suggestionList;
     },
 
-    hideSuggestions() {
-        if (this.dargBackground) __$(this.dargBackground).hide();
+    hideSuggestionBox() {
+        if (this.darkBackground) __$(this.darkBackground).hide();
         __$(this.suggestionBox).hide();
     },
 
-    showSuggestions() {
-        if (this.dargBackground) __$(this.dargBackground).show();
+    showSuggestionBox() {
+        if (this.darkBackground) __$(this.darkBackground).show();
         __$(this.suggestionBox).show();
     },
 
@@ -46,6 +47,15 @@ SearchAutoCompleteView.prototype = {
 
     selecteSearchTerm(searchInput, selectedTerm) {
         searchInput.value = selectedTerm.textContent;
-        this.hideSuggestions();
+        this.hideSuggestionBox();
+    },
+
+    focusInputBorder(searchField) {
+        _$c(searchField).add(this.inputFocusClassName)
+    },
+
+    blurInputBorder(searchField) {
+        _$c(searchField).remove(this.inputFocusClassName);
+        this.hideSuggestionBox();
     }
 }
