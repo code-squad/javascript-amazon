@@ -1,0 +1,64 @@
+{
+    "itemContents": [
+        {
+            "imgURL": "./src/img/img_1.jpg",
+            "navTitle": "Ramos",
+            "headTitle": "Sergio Ramos Garcia",
+            "contentText": [
+                "1986. 3. 30, Spain",
+                "184cm, 82.2kg",
+                "Real Madrid (DF, 4)"
+            ]
+        },
+        {
+            "imgURL": "./src/img/img_2.jpg",
+            "navTitle": "Kroos",
+            "headTitle": "Toni Kroos",
+            "contentText": [
+                "1990. 1. 4, Germany",
+                "183cm, 76kg",
+                "Real Madrid (MF, 8)"
+            ]
+        },
+        {
+            "imgURL": "./src/img/img_3.jpg",
+            "navTitle": "Hazard",
+            "headTitle": "Eden Hazard",
+            "contentText": [
+                "1991. 1. 7, Belgium",
+                "175cm, 74kg",
+                "Real Madrid (FW, 7)"
+            ]
+        },
+        {
+            "imgURL": "./src/img/img_4.jpg",
+            "navTitle": "Marcelo",
+            "headTitle": "Marcelo Vieira da Silva Junior",
+            "contentText": [
+                "1988. 5. 12, Brazil",
+                "174cm, 80kg",
+                "Real Madrid (DF, 12)"
+            ]
+        },
+        {
+            "imgURL": "./src/img/img_5.jpg",
+            "navTitle": "Benzema",
+            "headTitle": "Karim Benzema",
+            "contentText": [
+                "1987. 12. 19, France",
+                "184cm, 82.2kg",
+                "Real Madrid (DF, 4)"
+            ]
+        },
+        {
+            "imgURL": "./src/img/img_6.jpg",
+            "navTitle": "Rodrygo",
+            "headTitle": "Rodrygo Silva de Goes",
+            "contentText": [
+                "2001. 1. 9, Brazil",
+                "174cm, 64kg",
+                "Real Madrid (FW, 27)"
+            ]
+        }
+    ]
+}

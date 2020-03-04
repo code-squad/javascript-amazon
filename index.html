@@ -5,26 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Amazon - Slide</title>
-    <link rel="stylesheet" type="text/css" href="./css/reset.css">
-    <link rel="stylesheet" type="text/css" href="./css/all.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <title>Amazon</title>
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="wrap">
-        <button class="prev-btn"><i class="fas fa-chevron-circle-left"></i></button>
-        <button class="next-btn"><i class="fas fa-chevron-circle-right"></i></button>
-        <ul class="slide-nav">
-            <!-- 네비 카드 -->
-        </ul>
-        <div class="slide-item-viewer">
-            <ul class="slide-item-wrap">
-                <!-- 슬라이드 아이템 -->
-            </ul>
+        <header>
+            <div class="search-blind"></div>
+            <div class="search-wrap">
+                <div class="search-bar-wrap">
+                    <div id="amazon-logo"></div>
+                    <form class="search-bar">
+                        <select class="search-select">
+                            <option value="">All</option>
+                            <option value="">Books</option>
+                            <option value="">Deals</option>
+                        </select>
+                        <input class="search-input" type="text">
+                        <input class="search-submit fas fa-search" type="submit" value="&#xf002" />
+                    </form>
+                </div>
+                <div class="search-result-wrap">
+                    <ul class="search-result-list">
+                        <!-- 자동 완성 결과 -->
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="slide-wrap">
+                <button class="prev-btn"><i class="fas fa-chevron-circle-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-circle-right"></i></button>
+                <ul class="slide-nav">
+                    <!-- 네비 카드 -->
+                </ul>
+                <div class="slide-item-viewer">
+                    <ul class="slide-item-wrap">
+                        <!-- 슬라이드 아이템 -->
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    <script src="./js/main.js" type="module"></script>
+    <script src="./dist/main.bundle.js"></script>
 </body>
 
 </html>
