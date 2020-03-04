@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-.wrap-back {
+.search-box {
   height: 100px;
   background: #232f3e;
   font-family: "Open Sans", sans-serif;
@@ -9,11 +9,11 @@
   align-items: center;
 }
 
-.fa-search:before {
-  content: "\f002";
+.search-content {
+  width: 40%;
 }
 
-.search {
+.search-wrap {
   width: 100%;
   position: relative;
   display: flex;
@@ -45,28 +45,38 @@
   font-size: 25px;
 }
 
-.wrap-search {
-  width: 40%;
-}
-
-.fa-search {
-  background-image: url("../images/search.png");
+.fa-search:before {
+  content: "\f002";
   color: #fff;
 }
 
-.nav_active {
+.nav-active {
   box-shadow: 0 0 0 2px #f90, 0 0 0 3px rgba(255, 153, 0, 0.5);
   border-radius: 5px;
   z-index: 1;
 }
 
-.search-rec {
-  position: relative;
-  width: 30%;
+.auto-complete {
+  visibility: hidden;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
   background-color: #fff;
-  transform: translate(-50%, 20%);
-  left: 50%;
+  width: 40%;
+  overflow-x: hidden;
+  border: 0.5px solid black;
+  z-index: 10;
 }
+
+.auto-complete > ul > li {
+  padding-left: 10px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  text-overflow: ellipsis;
+}
+
+/* ------------------------------------------------------------------------------------- */
 
 .clearfix:after {
   display: block;
