@@ -39,6 +39,38 @@ SearchBox.prototype = {
     } else {
       autoComplete.style.visibility = "hidden";
     }
+  },
+
+  searchKeboardEvent() {
+    const searchContent = document.querySelector(".search-content");
+    const searchTerm = document.querySelector(".search-term");
+    const autoComplete = document.querySelector(".auto-complete");
+    const autoList = document.querySelectorAll(".auto-complete > ul > li");
+    let index = -1;
+
+    searchContent.addEventListener("keydown", event => {
+      switch (event.key) {
+        case "ArrowDown":
+          if (index >= 0) autoList[index].style.backgroundColor = "#fff";
+          if (index >= 9) index = -1;
+          autoList[++index].style.backgroundColor = "#eee";
+          break;
+        case "ArrowUp":
+          if (index >= 0) autoList[index].style.backgroundColor = "#fff";
+          if (index <= 0) index = 10;
+          autoList[--index].style.backgroundColor = "#eee";
+          break;
+        case "Enter":
+          event.preventDefault();
+          let selectText = [];
+          autoList[index].textContent.split("\n").forEach(el => {
+            selectText.push(el.replace(/^\s*/, ""));
+          });
+          searchTerm.value = selectText.join("");
+          autoComplete.style.visibility = "hidden";
+          break;
+      }
+    });
   }
 };
 
