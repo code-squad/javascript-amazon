@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/choichoigang/javascript-amazon#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "underscore": "^1.9.2"
   }
 }
