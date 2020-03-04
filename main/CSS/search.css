@@ -1,0 +1,65 @@
+.search-form {
+  position: relative;
+}
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  background-color: #232f3e;
+}
+.amazon_logo {
+  position: absolute;
+  display: flex;
+  width: 70px;
+  height: 30px;
+  transform: translateX(-550px);
+}
+.amazon_logo img {
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.auto_list {
+  position: absolute;
+  border: 0.5px solid #d5d2d2;
+  background-color: #ffffff;
+  top: 76%;
+  left: 50%;
+  width: 600px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transform: translateX(-288px);
+}
+
+.auto_compliton li {
+  padding: 5px;
+  font-weight: bold;
+  padding-left: 21px;
+}
+.push_input {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #febd69;
+}
+select {
+  background-color: #f3f3f3;
+  width: 9%;
+}
+
+.search_input {
+  width: 600px;
+}
+
+.search_bar_area {
+  display: flex;
+  border: 1px solid #d5d2d2;
+  border-radius: 3px;
+}
+
+.on {
+  background-color: #d5d2d2;
+}
