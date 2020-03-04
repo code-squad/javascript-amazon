@@ -1,9 +1,9 @@
-function $(element) {
+const _$ = function _$(element) {
   return document.querySelector(element);
-}
+};
 
-function $$(element) {
+const _$$ = function _$$(element) {
   return document.querySelectorAll(element);
-}
+};
 
-export { $, $$ };
+export { _$, _$$ };
