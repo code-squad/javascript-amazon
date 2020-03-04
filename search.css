@@ -1,9 +1,25 @@
-* { box-sizing: border-box; }
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box; 
+}
 body {
   font: 16px Arial;
 }
+header {
+  padding: 15px;
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #242F40;
+}
+.logo {
+  display: block;
+  width: 70px;
+  height: 40px;
+}
 .form-container {
-  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -16,14 +32,14 @@ body {
 }
 input {
   border: 1px solid transparent;
-  border-radius: 25px;
+  border-radius: 5px;
   background-color: #f1f1f1;
   padding: 10px;
   font-size: 16px;
 }
 input[type=text] {
   background-color: #f1f1f1;
-  width: 100%;
+  width: 94%;
 }
 input[type=submit] {
   background-color: DodgerBlue;
