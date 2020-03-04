@@ -12,6 +12,7 @@ export function SearchController({ model, inputView, autoCompleteView, controlle
     this.searchInput = _$('#search__input') //옵션
     this.delayTime = 300;//옵션
     this.inputFocus = true;//옵션
+    this.keyDownCount = 0;
     this.keyCode = {
         enter: 13,
         upArrow: 38,
@@ -41,7 +42,6 @@ SearchController.prototype = {
 
     onKeydownHandler(event) {
         const searchChildren = [...event.currentTarget.children];
-
         const suggestionBoxIndex = searchChildren.indexOf(this.autoCompleteView.suggestionBox);
         const suggestionsList = searchChildren[suggestionBoxIndex].children;
         const suggestionLength = suggestionsList.length;
@@ -72,32 +72,26 @@ SearchController.prototype = {
     },
 
     pressUpArrow(suggestionsList, suggestionLength) {
-        const lastKeyCount = suggestionLength + 1;
-        // const conditionToRemoveSelected = suggestionLength < this.keyDownCount;
+        const outOfRange = this.keyDownCount < 0;
 
         this.keyDownCount--;
-        this.controlSelectedTerm(suggestionsList, lastKeyCount);
+        if(outOfRange) this.keyDownCount = suggestionLength;
+        this.controlSelectedTerm(suggestionsList);
     },
-
 
     pressDownArrow(suggestionsList, suggestionLength) {
-        const firstKeyCount = 0;
-        const conditionToRemoveSelected = this.keyDownCount < 0;
+        const outOfRange = this.keyDownCount > suggestionLength;
 
         this.keyDownCount++;
-        this.controlSelectedTerm(suggestionsList, firstKeyCount);
+        if(outOfRange) this.keyDownCount = 0;
+        this.controlSelectedTerm(suggestionsList);
     },
 
-    controlSelectedTerm(suggestionsList, keyCountInit, condition) {
-        // if(condition) return this.keyDownCount = suggestionsList.length
+    controlSelectedTerm(suggestionsList) {
+        const offScreen = this.keyDownCount <= 0;
+        if(offScreen) return this.autoCompleteView.removeSelectedTerm();
 
-        let currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
-        console.log(this.keyDownCount)
-        if (!currentSelectedTerm || condition) {
-            this.autoCompleteView.removeSelectedTerm();
-            return this.keyDownCount = keyCountInit;
-        }
-        currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
+        const currentSelectedTerm = suggestionsList[this.keyDownCount - 1];
 
         this.autoCompleteView.paintSelectedTerm(currentSelectedTerm);
     },
@@ -106,7 +100,7 @@ SearchController.prototype = {
         const searchTerm = this.searchInput.value;
         if (!searchTerm) return this.autoCompleteView.hideSuggestionBox();
 
-        this.keyDownCount = 0;
+        this.keyDownCount = 0; //key count 초기화
         const searchTermLength = searchTerm.length;
 
         this.model.findMatchingTerms(searchTerm)
@@ -119,5 +113,4 @@ SearchController.prototype = {
 
         this.autoCompleteView.render(suggestions, searchTermLength);
     }
-
 }
