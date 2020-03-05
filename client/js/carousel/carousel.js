@@ -1,4 +1,4 @@
-import { setTransform, setTransition, changeScale } from "../lib/util.js";
+import { setTranslateX, setTransition, changeScale } from "../lib/util.js";
 
 class Carousel {
   constructor(config) {
@@ -20,7 +20,7 @@ class Carousel {
   }
 
   moveSlides(option) {
-    setTransform(this.slideAll, this.currentIndex, this.width);
+    setTranslateX(this.slideAll, this.currentIndex, this.width);
     setTransition(this.slideAll, option);
     changeScale(this.nav[this.currentIndex - 1], this.maxScale);
   }
@@ -55,7 +55,7 @@ class Carousel {
 
   buttonHandler() {
     const buttons = this.config.buttons;
-    setTransform(this.slideAll, this.currentIndex, this.width);
+    setTranslateX(this.slideAll, this.currentIndex, this.width);
 
     buttons.forEach((element, index) => {
       element.addEventListener("click", () => this.clickEvent(index));
@@ -66,7 +66,7 @@ class Carousel {
 
   navigationHandler() {
     const transitionOption = `transform 0.4s ease-in-out`;
-    setTransform(this.slideAll, this.currentIndex, this.width);
+    setTranslateX(this.slideAll, this.currentIndex, this.width);
 
     this.nav.forEach((el, index) => {
       let nextIndex = index + 1;
