@@ -1,4 +1,4 @@
-const setTransform = (target, width, currentIndex) => {
+const setTranslateX = (target, width, currentIndex) => {
   let transformOption = `translateX(${-width * currentIndex}px)`;
   target.style.transform = transformOption;
 };
@@ -11,4 +11,8 @@ const changeScale = (target, value) => {
   target.style.transform = `scale(${value})`;
 };
 
-export { setTransform, setTransition, changeScale };
+const setVisibility = (target, isVisible) => {
+  target.style.visibility = isVisible ? "visible" : "hidden";
+};
+
+export { setTranslateX, setTransition, changeScale, setVisibility };
