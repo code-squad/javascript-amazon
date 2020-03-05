@@ -1,15 +1,10 @@
-import { SearchModel } from './model.js';
-import { SearchController } from './controller.js';
-import { SearchAutoCompleteView } from './autoCompleteView.js';
-// import { SearchBarView } from './SearchBarView.js';
+import { SearchBar } from "./searchBar.js";
+import { SearchAutoComplete } from "./autoComplete.js";
 
 export function initSearch() {
-    const model = new SearchModel();
-    const autoCompleteView = new SearchAutoCompleteView();
-    // const searchBarView = new SearchBarView(autoCompleteView);
-    const searchController = new SearchController({ model, autoCompleteView });
-
-    searchController.onAutoCompleteEvent();
+  const searchBar = new SearchBar();
+  const autoComplete = new SearchAutoComplete(searchBar);
+  searchBar.onSearchBarEvent(autoComplete.getSuggestionList.bind(autoComplete));
 }
 
-initSearch() 
+initSearch();
