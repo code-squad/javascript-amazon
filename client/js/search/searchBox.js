@@ -5,6 +5,7 @@ function SearchBox() {
 SearchBox.prototype = {
   init() {
     this.searchClickEvent();
+    this.searchKeboardEvent();
   },
 
   searchClickEvent() {

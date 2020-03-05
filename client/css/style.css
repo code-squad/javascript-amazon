@@ -66,6 +66,7 @@
   overflow-x: hidden;
   border: 0.5px solid black;
   z-index: 10;
+  cursor: pointer;
 }
 
 .auto-complete > ul > li {
