@@ -6,6 +6,7 @@ const indexRouter = require("./routes/index");
 const carouselRouter = require("./routes/carousel");
 const productRouter = require("./routes/product");
 
+
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 app.engine("html", require("ejs").renderFile);
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/", indexRouter);
 app.use("/carousel", carouselRouter);
 app.use("/product", productRouter);
+
 
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}`);
