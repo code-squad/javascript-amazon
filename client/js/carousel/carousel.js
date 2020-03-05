@@ -1,4 +1,4 @@
-import { setTransform, setTransition } from "../lib/util.js";
+import { setTransform, setTransition, changeScale } from "../lib/util.js";
 
 class Carousel {
   constructor(config) {
@@ -6,6 +6,8 @@ class Carousel {
     this.slideAll = config.slideAll;
     this.width = config.MAX_PANEL_SIZE;
     this.currentIndex = config.START_CAROUSEL_INDEX;
+    this.maxScale = 1.1;
+    this.minScale = 1.0;
     this.isMoveFinished = config.isMoveFinished;
     this.nav = document.querySelectorAll(".slide-navigation > li");
     this.init();
@@ -14,21 +16,25 @@ class Carousel {
   init() {
     this.buttonHandler();
     this.navigationHandler();
+    changeScale(this.nav[this.currentIndex - 1], this.maxScale);
   }
 
   moveSlides(option) {
     setTransform(this.slideAll, this.currentIndex, this.width);
     setTransition(this.slideAll, option);
+    changeScale(this.nav[this.currentIndex - 1], this.maxScale);
   }
 
   clickEvent(index) {
     if (this.isMoveFinished === false) return;
     this.isMoveFinished = false;
+    changeScale(this.nav[this.currentIndex - 1], this.minScale);
 
     const transitionOption = `transform 0.4s ease-in-out`;
+    const leftBtnIndex = 0;
     let prevIndex = this.currentIndex - 1;
     let nextIndex = this.currentIndex + 1;
-    this.currentIndex = index === 0 ? prevIndex : nextIndex;
+    this.currentIndex = index === leftBtnIndex ? prevIndex : nextIndex;
     this.moveSlides(transitionOption);
   }
 
@@ -67,6 +73,7 @@ class Carousel {
 
       el.addEventListener("click", () => {
         if (nextIndex === this.currentIndex) return;
+        changeScale(this.nav[this.currentIndex - 1], this.minScale);
         this.currentIndex = nextIndex;
         this.moveSlides(transitionOption);
       });

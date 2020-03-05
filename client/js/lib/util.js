@@ -7,4 +7,8 @@ const setTransition = (target, option) => {
   target.style.transition = option;
 };
 
-export { setTransform, setTransition };
+const changeScale = (target, value) => {
+  target.style.transform = `scale(${value})`;
+};
+
+export { setTransform, setTransition, changeScale };
