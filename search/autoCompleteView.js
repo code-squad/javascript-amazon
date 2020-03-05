@@ -1,10 +1,11 @@
 import { _$, _$c, __$ } from '/util.js';
+import { autoCompleteInfo } from './config.js';
 
-export function SearchAutoCompleteView({ suggestionBox, darkBackground, selectedTermClassName, inputFocusClassName }) {
-    this.suggestionBox = _$(suggestionBox);
-    this.darkBackground = _$(darkBackground);
-    this.selectedTermClassName = selectedTermClassName;
-    this.inputFocusClassName = inputFocusClassName;
+export function SearchAutoCompleteView() {
+    this.suggestionBox = _$(autoCompleteInfo.suggestionBox);
+    this.selectedTermClassName = autoCompleteInfo.selectedTermClassName;
+    this.option = autoCompleteInfo.option;
+    this.darkBackground = _$(this.option.darkBackground);
 }
 
 SearchAutoCompleteView.prototype = {
@@ -50,12 +51,19 @@ SearchAutoCompleteView.prototype = {
         this.hideSuggestionBox();
     },
 
+    onInputFocusEvent(searchField,searchInput) {
+        __$(searchInput)
+            .on('focus', () => this.focusInputBorder(searchField));
+        __$(searchInput)
+            .on('blur', () => this.blurInputBorder(searchField));
+    },
+
     focusInputBorder(searchField) {
-        _$c(searchField).add(this.inputFocusClassName)
+        _$c(searchField).add(this.option.inputFocusClassName);
     },
 
     blurInputBorder(searchField) {
-        _$c(searchField).remove(this.inputFocusClassName);
+        _$c(searchField).remove(this.option.inputFocusClassName);
         this.hideSuggestionBox();
     }
 }

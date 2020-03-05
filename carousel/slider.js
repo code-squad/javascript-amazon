@@ -1,7 +1,8 @@
 import { _$ } from '/util.js';
+import { sliderInfo } from './config.js';
 
 export class CarouselSlider {
-    constructor(sliderInfo) {
+    constructor() {
         this.slideIndex = 1;
         this.selector = sliderInfo.selector;
         this.slides = _$(this.selector.slides);

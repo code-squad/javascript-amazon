@@ -1,4 +1,4 @@
-import { fetchOption, carouselOption, templateOption } from './config.js';
+import { fetchInfo, templateInfo } from './config.js';
 import { _$ } from '../util.js';
 import { DataFetch } from '../fetch.js'
 import { CarouselSlider } from './slider.js'
@@ -8,7 +8,7 @@ import { CardMenuTemplate } from '../template/cardMenu.js';
 import { SliderTemplate } from '../template/slider.js';
 
 export function init() {
-    const carouselService = new DataFetch(fetchOption);
+    const carouselService = new DataFetch(fetchInfo);
     carouselService.fetchData()
         .then(carouselData => initTemplate(carouselData))
         .then(() => initCarouselCardSlider())
@@ -16,7 +16,7 @@ export function init() {
 }
 
 function initTemplate(carouselData) {
-    const dataArea = _$(templateOption.dataArea);
+    const dataArea = _$(templateInfo.dataArea);
     const cardMenuData = new CardMenuTemplate(carouselData.menuData);
     const sliderData = new SliderTemplate(carouselData.contentData);
 
@@ -27,12 +27,9 @@ function initTemplate(carouselData) {
 }
 
 function initCarouselCardSlider() {
-    const cardMenuInfo = carouselOption.cardMenuInfo;
-    const sliderBtnInfo = carouselOption.sliderBtnInfo;
-
-    const carouselSlider = new CarouselSlider(carouselOption.sliderInfo);
-    const carouselCardMenu = new CarouselCardMenu({ carouselSlider, cardMenuInfo });
-    const carouselSliderBtn = new CarouselSliderBtn({ carouselSlider, carouselCardMenu, sliderBtnInfo });
+   const carouselSlider = new CarouselSlider();
+    const carouselCardMenu = new CarouselCardMenu( carouselSlider );
+    const carouselSliderBtn = new CarouselSliderBtn({ carouselSlider, carouselCardMenu });
 
     carouselSlider.getSliderInfo();
     carouselSlider.cloneSlide();

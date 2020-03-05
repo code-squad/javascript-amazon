@@ -14,7 +14,7 @@ app.get('/', (req, res, next) => {
     res.json(contentsData);
 })
 
-app.get('/search', (req, res) => {
+app.post('/search', (req, res) => {
     res.header('Content-Type', 'application/json');
     res.json(searchData);
 })

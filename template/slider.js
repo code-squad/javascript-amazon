@@ -17,14 +17,14 @@ export class SliderTemplate {
                          <h2>${content.title}</h2>
                          <p>${content.content}</p>
                      </div>
-                 </li>`;
+                 </li>`
             return items;
         }, '')
 
         const sliderContent = `
            <div class="slider__container">
               <ul class="slider__list">${sliderItems}</ul>
-           </div>`;
+           </div>`
 
         return this.appendSliderBtn(sliderContent);
     }
@@ -39,6 +39,6 @@ export class SliderTemplate {
                  <button class="slider__next-btn"><i class="fas fa-chevron-right">
                    <span class="blind">다음</span></i></button>
                </div>
-           </div>`;
+           </div>`
     }
 }

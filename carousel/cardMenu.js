@@ -1,7 +1,8 @@
 import { _$ } from '/util.js';
+import { cardMenuInfo } from './config.js';
 
 export class CarouselCardMenu {
-    constructor({ carouselSlider, cardMenuInfo }) {
+    constructor( carouselSlider ) {
         this.slider = carouselSlider;
         this.selector = cardMenuInfo.selector;
         this.cards = _$(this.selector.card, true);

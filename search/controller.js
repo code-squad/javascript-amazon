@@ -1,35 +1,29 @@
 import { _$, _$e, _$c, __$ } from '/util.js';
-import { controllerConfig } from './config.js';
+import { controllerInfo } from './config.js';
 
-export function SearchController({ model, inputView, autoCompleteView }) {
+export function SearchController({ model, searchBarView, autoCompleteView }) {
     this.model = model;
-    // this.inputVeiw = inputView;
+    this.searchBarView = searchBarView;
     this.autoCompleteView = autoCompleteView;
     this.keyDownCount = 0;
-    this.searchField = _$(controllerConfig.searchField);
-    this.searchInput = _$(controllerConfig.searchInput);
-    this.option = controllerConfig.option;
-    this.maxSuggestionLength = this.option.maxSuggestionLength;
+    this.searchField = _$(controllerInfo.searchField);
+    this.searchInput = _$(controllerInfo.searchInput);
+    this.option = controllerInfo.option;
+    this.maxSuggestionLength = this.option.maxSuggestionLength || 9;
+    this.delayTime = this.option.delayTime || 300;
 }
 
 SearchController.prototype = {
 
     onAutoCompleteEvent() {
-        if (this.option.inputFocus) this.onInputFocusEvent();
+        if (this.option.inputFocus) 
+        this.autoCompleteView.onInputFocusEvent(this.searchField ,this.searchInput);
+
         __$(this.searchInput)
-            .on('input', () => _$e.debounce(this.option.delayTime, this, this.getMatchingTerms));
+            .on('input', () => _$e.debounce(this.delayTime, this, this.getMatchingTerms));
 
         __$(this.searchField)
             .on('keydown', (event) => this.onKeydownHandler(event));
-    },
-
-    onInputFocusEvent() {
-        __$(this.searchInput)
-            .on('focus', this.autoCompleteView.focusInputBorder
-                .bind(this.autoCompleteView, this.searchField));
-        __$(this.searchInput)
-            .on('blur', this.autoCompleteView.blurInputBorder
-                .bind(this.autoCompleteView, this.searchField));
     },
 
     onKeydownHandler(event) {
@@ -37,27 +31,22 @@ SearchController.prototype = {
         const suggestionBoxIndex = searchChildren.indexOf(this.autoCompleteView.suggestionBox);
         const suggestionsList = searchChildren[suggestionBoxIndex].children;
         const suggestionLength = suggestionsList.length;
-        const keyCode = {
-            enter: 13,
-            upArrow: 38,
-            downArrow: 40
-        };
+        
+        switch (event.key) {
 
-        switch (event.keyCode) {
-
-            case keyCode.enter:
+            case 'Enter':
                 event.preventDefault();
                 this.pressEnter(suggestionsList, event.target);
                 break;
 
-            case keyCode.upArrow:
+            case 'ArrowUp':
                 event.preventDefault();
-                this.pressUpArrow(suggestionsList, suggestionLength);
+                this.pressArrowUp(suggestionsList, suggestionLength);
                 break;
 
-            case keyCode.downArrow:
+            case 'ArrowDown':
                 event.preventDefault();
-                this.pressDownArrow(suggestionsList, suggestionLength);
+                this.pressArrowDown(suggestionsList, suggestionLength);
                 break;
         }
     },
@@ -70,7 +59,7 @@ SearchController.prototype = {
         this.autoCompleteView.selecteSearchTerm(searchInput, currentSelectedTerm);
     },
 
-    pressUpArrow(suggestionsList, suggestionLength) {
+    pressArrowUp(suggestionsList, suggestionLength) {
         this.keyDownCount--;
         const outOfRange = this.keyDownCount < 0;
         if(outOfRange) this.keyDownCount = suggestionLength;
@@ -78,7 +67,7 @@ SearchController.prototype = {
         this.controlSelectedTerm(suggestionsList);
     },
 
-    pressDownArrow(suggestionsList, suggestionLength) {
+    pressArrowDown(suggestionsList, suggestionLength) {
         this.keyDownCount++;
         const outOfRange = this.keyDownCount > suggestionLength;
         if(outOfRange) this.keyDownCount = 0;

@@ -1,14 +1,15 @@
 import { _$ } from '/util.js';
 import { DataFetch } from '/fetch.js'
+import { fetchInfo } from './config.js';
 
-export function SearchModel(modelOption) {
-    this.modelOption = modelOption;
+export function SearchModel() {
+    this.fetchInfo = fetchInfo;
 }
 
 SearchModel.prototype = {
     findMatchingTerms(searchTerm) {
         const userSearchTerm = searchTerm.toLowerCase();
-        const searchTerms = new DataFetch(this.modelOption);
+        const searchTerms = new DataFetch(this.fetchInfo);
 
         return searchTerms.fetchData()
             .then(terms => terms.searchData
@@ -16,4 +17,3 @@ SearchModel.prototype = {
             )
     }
 }
-
