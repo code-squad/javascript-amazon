@@ -1,77 +1,88 @@
+import { setVisibility } from "../lib/util.js";
+
 function SearchBox() {
+  this.searchContent = document.querySelector(".search-content");
+  this.autoComplete = document.querySelector(".auto-complete");
+  this.autoList = document.querySelectorAll(".auto-complete > ul > li");
+  this.currentIndex = -1;
   this.init();
 }
 
 SearchBox.prototype = {
   init() {
-    this.searchClickEvent();
-    this.searchKeboardEvent();
+    this.searchClickEventListener();
+    this.searchKeydownEventListener();
   },
 
-  searchClickEvent() {
-    const searchContent = document.querySelector(".search-content");
-
+  searchClickEventListener() {
     window.addEventListener("click", () => {
-      searchContent.className = "search-content";
+      this.searchContent.className = "search-content";
     });
 
-    searchContent.addEventListener("click", event => {
-      searchContent.className += " nav-active";
+    this.searchContent.addEventListener("click", event => {
+      this.searchContent.className += " nav-active";
       event.stopPropagation();
     });
   },
 
-  inputEvent(searchKeyword) {
-    const autoComplete = document.querySelector(".auto-complete");
-    const autoList = document.querySelectorAll(".auto-complete > ul > li");
-
+  inputEventListener(searchKeyword) {
     window.addEventListener("click", () => {
-      autoComplete.style.visibility = "hidden";
+      setVisibility(this.autoComplete, false);
     });
 
     if (searchKeyword) {
-      autoComplete.style.visibility = "visible";
-      autoList.forEach(value => {
+      setVisibility(this.autoComplete, true);
+      this.autoList.forEach(value => {
         value.innerHTML = `
         <span style="font-weight: bold;">
           ${searchKeyword}
         </span>`;
       });
     } else {
-      autoComplete.style.visibility = "hidden";
+      setVisibility(this.autoComplete, false);
     }
   },
 
-  searchKeboardEvent() {
-    const searchContent = document.querySelector(".search-content");
-    const searchTerm = document.querySelector(".search-term");
-    const autoComplete = document.querySelector(".auto-complete");
-    const autoList = document.querySelectorAll(".auto-complete > ul > li");
-    let index = -1;
-
-    searchContent.addEventListener("keydown", event => {
-      switch (event.key) {
-        case "ArrowDown":
-          if (index >= 0) autoList[index].style.backgroundColor = "#fff";
-          if (index >= 9) index = -1;
-          autoList[++index].style.backgroundColor = "#eee";
-          break;
-        case "ArrowUp":
-          if (index >= 0) autoList[index].style.backgroundColor = "#fff";
-          if (index <= 0) index = 10;
-          autoList[--index].style.backgroundColor = "#eee";
-          break;
-        case "Enter":
-          event.preventDefault();
-          let selectText = [];
-          autoList[index].textContent.split("\n").forEach(el => {
-            selectText.push(el.replace(/^\s*/, ""));
-          });
-          searchTerm.value = selectText.join("");
-          autoComplete.style.visibility = "hidden";
-          break;
-      }
+  searchKeydownEventListener() {
+    this.searchContent.addEventListener("keydown", event => {
+      this.keydownEvent(event.key);
     });
+  },
+
+  keydownEvent(key) {
+    const MAX_INDEX = 9;
+    const MIN_INDEX = 0;
+    const CONTENT_SIZE = 10;
+
+    switch (key) {
+      case "ArrowDown":
+        this.arrowEvent(MAX_INDEX, MAX_INDEX - CONTENT_SIZE);
+        break;
+      case "ArrowUp":
+        this.arrowEvent(MIN_INDEX, MIN_INDEX + CONTENT_SIZE);
+        break;
+      case "Enter":
+        event.preventDefault();
+        this.enterEvent();
+        break;
+    }
+  },
+
+  arrowEvent(limitIndex, initIndex) {
+    if (this.currentIndex >= 0) this.autoList[this.currentIndex].style.backgroundColor = "#fff";
+    if (this.currentIndex >= limitIndex) this.currentIndex = initIndex;
+    this.autoList[++this.currentIndex].style.backgroundColor = "#eee";
+  },
+
+  enterEvent() {
+    const searchTerm = document.querySelector(".search-term");
+
+    let selectText = [];
+    this.autoList[this.currentIndex].textContent.split("\n").forEach(el => {
+      selectText.push(el.replace(/^\s*/, ""));
+    });
+    searchTerm.value = selectText.join("");
+    setVisibility(this.autoComplete, false);
   }
 };
 

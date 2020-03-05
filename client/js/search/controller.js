@@ -3,22 +3,22 @@ import { AutoComplete } from "./autoComplete.js";
 import { TemplateData } from "./templateData.js";
 
 const jsonFileUrl = "../../../server/productData.json";
-// const jsonFileUrl = "http://localhost:8080/product";
 const data = localStorage.getItem("mockData");
 
 const controllData = data => {
   const searchBox = new SearchBox();
   const autoComplete = new AutoComplete(JSON.parse(data));
   const searchTerm = document.querySelector(".search-term");
+  const DELAY_TIME = 300;
 
   searchTerm.addEventListener("input", event => {
     let timer;
     clearTimeout(timer);
     timer = setTimeout(() => {
       let input = event.target.value;
-      searchBox.inputEvent(input);
+      searchBox.inputEventListener(input);
       autoComplete.searchChar(input);
-    }, 300);
+    }, DELAY_TIME);
   });
 };
 
