@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>{{subject}}</h1>
+    <div id="card">
+        <div class="card-nav">
+            <ul>
+                {{#each cardNav}}
+                <li data-item='{{@index}}'>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="card-contents">
+            {{#each cardContents}}
+            <div class="card-item">
+                <div class="card-img"><img src="{{this.img}}"></div>
+                <div class="card-text">
+                    <h3>{{this.title}}</h3>
+                    <ul>
+                        {{#each this.list}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="card-btns">
+            {{#each cardBtns}}
+                {{#if @first}}
+                <button class="btn-prev">{{this}}</button>
+                {{else}}
+                <button class="btn-next">{{this}}</button>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    <script src="/js/slider2.js"></script>
+</body>
+</html>
