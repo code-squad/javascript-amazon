@@ -1,12 +1,10 @@
-import { _$, _$c, __$ } from "/util.js";
+// import { _$, _$c, __$ } from "/util.js";
 import { DataFetch } from "/fetch.js";
-import { fetchInfo, autoCompleteInfo } from "./config.js";
+import { searchFetch } from "/config.js";
 
-export function SearchAutoComplete(searchBar) {
+export function SearchAutoComplete({ searchBar, autoCompleteInfo }) {
   this.searchBar = searchBar;
-  this.option = autoCompleteInfo.option;
-  this.maxSuggestionLength = this.option.maxSuggestionLength || 9;
-  this.fetchInfo = fetchInfo;
+  this.maxSuggestionLength = autoCompleteInfo.option.maxSuggestionLength || 9;
 }
 
 SearchAutoComplete.prototype = {
@@ -18,7 +16,7 @@ SearchAutoComplete.prototype = {
 
   fetchMatchingWords() {
     const searchWord = this.searchBar.searchWord.toLowerCase();
-    const matchingWords = new DataFetch(this.fetchInfo);
+    const matchingWords = new DataFetch(searchFetch);
 
     return matchingWords
       .fetchData()

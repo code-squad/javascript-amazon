@@ -1,14 +1,12 @@
 import { _$, _$e, _$c, __$ } from "/util.js";
-import { searchBarInfo } from "./config.js";
 
-export function SearchBar() {
+export function SearchBar({ searchField, searchInput, option }) {
   this.keyDownCount = 0;
-  this.searchField = _$(searchBarInfo.searchField);
-  this.searchInput = _$(searchBarInfo.searchInput);
-  this.option = searchBarInfo.option;
+  this.searchField = _$(searchField);
+  this.searchInput = _$(searchInput);
+  this.option = option;
   this.autoCompleteBox = _$(this.option.autoCompleteBox);
   this.darkBackground = _$(this.option.darkBackground);
-  this.selectedWord = this.option.selectedWord;
   this.delayTime = this.option.delayTime || 300;
 }
 
@@ -120,12 +118,12 @@ SearchBar.prototype = {
 
   paintSelectedWord(selectedWord) {
     this.removeSelectedWord();
-    _$c(selectedWord).add(this.selectedWord);
+    _$c(selectedWord).add(this.option.selectedWord);
   },
 
   removeSelectedWord() {
-    const selectedWord = _$("." + this.selectedWord);
+    const selectedWord = _$("." + this.option.selectedWord);
 
-    if (selectedWord) _$c(selectedWord).remove(this.selectedWord);
+    if (selectedWord) _$c(selectedWord).remove(this.option.selectedWord);
   }
 };
