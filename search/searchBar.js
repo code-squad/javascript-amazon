@@ -45,16 +45,16 @@ SearchBar.prototype = {
     this.autoCompleteFunc();
   },
 
-  onKeydownHandler(event) {
-    const searchChildren = [...event.currentTarget.children];
+  onKeydownHandler({currentTarget, key, target}) {
+    const searchChildren = [...currentTarget.children];
     const autoCompleteBoxIndex = searchChildren.indexOf(this.autoCompleteBox);
     const autoCompleteList = searchChildren[autoCompleteBoxIndex].children;
     const autoCompleteLength = autoCompleteList.length;
 
-    switch (event.key) {
+    switch (key) {
       case "Enter":
         event.preventDefault();
-        this.pressEnter(autoCompleteList, event.target);
+        this.pressEnter(autoCompleteList, target);
         break;
 
       case "ArrowUp":
