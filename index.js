@@ -1,4 +1,4 @@
-import { DataFetch } from "../fetch.js";
+import { DataFetch } from "./fetch.js";
 import { carouselFetch } from "./config.js";
 import { SliderTemplate } from "./template/slider.js";
 import { CardMenuTemplate } from "./template/cardMenu.js";

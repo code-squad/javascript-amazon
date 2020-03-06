@@ -1,4 +1,3 @@
-// import { _$, _$c, __$ } from "/util.js";
 import { DataFetch } from "/fetch.js";
 import { searchFetch } from "/config.js";
 
