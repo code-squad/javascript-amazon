@@ -1,3 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.search-box {
+  height: 100px;
+  background: #232f3e;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-content {
+  width: 40%;
+}
+
+.search-wrap {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.search-term {
+  width: 100%;
+  border-right: none;
+  height: 40px;
+  padding-left: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.search-term:focus {
+  color: #111;
+}
+
+.search-button {
+  width: 45px;
+  border: none;
+  background: #febd69;
+  text-align: center;
+  color: #111;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.fa-search:before {
+  content: "\f002";
+  color: #fff;
+}
+
+.nav-active {
+  box-shadow: 0 0 0 2px #f90, 0 0 0 3px rgba(255, 153, 0, 0.5);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.auto-complete {
+  visibility: hidden;
+  box-sizing: border-box;
+  position: absolute;
+  overflow: hidden;
+  background-color: #fff;
+  width: 40%;
+  overflow-x: hidden;
+  border: 0.5px solid black;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.auto-complete > ul > li {
+  padding-left: 10px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  text-overflow: ellipsis;
+}
+
+/* ------------------------------------------------------------------------------------- */
+
+
 .clearfix:after {
   display: block;
   clear: both;
@@ -27,7 +109,8 @@
 
 .slider {
   width: calc(100% * 6);
-  /* translate: -100%; */
+
+ 
 }
 
 .slider > li {

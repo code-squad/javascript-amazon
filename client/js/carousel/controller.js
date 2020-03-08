@@ -1,8 +1,9 @@
 import { Carousel } from "./carousel.js";
 import { TemplateData } from "./templateData.js";
 
-const jsonFileUrl = "http://localhost:8080/users";
-const data = localStorage.getItem("mockData");
+// const jsonFileUrl = "http://localhost:8080/carousel";
+const jsonFileUrl = "../../../server/carouselData.json";
+const data = localStorage.getItem("carouselData");
 
 const carousel = { slideAll: document.querySelector(".slider") };
 const arrowButtons = { buttons: document.querySelectorAll(".slide-btn > button") };
@@ -12,11 +13,11 @@ let maxIndex = { MAX_CAROUSEL_SIZE: 5 };
 
 const config = Object.assign(carousel, arrowButtons, width, currentIndex, maxIndex);
 
-const run = () => {
+(() => {
   fetch(jsonFileUrl)
     .then(response => response.json())
-    .then(mockData => {
-      localStorage.setItem("mockData", JSON.stringify(mockData));
+    .then(carouselData => {
+      localStorage.setItem("carouselData", JSON.stringify(carouselData));
     })
     .then(() => {
       const templateData = new TemplateData(JSON.parse(data));
@@ -24,6 +25,4 @@ const run = () => {
     .then(() => {
       const carousel = new Carousel(config);
     });
-};
-
-run();
+})();
