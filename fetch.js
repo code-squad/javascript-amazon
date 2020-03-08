@@ -1,14 +1,15 @@
 export class DataFetch {
-    constructor({ DATA_URL, LOCAL_STORAGE_KEY }) {
-        this.dataUrl = DATA_URL;
-        this.localStorageKey = LOCAL_STORAGE_KEY;
+    constructor({ dataUrl, localStorageKey,requestOption}) {
+        this.dataUrl = dataUrl;
+        this.localStorageKey = localStorageKey;
+        this.requestOption = requestOption;
     }
 
     fetchData() {
         const localStorageValue = localStorage.getItem(this.localStorageKey);
 
         if (!localStorageValue) {
-            return fetch(this.dataUrl)
+            return fetch(this.dataUrl, this.requestOption)
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem(this.localStorageKey, JSON.stringify(data));

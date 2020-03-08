@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const contentsData = require("./public/contentsData.json");
 const searchData = require("./public/searchData.json");
 
 const app = express();
@@ -10,11 +9,6 @@ app.use(cors());
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.header('Content-Type', 'application/json');
-    res.json(contentsData);
-})
-
-app.post('/search', (req, res) => {
     res.header('Content-Type', 'application/json');
     res.json(searchData);
 })

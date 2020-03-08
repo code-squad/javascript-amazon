@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>carousel</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    />
     <link rel="stylesheet" href="./css/style.css" />
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./index.js"></script>
+  </head>
 
-</head>
-
-<body>
-    <div id="carousel-wrap">
+  <body>
+    <div id="wrap">
+      <!-- header -->
+      <header>
+        <div id="search">
+          <form action="#">
+            <fieldset>
+              <label for="search__input" class="blind"> 검색</label>
+              <div class="search__box">
+                <input
+                  type="search"
+                  autocomplete="off"
+                  id="search__input"
+                  name="search__input"
+                />
+                <button type="submit" class="search__btn">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </fieldset>
+          </form>
+          <div class="search__autoComplete"></div>
+        </div>
+      </header>
+      <!-- //header -->
+      <!-- main -->
+      <main>
+        <div id="carousel"></div>
+        <div class="bg"></div>
+      </main>
+      <!-- //main -->
     </div>
-</body>
-
+  </body>
 </html>
