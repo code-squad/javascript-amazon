@@ -1,0 +1,42 @@
+#search {
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+}
+
+#search button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  background: #febd68;
+}
+
+#search .keyword-list {
+  overflow: auto;
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  width: 100%;
+  max-height: 280px;
+}
+
+#search .keyword-list.open {
+  border: 1px solid #d5d2d2;
+  border-radius: 4px;
+}
+
+#search .keyword-list.open > div {
+  height: 35px;
+  padding: 10px 20px;
+  background: #fff;
+}
+
+#search .keyword-list.open > div:hover, #search .keyword-list.open > div.on {
+  font-weight: bold;
+  background: #f5f5f5;
+}

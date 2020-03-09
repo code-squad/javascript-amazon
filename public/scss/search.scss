@@ -1,0 +1,38 @@
+#search {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+    button {
+        position: absolute;
+        top:0;
+        right:0;
+        width:40px;
+        height:40px;
+        color:#fff;
+        border:0;
+        border-radius: 4px;
+        background:#febd68;
+    }
+    .keyword-list {
+        overflow: auto;
+        position: absolute;
+        top:calc(100% - 1px);
+        left:0;
+        width:100%;
+        max-height: 280px;
+        &.open {
+            border: 1px solid #d5d2d2;
+            border-radius: 4px;
+            > div {
+                height: 35px;
+                padding : 10px 20px;
+                background: #fff;
+                &:hover,
+                &.on {
+                    font-weight: bold;
+                    background: #f5f5f5;
+                }
+            }
+        }
+    }
+}
